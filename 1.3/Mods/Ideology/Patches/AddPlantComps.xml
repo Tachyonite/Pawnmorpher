@@ -1,0 +1,26 @@
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <success>Always</success>
+        <operations>
+            <li Class="PatchOperationTest">
+                <xpath>Defs/ThingDef[@Name="PlantBaseNonEdible"]/comps</xpath>
+                <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[@Name="PlantBaseNonEdible"]</xpath>
+                <value>
+                    <comps />
+                </value>
+            </li>
+        </operations>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="PlantBaseNonEdible"]/comps</xpath>
+        <value>
+            <li>
+                <compClass>Pawnmorph.ThingComps.PlantIngesterListener</compClass>
+            </li>
+        </value>
+    </Operation>
+</Patch>

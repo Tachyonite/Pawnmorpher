@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">..\..\..\..\..\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,10 +34,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MultiplayerAPI">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -44,7 +46,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -54,247 +56,243 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ARModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AudioModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ClothModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClothModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.DirectorModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.GameCenterModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.GridModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.GridModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.HotReloadModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.InputModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.LocalizationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.Physics2DModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ProfilerModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.StreamingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SubstanceModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TerrainModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TilemapModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TLSModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TLSModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UIElementsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UmbraModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UNETModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UNETModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VehiclesModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.VFXModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VFXModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VideoModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.VRModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.WindModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.WindModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -363,6 +361,7 @@
     <Compile Include="DebugUtils\DebugLogUtils.Aliens.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
     <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
+    <Compile Include="DebugUtils\LogFailMode.cs" />
     <Compile Include="DebugUtils\PMDebugActions.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
@@ -397,6 +396,7 @@
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
+    <Compile Include="DefExtensions\VeneratedAnimalMutationThought_TransferWorker.cs" />
     <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
     <Compile Include="Dialogs\ColonistColorPicker.cs" />
     <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
@@ -405,19 +405,24 @@
     <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
     <Compile Include="FormerHumans\SapientVariants.cs" />
     <Compile Include="FormerHumanUtilities.cs" />
+    <Compile Include="Graphics\MutationGraphicsData.cs" />
+    <Compile Include="Graphics\TaggedBodyAddon.cs" />
     <Compile Include="HairDefOf.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
     <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\CompRemoveNonPart.cs" />
     <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
     <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
     <Compile Include="Hediffs\FullTransformationStage.cs" />
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />
+    <Compile Include="Hediffs\Giver_ChaomorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
+    <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
@@ -432,7 +437,6 @@
     <Compile Include="Hediffs\FormerHuman.cs" />
     <Compile Include="Hediffs\Comp_MutationTagger.cs" />
     <Compile Include="Hediffs\ObsoletePart.cs" />
-    <Compile Include="Hediffs\PersistentMorphTf.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
     <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
@@ -448,6 +452,7 @@
     <Compile Include="HPatches\AnimalInteractionPatches.cs" />
     <Compile Include="HPatches\AnimalPenUtilityPatches.cs" />
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
+    <Compile Include="HPatches\AutoSlaughterPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
@@ -457,8 +462,12 @@
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\GiddyUpPatch.cs" />
+    <Compile Include="HPatches\HediffDefPatches.cs" />
+    <Compile Include="HPatches\HediffPatches.cs" />
+    <Compile Include="HPatches\HediffSetPatches.cs" />
     <Compile Include="HPatches\HuntingPatches.cs" />
     <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
+    <Compile Include="HPatches\IncidentPatches.cs" />
     <Compile Include="HPatches\IngestJobPatches.cs" />
     <Compile Include="HPatches\InteractionPatches.cs" />
     <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
@@ -485,6 +494,7 @@
     <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtWorkerPatches.cs" />
     <Compile Include="HPatches\ToilsLayDownPatches.cs" />
+    <Compile Include="HPatches\ToolPatches.cs" />
     <Compile Include="HPatches\VerbTrackerPatches.cs" />
     <Compile Include="HPatches\WildmanUtilityPatches.cs" />
     <Compile Include="HPatches\WorkGiverPatches.cs" />
@@ -493,6 +503,7 @@
     <Compile Include="ICustomVerb.cs" />
     <Compile Include="IDescriptiveHediff.cs" />
     <Compile Include="IEquipmentGizmo.cs" />
+    <Compile Include="IFoodPreferenceAdjustor.cs" />
     <Compile Include="IMentalStateRecoveryReceiver.cs" />
     <Compile Include="IncidentWorker\LiquidSlurry.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
@@ -502,9 +513,10 @@
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediff.cs" />
     <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
-    <Compile Include="InteractionWorker_Bleat.cs" />
+    <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
@@ -577,12 +589,18 @@
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
     <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\FeralFoodAdjustor.cs" />
     <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
     <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="RecipeWorkers\ApplyAdaptationCream.cs" />
+    <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
+    <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="Rituals\AttachableOutcomeEffectWorkers\AddRandomVeneratedMutation.cs" />
+    <Compile Include="Rituals\RoleTags.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
     <Compile Include="RoleRequirement\FormerHuman.cs" />
     <Compile Include="SapienceState.cs" />
@@ -607,6 +625,7 @@
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
+    <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
     <Compile Include="ThingComps\DatabaseStorage.cs" />
@@ -617,6 +636,7 @@
     <Compile Include="ThingComps\MutationGenomeStorage.cs" />
     <Compile Include="ThingComps\MutationSequencerComp.cs" />
     <Compile Include="ThingComps\MutationSequencerProps.cs" />
+    <Compile Include="ThingComps\PlantIngesterListener.cs" />
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\SlurryFueled.cs" />
@@ -656,10 +676,6 @@
     <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
     <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
     <Compile Include="IngestionOutcomeDoer_AddAspect.cs" />
-    <Compile Include="InteractionWorker_Bark.cs" />
-    <Compile Include="InteractionWorker_Bok.cs" />
-    <Compile Include="InteractionWorker_Meow.cs" />
-    <Compile Include="InteractionWorker_Yip.cs" />
     <Compile Include="IRaceChangeEventReceiver.cs" />
     <Compile Include="ITab_Pawn_Mutations.cs" />
     <Compile Include="Jobs\Driver_LayEgg.cs" />
@@ -727,7 +743,6 @@
     <Compile Include="HediffComp_Remove.cs" />
     <Compile Include="HediffComp_Single.cs" />
     <Compile Include="HediffComp_TerrainBasedMorph.cs" />
-    <Compile Include="InteractionWorker_Moo.cs" />
     <Compile Include="CompProperties_MutagenicRadius.cs" />
     <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
     <Compile Include="PawnmorphHediffGiverUtility.cs" />
@@ -753,6 +768,7 @@
     <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="Things\ExpandedPlant.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
+    <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
     <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
     <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
@@ -767,6 +783,9 @@
     <Compile Include="Thoughts\MutationMemory.cs" />
     <Compile Include="Thoughts\Precept\MutationMemory_VeneratedAnimal.cs" />
     <Compile Include="Thoughts\Precept\PWorker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_FormerHuman_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_HasMutations_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedMutation_Social.cs" />
     <Compile Include="Thoughts\ThoughtLabels.cs" />
     <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
     <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />
@@ -794,6 +813,7 @@
     <Compile Include="Thoughts\Worker_Sapience.cs" />
     <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
     <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
+    <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
     <Compile Include="User Interface\AddedMutations.cs" />
@@ -820,6 +840,13 @@
     <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
+    <Compile Include="Social\PMInteractionWeightsDef.cs" />
+    <Compile Include="Utilities\Collections\Checklist.cs" />
+    <Compile Include="Utilities\Collections\MultiDict.cs" />
+    <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
+    <Compile Include="Hediffs\IMutagenicHediff.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

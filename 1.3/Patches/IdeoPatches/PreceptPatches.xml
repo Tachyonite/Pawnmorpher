@@ -26,6 +26,12 @@
                             <thoughtDef>PM_VeneratedAnimalReverted</thoughtDef>
                             <historyEvent>Reverted</historyEvent>
                         </li>
+                        <li Class="PreceptComp_SituationalThought">
+                            <thought>PM_FormerHuman_Venerated_Social</thought>
+                        </li>
+                        <li Class="PreceptComp_SituationalThought">
+                            <thought>PM_HasMutation_Venerated_Approved_Social</thought>
+                        </li>
                     </value>
                 </li>
                 <li Class="PatchOperationAdd">

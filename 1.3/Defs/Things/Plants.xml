@@ -112,11 +112,14 @@
 
     <ThingDef Name="GlowVineBase" ParentName="PlantBase" Abstract="true">
         <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
+        <plant>
+            <growDays>15</growDays>
+        </plant>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
                 <minGrowthTemperature>-20</minGrowthTemperature>
                 <minOptimalGrowthTemperature>0</minOptimalGrowthTemperature>
-                <maxOptimalGrowthTemperature>15</maxOptimalGrowthTemperature>
+                <maxOptimalGrowthTemperature>17</maxOptimalGrowthTemperature>
                 <maxGrowthTemperature>30</maxGrowthTemperature>
                 <minLeaflessTemperature>-200</minLeaflessTemperature>
                 <maxLeaflessTemperature>-2</maxLeaflessTemperature>
@@ -127,7 +130,7 @@
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs.</description>
+        <description>A mutagen-infused plant that sprouts odd blue bulbs. NOTE: The stat panel lies, this plant will only grow at 0-15 degrees C (32-59F).</description>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
             <Beauty>10</Beauty>
@@ -144,7 +147,6 @@
         <plant>
             <fertilityMin>0.9</fertilityMin>
             <fertilitySensitivity>1</fertilitySensitivity>
-            <growDays>21</growDays>
             <dieIfNoSunlight>false</dieIfNoSunlight>
             <dieIfLeafless>false</dieIfLeafless>
             <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
@@ -213,7 +215,6 @@
         <plant>
             <fertilityMin>0.9</fertilityMin>
             <fertilitySensitivity>1</fertilitySensitivity>
-            <growDays>21</growDays>
             <dieIfNoSunlight>false</dieIfNoSunlight>
             <dieIfLeafless>false</dieIfLeafless>
             <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>

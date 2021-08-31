@@ -1,0 +1,171 @@
+<Defs>
+	<InteractionDef Class="Pawnmorph.Social.PMInteractionDef">
+		<defName>PMCanidHeadpats</defName>
+		<label>changes comforted</label>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Headpats</symbol>
+		<initiatorThought>PawnmorphHeadpats</initiatorThought>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>10</initiatorXpGainAmount>
+		<recipientThought>PawnmorphHeadpatsRecipient</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] gave reassuring headpats to [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] called [RECIPIENT_nameDef] a [goodboi].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [actionpart] [RECIPIENT_nameDef]'s [bodypart, while [adverb] telling [RECIPIENT_objective] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [actionpart] [RECIPIENT_nameDef]'s [bodypart].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adverb] told [RECIPIENT_nameDef] [topic].</li>
+
+				<li>goodboi(initiator_gender==Male,p=4)->good boy</li>
+				<li>goodboi(initiator_gender==Female,p=4)->good girl</li>
+				
+				<li>actionpart->patted</li>
+				<li>actionpart->petted</li>
+				<li>actionpart->coddled</li>
+				<li>actionpart->cuddled</li>
+				<li>actionpart->hugged</li>
+				<li>actionpart->rested their face against</li>
+				
+				<li>bodypart->tail</li>
+				<li>bodypart->ears</li>
+				<li>bodypart->head</li>
+				<li>bodypart->fur</li>
+				<li>bodypart->floof</li>
+				<li>bodypart->back</li>
+				<li>bodypart->belly</li>
+				<li>bodypart->hands</li>
+				
+				<li>adverb->calmly</li>
+				<li>adverb->warmly</li>
+				<li>adverb->reassuringly</li>
+				<li>adverb->delicately</li>
+				<li>adverb->concerningly</li>
+				<li>adverb->quietly</li>
+				<li>adverb->cutely</li>
+				
+				<li>topic->that everything would be ok</li>
+				<li>topic->that there was nothing to worry about</li>
+				<li>topic->that [RECIPIENT_pronoun] is cuter this way</li>
+				<li>topic->that the changes would soon pass</li>
+				<li>topic->not to worry</li>
+				<li>topic->to enjoy the changes</li>
+				<li>topic->to see this as an opportunity to reinvent [RECIPIENT_objective]self</li>
+				<li>topic->to look on the bright side</li>
+
+			</rulesStrings>
+		</logRulesInitiator>
+		
+		<!--
+	worker class must be one of 
+	Pawnmorph.Social.InteractionWorker_Chitchat
+	''	InteractionWorker_KindWords
+		InteractionWorker_Slight 
+		InteractionWorker_Insult
+	
+	these workers are designed to mimic the workers of the same name in the base game with the additional mutation/morph checks 
+-->
+		<recipientWeights> <!-- recipient weights has the same fields as initiator and it works the same way-->
+			<mutationWeights>
+				<li>
+					<key>EtherHuskyMuzzle</key>
+					<value>0.5</value>
+				</li>
+				<li>
+					<key>EtherWargMuzzle</key>
+					<value>0.5</value>
+				</li>
+				<li>
+					<key>EtherFoxMuzzle</key>
+					<value>0.5</value>
+				</li>
+				<li>
+					<key>EtherCatMuzzle</key>
+					<value>0.5</value>
+				</li>
+				<li>
+					<key>EtherWolfMuzzle</key>
+					<value>0.5</value>
+				</li>
+			</mutationWeights>
+			<morphWeights>
+				<li>
+					<key>HuskyMorph</key>
+					<value>1</value>
+				</li>
+				<li>
+					<key>FoxMorph</key>
+					<value>1</value>
+				</li>
+				<li>
+					<key>WolfMorph</key>
+					<value>1</value>
+				</li>
+				<li>
+					<key>CatMorph</key>
+					<value>1</value>
+				</li>
+				<li>
+					<key>WargMorph</key>
+					<value>1</value>
+				</li>
+			</morphWeights>
+			<requiresBoth>false</requiresBoth>
+		</recipientWeights>
+
+		<!-- the total weight is the sum of all satisfied weight conditions on -->
+
+		<requiresBoth>false</requiresBoth>
+		<!-- if set to true then both the recipient and initiator must have a nonzero weight for the interaction to happen-->
+	</InteractionDef>
+	
+	<ThoughtDef>
+		<defName>PawnmorphHeadpats</defName>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>gave headpats</label>
+				<baseOpinionOffset>0.1</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>PawnmorphHeadpatsRecipient</defName>
+		<label>gave headpats</label>
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>got headpats</label>
+				<baseOpinionOffset>0.3</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>GotHeadpats</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+    <defName>GotHeadpats</defName>
+		<label>got headpats</label>
+    <durationDays>0.5</durationDays>
+    <stackLimit>10</stackLimit>
+    <stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+    <stages>
+      <li>
+        <label>comforted about my changes</label>
+        <description>Someone made me feel a bit better about myself. That was nice.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+	
+	
+</Defs>

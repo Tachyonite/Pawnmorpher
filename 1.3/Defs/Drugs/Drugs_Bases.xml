@@ -70,6 +70,7 @@
 	<ThingDef Name="PowerfulInjectorBase" ParentName="InjectorBase" Abstract="True">
 		<statBases>
 			<MarketValue>1000</MarketValue>
+			<WorkToMake>6000</WorkToMake>
 		</statBases>
 		<recipeMaker>
 			<researchPrerequisite>PowerfulInjectors</researchPrerequisite>
@@ -79,6 +80,8 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>6</MechaniteSlurry>
+			<Mutanite>2</Mutanite>
+			<Neutroamine>10</Neutroamine>
 		</costList>
 	</ThingDef>
 	

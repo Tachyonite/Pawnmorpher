@@ -136,6 +136,17 @@ namespace Pawnmorph
         /// this is always called before enter and after loading a pawn
         protected abstract void Init();
 
+        /// <summary>
+        /// clean up the pawn when making them feral .
+        /// </summary>
+        protected void MakeFeral()
+        {
+            var restriction = Pawn.foodRestriction;
+            var curRestriction = restriction?.CurrentFoodRestriction;
+            if (curRestriction == null) return;
+            restriction.CurrentFoodRestriction = null; 
+        }
+
         internal void SetDef([NotNull] SapienceStateDef def)
         {
             _def = def;

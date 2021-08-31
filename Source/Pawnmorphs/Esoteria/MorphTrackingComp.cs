@@ -4,6 +4,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using Verse;
@@ -22,7 +23,11 @@ namespace Pawnmorph
         /// </summary>
         // hacky solution, but we can't do comp check with the rest of race checks because we have to guarantee that the parent isn't iterating through
         // their comps when we add or remove them 
-        internal bool needsRaceCompCheck; 
+        internal void SetNeedsRaceCheck()
+        {
+            PawnPatches.QueueRaceCheck(Pawn); 
+
+        }
 
 
         void Awake()

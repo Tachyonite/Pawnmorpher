@@ -32,14 +32,15 @@ namespace Pawnmorph
             var map = (Map) parms.target;
             if (!TryFindEntryCell(map, out IntVec3 intVec)) return false;
 
-            var pawnkinds = new List<string>
-            {
-                "Chaofox",
-                "Chaodino",
-                "Chaocow"
-            };
 
-            PawnKindDef animal = PawnKindDef.Named(pawnkinds.RandomElement());
+            PawnKindDef animal = ChaomorphUtilities.GetRandomChaomorphPK(ChaomorphType.Chaomorph);
+
+            if (animal == null)
+            {
+                Log.Error("unable to find random chaomorph for chaomorph passes event");
+                return false;
+            }
+
             float num = StorytellerUtility.DefaultThreatPointsNow(map);
             int num2 = GenMath.RoundRandom(num / animal.combatPower);
             int max = Rand.RangeInclusive(2, 4);

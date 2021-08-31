@@ -3,9 +3,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
+using Pawnmorph.DebugUtils;
 using UnityEngine;
 using Verse;
+using static Pawnmorph.Utilities.PatchUtilities;
+
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
@@ -102,5 +108,51 @@ namespace Pawnmorph.HPatches
             return num; 
         }
 
+
+        [HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
+        static class GetPartEfficiencyFix
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
+            {
+                List<CodeInstruction> lst = insts.ToList();
+
+                const int len = 5;
+                var subArr = new CodeInstruction[len];
+                var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
+                {
+                    (OpCodes.Ldarg_1, null), //part 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(BodyPartRecord).GetField(nameof(BodyPartRecord.def),
+                                                                       BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldarg_0, null), //hediff set 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(HediffSet).GetField(nameof(HediffSet.pawn),
+                                                                  BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Callvirt,
+                     new OpCodeOperand(typeof(BodyPartDef).GetMethod(nameof(BodyPartDef.GetMaxHealth),
+                                                                     BindingFlags.Public | BindingFlags.Instance)))
+                };
+
+                MethodInfo subMethod =
+                    typeof(BodyUtilities).GetMethod(nameof(BodyUtilities.GetPartMaxHealth),
+                                                    BindingFlags.Public | BindingFlags.Static);
+
+                for (var i = 0; i < lst.Count - len; i++)
+                {
+                    for (var j = 0; j < len; j++) subArr[j] = lst[i + j];
+
+                    if (!subArr.MatchesPattern(pattern)) continue;
+
+                    lst[i + 1].opcode = OpCodes.Nop;
+                    lst[i + 1].operand = null;
+                    lst[i + 4].opcode = OpCodes.Call;
+                    lst[i + 4].operand = subMethod;
+                    break;
+                }
+
+
+                return lst; 
+            }
+        }
     }
 }

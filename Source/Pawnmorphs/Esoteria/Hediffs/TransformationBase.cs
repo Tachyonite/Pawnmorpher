@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
@@ -17,16 +16,39 @@ namespace Pawnmorph.Hediffs
     /// <summary>abstract base class for all transformation hediffs</summary>
     /// <seealso cref="Pawnmorph.IDescriptiveHediff" />
     /// <seealso cref="Verse.Hediff" />
-    public abstract class TransformationBase : HediffWithComps, IDescriptiveHediff
+    public abstract class TransformationBase : Hediff_Descriptive, IMutagenicHediff
     {
-        [NotNull] private readonly Dictionary<BodyPartDef, List<MutationEntry>> _scratchDict =
+
+        
+        [NotNull] private readonly Dictionary<BodyPartDef, List<MutationEntry>> _mutationPerPartCache =
             new Dictionary<BodyPartDef, List<MutationEntry>>();
 
         private List<BodyPartRecord> _checkList;
-        private int _curIndex;
+        private int _curPartIndex;
         private int _curMutationIndex;
 
+        private List<ITfHediffObserverComp> _observerCompsCache;
 
+
+        /// <summary>
+        /// all observer comps to notify when adding mutations and visiting parts to add mutations onto.
+        /// </summary>
+        /// <value>
+        /// The observer comps.
+        /// </value>
+        [NotNull]
+        protected IReadOnlyList<ITfHediffObserverComp> ObserverComps
+        {
+            get
+            {
+                if (_observerCompsCache == null)
+                {
+                    _observerCompsCache = comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList();
+                }
+
+                return _observerCompsCache;
+            }
+        }
         /// <summary>
         /// Gets a value indicating whether this transformation hediff blocks the race checking 
         /// </summary>
@@ -51,32 +73,15 @@ namespace Pawnmorph.Hediffs
             }
             else
             {
-                if (_curIndex < _checkList.Count)
+                if (_curPartIndex < _checkList.Count)
                 {
-                    var nextPart = _checkList[_curIndex];
+                    var nextPart = _checkList[_curPartIndex];
                     builder.AppendLine($"going to check {nextPart.Label} next");
                 }
 
-                builder.AppendLine($"\t{(((float) _curIndex) / _checkList.Count).ToStringPercent()} done");
+                builder.AppendLine($"\t{(((float) _curPartIndex) / _checkList.Count).ToStringPercent()} done");
             }
             return builder.ToString(); 
-        }
-
-        /// <summary>
-        ///     Gets the description.
-        /// </summary>
-        /// <value>
-        ///     The description.
-        /// </value>
-        public virtual string Description
-        {
-            get
-            {
-                if (CurStage is IDescriptiveStage dStage)
-                    return string.IsNullOrEmpty(dStage.DescriptionOverride) ? def.description : dStage.DescriptionOverride;
-
-                return def.description;
-            }
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace Pawnmorph.Hediffs
             get
             {
                 if (_checkList == null) return false;
-                return _checkList.Count == _curIndex;
+                return _checkList.Count == _curPartIndex;
             }
         }
 
@@ -111,16 +116,10 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
-                string label; 
-                if (CurStage is IDescriptiveStage dStage)
-                    label = string.IsNullOrEmpty(dStage.LabelOverride) ? base.LabelBase : dStage.LabelOverride;
-                else
-                    label = base.LabelBase;
+                string label = base.LabelBase;
 
                 if(SingleComp != null)
-                {
-                    label = $"{label}x{SingleComp.stacks}";
-                }
+                    label = $"{label} x{SingleComp.stacks}";
 
                 return label; 
 
@@ -128,7 +127,7 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>Gets the minimum mutations per check.</summary>
-        /// if greater then 1, every-time a mutation is possible don't stop iterating over the parts until a mutable part is found
+        /// if greater then 1, every-time a mutation is possible don't stop iterating over the parts until a body part that can be mutated is found 
         /// <value>The minimum mutations per check.</value>
         protected virtual int MinMutationsPerCheck => 1;
 
@@ -141,7 +140,7 @@ namespace Pawnmorph.Hediffs
         {
             base.ExposeData();
             Scribe_Collections.Look(ref _checkList, nameof(_checkList), LookMode.BodyPart);
-            Scribe_Values.Look(ref _curIndex, nameof(_curIndex));
+            Scribe_Values.Look(ref _curPartIndex, nameof(_curPartIndex));
             Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
             Scribe_Values.Look(ref _curMutationIndex, nameof(_curMutationIndex));
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove)); 
@@ -160,7 +159,8 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///   <c>true</c> if this instance can mutate the pawn; otherwise, <c>false</c>.
         /// </value>
-        protected bool CanMutatePawn
+        /// this is meant as an optimization, if false the hediff won't bother looking for parts to mutate  
+        protected bool CanMutatePawn 
         {
             get
             {
@@ -174,13 +174,7 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether  this should be removed if the pawn is not mutable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this should be removed if the pawn is not mutable.; otherwise, <c>false</c>.
-        /// </value>
-        protected virtual bool RemoveIfNotMutable { get; } = true; 
+     
 
         /// <summary>called after this hediff is added to the pawn</summary>
         /// <param name="dinfo">The dinfo.</param>
@@ -190,11 +184,11 @@ namespace Pawnmorph.Hediffs
             _checkList = new List<BodyPartRecord>();
             FillPartCheckList(_checkList);
            
-            _curIndex = 0;
+            _curPartIndex = 0;
 
             var mutagen = def.GetMutagenDef();
-            if (!mutagen.CanInfect(pawn) && RemoveIfNotMutable) //if we somehow got a pawn that can't be mutated just remove the hediff
-                forceRemove = true; 
+            if (!mutagen.CanInfect(pawn)) //if we somehow got a pawn that can't be mutated just remove the hediff
+                forceRemove = true;         //this is because AndroidTiers was giving android mutations because reasons 
 
 
             RestartAllMutations();
@@ -213,6 +207,11 @@ namespace Pawnmorph.Hediffs
                 if(!allMutations.Contains(mutation.def as MutationDef)) continue; 
                 var adjComp = mutation.TryGetComp<Comp_MutationSeverityAdjust>();
                 adjComp?.Restart();
+            }
+
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                comp.Init();
             }
         }
 
@@ -281,6 +280,8 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>Notifies this instance that the available mutations have changed.</summary>
+        //was made protected under the assumption that most configuration would be done through inheritance 
+        //when reworking to prefer composition, this or ResetPossibleMutations should be made public 
         protected void Notify_AvailableMutationsChanged()
         {
             ResetPossibleMutations();
@@ -299,6 +300,11 @@ namespace Pawnmorph.Hediffs
                 Pedantic($"Executing {execStage.GetType().Name} on {def.defName}");
                 execStage.EnteredStage(this); 
             }
+
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                comp.StageChanged();
+            }
         }
 
         /// <summary>
@@ -311,16 +317,7 @@ namespace Pawnmorph.Hediffs
         }
 
 
-        /// <summary>Tries to give transformations</summary>
-        protected virtual void TryGiveTransformations()
-        {
-            if (CurStage == null) return;
-            if (!CanMutatePawn) return; 
-
-            foreach (var tfGiver in CurStage.GetAllTransformers())
-                if (tfGiver.TryTransform(pawn, this))
-                    break; //try each one, one by one. break at first one that succeeds  
-        }
+    
 
         /// <summary>
         /// returns true if there are ny mutations in this stage 
@@ -335,7 +332,15 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///   <c>true</c> if there are any mutations in the current stage; otherwise, <c>false</c>.
         /// </value>
-        public bool AnyMutationsInCurrentStage => AnyMutationsInStage(CurStage); 
+        public virtual bool CurrentStageHasMutations => AnyMutationsInStage(CurStage);
+
+        /// <summary>
+        /// Gets a value indicating whether there are any transformations in the current stage.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if there are any transformations in the current stage; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool CurrentStageHasTransformation => CurStage is FullTransformationStageBase;
 
         private void AddMutations()
         {
@@ -347,29 +352,35 @@ namespace Pawnmorph.Hediffs
             }
             if (!AnyMutationsInStage(CurStage)) return; 
             
-            if (_scratchDict.Count == 0)
+            if (_mutationPerPartCache.Count == 0)
             {
                 ResetPossibleMutations();   
             }
             
 
 
-            if(_curIndex < _checkList.Count)
+            if(_curPartIndex < _checkList.Count)
                 AddPartMutations();
             else
             {
                 //add whole body mutations 
                 int mutationsAdded=0;
 
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Observe(null); //call observers in case there is anything they do with whole body slots 
+                }
+
                 for (var index = 0; index < _wholeBodyParts.Count; index++)
                 {
                     MutationEntry mutationEntry = _wholeBodyParts[index];
                     if (Rand.Value < mutationEntry.addChance)
                     {
-                        MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
-                        var mutagen = def.GetMutagenDef();
-                        mutagen.TryApplyAspects(pawn);
-                        mutationsAdded++;
+                        MutationResult m = MutationUtilities.AddMutation(pawn, mutationEntry.mutation);
+                        if (m) NotifyObserversMutationsAdded(m);
+                        MutagenDef mutagen = def.GetMutagenDef();
+                       mutagen.TryApplyAspects(pawn);
+                       mutationsAdded++;
                     }
 
                     if (mutationsAdded >= MinMutationsPerCheck) break;
@@ -379,6 +390,17 @@ namespace Pawnmorph.Hediffs
                     OnMutationsAdded(mutationsAdded); 
             }
             
+        }
+
+        private void NotifyObserversMutationsAdded(MutationResult m)
+        {
+            foreach (ITfHediffObserverComp comp in ObserverComps)
+            {
+                foreach (Hediff_AddedMutation mutation in m)
+                {
+                    comp.MutationAdded(mutation);
+                }
+            }
         }
 
         /// <summary>
@@ -404,13 +426,13 @@ namespace Pawnmorph.Hediffs
         /// The single comp.
         /// </value>
         [CanBeNull]
-        protected HediffComp_Single SingleComp => this.TryGetComp<HediffComp_Single>(); 
+        protected HediffComp_Single SingleComp => this.TryGetComp<HediffComp_Single>(); //TODO: remove this and have HediffComp_Single implement ITfHediffObserverComp, TransformationBase doesn't need to know if it has this comp specifically 
 
         /// <summary>
         /// Called when mutations are added the pawn.
         /// </summary>
         /// <param name="mutationsAdded">The mutations added.</param>
-        protected virtual void OnMutationsAdded(int mutationsAdded)
+        protected virtual void OnMutationsAdded(int mutationsAdded) //TODO remove this when refactoring HediffComp_Single 
         {
             var sComp = SingleComp;
             if(sComp != null)
@@ -426,9 +448,9 @@ namespace Pawnmorph.Hediffs
         private void AddPartMutations()
         {
             var mutationsAdded = 0;
-            while (_curIndex < _checkList.Count)
+            while (_curPartIndex < _checkList.Count)
             {
-                BodyPartRecord part = _checkList[_curIndex];
+                BodyPartRecord part = _checkList[_curPartIndex];
                 if (!pawn.RaceProps.body.AllParts.Contains(part))
                 {
                     //if the pawn's race changes the mutation order may no longer be valid 
@@ -436,11 +458,18 @@ namespace Pawnmorph.Hediffs
                     break;
                 }
 
-                var lst = _scratchDict.TryGetValue(part.def);
+                //call the observers before anything else. they may add/remove/change mutations on this part on their own 
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Observe(part);
+                }
+
+                var lst = _mutationPerPartCache.TryGetValue(part.def);
+
 
                 if (lst == null) //end check early if there are no parts that can be added 
                 {
-                    _curIndex++;
+                    _curPartIndex++;
                     _curMutationIndex = 0; 
                     continue;
                 }
@@ -458,9 +487,11 @@ namespace Pawnmorph.Hediffs
                     }
                     else if (Rand.Value < mutation.addChance)
                     {
-                        var result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
+                        MutationResult result = MutationUtilities.AddMutation(pawn, mutation.mutation, part);
                         if(result) //make sure the mutation was actually added before doing this 
                         {
+                            NotifyObserversMutationsAdded(result);
+
                             mutationsAdded = NewMethod(mutationsAdded);
                         }
                     }
@@ -477,7 +508,7 @@ namespace Pawnmorph.Hediffs
 
                 }
 
-                _curIndex++; //increment after so mutations can 'block'
+                _curPartIndex++; //increment after so mutations can 'block'
                 _curMutationIndex = 0; //reset the mutation index every time we move up a part 
 
                 //check if we have added enough mutations to end the loop early 
@@ -507,7 +538,7 @@ namespace Pawnmorph.Hediffs
         {
             _checkList = _checkList ?? new List<BodyPartRecord>();
             _checkList.Clear();
-            _curIndex = 0;
+            _curPartIndex = 0;
             FillPartCheckList(_checkList); 
         }
 
@@ -519,17 +550,17 @@ namespace Pawnmorph.Hediffs
             try
             {
                 IEnumerable<MutationEntry> mutations = GetAvailableMutations(CurStage);
-                _scratchDict.Clear();
+                _mutationPerPartCache.Clear();
                 foreach (var entry in mutations) //fill a lookup dict 
                 foreach (BodyPartDef possiblePart in entry.mutation.parts.MakeSafe())
-                    if (_scratchDict.TryGetValue(possiblePart, out var lst))
+                    if (_mutationPerPartCache.TryGetValue(possiblePart, out var lst))
                     {
                         lst.Add(entry);
                     }
                     else
                     {
                         lst = new List<MutationEntry> {entry};
-                        _scratchDict[possiblePart] = lst;
+                        _mutationPerPartCache[possiblePart] = lst;
                     }
                 _wholeBodyParts.Clear();
                 foreach (MutationEntry availableMutation in GetAvailableMutations(CurStage))
@@ -538,6 +569,11 @@ namespace Pawnmorph.Hediffs
                     {
                         _wholeBodyParts.Add(availableMutation); 
                     }
+                }
+
+                foreach (ITfHediffObserverComp comp in ObserverComps)
+                {
+                    comp.Init();
                 }
             }
             catch (NullReferenceException e)
@@ -549,6 +585,8 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Marks this hediff removal.
         /// </summary>
+        /// this is needed because Rimworld is touchy about removing hediffs. best to not do it manually and call this,
+        /// the HediffTracker will then remove this hediff next tick once all hediffs are no longer running any code 
         public void MarkForRemoval()
         {
             forceRemove = true; 

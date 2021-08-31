@@ -2,8 +2,6 @@
 // last updated 08/30/2019  8:46 AM
 
 using System.Collections.Generic;
-using System.Linq;
-using Pawnmorph.Hybrids;
 using RimWorld;
 using Verse;
 
@@ -15,76 +13,46 @@ namespace Pawnmorph.Social
     /// <seealso cref="RimWorld.InteractionDef" />
     public class PMInteractionDef : InteractionDef
     {
-        /// <summary>
-        /// class that represents a single weight entry 
-        /// </summary>
-        public class Weights
-        {
-            /// <summary>The mutation weights</summary>
-            public Dictionary<HediffDef, float> mutationWeights = new Dictionary<HediffDef, float>();
-            /// <summary>The morph weights</summary>
-            public Dictionary<MorphDef, float> morphWeights = new Dictionary<MorphDef, float>();
-            /// <summary>if the pawn needs both a mutation and be a morph to get a non zero weight </summary>
-            public bool requiresBoth;
-
-            /// <summary>Gets the total weight.</summary>
-            /// the higher the weight the more likely this interaction is going to be picked 
-            /// <param name="pawn">The pawn.</param>
-            /// <returns></returns>
-            public float GetTotalWeight(Pawn pawn)
-            {
-                IEnumerable<HediffDef> hediffs = pawn.health.hediffSet.hediffs.Select(h => h.def);
-
-                float total = 0;
-                var hasMutation = false;
-
-                foreach (HediffDef hediffDef in hediffs)
-                    if (mutationWeights.TryGetValue(hediffDef, out float v))
-                    {
-                        hasMutation = true;
-                        total += v;
-                    }
-
-                bool isMorph = RaceGenerator.TryGetMorphOfRace(pawn.def, out MorphDef morph);
-
-                if (isMorph)
-                {
-                    isMorph = morphWeights.TryGetValue(morph, out float w);
-                    total += w;
-                }
-
-                if (requiresBoth && !isMorph && !hasMutation) total = 0;
-
-                return total;
-            }
-        }
-
         /// <summary>Get all Configuration Errors with this instance</summary>
         /// <returns></returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors())
-            {
                 yield return configError;
-            }
 
             if (!(Worker is PMInteractionWorkerBase))
                 yield return "Worker type is not derived from " + nameof(PMInteractionWorkerBase);
 
-
+            if (initiatorWeights == null && recipientWeights == null)
+                yield return "Neither initator nor recipient weights are defined";
         }
 
-        /// <summary>The initiator weights</summary>
-        public Weights initiatorWeights;
+        /// <summary>The weights applied based on the initator's mutations</summary>
+        public PMInteractionWeightsDef initiatorWeights;
 
-        /// <summary>The recipient weights</summary>
-        public Weights recipientWeights;
+        /// <summary>The weights applied based on the recipients's mutations</summary>
+        public PMInteractionWeightsDef recipientWeights;
 
-        /// <summary>if both the initiator and recipient need to have non zero weights for the resultant weight to be non zero </summary>
+        /// <summary>An additional multiplier on the weight of the interaction</summary>
+        public float weightMultiplier = 1f;
+
+        /// <summary>if both the initiator and recipient need to have non-zero weights for the resultant weight to be non zero </summary>
         public bool requiresBoth;
 
+        /// <summary>
+        /// Gets the modified interaction weight for the given initiator and recipient pawns 
+        /// </summary>
+        /// <param name="initiator">The initiator.</param>
+        /// <param name="recipient">The recipient.</param>
+        /// <returns></returns>
+        public float GetInteractionWeight(Pawn initiator, Pawn recipient)
+        {
+            var initiatorWeight = initiatorWeights?.GetTotalWeight(initiator) ?? 0;
+            var recipientWeight = recipientWeights?.GetTotalWeight(recipient) ?? 0;
+            if (requiresBoth && (initiatorWeight <= 0 || recipientWeight <= 0))
+                return 0;
+
+            return (initiatorWeight + recipientWeight) * weightMultiplier;
+        }
     }
-
-    
-
 }

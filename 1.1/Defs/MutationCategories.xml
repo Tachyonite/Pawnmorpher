@@ -39,8 +39,4 @@
 		<defName>Powerful</defName>
 		<label>powerful</label>
 	</Pawnmorph.MutationCategoryDef>
-
-	<Pawnmorph.MutationCategoryDef>
-		<defName>PM_ChamberFailures</defName>
-	</Pawnmorph.MutationCategoryDef>
 </Defs>

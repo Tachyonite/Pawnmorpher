@@ -41,4 +41,18 @@
     <label>permanently feral</label>
   </HistoryEventDef>
 
+  <HistoryEventDef>
+    <defName>FormerHumanHunted</defName>
+    <label>hunted</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>FormerHumanGrazed</defName>
+    <label>grazed</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>FormerHumanAteCorpse</defName>
+    <label>ate corpse</label>
+  </HistoryEventDef>
 </Defs>

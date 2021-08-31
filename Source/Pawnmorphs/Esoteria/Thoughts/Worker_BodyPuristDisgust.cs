@@ -3,6 +3,7 @@
 
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -21,8 +22,8 @@ namespace Pawnmorph.Thoughts
         protected override ThoughtState CurrentSocialStateInternal(Pawn p, Pawn otherPawn)
         {
             if (!p.RaceProps.Humanlike) return false;
-            if (!otherPawn.RaceProps.Humanlike) return false; //make sure only humanlike pawns are affected by this 
-            if (!p.story.traits.HasTrait(TraitDefOf.BodyPurist)) return false;
+            if (otherPawn?.RaceProps?.Humanlike != true) return false; //make sure only humanlike pawns are affected by this 
+            if (p.story?.traits?.HasTrait(TraitDefOf.BodyPurist) != true) return false;
             if (!RelationsUtility.PawnsKnowEachOther(p, otherPawn)) return false; //the pawns have to know each other 
 
             MutationTracker tracker = otherPawn.GetMutationTracker();
@@ -49,7 +50,7 @@ namespace Pawnmorph.Thoughts
             foreach (Hediff_AddedMutation mutation in tracker.AllMutations)
             {
                 var isNatural = false;
-                foreach (IRaceMutationRetriever retriever in raceExt.mutationRetrievers)
+                foreach (IRaceMutationRetriever retriever in raceExt.mutationRetrievers.MakeSafe())
                     if (retriever.CanGenerate(mutation.Def))
                     {
                         isNatural = true;

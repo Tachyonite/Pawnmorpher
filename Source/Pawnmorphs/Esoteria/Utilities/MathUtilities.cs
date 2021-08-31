@@ -29,5 +29,26 @@ namespace Pawnmorph.Utilities
             // Evaluate polynomial
             return x * x * (3 - 2 * x);
         }
+
+
+        /// <summary>
+        /// Fits a value from the initial range into the new range 
+        /// </summary>
+        /// note: it is up to the caller to ensure the ranges are valid 
+        /// <param name="val">The value.</param>
+        /// <param name="oldMin">The old minimum.</param>
+        /// <param name="oldMax">The old maximum.</param>
+        /// <param name="newMin">The new minimum.</param>
+        /// <param name="newMax">The new maximum.</param>
+        /// <param name="clamp">if set to <c>true</c> clamp value between the newMin and newMax values .</param>
+        /// <returns></returns>
+        public static float FitToRange(float val, float oldMin, float oldMax, float newMin, float newMax, bool clamp = true)
+        {
+            val = (val - oldMin) / (oldMax - oldMin);
+            val = val * (newMax - newMin) + newMin;
+            if (clamp) val = Mathf.Clamp(val, newMin, newMax);
+
+            return val; 
+        }
     }
 }

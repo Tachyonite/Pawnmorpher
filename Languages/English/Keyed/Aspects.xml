@@ -1,3 +1,4 @@
 <LanguageData>
     <MentalStateReason_Aspect>This happened because of: {0}.</MentalStateReason_Aspect>
+    <PMAspectCouldNotBeAddedInjector>Unable to add {Aspect} to {Pawn}</PMAspectCouldNotBeAddedInjector>
 </LanguageData>

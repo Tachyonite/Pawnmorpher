@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
@@ -21,21 +22,20 @@ namespace Pawnmorph.Chambers
     public class ChamberDatabase : WorldComponent
     {
         
-        const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
-        const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
-
-        /// <summary>
-        ///     translation label for the animal not taggable reason 
-        /// </summary>
-        public const string ANIMAL_NOT_TAGGABLE = "AnimalNotTaggable";
-
-        private const string NOT_VALID_ANIMAL = "NotValidAnimal";
-
+        private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
+        private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
 
         /// <summary>
         ///     translation string for not enough free power
         /// </summary>
         public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
+
+        /// <summary>
+        ///     translation label for the animal not taggable reason 
+        /// </summary>
+        public const string ANIMAL_TOO_CHAOTIC_REASON = "AnimalNotTaggable";
+
+        private const string NOT_VALID_ANIMAL_REASON = "NotValidAnimal";
 
         private const string NOT_TAGGABLE = "PMMutationNotTaggable";
         private const string RESTRICTED_MUTATION = "PMMutationRestricted";
@@ -145,19 +145,25 @@ namespace Pawnmorph.Chambers
 
 
         /// <summary>
-        ///     Adds the mutation to the database
+        /// Adds the mutation to the database
         /// </summary>
+        /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="failMode">The fail mode.</param>
+        /// <exception cref="ArgumentNullException">mutationDef</exception>
         /// Note: this does
         /// <b>not</b>
         /// check if there is enough space to add the mutation or if it is restricted, use
         /// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
         /// to check
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <exception cref="ArgumentNullException">mutationDef</exception>
-        public void AddToDatabase([NotNull] MutationDef mutationDef)
+        public void AddToDatabase([NotNull] MutationDef mutationDef, LogFailMode failMode=LogFailMode.Silent)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (_storedMutations.Contains(mutationDef)) return;
+            if (_storedMutations.Contains(mutationDef))
+            {
+                string message = $"unable to add {mutationDef.defName} to the database as it is already stored";
+                failMode.LogFail(message); 
+                return;
+            }
             _storedMutations.Add(mutationDef);
 
             if (_usedStorageCache != null) _usedStorageCache += mutationDef.GetRequiredStorage();
@@ -165,19 +171,26 @@ namespace Pawnmorph.Chambers
 
 
         /// <summary>
-        ///     Adds the pawnkind to the database directly.
+        /// Adds the pawnkind to the database directly.
         /// </summary>
+        /// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="failMode">The fail mode.</param>
+        /// <exception cref="ArgumentNullException">pawnKind</exception>
         /// note: this function does
         /// <b>not</b>
         /// check if the database can store the given pawnKind, use
         /// <see cref="CanAddToDatabase(PawnKindDef)" />
         /// to safely add to the database
-        /// <param name="pawnKind">Kind of the pawn.</param>
-        /// <exception cref="ArgumentNullException">pawnKind</exception>
-        public void AddToDatabase([NotNull] PawnKindDef pawnKind)
+        public void AddToDatabase([NotNull] PawnKindDef pawnKind, LogFailMode failMode= LogFailMode.Silent)
         {
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
-            if (_taggedSpecies.Contains(pawnKind)) return;
+            if (_taggedSpecies.Contains(pawnKind))
+            {
+
+                string message = $"cannot store {pawnKind.label} as it is already stored in the database";
+                failMode.LogFail(message);
+                return;
+            }
             if (!pawnKind.race.IsValidAnimal())
             {
                 DebugLogUtils.Warning($"trying to enter invalid animal {pawnKind.defName} to the chamber database");
@@ -199,12 +212,7 @@ namespace Pawnmorph.Chambers
         /// <exception cref="ArgumentNullException">mutationDef</exception>
         public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
         {
-            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (mutationDef.GetRequiredStorage() > FreeStorage) return false;
-            if (!CanTag)
-                return false;
-            if (_storedMutations.Contains(mutationDef)) return false;
-            return !mutationDef.IsRestricted;
+            return CanAddToDatabase(mutationDef, out _);
         }
 
         /// <summary>
@@ -217,8 +225,7 @@ namespace Pawnmorph.Chambers
         /// <exception cref="ArgumentNullException">kindDef</exception>
         public bool CanAddToDatabase([NotNull] PawnKindDef kindDef)
         {
-            if (kindDef == null) throw new ArgumentNullException(nameof(kindDef));
-            return kindDef.GetRequiredStorage() > FreeStorage && kindDef.race.IsValidAnimal();
+            return CanAddToDatabase(kindDef, out _);
         }
 
 
@@ -244,9 +251,9 @@ namespace Pawnmorph.Chambers
             else if (TaggedAnimals.Contains(pawnKind))
                 reason = ALREADY_TAGGED_REASON.Translate(pawnKind);
             else if (DatabaseUtilities.IsChao(pawnKind.race))
-                reason = ANIMAL_NOT_TAGGABLE.Translate(pawnKind);
+                reason = ANIMAL_TOO_CHAOTIC_REASON.Translate(pawnKind);
             else if (!pawnKind.race.IsValidAnimal())
-                reason = NOT_VALID_ANIMAL.Translate(pawnKind);
+                reason = NOT_VALID_ANIMAL_REASON.Translate(pawnKind);
             else reason = "";
 
             return string.IsNullOrEmpty(reason);
@@ -268,19 +275,19 @@ namespace Pawnmorph.Chambers
             if (FreeStorage < mutationDef.GetRequiredStorage())
             {
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef, DatabaseUtilities.GetStorageString(mutationDef.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
-
                 return false;
             }
 
             if (!CanTag)
             {
-                reason = NOT_TAGGABLE.Translate(mutationDef);
+                reason = NOT_ENOUGH_POWER.Translate();
                 return false;
             }
 
-            if (mutationDef.IsRestricted)
+            
+            if (StoredMutations.Contains(mutationDef))
             {
-                reason = RESTRICTED_MUTATION.Translate(mutationDef);
+                reason = ALREADY_TAGGED_REASON.Translate(mutationDef);
                 return false;
             }
 

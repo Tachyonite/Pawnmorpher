@@ -33,6 +33,14 @@ namespace Pawnmorph
         public delegate void AspectRemovedHandle(AspectTracker sender, Aspect aspect);
 
         /// <summary>
+        ///  delegate for the <see cref="AspectTracker.AspectStageChanged"/> event
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="aspect">The aspect.</param>
+        /// <param name="lastStage">the last stage the aspect was in</param>
+        public delegate void AspectStageChangedHandle([NotNull] AspectTracker sender, [NotNull] Aspect aspect, int lastStage); 
+
+        /// <summary>
         ///     Occurs when an aspect is added
         /// </summary>
         public event AspectAddedHandle AspectAdded;
@@ -41,6 +49,11 @@ namespace Pawnmorph
         ///     Occurs when when an aspect is removed
         /// </summary>
         public event AspectRemovedHandle AspectRemoved;
+
+        /// <summary>
+        /// Occurs when an aspect stage changes.
+        /// </summary>
+        public event AspectStageChangedHandle AspectStageChanged; 
 
         [NotNull]
         private readonly List<Aspect> _rmCache = new List<Aspect>();
@@ -361,6 +374,11 @@ namespace Pawnmorph
                 int c = x.Priority.CompareTo(y.Priority);
                 return c == 0 ? string.Compare(x.Label, y.Label, StringComparison.CurrentCultureIgnoreCase) : c;
             }
+        }
+
+        internal void Notify_StageChanged([NotNull] Aspect aspect, int lastStage)
+        {
+            AspectStageChanged?.Invoke(this, aspect, lastStage); 
         }
     }
 }

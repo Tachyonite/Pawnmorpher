@@ -1,12 +1,10 @@
 ﻿// MutationCategoryDef.cs created by Iron Wolf for Pawnmorph on 09/15/2019 9:00 PM
 // last updated 09/15/2019  9:00 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph
@@ -56,30 +54,12 @@ namespace Pawnmorph
         [Unsaved] private List<MutationDef> _allMutations;
 
         /// <summary>
-        /// Gets the mutations in category.
+        /// Gets the number of mutations in the category.
         /// </summary>
         /// <value>
         /// The mutations in category.
         /// </value>
-        public int MutationsInCategory
-        {
-            get
-            {
-                if (_allMutations == null)
-                {
-                    _allMutations = new List<MutationDef>(mutations);
-
-                    foreach (MutationDef mutation in MutationDef.AllMutations)
-                    {
-                        if (!_allMutations.Contains(mutation))
-                            _allMutations.Add(mutation);
-                    }
-
-                }
-
-                return _allMutations.Count; 
-            }
-        }
+        public int MutationsInCategory => AllMutations.Count();
 
         /// <summary>
         /// Gets all mutations in this category 
@@ -95,7 +75,7 @@ namespace Pawnmorph
                 {
                     _allMutations = new List<MutationDef>(mutations);
 
-                    foreach (MutationDef mutation in MutationDef.AllMutations)
+                    foreach (MutationDef mutation in MutationDef.AllMutations.Where(m => m.categories.Contains(this)))
                     {
                         if (!_allMutations.Contains(mutation))
                             _allMutations.Add(mutation); 

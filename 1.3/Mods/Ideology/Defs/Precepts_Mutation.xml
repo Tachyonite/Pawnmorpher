@@ -45,6 +45,9 @@
                     </li>
                 </entries>
             </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_HasMutation_Approved_Social</thought>
+            </li>
         </comps>
     </PreceptDef>
 
@@ -120,6 +123,9 @@
             <li Class="PreceptComp_SelfTookMemoryThought">
                 <eventDef>DeMorphed</eventDef>
                 <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_HasMutation_Approved_Social</thought>
             </li>
         </comps>
     </PreceptDef>

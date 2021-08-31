@@ -79,7 +79,6 @@ namespace Pawnmorph.Social
 
             float retVal = GetInteractionWeight(initiator, recipient, relationRestriction, mustBeColonist);
 
-            Log.Message($"Interaction weight for {initiator.Name} => {recipient.Name} is {retVal}");
 
             return retVal;
         }

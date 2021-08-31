@@ -1,6 +1,7 @@
 ﻿// PawnPatches.cs created by Iron Wolf for Pawnmorph on 02/19/2020 5:41 PM
 // last updated 04/26/2020  9:22 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -40,6 +41,18 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        [HarmonyPatch(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer)), HarmonyPrefix]
+        static bool FixNonAggressiveRoamer(Pawn __instance, ref bool __result)
+        {
+            if (__instance.IsHumanlike())
+            {
+                __result = false;
+                return false;
+            }
+
+            return true; 
+        }
+
 
         [HarmonyPatch("CheckForDisturbedSleep"), HarmonyPrefix]
         static bool FixDisturbedSleep(Pawn source, Pawn __instance)
@@ -61,6 +74,10 @@ namespace Pawnmorph.HPatches
             if (sTracker?.CurrentState != null)
             {
                 __result = __instance.Faction == Faction.OfPlayer && sTracker.CurrentIntelligence == Intelligence.Humanlike;
+                if (__result && __instance.guest?.IsSlave == true)
+                {
+                    __result = __instance.guest.SlaveIsSecure; 
+                }
                 return false;
             }
 
@@ -117,24 +134,56 @@ namespace Pawnmorph.HPatches
 
         }
 
-        //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
-        [HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
-        static void RunRaceCompCheck([NotNull] Pawn __instance)
+        //hacky way to make sure the race comp check always happens after all comps have finished ticking 
+        internal static void QueueRaceCheck(Pawn p)
         {
-
-            //only check every so often 
-            if (!__instance.IsHashIntervalTick(60)) return; 
-
-
-            var mTracker = __instance.GetComp<MorphTrackingComp>();
-            if (mTracker?.needsRaceCompCheck == true)
-            {
-                RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-                mTracker.needsRaceCompCheck = false; 
-            }
-
+            _waitingQueue.AddLast(p);
         }
 
+
+        [NotNull]
+        private static readonly LinkedList<Pawn> _waitingQueue = new LinkedList<Pawn>(); //need to use a list because unspawned pawns may be queued 
+
+        
+
+
+        //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
+        [HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
+        static void RunRaceCompCheck( Pawn __instance)
+        {
+            try
+            {
+                var node = _waitingQueue.First;
+                
+                while (node != null)
+                {
+                    var next = node.Next;
+                    if(node.Value == __instance) break;
+                    if (node.Value == null || node.Value.Destroyed)
+                    {
+                        _waitingQueue.Remove(node); 
+                    }
+
+                    node = next; 
+                }
+
+                if (node != null)
+                {
+                    _waitingQueue.Remove(node);
+                    RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
+                    
+                }
+
+                
+            }
+            catch (Exception e)
+            {
+                Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
+                throw;
+            }
+        }
+
+        
         [HarmonyPatch(nameof(Pawn.GetGizmos))]
         [HarmonyPostfix]
         static IEnumerable<Gizmo> GetGizmosPatch(IEnumerable<Gizmo> __result, [NotNull]  Pawn __instance)

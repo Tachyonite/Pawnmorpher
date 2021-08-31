@@ -1,0 +1,45 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+    <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="PM_StrongTorsoBase" Abstract="true">
+        <label>strong chest</label>
+        <description>[PAWN_nameDef]'s chest has bulked up significantly, making it not only stronger but more resistant to damage</description>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <labelOverride>growing</labelOverride>
+                <painOffset>0.1</painOffset>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <labelOverride>growing</labelOverride>
+                <painOffset>0.1</painOffset>
+                <minSeverity>0.1</minSeverity>
+                <healthOffset>1</healthOffset>
+                <statOffsets>
+                    <CarryingCapacity>5</CarryingCapacity>
+                </statOffsets>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <labelOverride>growing</labelOverride>
+                <painOffset>0.05</painOffset>
+                <minSeverity>0.5</minSeverity>
+                <healthOffset>2</healthOffset>
+                <statOffsets>
+                    <CarryingCapacity>10</CarryingCapacity>
+                </statOffsets>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>1</minSeverity>
+                <healthOffset>4</healthOffset>
+                <statOffsets>
+                    <CarryingCapacity>15</CarryingCapacity>
+                </statOffsets>
+            </li>
+        </stages>
+        <parts>
+            <li>Torso</li>
+        </parts>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.15</severityPerDay>
+            </li>
+        </comps>
+    </Pawnmorph.Hediffs.MutationDef>
+</Defs>

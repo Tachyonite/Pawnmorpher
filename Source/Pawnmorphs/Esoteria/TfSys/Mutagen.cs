@@ -227,9 +227,9 @@ namespace Pawnmorph.TfSys
             if (factionResponsible != null)
                 PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
-                                                                                                     .FACTION_RESPONSIBLE));
+                                                                                                     .FACTION_RESPONSIBLE), def.Named(PMHistoryEventArgsNames.SOURCE));
             else
-                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg);
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg, def.Named(PMHistoryEventArgsNames.SOURCE));
 
 
         }
@@ -248,9 +248,9 @@ namespace Pawnmorph.TfSys
             if (factionResponsible != null)
                 PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
-                                                                                                     .FACTION_RESPONSIBLE));
+                                                                                                     .FACTION_RESPONSIBLE), def.Named(PMHistoryEventArgsNames.SOURCE));
             else
-                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg); 
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg, def.Named(PMHistoryEventArgsNames.SOURCE)); 
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Pawnmorph.TfSys
         /// </returns>
         public virtual bool CanTransform(Pawn pawn)
         {
-            return CanInfect(pawn) && pawn.Map != null; 
+            return CanInfect(pawn); 
         }
         /// <summary>
         /// Determines whether this instance can transform the specified race definition.

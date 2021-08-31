@@ -124,7 +124,8 @@ namespace Pawnmorph
             }
 
             ConversionUtilityPatches.PreformPatches(harmonyInstance);
-            ThoughtWorkerPatches.DoPatches(harmonyInstance); 
+            ThoughtWorkerPatches.DoPatches(harmonyInstance);
+            InteractionPatches.PatchDelegateMethods(harmonyInstance); 
         }
 
         private static void PatchMods([NotNull] Harmony harmonyInstance)
@@ -228,66 +229,71 @@ namespace Pawnmorph
         private const BindingFlags ALL = INSTANCE_FLAGS | STATIC_FLAGS; 
         private static void MassPatchFormerHumanChecks([NotNull] Harmony harmonyInstance)
         {
-            var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public; 
-            var instanceFlags = BindingFlags.Instance| BindingFlags.NonPublic | BindingFlags.Public;
+            var staticFlags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
+            var instanceFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
 
 
 
 
-            List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>(); 
-            
+            List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
+
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
-            methodsToPatch.Add(canUseBedMethod); 
+            methodsToPatch.Add(canUseBedMethod);
 
             //wildman
-            AddWildmanMethods(methodsToPatch); 
+            AddWildmanMethods(methodsToPatch);
 
             //door 
-            methodsToPatch.Add(new MethodInfoSt(){methodInfo= typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags)});
+            methodsToPatch.Add(new MethodInfoSt() { methodInfo = typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags) });
 
-   
+
             //map pawns 
             var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
-            methodsToPatch.AddRange(methods.Select(m =>new MethodInfoSt(){methodInfo = m})); 
+            methodsToPatch.AddRange(methods.Select(m => new MethodInfoSt() { methodInfo = m }));
 
-         
+
             //jobs and toils 
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
             methodsToPatch.Add(typeof(GatheringWorker_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
-            
+
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
+
+            //incidents 
+            PatchIncidents(methodsToPatch);
+
 
             //interaction patch 
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
+            methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod("TryInteractWith", INSTANCE_FLAGS));
-            
+
             //relations
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.OpinionOf), INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.OpinionExplanation), INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("Tick_CheckStartMarriageCeremony", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("CheckAppendBondedAnimalDiedInfo", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.Notify_RescuedBy), INSTANCE_FLAGS));
-            
+
             AddJobGiverMethods(methodsToPatch);
 
 
             AddDesignatorMethods(methodsToPatch);
             AddThoughtWorkerPatches(methodsToPatch);
 
-            AddRitualPatches(methodsToPatch); 
+            AddRitualPatches(methodsToPatch);
 
             methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.PawnNotAssignableReason), staticFlags));
 
             //socialization 
-            methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[]{typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool)}));
+            methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[] { typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool) }));
 
             //roamer patches 
             methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow),
-                                                                           staticFlags)); 
+                                                                           staticFlags));
 
 
             //now patch them 
@@ -296,22 +302,34 @@ namespace Pawnmorph
                 if (methodInfo.methodInfo == null)
                 {
                     Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
-                    
+
                     continue;
                 }
 
-                harmonyInstance.ILPatchCommonMethods(methodInfo.methodInfo,methodInfo.debug); 
+                harmonyInstance.ILPatchCommonMethods(methodInfo.methodInfo, methodInfo.debug);
             }
 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("Patched:");
             foreach (var methodInfo in methodsToPatch)
             {
-                if(methodInfo.methodInfo == null) continue;
+                if (methodInfo.methodInfo == null) continue;
                 builder.AppendLine($"{methodInfo.methodInfo.Name}");
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
+        }
+
+        private static void PatchIncidents([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            methodsToPatch.Add(typeof(CompAnimalInsanityPulser).GetMethod("DoAnimalInsanityPulse", INSTANCE_FLAGS));
+            IEnumerable<Type> tps = typeof(IncidentWorker_AnimalInsanitySingle)
+                                   .GetNestedTypes(ALL)
+                                   .Where(t => t.IsCompilerGenerated());
+            IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+                                                   .Where(m => m.HasSignature(typeof(Pawn)))
+                                                   .Select(m => (MethodInfoSt) m);
+            methodsToPatch.AddRange(methods);
         }
 
         private static void AddRitualPatches([NotNull]List<MethodInfoSt> methodsToPatch)

@@ -1,0 +1,89 @@
+<Defs>
+	<HediffDef Name="PM_RandomTfBase" ParentName="MorphParent">
+		<defName>FullRandomTFAnyOutcome</defName>
+		<label>Chaomorph</label>
+		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
+		<stages>
+			<li>
+				<label>reeling</label>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff> <!--TODO need to get the list of pawnkinds to tf into using the ChaomorphExtension added onto chaomorph defs  -->
+						<forceGender>Switch</forceGender>
+						<forceGenderChance>25</forceGenderChance>
+						<pawnkinds>
+							<li>Chaocow</li>
+							<li>Chaofox</li>
+							<li>Chaodino</li>
+						</pawnkinds>
+						<tale>TransformationMisc</tale>
+						<changeChance>90</changeChance>
+					</li>
+				</hediffGivers>
+			</li>
+			<li>
+				<label>transforming</label>
+				<minSeverity>0.6</minSeverity>
+				<painOffset>0.5</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>changing</label>
+				<minSeverity>0.65</minSeverity>
+				<painOffset>0.3</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
+						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
+						<blackListCategories>
+							<li>Powerful</li>
+						</blackListCategories>
+						<mtbDays>0.067</mtbDays> <!-- 15 mutations per day base -->
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+		<!-- add the mutagen source to make this morph give aspects to  -->
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>ChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</HediffDef>
+</Defs>

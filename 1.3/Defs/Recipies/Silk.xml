@@ -14,7 +14,7 @@
                         <li>Cloth</li>
                     </thingDefs>
                 </filter>
-                <count>30</count>
+                <count>40</count>
             </li>
             <li>
                 <filter>
@@ -34,7 +34,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <PM_Hazsilk>30</PM_Hazsilk>
+            <PM_Hazsilk>40</PM_Hazsilk>
         </products>
         <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
         <skillRequirements>
@@ -58,7 +58,7 @@
                         <li>Cloth</li>
                     </thingDefs>
                 </filter>
-                <count>120</count>
+                <count>160</count>
             </li>
             <li>
                 <filter>
@@ -78,7 +78,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <PM_Hazsilk>120</PM_Hazsilk>
+            <PM_Hazsilk>160</PM_Hazsilk>
         </products>
         <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
         <skillRequirements>
@@ -110,7 +110,7 @@
                         <li>Cloth</li>
                     </thingDefs>
                 </filter>
-                <count>30</count>
+                <count>40</count>
             </li>
         </ingredients>
         <recipeUsers>
@@ -122,7 +122,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <Morphsilk>30</Morphsilk>
+            <Morphsilk>40</Morphsilk>
         </products>
         <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
         <skillRequirements>
@@ -154,7 +154,7 @@
                         <li>Cloth</li>
                     </thingDefs>
                 </filter>
-                <count>120</count>
+                <count>160</count>
             </li>
         </ingredients>
         <recipeUsers>
@@ -166,7 +166,7 @@
             </thingDefs>
         </fixedIngredientFilter>
         <products>
-            <Morphsilk>120</Morphsilk>
+            <Morphsilk>160</Morphsilk>
         </products>
         <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
         <skillRequirements>

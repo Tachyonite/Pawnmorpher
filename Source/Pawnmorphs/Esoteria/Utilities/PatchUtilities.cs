@@ -229,11 +229,80 @@ namespace Pawnmorph.Utilities
         }
 
         /// <summary>
-        ///     patch the given method,  replacing all instances of RaceProps.Animal/Tooluser/Humanlike
-        ///     with the FormerHumanUtilities equivalents
+        /// struct representing an operand to an opcode. needed to differentiate a null parameter to no parameter 
         /// </summary>
-        /// <param name="harmony"></param>
-        /// <param name="targetMethod"></param>
+        public struct OpCodeOperand
+        {
+            
+            /// <summary>
+            /// Initializes a new instance of the <see cref="OpCodeOperand"/> struct.
+            /// </summary>
+            /// <param name="obj">The object.</param>
+            public OpCodeOperand(object obj)
+            {
+                arg = obj; 
+            }
+
+            
+            /// <summary>
+            /// The argument
+            /// </summary>
+            public object arg; 
+        }
+
+        /// <summary>
+        /// determines if the given instruction matches the given patern 
+        /// </summary>
+        /// <param name="instructions">The instructions.</param>
+        /// <param name="pattern">The pattern.</param>
+        /// <returns></returns>
+        public static bool MatchesPattern([NotNull] this IReadOnlyList<CodeInstruction> instructions,
+                                          params ValueTuple<OpCode, OpCodeOperand?>[] pattern)
+        {
+            if (pattern.Length != instructions.Count) return false;
+
+            for (var i = 0; i < instructions.Count; i++)
+            {
+                CodeInstruction inst = instructions[i];
+                (OpCode opC, OpCodeOperand? p) = pattern[i];
+
+
+                if (inst.opcode != opC) return false;
+
+
+                if (p != null)
+                {
+                    if (p.Value.arg is FieldInfo fInfo)
+                    {
+                        if (fInfo != (FieldInfo) inst.operand)
+                        {
+                            return false;
+                        }
+                    }
+                    else if (p.Value.arg is MethodInfo mInfo)
+                    {
+                        if (mInfo != (MethodInfo) inst.operand) return false;
+                    }
+                    else if (p.Value.arg != inst.operand) return false; 
+                }
+            }
+
+            return true; 
+
+        }
+
+        /// <summary>
+        /// patch the given method,  replacing all instances of RaceProps.Animal/Tooluser/Humanlike
+        /// with the FormerHumanUtilities equivalents
+        /// </summary>
+        /// <param name="harmony">The harmony.</param>
+        /// <param name="targetMethod">The target method.</param>
+        /// <param name="debug">if set to <c>true</c> [debug].</param>
+        /// <exception cref="ArgumentNullException">
+        /// harmony
+        /// or
+        /// targetMethod
+        /// </exception>
         public static void ILPatchCommonMethods([NotNull] this Harmony harmony, [NotNull] MethodInfo targetMethod,
                                                 bool debug = false)
         {

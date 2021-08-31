@@ -53,6 +53,11 @@ namespace Pawnmorph
         /// <summary>
         /// label for the transformed pawn
         /// </summary>
-        public const string TRANSFORMED_PAWN = "TransformedPawn"; 
+        public const string TRANSFORMED_PAWN = "TransformedPawn";
+
+        /// <summary>
+        /// label for the source of something 
+        /// </summary>
+        public const string SOURCE = "Source"; 
     }
 }

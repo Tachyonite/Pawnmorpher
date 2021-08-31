@@ -47,7 +47,7 @@ namespace Pawnmorph.Buildings
         private const string MUTANITE_CENTRIFUGE_MODE_DESCRIPTION = "MutaniteCentrifugeRunModeDesc";
         private const string MUTANITE_CENTRIFUGE_MODE_LABEL = "MutaniteCentrifugeRunModeLabel";
 
-        private const float BASE_MUTANITE_REQUIRED = 1.1f;
+        private const float BASE_MUTANITE_REQUIRED = 2.7f;
 
         private const float EPSILON = 0.0001f;
 

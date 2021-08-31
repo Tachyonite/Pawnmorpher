@@ -513,16 +513,26 @@ namespace Pawnmorph
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <param name="tendInjuries">if set to injuries and diseases are tended.</param>
         /// <exception cref="ArgumentNullException">originalPawn</exception>
-        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true)
+        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true, bool tendInjuries=true)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-            
-            
+
+            Thing fireThing = originalPawn.GetAttachment(ThingDefOf.Fire);
+            if (fireThing != null && !fireThing.Destroyed) fireThing.Destroy();
+
             Caravan caravan = originalPawn.GetCaravan();
             caravan?.RemovePawn(originalPawn);
             caravan?.Notify_PawnRemoved(originalPawn);
 
+            HediffSet hSet = originalPawn.health?.hediffSet;
+            if (tendInjuries && hSet != null && originalPawn.health.HasHediffsNeedingTend())
+                foreach (Hediff hediff in hSet.hediffs)
+                {
+                    var tendComp = hediff?.TryGetComp<HediffComp_TendDuration>();
+                    if (tendComp != null) hediff.Tended(1.3f, 1.3f, -1); //1.3 is glitterworld quality 
+                }
 
 
             if (originalPawn.InMentalState)
@@ -589,6 +599,7 @@ namespace Pawnmorph
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <param name="tfdPawn">The TFD pawn.</param>
         /// <exception cref="ArgumentNullException">originalPawn</exception>
         internal static void DBGCleanUpHumanPawnPostTf([NotNull] Pawn originalPawn, [CanBeNull] Hediff cause, bool removeMentalStates, Pawn tfdPawn)
         {

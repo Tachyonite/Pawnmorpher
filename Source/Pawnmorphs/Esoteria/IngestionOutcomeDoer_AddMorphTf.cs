@@ -4,8 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.Noise;
 
 namespace Pawnmorph
 {
@@ -36,6 +38,11 @@ namespace Pawnmorph
         /// this is a flag so you can pick both Full and partial if you want
         public MorphTransformationTypes tfTypes = MorphTransformationTypes.Full;
 
+        /// <summary>
+        /// The category filter
+        /// </summary>
+        public Filter<MorphCategoryDef> categoryFilter; 
+
         [Unsaved] private List<HediffDef> _tfDefs;
 
         [NotNull]
@@ -47,7 +54,7 @@ namespace Pawnmorph
                 {
                     _tfDefs = new List<HediffDef>();
 
-                    foreach (MorphDef morphDef in animalClass.GetAllMorphsInClass().Where(m => allowRestrictedMorphs || !m.Restricted))
+                    foreach (MorphDef morphDef in animalClass.GetAllMorphsInClass().Where(ValidMorph))
                     {
                         if (morphDef.fullTransformation != null && (tfTypes & MorphTransformationTypes.Full) != 0)
                         {
@@ -68,6 +75,20 @@ namespace Pawnmorph
 
                 return _tfDefs; 
             }
+        }
+
+        private bool ValidMorph(MorphDef m)
+        {
+            if (!allowRestrictedMorphs && m.Restricted) return false;
+            if (categoryFilter != null)
+            {
+                foreach (MorphCategoryDef category in m.Categories)
+                {
+                    if (!categoryFilter.PassesFilter(category)) return false; 
+                }
+            }
+
+            return true; 
         }
 
         /// <summary>

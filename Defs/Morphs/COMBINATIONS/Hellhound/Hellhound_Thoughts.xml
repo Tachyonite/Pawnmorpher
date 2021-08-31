@@ -46,7 +46,7 @@
             <li>
                 <label>reverted</label>
                 <description>I'm so weak now, change me back!</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

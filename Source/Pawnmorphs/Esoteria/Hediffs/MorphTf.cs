@@ -21,6 +21,7 @@ namespace Pawnmorph.Hediffs
         private const float BASE_MEAN = 4; 
         private float _meanPerDay = BASE_MEAN;
 
+       
 
         /// <summary>
         /// Gets a value indicating whether this instance should be removed.

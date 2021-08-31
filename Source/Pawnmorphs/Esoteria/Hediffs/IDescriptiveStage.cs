@@ -4,7 +4,7 @@
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// interface for a hediff stage that contains a description and label override
+    /// interface for a hediff stage that can override the hediff's main label and description entirely 
     /// </summary>
     public interface IDescriptiveStage
     {

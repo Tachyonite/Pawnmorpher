@@ -7,74 +7,99 @@ using Verse;
 namespace Pawnmorph.Social
 {
     /// <summary>
-    /// interaction worker that functions like chitchat worker 
+    /// Abstract base class for all PMInteractionWorkers that work like base-game
+    /// interactions
     /// </summary>
-    /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
-    public class InteractionWorker_Chitchat : PMInteractionWorkerBase
+    public abstract class PMInteractionWorker_BaseGame : PMInteractionWorkerBase
     {
-        /// <summary>gets the random selection weight.</summary>
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
+        protected abstract InteractionWorker BaseWorker { get; }
+
+        /// <summary>
+        /// Gets the random selection weight for this interaction.
+        /// </summary>
         /// <param name="initiator">The initiator.</param>
         /// <param name="recipient">The recipient.</param>
-        /// <returns></returns>
+        /// <returns>The selection weight.</returns>
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
-            return  GetBaseWeight(initiator, recipient); 
-        }
-    }
-    
-    
-    /// <summary>
-    /// interaction worker that functions like InteractionWorker_KindWords
-    /// </summary>
-    /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
-    public class InteractionWorker_KindWords : PMInteractionWorkerBase
-    {
-        /// <summary>gets the selection weight.</summary>
-        /// <param name="initiator">The initiator.</param>
-        /// <param name="recipient">The recipient.</param>
-        /// <returns></returns>
-        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
-        {
-            float weight ;
-
-            weight = initiator.story.traits.HasTrait(TraitDefOf.Kind) ? 0.01f : 0;
-
-            return weight * GetBaseWeight(initiator, recipient); 
+            return BaseWorker.RandomSelectionWeight(initiator, recipient)
+                    * Def.GetInteractionWeight(initiator, recipient);
         }
     }
 
     /// <summary>
-    /// interaction worker that functions like InteractionWorker_Slight 
+    /// Interaction worker that functions like chitchat worker 
     /// </summary>
-    /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
-    public class InteractionWorker_Slight : PMInteractionWorkerBase
+    public class InteractionWorker_Chitchat : PMInteractionWorker_BaseGame
     {
-        /// <summary>gets the selection weight.</summary>
-        /// <param name="initiator">The initiator.</param>
-        /// <param name="recipient">The recipient.</param>
-        /// <returns></returns>
-        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
-        {
-            return 0.02f
-                 * NegativeInteractionUtility.NegativeInteractionChanceFactor(initiator, recipient)
-                 * GetBaseWeight(initiator, recipient); 
-        }
+        private readonly InteractionWorker baseWorker = new RimWorld.InteractionWorker_Chitchat();
+
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        protected override InteractionWorker BaseWorker => baseWorker;
     }
 
     /// <summary>
-    /// interaction worker that works like base InteractionWorker_Insult
+    /// Interaction worker that functions like InteractionWorker_DeepTalk
     /// </summary>
-    /// <seealso cref="Pawnmorph.Social.PMInteractionWorkerBase" />
-    public class InteractionWorker_Insult : PMInteractionWorkerBase
+    public class InteractionWorker_DeepTalk : PMInteractionWorker_BaseGame
     {
-        /// <summary>gets the selection weight.</summary>
-        /// <param name="initiator">The initiator.</param>
-        /// <param name="recipient">The recipient.</param>
-        /// <returns></returns>
-        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
-        {
-            return 0.007f * NegativeInteractionUtility.NegativeInteractionChanceFactor(initiator, recipient) * GetBaseWeight(initiator, recipient) ;
-        }
+        private readonly InteractionWorker baseWorker = new RimWorld.InteractionWorker_DeepTalk();
+
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        protected override InteractionWorker BaseWorker => baseWorker;
+    }
+
+    /// <summary>
+    /// Interaction worker that functions like InteractionWorker_KindWords
+    /// </summary>
+    public class InteractionWorker_KindWords : PMInteractionWorker_BaseGame
+    {
+        private readonly InteractionWorker baseWorker = new RimWorld.InteractionWorker_KindWords();
+
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        protected override InteractionWorker BaseWorker => baseWorker;
+    }
+
+    /// <summary>
+    /// Interaction worker that functions like InteractionWorker_Slight 
+    /// </summary>
+    public class InteractionWorker_Slight : PMInteractionWorker_BaseGame
+    {
+        private readonly InteractionWorker baseWorker = new RimWorld.InteractionWorker_Slight();
+
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        protected override InteractionWorker BaseWorker => baseWorker;
+    }
+
+    /// <summary>
+    /// Interaction worker that works like base InteractionWorker_Insult
+    /// </summary>
+    public class InteractionWorker_Insult : PMInteractionWorker_BaseGame
+    {
+        private readonly InteractionWorker baseWorker = new RimWorld.InteractionWorker_Insult();
+
+        /// <summary>
+        /// The base interaction worker this def is based on
+        /// </summary>
+        /// <value>The base worker.</value>
+        protected override InteractionWorker BaseWorker => baseWorker;
     }
 
 }

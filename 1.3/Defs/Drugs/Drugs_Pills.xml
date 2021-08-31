@@ -9,7 +9,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>65</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -48,7 +48,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>65</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -83,6 +83,7 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -101,7 +102,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>65</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -119,6 +120,7 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -137,7 +139,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>65</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -159,6 +161,7 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -177,7 +180,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>65</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -193,6 +196,7 @@
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -305,7 +309,7 @@
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>50</MarketValue>
+			<MarketValue>110</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -345,6 +349,7 @@
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>

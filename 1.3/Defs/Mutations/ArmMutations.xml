@@ -1,0 +1,71 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWing</defName>
+		<label>wing</label>
+		<description>An avian wing.</description>
+		<parts>
+			<li>Arm</li>
+		</parts>
+		<classInfluence>Avian</classInfluence>
+		<mutationTale>ArmBecomsWing</mutationTale>
+		<mutationMemory>EtherWingMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>changing</label>
+				<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly longer then before </description>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>unfamiliar</label>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<statFactors>
+					<CarryingCapacity>-0.3</CarryingCapacity>
+				</statFactors>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.7</minSeverity>
+				<label>wing</label>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
+				<statFactors>
+					<CarryingCapacity>-0.3</CarryingCapacity>
+				</statFactors>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- adaption cream -->
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>sturdy wing</labelOverride>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but several adaptions have stiffened the hollow bones.  They're stronger than before, but still not as good as a regular arm.</description>
+				<statFactors>
+					<CarryingCapacity>-0.10</CarryingCapacity>
+				</statFactors>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- Paragon -->
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>reinforced wing</labelOverride>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but further adaptions to the hollow bones have rendered it as strong as a human arm despite its reduced weight.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
+				<mutationDependency>
+					<hediff>EtherWingTip</hediff>
+					<mtbDays>3</mtbDays>
+					<chance>5</chance>
+					<partsToAffect>
+						<li>Hand</li>
+					</partsToAffect>
+					<countToAffect>2</countToAffect>
+					<memory>WingTipMemory</memory>
+					<tale>HandsBecomeWingTips</tale>
+				</mutationDependency>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.20</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

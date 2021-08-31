@@ -13,13 +13,13 @@
 				<label>Fur</label>
 				<description>So soft, so warm...</description>
 				<visible>true</visible>
-				<baseMoodEffect>3</baseMoodEffect>
+				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Fur</label>
 				<description>I'm too hot like this, and I don't like how animal it makes me look!</description>
 				<visible>true</visible>
-				<baseMoodEffect>-3</baseMoodEffect>
+				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -30,17 +30,17 @@
 			<li>
 				<label>Wings</label>
 				<description>How am I supposed to use these things?</description>
-				<baseMoodEffect>-3</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Wings</label>
 				<description>Okay sure, they might not be practical for lifting things, or flying, or really anything I guess; but they do allow me to do an even better imitation of a dodo!</description>
-				<baseMoodEffect>1</baseMoodEffect>
+				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
 				<label>Wings</label>
 				<description>How am I supposed to do anything with wings? They don't even let me fly!</description>
-				<baseMoodEffect>-8</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -52,25 +52,25 @@
 				<label>Hooves</label>
 				<description>Not hooves, what am I meant to do with these?!</description>
 				<visible>true</visible>
-				<baseMoodEffect>-5</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Hooves</label>
 				<description>Hm. Well, I can't say it was unexpected...</description>
 				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
+				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
 				<label>Hooves</label>
 				<description>MY HANDS! Please, no!</description>
 				<visible>true</visible>
-				<baseMoodEffect>-10</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
 				<label>Hooves</label>
 				<description>One step closer to all fours. This is great!</description>
 				<visible>true</visible>
-				<baseMoodEffect>10</baseMoodEffect>
+				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -94,13 +94,13 @@
 				<label>Animal legs</label>
 				<description>My knee's bending backwards now! What? That's my heel, not my knee? Even worse!</description>
 				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 			<li>
 				<label>Animal legs</label>
 				<description>Just a bit further, and I won't be able to stand up! How about that?</description>
 				<visible>true</visible>
-				<baseMoodEffect>2</baseMoodEffect>
+				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -110,7 +110,7 @@
 			<li>
 				<label>Paws for feet</label>
 				<description>Well, at least I won't have a problem walking over gravel.</description>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Paws for feet</label>
@@ -130,7 +130,7 @@
 			<li>
 				<label>Avian claw-feet</label>
 				<description>It's a bit wierd walking around on chicken-feet.</description>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Avian claw-feet</label>
@@ -140,7 +140,7 @@
 			<li>
 				<label>Avian claw-feet</label>
 				<description>My feet look like a chickens. I wonder if I'm starting to taste like one too?</description>
-				<baseMoodEffect>-2</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -152,7 +152,7 @@
 				<label>Hooves</label>
 				<description>Well, at least I don't need shoes anymore.</description>
 				<visible>true</visible>
-				<baseMoodEffect>0</baseMoodEffect>
+				<baseMoodEffect>1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Hooves</label>
@@ -164,7 +164,7 @@
 				<label>Hooves</label>
 				<description>I can't even sneak away from the humiliation anymore... these things cause a racket wherever I go!</description>
 				<visible>true</visible>
-				<baseMoodEffect>-4</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
@@ -188,7 +188,7 @@
 				<label>Wool</label>
 				<description>I really need a shave.</description>
 				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

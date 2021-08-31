@@ -155,7 +155,7 @@
 				<label>paragon</label>
 				<description>[PAWN_nameDef] adapts quickly to new mutations, and can sometimes get better, more powerful mutations than normal morphs.</description>
 				<statOffsets>
-					<MutationAdaptability>1</MutationAdaptability>
+					<MutationAdaptability>3</MutationAdaptability>
 				</statOffsets>
 				<messageText>Some of [PAWN_nameDef]'s mutations seem to be adapting faster and becoming more powerful.</messageText>
 			</li>

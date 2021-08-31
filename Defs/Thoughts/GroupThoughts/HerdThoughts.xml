@@ -7,24 +7,24 @@
         <stages>
             <!-- should have the same number of stages as the aspect -->
             <li>
-                <label>alone</label>
-                <description>I'm the only one of my kind, I feel unsafe being all alone.</description>
+                <label>no herd</label>
+                <description>I'm the only one of my kind. I feel so unsafe being all alone.</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
-                <label>lonely</label>
-                <description>There's another like me, but we're still only a small herd.</description>
+                <label>small herd</label>
+                <description>There's another like me, but we're still only a small herd. I still don't feel very safe.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
-                <label>comfortable</label>
-                <description>There's lots of my kind, safety in numbers.</description>
+                <label>decent herd</label>
+                <description>There's a decent number of people in my herd. Safety in numbers!</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
-                <label>happy</label>
-                <description>There's plenty of people in my herd, there's nothing to fear!</description>
+                <label>huge herd</label>
+                <description>There's plenty of people in my herd. There's nothing to fear!</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
@@ -35,35 +35,35 @@
         <stages>
             <li>
                 <label>awful bedroom</label>
-                <description>I had to sleep in an awful room all by myself.</description>
+                <description>I had to sleep alone in an awful room, without even my herd to keep me safe.</description>
                 <baseMoodEffect>-7</baseMoodEffect>
             </li>
             <li>
                 <label>dull bedroom</label>
-                <description>I had to sleep in an dull room all by myself.</description>
+                <description>I had to sleep alone in an dull room, without even my herd to keep me safe.</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <!-- dull -->
             <li>
                 <label>mediocre bedroom</label>
-                <description>I had to sleep in a room all by myself.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <description>I had to sleep in a room all by myself, away from the safety of the herd.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
 
             </li>
             <!-- mediocre -->
             <li>
                 <label>decent bedroom</label>
-                <description>I had to sleep on my own.</description>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <description>I had to sleep in a room all by myself, away from the safety of the herd.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>slightly impressive bedroom</label>
-                <description>I had to sleep on my own in a slightly impressive bedroom. It was alright.</description>
+                <description>I had to sleep on my own in a slightly impressive bedroom. It was alright, but I felt unsafe without the rest of my herd.</description>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>impressive bedroom</label>
-                <description>I slept on my own in an impressive bedroom. It was ok.</description>
+                <description>I slept on my own in an impressive bedroom. It was fine, but I would have felt safer with the rest of my herd.</description>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
@@ -73,17 +73,17 @@
             </li>
             <li>
                 <label>extremely impressive bedroom</label>
-                <description>I slept in an extremely impressive bedroom. It's great, but I wish there were others here.</description>
+                <description>I slept in an extremely impressive bedroom. It's great, but I wish my herdmates were there.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>unbelievably impressive bedroom</label>
-                <description>I slept in an unbelievably impressive bedroom. It was marvelous, but I felt something was missing.</description>
+                <description>I slept in an unbelievably impressive bedroom. It was marvelous, but I felt like something was missing without my herd.</description>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
             <li>
                 <label>wondrously impressive bedroom</label>
-                <description>I slept in a heavenly bedroom. It was astounding, but it would have been better to share it with the herd.</description>
+                <description>I slept in a heavenly bedroom. It was so astounding, I didn't even mind sleeping away from the rest of the herd.</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
         </stages>
@@ -95,56 +95,72 @@
         <stages>
             <li>
                 <label>awful barrack</label>
-                <description>We had to sleep in an awful barrack, but the herd was there.</description>
+                <description>The herd had to sleep in an awful barrack, but at least we had safety in numbers.</description>
                 <baseMoodEffect>-4</baseMoodEffect>
             </li>
             <li>
                 <label>dull barrack</label>
-                <description>We had to sleep in a dull barrack. but the rest of the herd was there.</description>
+                <description>The herd had to sleep in a dull barrack, but at least we had safety in numbers.</description>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
             <li>
                 <label>mediocre barrack</label>
-                <description>We slept in a mediocre barrack with my herd. Okay, I guess.</description>
+                <description>I slept together with the herd in a mediocre barrack. It's safer than sleeping alone, at least.</description>
                 <baseMoodEffect>0</baseMoodEffect>
                 <visible>true</visible>
             </li>
             <li>
                 <label>decent barrack</label>
-                <description>We slept in a decent barrack with my herd. This feels nice.</description>
+                <description>I slept together together with the herd in a decent barrack. It was safe and comforting.</description>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>slightly impressive barrack</label>
-                <description>We got to sleep in a pretty nice barrack with the herd.</description>
+                <description>I slept in a pretty nice barrack with the rest of my herd. This is great.</description>
                 <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>impressive barrack</label>
-                <description>We got to sleep in an impressive barrack. I even got to share it with the rest of the herd.</description>
+                <description>I slept in an impressive barrack with the rest of my herd. I love it.</description>
                 <baseMoodEffect>4</baseMoodEffect>
             </li>
             <li>
                 <label>very impressive barrack</label>
-                <description>We slept in a very impressive barrack with the herd. I love it.</description>
+                <description>I got to sleep in a very impressive barrack with my herd. It was wonderful.</description>
                 <baseMoodEffect>5</baseMoodEffect>
             </li>
             <li>
                 <label>extremely impressive barrack</label>
-                <description>We slept in an extremely impressive barrack with the herd. It was marvelous</description>
+                <description>I got to sleep in an extremely impressive barrack with my herd. It was truly marvelous.</description>
                 <baseMoodEffect>6</baseMoodEffect>
             </li>
             <li>
                 <label>unbelievably impressive barrack</label>
-                <description>The barrack we slept in was unbelievably impressive.</description>
+                <description>I got to sleep in a barrack that was unbelievably impressive, and I even got to share it with my herd.</description>
                 <baseMoodEffect>7</baseMoodEffect>
             </li>
             <li>
                 <label>wondrously impressive barrack</label>
-                <description>We slept in a barrack that was simply wondrous.</description>
+                <description>The herd got to share a barrack that was simply wondrous. I could just stay here with my herd forever.</description>
                 <baseMoodEffect>8</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
-
+    
+    <ThoughtDef ParentName="SleptThoughtBase">
+        <defName>PM_HerdMindedAscetic</defName>
+        
+        <stages>
+            <li>
+                <label>ascetic slept alone</label>
+                <description>I had to sleep in a room by myself, away from the safety of my herd.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ascetic slept with herd</label>
+                <description>I was able to share a barrack with my herd. It felt safe and comfy.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
 </Defs>

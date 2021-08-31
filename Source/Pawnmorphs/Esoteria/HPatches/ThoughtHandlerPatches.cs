@@ -22,6 +22,16 @@ namespace Pawnmorph.HPatches
             private static bool TryGainMemoryPrefix([NotNull] ref Thought_Memory newThought, Pawn otherPawn,
                                                     [NotNull] MemoryThoughtHandler __instance)
             {
+                //if ideo is active handle ate corpse memory 
+                if (newThought.sourcePrecept == null && newThought.def == ThoughtDefOf.AteCorpse && ModsConfig.IdeologyActive && __instance.pawn.IsFormerHuman())
+                {
+                    PMHistoryEventDefOf.FormerHumanAteCorpse.SendEvent(__instance.pawn.Named(HistoryEventArgsNames.Doer));
+                    if (__instance.pawn.Ideo?.HasPositionOn(PMIssueDefOf.PM_FormerHuman_Nudity) == true)
+                    {
+                        return false; //don't give the standard or substituted thought, the precept will handle this
+                    }
+                }
+
                 //handle new observation thoughts 
                 if (newThought is Memory_FactionObservation facMem)
                 {

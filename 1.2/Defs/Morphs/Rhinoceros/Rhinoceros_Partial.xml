@@ -1,0 +1,29 @@
+<Defs>
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>PawnmorphRhinocerosTFPartial</defName>
+		<label>rhinocerosmorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with rhinoceros-esque mutations.</description>
+		<stages>
+			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
+				<painOffset>0.1</painOffset>
+				<hungerRateFactor>3</hungerRateFactor>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<morph>RhinocerosMorph</morph>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

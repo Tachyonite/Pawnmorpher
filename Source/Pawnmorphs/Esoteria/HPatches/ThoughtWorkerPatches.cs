@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -25,6 +26,8 @@ namespace Pawnmorph.HPatches
         {
             try
             {
+                if (!ModsConfig.IdeologyActive) return; 
+                
                 BindingFlags stBindingFlags = BindingFlags.NonPublic | BindingFlags.Static;
                 var normalPatchMethod = typeof(ThoughtWorkerPatches).GetMethod("DisableFormerHumanThoughtNormal", stBindingFlags);
                 var socialPatchMethod = typeof(ThoughtWorkerPatches).GetMethod("DisableFormerHumanThoughtSocial", stBindingFlags);
@@ -46,6 +49,36 @@ namespace Pawnmorph.HPatches
             }
         }
 
+        [HarmonyPatch(typeof(ThoughtWorker_Hot), "CurrentStateInternal")]
+        static class FixThoughtWorkerHot
+        {
+            static bool Prefix(Pawn p , ref ThoughtState __result)
+            {
+                if (p.IsAnimal() || (ModsConfig.IdeologyActive && p.Ideo == null))
+                {
+                    __result = false;
+                    return false; 
+                }
+
+                return true; 
+            }
+        }
+
+
+        [HarmonyPatch(typeof(ThoughtWorker_Cold), "CurrentStateInternal")]
+        static class FixThoughtWorkerCold
+        {
+            static bool Prefix(Pawn p, ref ThoughtState __result)
+            {
+                if (p.IsAnimal() || (ModsConfig.IdeologyActive && p.Ideo == null))
+                {
+                    __result = false;
+                    return false;
+                }
+
+                return true;
+            }
+        }
 
         [NotNull]
         static IEnumerable<Type> AllPreceptNudityThoughts
@@ -56,7 +89,7 @@ namespace Pawnmorph.HPatches
                 var femaleNudity = DefDatabase<IssueDef>.GetNamed("Nudity_Female");
 
                 var precepts = DefDatabase<PreceptDef>.AllDefs.Where(p => p.issue == maleNudity || p.issue == femaleNudity);
-                var comps = precepts.SelectMany(p => p.comps.OfType<PreceptComp_SituationalThought>());
+                var comps = precepts.SelectMany(p => p.comps.MakeSafe().OfType<PreceptComp_SituationalThought>());
                 var types = comps.Select(t => t.thought.workerClass);
                 return types.Distinct(); 
             }

@@ -596,6 +596,7 @@ namespace Pawnmorph
                 else
                 {
                     newMemory = ThoughtMaker.MakeThought(memory.def, memory.CurStageIndex);
+                    newMemory.sourcePrecept = memory.sourcePrecept; 
                 }
 
 

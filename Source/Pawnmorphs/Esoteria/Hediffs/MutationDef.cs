@@ -8,6 +8,7 @@ using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -20,6 +21,9 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffDef" />
     public class MutationDef : HediffDef, IDebugString
     {
+        [Unsaved()]
+        private MutationStage[] _cachedMutationStages; 
+        
         /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
@@ -66,6 +70,12 @@ namespace Pawnmorph.Hediffs
 
 
         /// <summary>
+        /// The graphics for this mutation 
+        /// </summary>
+        [CanBeNull]
+        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>(); 
+
+        /// <summary>
         /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
         /// </summary>
         public int value; 
@@ -106,7 +116,7 @@ namespace Pawnmorph.Hediffs
 
         [Unsaved] private List<ThingDef> _associatedAnimals;
 
-
+        
         /// <summary>
         ///     Gets the animals associated with this mutation animals.
         /// </summary>
@@ -123,6 +133,16 @@ namespace Pawnmorph.Hediffs
                                                      .ToList());
             }
         }
+
+        /// <summary>
+        /// Gets the cached mutation stages. this is the same size as stages but pre cast to <see cref="MutationStage"/> if a particular stage is not
+        /// a MutationsStage then the corresponding entry in this list is null 
+        /// </summary>
+        /// <value>
+        /// The cached mutation stages.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
@@ -267,6 +287,21 @@ namespace Pawnmorph.Hediffs
                 parts.Clear();
                 parts.AddRange(_tmpPartLst);
 
+            }
+
+
+            if (stages.NullOrEmpty())
+            {
+                _cachedMutationStages = Array.Empty<MutationStage>();
+            }
+            else
+            {
+                int count = stages.Count;
+                _cachedMutationStages = new MutationStage[count];
+                for (int i = 0; i < stages.Count; i++)
+                {
+                    _cachedMutationStages[i] = stages[i] as MutationStage; 
+                }
             }
         }
 

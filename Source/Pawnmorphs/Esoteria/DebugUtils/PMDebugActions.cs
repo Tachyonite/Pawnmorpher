@@ -46,6 +46,48 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void MassChaoTfPawns()
+        {
+            var curMap = Find.CurrentMap;
+            if (curMap == null) return;
+            var hediffDef = MorphTransformationDefOf.FullRandomTFAnyOutcome;
+            var mutagen = hediffDef.GetMutagenDef();
+            List<Pawn> lst = new List<Pawn>(); 
+            foreach (Pawn pawn in curMap.mapPawns.AllPawns)
+            {
+                if(!mutagen.CanTransform(pawn)) continue;
+                var health = pawn.health?.hediffSet;
+                if(health == null) continue;
+                lst.Add(pawn); 
+                if (health.HasHediff(hediffDef))
+                {
+                    continue;
+                }
+
+                health.AddDirect(HediffMaker.MakeHediff(hediffDef, pawn)); 
+            }
+
+            foreach (Pawn pawn in lst)
+            {
+                ForceTransformation(pawn); 
+            }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        private static void TransformPawnIntoRandomAnimal(Pawn p)
+        {
+            MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+            if (p == null || !mutagen.CanTransform(p)) return;
+
+            PawnKindDef rPK = FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs.RandomElement();
+            var newRequest = new TransformationRequest(rPK, p, SapienceLevel.Sapient);
+            var tfPawn = mutagen.MutagenCached.Transform(newRequest);
+            if (tfPawn == null) return; 
+            var wComp = Find.World.GetComponent<PawnmorphGameComp>();
+            wComp.AddTransformedPawn(tfPawn); 
+        }
+
         [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void EnableMutationTrackerLogging(Pawn p)
         {
@@ -83,6 +125,19 @@ namespace Pawnmorph.DebugUtils
             else return $"could not give buildup to {pawn.Name}";
         }
 
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void AdaptAllMutations(Pawn p)
+        {
+            var mTracker = p?.GetMutationTracker();
+            if (mTracker == null) return;
+            foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
+            {
+                var sevAdj = mutation.SeverityAdjust; 
+                if(sevAdj == null) continue;
+                mutation.Severity = sevAdj.NaturalSeverityLimit; 
+            }
+        }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
@@ -334,7 +389,7 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
 
 
-            var mutations = morph?.AllAssociatedMutations;
+            IEnumerable<MutationDef> mutations = morph?.AllAssociatedMutations;
             if (mutations == null)
                 mutations = DefDatabase<MutationDef>.AllDefs;
 
