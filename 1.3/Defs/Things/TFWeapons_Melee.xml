@@ -1,0 +1,113 @@
+<Defs>
+    <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+        <defName>MeleeWeapon_MutaniteKnife</defName>
+        <label>mutanite knife</label>
+        <techLevel>Neolithic</techLevel>
+        <description>A shaped piece of mutanite with a handle for safe operation. Tends to mutate anyone who's on the receiving end of the blade.</description>
+        <graphicData>
+            <texPath>Things/Item/Equipment/WeaponMelee/Knife</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <weaponTags>
+            <li>MutagenicMelee</li>
+            <li>MutagenicMeleeAdvanced</li>
+        </weaponTags>
+        <costStuffCount>30</costStuffCount>
+        <costList>
+            <Mutanite>2</Mutanite>
+        </costList>
+        <statBases>
+            <WorkToMake>1800</WorkToMake>
+            <Mass>0.5</Mass>
+        </statBases>
+        <equippedAngleOffset>-65</equippedAngleOffset>
+        <stuffCategories>
+            <li>Metallic</li>
+        </stuffCategories>
+        <tools>
+            <li>
+                <label>handle</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>blade</label>
+                <capacities>
+                    <li>MutagenicCut</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>1.5</cooldownTime>
+            </li>
+            <li>
+                <label>point</label>
+                <capacities>
+                    <li>MutagenicStab</li>
+                </capacities>
+                <power>10</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+        <recipeMaker>
+            <recipeUsers>
+                <li>CraftingSpot</li>
+            </recipeUsers>
+        </recipeMaker>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseMeleeWeapon_Sharp_Quality">
+        <defName>MeleeWeapon_MutaniteSpear</defName>
+        <label>mutanite spear</label>
+        <description>A long rod is tipped with a pointed piece of mutanite, which tends to mutate anyone who gets stabbed by it.</description>
+        <graphicData>
+          <texPath>Things/Item/Equipment/WeaponMelee/Spear</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <techLevel>Neolithic</techLevel>
+        <weaponTags>
+          <li>MutagenicMelee</li>
+        </weaponTags>
+        <costStuffCount>75</costStuffCount>
+        <costList>
+            <Mutanite>4</Mutanite>
+        </costList>
+        <statBases>
+          <WorkToMake>12000</WorkToMake>
+          <Mass>2</Mass>
+        </statBases>
+        <equippedAngleOffset>-25</equippedAngleOffset>
+        <stuffCategories>
+          <li>Metallic</li>
+          <li>Woody</li>
+        </stuffCategories>
+        <tools>
+          <li>
+            <label>shaft</label>
+            <capacities>
+              <li>Blunt</li>
+              <li>MutagenicPoke</li>
+            </capacities>
+            <power>8</power>
+            <cooldownTime>2.6</cooldownTime>
+          </li>
+          <li>
+            <label>point</label>
+            <capacities>
+              <li>MutagenicStab</li>
+            </capacities>
+            <power>15</power>
+            <armorPenetration>0.50</armorPenetration>
+            <cooldownTime>2.6</cooldownTime>
+          </li>
+        </tools>
+        <recipeMaker>
+          <researchPrerequisite>LongBlades</researchPrerequisite>
+          <skillRequirements>
+            <Crafting>4</Crafting>
+          </skillRequirements>
+        </recipeMaker>
+      </ThingDef>
+    
+</Defs>
