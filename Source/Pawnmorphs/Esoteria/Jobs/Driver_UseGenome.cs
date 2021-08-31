@@ -4,7 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Chambers;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -18,6 +21,8 @@ namespace Pawnmorph.Jobs
     /// <seealso cref="Verse.AI.JobDriver" />
     public class Driver_UseGenome : JobDriver
     {
+        private const string NO_MORE_MUTATIONS_MESSAGE = "PMNoMoreMutations";
+
         const TargetIndex MUTAGEN_BENCH_INDEX = TargetIndex.A;
         const TargetIndex GENOME_INDEX = TargetIndex.B;
         private const TargetIndex HAUL_INDEX = TargetIndex.C;
@@ -76,38 +81,50 @@ namespace Pawnmorph.Jobs
 
         private void ApplyGenome()
         {
-            var wComp = Find.World.GetComponent<ChamberDatabase>();
-            var mut = Genome.GetComp<MutationGenomeStorage>()?.Mutation;
+            var db = Find.World.GetComponent<ChamberDatabase>();
+            var mutationComp = Genome.GetComp<MutationGenomeStorage>();
 
-            bool consumedOnUse = true; 
-
-            //just add to database, if not possible there is no recovery possible at this stage 
-            //can add to database must be called by giver before hand
-
-            
-            if (mut == null)
+            if (mutationComp == null)
             {
-                var aGenome = Genome.GetComp<AnimalGenomeStorageComp>();
-                if (aGenome == null) return;
-                consumedOnUse = aGenome.ConsumedOnUse;
-                wComp.AddToDatabase(aGenome.Animal);
-                return;
+                var animalComp = Genome.GetComp<AnimalGenomeStorageComp>();
+                if (animalComp == null)
+                {
+                    Log.Error("Tried to use a genome with no mutation or animal genome comp!");
+                    return;
+                }
+
+                bool added = db.TryAddToDatabase(animalComp.Animal);
+                if (animalComp.ConsumedOnUse && added)
+                    Genome.Destroy();
             }
             else
             {
-                consumedOnUse = mut.genomeConsumedOnUse; 
-            }
-            
-            var mutationToAdd = mut.AllMutations.Where(m => wComp.CanAddToDatabase(m)).RandomElementWithFallback();
-            if (mutationToAdd == null)
-            {
-                Log.Error($"tried to use a genome with no addable mutations!");
-                return;
-            }
+                // Don't check CanAddToDatabase here, since that will fail even if the database is just out of power or storage space.
+                // Instead, explicitly check for taggable mutations that haven't been added yet.
+                // If we're out of power/space, the call to TryAddToDatabase will fail and display the appropriate fail message.
+                MutationCategoryDef mCategory = mutationComp.Mutation;
+                List<MutationDef> validMutations = mCategory.AllMutations
+                        .Where(CanBeAdded)
+                        .Where(m => !db.StoredMutations.Contains(m))
+                        .ToList();
 
-            wComp.AddToDatabase(mutationToAdd);
-            if(consumedOnUse)
-                Genome.Destroy();
+                if (validMutations.Count == 0)
+                {
+                    Messages.Message(NO_MORE_MUTATIONS_MESSAGE.Translate(Genome), MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
+            
+                bool CanBeAdded(MutationDef mDef)
+                {
+                    return mDef.RestrictionLevel <= mCategory.restrictionLevel && mDef.RestrictionLevel != RestrictionLevel.Always;
+                }
+
+
+                bool added = db.TryAddToDatabase(validMutations.RandomElement());
+                if (mutationComp.Mutation.genomeConsumedOnUse && added)
+                    Genome.Destroy();
+            }
         }
     }
 }

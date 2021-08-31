@@ -21,6 +21,9 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffDef" />
     public class MutationDef : HediffDef, IDebugString
     {
+        [Unsaved()]
+        private MutationStage[] _cachedMutationStages; 
+        
         /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
@@ -106,10 +109,10 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public bool memoryIgnoresLimit;
 
+        [Unsaved] private RestrictionLevel? _restrictionLevel;
 
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
-        [Unsaved] private bool? _isRestricted;
 
         [Unsaved] private List<ThingDef> _associatedAnimals;
 
@@ -130,6 +133,16 @@ namespace Pawnmorph.Hediffs
                                                      .ToList());
             }
         }
+
+        /// <summary>
+        /// Gets the cached mutation stages. this is the same size as stages but pre cast to <see cref="MutationStage"/> if a particular stage is not
+        /// a MutationsStage then the corresponding entry in this list is null 
+        /// </summary>
+        /// <value>
+        /// The cached mutation stages.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
@@ -172,13 +185,30 @@ namespace Pawnmorph.Hediffs
         /// </value>
         public bool IsRestricted
         {
+            get { return RestrictionLevel > RestrictionLevel.UnRestricted; }
+        }
+
+        /// <summary>
+        /// Gets the restriction level of this mutation
+        /// </summary>
+        /// <value>
+        /// The restriction level.
+        /// </value>
+        public RestrictionLevel RestrictionLevel
+        {
             get
             {
-                if (_isRestricted == null)
-                    _isRestricted =
-                        categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
+                if (_restrictionLevel == null)
+                {
+                    foreach (MutationCategoryDef cat in categories.MakeSafe())
+                    {
+                       if(_restrictionLevel == RestrictionLevel.Always)break;
+                       if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel; 
+                    }
 
-                return _isRestricted.Value;
+                }
+
+                return _restrictionLevel.Value;
             }
         }
 
@@ -274,6 +304,21 @@ namespace Pawnmorph.Hediffs
                 parts.Clear();
                 parts.AddRange(_tmpPartLst);
 
+            }
+
+
+            if (stages.NullOrEmpty())
+            {
+                _cachedMutationStages = Array.Empty<MutationStage>();
+            }
+            else
+            {
+                int count = stages.Count;
+                _cachedMutationStages = new MutationStage[count];
+                for (int i = 0; i < stages.Count; i++)
+                {
+                    _cachedMutationStages[i] = stages[i] as MutationStage; 
+                }
             }
         }
 

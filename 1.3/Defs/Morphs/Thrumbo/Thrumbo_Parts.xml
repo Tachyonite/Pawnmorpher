@@ -152,6 +152,9 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>

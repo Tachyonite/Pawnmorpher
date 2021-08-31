@@ -102,7 +102,7 @@ namespace Pawnmorph.DebugUtils
         [DebuggerHidden]
         [Conditional("DEBUG")]
         [AssertionMethod]
-        public static void Assert(bool condition, string message)
+        public static void Assert([AssertionCondition(AssertionConditionType.IS_TRUE)] bool condition, string message)
         {
             if (!condition) Log.Error($"assertion failed:{message}");
         }

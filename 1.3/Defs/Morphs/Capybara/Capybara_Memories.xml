@@ -59,7 +59,7 @@
                 <label>Rodent face</label>
                 <description>What's up with these teeth?</description>
                 <visible>True</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Rodent face</label>
@@ -83,13 +83,13 @@
                 <label>Rodent ears</label>
                 <description>Why are my ears so small?</description>
                 <visible>True</visible>
-                <baseMoodEffect>0</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Rodent ears</label>
                 <description>These tiny ears are so cute!</description>
                 <visible>True</visible>
-                <baseMoodEffect>2</baseMoodEffect>
+                <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Rodent ears</label>

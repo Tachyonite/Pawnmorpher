@@ -1,0 +1,123 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="TortoisePart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>TortoiseMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
+		<defName>EtherTortoiseJaw</defName>
+		<label>tortoise beak</label>
+		<description>The hard and rather dangerous beak of a tortoise.</description>
+		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.08</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
+		<defName>EtherTortoiseEar</defName>
+		<label>earhole</label>
+		<description>A fleshy membrane has grown over the earhole, reducing sensitivity to higher pitches but granting the ability to detect stomping feet three rooms away.</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A fleshy membrane has grown over [PAWN_nameDef]'s earhole, reducing [PAWN_possessive] sensitivity to higher pitch sounds but granting [PAWN_objective] the ability to detect footfalls from three rooms away.</description>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<statOffsets>
+					<NegotiationAbility>-0.02</NegotiationAbility>
+					<TradePriceImprovement>-0.02</TradePriceImprovement>
+					<SocialImpact>-0.02</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+		<parts>
+			<li>Ear</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
+		<defName>EtherTortoiseTail</defName>
+		<label>tortoise tail</label>
+		<description>A stubby tortoise tail.</description>
+		<mutationTale>GrewTail</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A short tail has sprouted from the base of [PAWN_nameDef]'s spine. Long enough that it requires some clothing modifications, but too short to be useful for much else.</description>
+			</li>
+		</stages>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="TortoisePart">
+		<defName>EtherTortoiseShell</defName>
+		<label>shell</label>
+		<description>An inbuilt suit of armour.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				<statOffsets>
+					<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+					<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
+				</statOffsets>
+			</li>
+		</stages>
+		<parts>
+			<li>Torso</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

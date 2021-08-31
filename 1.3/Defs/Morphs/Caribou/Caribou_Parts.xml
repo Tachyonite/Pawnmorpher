@@ -115,7 +115,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
 		<defName>EtherCaribouAntlers</defName>
 		<label>caribou antlers</label>
-		<description>[Pawn_nameDef] has large caribou antlers</description>
+		<description>[PAWN_nameDef] has large caribou antlers</description>
 		<parts>
 			<li>Skull</li>
 		</parts>

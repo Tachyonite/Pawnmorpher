@@ -59,7 +59,7 @@
                 <label>Petrol snout</label>
                 <description>Perfect for one thing, eating grass.</description>
                 <visible>true</visible>
-                <baseMoodEffect>-2</baseMoodEffect>
+                <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Petrol snout</label>
@@ -71,7 +71,7 @@
                 <label>Petrol snout</label>
                 <description>No, I don't want to eat grass, stop thinking about it!</description>
                 <visible>true</visible>
-                <baseMoodEffect>-4</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

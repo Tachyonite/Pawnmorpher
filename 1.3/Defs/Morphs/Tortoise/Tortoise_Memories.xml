@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>TortoiseTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>!!!TortoiseTransformationMemory's default stage needs a label!!!</label>
+                <description>!!!TortoiseTransformationMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseTransformationMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!TortoiseTransformationMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseTransformationMemory's body purist stage needs a label!!!</label>
+                <description>!!!TortoiseTransformationMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseTransformationMemory's primal wish stage needs a label!!!</label>
+                <description>!!!TortoiseTransformationMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>TortoiseRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>!!!TortoiseRevertedMemory's default stage needs a label!!!</label>
+                <description>!!!TortoiseRevertedMemory's default stage needs a description!!!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseRevertedMemory's mutation affinity stage needs a label!!!</label>
+                <description>!!!TortoiseRevertedMemory's mutation affinity stage needs a description!!!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseRevertedMemory's body purist stage needs a label!!!</label>
+                <description>!!!TortoiseRevertedMemory's body purist stage needs a description!!!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>!!!TortoiseRevertedMemory's primal wish stage needs a label!!!</label>
+                <description>!!!TortoiseRevertedMemory's primal wish stage needs a description!!!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

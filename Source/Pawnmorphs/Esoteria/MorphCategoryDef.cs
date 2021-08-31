@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Verse;
 
 namespace Pawnmorph
@@ -12,6 +13,13 @@ namespace Pawnmorph
     public class MorphCategoryDef : Def
     {
         [Unsaved] private List<MorphDef> _allMorphs;
+
+
+        /// <summary>
+        /// The associated mutation category with this morph category, all mutations directly associated with a morph in this category will be in this category 
+        /// </summary>
+        [UsedImplicitly, CanBeNull]
+        public MutationCategoryDef associatedMutationCategory; 
 
         /// <summary>
         /// if morphs in this category should be considered 'restricted'
@@ -25,12 +33,32 @@ namespace Pawnmorph
         {
             get
             {
-                if (_allMorphs == null)
-                {
-                    _allMorphs = DefDatabase<MorphDef>.AllDefs.Where(m => m.categories.Contains(this)).ToList();
-                }
-
                 return _allMorphs; 
+            }
+        }
+
+        /// <summary>
+        /// Resolves the references.
+        /// </summary>
+        public override void ResolveReferences()
+        {   
+            _allMorphs = new List<MorphDef>();
+            foreach (MorphDef morph in MorphDef.AllDefs)
+            {
+                if (morph.categories?.Contains(this) == true)
+                {
+                    _allMorphs.Add(morph); 
+                    if(associatedMutationCategory == null) continue;
+                    foreach (MutationDef mutation in MutationDef.AllMutations)
+                    {
+                        if (mutation.classInfluence == morph)
+                        {
+                            mutation.categories = mutation.categories ?? new List<MutationCategoryDef>(); 
+                            if(!mutation.categories.Contains(associatedMutationCategory))
+                                mutation.categories.Add(associatedMutationCategory);
+                        }
+                    }
+                }    
             }
         }
     }

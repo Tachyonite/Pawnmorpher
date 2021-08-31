@@ -1,0 +1,158 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="WolfPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>Wolf</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="WolfJawBase">
+		<label>wolf muzzle</label>
+		<description>The lupine muzzle of a wolf.</description>
+		<mutationTale>GrewCanidMuzzle</mutationTale>
+		<mutationMemory>EtherWolfMuzzle</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<label>bestial</label>
+				<description>[PAWN_nameDef]'s face has turned into a bestial snout, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is much more difficult, but eating is easier. Many people find [PAWN_possessive] snout intimidating.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.45</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.1</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>paragon</label>
+				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit, so eating is easier. Animals seem to find [PAWN_possessive] intimidating and are less likely to disobey [PAWN_possessive].</description>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<TameAnimalChance>0.1</TameAnimalChance>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
+		<defName>EtherWolfEar</defName>
+		<label>lupine</label>
+		<description>The fuzzy pointy ear of a wolf.</description>
+		<mutationTale>EarsChangedCanid</mutationTale>
+		<mutationMemory>EtherWolfEar</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
+				<partEfficiencyOffset>0.25</partEfficiencyOffset>
+			</li>
+		</stages>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfPart">
+		<defName>EtherWolfTail</defName>
+		<label>wolfish tail</label>
+		<description>A grey wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+		<mutationTale>GrewTail</mutationTale>
+		<mutationMemory>EtherWolfTail</mutationMemory>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

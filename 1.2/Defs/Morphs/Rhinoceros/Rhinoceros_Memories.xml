@@ -1,0 +1,51 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RhinocerosTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>Became rhinomorph</label>
+                <description>I feel so heavy, and this horn is really something else.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became rhinomorph</label>
+                <description>I'm a huge war machine, this is incredible!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became rhinomorph</label>
+                <description>I'm going to run you over if you don't turn me back right now!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RhinocerosRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm normal again, and there's no heavy horn on my face!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I feel so much weaker. I'm not as special as before.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I feel human again, and those bestial features are gone!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I feel so weak now. I wanted more, not less!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

@@ -25,6 +25,18 @@
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
+		<defName>Crafter</defName>
+		<label>crafter</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Social</defName>
+		<label>social</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
 		<defName>Productive</defName>
 		<label>productive</label>
 		<genomeProvider>true</genomeProvider>
@@ -41,13 +53,13 @@
 		<!-- category for all 'combo parts' -->
 		<defName>Combo</defName>
 		<!-- make sure pawns don't spawn with it -->
-		<restricted>true</restricted>
+		<restrictionLevel>Always</restrictionLevel>
 	</Pawnmorph.MutationCategoryDef>
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Powerful</defName>
 		<label>powerful</label>
-		<restricted>true</restricted>
+		<restrictionLevel>CategoryOnly</restrictionLevel>
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
 </Defs>

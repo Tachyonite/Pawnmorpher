@@ -1,0 +1,10 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CanineMorph" Name="WolfMorphBase">
+		<description>Wolfmorphs usually stand on their paws and possess keen nose seeking prey, with grey or brown fur covering them. They make excellent fighters.</description>
+		<classification>Wolf</classification>
+		<transformSettings>
+			<transformationMemory>WolfTransformationMemory</transformationMemory>
+			<revertedMemory>WolfRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,15 @@
+<Defs>
+	<ThingDef ParentName="InjectorBase">
+		<defName>WolfTransformer</defName>
+		<label>mutasyringe, timber wolf</label>
+		<description>A mutagenic injector filled with mechanites and timber wolf DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphWolfTF</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>	
+	</ThingDef>
+</Defs>

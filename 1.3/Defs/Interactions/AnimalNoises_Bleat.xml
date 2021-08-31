@@ -49,41 +49,49 @@
 		<initiatorThought>PawnmorphBleat</initiatorThought>
 		<recipientThought>PawnmorphBleat</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [askedabout].</li>
-				<li>r_logentry->[INITIATOR_nameDef] bleated at [RECIPIENT_nameDef] to [askedaboutme].</li>
-				<li>r_logentry->[INITIATOR_nameDef] baa'd at [RECIPIENT_nameDef] to [askedaboutme].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout(p=4)->baaed at</li>
-				<li>talkedabout->bahed at</li>
-				<li>talkedabout->baaed to</li>
-				<li>talkedabout->bleated at</li>
-				<li>talkedabout->bleated to</li>
+				<li>noisedat(p=4)->baaed at</li>
+				<li>noisedat->bahed at</li>
+				<li>noisedat->baaed to</li>
+				<li>noisedat->bleated at</li>
+				<li>noisedat->bleated to</li>
 
-				<li>askedabout->wool</li>
-				<li>askedabout->eating grass</li>
-				<li>askedabout->shaving</li>
-				<li>askedabout->grazing</li>
-				<li>askedabout->counting</li>
-				<li>askedabout->hay</li>
-				<li>askedabout->hooves</li>
-				<li>askedabout->shearing [INITIATOR_objective]</li>
-				<li>askedabout->bleating</li>
-				<li>askedabout->fleece</li>
-				<li>askedabout->ewes</li>
-				<li>askedabout->rams</li>
-				<li>askedabout->chewing cud</li>
-				<li>askedabout->spinning wheels</li>
-				<li>askedabout->joining a flock</li>
-				<li>askedabout->flocks</li>
-				<li>askedabout->horns</li>
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
 
-				<li>askedaboutme->shear [INITIATOR_objective]</li>
-				<li>askedaboutme->feed [INITIATOR_objective] grass</li>
-				<li>askedaboutme->change [INITIATOR_objective] back</li>
-				<li>askedaboutme->give [INITIATOR_objective] clippers</li>
-				<li>askedaboutme->give [INITIATOR_objective] a shave</li>
+				<li>noisedabout->baaed about</li>
+				<li>noisedabout->bahed about</li>
+				<li>noisedabout->bleated about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->wool</li>
+				<li>animaltopic->eating grass</li>
+				<li>animaltopic->shaving</li>
+				<li>animaltopic->grazing</li>
+				<li>animaltopic->counting</li>
+				<li>animaltopic->hay</li>
+				<li>animaltopic->hooves</li>
+				<li>animaltopic->shearing [INITIATOR_objective]</li>
+				<li>animaltopic->bleating</li>
+				<li>animaltopic->fleece</li>
+				<li>animaltopic->ewes</li>
+				<li>animaltopic->rams</li>
+				<li>animaltopic->chewing cud</li>
+				<li>animaltopic->spinning wheels</li>
+				<li>animaltopic->joining a flock</li>
+				<li>animaltopic->flocks</li>
+				<li>animaltopic->horns</li>
+				<li>animaltopic->shears</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Sheep</initiatorWeights>
@@ -108,43 +116,38 @@
 		<initiatorThought>PMBleat_DeepTalkMemory</initiatorThought>
 		<recipientThought>PMBleat_DeepTalkMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [ovinelife] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
 
-				<li>talkedabout->talked in depth about</li>
-				<li>talkedabout->shared [INITIATOR_possessive] experiences with</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->told a heartfelt story about</li>
-				<li>talkedabout->shared an embarassing story about</li>
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
 
-				<li>ovinelife->being a sheepmorph</li>
-				<li>ovinelife->becoming a sheepmorph</li>
-				<li>ovinelife->wool</li>
-				<li>ovinelife->headpats</li>
-				<li>ovinelife->getting shaved</li>
-				<li>ovinelife->grass</li>
-				<li>ovinelife->hay</li>
-				<li>ovinelife->bleating</li>
-				<li>ovinelife->frolicking</li>
-				<li>ovinelife->fields</li>
-				<li>ovinelife->pastures</li>
-				<li>ovinelife->fleece</li>
-				<li>ovinelife->flocks</li>
-				<li>ovinelife->rectangular pupils</li>
-				<li>ovinelife->hooves</li>
-				<li>ovinelife->horns</li>
-				<li>ovinelife->resisting instinct</li>
-				<li>ovinelife->mutations</li>
-				<li>ovinelife->hoof hands</li>
-				<li>ovinelife->what a tail feels like</li>
-				<li>ovinelife->restricted movement in thick wool</li>
-				<li>ovinelife->having a wide field of vision</li>
-				<li>ovinelife->grazing</li>
-				<li>ovinelife->colorblindness</li>
-				<li>ovinelife->reversion serums</li>
+				<li>animallife->being a sheepmorph</li>
+				<li>animallife->becoming a sheepmorph</li>
+				<li>animallife->wool</li>
+				<li>animallife->headpats</li>
+				<li>animallife->getting shaved</li>
+				<li>animallife->grass</li>
+				<li>animallife->hay</li>
+				<li>animallife->bleating</li>
+				<li>animallife->frolicking</li>
+				<li>animallife->fields</li>
+				<li>animallife->pastures</li>
+				<li>animallife->fleece</li>
+				<li>animallife->flocks</li>
+				<li>animallife->rectangular pupils</li>
+				<li>animallife->hooves</li>
+				<li>animallife->horns</li>
+				<li>animallife->hoof hands</li>
+				<li>animallife->what a tail feels like</li>
+				<li>animallife->restricted movement in thick wool</li>
+				<li>animallife->having a wide field of vision</li>
+				<li>animallife->grazing</li>
+				<li>animallife->colorblindness</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Sheep</initiatorWeights>
@@ -169,74 +172,65 @@
 		<initiatorThought>PMBleat_DeepTalkOvineMemory</initiatorThought>
 		<recipientThought>PMBleat_DeepTalkOvineMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [ovinetopic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [ovinetopic] with [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [ovinebehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+				
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
 
-				<li>talkedabout->communicated thoughts about</li>
-				<li>talkedabout->exchanged thoughts about</li>
-				<li>talkedabout->exchanged ideas about</li>
-				<li>talkedabout->shared views on</li>
-				<li>talkedabout->discussed the topic of</li>
-				<li>talkedabout->had a heartfelt conversation about</li>
-				<li>talkedabout->talked quietly about</li>
-				<li>talkedabout->talked deeply about</li>
-				<li>talkedabout->connected on the topic of</li>
+				<li>animallife->being sheepmorphs</li>
+				<li>animallife->becoming sheepmorphs</li>
+				<li>animallife->wool</li>
+				<li>animallife->headpats</li>
+				<li>animallife->getting shaved</li>
+				<li>animallife->grass</li>
+				<li>animallife->hay</li>
+				<li>animallife->bleating</li>
+				<li>animallife->frolicking</li>
+				<li>animallife->fields</li>
+				<li>animallife->pastures</li>
+				<li>animallife->fleece</li>
+				<li>animallife->flocks</li>
+				<li>animallife->rectangular pupils</li>
+				<li>animallife->hooves</li>
+				<li>animallife->horns</li>
+				<li>animallife->hoof hands</li>
+				<li>animallife->what a tail feels like</li>
+				<li>animallife->restricted movement in thick wool</li>
+				<li>animallife->having a wide field of vision</li>
+				<li>animallife->grazing</li>
+				<li>animallife->colorblindness</li>
 				
-				<li>ovinetopic(p=2)->[ovinelife]</li>
-				<li>ovinetopic->[secretovinelife]</li>
-
-				<li>ovinelife->being sheepmorphs</li>
-				<li>ovinelife->becoming sheepmorphs</li>
-				<li>ovinelife->wool</li>
-				<li>ovinelife->headpats</li>
-				<li>ovinelife->getting shaved</li>
-				<li>ovinelife->grass</li>
-				<li>ovinelife->hay</li>
-				<li>ovinelife->bleating</li>
-				<li>ovinelife->frolicking</li>
-				<li>ovinelife->fields</li>
-				<li>ovinelife->pastures</li>
-				<li>ovinelife->fleece</li>
-				<li>ovinelife->flocks</li>
-				<li>ovinelife->rectangular pupils</li>
-				<li>ovinelife->hooves</li>
-				<li>ovinelife->horns</li>
-				<li>ovinelife->resisting instinct</li>
-				<li>ovinelife->mutations</li>
-				<li>ovinelife->hoof hands</li>
-				<li>ovinelife->what a tail feels like</li>
-				<li>ovinelife->restricted movement in thick wool</li>
-				<li>ovinelife->having a wide field of vision</li>
-				<li>ovinelife->grazing</li>
-				<li>ovinelife->colorblindness</li>
-				<li>ovinelife->reversion serums</li>
+				<li>secretanimallife->shaving techniques</li>
+				<li>secretanimallife->wolf paranoia</li>
+				<li>secretanimallife->being herded by dogmorphs</li>
+				<li>secretanimallife->tastiest types of grass</li>
+				<li>secretanimallife->hoof polishing</li>
+				<li>secretanimallife->sheep dogs</li>
+				<li>secretanimallife->cud</li>
+				<li>secretanimallife->counting</li>
+				<li>secretanimallife->clones</li>
+				<li>secretanimallife->tailoring</li>
+				<li>secretanimallife->world domination</li>
+				<li>secretanimallife->assimilating the non-sheep</li>
+				<li>secretanimallife->the flock overmind</li>
+				<li>secretanimallife->watching for predators</li>
+				<li>secretanimallife->staying with the flock</li>
+				<li>secretanimallife->open fields</li>
+				<li>secretanimallife->horn shining</li>
+				<li>secretanimallife->headbutting contests</li>
 				
-				<li>secretovinelife->shaving techniques</li>
-				<li>secretovinelife->wolf paranoia</li>
-				<li>secretovinelife->being herded by dogmorphs</li>
-				<li>secretovinelife->tastiest types of grass</li>
-				<li>secretovinelife->hoof polishing</li>
-				<li>secretovinelife->sheep dogs</li>
-				<li>secretovinelife->cud</li>
-				<li>secretovinelife->counting</li>
-				<li>secretovinelife->clones</li>
-				<li>secretovinelife->tailoring</li>
-				<li>secretovinelife->world domination</li>
-				<li>secretovinelife->assimilating the non-sheep</li>
-				<li>secretovinelife->the flock overmind</li>
-				<li>secretovinelife->watching for predators</li>
-				<li>secretovinelife->staying with the flock</li>
-				<li>secretovinelife->open fields</li>
-				<li>secretovinelife->horn shining</li>
-				<li>secretovinelife->headbutting contests</li>
-				
-				<li>ovinebehavior->bumped heads with [RECIPIENT_nameDef]</li>
-				<li>ovinebehavior->and [RECIPIENT_nameDef] rammed heads</li>
-				<li>ovinebehavior->and [RECIPIENT_nameDef] gave relaxed bleats to eachother</li>
-				<li>ovinebehavior->shared mutual nuzzles with [RECIPIENT_nameDef]</li>
-				<li>ovinebehavior->and [RECIPIENT_nameDef] tapped hooves</li>
+				<li>animalbehavior->bumped heads with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] rammed heads</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] gave relaxed bleats to eachother</li>
+				<li>animalbehavior->shared mutual nuzzles with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] tapped hooves</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Sheep</initiatorWeights>
@@ -263,37 +257,34 @@
 		<symbol>Things/Mote/SpeechSymbols/Bleat_Slight</symbol>
 		<recipientThought>PMBleat_Slight</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [bleatedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [bleatedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
-				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[ovinecharacteristic]</li>
-				
-				<li>bleatedat->bleated at</li>
-				<li>bleatedat->feinted headbutting at</li>
-				<li>bleatedat->baaed aggressively at</li>
-				<li>bleatedat->baaed annoyingly at</li>
+				<li>noisedat->bleated at</li>
+				<li>noisedat->feinted headbutting at</li>
+				<li>noisedat->baaed aggressively at</li>
+				<li>noisedat->baaed annoyingly at</li>
 								
-				<li>bleatedabout->bleated about</li>
-				<li>bleatedabout->baaed angrily about</li>
-				<li>bleatedabout->screamed about</li>
-				<li>bleatedabout->feinted a headbutt because of</li>
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->baaed angrily about</li>
+				<li>noisedabout->screamed about</li>
+				<li>noisedabout->feinted a headbutt because of</li>
 				
-				<li>ovinecharacteristic->posture</li>
-				<li>ovinecharacteristic->body language</li>
-				<li>ovinecharacteristic->loud noises</li>
-				<li>ovinecharacteristic->lack of treats</li>
-				<li>ovinecharacteristic->[refusal] to give [INITIATOR_objective] a hug</li>
-				<li>ovinecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
-				<li>ovinecharacteristic->[refusal] to participate in a headbutting contest</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
+				<li>animalcharacteristic->posture</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->lack of treats</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a hug</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] headpats</li>
+				<li>animalcharacteristic->[Refusal] to participate in a headbutting contest</li>
 				
 				<li>annoyingbehavior->annoyingly bumped [RECIPIENT_nameDef] with [INITIATOR_possessive] head</li>
 				<li>annoyingbehavior->annoyingly brushed against [RECIPIENT_nameDef]</li>
@@ -321,47 +312,46 @@
 		<symbol>Things/Mote/SpeechSymbols/Bleat_Insult</symbol>
 		<recipientThought>PMBleat_Insult</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry(p=3)->[INITIATOR_nameDef] [bleatedat] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [bleatedabout] [target]'s [characteristic].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [ovineinsult].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
 
-				<li>comparedtargetto->called [target] a</li>
-				<li>comparedtargetto->compared [target] to a</li>
-				<li>comparedtargetto->bleated that [target] was a</li>
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->baa'd that [target] was</li>
+				<li>noisedtargetwas->bleated that [target] was</li>
+				
+				<li>noisedat->bleated loudly at</li>
+				<li>noisedat->screamed at</li>
+				<li>noisedat->baaed aggresively at</li>
+				
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->bleated angrily about</li>
+				<li>noisedabout->tried to headbutt [RECIPIENT_nameDef] because of</li>
+				<li>noisedabout->bleated in [RECIPIENT_nameDef] face over</li>
+				<li>noisedabout->screamed about</li>
 
-				<li>target(p=4)->[RECIPIENT_nameDef]</li>
-				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->posture</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->lack of treats</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a hug</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] headpats</li>
+				<li>animalcharacteristic->[Refusal] to participate in a headbutting contest</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[ovinecharacteristic]</li>
-				
-				<li>bleatedat->bleated loudly at</li>
-				<li>bleatedat->screamed at</li>
-				<li>bleatedat->baaed aggresively at</li>
-				
-				<li>bleatedabout->bleated about</li>
-				<li>bleatedabout->bleated angrily about</li>
-				<li>bleatedabout->tried to headbutt [RECIPIENT_nameDef] because of</li>
-				<li>bleatedabout->bleated in [RECIPIENT_nameDef] face over</li>
-				<li>bleatedabout->screamed about</li>
-				
-				<li>ovinecharacteristic->posture</li>
-				<li>ovinecharacteristic->body language</li>
-				<li>ovinecharacteristic->loud noises</li>
-				<li>ovinecharacteristic->lack of treats</li>
-				<li>ovinecharacteristic->[refusal] to give [INITIATOR_objective] a hug</li>
-				<li>ovinecharacteristic->[refusal] to give [INITIATOR_objective] headpats</li>
-				<li>ovinecharacteristic->[refusal] to participate in a headbutting contest</li>
-				
-				<li>refusal->refusal</li>
-				<li>refusal->unwillingness</li>
-				
-				<li>ovineinsult->wolf</li>
-				<li>ovineinsult->sheepdog</li>
-				<li>ovineinsult->carnivore</li>
-				<li>ovineinsult->straggler</li>
-				<li>ovineinsult->donkey</li>
+				<li>insult->a wolf</li>
+				<li>insult->a sheepdog</li>
+				<li>insult->a carnivore</li>
+				<li>insult->a straggler</li>
+				<li>insult->a donkey</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Sheep</initiatorWeights>
@@ -398,48 +388,42 @@
 		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
 		<recipientThought>PMBleat_KindWordsMemory</recipientThought>
 		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
 			<rulesStrings>
-				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [PersonalCharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
 				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] compared [RECIPIENT_nameDef] to a [ovinecompliment].</li>
-				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [ovinecompliment].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
 				
-				<li>characteristic->[PersonalCharacteristic]</li>
-				<li>characteristic->[ovinecharacteristic]</li>
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->bleated that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
 				
-				<li>ovinecharacteristic->friendly demeanor</li>
-				<li>ovinecharacteristic->body language</li>
-				<li>ovinecharacteristic->herding technique</li>
-				<li>ovinecharacteristic->animals skill</li>
-				<li>ovinecharacteristic->head scratches</li>
-				<li>ovinecharacteristic->shaving technique</li>
+				<li>animalcharacteristic->friendly demeanor</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->herding technique</li>
+				<li>animalcharacteristic->animals skill</li>
+				<li>animalcharacteristic->head scratches</li>
+				<li>animalcharacteristic->shaving technique</li>
 				
-				<li>complimented->baaed happily about</li>
-				<li>complimented->baaed approvingly of</li>
-				<li>complimented->nuzzled [RECIPIENT_nameDef] because of</li>
+				<li>complimentedtargets->baaed happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->baaed approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
 				
-				<li>kindbehavior->[adv] baaed at</li>
-				<li>kindbehavior->[adv] bleated at</li>
-				<li>kindbehavior->[adv] sung a baa for</li>
-				<li>kindbehavior->[adv] bumped [INITIATOR_possessive] head into</li>
+				<li>kindbehavior->[KindAdverb] baaed at</li>
+				<li>kindbehavior->[KindAdverb] bleated at</li>
+				<li>kindbehavior->[KindAdverb] sung a baa for</li>
+				<li>kindbehavior->[KindAdverb] bumped [INITIATOR_possessive] head into</li>
 				
-				<li>adv->kindly</li>
-				<li>adv->affectionately</li>
-				<li>adv->appreciatively</li>
-				<li>adv->happily</li>
-				
-				<li>ovinecompliment->[adj] haygrass</li>
-				<li>ovinecompliment->[adj] shepherd</li>
-				<li>ovinecompliment->[adj] pasture</li>
-				<li>ovinecompliment->[adj] cliffside</li>
-				<li>ovinecompliment->[adj] wool coat</li>
-				<li>ovinecompliment->[adj] flock</li>
-				
-				<li>adj->wonderful</li>
-				<li>adj->delightful</li>
-				<li>adj->amazing</li>
-				<li>adj->sweet</li>
-				<li>adj->lovely</li>
+				<li>compliment->[KindAdj] haygrass</li>
+				<li>compliment->a [KindAdj] shepherd</li>
+				<li>compliment->a [KindAdj] pasture</li>
+				<li>compliment->a [KindAdj] cliffside</li>
+				<li>compliment->a [KindAdj] wool coat</li>
+				<li>compliment->a [KindAdj] flockmember</li>
 			</rulesStrings>
 		</logRulesInitiator>
 		<initiatorWeights>PMInteractionWeights_Sheep</initiatorWeights>
@@ -466,4 +450,58 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at SheepMorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBleat_DirectedInsult</defName>
+		<label>directed sheep insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->wool</li>
+				<li>animalcharacteristic->horns</li>
+				<li>animalcharacteristic->eyes</li>
+				<li>animalcharacteristic->retangular pupils</li>
+				<li>animalcharacteristic->hooves</li>
+				<li>animalcharacteristic->bleating</li>
+				<li>animalcharacteristic->heat</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->[Refusal] to stop shaving around [INITIATOR_objective]</li>
+
+				<li>insultcomparison->a ugly sweater</li>
+				<li>insultcomparison->a lintball</li>
+				<li>insultcomparison->a wooly goat</li>
+				<li>insultcomparison->a sweatshop supplier</li>
+				<li>insultcomparison->lamb sauce</li>
+				<li>insultcomparison->a wolf in sheep's clothing</li>
+				<li>insultcomparison->a sheep in wolf's clothing</li>
+				<li>insultcomparison->a hay muncher</li>
+				<li>insultcomparison->a cotton plant</li>
+				<li>insultcomparison->a wool-for-brains</li>
+
+				<li>insult->complained that [RECIPIENT_possessive] wool gets in the way</li>
+				<li>insult->suggested that [RECIPIENT_nameDef] baa more quietly</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop shaving around [INITIATOR_objective]</li>
+				<li>insult->insinuated that [RECIPIENT_nameDef] does not think for [RECIPIENT_objective]self</li>
+				<li>insult->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+
+				<li>insultingjoketopics->sheep stuck on their backs</li>
+				<li>insultingjoketopics->shepherds</li>
+				<li>insultingjoketopics->sheepdogs</li>
+				<li>insultingjoketopics->herding animals</li>
+				<li>insultingjoketopics->wolves and sheep</li>
+				<li>insultingjoketopics->aggressive rams</li>
+				<li>insultingjoketopics->pulling the wool over your eyes</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Sheep</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
 </Defs>

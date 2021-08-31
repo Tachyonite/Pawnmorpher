@@ -1,6 +1,7 @@
 ﻿// PMStatDefOf.cs modified by Iron Wolf for Pawnmorph on 12/01/2019 9:01 AM
 // last updated 12/01/2019  9:01 AM
 
+using System.Security.Policy;
 using JetBrains.Annotations;
 using RimWorld;
 
@@ -67,8 +68,17 @@ namespace Pawnmorph
         /// <summary>
         /// the concentration of mutanite in a thing, this is used by refineries to determine how much of a thing is required to make mutanite 
         /// </summary>
-        public static StatDef MutaniteConcentration; 
+        public static StatDef MutaniteConcentration;
 
+        /// <summary>
+        /// how good the pawn is at using natural weapons 
+        /// </summary>
+        [UsedImplicitly, NotNull] public static StatDef PM_NaturalMeleeEffectiveness;
+
+        /// <summary>
+        /// how fast the pawn is at using natural weapons 
+        /// </summary>
+        [UsedImplicitly, NotNull] public static StatDef PM_NaturalMeleeSpeed;
 
         /// <summary>
         /// stat that affects the likely hood that a pawn fully transforms

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using RimWorld;
@@ -185,6 +186,20 @@ namespace Pawnmorph.Chambers
         }
 
         /// <summary>
+        ///     Determines whether this instance is taggable.
+        /// </summary>
+        /// <param name="mutationDef">The mutation def.</param>
+        /// <returns>
+        ///     <c>true</c> if the specified animal race is taggable; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsTaggable([NotNull] this MutationDef mutationDef)
+        {
+            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
+            return !mutationDef.IsRestricted;
+        }
+
+
+        /// <summary>
         ///     Determines whether the specified morph is tagged.
         /// </summary>
         /// <param name="mDef">The m definition.</param>
@@ -273,7 +288,7 @@ namespace Pawnmorph.Chambers
         [NotNull]
         public static IEnumerable<MutationDef> Taggable([NotNull] this IEnumerable<MutationDef> mutationDefs)
         {
-            return mutationDefs.Where(m => !m.IsRestricted);
+            return mutationDefs.Where(m => m.IsTaggable());
         }
 
         /// <summary>
@@ -283,10 +298,24 @@ namespace Pawnmorph.Chambers
         /// <param name="def">The definition.</param>
         /// <param name="displayMessageIfAdded">if set to <c>true</c> [display message if added].</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        ///     db
+        ///     or
+        ///     def
+        /// </exception>
         public static bool TryAddToDatabase([NotNull] this ChamberDatabase db, [NotNull] MutationDef def,
                                             bool displayMessageIfAdded = true)
         {
-            if (!db.CanAddToDatabase(def)) return false;
+            if (db == null) throw new ArgumentNullException(nameof(db));
+            if (def == null) throw new ArgumentNullException(nameof(def));
+            if (!db.CanAddToDatabase(def, out string reason))
+            {
+                if (displayMessageIfAdded)
+                    Messages.Message(reason, MessageTypeDefOf.RejectInput);
+
+                return false;
+            }
+
             db.AddToDatabase(def);
             if (displayMessageIfAdded)
                 Messages.Message(MUTATION_ADDED_MESSAGE.Translate(def.Named("Mutation")), MessageTypeDefOf.PositiveEvent);

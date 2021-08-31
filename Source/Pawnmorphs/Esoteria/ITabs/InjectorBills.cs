@@ -30,10 +30,10 @@ namespace Pawnmorph.ITabs
         [CanBeNull]
         MorphDef MorphFromSyringeRecipe([NotNull] RecipeDef rDef)
         {
-            var ingestible = rDef.ProducedThingDef?.ingestible;
-            if (ingestible == null) return null;
-            var fOutcomeDoer = ingestible.outcomeDoers?.OfType<IngestionOutcomeDoer_GiveHediffRandom>().FirstOrDefault();
-            var morphHDef = fOutcomeDoer?.hediffDefs?.FirstOrDefault();
+            var ingestible = rDef.ProducedThingDef?.ingestible; //get the morph required to be tagged by checking the hediff the ingestion outcome doer gives a pawn and comparing that with the 
+            if (ingestible == null) return null; //full and/or partial tf hediff stored in MorphDef
+            var fOutcomeDoer = ingestible.outcomeDoers?.OfType<IngestionOutcomeDoer_GiveHediff>().FirstOrDefault(); //this is hacky and need to figure out a more elegant solution that doesn't 
+            var morphHDef = fOutcomeDoer?.hediffDef; //required all injector or morph xml files to be updated 
             if (morphHDef == null) return null;
             return MorphDef.AllDefs.FirstOrDefault(m => m.fullTransformation == morphHDef
                                                      || m.partialTransformation == morphHDef); 

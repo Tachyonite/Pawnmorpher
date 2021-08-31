@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="BearPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>Bear</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -133,6 +133,65 @@
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
+		<defName>PM_BearArms</defName>
+		<label>ursine</label>
+		<description>[PAWN_nameDef]'s arms have grown significant muscle mass</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.15</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.05</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.4</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.1</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<labelOverride>ursine</labelOverride>
+				<statOffsets>
+					<CarryingCapacity>0.15</CarryingCapacity>
+					<MeleeArmorPenetration>0.2</MeleeArmorPenetration>
+					<PM_NaturalMeleeEffectiveness>0.1</PM_NaturalMeleeEffectiveness>
+
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2</minSeverity>
+				<label>paragon</label>
+				<statOffsets>
+					<CarryingCapacity>0.25</CarryingCapacity>
+					<PM_NaturalMeleeEffectiveness>0.2</PM_NaturalMeleeEffectiveness>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Arm</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BearPart">
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>
 		<description>Massive, clawed paws that belong on a bear rather than a human.  They are deadly in a fight, but are rather useless at fine manipulation.</description>
@@ -171,7 +230,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0.99</minSeverity>
-				<partEfficiencyOffset>-0.2</partEfficiencyOffset>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
 				<label>adapted</label>
 				<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] has gotten used to having five fingers and no thumb, but the huge size still makes them more clumsy than someone with smaller paws.  At least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
 			</li>
@@ -212,5 +271,27 @@
 		<parts>
 			<li>Hand</li>
 		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
+		<defName>PM_BearTorso</defName>
+		<classInfluence>Bear</classInfluence>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<healthOffset>8</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>20</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>paragon</label>
+				<minSeverity>2</minSeverity>
+				<healthOffset>20</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>25</CarryingCapacity>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

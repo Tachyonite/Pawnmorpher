@@ -31,22 +31,22 @@
             <li>
                 <label>!!!ChinchillaRevertedMemory's default stage needs a label!!!</label>
                 <description>!!!ChinchillaRevertedMemory's default stage needs a description!!!</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>3</baseMoodEffect>
             </li>
             <li>
                 <label>!!!ChinchillaRevertedMemory's mutation affinity stage needs a label!!!</label>
                 <description>!!!ChinchillaRevertedMemory's mutation affinity stage needs a description!!!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>!!!ChinchillaRevertedMemory's body purist stage needs a label!!!</label>
                 <description>!!!ChinchillaRevertedMemory's body purist stage needs a description!!!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
+                <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>
                 <label>!!!ChinchillaRevertedMemory's primal wish stage needs a label!!!</label>
                 <description>!!!ChinchillaRevertedMemory's primal wish stage needs a description!!!</description>
-                <baseMoodEffect>+1</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -90,13 +90,13 @@
                 <label>Tiny rodent tail</label>
                 <description>Awww, it's so tiny! I love it!</description>
                 <visible>True</visible>
-                <baseMoodEffect>1</baseMoodEffect>
+                <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
                 <label>Tiny rodent tail</label>
                 <description>At least I can hide it...</description>
                 <visible>True</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>

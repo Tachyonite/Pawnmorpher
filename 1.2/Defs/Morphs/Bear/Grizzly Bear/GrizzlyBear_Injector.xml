@@ -1,0 +1,15 @@
+<Defs>
+	<ThingDef ParentName="InjectorBase">
+		<defName>BearTransformer</defName>
+		<label>mutasyringe, grizzly bear</label>
+		<description>A mutagenic injector filled with mechanites and grizzly bear DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphBearTF</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>	
+	</ThingDef>
+</Defs>

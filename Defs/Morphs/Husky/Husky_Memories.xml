@@ -4,18 +4,18 @@
         <stages>
             <li>
                 <label>changed</label>
-                <description>Honestly, this is not that bad.</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <description>Honestly, this is not that bad...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
                 <description>I'm so full of energy, I could run for days!</description>
-                <baseMoodEffect>+5</baseMoodEffect>
+                <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
                 <description>I know I'm supposed to hate this but... I feel too excited to care.</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
                 <label>changed</label>
@@ -46,7 +46,7 @@
             <li>
                 <label>reverted</label>
                 <description>No soft hugs for me.</description>
-                <baseMoodEffect>-1</baseMoodEffect>
+                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
