@@ -1,0 +1,14 @@
+<Defs>
+    <StatDef>
+        <defName>PM_HasMorphStat</defName>
+        <workerClass>Pawnmorph.StatWorkers.HasMorphStat</workerClass>
+        <label>Morphs</label>
+        <category>PawnMutagenics</category>
+        <defaultBaseValue>0</defaultBaseValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <showOnHumanlikes>false</showOnHumanlikes>
+        <showOnMechanoids>false</showOnMechanoids>
+        <displayPriorityInCategory>95</displayPriorityInCategory>
+        <forInformationOnly>true</forInformationOnly>
+    </StatDef>
+</Defs>

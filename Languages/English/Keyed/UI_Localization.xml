@@ -11,4 +11,7 @@
 	<PPAddingMutationDesc>Adding {MUTATION} mutation to {PAWN_nameDef}'s {PART} at a severity of {SEVERITY}.</PPAddingMutationDesc>
 	<PPNewMutationIsHalted>It will not progess further.</PPNewMutationIsHalted>
 	<PMPartPickerGizmo>Mutation Picker</PMPartPickerGizmo>
+	<!-- Info Card -->
+	<PmMorphInfo_NoMorph>No Morphs</PmMorphInfo_NoMorph>
+	<PmMorphInfo_MorphDisplay>Can tag for {MORPH} injector</PmMorphInfo_MorphDisplay>
 </LanguageData>
