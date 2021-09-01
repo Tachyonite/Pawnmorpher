@@ -200,12 +200,13 @@ namespace Pawnmorph.Hediffs
             {
                 if (_restrictionLevel == null)
                 {
+                    _restrictionLevel = RestrictionLevel.UnRestricted;
                     foreach (MutationCategoryDef cat in categories.MakeSafe())
                     {
                        if(_restrictionLevel == RestrictionLevel.Always)break;
                        if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel; 
                     }
-
+                    
                 }
 
                 return _restrictionLevel.Value;
