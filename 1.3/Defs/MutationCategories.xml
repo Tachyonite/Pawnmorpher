@@ -44,7 +44,7 @@
 
 	<Pawnmorph.MutationCategoryDef>
 		<defName>Exotic</defName>
-		<restricted>true</restricted>
+		<restrictionLevel>CategoryOnly</restrictionLevel>
 		<label>exotic</label>
 		<genomeProvider>true</genomeProvider>
 	</Pawnmorph.MutationCategoryDef>
