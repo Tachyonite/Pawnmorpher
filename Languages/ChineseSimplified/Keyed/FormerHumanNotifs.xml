@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <RelatedWildFormerHumanContent>{0}是与{1}有关的前人类，已经出现在地图上。他们可能还需要被驯服。他们是{1}的{2}。</RelatedWildFormerHumanContent>
+  <RelatedWildFormerHumanLabel>聪明的动物(关系)</RelatedWildFormerHumanLabel>
+  <RelatedSoldFormerHumanContent>{0}是一个与{1}有关的前人类，并作为一个变体商人的商品的一部分出现。如果你愿意，你可以购买他们。他们是{1}的{2}。</RelatedSoldFormerHumanContent>
+  <RelatedSoldFormerHumanLabel>变体商人(关系)</RelatedSoldFormerHumanLabel>
+  <FormerHumanConflicted_TransitionLabel>[PAWN_nameDef]智商显著下降。</FormerHumanConflicted_TransitionLabel>
+  <FormerHumanConflicted_TransitionContent>[PAWN_nameDef]智慧已经下降到他们不再被认为是一个完整的殖民者。</FormerHumanConflicted_TransitionContent>
+</LanguageData>

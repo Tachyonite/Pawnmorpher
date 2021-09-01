@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ColorPicker_Title>{0}的颜色选择器</ColorPicker_Title>
+  <ColorPicker_RemovalHint>
+    <i>禁用皮肤和头发颜色的清除。</i>
+  </ColorPicker_RemovalHint>
+  <ColorPicker_CustomSkinColorCheckbox>覆盖皮肤颜色</ColorPicker_CustomSkinColorCheckbox>
+  <ColorPicker_CustomHairColorCheckbox>覆盖头发颜色</ColorPicker_CustomHairColorCheckbox>
+  <ColorPicker_r>红色</ColorPicker_r>
+  <ColorPicker_g>绿色</ColorPicker_g>
+  <ColorPicker_b>蓝色</ColorPicker_b>
+  <ColorPicker_Confirm>应用</ColorPicker_Confirm>
+</LanguageData>

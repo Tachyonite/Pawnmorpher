@@ -2,6 +2,7 @@
 // last updated 02/29/2020  1:39 PM
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 using Verse;
@@ -39,6 +40,17 @@ namespace Pawnmorph.DebugUtils
                     throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
             }
         }
+
+        [NotNull] private static readonly HashSet<int> _usedKeys = new HashSet<int>();
+
+
+        public static void WarningOnce(string message, int key)
+        {
+            if(_usedKeys.Contains(key)) return;
+            Log.Warning(message);
+            _usedKeys.Add(key); 
+        }
+
 
         [DebuggerHidden]
         public static void LogMsg(LogLevel logLevel, object message)

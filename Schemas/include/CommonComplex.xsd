@@ -6,6 +6,20 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="ListOfDefs">
+        <xs:sequence>
+            <xs:element name="li" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="MayRequire" type="xs:string" use="optional" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="StatModifier">
         <xs:all>
             <xs:element name="stat" type="xs:string" />
