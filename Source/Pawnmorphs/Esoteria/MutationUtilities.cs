@@ -988,7 +988,7 @@ namespace Pawnmorph
         public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn, bool warnOnFail = true)
         {
             var comp = CompCacher<MutationTracker>.GetCompCached(pawn); 
-            if (comp == null && warnOnFail) Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            if (comp == null && warnOnFail) WarningOnce($"pawn {pawn.Name} does not have a mutation tracker comp", pawn.thingIDNumber);
             return comp;
         }
 

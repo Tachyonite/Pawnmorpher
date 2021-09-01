@@ -53,7 +53,8 @@
             <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
         </statBases>
 		<weaponTags>
-            <li>NeolithicRangedBasic</li>
+			<li>PawnmorpherGun</li>
+            <li>PMTribalRangedMutagenic</li>
         </weaponTags>
         <recipeMaker>
             <recipeUsers>
@@ -109,6 +110,10 @@
             <AccuracyLong>0.35</AccuracyLong>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
         </statBases>
+        <weaponTags>
+            <li>PawnmorpherGun</li>
+            <li>PMGunMutagenic</li>
+        </weaponTags>
         <recipeMaker>
             <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
             <skillRequirements>
@@ -369,6 +374,7 @@
 		</statBases>
 		<weaponTags>
 			<li>PawnmorpherGun</li>
+            <li>PMGrenadeMutagenic</li>
 		</weaponTags>
 		<costList>
 			<Steel>20</Steel>
