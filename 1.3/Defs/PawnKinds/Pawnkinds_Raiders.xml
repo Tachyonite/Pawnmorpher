@@ -2,6 +2,7 @@
 
     <PawnKindDef ParentName="MercenaryGunnerBase">
         <defName>Muta_Mercenary_Rocket</defName>
+        <label>mutagenic rocketeer</label>
         <initialResistanceRange>6~10</initialResistanceRange>
         <weaponMoney>1200~1200</weaponMoney>
         <weaponTags Inherit="false">
@@ -21,7 +22,7 @@
 
     <PawnKindDef ParentName="GrenadierBase">
         <defName>Muta_Grenadier_Mutagenic</defName>
-        <label>grenadier</label>
+        <label>mutagrenadier</label>
         <combatPower>70</combatPower>
         <weaponTags>
             <li>GrenadeMutagenic</li>
@@ -123,6 +124,7 @@
     
     <PawnKindDef ParentName="MercenaryGunnerBase">
         <defName>Muta_Mercenary_Gunner</defName>
+        <label>mutagunner</label>
         <initialResistanceRange>6~10</initialResistanceRange>
         <specificApparelRequirements>
             <li>
@@ -168,6 +170,7 @@
     
     <PawnKindDef ParentName="MercenarySlasherBase">
         <defName>Muta_Mercenary_Mutaslasher</defName>
+        <label>mutaslasher</label>
         <initialResistanceRange>14~20</initialResistanceRange>
         <weaponMoney>200~500</weaponMoney>
         <weaponTags>
