@@ -9,8 +9,8 @@
             <graphicClass>Graphic_Single</graphicClass>
         </graphicData>
         <weaponTags>
-            <li>MutagenicMelee</li>
-            <li>MutagenicMeleeAdvanced</li>
+            <li>PMMutagenicMelee</li>
+            <li>PMMutagenicMeleeAdvanced</li>
         </weaponTags>
         <costStuffCount>30</costStuffCount>
         <costList>

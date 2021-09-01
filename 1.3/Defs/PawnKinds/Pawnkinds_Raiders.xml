@@ -5,8 +5,28 @@
         <initialResistanceRange>6~10</initialResistanceRange>
         <weaponMoney>1200~1200</weaponMoney>
         <weaponTags Inherit="false">
-            <li>MutaRocket</li>
+            <li>PMMutaRocket</li>
         </weaponTags>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+        </specificApparelRequirements>
+    </PawnKindDef>
+
+    <PawnKindDef ParentName="GrenadierBase">
+        <defName>Muta_Grenadier_Mutagenic</defName>
+        <label>grenadier</label>
+        <combatPower>70</combatPower>
+        <weaponTags>
+            <li>GrenadeMutagenic</li>
+        </weaponTags>
+        <initialResistanceRange>15~24</initialResistanceRange>
         <specificApparelRequirements>
             <li>
                 <bodyPartGroup>Torso</bodyPartGroup>
@@ -83,6 +103,25 @@
     </PawnKindDef>
 
     <PawnKindDef ParentName="MercenaryGunnerBase">
+        <defName>Muta_Mercenary_Mutagunner</defName>
+        <initialResistanceRange>6~10</initialResistanceRange>
+        <weaponMoney>650~900</weaponMoney>
+        <weaponTags Inherit="false">
+            <li>PMGunMutagenic</li>
+        </weaponTags>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+        </specificApparelRequirements>
+    </PawnKindDef>
+    
+    <PawnKindDef ParentName="MercenaryGunnerBase">
         <defName>Muta_Mercenary_Gunner</defName>
         <initialResistanceRange>6~10</initialResistanceRange>
         <specificApparelRequirements>
@@ -115,6 +154,26 @@
     <PawnKindDef ParentName="MercenarySlasherBase">
         <defName>Muta_Mercenary_Slasher</defName>
         <initialResistanceRange>10~16</initialResistanceRange>
+        <specificApparelRequirements>
+            <li>
+                <bodyPartGroup>Torso</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+            <li>
+                <bodyPartGroup>Legs</bodyPartGroup>
+                <stuff>PM_Hazsilk</stuff>
+            </li>
+        </specificApparelRequirements>
+    </PawnKindDef>
+    
+    <PawnKindDef ParentName="MercenarySlasherBase">
+        <defName>Muta_Mercenary_Mutaslasher</defName>
+        <initialResistanceRange>14~20</initialResistanceRange>
+        <weaponMoney>200~500</weaponMoney>
+        <weaponTags>
+            <li>PMMutagenicMelee</li>
+            <li>PMMutagenicMeleeAdvanced</li>
+        </weaponTags>
         <specificApparelRequirements>
             <li>
                 <bodyPartGroup>Torso</bodyPartGroup>
