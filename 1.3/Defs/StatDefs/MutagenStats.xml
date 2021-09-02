@@ -32,7 +32,7 @@
         </parts>
     </StatDef>
 
-    <StatDef ParentName="BasicMutagenic">
+    <StatDef ParentName="BaseMutagenic">
         <defName>PM_MutagenPainSensitivity</defName>
         <label>mutagen pain sensitivity</label>
         <description>how much pain a pawn receives from mutations and transformations</description>
