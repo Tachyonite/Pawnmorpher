@@ -31,7 +31,7 @@ namespace Pawnmorph.Things
             get
             {
                 if (Blighted) return 0f;
-                if (Spawned && !PlantUtility.GrowthSeasonNow(Position, Map)) return 0f;
+                if (Spawned && !GrowthSeasonNow(Position, Map)) return 0f;
                 return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature;
             }
         }
@@ -217,7 +217,7 @@ namespace Pawnmorph.Things
                         if (growthRateFactor_Temperature < 0.99f)
                         {
                             if (Mathf.Approximately(growthRateFactor_Temperature, 0f)
-                             || !PlantUtility.GrowthSeasonNow(Position, Map))
+                             || !GrowthSeasonNow(Position, Map))
                                 stringBuilder.AppendLine("OutOfIdealTemperatureRangeNotGrowing".Translate());
                             else
                                 stringBuilder.AppendLine("OutOfIdealTemperatureRange".Translate(Mathf
@@ -258,6 +258,27 @@ namespace Pawnmorph.Things
             if (cellTemp > DynMaxOptimalGrowthTemperature)
                 return Mathf.InverseLerp(DynMaxGrowthTemperature, DynMaxOptimalGrowthTemperature, cellTemp);
             return 1f;
+        }
+
+        /// <summary>
+        /// Growth season check that's aware of this plant's temperature tolerance
+        /// </summary>
+        /// <returns><c>true</c>, if the plant can grow now based on temperature, <c>false</c> otherwise.</returns>
+        /// <param name="c">Cell.</param>
+        /// <param name="map">Map.</param>
+        public bool GrowthSeasonNow(IntVec3 c, Map map)
+        {
+            Room roomOrAdjacent = c.GetRoomOrAdjacent(map, RegionType.Set_All);
+            if (roomOrAdjacent == null)
+                return false;
+
+            float temperature;
+            if (roomOrAdjacent.UsesOutdoorTemperature)
+                temperature = map.mapTemperature.OutdoorTemp;
+            else
+                temperature = c.GetTemperature(map);
+
+            return temperature > DynMinGrowthTemperature && temperature < DynMaxGrowthTemperature;
         }
     }
 }
