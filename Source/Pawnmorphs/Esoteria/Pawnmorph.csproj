@@ -868,13 +868,14 @@
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
+    <Compile Include="HPatches\ThingDefPatches.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
-      <Version>7.2.1</Version>
+      <Version>9.0.0</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
