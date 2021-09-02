@@ -845,13 +845,34 @@
     <Compile Include="Social\PMInteractionWeightsDef.cs" />
     <Compile Include="Utilities\Collections\Checklist.cs" />
     <Compile Include="Utilities\Collections\MultiDict.cs" />
+    <Compile Include="Hediffs\Hediff_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Composable\MutSpreadOrder.cs" />
+    <Compile Include="Hediffs\Composable\MutRate.cs" />
+    <Compile Include="Hediffs\Composable\MutTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFGenderSelector.cs" />
+    <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
+    <Compile Include="Hediffs\HediffStage_Transformation.cs" />
+    <Compile Include="Hediffs\HediffStage_Mutation.cs" />
+    <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="Hediffs\Composable\TFChance.cs" />
+    <Compile Include="Hediffs\Composable\TFCallback.cs" />
+    <Compile Include="Hediffs\HediffComp_MutTypeBase.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_Morph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomClassMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
+    <Compile Include="Hediffs\Utility\BodyMutationManager.cs" />
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
-    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Hediffs\Composable\" />
+    <Folder Include="Hediffs\Utility\" />
+    <Folder Include="Utilities\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">

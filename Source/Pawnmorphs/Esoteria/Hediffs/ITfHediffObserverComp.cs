@@ -7,7 +7,7 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// interface for hediff comps that listen to the parts that <see cref="TransformationBase"/> visits while trying to add mutations 
+    /// interface for hediff comps that listen to the parts that <see cref="TransformationBase"/> or <see cref="Hediff_MutagenicBase"/> visits while trying to add mutations 
     /// </summary>
     public interface ITfHediffObserverComp
     {
