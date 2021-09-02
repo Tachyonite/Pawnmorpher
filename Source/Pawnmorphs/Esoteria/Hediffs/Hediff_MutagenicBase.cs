@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.TfSys;
@@ -45,8 +46,9 @@ namespace Pawnmorph.Hediffs
         private bool forceRemove;
 
         // Sensitivity stats of the pawn.  Fetched only intermittently because they're expensive to calculate.
-        [Unsaved] private readonly Cached<float> mutagenSensitivity;
-        [Unsaved] private readonly Cached<float> transformationSensitivity;
+        [Unsaved] [NotNull] private readonly Cached<float> mutagenSensitivity;
+        [Unsaved] [NotNull] private readonly Cached<float> transformationSensitivity;
+        [Unsaved] [NotNull] private readonly Cached<float> _painStatValue; 
 
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
@@ -96,6 +98,13 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public override bool ShouldRemove => forceRemove || base.ShouldRemove;
 
+        /// <summary>
+        /// Gets the pain offset for this hediff 
+        /// </summary>
+        /// <value>
+        /// The pain offset.
+        /// </value>
+        public override float PainOffset => base.PainOffset * _painStatValue.Value; //using pain offset instead of factor as the pain stat should affect the pain from only this hediff not the pain from all hediffs  
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Pawnmorph.Hediffs.Hediff_MutagenicBase"/> class.
@@ -104,6 +113,7 @@ namespace Pawnmorph.Hediffs
         {
             mutagenSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
             transformationSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.TransformationSensitivity));
+            _painStatValue = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.PM_MutagenPainSensitivity), 1); 
             observerComps = new Lazy<List<ITfHediffObserverComp>>(() => comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList());
         }
 
@@ -151,10 +161,21 @@ namespace Pawnmorph.Hediffs
             if (pawn.IsHashIntervalTick(60))
             {
                 mutagenSensitivity.Recalculate();
+                _painStatValue.Recalculate();
                 if (cachedStageType == StageType.Mutation && !this.IsImmune())
                     CheckAndAddMutations();
             }
         }
+
+        /// <summary>
+        /// Clears the caches in this instance 
+        /// </summary>
+        public void ClearCaches()
+        {
+            _painStatValue.Recalculate();
+            mutagenSensitivity.Recalculate();
+        }
+
 
         /// <summary>
         /// Checks if we should add mutations, and if so does

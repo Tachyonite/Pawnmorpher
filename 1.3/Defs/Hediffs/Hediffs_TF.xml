@@ -2,7 +2,7 @@
     <HediffDef>
         <defName>TransformationParalysis</defName>
         <label>transformation paralysis</label>
-        <hediffClass>HediffWithComps</hediffClass>
+        <hediffClass>Pawnmorph.Hediffs.MutagenicPain</hediffClass>
         <description>The shock of a sudden, full-body transformation.</description>
         <initialSeverity>1</initialSeverity>
         <maxSeverity>1</maxSeverity>

@@ -426,6 +426,7 @@
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
+    <Compile Include="Hediffs\MutagenicPain.cs" />
     <Compile Include="Hediffs\MutationDef.cs" />
     <Compile Include="Hediffs\MutationEntry.cs" />
     <Compile Include="Hediffs\MutationRetrievers\Morph.cs" />
@@ -870,9 +871,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
-    <Folder Include="Hediffs\Composable\" />
-    <Folder Include="Hediffs\Utility\" />
-    <Folder Include="Utilities\Collections\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
