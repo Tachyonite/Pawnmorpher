@@ -13,5 +13,5 @@
 	<PMPartPickerGizmo>Mutation Picker</PMPartPickerGizmo>
 	<!-- Info Card -->
 	<PmMorphInfo_NoMorph>No Morphs</PmMorphInfo_NoMorph>
-	<PmMorphInfo_MorphDisplay>Can tag for {MORPH} injector</PmMorphInfo_MorphDisplay>
+	<PmMorphInfo_MorphDisplay>{MORPH}</PmMorphInfo_MorphDisplay>
 </LanguageData>

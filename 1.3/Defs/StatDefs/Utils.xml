@@ -2,7 +2,7 @@
     <StatDef>
         <defName>PM_HasMorphStat</defName>
         <workerClass>Pawnmorph.StatWorkers.HasMorphStat</workerClass>
-        <label>Morphs</label>
+        <label>Taggable Morphs</label>
         <category>PawnMutagenics</category>
         <defaultBaseValue>0</defaultBaseValue>
         <toStringStyle>PercentZero</toStringStyle>
