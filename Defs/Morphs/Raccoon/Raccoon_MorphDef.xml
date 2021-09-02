@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>RaccoonMorph</defName>
 		<label>raccoonmorph</label>
-		<description>!!!RaccoonMorph needs a description!!!</description>
+		<description>A shorter humanoid that looks very similar to a raccoon due to exposure to mutagens. They usually have a mask of black fur around their eyes and a striped tail. Although they would prefer digging through trash, they make excellent crafters.</description>
 		<race>Raccoon</race>
 		<classification>Rodent</classification>
 		<categories>

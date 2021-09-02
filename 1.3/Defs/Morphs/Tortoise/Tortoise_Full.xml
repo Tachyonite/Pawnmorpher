@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphTortoiseTF</defName>
 		<label>tortoisemorph</label>
-		<description>!!!TortoiseMorph needs a description!!!</description>
+		<description>This person has mechanites in their blood that are slowly mutating them into a tortoisemorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more tortoise than human.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
 				<label>reeling</label>

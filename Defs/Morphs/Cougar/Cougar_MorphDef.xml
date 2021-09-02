@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CougarMorph</defName>
 		<label>cougarmorph</label>
-		<description>!!!CougarMorph needs a description!!!</description>
+		<description>A human variant with feline-like features. They have a similar appearance to cats, but are bigger and have larger jowls. They are faster and more dexterous than regular humans, and they have an advantage in melee. Some of them prefer the terms "pumamorph" or "mountain-lionmorph."</description>
 		<race>Cougar</race>
 		<classification>Feline</classification>
 		<categories>
