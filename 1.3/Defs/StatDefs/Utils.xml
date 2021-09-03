@@ -2,12 +2,9 @@
     <StatDef>
         <defName>PM_HasMorphStat</defName>
         <workerClass>Pawnmorph.StatWorkers.HasMorphStat</workerClass>
-        <label>Taggable Morphs</label>
+        <label>Taggable Morph</label>
+        <description>The morph type that can be tagged from this animal, if any.  Tagging a morph allows you to create injectors for that morph at the Injector lab, once the appropriate research has been complete.  You can also scan the animal's genome for mutations at a Mutation Sequencer.</description>
         <category>PawnMutagenics</category>
-        <defaultBaseValue>0</defaultBaseValue>
-        <toStringStyle>PercentZero</toStringStyle>
-        <showOnHumanlikes>false</showOnHumanlikes>
-        <showOnMechanoids>false</showOnMechanoids>
         <displayPriorityInCategory>95</displayPriorityInCategory>
         <forInformationOnly>true</forInformationOnly>
     </StatDef>

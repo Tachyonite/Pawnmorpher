@@ -13,6 +13,18 @@ namespace Pawnmorph.StatWorkers
     public class HasMorphStat : StatWorker
     {
         /// <summary>
+        /// Determines whether this stat is shown for the given request.
+        /// </summary>
+        /// <param name="req">The stat request.</param>
+        /// <returns>
+        ///   <c>true</c> if this stat shoudl be shown for the given request; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            return GetThingDef(req)?.race?.Animal == true;
+        }
+
+        /// <summary>
         /// Determines whether this stat is disabled for the given thing.
         /// </summary>
         /// <param name="thing">The thing.</param>
@@ -21,9 +33,7 @@ namespace Pawnmorph.StatWorkers
         /// </returns>
         public override bool IsDisabledFor(Thing thing)
         {
-            if (thing?.def?.race?.Animal != true) return true;
-            if (thing.def.TryGetBestMorphOfAnimal() == null) return true; 
-            return false; 
+            return thing?.def?.race?.Animal != true;
         }
 
         private const string NO_MORPH_LABEL = "PmMorphInfo_NoMorph";
@@ -42,17 +52,40 @@ namespace Pawnmorph.StatWorkers
         public override string GetStatDrawEntryLabel(StatDef stat, float value, ToStringNumberSense numberSense, StatRequest optionalReq,
                                                      bool finalized = true)
         {
-            var def = optionalReq.Def as ThingDef;
-            def = def ?? optionalReq.Pawn?.def; 
-            var morph = def?.TryGetBestMorphOfAnimal();
+            var morph = GetThingDef(optionalReq)?.TryGetBestMorphOfAnimal();
             if (morph == null)
             {
                 return NO_MORPH_LABEL.Translate(); 
             }
 
-            return MORPH_LABEL.Translate(morph.Named(MORPH_TAG));
+            return MORPH_LABEL.Translate(morph.LabelCap.Named(MORPH_TAG));
         }
 
-      
+        /// <summary>
+        /// Gets the unfinalized stat explanation.
+        /// </summary>
+        /// <returns>The explanation unfinalized.</returns>
+        /// <param name="req">Req.</param>
+        /// <param name="numberSense">Number sense.</param>
+        public override string GetExplanationUnfinalized(StatRequest req, ToStringNumberSense numberSense) => "";
+
+        /// <summary>
+        /// Gets the explanation finalize part.
+        /// </summary>
+        /// <returns>The explanation finalize part.</returns>
+        /// <param name="req">Req.</param>
+        /// <param name="numberSense">Number sense.</param>
+        /// <param name="finalVal">Final value.</param>
+        public override string GetExplanationFinalizePart(StatRequest req, ToStringNumberSense numberSense, float finalVal) => "";
+
+        /// <summary>
+        /// Gets the thing def from a request.
+        /// </summary>
+        /// <returns>The thing def.</returns>
+        /// <param name="req">Req.</param>
+        private ThingDef GetThingDef(StatRequest req)
+        {
+            return (req.Def as ThingDef) ?? req.Pawn?.def;
+        }
     }
 }
