@@ -114,6 +114,9 @@
         <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
         <plant>
             <growDays>15</growDays>
+            <growMinGlow>0</growMinGlow>
+            <growOptimalGlow>0</growOptimalGlow>
+            <dieIfNoSunlight>false</dieIfNoSunlight>
         </plant>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
@@ -122,7 +125,7 @@
                 <maxOptimalGrowthTemperature>17</maxOptimalGrowthTemperature>
                 <maxGrowthTemperature>30</maxGrowthTemperature>
                 <minLeaflessTemperature>-200</minLeaflessTemperature>
-                <maxLeaflessTemperature>-2</maxLeaflessTemperature>
+                <maxLeaflessTemperature>-22</maxLeaflessTemperature>
             </li>
         </modExtensions>
     </ThingDef>

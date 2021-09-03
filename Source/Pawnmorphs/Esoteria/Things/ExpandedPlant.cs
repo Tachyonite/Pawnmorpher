@@ -32,7 +32,7 @@ namespace Pawnmorph.Things
             {
                 if (Blighted) return 0f;
                 if (Spawned && !GrowthSeasonNow(Position, Map)) return 0f;
-                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature;
+                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature * GrowthRateFactor_Light;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Pawnmorph.Things
         private float DynMaxGrowthTemperature => Info?.maxGrowthTemperature ?? MaxGrowthTemperature;
 
 
-        private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? MinGrowthForAnimalIngestion;
+        private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? MinGrowthTemperature;
 
         private float DynMaxLeaflessTemperature => Info?.maxLeaflessTemperature ?? MaxLeaflessTemperature;
 
@@ -117,15 +117,18 @@ namespace Pawnmorph.Things
                 }
             }
 
-            float num = growthInt;
-            bool num2 = LifeStage == PlantLifeStage.Mature;
+            float oldGrowthInt = growthInt;
+            bool wasMature = LifeStage == PlantLifeStage.Mature;
             growthInt += GrowthPerTick * 2000f;
             if (growthInt > 1f) growthInt = 1f;
-            if ((!num2 && LifeStage == PlantLifeStage.Mature || (int) (num * 10f) != (int) (growthInt * 10f))
+            if ((!wasMature && LifeStage == PlantLifeStage.Mature || (int) (oldGrowthInt * 10f) != (int) (growthInt * 10f))
              && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
 
+            if (!HasEnoughLightToGrow)
+                unlitTicks += 2000;
+            else
+                unlitTicks = 0;
 
-            unlitTicks = 0;
             ageInt += 2000;
             if (Dying)
             {
