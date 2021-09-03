@@ -1,0 +1,51 @@
+<Defs>
+    <Pawnmorph.MutagenDef Abstract="true" Name="SimpleMutagenBase">
+        <label>mechanite mutagen</label>
+        <mutagenType>Pawnmorph.TfSys.SimpleMechaniteMutagen</mutagenType>
+        <revertedThoughtGood>WasAnimalRelieved</revertedThoughtGood>
+        <revertedThoughtBad>WasAnimal</revertedThoughtBad>
+        <revertedPrimalWish>WasAnimalPrimalWish</revertedPrimalWish>
+        <transformedSapienceState>FormerHuman</transformedSapienceState>
+        <revertedSapienceState>Animalistic</revertedSapienceState>
+        <damageProperties>
+            <apparelDamageOffset>20</apparelDamageOffset>
+            <spawnedBiproductMult>0.07</spawnedBiproductMult>
+            <biproduct>Morphsilk</biproduct>
+        </damageProperties>
+        <immunizingHediffs>
+            <li>StabiliserHigh</li>
+        </immunizingHediffs>
+        <tfAspectGivers>
+            <li Class="Pawnmorph.Aspects.PrimalWishGiver">
+                <normalChance>0.1</normalChance>
+                <mutationAffinityChance>0.2</mutationAffinityChance>
+            </li>
+        </tfAspectGivers>
+    </Pawnmorph.MutagenDef>
+
+    <Pawnmorph.MutagenDef ParentName="SimpleMutagenBase" Abstract="true" Name="AspectGivingMutagenBase">
+        <aspectGivers>
+            <li Class="Pawnmorph.Aspects.RandomGiver">
+                <entries>
+                    <li>
+                        <!-- on average this would require 50 mutations to give  -->
+                        <aspect>Paragon</aspect>
+                        <chance>0.01</chance>
+                    </li>
+                    <!--
+                    <li>
+                        <aspect>Afflicted</aspect>
+                        <chance>0.02</chance>
+                    </li>
+                    -->
+                </entries>
+            </li>
+            <li Class="Pawnmorph.Aspects.SkillBasedGiver">
+                <aspect>AnimalAffinity</aspect>
+                <skillDef>Animals</skillDef>
+                <skillThreshold>3</skillThreshold>  <!-- pawn must have the Animals skills above 3 to get this  -->
+                <chance>0.07</chance> 
+            </li>
+        </aspectGivers>
+    </Pawnmorph.MutagenDef>
+</Defs>
