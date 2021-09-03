@@ -260,17 +260,7 @@ namespace Pawnmorph.Things
         /// <param name="map">Map.</param>
         public bool GrowthSeasonNow(IntVec3 c, Map map)
         {
-            Room roomOrAdjacent = c.GetRoomOrAdjacent(map, RegionType.Set_All);
-            if (roomOrAdjacent == null)
-                return false;
-
-            float temperature;
-            if (roomOrAdjacent.UsesOutdoorTemperature)
-                temperature = map.mapTemperature.OutdoorTemp;
-            else
-                temperature = c.GetTemperature(map);
-
-            return temperature > DynMinGrowthTemperature && temperature < DynMaxGrowthTemperature;
+            return Info?.GrowthSeasonNow(c, map) ?? PlantUtility.GrowthSeasonNow(c, map);
         }
     }
 }

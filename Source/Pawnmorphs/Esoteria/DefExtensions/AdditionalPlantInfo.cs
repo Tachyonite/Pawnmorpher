@@ -38,5 +38,25 @@ namespace Pawnmorph.DefExtensions
         /// </summary>
         public float maxLeaflessTemperature = -2f;
 
+        /// <summary>
+        /// Growth season check that's aware of this plant's temperature tolerance
+        /// </summary>
+        /// <returns><c>true</c>, if the plant can grow now based on temperature, <c>false</c> otherwise.</returns>
+        /// <param name="c">Cell.</param>
+        /// <param name="map">Map.</param>
+        public bool GrowthSeasonNow(IntVec3 c, Map map)
+        {
+            Room roomOrAdjacent = c.GetRoomOrAdjacent(map, RegionType.Set_All);
+            if (roomOrAdjacent == null)
+                return false;
+
+            float temperature;
+            if (roomOrAdjacent.UsesOutdoorTemperature)
+                temperature = map.mapTemperature.OutdoorTemp;
+            else
+                temperature = c.GetTemperature(map);
+
+            return temperature > minGrowthTemperature && temperature < maxGrowthTemperature;
+        }
     }
 }
