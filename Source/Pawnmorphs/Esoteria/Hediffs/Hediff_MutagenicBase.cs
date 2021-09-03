@@ -17,6 +17,7 @@ namespace Pawnmorph.Hediffs
     /// Abstract base class for all hediffs that cause mutations and transformation
     /// 
     /// TODO - single comps
+    /// TODO - figure out a better way to handle various sources other then multiple def fields 
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
@@ -56,6 +57,11 @@ namespace Pawnmorph.Hediffs
 
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
+
+        /// <summary>
+        /// The mutagen source that gave this hediff 
+        /// </summary>
+        public MutagenDef mutagenSource;
 
         /// <summary>
         /// Gets the mutagen sensitivity sensitivity of the pawn
@@ -494,7 +500,8 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
             Scribe_Deep.Look(ref bodyMutationManager, nameof(bodyMutationManager));
-            Scribe_Defs.Look(ref _sourceWeaponDef, "sourceWeaponDef"); 
+            Scribe_Defs.Look(ref _sourceWeaponDef, "sourceWeaponDef");
+            Scribe_Defs.Look(ref mutagenSource, "mutagenSource"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 OnStageChanged();

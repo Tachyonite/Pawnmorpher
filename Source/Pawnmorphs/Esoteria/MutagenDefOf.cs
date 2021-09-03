@@ -15,7 +15,9 @@ namespace Pawnmorph
         public static MutagenDef MergeMutagen;
 
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static MutagenDef PM_ChamberMutagen; 
+        public static MutagenDef PM_ChamberMutagen;
+
+        [NotNull] [UsedImplicitly] public static MutagenDef PM_ChaobulbHarvest; 
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         static MutagenDefOf()

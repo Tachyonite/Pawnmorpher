@@ -168,7 +168,7 @@ namespace Pawnmorph
 
 
         /// <summary>
-        ///  Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
+        ///     Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
@@ -176,20 +176,22 @@ namespace Pawnmorph
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">
-        /// pawn
-        /// or
-        /// mutation
-        /// or
-        /// bodyPart
+        ///     pawn
+        ///     or
+        ///     mutation
+        ///     or
+        ///     bodyPart
         /// </exception>
-        public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [NotNull] BodyPartRecord bodyPart, AncillaryMutationEffects? ancillaryEffects = null)
+        public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
+                                                    [NotNull] BodyPartRecord bodyPart,
+                                                    AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (bodyPart == null) throw new ArgumentNullException(nameof(bodyPart));
-            var res = AddMutation(pawn, mutation, bodyPart, ancillaryEffects);
+            MutationResult res = AddMutation(pawn, mutation, bodyPart, ancillaryEffects);
             HandlePostMutationEffects(pawn, res);
-            return res; 
+            return res;
         }
 
         /// <summary>
@@ -263,8 +265,6 @@ namespace Pawnmorph
                 foreach (Hediff_AddedMutation mutation in res) mutation.mutagenSource = this;
             }
         }
-
-       
     }
 
 
