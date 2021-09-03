@@ -1,13 +1,12 @@
 ﻿using Verse;
 
-namespace Pawnmorph
+namespace Pawnmorph.ThingComps
 {
     /// <summary>
     /// properties for the former human chance prop 
     /// </summary>
     /// <seealso cref="Verse.CompProperties" />
     public class CompProperties_FormerHumanChance : CompProperties
-
     {
         /// <summary>
         /// Gets the chance to add the former human hediff.
@@ -22,7 +21,7 @@ namespace Pawnmorph
         /// </summary>
         public CompProperties_FormerHumanChance()
         {
-            compClass = typeof(CompFormerHumanChance);
+            compClass = typeof(Comp_FormerHumanChance);
         }
     }
 }

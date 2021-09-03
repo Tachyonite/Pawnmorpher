@@ -5,8 +5,7 @@
 			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
 			<value>
 				<comps>
-					<li Class="Pawnmorph.CompProperties_FormerHumanChance">
-					</li>
+					<li Class="Pawnmorph.ThingComps.CompProperties_FormerHumanChance" />
 				</comps>
 			</value>
 		</nomatch>
@@ -14,8 +13,7 @@
 		<match Class="PatchOperationAdd">
 			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
 			<value>
-				<li Class="Pawnmorph.CompProperties_FormerHumanChance">
-				</li>
+				<li Class="Pawnmorph.ThingComps.CompProperties_FormerHumanChance" />
 			</value>
 		</match>
 	</Operation>

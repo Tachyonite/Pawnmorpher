@@ -1,16 +1,15 @@
 ﻿using System.Linq;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Pawnmorph
+namespace Pawnmorph.ThingComps
 {
     /// <summary>
     ///     comp for adding the former human hediff with a percent chance when this thing spawns
     /// </summary>
-    public class CompFormerHumanChance : ThingComp, IMentalStateRecoveryReceiver
+    public class Comp_FormerHumanChance : ThingComp, IMentalStateRecoveryReceiver
     {
         private bool triggered = false;
         private bool _finishedCheck = false;

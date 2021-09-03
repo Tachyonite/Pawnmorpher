@@ -1,8 +1,5 @@
 <Defs>
-
-
-  
-<ThingDef ParentName="AnimalThingBase">
+  <ThingDef ParentName="AnimalThingBase">
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
     <description>Heavily-muscled wolf-like creatures with vicious unnatural claws and an absurdly powerful bite. They will only eat meat or corpses. If disturbed in the wild, they are very likely to attack.\n\nScientists say wargs are the descendants of weaponized military animals created for population suppression. The superstitious see them as the tools of an angry god.</description>
@@ -129,14 +126,12 @@
       <li>AnimalFighter</li>
     </tradeTags>
     <comps>
-      <li>
-				<compClass>Pawnmorph.CompAlwaysFormerHuman</compClass>
-			</li>
+      <li Class="Pawnmorph.ThingComps.CompProperties_AlwaysFormerHuman" />
     </comps>
     <modExtensions>
       <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-				<backstory>FormerHumanChaomorph</backstory>
-			</li>
+        <backstory>FormerHumanChaomorph</backstory>
+      </li>
     </modExtensions>
   </ThingDef>
   
@@ -148,8 +143,8 @@
     <ecoSystemWeight>0.5</ecoSystemWeight>
     <lifeStages>
       <li>
-        <label>warg puppy</label>
-        <labelPlural>warg puppies</labelPlural>
+        <label>hellhound puppy</label>
+        <labelPlural>hellhound puppies</labelPlural>
         <bodyGraphicData>
           <texPath>Mobs/Chaocombos/Hellhound</texPath>
           <drawSize>1.05</drawSize>

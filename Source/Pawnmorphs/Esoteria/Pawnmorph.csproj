@@ -732,11 +732,7 @@
     <Compile Include="HediffGiver_PermanentFeral.cs" />
     <Compile Include="HediffGiver_TF.cs" />
     <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
-    <Compile Include="CompProperties_FormerHumanChance.cs" />
-    <Compile Include="CompFormerHumanChance.cs" />
-    <Compile Include="CompAlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_AddSeverity.cs" />
-    <Compile Include="CompProperties_AlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_Production.cs" />
     <Compile Include="HediffCompProperties_Remove.cs" />
     <Compile Include="HediffCompProperties_Single.cs" />
@@ -869,6 +865,10 @@
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
     <Compile Include="HPatches\ThingDefPatches.cs" />
+    <Compile Include="ThingComps\Comp_AlwaysFormerHuman.cs" />
+    <Compile Include="ThingComps\Comp_FormerHumanChance.cs" />
+    <Compile Include="ThingComps\CompProperties_AlwaysFormerHuman.cs" />
+    <Compile Include="ThingComps\CompProperties_FormerHumanChance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

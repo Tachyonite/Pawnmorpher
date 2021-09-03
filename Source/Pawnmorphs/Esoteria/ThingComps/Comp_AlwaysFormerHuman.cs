@@ -3,12 +3,12 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Pawnmorph
+namespace Pawnmorph.ThingComps
 {
     /// <summary>
     ///     comp for ensuring the parent always spawns with the former human hediff
     /// </summary>
-    public class CompAlwaysFormerHuman : ThingComp, IMentalStateRecoveryReceiver
+    public class Comp_AlwaysFormerHuman : ThingComp, IMentalStateRecoveryReceiver
     {
         private bool triggered = false;
         private CompProperties_AlwaysFormerHuman Props => props as CompProperties_AlwaysFormerHuman;
@@ -25,7 +25,7 @@ namespace Pawnmorph
 
             if (parent.def.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
             {
-                Log.Error($"{nameof(CompAlwaysFormerHuman)} found on {parent.def.defName} which should never be a former human!");
+                Log.Error($"{nameof(Comp_AlwaysFormerHuman)} found on {parent.def.defName} which should never be a former human!");
                 triggered = true;
                 return;
             }

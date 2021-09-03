@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace Pawnmorph
+namespace Pawnmorph.ThingComps
 {
     /// <summary>
     /// properties for the always former human comp 
@@ -17,7 +17,7 @@ namespace Pawnmorph
         /// </summary>
         public CompProperties_AlwaysFormerHuman()
         {
-            compClass = typeof(CompAlwaysFormerHuman);
+            compClass = typeof(Comp_AlwaysFormerHuman);
         }
     }
 }
