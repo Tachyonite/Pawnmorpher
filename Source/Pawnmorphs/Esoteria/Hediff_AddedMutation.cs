@@ -24,6 +24,26 @@ namespace Pawnmorph
         private MutationDef _mDef;
 
         /// <summary>
+        /// The mutagen source def
+        /// </summary>
+        [CanBeNull]
+        public MutagenDef mutagenSource;
+
+        /// <summary>
+        /// Gets the mutagen source or the default mutagen if none is assigned to this mutation 
+        /// </summary>
+        /// <value>
+        /// The mutagen source or default.
+        /// </value>
+        [NotNull] public MutagenDef MutagenSourceOrDefault => mutagenSource ?? MutagenDefOf.defaultMutagen; 
+
+            /// <summary>
+        /// The mutation source
+        /// </summary>
+        [CanBeNull]
+        public Def mutationSource;  
+
+        /// <summary>
         /// Gets the definition.
         /// </summary>
         /// <value>
@@ -398,6 +418,8 @@ namespace Pawnmorph
             base.ExposeData();
             Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1); 
             Scribe_Values.Look(ref shouldRemove, nameof(shouldRemove));
+            Scribe_Values.Look(ref mutationSource, nameof(mutationSource));
+            Scribe_Values.Look(ref mutagenSource, nameof(mutagenSource)); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.");
