@@ -119,6 +119,8 @@ namespace Pawnmorph
             }
         }
 
+        //TODO figure out a better way to handle all the variation without a bunch of overloads 
+
         /// <summary>
         ///     Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
         /// </summary>
@@ -162,6 +164,32 @@ namespace Pawnmorph
             MutationResult res = AddMutation(pawn, mutation, parts, countToAdd, ancillaryEffects, force);
             HandlePostMutationEffects(pawn, res);
             return res;
+        }
+
+
+        /// <summary>
+        ///  Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        /// <param name="mutation">The mutation.</param>
+        /// <param name="bodyPart">The body part.</param>
+        /// <param name="ancillaryEffects">The ancillary effects.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">
+        /// pawn
+        /// or
+        /// mutation
+        /// or
+        /// bodyPart
+        /// </exception>
+        public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation, [NotNull] BodyPartRecord bodyPart, AncillaryMutationEffects? ancillaryEffects = null)
+        {
+            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (bodyPart == null) throw new ArgumentNullException(nameof(bodyPart));
+            var res = AddMutation(pawn, mutation, bodyPart, ancillaryEffects);
+            HandlePostMutationEffects(pawn, res);
+            return res; 
         }
 
         /// <summary>
@@ -235,6 +263,8 @@ namespace Pawnmorph
                 foreach (Hediff_AddedMutation mutation in res) mutation.mutagenSource = this;
             }
         }
+
+       
     }
 
 

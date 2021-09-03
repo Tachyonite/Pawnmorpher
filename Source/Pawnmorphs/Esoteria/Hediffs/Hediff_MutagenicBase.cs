@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.TfSys;
@@ -45,10 +46,13 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
+        [CanBeNull] private ThingDef _sourceWeaponDef; 
+
         // Sensitivity stats of the pawn.  Fetched only intermittently because they're expensive to calculate.
         [Unsaved] [NotNull] private readonly Cached<float> mutagenSensitivity;
         [Unsaved] [NotNull] private readonly Cached<float> transformationSensitivity;
         [Unsaved] [NotNull] private readonly Cached<float> _painStatValue; 
+        
 
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
@@ -129,6 +133,8 @@ namespace Pawnmorph.Hediffs
             // This is because AndroidTiers was giving android mutations because reasons
             if (!def.GetMutagenDef().CanInfect(pawn))
                 MarkForRemoval();
+            _sourceWeaponDef = dinfo?.Weapon; //hacky to put this in all Hediff_MutagenicBase and not just buildup 
+                                            //will have to figure out a better method at some point 
         }
 
         /// <summary>
@@ -203,6 +209,16 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>
+        /// Gets the correct mutagen to use for this instance, this should take into account things like the weapon that caused the hediff if present 
+        /// </summary>
+        /// <returns></returns>
+        [NotNull]
+        protected virtual MutagenDef GetMutagen()
+        {
+            return _sourceWeaponDef?.GetModExtension<MutagenExtension>()?.mutagen ?? def.GetMutagenDef(); 
+        }
+
+        /// <summary>
         /// Tries to apply the current mutation to the current body part.
         /// If it succeeds, or the mutation is non-blocking, advances the list of
         /// mutations. If all mutations have been applied, advanceds the list of
@@ -242,8 +258,14 @@ namespace Pawnmorph.Hediffs
                     // Add the mutation (and aspects) if we succeed in the random chance
                     if (Rand.Value < mutation.addChance)
                     {
-                        var mutationResult = MutationUtilities.AddMutation(pawn, mutation.mutation, bodyPart);
-                        def.GetMutagenDef().TryApplyAspects(pawn);
+                        MutagenDef mutagen = GetMutagen();
+                        MutationResult mutationResult = mutagen.AddMutationAndAspects(pawn, mutation.mutation, bodyPart);
+
+                        foreach (Hediff_AddedMutation res in mutationResult) //make sure the mutation knows where it came from 
+                        {                                                   //should this be a part of AddMutationAndAspects? so many overloads already, need a good solution 
+                            res.source = _sourceWeaponDef;
+                            res.sourceHediffDef = def; 
+                        }
 
                         // Notify the observers of any added mutations
                         foreach (var observer in ObserverComps)
@@ -460,6 +482,8 @@ namespace Pawnmorph.Hediffs
             forceRemove = true;
         }
 
+       
+
         /// <summary>
         /// Exposes data to be saved/loaded from XML upon saving the game
         /// </summary>
@@ -470,7 +494,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
             Scribe_Deep.Look(ref bodyMutationManager, nameof(bodyMutationManager));
-
+            Scribe_Defs.Look(ref _sourceWeaponDef, "sourceWeaponDef"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 OnStageChanged();
