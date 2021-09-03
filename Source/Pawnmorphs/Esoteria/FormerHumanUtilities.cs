@@ -1177,7 +1177,7 @@ namespace Pawnmorph
             if (animal.Faction == null && animal.GetCorrectMap() != null)
                 if (joinIfRelated)
                 {
-                    Pawn relatedColonist = animal.relations?.PotentiallyRelatedPawns?.FirstOrDefault(p => p.IsColonist);
+                    Pawn relatedColonist = animal.relations?.RelatedPawns?.FirstOrDefault(p => p.IsColonist);
                     if (relatedColonist != null)
                     {
                         DebugLogUtils.LogMsg(LogLevel.Messages,
