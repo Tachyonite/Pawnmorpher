@@ -6,18 +6,22 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    [HarmonyPatch(typeof(ThingDef), "SpecialDisplayStats")]
+    [HarmonyPatch(typeof(ThingDef))]
     static class ThingDefPatches
     {
 
-        static IEnumerable<StatDrawEntry> Postfix(IEnumerable<StatDrawEntry> stats, ThingDef __instance)
+        [HarmonyPatch("SpecialDisplayStats"), HarmonyPostfix]
+        static IEnumerable<StatDrawEntry> FixPlantTempStats(IEnumerable<StatDrawEntry> stats, ThingDef __instance)
         {
             var plantInfo = __instance.GetModExtension<AdditionalPlantInfo>();
 
             // Just return the stats if no AdditionalPlantInfo is present
             if (plantInfo == null)
+            {
                 foreach (var stat in stats)
                     yield return stat;
+                yield break;
+            }
 
             var minGrowthTemp = new StatDrawEntry(StatCategoryDefOf.Basics,
                     "MinGrowthTemperature".Translate(),
