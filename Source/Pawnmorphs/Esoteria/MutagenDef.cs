@@ -9,6 +9,7 @@ using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
+using Verse.Grammar;
 using static Pawnmorph.MutationUtilities;
 
 namespace Pawnmorph
@@ -21,10 +22,12 @@ namespace Pawnmorph
     /// <seealso cref="Verse.Def" />
     public class MutagenDef : Def
     {
+
         /// <summary>
-        ///     The source label of this mutagen, this is displayed in the mutation log
+        /// used by the mutation log to add content when this mutagen causes a mutation 
         /// </summary>
-        public string sourceLabel;
+        [CanBeNull]
+        public RulePack causeRulePack; 
 
         /// <summary>
         ///     if this mutagen def applies transformation paralysis
@@ -121,76 +124,76 @@ namespace Pawnmorph
 
         //TODO figure out a better way to handle all the variation without a bunch of overloads 
 
+
         /// <summary>
-        ///     Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
+        /// Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="countToAdd">The count to add.</param>
+        /// <param name="cause">The cause.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <param name="force">if set to <c>true</c> [force].</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        /// </exception>
+        /// <exception cref="ArgumentNullException">pawn
+        /// or
+        /// mutation</exception>
         public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
-                                                    int countToAdd = int.MaxValue,
+                                                    int countToAdd = int.MaxValue, Hediff cause = null,
                                                     AncillaryMutationEffects? ancillaryEffects = null, bool force = false)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             MutationResult res = AddMutation(pawn, mutation, countToAdd, ancillaryEffects, force);
-            HandlePostMutationEffects(pawn, res);
+            HandlePostMutationEffects(pawn, res, ancillaryEffects, cause);
             return res;
         }
 
         /// <summary>
-        ///     Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
+        /// Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="parts">The parts.</param>
+        /// <param name="cause">The cause.</param>
         /// <param name="countToAdd">The count to add.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <param name="force">if set to <c>true</c> [force].</param>
         /// <returns></returns>
         public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
-                                                    [CanBeNull] List<BodyPartDef> parts,
+                                                    [CanBeNull] List<BodyPartDef> parts, [CanBeNull] Hediff cause = null,
                                                     int countToAdd = int.MaxValue,
                                                     AncillaryMutationEffects? ancillaryEffects = null, bool force = false)
         {
             MutationResult res = AddMutation(pawn, mutation, parts, countToAdd, ancillaryEffects, force);
-            HandlePostMutationEffects(pawn, res);
+            HandlePostMutationEffects(pawn, res, ancillaryEffects, cause );
             return res;
         }
 
 
         /// <summary>
-        ///     Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
+        /// Adds the mutation and aspects to the given pawn using the aspects attached to this mutagen
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutation">The mutation.</param>
         /// <param name="bodyPart">The body part.</param>
+        /// <param name="cause">The cause.</param>
         /// <param name="ancillaryEffects">The ancillary effects.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        ///     pawn
-        ///     or
-        ///     mutation
-        ///     or
-        ///     bodyPart
-        /// </exception>
+        /// <exception cref="ArgumentNullException">pawn
+        /// or
+        /// mutation
+        /// or
+        /// bodyPart</exception>
         public MutationResult AddMutationAndAspects([NotNull] Pawn pawn, [NotNull] MutationDef mutation,
-                                                    [NotNull] BodyPartRecord bodyPart,
+                                                    [NotNull] BodyPartRecord bodyPart, [CanBeNull] Hediff cause = null,
                                                     AncillaryMutationEffects? ancillaryEffects = null)
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (mutation == null) throw new ArgumentNullException(nameof(mutation));
             if (bodyPart == null) throw new ArgumentNullException(nameof(bodyPart));
             MutationResult res = AddMutation(pawn, mutation, bodyPart, ancillaryEffects);
-            HandlePostMutationEffects(pawn, res);
+            HandlePostMutationEffects(pawn, res, ancillaryEffects , cause);
             return res;
         }
 
@@ -257,14 +260,60 @@ namespace Pawnmorph
                 yield return $"type {mutagenType.Name} is not a subtype of Mutagen";
         }
 
-        private void HandlePostMutationEffects(Pawn pawn, in MutationResult res)
+
+        [NotNull] private static readonly Dictionary<MutationDef, List<BodyPartDef>> _scratchDict =
+            new Dictionary<MutationDef, List<BodyPartDef>>();
+
+
+        private void HandlePostMutationEffects(Pawn pawn, in MutationResult res, AncillaryMutationEffects? aEffects, Hediff cause)
         {
+            bool doLog = aEffects?.AddLogEntry ?? AncillaryMutationEffects.Default.AddLogEntry;
             if (res)
             {
                 this.TryApplyAspects(pawn);
                 foreach (Hediff_AddedMutation mutation in res) mutation.mutagenSource = this;
             }
+
+            if (doLog && res)
+            {
+                _scratchDict.Clear();
+                foreach (Hediff_AddedMutation mutation in res)
+                {
+                    if (!_scratchDict.TryGetValue(mutation.Def, out List<BodyPartDef> lst))
+                    {
+                        lst = new List<BodyPartDef>();
+                        _scratchDict[mutation.Def] = lst;
+                    }
+
+                    if (!lst.Contains(mutation.Part.def)) lst.Add(mutation.Part.def);
+                }
+
+                var mBase = cause as Hediff_MutagenicBase;
+
+                foreach (KeyValuePair<MutationDef, List<BodyPartDef>> keyValuePair in _scratchDict)
+                {
+                    var logEntry = new MutationLogEntry(pawn, keyValuePair.Key, this, keyValuePair.Value);
+                    if (cause != null)
+                    {
+                        logEntry.AddCause(HEDIFF_CAUSE_PREFIX, cause.def);
+                        if (mBase?.WeaponSource != null) logEntry.AddCause(WEAPON_CAUSE_PREFIX, mBase.WeaponSource);
+                    }
+
+
+                    Find.PlayLog?.Add(logEntry);
+                }
+            }
         }
+
+        //TODO put these somewhere more useful         
+        /// <summary>
+        /// prefix for hediff cause rule packs 
+        /// </summary>
+        public const string HEDIFF_CAUSE_PREFIX = "HediffCause";
+        /// <summary>
+        /// prefix for weapon cause prefix 
+        /// </summary>
+        public const string WEAPON_CAUSE_PREFIX = "WeaponCause";
     }
 
 

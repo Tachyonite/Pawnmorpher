@@ -574,6 +574,7 @@
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />

@@ -55,6 +55,8 @@ namespace Pawnmorph.Hediffs
         [Unsaved] [NotNull] private readonly Cached<float> _painStatValue; 
         
 
+
+
         // The list of observer comps
         [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
 
@@ -63,6 +65,17 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public MutagenDef mutagenSource;
 
+        //TODO this seems like a bad idea to keep this here 
+        /// <summary>
+        /// Gets the def of the weapon that gave this def.
+        /// 
+        /// </summary>
+        /// <value>
+        /// The weapon source.
+        /// </value>
+        [CanBeNull]
+        public ThingDef WeaponSource => _sourceWeaponDef; 
+        
         /// <summary>
         /// Gets the mutagen sensitivity sensitivity of the pawn
         /// </summary>
@@ -265,7 +278,7 @@ namespace Pawnmorph.Hediffs
                     if (Rand.Value < mutation.addChance)
                     {
                         MutagenDef mutagen = GetMutagen();
-                        MutationResult mutationResult = mutagen.AddMutationAndAspects(pawn, mutation.mutation, bodyPart);
+                        MutationResult mutationResult = mutagen.AddMutationAndAspects(pawn, mutation.mutation, bodyPart, this);
 
                         foreach (Hediff_AddedMutation res in mutationResult) //make sure the mutation knows where it came from 
                         {                                                   //should this be a part of AddMutationAndAspects? so many overloads already, need a good solution 
