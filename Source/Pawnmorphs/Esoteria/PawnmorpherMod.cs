@@ -11,6 +11,13 @@ namespace Pawnmorph
     public class PawnmorpherMod : Mod
     {
         PawnmorpherSettings settings;
+
+        /// <summary>
+        /// A convenience property to get the settings statically
+        /// </summary>
+        /// <value>The settings.</value>
+        public static PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PawnmorpherMod"/> class.
         /// </summary>
