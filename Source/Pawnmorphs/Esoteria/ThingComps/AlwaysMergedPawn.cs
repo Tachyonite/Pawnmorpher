@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
 using RimWorld;
 using RimWorld.Planet;
@@ -70,7 +71,7 @@ namespace Pawnmorph.ThingComps
         {
             if (sTracker.CurrentState != null) return;
 
-            (Pawn p1, Pawn p2) = FormerHumanUtilities.GenerateRandomUnmergedHuman(sTracker.Pawn);
+            (Pawn p1, Pawn p2) = FormerHumanPawnGenerator.GenerateRandomUnmergedHumans(sTracker.Pawn);
 
             CleanupPawn(p1);
             CleanupPawn(p2);

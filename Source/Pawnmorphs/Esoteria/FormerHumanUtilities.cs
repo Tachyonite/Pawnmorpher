@@ -507,21 +507,11 @@ namespace Pawnmorph
         /// <param name="fixedLastName">Last name of the fixed.</param>
         /// <param name="fixedOriginalGender">The fixed original gender.</param>
         /// <returns></returns>
+        [Obsolete("Use " + nameof(FormerHumanPawnGenerator) + " instead")]
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName = null, string fixedLastName = null,
                                                    Gender? fixedOriginalGender = null)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.SpaceRefugee;
-
-            PawnKindDef kind = pawnKind;
-            Faction faction = DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), MIN_FORMER_HUMAN_AGE);
-            float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                  fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge, fixedBirthName: fixedFirstName,
-                                                  fixedLastName: fixedLastName, fixedGender: fixedOriginalGender);
-            Pawn lPawn = PawnGenerator.GeneratePawn(local);
-            return lPawn;
+            return FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, null, fixedFirstName, fixedLastName, fixedOriginalGender);
         }
 
         /// <summary>
@@ -529,31 +519,10 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="mergedAnimal">The animal.</param>
         /// <returns></returns>
+        [Obsolete("Use " + nameof(FormerHumanPawnGenerator) + " instead")]
         public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHuman(Pawn mergedAnimal)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager;
-
-            PawnKindDef kind = pawnKind;
-            Faction faction = Faction.OfPlayer;
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race), MIN_FORMER_HUMAN_AGE);
-            float chronoAge = mergedAnimal.ageTracker.AgeChronologicalYears
-                            * convertedAge
-                            / mergedAnimal.ageTracker.AgeBiologicalYears;
-
-            float p1Age = Rand.Range(0.7f, 1.2f) * convertedAge;
-            float p2Age = 2 * convertedAge - p1Age;
-            float p1ChronoAge = Rand.Range(0.7f, 1.2f) * chronoAge;
-            float p2ChronoAge = 2 * chronoAge - p1ChronoAge;
-
-            var p1Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                      fixedChronologicalAge: p1ChronoAge, fixedBiologicalAge: p1Age);
-            var p2Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                      fixedChronologicalAge: p2ChronoAge, fixedBiologicalAge: p2Age);
-            Pawn p1 = PawnGenerator.GeneratePawn(p1Request);
-            Pawn p2 = PawnGenerator.GeneratePawn(p2Request);
-
-
-            return (p1, p2);
+            return FormerHumanPawnGenerator.GenerateRandomUnmergedHumans(mergedAnimal);
         }
 
         /// <summary>
@@ -1080,7 +1049,8 @@ namespace Pawnmorph
                 return;
             }
 
-            Pawn lPawn = GenerateRandomHumanForm(animal, fixedFirstName, fixedLastName);
+            // TODO chrono age
+            Pawn lPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, null, fixedFirstName, fixedLastName);
 
             MorphDef morph = animal.def.TryGetBestMorphOfAnimal();
 

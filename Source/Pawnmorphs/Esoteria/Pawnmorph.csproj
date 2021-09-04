@@ -871,6 +871,7 @@
     <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
     <Compile Include="Letters\PMLetterDefOf.cs" />
     <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
+    <Compile Include="FormerHumans\FormerHumanPawnGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
