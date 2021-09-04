@@ -32,13 +32,13 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         /// Called every tick
         /// </summary>
-        public override void CompTick()
+        public override void CompTick() //doing the check here and not on post spawn because post spawn is called before the manhunter mental state is added 
         {
             base.CompTick();
 
             // Make the animal a former human on the first tick rather than on spawning
-            // TODO - figure out why we're doing it this way and whether there's a better spot to put it
-            if (!triggered)
+            //
+            if (!triggered) 
             {
                 triggered = true;
 
@@ -48,7 +48,7 @@ namespace Pawnmorph.ThingComps
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
                     float sapience = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
+                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter); 
                     if (isManhunter)
                         // TODO this will only ever fire once, even if the pawn shows up again later
                         RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);

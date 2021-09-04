@@ -20,8 +20,8 @@ namespace Pawnmorph.ThingComps
         private SapienceState _sapienceState;
         private bool _subscribed;
 
-        //TODO make this more extendable some how 
-        //pawn state or something? 
+        //only used for moving old saves to new system 
+        //probably safe to remove 
         private bool _isFormerHuman;
 
         private SapienceLevel _sapienceLevel;
@@ -63,16 +63,7 @@ namespace Pawnmorph.ThingComps
         [CanBeNull]
         public Need_Control SapienceNeed => Pawn.needs?.TryGetNeed<Need_Control>();
 
-        /// <summary>
-        ///     Gets a value indicating whether this instance is a former human.
-        /// </summary>
-        /// <value>
-        ///     <c>true</c> if this instance is a former human; otherwise, <c>false</c>.
-        /// </value>
-        [Obsolete("use " + nameof(CurrentIntelligence) + " or " + nameof(CurrentState) + " instead")]
-        public bool IsFormerHuman => _sapienceState?.IsFormerHuman == true;
-
-
+  
         /// <summary>
         ///     Gets a value indicating whether this instance is permanently feral.
         /// </summary>
@@ -150,7 +141,6 @@ namespace Pawnmorph.ThingComps
             Need_Control sNeed = SapienceNeed;
             sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
-
             if (Pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
             //initialize work settings if they have it 
@@ -195,25 +185,6 @@ namespace Pawnmorph.ThingComps
             _sapienceState?.Init(this);
             TrySubscribe();
         }
-
-
-        /// <summary>
-        ///     Makes the parent a former human.
-        /// </summary>
-        /// <returns></returns>
-        [Obsolete("use " + nameof(EnterState) + "instead")]
-        public void MakeFormerHuman(float initialLevel) //TODO move most of FormerHumanUtilities.MakeAnimalSapient here 
-        {
-            if (_isFormerHuman)
-            {
-                Log.Warning($"{nameof(MakeFormerHuman)} is being called on {parent.def}'s {nameof(SapienceTracker)} more then once!");
-                return;
-            }
-
-            _isFormerHuman = true;
-            SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
-        }
-
 
         /// <summary>
         ///     Makes the parent thing permanently feral.

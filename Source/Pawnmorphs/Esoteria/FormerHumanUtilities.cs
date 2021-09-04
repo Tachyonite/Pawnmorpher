@@ -1010,34 +1010,6 @@ namespace Pawnmorph
             return sapienceState.CurrentIntelligence == Intelligence.Humanlike;
         }
 
-        /// <summary>
-        ///     Determines whether this pawn is a sapient or mostly feral former human
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///     <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        [Obsolete("use " + nameof(GetIntelligence) + " instead")]
-        public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
-        {
-            SapienceTracker fTracker = pawn.GetSapienceTracker();
-            if (fTracker == null) return false;
-            if (!fTracker.IsFormerHuman) return false;
-            switch (fTracker.SapienceLevel)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                    return true;
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
 
         /// <summary>
         ///     Determines whether the given pawn is a tool user.
@@ -1071,7 +1043,7 @@ namespace Pawnmorph
                 return;
             }
 
-            sTracker.EnterState(SapienceStateDefOf.FormerHuman, 1);
+            sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
 
             InitializeTransformedPawn(original, animal, sapienceLevel);
         }
@@ -1159,13 +1131,6 @@ namespace Pawnmorph
             else
                 animal.Name = new NameSingle(animal.LabelShort);
 
-            // Offer to join the colony if they are wild and related to a colonist
-            if (animal.Faction == null && animal.GetCorrectMap() != null)
-                if (joinIfRelated)
-                {
-                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(animal);
-                }
-
             animal.needs.AddOrRemoveNeedsAsAppropriate();
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -1177,7 +1142,13 @@ namespace Pawnmorph
             }
 
             nC.SetInitialLevel(sapienceLevel);
-
+            
+            // Offer to join the colony if they are wild and related to a colonist
+            if (animal.Faction == null && animal.GetCorrectMap() != null)
+                if (joinIfRelated)
+                {
+                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(animal);
+                }
 
             if (animal.training == null) return;
 
