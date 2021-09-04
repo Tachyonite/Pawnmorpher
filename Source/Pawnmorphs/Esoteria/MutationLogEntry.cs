@@ -29,16 +29,28 @@ namespace Pawnmorph
         /// <summary>
         /// identifier for a block of text representing the cause of the mutation from a mutagen 
         /// </summary>
-        public const string MUTAGEN_CAUSE_STRING = "mutagenCause";
+        public const string MUTAGEN_CAUSE_STRING = "mutagen_cause";
 
         private HediffDef _mutationDef;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
-        [CanBeNull] private List<MLogCause> _causes; 
         [CanBeNull] private MutagenDef _mutagenCause;
+        [CanBeNull] private MutationCauses _causes; 
 
+        
+        [NotNull] private MutagenDef BestMutagenCause
+        {
+            get
+            {
+                if (_mutagenCause == null)
+                {
+                    _mutagenCause = _causes?.GetAllCauses<MutagenDef>()?.FirstOrDefault()?.causeDef; 
+                    
+                }
 
-        [NotNull] private MutagenDef BestMutagenCause => _mutagenCause ?? MutagenDefOf.defaultMutagen; 
+                return _mutagenCause ?? MutagenDefOf.defaultMutagen; 
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
@@ -49,61 +61,22 @@ namespace Pawnmorph
 
 
         /// <summary>
-        /// Adds a cause.
+        /// Gets the causes.
         /// </summary>
-        /// <param name="prefix">The prefix.</param>
-        /// <param name="cause">The definition.</param>
-        /// <exception cref="ArgumentNullException">def</exception>
-        public void AddCause(string prefix, [NotNull] Def cause)
+        /// <value>
+        /// The causes.
+        /// </value>
+        [NotNull]
+        public MutationCauses Causes
         {
-            if (cause is null)
+            get
             {
-                throw new ArgumentNullException(nameof(cause));
+                if(_causes == null) _causes = new MutationCauses();
+                
+                return _causes; 
             }
-
-            _causes = _causes ?? new List<MLogCause>();
-            _causes.Add(new MLogCause(){cause = cause, prefix = prefix});
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <seealso cref="Verse.IExposable" />
-        public class MLogCause : IExposable
-        {
-            /// <summary>
-            /// The cause
-            /// </summary>
-            public Def cause;
-            /// <summary>
-            /// The prefix
-            /// </summary>
-            public string prefix;
-            /// <summary>
-            /// Exposes the data.
-            /// </summary>
-            public void ExposeData()
-            {
-                Scribe_Defs.Look(ref cause, nameof(cause));
-                Scribe_Values.Look(ref prefix, nameof(prefix)); 
-            }
-
-            /// <summary>
-            /// Generates the rules.
-            /// </summary>
-            /// <returns></returns>
-            [NotNull]
-            public IEnumerable<Rule> GenerateRules()
-            {
-                if (cause == null)
-                {
-                    Log.Warning($"invalid MLogCause encountered!");
-                    return Enumerable.Empty<Rule>();
-                }
-
-                return GrammarUtility.RulesForDef(prefix, cause); 
-            }
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
@@ -151,8 +124,7 @@ namespace Pawnmorph
             Scribe_Defs.Look(ref _mutationDef, nameof(_mutationDef));
             Scribe_Collections.Look(ref _mutatedRecords, nameof(_mutatedRecords), LookMode.Def);
             Scribe_References.Look(ref _pawn, nameof(_pawn));
-            Scribe_Defs.Look(ref _mutagenCause, "mutagenCause");
-            Scribe_Collections.Look(ref _causes, "causes", LookMode.Deep); 
+            Scribe_Deep.Look(ref _causes, "causes"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit) _mutatedRecords = _mutatedRecords ?? new List<BodyPartDef>();
         }
 
@@ -217,9 +189,9 @@ namespace Pawnmorph
                 IEnumerable<Rule> partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);
 
-                if(_mutagenCause?.causeRulePack != null)
+                if (_causes != null)
                 {
-                    grammarRequest.IncludesBare.Add(_mutagenCause.causeRulePack); 
+                    grammarRequest.Rules.AddRange(_causes.GenerateRules());
                 }
 
                 if (!grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
@@ -228,15 +200,6 @@ namespace Pawnmorph
                 }
 
 
-                if (_causes!= null)
-                {
-                    foreach (MLogCause mLogCause in _causes)
-                    {
-                        if(mLogCause == null) continue;
-                        
-                        grammarRequest.Rules.AddRange(mLogCause.GenerateRules()); 
-                    }
-                }
 
                 // Add the rules.
                 grammarRequest.Rules.AddRange(pawnR);
@@ -253,7 +216,7 @@ namespace Pawnmorph
                 Rand.PopState(); // Make sure to always pop rand.
             }
 
-            return _mutationDef.LabelCap; //TODO generate string 
+            return _mutationDef?.LabelCap ?? "INVALID MUTATION LOG ENTRY"; 
         }
 
 

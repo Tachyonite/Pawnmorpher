@@ -17,7 +17,6 @@ namespace Pawnmorph.Hediffs
     /// Abstract base class for all hediffs that cause mutations and transformation
     /// 
     /// TODO - single comps
-    /// TODO - figure out a better way to handle various sources other then multiple def fields 
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
@@ -47,40 +46,35 @@ namespace Pawnmorph.Hediffs
         // Used to force-remove the hediff
         private bool forceRemove;
 
-        [CanBeNull] private ThingDef _sourceWeaponDef; 
+
+        [NotNull] private MutationCauses _causes;
 
         // Sensitivity stats of the pawn.  Fetched only intermittently because they're expensive to calculate.
         [Unsaved] [NotNull] private readonly Cached<float> mutagenSensitivity;
         [Unsaved] [NotNull] private readonly Cached<float> transformationSensitivity;
-        [Unsaved] [NotNull] private readonly Cached<float> _painStatValue; 
-        
-
+        [Unsaved] [NotNull] private readonly Cached<float> _painStatValue;
+        [Unsaved] [NotNull] private readonly Cached<MutagenDef> _bestMutagenCause;
 
 
         // The list of observer comps
-        [Unsaved] private Lazy<List<ITfHediffObserverComp>> observerComps;
+        [Unsaved] private readonly Lazy<List<ITfHediffObserverComp>> observerComps;
+
 
         /// <summary>
-        /// The mutagen source that gave this hediff 
-        /// </summary>
-        public MutagenDef mutagenSource;
-
-        //TODO this seems like a bad idea to keep this here 
-        /// <summary>
-        /// Gets the def of the weapon that gave this def.
-        /// 
-        /// </summary>
-        /// <value>
-        /// The weapon source.
-        /// </value>
-        [CanBeNull]
-        public ThingDef WeaponSource => _sourceWeaponDef; 
-        
-        /// <summary>
-        /// Gets the mutagen sensitivity sensitivity of the pawn
+        ///     Gets the mutagen sensitivity sensitivity of the pawn
         /// </summary>
         /// <value>The mutagen sensitivity.</value>
         public virtual float MutagenSensitivity => mutagenSensitivity.Value;
+
+        /// <summary>
+        /// Gets the causes of this hediff 
+        /// </summary>
+        /// <value>
+        /// The causes.
+        /// </value>
+        [NotNull]
+        public MutationCauses Causes => _causes; 
+
 
         /// <summary>
         /// Gets the transformation sensitivity of the pawn.
@@ -92,7 +86,8 @@ namespace Pawnmorph.Hediffs
         /// Gets the observer comps.
         /// </summary>
         /// <value>The observer comps.</value>
-        public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps.Value;
+        [NotNull]
+        public IEnumerable<ITfHediffObserverComp> ObserverComps => observerComps?.Value ?? Enumerable.Empty<ITfHediffObserverComp>();
 
         /// <summary>
         /// Whether or not this hediff is currently blocking race checks
@@ -129,6 +124,8 @@ namespace Pawnmorph.Hediffs
         /// </value>
         public override float PainOffset => base.PainOffset * _painStatValue.Value; //using pain offset instead of factor as the pain stat should affect the pain from only this hediff not the pain from all hediffs  
 
+        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Pawnmorph.Hediffs.Hediff_MutagenicBase"/> class.
         /// </summary>
@@ -138,10 +135,25 @@ namespace Pawnmorph.Hediffs
             transformationSensitivity = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.TransformationSensitivity));
             _painStatValue = new Cached<float>(() => pawn.GetStatValue(PMStatDefOf.PM_MutagenPainSensitivity), 1); 
             observerComps = new Lazy<List<ITfHediffObserverComp>>(() => comps.MakeSafe().OfType<ITfHediffObserverComp>().ToList());
+            _causes = new MutationCauses();
+            _bestMutagenCause = new Cached<MutagenDef>(GetBestMutagenCause); 
+
         }
 
+
+
         /// <summary>
-        /// Called after this hediff is added to the pawn
+        /// Gets the best mutagen cause.
+        /// </summary>
+        /// <returns></returns>
+        MutagenDef GetBestMutagenCause()
+        {
+            return _causes.GetAllCauses<MutagenDef>().FirstOrDefault()?.causeDef;
+        }
+
+
+        /// <summary>
+        ///     Called after this hediff is added to the pawn
         /// </summary>
         /// <param name="dinfo">The damage info.</param>
         public override void PostAdd(DamageInfo? dinfo)
@@ -152,8 +164,28 @@ namespace Pawnmorph.Hediffs
             // This is because AndroidTiers was giving android mutations because reasons
             if (!def.GetMutagenDef().CanInfect(pawn))
                 MarkForRemoval();
-            _sourceWeaponDef = dinfo?.Weapon; //hacky to put this in all Hediff_MutagenicBase and not just buildup 
-                                            //will have to figure out a better method at some point 
+            ThingDef weaponSource = dinfo?.Weapon;
+            
+            if (weaponSource != null)
+            {
+                MutagenDef mutSource = weaponSource.GetModExtension<MutagenExtension>()?.mutagen;
+
+                if (mutSource != null) SetMutagenCause(mutSource);
+
+                _causes.Add(MutationCauses.WEAPON_PREFIX, weaponSource);
+            }
+        }
+
+
+        /// <summary>
+        /// Sets the mutagen cause.
+        /// </summary>
+        /// <param name="mutagen">The mutagen.</param>
+        /// <exception cref="ArgumentNullException">mutagen</exception>
+        public void SetMutagenCause([NotNull] MutagenDef mutagen)
+        {
+            if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
+            _causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen); 
         }
 
         /// <summary>
@@ -199,6 +231,7 @@ namespace Pawnmorph.Hediffs
         {
             _painStatValue.Recalculate();
             mutagenSensitivity.Recalculate();
+            _bestMutagenCause.Recalculate();
         }
 
 
@@ -234,7 +267,7 @@ namespace Pawnmorph.Hediffs
         [NotNull]
         protected virtual MutagenDef GetMutagen()
         {
-            return _sourceWeaponDef?.GetModExtension<MutagenExtension>()?.mutagen ?? def.GetMutagenDef(); 
+            return _bestMutagenCause.Value ?? def?.GetMutagenDef() ?? MutagenDefOf.defaultMutagen; 
         }
 
         /// <summary>
@@ -282,8 +315,10 @@ namespace Pawnmorph.Hediffs
 
                         foreach (Hediff_AddedMutation res in mutationResult) //make sure the mutation knows where it came from 
                         {                                                   //should this be a part of AddMutationAndAspects? so many overloads already, need a good solution 
-                            res.source = _sourceWeaponDef;
-                            res.sourceHediffDef = def; 
+                            res.source = _causes.GetAllCauses<ThingDef>().FirstOrDefault()?.causeDef; 
+                            res.sourceHediffDef = def;
+                            res.Causes.Add(_causes);
+                            res.Causes.Add(MutationCauses.HEDIFF_PREFIX, def); 
                         }
 
                         // Notify the observers of any added mutations
@@ -513,11 +548,11 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove));
             Scribe_Values.Look(ref queuedMutations, nameof(queuedMutations));
             Scribe_Deep.Look(ref bodyMutationManager, nameof(bodyMutationManager));
-            Scribe_Defs.Look(ref _sourceWeaponDef, "sourceWeaponDef");
-            Scribe_Defs.Look(ref mutagenSource, "mutagenSource"); 
+            Scribe_Deep.Look(ref _causes, "causes"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 OnStageChanged();
+                _causes = _causes ?? new MutationCauses(); 
             }
         }
 

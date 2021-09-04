@@ -56,7 +56,7 @@ namespace Pawnmorph
                 pawn.health.AddHediff(fHediff);
                 if (fHediff is Hediff_MutagenicBase mBase)
                 {
-                    mBase.mutagenSource = mutagen; 
+                    mBase.Causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen); 
                 }
             }
 
@@ -66,10 +66,10 @@ namespace Pawnmorph
             fHediff.Severity = finalSev;
 
             float aSev = Mathf.Max(sev, 0.01f); //prevent division by zero 
-            if (fHediff is Hediff_MutagenicBase mutagenicBase)
+            if (fHediff is Hediff_MutagenicBase mutagenicBase && !mutagenicBase.Causes.HasDefCause(mutagen))
             {
-                if(mutagenicBase.mutagenSource == null || adjustValue / aSev > 0.5f )
-                    mutagenicBase.mutagenSource = mutagen; 
+                if (adjustValue / aSev > 0.5f)
+                    mutagenicBase.Causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen); 
             }
             return finalSev - sev; 
         }

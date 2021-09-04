@@ -271,7 +271,7 @@ namespace Pawnmorph
             if (res)
             {
                 this.TryApplyAspects(pawn);
-                foreach (Hediff_AddedMutation mutation in res) mutation.mutagenSource = this;
+                
             }
 
             if (doLog && res)
@@ -295,8 +295,11 @@ namespace Pawnmorph
                     var logEntry = new MutationLogEntry(pawn, keyValuePair.Key, this, keyValuePair.Value);
                     if (cause != null)
                     {
-                        logEntry.AddCause(HEDIFF_CAUSE_PREFIX, cause.def);
-                        if (mBase?.WeaponSource != null) logEntry.AddCause(WEAPON_CAUSE_PREFIX, mBase.WeaponSource);
+                        if (mBase != null)
+                        {
+                            logEntry.Causes.Add(mBase.Causes);
+                        }
+                        logEntry.Causes.Add(MutationCauses.HEDIFF_PREFIX, cause.def);
                     }
 
 
@@ -305,15 +308,6 @@ namespace Pawnmorph
             }
         }
 
-        //TODO put these somewhere more useful         
-        /// <summary>
-        /// prefix for hediff cause rule packs 
-        /// </summary>
-        public const string HEDIFF_CAUSE_PREFIX = "HediffCause";
-        /// <summary>
-        /// prefix for weapon cause prefix 
-        /// </summary>
-        public const string WEAPON_CAUSE_PREFIX = "WeaponCause";
     }
 
 
