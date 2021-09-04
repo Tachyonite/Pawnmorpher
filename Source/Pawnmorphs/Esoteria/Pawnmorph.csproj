@@ -869,9 +869,11 @@
     <Compile Include="ThingComps\Comp_FormerHumanChance.cs" />
     <Compile Include="ThingComps\CompProperties_AlwaysFormerHuman.cs" />
     <Compile Include="ThingComps\CompProperties_FormerHumanChance.cs" />
+    <Compile Include="Obsolete\FormerHumanComps.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Obsolete\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
