@@ -55,8 +55,19 @@ namespace Pawnmorph.Letters
         /// <param name="textId">ID of the text string</param>
         public static void SendLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation, string labelId, string titleId, string textId)
         {
-            var label = labelId.Translate(formerHuman).AdjustedFor(formerHuman, "formerHuman");
-            var text = textId.Translate(formerHuman);
+            var label = labelId.Translate(formerHuman.Named("formerHuman"),
+                                          relative.Named("relatedPawn"),
+                                          relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
+            var title = titleId.Translate(formerHuman.Named("formerHuman"),
+                                        relative.Named("relatedPawn"),
+                                        relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
+            var text = textId.Translate(formerHuman.Named("formerHuman"),
+                                        relative.Named("relatedPawn"),
+                                        relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
+            // Resolve the grammar rules
+            label = label.AdjustedFor(formerHuman, "formerHuman");
+            title = title.AdjustedFor(formerHuman, "formerHuman");
+            text = text.AdjustedFor(formerHuman, "formerHuman");
 
             QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(formerHuman), ref text);
             TaggedString _;
@@ -66,7 +77,7 @@ namespace Pawnmorph.Letters
             ChoiceLetter_FormerHumanJoins letter = (ChoiceLetter_FormerHumanJoins)
                     LetterMaker.MakeLetter(label, text, PMLetterDefOf.PMFormerHumanJoinRequest, new LookTargets(formerHuman));
 
-            letter.title = titleId.Translate(formerHuman);
+            letter.title = title;
             letter.radioMode = true;
             letter.formerHuman = formerHuman;
             letter.relative = relative;
@@ -104,6 +115,9 @@ namespace Pawnmorph.Letters
                     yield return diaOption;
                     yield return Option_Reject;
                     yield return Option_Postpone;
+
+                    if (lookTargets.IsValid())
+                        yield return Option_JumpToLocationAndPostpone;
                 }
             }
         }

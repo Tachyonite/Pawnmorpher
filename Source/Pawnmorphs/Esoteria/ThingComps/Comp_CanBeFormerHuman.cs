@@ -48,7 +48,7 @@ namespace Pawnmorph.ThingComps
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
                     float sapience = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter); 
+                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
                     if (isManhunter)
                         // TODO this will only ever fire once, even if the pawn shows up again later
                         RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);
@@ -130,7 +130,7 @@ namespace Pawnmorph.ThingComps
             // Let former-human manhunters attempt to join the colony after they recover from manhunting
             if (mentalState.def == MentalStateDefOf.ManhunterPermanent || mentalState.def == MentalStateDefOf.Manhunter)
             {
-                if (Pawn.Faction == null && Pawn.IsFormerHuman())
+                if (Pawn.Faction == null && Pawn.GetCorrectMap() != null && Pawn.IsFormerHuman())
                 {
                     RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(Pawn);
                 }
