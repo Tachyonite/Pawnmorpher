@@ -126,7 +126,9 @@
       <li>AnimalFighter</li>
     </tradeTags>
     <comps>
-      <li Class="Pawnmorph.ThingComps.CompProperties_AlwaysFormerHuman" />
+      <li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman">
+        <always>true</always>
+      </li>
     </comps>
     <modExtensions>
       <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
