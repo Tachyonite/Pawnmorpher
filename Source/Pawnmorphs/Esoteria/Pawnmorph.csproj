@@ -869,10 +869,13 @@
     <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
     <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
     <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
+    <Compile Include="FormerHumans\ChoiceLetter_FormerHumanJoins.cs" />
+    <Compile Include="Letters\PMLetterDefOf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
     <Folder Include="Obsolete\" />
+    <Folder Include="Letters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">

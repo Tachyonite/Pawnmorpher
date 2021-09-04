@@ -13,6 +13,12 @@
     <RelatedSoldFormerHumanContent>{0} is a former human related to {1} and has appeared as part of a morph trader's stock. You can buy them if you want. They are {1}'s {2}.</RelatedSoldFormerHumanContent>
     <RelatedSoldFormerHumanLabel>Morph trader (relationship)</RelatedSoldFormerHumanLabel>
 
+    <!-- Former Human Join Request -->
+    <PMLetterFormerHumanJoinLabel>Former human (relationship)</PMLetterFormerHumanJoinLabel>
+    <PMLetterFormerHumanJoinTitle>{formerHuman} asks for help</PMLetterFormerHumanJoinTitle>
+    <PMLetterFormerHumanJoinContent>{formerHuman_kindBaseIndef} approaches the colony.  It seems {formerHuman_pronoun} is actually a former human, turned into {formerHuman_kindBaseIndef} by some terrible mishap! {formerHuman_pronoun} claims to be {formerHuman_nameFull}, {relatedPawn}'s {relationship}, and is begging you to let {formerHuman_objective} join the colony.
+    
+As {formerHuman_kindBaseIndef}, {formerHuman} won't be able to do most kinds of work, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human.</PMLetterFormerHumanJoinContent>
 
 
     <!-- 
