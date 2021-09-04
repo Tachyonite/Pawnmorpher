@@ -53,6 +53,11 @@ namespace Pawnmorph
         /// </summary>
         public const float MANHUNTER_EPSILON = 0.01f;
 
+        /// <summary>
+        /// The minimum biological age for a former human's human form
+        /// </summary>
+        public const float MIN_FORMER_HUMAN_AGE = 17f;
+
 
         private const float
             FORMER_HUMAN_FILTH_ADJ =
@@ -528,7 +533,7 @@ namespace Pawnmorph
 
             PawnKindDef kind = pawnKind;
             Faction faction = DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), MIN_FORMER_HUMAN_AGE);
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
@@ -549,7 +554,7 @@ namespace Pawnmorph
 
             PawnKindDef kind = pawnKind;
             Faction faction = Faction.OfPlayer;
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race), 17);
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race), MIN_FORMER_HUMAN_AGE);
             float chronoAge = mergedAnimal.ageTracker.AgeChronologicalYears
                             * convertedAge
                             / mergedAnimal.ageTracker.AgeBiologicalYears;
