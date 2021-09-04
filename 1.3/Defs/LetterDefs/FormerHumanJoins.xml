@@ -2,6 +2,6 @@
 <Defs>
   <LetterDef ParentName="CustomChoiceLetterBase">
     <defName>PMFormerHumanJoinRequest</defName>
-    <letterClass>ChoiceLetter_FormerHumanJoins</letterClass>
+    <letterClass>Pawnmorph.Letters.ChoiceLetter_FormerHumanJoins</letterClass>
   </LetterDef>
 </Defs>

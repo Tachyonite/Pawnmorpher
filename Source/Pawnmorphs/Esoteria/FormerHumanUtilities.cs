@@ -9,7 +9,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.FormerHumans;
+using Pawnmorph.Letters;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -19,6 +19,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -1158,18 +1159,11 @@ namespace Pawnmorph
             else
                 animal.Name = new NameSingle(animal.LabelShort);
 
-            //tame the animal if they are wild and related to a colonist
+            // Offer to join the colony if they are wild and related to a colonist
             if (animal.Faction == null && animal.GetCorrectMap() != null)
                 if (joinIfRelated)
                 {
-                    Pawn relatedColonist = animal.relations?.RelatedPawns?.FirstOrDefault(p => p.IsColonist);
-                    if (relatedColonist != null)
-                    {
-                        DebugLogUtils.LogMsg(LogLevel.Messages,
-                                             $"{animal.Name} is joining colony because they are related to {relatedColonist.Name}");
-
-                        animal.SetFaction(Faction.OfPlayer);
-                    }
+                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(animal);
                 }
 
             animal.needs.AddOrRemoveNeedsAsAppropriate();

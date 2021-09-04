@@ -1,22 +1,48 @@
 ﻿using System.Collections.Generic;
-using Pawnmorph.Letters;
 using RimWorld;
+using RimWorld.QuestGen;
 using Verse;
 
-namespace Pawnmorph.FormerHumans
+namespace Pawnmorph.Letters
 {
     /// <summary>
     /// A choice letter for a former human attempting to join the colony
     /// </summary>
     public class ChoiceLetter_FormerHumanJoins : ChoiceLetter
     {
-        public const string LABEL = "PMLetterFormerHumanJoinLabel";
-        public const string TITLE = "PMLetterFormerHumanJoinTitle";
-        public const string TEXT = "PMLetterFormerHumanJoin";
+        private const string LABEL = "PMLetterFormerHumanJoinLabel";
+        private const string TITLE = "PMLetterFormerHumanJoinTitle";
+        private const string TEXT = "PMLetterFormerHumanJoinContent";
+
+        private const string FERAL_LABEL = "PMLetterFormerHumanJoinLabel";
+        private const string FERAL_TITLE = "PMLetterFormerHumanJoinTitle";
+        private const string FERAL_TEXT = "PMLetterFormerHumanJoinContent";
 
         private Pawn formerHuman;
         private Pawn relative;
         private PawnRelationDef relation;
+
+        /// <summary>
+        /// Sends a join request for the given sapient former human
+        /// </summary>
+        /// <param name="formerHuman">Former human.</param>
+        /// <param name="relative">Relative.</param>
+        /// <param name="relation">Relation.</param>
+        public static void SendSapientLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation)
+        {
+            SendLetterFor(formerHuman, relative, relation, LABEL, TITLE, TEXT);
+        }
+
+        /// <summary>
+        /// Sends a join request for the given feral former human
+        /// </summary>
+        /// <param name="formerHuman">Former human.</param>
+        /// <param name="relative">Relative.</param>
+        /// <param name="relation">Relation.</param>
+        public static void SendFeralLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation)
+        {
+            SendLetterFor(formerHuman, relative, relation, FERAL_LABEL, FERAL_TITLE, FERAL_TEXT);
+        }
 
         /// <summary>
         /// Sends a join request for the given former human
@@ -24,15 +50,23 @@ namespace Pawnmorph.FormerHumans
         /// <param name="formerHuman">Former human.</param>
         /// <param name="relative">Relative.</param>
         /// <param name="relation">Relation.</param>
-        public static void SendLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation)
+        /// <param name="labelId">ID of the label string.</param>
+        /// <param name="titleId">ID of the title string.</param>
+        /// <param name="textId">ID of the text string</param>
+        public static void SendLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation, string labelId, string titleId, string textId)
         {
-            var label = LABEL.Translate(formerHuman.Named("PAWN")).AdjustedFor(formerHuman, "PAWN");
-            var text = TEXT.Translate(formerHuman.Named("PAWN"));
+            var label = labelId.Translate(formerHuman).AdjustedFor(formerHuman, "formerHuman");
+            var text = textId.Translate(formerHuman);
+
+            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(formerHuman), ref text);
+            TaggedString _;
+            PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref _, formerHuman);
+
 
             ChoiceLetter_FormerHumanJoins letter = (ChoiceLetter_FormerHumanJoins)
                     LetterMaker.MakeLetter(label, text, PMLetterDefOf.PMFormerHumanJoinRequest, new LookTargets(formerHuman));
 
-            letter.title = TITLE.Translate(formerHuman.Named("PAWN"));
+            letter.title = titleId.Translate(formerHuman);
             letter.radioMode = true;
             letter.formerHuman = formerHuman;
             letter.relative = relative;
@@ -42,6 +76,10 @@ namespace Pawnmorph.FormerHumans
             Find.LetterStack.ReceiveLetter(letter, null);
         }
 
+        /// <summary>
+        /// The possible choices of the letter
+        /// </summary>
+        /// <value>The choices.</value>
         public override IEnumerable<DiaOption> Choices
         {
             get
@@ -70,6 +108,10 @@ namespace Pawnmorph.FormerHumans
             }
         }
 
+        /// <summary>
+        /// Whether this letter is still valid to be shown on the stack
+        /// </summary>
+        /// <value><c>true</c> if can show in letter stack; otherwise, <c>false</c>.</value>
         public override bool CanShowInLetterStack
         {
             get
@@ -82,6 +124,9 @@ namespace Pawnmorph.FormerHumans
             }
         }
 
+        /// <summary>
+        /// Exposes the data to/from XML for saving.
+        /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();

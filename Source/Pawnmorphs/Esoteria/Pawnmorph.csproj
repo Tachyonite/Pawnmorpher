@@ -869,8 +869,8 @@
     <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
     <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
     <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
-    <Compile Include="FormerHumans\ChoiceLetter_FormerHumanJoins.cs" />
     <Compile Include="Letters\PMLetterDefOf.cs" />
+    <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

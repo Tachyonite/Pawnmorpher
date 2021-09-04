@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Pawnmorph.Letters;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.FormerHumans
@@ -23,6 +24,7 @@ namespace Pawnmorph.FormerHumans
                 NotifyIfRelated(formerHuman,
                         RELATED_WILD_FORMER_HUMAN_LETTER,
                         RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
+
 
         /// <summary>
         /// Generates a notification letter if the given for-sale former human is related to any colonists
@@ -56,6 +58,23 @@ namespace Pawnmorph.FormerHumans
                                                                    relationLabel.Named("relationship"));
                 Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman,
                                                formerHuman.HostFaction);
+            }
+        }
+
+        /// <summary>
+        /// Generates an offer quest from this former human to join the colony
+        /// </summary>
+        /// <param name="formerHuman">The former human.</param>
+        public static void OfferJoinColonyIfRelated(Pawn formerHuman)
+        {
+            (var colonist, var relation) = formerHuman.GetRelatedColonistAndRelation();
+            // TODO should bonds be excluded from this?
+            if (relation != null && relation != PawnRelationDefOf.Bond)
+            {
+                if (formerHuman.GetQuantizedSapienceLevel() > SapienceLevel.Conflicted)
+                    ChoiceLetter_FormerHumanJoins.SendSapientLetterFor(formerHuman, colonist, relation);
+                else
+                    ChoiceLetter_FormerHumanJoins.SendFeralLetterFor(formerHuman, colonist, relation);
             }
         }
     }

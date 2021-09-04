@@ -20,6 +20,13 @@
     
 As {formerHuman_kindBaseIndef}, {formerHuman} won't be able to do most kinds of work, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human.</PMLetterFormerHumanJoinContent>
 
+    <!-- Feral Former Human Join Request -->
+    <PMLetterFormerHumanJoinFeralLabel>Feral former human (relationship)</PMLetterFormerHumanJoinFeralLabel>
+    <PMLetterFormerHumanJoinFeralTitle>{formerHuman_kindBaseIndef} asks for help</PMLetterFormerHumanJoinFeralTitle>
+    <PMLetterFormerHumanJoinFeralContent>{formerHuman_kindBaseIndef} approaches the colony.  It seems to be more intelligent than most animals, and your colonists believe {formerHuman_objective} to be a former human that's lost {formerHuman_possessive} ability to speak. {formerHuman_kindBaseDef} seems particularly attached to {relatedPawn}, and is probably someone {relatedPawn_pronoun} is related to.
+    
+As a feral {formerHuman_kindBase}, {formerHuman} will act no differently than other {formerHuman_kindBasePlural}, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human.</PMLetterFormerHumanJoinFeralContent>
+
 
     <!-- 
         other sapience levels are supported as well, just use the form $SapienceLevel_TransitionContent/$SapienceLevel_TransitionLabel 

@@ -1,5 +1,4 @@
-﻿using Pawnmorph.DebugUtils;
-using Pawnmorph.DefExtensions;
+﻿using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using RimWorld;
 using Verse;
@@ -50,7 +49,9 @@ namespace Pawnmorph.ThingComps
 
                     float sapience = Rand.Value;
                     FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
-                    RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn); // TODO this will only ever fire once, even if the pawn shows up again later
+                    if (isManhunter)
+                        // TODO this will only ever fire once, even if the pawn shows up again later
+                        RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);
                 }
             }
         }
@@ -129,9 +130,9 @@ namespace Pawnmorph.ThingComps
             // Let former-human manhunters attempt to join the colony after they recover from manhunting
             if (mentalState.def == MentalStateDefOf.ManhunterPermanent || mentalState.def == MentalStateDefOf.Manhunter)
             {
-                if (Pawn.Faction == null && Pawn.IsFormerHuman() && Pawn.IsRelatedToColonistPawn())
+                if (Pawn.Faction == null && Pawn.IsFormerHuman())
                 {
-                    Pawn.SetFaction(Faction.OfPlayer);
+                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(Pawn);
                 }
             }
         }
