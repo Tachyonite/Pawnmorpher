@@ -71,7 +71,7 @@ namespace Pawnmorph.FormerHumans
             // TODO should bonds be excluded from this?
             if (relation != null && relation != PawnRelationDefOf.Bond)
             {
-                if (formerHuman.GetQuantizedSapienceLevel() > SapienceLevel.Conflicted)
+                if (formerHuman.GetQuantizedSapienceLevel() <= SapienceLevel.Conflicted) //sapience level enum is in reverse order. Sapient < Feral 
                     ChoiceLetter_FormerHumanJoins.SendSapientLetterFor(formerHuman, colonist, relation);
                 else
                     ChoiceLetter_FormerHumanJoins.SendFeralLetterFor(formerHuman, colonist, relation);
