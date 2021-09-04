@@ -1,4 +1,6 @@
-﻿using Pawnmorph.DefExtensions;
+﻿using Pawnmorph.DebugUtils;
+using Pawnmorph.DefExtensions;
+using Pawnmorph.FormerHumans;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -8,7 +10,7 @@ namespace Pawnmorph.ThingComps
     /// <summary>
     /// Comp for Pawn Things that can make their associated pawn a former human
     /// </summary>
-    public abstract class Comp_CanBeFormerHuman : ThingComp, IMentalStateRecoveryReceiver
+    public class Comp_CanBeFormerHuman : ThingComp, IMentalStateRecoveryReceiver
     {
         private bool triggered = false;
 
@@ -47,10 +49,8 @@ namespace Pawnmorph.ThingComps
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
                     float sapience = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient((Pawn)parent, sapience, !isManhunter);
-                    FormerHumanUtilities.NotifyRelatedPawnsFormerHuman((Pawn)parent,
-                                                                       FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER,
-                                                                       FormerHumanUtilities.RELATED_WILD_FORMER_HUMAN_LETTER_LABEL);
+                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
+                    RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn); // TODO this will only ever fire once, even if the pawn shows up again later
                 }
             }
         }
@@ -61,6 +61,7 @@ namespace Pawnmorph.ThingComps
         /// <returns><c>true</c>, if the pawn is eligable, <c>false</c> otherwise.</returns>
         private bool CanBeFormerHuman()
         {
+            var pawn = Pawn;
             if (!PawnmorpherMod.Settings.enableWildFormers)
                 return false;
 
@@ -68,11 +69,10 @@ namespace Pawnmorph.ThingComps
                 return false;
 
             // Don't make animals belonging to any faction former humans
-            if (parent.Faction != null)
+            if (pawn.Faction != null)
                 return false;
 
             // Don't make animals with existing relationships to other animals former humans
-            var pawn = Pawn;
             if (pawn.relations?.DirectRelations
                     .Any(r => r.def == PawnRelationDefOf.Child
                            || r.def == PawnRelationDefOf.Parent) ?? false)
@@ -84,7 +84,10 @@ namespace Pawnmorph.ThingComps
                 return false;
 
             // Make sure the animal is old enough to be a former human
-            return TransformerUtility.ConvertAge(pawn, ThingDefOf.Human.race) > FormerHumanUtilities.MIN_FORMER_HUMAN_AGE;
+            if (TransformerUtility.ConvertAge(pawn, ThingDefOf.Human.race) < FormerHumanUtilities.MIN_FORMER_HUMAN_AGE)
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -102,7 +105,7 @@ namespace Pawnmorph.ThingComps
                 return true;
 
             // Check if the animal is suitable to be a former human
-            if (CanBeFormerHuman())
+            if (!CanBeFormerHuman())
                 return false;
 
             return Rand.Value < PawnmorpherMod.Settings.formerChance;

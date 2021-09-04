@@ -29,26 +29,6 @@ namespace Pawnmorph
     public static class FormerHumanUtilities
     {
         /// <summary>
-        ///     The related wild former human letter
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER = "RelatedWildFormerHumanContent";
-
-        /// <summary>
-        ///     The related wild former human letter label
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER_LABEL = "RelatedWildFormerHumanLabel";
-
-        /// <summary>
-        ///     The related sold former human letter
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER = "RelatedSoldFormerHumanContent";
-
-        /// <summary>
-        ///     The related sold former human letter label
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
-
-        /// <summary>
         ///     manhunter chances below this means that manhunter tf is disabled
         /// </summary>
         public const float MANHUNTER_EPSILON = 0.01f;
@@ -1228,28 +1208,6 @@ namespace Pawnmorph
             comp.MakePermanentlyFeral();
         }
 
-        /// <summary>
-        ///     generates notification letters if the given former human is related to any colonists
-        /// </summary>
-        /// <param name="formerHuman">The former human.</param>
-        /// <param name="letterContentID">The letter content identifier.</param>
-        /// <param name="letterLabelID">The letter label identifier.</param>
-        public static void NotifyRelatedPawnsFormerHuman([NotNull] Pawn formerHuman, string letterContentID, string letterLabelID)
-        {
-            Pawn_RelationsTracker fRelation = formerHuman.relations;
-            if (fRelation == null) return;
-            IEnumerable<Pawn> allPawns =
-                PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners.MakeSafe();
-
-            foreach (Pawn pawn in allPawns)
-            {
-                if (pawn == formerHuman) continue;
-                PawnRelationDef relation = pawn.GetMostImportantRelation(formerHuman);
-                if (relation != null && relation != PawnRelationDefOf.Bond)
-                    SendRelationLetter(pawn, formerHuman, relation, letterContentID, letterLabelID);
-            }
-        }
-
 
         /// <summary>
         ///     checks if Tameness the can decay on the given pawn.
@@ -1517,27 +1475,6 @@ namespace Pawnmorph
             lPawn.equipment
                 ?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
-        }
-
-        private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman,
-                                               [NotNull] PawnRelationDef relation, string letterContentID, string letterLabelID)
-        {
-            string relationLabel;
-
-            if (formerHuman.gender == Gender.Female && !string.IsNullOrEmpty(relation.labelFemale))
-                relationLabel = relation.labelFemale;
-            else
-                relationLabel = relation.label;
-
-
-            TaggedString letterContent = letterContentID.Translate(formerHuman.Named("formerHuman"),
-                                                                   pawn.Named("relatedPawn"),
-                                                                   relationLabel.Named("relationship"));
-            TaggedString letterLabel = letterLabelID.Translate(formerHuman.Named("formerHuman"),
-                                                               pawn.Named("relatedPawn"),
-                                                               relationLabel.Named("relationship"));
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman,
-                                           formerHuman.HostFaction);
         }
 
         private static void TransferRelationsToOriginal([NotNull] Pawn pawn, [CanBeNull] Pawn oPawn,

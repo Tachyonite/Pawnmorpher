@@ -10,6 +10,9 @@ namespace Pawnmorph.ThingComps
     /// </summary>
     public class CompProperties_CanBeFormerHuman : CompProperties
     {
+        /// <summary>
+        /// If true, the animal will always be a former human, regardless of the mod settings
+        /// </summary>
         [UsedImplicitly]
         protected bool always;
 

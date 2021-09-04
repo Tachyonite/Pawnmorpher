@@ -868,6 +868,7 @@
     <Compile Include="Obsolete\FormerHumanComps.cs" />
     <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
     <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
+    <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />

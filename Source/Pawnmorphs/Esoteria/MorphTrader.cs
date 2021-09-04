@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Verse;
 using Pawnmorph.Utilities;
 using UnityEngine;
+using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -143,7 +144,7 @@ namespace Pawnmorph
 
 
                     float age = animalAge * humanLifeExpectancy / animalLifeExpectancy;
-                    age = Mathf.Max(age, 17); //make sure the human is at least 17 years old 
+                    age = Mathf.Max(age, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE); //make sure the human is at least 17 years old 
                     float chronoAge = pawn.ageTracker.AgeChronologicalYears * age / animalAge;
                     var pkds = new List<PawnKindDef>
                     {
@@ -195,8 +196,7 @@ namespace Pawnmorph
             foreach (Pawn pawn in enumer.OfType<Pawn>())
             {
                 if (!pawn.IsFormerHuman()) continue;
-                FormerHumanUtilities.NotifyRelatedPawnsFormerHuman(pawn, FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER,
-                                                                   FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL);
+                RelatedFormerHumanUtilities.ForSaleNotifyIfRelated(pawn);
             }
             return enumer;
 

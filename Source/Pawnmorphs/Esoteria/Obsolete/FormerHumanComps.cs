@@ -7,9 +7,16 @@ namespace Pawnmorph
 {
     // Obsoleted because they were merged together and moving to the appropriate namespace
 
+    /// <summary>
+    /// Obsolete, use Comp_CanBeFormerHuman instead
+    /// </summary>
     [Obsolete("Use " + nameof(Comp_CanBeFormerHuman) + " instead.")]
     public class CompFormerHumanChance : Comp_CanBeFormerHuman
     {
+        /// <summary>
+        /// Initialize the comp with the specific props.
+        /// </summary>
+        /// <param name="props">Properties.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -19,9 +26,16 @@ namespace Pawnmorph
         }
     }
 
+    /// <summary>
+    /// Obsolete, use Comp_CanBeFormerHuman instead
+    /// </summary>
     [Obsolete("Use " + nameof(Comp_CanBeFormerHuman) + " instead")]
     public class CompAlwaysFormerHuman : Comp_CanBeFormerHuman
     {
+        /// <summary>
+        /// Initialize the comp with the specific props.
+        /// </summary>
+        /// <param name="props">Properties.</param>
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -31,12 +45,22 @@ namespace Pawnmorph
         }
     }
 
-
+    /// <summary>
+    /// Obsolete, use CompProperties_CanBeFormerHuman instead
+    /// </summary>
     [Obsolete("Use " + nameof(CompProperties_CanBeFormerHuman) + " instead.")]
     public class CompProperties_FormerHumanChance : CompProperties_CanBeFormerHuman
     {
+        /// <summary>
+        /// If true, the animal will always be a former human, regardless of the mod settings
+        /// </summary>
         public override bool Always => false;
 
+        /// <summary>
+        /// Returns any config errors in this comp property
+        /// </summary>
+        /// <returns>The errors.</returns>
+        /// <param name="parentDef">Parent def.</param>
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             foreach (var err in base.ConfigErrors(parentDef))
@@ -47,11 +71,22 @@ namespace Pawnmorph
         }
     }
 
+    /// <summary>
+    /// Obsolete, use CompProperties_CanBeFormerHuman instead
+    /// </summary>
     [Obsolete("Use " + nameof(CompProperties_CanBeFormerHuman) + " instead.")]
     public class CompProperties_AlwaysFormerHuman : CompProperties_CanBeFormerHuman
     {
+        /// <summary>
+        /// If true, the animal will always be a former human, regardless of the mod settings
+        /// </summary>
         public override bool Always => true;
 
+        /// <summary>
+        /// Returns any config errors in this comp property
+        /// </summary>
+        /// <returns>The errors.</returns>
+        /// <param name="parentDef">Parent def.</param>
         public override IEnumerable<string> ConfigErrors(ThingDef parentDef)
         {
             foreach (var err in base.ConfigErrors(parentDef))
