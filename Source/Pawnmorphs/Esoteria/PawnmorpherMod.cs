@@ -82,7 +82,7 @@ namespace Pawnmorph
                 float f = (float) ((int) settings.logLevel);
                 var maxLevel = (int) LogLevel.Pedantic;
                 f = listingStandard.Slider(maxLevel - f, 0, maxLevel);
-                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel));
+                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
             }
 
             listingStandard.End();
