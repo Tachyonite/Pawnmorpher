@@ -127,6 +127,13 @@
 				</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>Antigen</thingDef>
+				<countRange>
+					<min>-1</min>
+					<max>5</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>Mutanite</thingDef>
 				<countRange>
 					<min>-1</min>
@@ -291,6 +298,13 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MechaniteSlurry</thingDef>
+				<countRange>
+					<min>-1</min>
+					<max>5</max>
+				</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Antigen</thingDef>
 				<countRange>
 					<min>-1</min>
 					<max>5</max>
