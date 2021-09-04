@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/RulePackDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
     <RulePackDef>
         <defName>MutationTaleRulePack</defName>
         <rulePack>
@@ -41,7 +41,7 @@
                 <li>modifier_group->[modifier]</li>
                 <li>label_group->[label]</li>
             </rulesStrings>
-        </rulePack> 
+        </rulePack>
     </RulePackDef>
 
     <!-- simpler rulePack to inherit from to make mutation log rue packs 
@@ -60,7 +60,7 @@
     <RulePackDef Name="AddedPartLogBase" ParentName="CustomMutationRulePackBase" Abstract="true">
         <rulePack>
             <rulesStrings>
-                <li>initial-></li><!-- empty -->
+                <li>initial-></li> <!-- empty -->
                 <li>label->[MUTATION_label]</li>
                 <li>action->grew</li>
                 <li>pname->[PAWN_nameDef]</li>

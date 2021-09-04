@@ -45,9 +45,18 @@
         </damageProperties>
     </Pawnmorph.MutagenDef>
 
+    <!--
+        mutagen rule pack 
+        
+     -->
+
     <Pawnmorph.MutagenDef ParentName="ChaoticMutagen">
         <defName>PM_ChaobulbHarvest</defName>
         <label>chaobulb harvest</label>
-        <sourceLabel>failed chaobulb harvest</sourceLabel>
+        <causeRulePack>
+            <rulesStrings>
+                <li>causeString->failed chaobulb harvest</li>
+            </rulesStrings>
+        </causeRulePack>
     </Pawnmorph.MutagenDef>
 </Defs>
