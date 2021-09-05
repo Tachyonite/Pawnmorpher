@@ -15,7 +15,6 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     /// Abstract base class for all hediffs that cause mutations and transformation
     /// 
-    /// TODO - single comps
     /// </summary>
     /// <seealso cref="Verse.Hediff" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
@@ -175,8 +174,7 @@ namespace Pawnmorph.Hediffs
             _painStatValue.Recalculate();
             mutagenSensitivity.Recalculate();
         }
-
-
+        
         /// <summary>
         /// Checks if we should add mutations, and if so does
         /// Mutations are queued up and added one at a time to smooth out mutation rate when there are

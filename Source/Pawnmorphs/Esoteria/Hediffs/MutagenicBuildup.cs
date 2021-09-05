@@ -20,13 +20,7 @@ namespace Pawnmorph.Hediffs
         {
             if (other is MutagenicBuildup buildup)
             {
-                var sCompOther = other.TryGetComp<HediffComp_Single>();
-                var sComp = SingleComp;
-                if (sComp != null && sCompOther != null)
-                {
-                    sComp.stacks = Mathf.Clamp(sComp.stacks + sCompOther.stacks, 0, sComp.Props.maxStacks);
-                }
-
+               
                 Severity += other.Severity; 
                 foreach (HediffComp hediffComp in comps)
                 {
