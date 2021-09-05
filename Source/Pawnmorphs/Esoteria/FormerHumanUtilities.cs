@@ -511,7 +511,13 @@ namespace Pawnmorph
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName = null, string fixedLastName = null,
                                                    Gender? fixedOriginalGender = null)
         {
-            return FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, null, fixedFirstName, fixedLastName, fixedOriginalGender);
+            PawnGenerationSettings settings = new PawnGenerationSettings
+            {
+                FirstName = fixedFirstName,
+                LastName = fixedLastName,
+                Gender = fixedOriginalGender
+            };
+            return FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, settings);
         }
 
         /// <summary>
@@ -1050,7 +1056,13 @@ namespace Pawnmorph
             }
 
             // TODO chrono age
-            Pawn lPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, null, fixedFirstName, fixedLastName);
+            PawnGenerationSettings settings = new PawnGenerationSettings()
+            {
+                FirstName = fixedFirstName,
+                LastName = fixedLastName,
+                Gender = fixedOriginalGender
+            };
+            Pawn lPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, settings);
 
             MorphDef morph = animal.def.TryGetBestMorphOfAnimal();
 
