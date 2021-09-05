@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutagenDef.xsd">
 	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>defaultMutagen</defName>
 	</Pawnmorph.MutagenDef>
@@ -7,7 +7,13 @@
 		<defName>PM_ChamberMutagen</defName>
 		<canInfectAnimals>true</canInfectAnimals>
 		<canInfectMechanoids>true</canInfectMechanoids>
-		<immunizingHediffs Inherit="false" />
+		<immunizingHediffs Inherit="false" xsi:nil="true" />
+		<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->being in a chamber</li>
+				<li>mutagen_cause->mutachamber</li>
+			</rulesStrings>
+		</causeRulePack>
 	</Pawnmorph.MutagenDef>
 
 	<Pawnmorph.MutagenDef>
@@ -23,6 +29,12 @@
 			<spawnedBiproductMult>0.5</spawnedBiproductMult>
 			<apparelDamageMultiplier>1.5</apparelDamageMultiplier>
 		</damageProperties>
+		<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->being in a chamber</li>
+				<li>mutagen_cause->mutachamber</li>
+			</rulesStrings>
+		</causeRulePack>
 	</Pawnmorph.MutagenDef>
 
 

@@ -71,7 +71,14 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
                     scratchList.Remove(mut);
                     if (health.hediffSet.GetFirstHediffOfDef(mut) != null) continue;
 
-                    MutationUtilities.AddMutation(pawn, mut);
+                    var res = MutationUtilities.AddMutation(pawn, mut);
+
+                    foreach (Hediff_AddedMutation added in res)
+                    {
+                        added.Causes.TryAddCause("ritualOutcome", def);
+                        added.Causes.TryAddPrecept(jobRitual.Ritual);
+                    }
+
                     mAdded++;
                 }
 

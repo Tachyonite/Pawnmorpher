@@ -10,5 +10,15 @@
             <li>AnimalPersonhood</li>
             <li>NaturePrimacy</li>
         </requiredMemeAny>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->participating in [precept_name]</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
     </RitualAttachableOutcomeEffectDef>
+
 </Defs>

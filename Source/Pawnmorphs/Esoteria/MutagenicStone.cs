@@ -29,7 +29,7 @@ namespace Pawnmorph
 
             IEnumerable<Thing> enumerable = GenRadial.RadialDistinctThingsAround(Position, Map, 2.5f, true);
 
-            var mutagen = MutagenDefOf.defaultMutagen;
+            var mutagen = MutagenDefOf.PM_MutaniteMutagen;
             foreach (Thing thing in enumerable)
             {
                 if (thing is Pawn pawn)
@@ -52,7 +52,13 @@ namespace Pawnmorph
             if (!pawn.Spawned || !mutagen.CanInfect(pawn))
                 return;
 
+            
+
             pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
+
+            Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(MorphTransformationDefOf.FullRandomTF);
+            if (hediff is Hediff_MutagenicBase mBase) mBase.Causes.TryAddMutagenCause(MutagenDefOf.PM_MutaniteMutagen);
+
             IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
         }
     }
