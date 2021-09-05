@@ -1,6 +1,7 @@
 <Defs>
     <!--================================= Accepted =================================-->
     <ThoughtDef Name="PM_FormerHumanRelatedAccepted" Abstract="True">
+        <thoughtClass>Pawnmorph.Thoughts.Thought_RelatedFormerHuman_Accepted</thoughtClass>
         <durationDays>10</durationDays>
         <stackLimit>10</stackLimit>
         <showBubble>true</showBubble>
@@ -60,6 +61,7 @@
 
     <!--================================= Rejected =================================-->
     <ThoughtDef Name="PM_FormerHumanRelatedRejected" Abstract="True">
+        <thoughtClass>Pawnmorph.Thoughts.Thought_RelatedFormerHuman_Rejected</thoughtClass>
         <durationDays>15</durationDays>
         <stackLimit>10</stackLimit>
         <showBubble>true</showBubble>
