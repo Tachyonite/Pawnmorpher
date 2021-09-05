@@ -2,7 +2,7 @@
   <ThingDef ParentName="AnimalThingBase">
     <defName>EtherHellhound</defName>
     <label>hellhound</label>
-    <description>Heavily-muscled wolf-like creatures with vicious unnatural claws and an absurdly powerful bite. They will only eat meat or corpses. If disturbed in the wild, they are very likely to attack.\n\nScientists say wargs are the descendants of weaponized military animals created for population suppression. The superstitious see them as the tools of an angry god.</description>
+    <description>Hellhounds resemble the more common warg, but they are even larger and more terrifying, with unnatural bone claws, large horns, and spikes all over their body. They are extremely vicious and possess a cunning intelligence. Every hellhound was once a human who was transformed by a strange interaction between mutagenic mechanites and luciferium mechanites.\n\nNo one knows why they resemble ancient depictions of demons. Scientists suspect it may be an intentional subroutine built into the mechanites for unknown reasons, while the more superstitious believe hellhounds were cursed for making a deal with a dark god.</description>
     <statBases>
       <MoveSpeed>5.0</MoveSpeed>
       <MarketValue>450</MarketValue>
