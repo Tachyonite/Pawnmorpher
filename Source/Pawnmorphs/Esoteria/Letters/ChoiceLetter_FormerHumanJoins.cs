@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.FormerHumans;
 using RimWorld;
 using RimWorld.QuestGen;
 using Verse;
@@ -104,7 +105,7 @@ namespace Pawnmorph.Letters
             {
                 if (!base.CanShowInLetterStack)
                     return false;
-                return FormerHumanStillJoinable();
+                return RelatedFormerHumanUtilities.EligableToJoinColony(formerHuman);
             }
         }
 
@@ -132,29 +133,19 @@ namespace Pawnmorph.Letters
             }
         }
 
-        private DiaOption Option_Accept
+        private DiaOption Option_Accept => new DiaOption("AcceptButton".Translate())
         {
-            get
+            action = delegate
             {
-                DiaOption diaOption = new DiaOption("AcceptButton".Translate())
-                {
-                    action = delegate
-                    {
-                        formerHuman.SetFaction(Faction.OfPlayer);
-                        CameraJumper.TryJump(formerHuman.Position, formerHuman.Map);
-                        Find.LetterStack.RemoveLetter(this);
+                RelatedFormerHumanUtilities.JoinColony(formerHuman);
+                CameraJumper.TryJumpAndSelect(formerHuman);
+                Find.LetterStack.RemoveLetter(this);
 
-                        if (ModsConfig.IdeologyActive)
-                            HistoryEventDefOf.CharityFulfilled_WandererJoins.SendEvent();
-                    },
-                    resolveTree = true
-                };
-
-                if (!FormerHumanStillJoinable())
-                    diaOption.Disable(null);
-                return diaOption;
-            }
-        }
+                if (ModsConfig.IdeologyActive)
+                    HistoryEventDefOf.CharityFulfilled_WandererJoins.SendEvent();
+            },
+            resolveTree = true
+        };
 
         private DiaOption Option_RejectWithCharityConfirmation => new DiaOption("RejectLetter".Translate())
         {
@@ -261,17 +252,6 @@ namespace Pawnmorph.Letters
             Scribe_References.Look(ref formerHuman, nameof(formerHuman));
             Scribe_References.Look(ref relative, nameof(relative));
             Scribe_Defs.Look(ref relation, nameof(relation));
-        }
-
-        /// <summary>
-        /// Whether the pawn is still eligable to join
-        /// </summary>
-        /// <returns><c>true</c>, if human still joinable was formered, <c>false</c> otherwise.</returns>
-        private bool FormerHumanStillJoinable()
-        {
-            return !formerHuman.DestroyedOrNull()
-                    && !formerHuman.Dead
-                    && formerHuman.Faction != Faction.OfPlayer;
         }
 
         /// <summary>

@@ -67,6 +67,11 @@ namespace Pawnmorph.FormerHumans
         /// <param name="formerHuman">The former human.</param>
         public static void OfferJoinColonyIfRelated(Pawn formerHuman)
         {
+            // Don't let former humans offer to join if they're in trade ships,
+            // dead, part of the colony, etc.
+            if (!EligableToJoinColony(formerHuman))
+                return;
+
             (var colonist, var relation) = formerHuman.GetRelatedColonistAndRelation();
             // TODO should bonds be excluded from this?
             if (relation != null && relation != PawnRelationDefOf.Bond)
@@ -76,6 +81,28 @@ namespace Pawnmorph.FormerHumans
                 else
                     ChoiceLetter_FormerHumanJoins.SendFeralLetterFor(formerHuman, colonist, relation);
             }
+        }
+
+        /// <summary>
+        /// Whether or not the former human is capable of joining the colony
+        /// </summary>
+        /// <param name="formerHuman">The former human.</param>
+        public static bool EligableToJoinColony(Pawn formerHuman) // TODO this probably should go somewhere else after FormerHumanUtilities is refactored
+        {
+            return !formerHuman.DestroyedOrNull()
+                && !formerHuman.Dead
+                && formerHuman.Spawned
+                && formerHuman.Faction == null;
+        }
+
+        /// <summary>
+        /// Causes the former human to join the colony
+        /// </summary>
+        /// <param name="formerHuman">The former human.</param>
+        public static void JoinColony(Pawn formerHuman) // TODO this probably should go somewhere else after FormerHumanUtilities is refactored
+        {
+            //TODO add rescue thoughts and things here
+            formerHuman.SetFaction(Faction.OfPlayer);
         }
     }
 }
