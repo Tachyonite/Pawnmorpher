@@ -20,9 +20,10 @@ namespace Pawnmorph
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            Log.Error("Pawnmorph.CompAlwaysFormerHuman is obsolete!" +
+            Log.Error("Pawnmorph.CompAlwaysFormerHuman is obsolete." +
                 " Use " + nameof(Comp_CanBeFormerHuman) + " instead." +
-                " This comp may be removed in the future!");
+                " This comp may be removed in the future." +
+                " Note to players:  This error is harmless, your game should work fine.");
         }
     }
 
@@ -39,9 +40,10 @@ namespace Pawnmorph
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            Log.Error("Pawnmorph.CompAlwaysFormerHuman is obsolete!" +
+            Log.Error("Pawnmorph.CompAlwaysFormerHuman is obsolete." +
                 " Use " + nameof(Comp_CanBeFormerHuman) + " instead." +
-                " This comp may be removed in the future!");
+                " This comp may be removed in the future." +
+                " Note to players:  This error is harmless, your game should work fine.");
         }
     }
 
@@ -65,9 +67,10 @@ namespace Pawnmorph
         {
             foreach (var err in base.ConfigErrors(parentDef))
                 yield return err;
-            yield return "Pawnmorph.CompProperties_FormerHumanChance is obsolete!" +
+            yield return "Pawnmorph.CompProperties_FormerHumanChance is obsolete." +
                 " Use " + nameof(CompProperties_CanBeFormerHuman) + " instead." +
-                " This comp may be removed in the future!";
+                " This comp may be removed in the future." +
+                " Note to players:  This error is harmless, your game should work fine.";
         }
     }
 
@@ -77,6 +80,9 @@ namespace Pawnmorph
     [Obsolete("Use " + nameof(CompProperties_CanBeFormerHuman) + " instead.")]
     public class CompProperties_AlwaysFormerHuman : CompProperties_CanBeFormerHuman
     {
+        /// <summary>
+        /// The hediff.
+        /// </summary>
         public HediffDef hediff; // An old field, not used for anything
 
         /// <summary>
@@ -93,9 +99,10 @@ namespace Pawnmorph
         {
             foreach (var err in base.ConfigErrors(parentDef))
                 yield return err;
-            yield return "Pawnmorph.CompProperties_AlwaysFormerHuman is obsolete!" +
+            yield return "Pawnmorph.CompProperties_AlwaysFormerHuman is obsolete." +
                 " Use " + nameof(CompProperties_CanBeFormerHuman) + " instead." +
-                " This comp may be removed in the future!";
+                " This comp may be removed in the future." +
+                " Note to players:  This error is harmless, your game should work fine.";
         }
     }
 }
