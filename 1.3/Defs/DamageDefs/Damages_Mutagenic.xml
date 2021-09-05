@@ -15,7 +15,7 @@
 		<modExtensions>
 			<li Class="Pawnmorph.Damage.MutagenicDamageExtension">
 				<mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
-				<severityPerDamage>0.07f</severityPerDamage>
+				<severityPerDamage>0.07</severityPerDamage>
 				<mutagen>PM_WeaponChaoticMutagen</mutagen>
 			</li>
 		</modExtensions>
