@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 using Verse.Grammar;
 
@@ -31,6 +32,14 @@ namespace Pawnmorph
         ///     The mutagen cause prefix
         /// </summary>
         public const string MUTAGEN_PREFIX = "mutagen";
+
+        /// <summary>
+        /// The precept prefix
+        /// </summary>
+        public const string PRECEPT_PREFIX = "precept"; 
+
+
+
 
 
         [NotNull] private List<CauseEntry> _entries;
@@ -66,11 +75,35 @@ namespace Pawnmorph
             Scribe_Collections.Look(ref _entries, "entries", LookMode.Deep);
         }
 
+        /// <summary>
+        /// Determines whether the def is one of the causes stored.
+        /// </summary>
+        /// <param name="def">The definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the def is one of the causes stored; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasDefCause(Def def)
         {
             foreach (CauseEntry causeEntry in _entries)
             {
                 if (causeEntry.Def == def) return true; 
+            }
+
+            return false; 
+        }
+
+        /// <summary>
+        /// Determines whether the precept is one of the causes stored.
+        /// </summary>
+        /// <param name="precept">The precept.</param>
+        /// <returns>
+        ///   <c>true</c> if the precept is one of the causes stored; otherwise, <c>false</c>.
+        /// </returns>
+        public bool HasPreceptCause(Precept precept)
+        {
+            foreach (PreceptEntry preceptEntry in _entries.OfType<PreceptEntry>())
+            {
+                if (preceptEntry.precept == precept) return true; 
             }
 
             return false; 
@@ -84,6 +117,18 @@ namespace Pawnmorph
         public void Add<T>(string prefix, [NotNull] T causeDef) where T : Def, new()
         {
             _entries.Add(new SpecificDefCause<T> {prefix = prefix, causeDef = causeDef});
+        }
+
+        /// <summary>
+        /// Adds the specified precept cause 
+        /// </summary>
+        /// <param name="precept">The precept.</param>
+        /// <param name="prefix">The prefix.</param>
+        /// <exception cref="System.ArgumentNullException">precept</exception>
+        public void Add([NotNull] Precept precept, string prefix = PRECEPT_PREFIX)
+        {
+            if (precept == null) throw new ArgumentNullException(nameof(precept));
+            _entries.Add(new PreceptEntry(){prefix = prefix, precept = precept});
         }
 
         /// <summary>

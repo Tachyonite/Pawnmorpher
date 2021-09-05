@@ -557,6 +557,7 @@
     <Compile Include="MutationCategoryDefOf.cs" />
     <Compile Include="MutationCauses.CauseEntry.cs" />
     <Compile Include="MutationCauses.cs" />
+    <Compile Include="MutationCauseUtility.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_Hellhound.cs" />

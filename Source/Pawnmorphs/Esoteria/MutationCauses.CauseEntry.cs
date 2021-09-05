@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 using Verse.Grammar;
 
@@ -123,7 +124,7 @@ namespace Pawnmorph
 
                 //in addition to sub classing there should be a way to add additional rules via xml 
                 //probably a CauseRuleExtension or something 
-                return GrammarUtility.RulesForDef(pfx, causeDef).MakeSafe();
+                return GetFromDef(causeDef, additionalPrefix); 
             }
 
             /// <summary>Returns a string that represents the current object.</summary>
@@ -143,6 +144,77 @@ namespace Pawnmorph
                                             .OfType<ICauseRulePackContainer>()
                                             .SelectMany(e => e.GetRules(prefix));
                 foreach (Rule rule in exts) yield return rule;
+            }
+        }
+
+        /// <summary>
+        /// cause entry for precepts 
+        /// </summary>
+        /// <seealso cref="Pawnmorph.MutationCauses.CauseEntry" />
+        public class PreceptEntry: CauseEntry
+        {
+            /// <summary>
+            /// The precept
+            /// </summary>
+            public Precept precept;
+
+
+            /// <summary>
+            ///     Exposes the data.
+            /// </summary>
+            public override void ExposeData()
+            {
+                base.ExposeData();
+                Scribe_References.Look(ref precept, nameof(precept)); 
+            }
+
+            /// <summary>
+            ///     Gets the type of the definition that this cause uses
+            /// </summary>
+            /// <value>
+            ///     The type of the definition.
+            /// </value>
+            public override Type DefType => typeof(PreceptDef);
+
+            /// <summary>
+            ///     The cause def
+            /// </summary>
+            public override Def Def => precept?.def; 
+
+            /// <summary>
+            ///     Generates the rule strings for this cause
+            /// </summary>
+            /// <param name="additionalPrefix">The additional prefix</param>
+            /// <returns></returns>
+            public override IEnumerable<Rule> GenerateRules(string additionalPrefix = "")
+            {
+                if (precept == null)
+                {
+                    Log.Warning("unable to get rules for precept as precept is missing!");
+                    return Enumerable.Empty<Rule>(); 
+                }
+
+
+                string pfx;
+                if (!additionalPrefix.NullOrEmpty())
+                {
+                    if (!prefix.NullOrEmpty())
+                        pfx = additionalPrefix + "_" + prefix;
+                    else pfx = additionalPrefix;
+                }
+                else
+                {
+                    pfx = prefix;
+                }
+                
+                return GrammarUtility.RulesForPrecept(pfx, precept); 
+            }
+
+            /// <summary>Returns a string that represents the current object.</summary>
+            /// <returns>A string that represents the current object.</returns>
+            public override string ToString()
+            {
+                return $"Precept Cause[{prefix}]={precept?.Label ?? "NO PRECEPT"}";
             }
         }
     }
