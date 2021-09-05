@@ -391,6 +391,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
@@ -519,6 +520,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ICauseRulePackContainer.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
@@ -879,8 +881,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
-    <Folder Include="Obsolete\" />
-    <Folder Include="Letters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">

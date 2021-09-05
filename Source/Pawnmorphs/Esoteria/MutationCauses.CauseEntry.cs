@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 using Verse.Grammar;
 
@@ -45,12 +46,12 @@ namespace Pawnmorph
             public abstract Def Def { get; }
 
             /// <summary>
-            /// Generates the rule strings for this cause
+            ///     Generates the rule strings for this cause
             /// </summary>
             /// <param name="additionalPrefix">The additional prefix</param>
             /// <returns></returns>
             [NotNull]
-            public abstract IEnumerable<Rule> GenerateRules(string additionalPrefix="");
+            public abstract IEnumerable<Rule> GenerateRules(string additionalPrefix = "");
         }
 
 
@@ -93,8 +94,12 @@ namespace Pawnmorph
             ///     Generates the rule strings for this cause
             /// </summary>
             /// <returns></returns>
-            public override IEnumerable<Rule> GenerateRules(string additionalPrefix="") //overriding simply to give more info in the case of an error 
+            public override IEnumerable<Rule>
+                GenerateRules(string additionalPrefix = "") //overriding simply to give more info in the case of an error 
             {
+                //can be cached per prefix & def if performance becomes an issue 
+                //if so implement IEquatable<> so it can be used with dicts 
+
                 if (causeDef == null)
                 {
                     Log.Warning($"encountered null def in {typeof(T).Name}");
@@ -105,24 +110,39 @@ namespace Pawnmorph
                 if (!additionalPrefix.NullOrEmpty())
                 {
                     if (!prefix.NullOrEmpty())
-                    {
                         pfx = additionalPrefix + "_" + prefix;
-                    }
                     else pfx = additionalPrefix;
                 }
-                else pfx = prefix; 
+                else
+                {
+                    pfx = prefix;
+                }
+
+                if (causeDef is ICauseRulePackContainer cDef) return cDef.GetRules(pfx);
+
 
                 //in addition to sub classing there should be a way to add additional rules via xml 
                 //probably a CauseRuleExtension or something 
-                return GrammarUtility.RulesForDef(pfx, causeDef);
+                return GrammarUtility.RulesForDef(pfx, causeDef).MakeSafe();
             }
 
             /// <summary>Returns a string that represents the current object.</summary>
             /// <returns>A string that represents the current object.</returns>
             public override string ToString()
             {
-                var pfx = prefix.NullOrEmpty() ? "" : prefix + "_";
+                string pfx = prefix.NullOrEmpty() ? "" : prefix + "_";
                 return $"{typeof(T).Name}: {pfx}{causeDef?.defName ?? "NULL DEF"}";
+            }
+
+            [NotNull]
+            private IEnumerable<Rule> GetFromDef(T def, string prefix)
+            {
+                foreach (Rule rule in GrammarUtility.RulesForDef(prefix, def).MakeSafe()) yield return rule;
+
+                IEnumerable<Rule> exts = def.modExtensions.MakeSafe()
+                                            .OfType<ICauseRulePackContainer>()
+                                            .SelectMany(e => e.GetRules(prefix));
+                foreach (Rule rule in exts) yield return rule;
             }
         }
     }

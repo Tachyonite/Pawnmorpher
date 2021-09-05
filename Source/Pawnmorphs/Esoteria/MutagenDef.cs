@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
@@ -20,7 +21,7 @@ namespace Pawnmorph
     ///     system.
     /// </summary>
     /// <seealso cref="Verse.Def" />
-    public class MutagenDef : Def
+    public class MutagenDef : Def, ICauseRulePackContainer
     {
 
         /// <summary>
@@ -308,6 +309,16 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        /// Gets the rules using the given prefix 
+        /// </summary>
+        /// <param name="prefix">The prefix.</param>
+        /// <returns></returns>
+        public IEnumerable<Rule> GetRules(string prefix)
+        {
+            if (causeRulePack == null) return Enumerable.Empty<Rule>();
+            return causeRulePack.Rules.MakeSafe(); //ignoring prefix so the xml rules can be used as is 
+        }
     }
 
 
