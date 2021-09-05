@@ -67,10 +67,6 @@ namespace Pawnmorph.Letters
             var label = TranslateWithKeys(labelId, formerHuman, relative, relation);
             var title = TranslateWithKeys(titleId, formerHuman, relative, relation);
             var text = TranslateWithKeys(textId, formerHuman, relative, relation);
-            // Resolve the grammar rules
-            //label = label.AdjustedFor(formerHuman, "formerHuman");
-            //title = title.AdjustedFor(formerHuman, "formerHuman");
-            //text = text.AdjustedFor(formerHuman, "formerHuman");
 
             QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter(CHARITY_INFO.Translate(formerHuman), ref text);
             TaggedString _;
