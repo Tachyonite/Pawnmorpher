@@ -77,6 +77,8 @@ namespace Pawnmorph
     [Obsolete("Use " + nameof(CompProperties_CanBeFormerHuman) + " instead.")]
     public class CompProperties_AlwaysFormerHuman : CompProperties_CanBeFormerHuman
     {
+        public HediffDef hediff; // An old field, not used for anything
+
         /// <summary>
         /// If true, the animal will always be a former human, regardless of the mod settings
         /// </summary>
