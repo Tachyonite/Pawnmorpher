@@ -35,7 +35,7 @@
             <xs:element name="transformedSapienceState" type="xs:string" minOccurs="0" />
 
             <xs:element name="damageProperties" type="DamageProperties" minOccurs="0" />
-            <xs:element name="immunizingHediffs" type="ListOfDefs" minOccurs="0" />
+            <xs:element name="immunizingHediffs" type="ListOfDefs" nillable="true" minOccurs="0" />
 
             <xs:element name="aspectGivers" minOccurs="0">
                 <xs:complexType>
