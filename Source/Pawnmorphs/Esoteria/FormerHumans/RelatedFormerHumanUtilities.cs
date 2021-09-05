@@ -1,4 +1,7 @@
-﻿using Pawnmorph.Letters;
+﻿using System;
+using System.Text;
+using JetBrains.Annotations;
+using Pawnmorph.Letters;
 using RimWorld;
 using Verse;
 
@@ -9,6 +12,7 @@ namespace Pawnmorph.FormerHumans
     /// </summary>
     public static class RelatedFormerHumanUtilities
     {
+        internal static bool debug;
         private const string RELATED_WILD_FORMER_HUMAN_LETTER = "RelatedWildFormerHumanContent";
         private const string RELATED_WILD_FORMER_HUMAN_LETTER_LABEL = "RelatedWildFormerHumanLabel";
 
@@ -65,24 +69,62 @@ namespace Pawnmorph.FormerHumans
         /// Generates an offer quest from this former human to join the colony
         /// </summary>
         /// <param name="formerHuman">The former human.</param>
-        public static void OfferJoinColonyIfRelated(Pawn formerHuman)
+        public static void OfferJoinColonyIfRelated([NotNull] Pawn formerHuman)
         {
+            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
+            StringBuilder builder = debug ? new StringBuilder() : null; 
+
             // Don't let former humans offer to join if they're in trade ships,
             // dead, part of the colony, etc.
             if (!EligableToJoinColony(formerHuman))
+            {
+                if(debug)Log.Message($"{formerHuman.Name?.ToStringFull ?? formerHuman.Label} cannot join the colony");
                 return;
+            }
 
             (var colonist, var relation) = formerHuman.GetRelatedColonistAndRelation();
+
+            if (debug)
+            {
+                if (relation != null)
+                {
+                    builder.AppendLine($"found {relation.label} for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
+                }
+                else
+                {
+                    builder.AppendLine($"no relation for ");
+                }
+            }
+
             // TODO should bonds be excluded from this?
             if (relation != null && relation != PawnRelationDefOf.Bond)
             {
                 // TODO this doesn't work for newly-generated former humans.
                 // Need to refactor the way they're generated to ensure the sapience tracker is in a good state
-                if (formerHuman.GetQuantizedSapienceLevel() <= SapienceLevel.Conflicted) //sapience level enum is in reverse order. Sapient < Feral 
+                SapienceLevel? qSapience = formerHuman.GetQuantizedSapienceLevel();
+                if (debug)
+                {
+                    builder.AppendLine($"{formerHuman.Name?.ToStringFull ?? formerHuman.Label} sapience level is {qSapience}");
+                }
+                if (qSapience <= SapienceLevel.Conflicted
+                ) //sapience level enum is in reverse order. Sapient < Feral 
+                {
+                    if (debug)
+                    {
+                        builder.AppendLine($"generating sapient letter for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
+                    }
                     ChoiceLetter_FormerHumanJoins.SendSapientLetterFor(formerHuman, colonist, relation);
+                }
                 else
+                {
+                    if (debug)
+                    {
+                        builder.AppendLine($"generating feral letter for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
+                    }
                     ChoiceLetter_FormerHumanJoins.SendFeralLetterFor(formerHuman, colonist, relation);
+                }
             }
+            if(debug) Log.Message(builder.ToString());
         }
 
         /// <summary>

@@ -344,10 +344,16 @@ namespace Pawnmorph.DebugUtils
             gameComp.AddTransformedPawn(inst);
             if (pawn.Faction == null && pawn.GetCorrectMap() != null)
             {
-                var sapience = pawn.GetQuantizedSapienceLevel();
-                Log.Message(sapience.ToString()); 
-                
-                RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
+                RelatedFormerHumanUtilities.debug = true;
+
+                try
+                {
+                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
+                }
+                finally
+                {
+                    RelatedFormerHumanUtilities.debug = false; 
+                }
             }
         }
 
