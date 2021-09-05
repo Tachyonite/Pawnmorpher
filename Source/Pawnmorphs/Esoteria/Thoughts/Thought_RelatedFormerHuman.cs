@@ -19,7 +19,7 @@ namespace Pawnmorph.Thoughts
                     return true;
 
                 // Stop thinking about this if we banish them
-                return otherPawn.Faction != pawn.Faction; 
+                return otherPawn.Faction != pawn.Faction;
             }
         }
     }

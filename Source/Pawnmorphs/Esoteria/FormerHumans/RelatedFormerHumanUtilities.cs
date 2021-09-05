@@ -76,6 +76,8 @@ namespace Pawnmorph.FormerHumans
             // TODO should bonds be excluded from this?
             if (relation != null && relation != PawnRelationDefOf.Bond)
             {
+                // TODO this doesn't work for newly-generated former humans.
+                // Need to refactor the way they're generated to ensure the sapience tracker is in a good state
                 if (formerHuman.GetQuantizedSapienceLevel() <= SapienceLevel.Conflicted) //sapience level enum is in reverse order. Sapient < Feral 
                     ChoiceLetter_FormerHumanJoins.SendSapientLetterFor(formerHuman, colonist, relation);
                 else

@@ -130,10 +130,7 @@ namespace Pawnmorph.ThingComps
             // Let former-human manhunters attempt to join the colony after they recover from manhunting
             if (mentalState.def == MentalStateDefOf.ManhunterPermanent || mentalState.def == MentalStateDefOf.Manhunter)
             {
-                if (Pawn.Faction == null && Pawn.GetCorrectMap() != null && Pawn.IsFormerHuman())
-                {
-                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(Pawn);
-                }
+                RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(Pawn);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.FormerHumans;
 using RimWorld;
@@ -20,6 +19,13 @@ namespace Pawnmorph.Letters
         private const string FERAL_LABEL = "PMLetterFormerHumanJoinLabel";
         private const string FERAL_TITLE = "PMLetterFormerHumanJoinTitle";
         private const string FERAL_TEXT = "PMLetterFormerHumanJoinContent";
+
+        private const string ACCEPT = "AcceptButton";
+        private const string REJECT = "PMRejectUpset";
+
+        private const string CHARITY_INFO = "JoinerCharityInfo";
+        private const string CHARITY_CONFIRMATION = "ConfirmationCharityJoiner";
+        private const string BELIEVERS = "BelieversIn";
 
         private Pawn formerHuman;
         private Pawn relative;
@@ -58,21 +64,15 @@ namespace Pawnmorph.Letters
         /// <param name="textId">ID of the text string</param>
         public static void SendLetterFor(Pawn formerHuman, Pawn relative, PawnRelationDef relation, string labelId, string titleId, string textId)
         {
-            var label = labelId.Translate(formerHuman.Named("formerHuman"),
-                                          relative.Named("relatedPawn"),
-                                          relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
-            var title = titleId.Translate(formerHuman.Named("formerHuman"),
-                                        relative.Named("relatedPawn"),
-                                        relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
-            var text = textId.Translate(formerHuman.Named("formerHuman"),
-                                        relative.Named("relatedPawn"),
-                                        relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
+            var label = TranslateWithKeys(labelId, formerHuman, relative, relation);
+            var title = TranslateWithKeys(titleId, formerHuman, relative, relation);
+            var text = TranslateWithKeys(textId, formerHuman, relative, relation);
             // Resolve the grammar rules
-            label = label.AdjustedFor(formerHuman, "formerHuman");
-            title = title.AdjustedFor(formerHuman, "formerHuman");
-            text = text.AdjustedFor(formerHuman, "formerHuman");
+            //label = label.AdjustedFor(formerHuman, "formerHuman");
+            //title = title.AdjustedFor(formerHuman, "formerHuman");
+            //text = text.AdjustedFor(formerHuman, "formerHuman");
 
-            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter("JoinerCharityInfo".Translate(formerHuman), ref text);
+            QuestNode_Root_WandererJoin_WalkIn.AppendCharityInfoToLetter(CHARITY_INFO.Translate(formerHuman), ref text);
             TaggedString _;
             PawnRelationUtility.TryAppendRelationsWithColonistsInfo(ref text, ref _, formerHuman);
 
@@ -133,7 +133,7 @@ namespace Pawnmorph.Letters
             }
         }
 
-        private DiaOption Option_Accept => new DiaOption("AcceptButton".Translate())
+        private DiaOption Option_Accept => new DiaOption(ACCEPT.Translate())
         {
             action = delegate
             {
@@ -147,7 +147,7 @@ namespace Pawnmorph.Letters
             resolveTree = true
         };
 
-        private DiaOption Option_RejectWithCharityConfirmation => new DiaOption("RejectLetter".Translate())
+        private DiaOption Option_RejectWithCharityConfirmation => new DiaOption(TranslateWithKeys(REJECT))
         {
             action = delegate {
                 void Reject()
@@ -169,9 +169,9 @@ namespace Pawnmorph.Letters
                         foreach (IGrouping<Ideo, Pawn> item in from c in source
                                                                group c by c.Ideo)
                         {
-                            dialogText += "\n  - " + "BelieversIn".Translate(item.Key.name.Colorize(item.Key.TextColor), item.Select((Pawn f) => f.NameShortColored.Resolve()).ToCommaList());
+                            dialogText += "\n  - " + BELIEVERS.Translate(item.Key.name.Colorize(item.Key.TextColor), item.Select((Pawn f) => f.NameShortColored.Resolve()).ToCommaList());
                         }
-                        var confirm = Dialog_MessageBox.CreateConfirmation("ConfirmationCharityJoiner".Translate(dialogText), Reject);
+                        var confirm = Dialog_MessageBox.CreateConfirmation(CHARITY_CONFIRMATION.Translate(dialogText), Reject);
                         Find.WindowStack.Add(confirm);
                     }
                     else
@@ -240,7 +240,6 @@ namespace Pawnmorph.Letters
                 if (ModsConfig.IdeologyActive)
                     HistoryEventDefOf.CharityRefused_WandererJoins.SendEvent();
             }
-
         }
 
         /// <summary>
@@ -280,6 +279,43 @@ namespace Pawnmorph.Letters
                 return RelationCloseness.Moderate;
 
             return RelationCloseness.Distant;
+        }
+
+        /// <summary>
+        /// Translates the given string ID with the former human, relative, and relation
+        /// attached.
+        /// 
+        /// keys:
+        ///  - formerHuman
+        ///  - relatedPawn
+        ///  - relationship
+        /// </summary>
+        /// <returns>The translated string.</returns>
+        /// <param name="id">Identifier.</param>
+        private TaggedString TranslateWithKeys(string id)
+        {
+            return TranslateWithKeys(id, formerHuman, relative, relation);
+        }
+
+        /// <summary>
+        /// Translates the given string ID with the former human, relative, and relation
+        /// attached.
+        /// 
+        /// keys:
+        ///  - formerHuman
+        ///  - relatedPawn
+        ///  - relationship
+        /// </summary>
+        /// <returns>The translated string.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="formerHuman">Former human.</param>
+        /// <param name="relative">Relative.</param>
+        /// <param name="relation">Relation.</param>
+        private static TaggedString TranslateWithKeys(string id, Pawn formerHuman, Pawn relative, PawnRelationDef relation)
+        {
+            return id.Translate(formerHuman.Named("formerHuman"),
+                    relative.Named("relatedPawn"),
+                    relation.GetGenderSpecificLabel(formerHuman).Named("relationship"));
         }
 
         // How close a relative is, used for thought severity

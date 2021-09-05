@@ -18,14 +18,16 @@
     <PMLetterFormerHumanJoinTitle>{formerHuman} asks for help</PMLetterFormerHumanJoinTitle>
     <PMLetterFormerHumanJoinContent>{formerHuman_kindBaseIndef} approaches the colony.  It seems {formerHuman_pronoun} is actually a former human, turned into {formerHuman_kindBaseIndef} by some terrible mishap! {formerHuman_pronoun} claims to be {formerHuman_nameFull}, {relatedPawn}'s {relationship}, and is begging you to let {formerHuman_objective} join the colony.
     
-As {formerHuman_kindBaseIndef}, {formerHuman} won't be able to do most kinds of work, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human.</PMLetterFormerHumanJoinContent>
+As {formerHuman_kindBaseIndef}, {formerHuman} won't be able to do most kinds of work, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human. Because {formerHuman} is related to {relatedPawn}, {relatedPawn} will be upset if you turn {formerHuman_objective} away.</PMLetterFormerHumanJoinContent>
 
     <!-- Feral Former Human Join Request -->
     <PMLetterFormerHumanJoinFeralLabel>Feral former human (relationship)</PMLetterFormerHumanJoinFeralLabel>
     <PMLetterFormerHumanJoinFeralTitle>{formerHuman_kindBaseIndef} asks for help</PMLetterFormerHumanJoinFeralTitle>
     <PMLetterFormerHumanJoinFeralContent>{formerHuman_kindBaseIndef} approaches the colony.  It seems to be more intelligent than most animals, and your colonists believe {formerHuman_objective} to be a former human that's lost {formerHuman_possessive} ability to speak. {formerHuman_kindBaseDef} seems particularly attached to {relatedPawn}, and is probably someone {relatedPawn_pronoun} is related to.
     
-As a feral {formerHuman_kindBase}, {formerHuman} will act no differently than other {formerHuman_kindBasePlural}, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human.</PMLetterFormerHumanJoinFeralContent>
+As a feral {formerHuman_kindBase}, {formerHuman} will act no differently than other {formerHuman_kindBasePlural}, but you can craft, buy, or find reverter serum to turn {formerHuman_objective} back into a human. Because {formerHuman} is related to {relatedPawn}, {relatedPawn} will be upset if you turn {formerHuman_objective} away.</PMLetterFormerHumanJoinFeralContent>
+
+    <PMRejectUpset>Reject ({relatedPawn} will be upset)</PMRejectUpset>
 
 
     <!-- 
