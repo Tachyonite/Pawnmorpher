@@ -31,8 +31,8 @@ namespace Pawnmorph.ThingComps
             foreach (var error in base.ConfigErrors(parentDef))
                 yield return error;
 
-            if (parentDef?.race?.Animal != true)
-                yield return $"{nameof(Comp_CanBeFormerHuman)} attached to a non-animal thingdef.";
+            if (parentDef?.category != ThingCategory.Pawn)
+                yield return $"{nameof(Comp_CanBeFormerHuman)} attached to a non-pawn thingdef.";
 
             bool neverFormerHuman = parentDef.GetModExtension<FormerHumanSettings>()?.neverFormerHuman ?? false;
             if (always && neverFormerHuman)
