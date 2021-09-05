@@ -9,7 +9,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.FormerHumans;
+using Pawnmorph.Letters;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -19,6 +19,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -29,29 +30,14 @@ namespace Pawnmorph
     public static class FormerHumanUtilities
     {
         /// <summary>
-        ///     The related wild former human letter
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER = "RelatedWildFormerHumanContent";
-
-        /// <summary>
-        ///     The related wild former human letter label
-        /// </summary>
-        public const string RELATED_WILD_FORMER_HUMAN_LETTER_LABEL = "RelatedWildFormerHumanLabel";
-
-        /// <summary>
-        ///     The related sold former human letter
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER = "RelatedSoldFormerHumanContent";
-
-        /// <summary>
-        ///     The related sold former human letter label
-        /// </summary>
-        public const string RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL = "RelatedSoldFormerHumanLabel";
-
-        /// <summary>
         ///     manhunter chances below this means that manhunter tf is disabled
         /// </summary>
         public const float MANHUNTER_EPSILON = 0.01f;
+
+        /// <summary>
+        /// The minimum biological age for a former human's human form
+        /// </summary>
+        public const float MIN_FORMER_HUMAN_AGE = 17f;
 
 
         private const float
@@ -521,21 +507,17 @@ namespace Pawnmorph
         /// <param name="fixedLastName">Last name of the fixed.</param>
         /// <param name="fixedOriginalGender">The fixed original gender.</param>
         /// <returns></returns>
+        [Obsolete("Use " + nameof(FormerHumanPawnGenerator) + " instead")]
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName = null, string fixedLastName = null,
                                                    Gender? fixedOriginalGender = null)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.SpaceRefugee;
-
-            PawnKindDef kind = pawnKind;
-            Faction faction = DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
-            float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
-            var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                  fixedChronologicalAge: chronoAge,
-                                                  fixedBiologicalAge: convertedAge, fixedBirthName: fixedFirstName,
-                                                  fixedLastName: fixedLastName, fixedGender: fixedOriginalGender);
-            Pawn lPawn = PawnGenerator.GeneratePawn(local);
-            return lPawn;
+            FHGenerationSettings settings = new FHGenerationSettings
+            {
+                FirstName = fixedFirstName,
+                LastName = fixedLastName,
+                Gender = fixedOriginalGender
+            };
+            return FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, settings);
         }
 
         /// <summary>
@@ -543,31 +525,10 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="mergedAnimal">The animal.</param>
         /// <returns></returns>
+        [Obsolete("Use " + nameof(FormerHumanPawnGenerator) + " instead")]
         public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHuman(Pawn mergedAnimal)
         {
-            PawnKindDef pawnKind = PawnKindDefOf.Villager;
-
-            PawnKindDef kind = pawnKind;
-            Faction faction = Faction.OfPlayer;
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race), 17);
-            float chronoAge = mergedAnimal.ageTracker.AgeChronologicalYears
-                            * convertedAge
-                            / mergedAnimal.ageTracker.AgeBiologicalYears;
-
-            float p1Age = Rand.Range(0.7f, 1.2f) * convertedAge;
-            float p2Age = 2 * convertedAge - p1Age;
-            float p1ChronoAge = Rand.Range(0.7f, 1.2f) * chronoAge;
-            float p2ChronoAge = 2 * chronoAge - p1ChronoAge;
-
-            var p1Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                      fixedChronologicalAge: p1ChronoAge, fixedBiologicalAge: p1Age);
-            var p2Request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
-                                                      fixedChronologicalAge: p2ChronoAge, fixedBiologicalAge: p2Age);
-            Pawn p1 = PawnGenerator.GeneratePawn(p1Request);
-            Pawn p2 = PawnGenerator.GeneratePawn(p2Request);
-
-
-            return (p1, p2);
+            return FormerHumanPawnGenerator.GenerateRandomUnmergedHumans(mergedAnimal);
         }
 
         /// <summary>
@@ -1024,34 +985,6 @@ namespace Pawnmorph
             return sapienceState.CurrentIntelligence == Intelligence.Humanlike;
         }
 
-        /// <summary>
-        ///     Determines whether this pawn is a sapient or mostly feral former human
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///     <c>true</c> if this pawn is a sapient former human; otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        [Obsolete("use " + nameof(GetIntelligence) + " instead")]
-        public static bool IsSapientOrFeralFormerHuman([NotNull] this Pawn pawn)
-        {
-            SapienceTracker fTracker = pawn.GetSapienceTracker();
-            if (fTracker == null) return false;
-            if (!fTracker.IsFormerHuman) return false;
-            switch (fTracker.SapienceLevel)
-            {
-                case SapienceLevel.Sapient:
-                case SapienceLevel.MostlySapient:
-                case SapienceLevel.Conflicted:
-                case SapienceLevel.MostlyFeral:
-                    return true;
-                case SapienceLevel.Feral:
-                case SapienceLevel.PermanentlyFeral:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
 
         /// <summary>
         ///     Determines whether the given pawn is a tool user.
@@ -1085,7 +1018,7 @@ namespace Pawnmorph
                 return;
             }
 
-            sTracker.EnterState(SapienceStateDefOf.FormerHuman, 1);
+            sTracker.EnterState(SapienceStateDefOf.FormerHuman, sapienceLevel);
 
             InitializeTransformedPawn(original, animal, sapienceLevel);
         }
@@ -1122,7 +1055,14 @@ namespace Pawnmorph
                 return;
             }
 
-            Pawn lPawn = GenerateRandomHumanForm(animal, fixedFirstName, fixedLastName);
+            // TODO chrono age
+            FHGenerationSettings settings = new FHGenerationSettings()
+            {
+                FirstName = fixedFirstName,
+                LastName = fixedLastName,
+                Gender = fixedOriginalGender
+            };
+            Pawn lPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, settings);
 
             MorphDef morph = animal.def.TryGetBestMorphOfAnimal();
 
@@ -1173,20 +1113,6 @@ namespace Pawnmorph
             else
                 animal.Name = new NameSingle(animal.LabelShort);
 
-            //tame the animal if they are wild and related to a colonist
-            if (animal.Faction == null && animal.GetCorrectMap() != null)
-                if (joinIfRelated)
-                {
-                    Pawn relatedColonist = animal.relations?.PotentiallyRelatedPawns?.FirstOrDefault(p => p.IsColonist);
-                    if (relatedColonist != null)
-                    {
-                        DebugLogUtils.LogMsg(LogLevel.Messages,
-                                             $"{animal.Name} is joining colony because they are related to {relatedColonist.Name}");
-
-                        animal.SetFaction(Faction.OfPlayer);
-                    }
-                }
-
             animal.needs.AddOrRemoveNeedsAsAppropriate();
             var nC = animal.needs.TryGetNeed<Need_Control>();
 
@@ -1198,7 +1124,13 @@ namespace Pawnmorph
             }
 
             nC.SetInitialLevel(sapienceLevel);
-
+            
+            // Offer to join the colony if they are wild and related to a colonist
+            if (animal.Faction == null && animal.GetCorrectMap() != null)
+                if (joinIfRelated)
+                {
+                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(animal);
+                }
 
             if (animal.training == null) return;
 
@@ -1221,28 +1153,6 @@ namespace Pawnmorph
             if (comp == null) return;
             if (comp.CurrentState?.StateDef.canGoPermanentlyFeral != true || comp.IsPermanentlyFeral) return;
             comp.MakePermanentlyFeral();
-        }
-
-        /// <summary>
-        ///     generates notification letters if the given former human is related to any colonists
-        /// </summary>
-        /// <param name="formerHuman">The former human.</param>
-        /// <param name="letterContentID">The letter content identifier.</param>
-        /// <param name="letterLabelID">The letter label identifier.</param>
-        public static void NotifyRelatedPawnsFormerHuman([NotNull] Pawn formerHuman, string letterContentID, string letterLabelID)
-        {
-            Pawn_RelationsTracker fRelation = formerHuman.relations;
-            if (fRelation == null) return;
-            IEnumerable<Pawn> allPawns =
-                PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners.MakeSafe();
-
-            foreach (Pawn pawn in allPawns)
-            {
-                if (pawn == formerHuman) continue;
-                PawnRelationDef relation = pawn.GetMostImportantRelation(formerHuman);
-                if (relation != null && relation != PawnRelationDefOf.Bond)
-                    SendRelationLetter(pawn, formerHuman, relation, letterContentID, letterLabelID);
-            }
         }
 
 
@@ -1512,27 +1422,6 @@ namespace Pawnmorph
             lPawn.equipment
                 ?.DestroyAllEquipment(); //make sure all equipment and apparel is removed so they don't spawn with it if reverted
             lPawn.apparel?.DestroyAll();
-        }
-
-        private static void SendRelationLetter([NotNull] Pawn pawn, [NotNull] Pawn formerHuman,
-                                               [NotNull] PawnRelationDef relation, string letterContentID, string letterLabelID)
-        {
-            string relationLabel;
-
-            if (formerHuman.gender == Gender.Female && !string.IsNullOrEmpty(relation.labelFemale))
-                relationLabel = relation.labelFemale;
-            else
-                relationLabel = relation.label;
-
-
-            TaggedString letterContent = letterContentID.Translate(formerHuman.Named("formerHuman"),
-                                                                   pawn.Named("relatedPawn"),
-                                                                   relationLabel.Named("relationship"));
-            TaggedString letterLabel = letterLabelID.Translate(formerHuman.Named("formerHuman"),
-                                                               pawn.Named("relatedPawn"),
-                                                               relationLabel.Named("relationship"));
-            Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NeutralEvent, formerHuman,
-                                           formerHuman.HostFaction);
         }
 
         private static void TransferRelationsToOriginal([NotNull] Pawn pawn, [CanBeNull] Pawn oPawn,

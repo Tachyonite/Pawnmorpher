@@ -36,8 +36,8 @@
 	</ThingDef>
 	<ThingDef ParentName="PMChaocreatureBase" Name="PMChaomorphBase" Abstract="True">
 		<comps>
-			<li Class="Pawnmorph.CompProperties_AlwaysFormerHuman">
-				<hediff>TransformedHuman</hediff>
+			<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman">
+				<always>true</always>
 			</li>
 		</comps>
 		<modExtensions>
