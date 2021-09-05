@@ -8,30 +8,9 @@ using Pawnmorph.ThingComps;
 namespace Pawnmorph
 {
     /// <summary>
-    /// enum that 
-    /// </summary>
-    [Obsolete("use \"" + nameof(SapienceLevel) + "\" level and \"" + nameof(SapienceTracker) + "\" instead")]
-    public enum FormerHumanStatus
-    {
-        /// <summary>
-        /// the former human still has most of their human intelligence 
-        /// </summary>
-        Sapient,
-        /// <summary>
-        /// The animal is mostly just an animal at this point, they might still have some intelligence left though 
-        /// </summary>
-        Feral,
-
-        /// <summary>
-        /// they are an animal forever
-        /// </summary>
-        PermanentlyFeral
-    }
-
-    /// <summary>
     /// enum that represents the 'quantized sapience level' of a former human 
     /// </summary>
-    public enum SapienceLevel
+    public enum SapienceLevel //TODO sapient levels are in reverse order, refactor this so they are in the expected order of Sapient > Feral. Note, lots of places uses Sapient < Feral so there will be alot of changes 
     {
         /// <summary>The former human if fully aware</summary>
         Sapient,

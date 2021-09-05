@@ -732,11 +732,7 @@
     <Compile Include="HediffGiver_PermanentFeral.cs" />
     <Compile Include="HediffGiver_TF.cs" />
     <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
-    <Compile Include="CompProperties_FormerHumanChance.cs" />
-    <Compile Include="CompFormerHumanChance.cs" />
-    <Compile Include="CompAlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_AddSeverity.cs" />
-    <Compile Include="CompProperties_AlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_Production.cs" />
     <Compile Include="HediffCompProperties_Remove.cs" />
     <Compile Include="HediffCompProperties_Single.cs" />
@@ -869,9 +865,19 @@
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
     <Compile Include="HPatches\ThingDefPatches.cs" />
+    <Compile Include="Obsolete\FormerHumanComps.cs" />
+    <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
+    <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
+    <Compile Include="Letters\PMLetterDefOf.cs" />
+    <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
+    <Compile Include="FormerHumans\FormerHumanPawnGenerator.cs" />
+    <Compile Include="Thoughts\Thought_RelatedFormerHuman.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Obsolete\" />
+    <Folder Include="Letters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
