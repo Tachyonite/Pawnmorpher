@@ -56,8 +56,8 @@ namespace Pawnmorph
             listingStandard.GapLine();
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
-            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToString("F1")}%");
-            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 100f);
+            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)}");
+            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 1f);
             listingStandard.Label($"{"partialChanceSliderLabel".Translate()}: {settings.partialChance.ToString("F1")}%");
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
