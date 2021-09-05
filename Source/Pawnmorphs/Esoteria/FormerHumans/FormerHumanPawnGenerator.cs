@@ -67,7 +67,9 @@ namespace Pawnmorph.FormerHumans
                     fixedBiologicalAge: settings.BioAge, fixedChronologicalAge: settings.ChronoAge,
                     fixedBirthName: settings.FirstName, fixedLastName: settings.LastName,
                     fixedGender: settings.Gender);
-            return PawnGenerator.GeneratePawn(request);
+            Pawn pawn = PawnGenerator.GeneratePawn(request);
+            CleanupPawn(pawn);
+            return pawn;
         }
 
         /// <summary>
@@ -150,6 +152,18 @@ namespace Pawnmorph.FormerHumans
                 if (res) i++; //only increment if we actually added any mutations 
             }
         }
+
+
+        /// <summary>
+        /// Cleans the pawn up post-generation so that they don't have any gear/equipment when reverted
+        /// </summary>
+        /// <param name="lPawn">L pawn.</param>
+        private static void CleanupPawn(Pawn lPawn) //TODO Unify this with TransformerUtility.CleanUpHumanPawnPostTf()
+        {
+            lPawn.equipment?.DestroyAllEquipment();
+            lPawn.apparel?.DestroyAll();
+        }
+
     }
 
     /// <summary>
