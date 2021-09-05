@@ -511,7 +511,7 @@ namespace Pawnmorph
         public static Pawn GenerateRandomHumanForm(Pawn animal, string fixedFirstName = null, string fixedLastName = null,
                                                    Gender? fixedOriginalGender = null)
         {
-            PawnGenerationSettings settings = new PawnGenerationSettings
+            FHGenerationSettings settings = new FHGenerationSettings
             {
                 FirstName = fixedFirstName,
                 LastName = fixedLastName,
@@ -1056,7 +1056,7 @@ namespace Pawnmorph
             }
 
             // TODO chrono age
-            PawnGenerationSettings settings = new PawnGenerationSettings()
+            FHGenerationSettings settings = new FHGenerationSettings()
             {
                 FirstName = fixedFirstName,
                 LastName = fixedLastName,

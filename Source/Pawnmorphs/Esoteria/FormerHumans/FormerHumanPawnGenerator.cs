@@ -1,4 +1,7 @@
-﻿using RimWorld;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Pawnmorph.Hediffs;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -15,22 +18,26 @@ namespace Pawnmorph.FormerHumans
         /// <param name="animal">The animal.</param>
         /// <param name="settings">Optional settings for the pawn</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomHumanForm(Pawn animal, PawnGenerationSettings settings = default)
+        public static Pawn GenerateRandomHumanForm(Pawn animal, FHGenerationSettings settings = default)
         {
             if (settings.BioAge == null)
                 settings.BioAge = TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race);
-            return GenerateRandomHumanForm(settings);
+
+            Pawn pawn = GenerateRandomPawn(settings);
+            AddMorphMutationsToPawn(pawn, animal);
+
+            return pawn;
         }
 
         /// <summary>
         ///     Generates the random unmerged humans for the given merged animal
         /// </summary>
         /// <param name="mergedAnimal">The animal.</param>
-        /// <param name="p1Settings">Optional traits for the first pawn</param>
-        /// <param name="p2Settings">Optional traits for the first pawn</param>
+        /// <param name="p1Settings">Optional settings for the first pawn</param>
+        /// <param name="p2Settings">Optional settings for the first pawn</param>
         /// <returns></returns>
         public static (Pawn p1, Pawn p2) GenerateRandomUnmergedHumans(Pawn mergedAnimal,
-            PawnGenerationSettings p1Settings = default, PawnGenerationSettings p2Settings = default)
+            FHGenerationSettings p1Settings = default, FHGenerationSettings p2Settings = default)
         {
             float convertedAge = TransformerUtility.ConvertAge(mergedAnimal, ThingDefOf.Human.race);
 
@@ -38,8 +45,10 @@ namespace Pawnmorph.FormerHumans
             p1Settings.BioAge = p1Settings.BioAge ?? Rand.Range(0.7f, 1.3f) * convertedAge;
             p2Settings.BioAge = p2Settings.BioAge ?? 2 * convertedAge - p1Settings.BioAge;
 
-            Pawn p1 = GenerateRandomHumanForm(p1Settings);
-            Pawn p2 = GenerateRandomHumanForm(p2Settings);
+            Pawn p1 = GenerateRandomPawn(p1Settings);
+            Pawn p2 = GenerateRandomPawn(p2Settings);
+            AddMorphMutationsToPawn(p1, mergedAnimal);
+            AddMorphMutationsToPawn(p2, mergedAnimal);
 
             return (p1, p2);
         }
@@ -49,7 +58,7 @@ namespace Pawnmorph.FormerHumans
         /// </summary>
         /// <param name="settings">The settings of the generated pawn</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomHumanForm(PawnGenerationSettings settings = default)
+        public static Pawn GenerateRandomPawn(FHGenerationSettings settings = default)
         {
             PawnKindDef kind = settings.PawnKind ?? PawnKindDefOf.SpaceRefugee;
             Faction faction = settings.Faction ?? DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
@@ -60,13 +69,94 @@ namespace Pawnmorph.FormerHumans
                     fixedGender: settings.Gender);
             return PawnGenerator.GeneratePawn(request);
         }
+
+        /// <summary>
+        /// Adds all the morph mutations to the pawn.
+        /// </summary>
+        /// <param name="humanForm">Human form.</param>
+        /// <param name="animal">Animal to add mutations for.</param>
+        private static void AddMorphMutationsToPawn(Pawn humanForm, Pawn animal)
+        {
+            MorphDef morph = animal.def.TryGetBestMorphOfAnimal();
+            if (morph != null)
+            {
+                if (morph.IsChimera())
+                    AddRandomMutationsToPawn(humanForm); // TODO these need to be set to natural max
+                else
+                    MutationUtilities.AddAllMorphMutations(humanForm, morph, MutationUtilities.AncillaryMutationEffects.None)
+                                     .SetAllToNaturalMax();
+            }
+
+            MutationTracker mTracker = humanForm.GetMutationTracker();
+            if (mTracker != null)
+            {
+                mTracker.RecalculateMutationInfluences();
+                humanForm.CheckRace(false, false, false);
+            }
+        }
+
+        /// <summary>
+        /// Adds random mutations to this pawn to for being a chaomorph
+        /// </summary>
+        /// <param name="lPawn">L pawn.</param>
+        private static void AddRandomMutationsToPawn(Pawn lPawn)
+        {
+            //give at least as many mutations as there are slots, plus some more to make it a bit more chaotic 
+            int mutationsToAdd = Mathf.CeilToInt(MorphUtilities.GetMaxInfluenceOfRace(lPawn.def)) + 10;
+            var mutations = MutationUtilities.AllNonRestrictedMutations.ToList();
+
+            var addList = new List<BodyPartRecord>();
+            var addedList = new List<BodyPartRecord>();
+
+            var bodyParts = lPawn.health.hediffSet.GetAllNonMissingWithoutProsthetics().ToList();
+
+
+            var i = 0;
+            MutationUtilities.AncillaryMutationEffects aEffects = MutationUtilities.AncillaryMutationEffects.None;
+            while (i < mutationsToAdd)
+            {
+                addList.Clear();
+                MutationDef rM = mutations.RandomElementWithFallback();
+                if (rM == null) break;
+                mutations.Remove(rM);
+
+                //handle whole body mutations first 
+                if (rM.parts == null)
+                {
+                    if (MutationUtilities.AddMutation(lPawn, rM, ancillaryEffects: aEffects)) i++;
+                    continue;
+                }
+
+                //get the body parts to add to 
+
+                //how many parts to grab 
+                //+3 is to make it more likely that all parts will be added 
+                int countToAdd = Rand.Range(1, rM.parts.Count + 3);
+                countToAdd = Mathf.Min(countToAdd, rM.parts.Count); //make sure it's less then or equal to 
+                foreach (BodyPartRecord record in bodyParts)
+                {
+                    if (!rM.parts.Any(p => p == record.def)) continue;
+
+                    if (addedList.Contains(record)) continue;
+
+                    addedList.Add(record);
+                    addList.Add(record);
+
+                    if (addList.Count >= countToAdd) break;
+                }
+
+
+                MutationResult res = MutationUtilities.AddMutation(lPawn, rM, addList, aEffects);
+                if (res) i++; //only increment if we actually added any mutations 
+            }
+        }
     }
 
     /// <summary>
     /// Struct to hold all the requested settings of a former human.
     /// Any null setting will be randomized by the generator
     /// </summary>
-    public struct PawnGenerationSettings
+    public struct FHGenerationSettings
     {
         private float? bioAge;
 
