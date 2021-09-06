@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -304,10 +305,30 @@ namespace Pawnmorph.Hediffs.Composable
         /// <summary>
         ///     The category to chose from
         /// </summary>
-        public MutationCategoryDef category;
+        public List<MutationCategoryDef> categories;
 
+        /// <summary>
+        ///     how the mutations are selected from the list of categories
+        /// </summary>
+        public OperatorType operatorType = OperatorType.Or;
 
         private List<MutationEntry> _cachedEntries;
+
+        /// <summary>
+        ///     how to select mutations from the categories
+        /// </summary>
+        public enum OperatorType
+        {
+            /// <summary>
+            ///     take mutations from all categories
+            /// </summary>
+            Or,
+
+            /// <summary>
+            ///     take mutations from the intersection of the categories
+            /// </summary>
+            And
+        }
 
 
         [NotNull]
@@ -316,12 +337,35 @@ namespace Pawnmorph.Hediffs.Composable
             get
             {
                 if (_cachedEntries == null)
-                    _cachedEntries = category.AllMutations.Where(m => m.RestrictionLevel < category.restrictionLevel)
-                                             .Select(m => MutationEntry.FromMutation(m))
-                                             .ToList();
+                    switch (operatorType)
+                    {
+                        case OperatorType.Or:
+                            _cachedEntries = GetOrCachedEntries().ToList();
+                            break;
+                        case OperatorType.And:
+                            _cachedEntries = GetAndCachedEntries().ToList();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
 
                 return _cachedEntries;
             }
+        }
+
+        [NotNull]
+        private IEnumerable<MutationEntry> GetOrCachedEntries()
+        {
+            return categories.SelectMany(c => c.AllMutations.Where(m => m.RestrictionLevel < c.restrictionLevel))
+                             .Select(m => MutationEntry.FromMutation(m));
+        }
+
+        [NotNull]
+        private IEnumerable<MutationEntry> GetAndCachedEntries()
+        {
+            return categories.Select(c => c.AllMutations.Where(m => m.RestrictionLevel < c.restrictionLevel))
+                             .IntersectAll()
+                             .Select(m => MutationEntry.FromMutation(m));
         }
 
 
@@ -336,13 +380,13 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
         /// <summary>
-        /// A debug string printed out when inspecting the hediffs
+        ///     A debug string printed out when inspecting the hediffs
         /// </summary>
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public override string DebugString(Hediff_MutagenicBase hediff)
         {
-            return $"choosing from {category.defName}"; 
+            return $"choosing from [{string.Join(",", categories.Select(c => c.defName))}]";
         }
 
         /// <summary>
@@ -356,17 +400,22 @@ namespace Pawnmorph.Hediffs.Composable
             if (other == this) return true;
             if (other == null) return false;
             if (!(other is MutTypes_Category oCat)) return false;
-            return oCat.category == category; 
+            if (oCat.categories?.Count != categories.Count) return false;
+            for (var i = 0; i < categories.Count; i++)
+                if (oCat.categories[i] != categories[i])
+                    return false;
+
+            return true;
         }
 
         /// <summary>
-        /// gets all configuration errors in this stage .
+        ///     gets all configuration errors in this stage .
         /// </summary>
         /// <param name="parentDef">The parent definition.</param>
         /// <returns></returns>
         public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
-            if (category == null) yield return "no category set"; 
+            if (categories == null) yield return "no category set";
         }
     }
 }
