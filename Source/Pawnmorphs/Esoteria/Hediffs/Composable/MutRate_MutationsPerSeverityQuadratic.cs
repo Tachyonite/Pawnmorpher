@@ -8,14 +8,14 @@ using Verse;
 namespace Pawnmorph.Hediffs.Composable
 {
     /// <summary>
-    /// mute rate class where the mutation rate is proportional to a*s^2 + b * s where s is severity of the hediff 
+    /// mute rate class where the mutation rate is proportional to a*s^2 + b * s + c where s is severity of the hediff 
     /// </summary>
     /// <seealso cref="Pawnmorph.Hediffs.Composable.MutRate" />
     public class MutRate_MutationsPerSeverityQuadratic : MutRate
     {
         
         [UsedImplicitly]
-        float a, b;
+        float a, b,c;
 
         /// <summary>
         /// Whether or not the mutation rate is affected by mutagen sensitivity
@@ -42,7 +42,7 @@ namespace Pawnmorph.Hediffs.Composable
         }
 
 
-        float CurrentMutationRate(Hediff_MutagenicBase mBase) => (a * mBase.Severity * mBase.Severity + b * mBase.Severity) * SensitivityMultiplier(mBase);
+        float CurrentMutationRate(Hediff_MutagenicBase mBase) => (a * mBase.Severity * mBase.Severity + b * mBase.Severity + c) * SensitivityMultiplier(mBase);
 
         float SensitivityMultiplier(Hediff_MutagenicBase mBase) => affectedBySensitivity ? mBase.MutagenSensitivity : 1; 
 
