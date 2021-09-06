@@ -1,0 +1,15 @@
+<Defs>
+	<ThingDef ParentName="InjectorBase">
+		<defName>GoatTransformer</defName>
+		<label>mutasyringe, goat</label>
+		<description>A mutagenic injector filled with mechanites and goat DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphGoatTF</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>	
+	</ThingDef>
+</Defs>

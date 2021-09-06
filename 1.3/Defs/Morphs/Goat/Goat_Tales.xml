@@ -1,0 +1,30 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrowGoatHorns</defName>
+		<label>grew goat horns</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing horns</li>
+				<li>image->horns begin to push from [PAWN_nameFull]'s head [circumstance_group]</li>
+				<li>circumstance_phrase->as someone starts touching them</li>
+				<li>desc_sentence->[PAWN_pronoun] examines [PAWN_possessive] new curved horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks pleased with [PAWN_possessive] new horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] new horns.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrowGoatSnout</defName>
+		<label>grew goat snout</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] facing turning into an ovine snout</li>
+				<li>tale_noun->[PAWN_nameDef] growing a goatish snout</li>
+				<li>image->[PAWN_nameDef]'s face begins to push out into a snout [circumstance_group]</li>
+				<li>image->[PAWN_nameDef]'s excited yells turn into bleats [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] continues to maa at those around them.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

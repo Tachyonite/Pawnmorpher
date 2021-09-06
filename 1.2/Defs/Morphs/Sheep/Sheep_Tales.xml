@@ -1,0 +1,46 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrowSheepHorns</defName>
+		<label>grew sheep horns</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing horns</li>
+				<li>image->horns begin to push from [PAWN_nameFull]'s head [circumstance_group]</li>
+				<li>circumstance_phrase->as someone starts touching them</li>
+				<li>desc_sentence->[PAWN_pronoun] examines [PAWN_possessive] new curled horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks pleased with [PAWN_possessive] new horns.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks uneasy with [PAWN_possessive] new horns.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrowSheepSnout</defName>
+		<label>grew sheep snout</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] facing turning into an ovine snout</li>
+				<li>tale_noun->[PAWN_nameDef] growing a sheepish snout</li>
+				<li>image->[PAWN_nameDef]'s face begins to push out into a snout [circumstance_group]</li>
+				<li>image->[PAWN_nameDef]'s excited yells turn into bleats [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] continues to baa at those around them.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrewWool</defName>
+		<label>grew wool</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a thick coat of wool</li>
+				<li>tale_noun->[PAWN_nameDef] begging to get shaved</li>
+				<li>image->curls of white wool begins to grow on [PAWN_nameFull]'s torso [circumstance_group]</li>
+				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with clippers</li>
+				<li>circumstance_phrase->as someone approaches [PAWN_pronoun] with a razor</li>
+				<li>desc_sentence->[PAWN_pronoun] is embarrassed about [PAWN_possessive] shirts not fitting over the wool.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprisingly content about the warmth of the wool.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

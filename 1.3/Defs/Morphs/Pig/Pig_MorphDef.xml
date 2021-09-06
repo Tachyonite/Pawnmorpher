@@ -1,0 +1,24 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>PigMorph</defName>
+		<label>pigmorph</label>
+		<description>A humanoid race resulting from a human being exposed to pig specific mutagens. They are often fond of looking through dirt and grass to find edible mushrooms.</description>
+		<race>Pig</race>
+		<classification>Suid</classification>
+		<categories>
+			<li>Farm</li>
+			<li>Production</li>
+		</categories>
+		<fullTransformation>PawnmorphPigTF</fullTransformation>
+		<partialTransformation>PawnmorphPigTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(211,190,174)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>PigTransformationMemory</transformationMemory>
+			<revertedMemory>PigRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

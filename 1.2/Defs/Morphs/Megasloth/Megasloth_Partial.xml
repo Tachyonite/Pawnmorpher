@@ -1,0 +1,29 @@
+<Defs>
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>PawnmorphMegaslothTFPartial</defName>
+		<label>megamorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with megasloth-esque mutations.</description>
+		<stages>
+			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
+				<painOffset>0.1</painOffset>
+				<hungerRateFactor>3</hungerRateFactor>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<morph>MegaslothMorph</morph>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

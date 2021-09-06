@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>GrewAntlers</defName>
+    <label>grew antlers</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->antlers beginning to grow from [PAWN_nameDef]'s forehead</li>
+				<li>tale_noun->[PAWN_nameDef] growing small antlers</li>
+	      <li>image->[PAWN_nameFull] examining the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] unaware of the growing antlers on [PAWN_possessive] head [circumstance_group]</li>
+        <li>circumstance_phrase->as someone touches [PAWN_possessive] growing antlers</li>
+        <li>desc_sentence->[PAWN_pronoun] is trying to pull then out.</li>
+        <li>desc_sentence->[PAWN_pronoun] is rubbing then against a wall.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewDeerMuzzle</defName>
+		<label>grew deer muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s face became a deer muzzle</li>
+				<li>image->[PAWN_nameFull]'s yells turn into bleats [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] makes sad bleating noises.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

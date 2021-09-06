@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxJawBase">
+		<defName>EtherArcticFoxMuzzle</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherArcticFoxEar</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherArcticFluffyTail</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherArcticFoxFur</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
