@@ -46,9 +46,9 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ConfigErrors))]
         static class AdditionalErrorChecks
         {
-            static IEnumerable<string> Postfix(HediffDef __instance, IEnumerable<string> __result)
+            static IEnumerable<string> Postfix(IEnumerable<string> errors, HediffDef __instance)
             {
-                foreach (string s in __result.MakeSafe())
+                foreach (string s in errors.MakeSafe())
                 {
                     yield return s; 
                 }

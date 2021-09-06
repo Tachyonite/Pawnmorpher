@@ -290,9 +290,14 @@ namespace Pawnmorph.Hediffs
         /// <param name="pawnKind">The pawnkind to transform the pawn into</param>
         /// <param name="gender">The gender of the post-transformation pawn</param>
         /// <param name="tfSettings">additional miscellaneous transformation settings</param>
-        /// <returns><c>true</c> if the transformation succeeded, <c>false</c> otherwise.</returns>
-        protected bool TryTransformPawn(PawnKindDef pawnKind, TFGender gender, TFMiscSettings tfSettings)
+        /// <returns>
+        ///   <c>true</c> if the transformation succeeded, <c>false</c> otherwise.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">tfSettings</exception>
+        protected bool TryTransformPawn(PawnKindDef pawnKind, TFGender gender, [NotNull] TFMiscSettings tfSettings)
         {
+            if (tfSettings == null) throw new ArgumentNullException(nameof(tfSettings));
+
             var mutagen = def.GetMutagenDef() ?? MutagenDefOf.defaultMutagen;
             var request = new TransformationRequest(pawnKind, pawn)
             {

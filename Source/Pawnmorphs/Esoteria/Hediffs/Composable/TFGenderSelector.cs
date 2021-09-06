@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Verse;
 
@@ -7,7 +9,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines the gender of the pawn post-transformation
     /// </summary>
-    public abstract class TFGenderSelector
+    public abstract class TFGenderSelector : IInitializableStage
     {
         /// <summary>
         /// Gets the gender of the pawn post-transformation
@@ -21,6 +23,16 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
     }
 
     /// <summary>
