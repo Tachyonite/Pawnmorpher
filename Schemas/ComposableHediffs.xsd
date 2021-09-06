@@ -107,6 +107,7 @@
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
             <xs:element name="painOffset" minOccurs="0" type="xs:float" />
+            <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
             <!-- mutation specific fields -->
             <xs:element name="spreadOrder" minOccurs="0" type="MutTypeField" />
             <xs:element name="mutationRate" minOccurs="0" type="MutTypeField" />
@@ -115,7 +116,7 @@
             <xs:element name="tfChance" minOccurs="0" type="MutTypeField" />
             <xs:element name="tfTypes" minOccurs="0" type="MutTypeField" />
             <xs:element name="tfGenderSelector" minOccurs="0" type="MutTypeField" />
-            <xs:element name="tfSettings" minOccurs="0" type="MutTypeField" />
+            <xs:element name="tfSettings" minOccurs="0" type="TFMiscSettings" />
 
             <xs:element name="vomitMtbDays" minOccurs="0" type="xs:float" />
             <xs:element name="becomeVisible" minOccurs="0" type="xs:boolean" />
@@ -141,7 +142,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:all>
-        <xs:attribute name="Class" type="CustomHediffStages" use="required" />
+        <xs:attribute name="Class" type="CustomHediffStages" use="optional" />
     </xs:complexType>
 
     <xs:simpleType name="CustomHediffStages">
@@ -156,5 +157,24 @@
             <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax" />
         </xs:sequence>
         <xs:attribute name="Class" type="NonEmptyString" use="required" />
+    </xs:complexType>
+    <xs:complexType name="TFMiscSettings">
+        <xs:all>
+            <xs:element name="tfTale" type="NonEmptyString" minOccurs="0" />
+            <xs:element name="warningLabelOverride" type="NonEmptyString" minOccurs="0" />
+            <xs:element name="warningContentOverride" type="NonEmptyString" minOccurs="0" />
+            <xs:element name="warningLetterDef" type="NonEmptyString" minOccurs="0" />
+
+            <xs:element name="displayWarning" type="xs:boolean" minOccurs="0" />
+            <xs:element name="forcedSapience" type="xs:float" minOccurs="0" />
+            <xs:element name="manhunterSettings" type="ManhunterTfSettings" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="ManhunterTfSettings">
+        <xs:all>
+            <xs:element name="mult" type="xs:float" minOccurs="0" />
+            <xs:element name="offset" type="xs:float" minOccurs="0" />
+        </xs:all>
     </xs:complexType>
 </xs:schema>
