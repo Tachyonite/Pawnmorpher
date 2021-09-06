@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -48,6 +49,12 @@ namespace Pawnmorph.Hediffs.Composable
     public class TFTypes_All : TFTypes
     {
         /// <summary>
+        /// The black list of animals that will not be chosen 
+        /// </summary>
+        [NotNull]
+        public List<PawnKindDef> blackList = new List<PawnKindDef>();  
+
+        /// <summary>
         /// Gets a pawn kind to transform the pawn into
         /// </summary>
         /// <returns>The mutations.</returns>
@@ -55,7 +62,8 @@ namespace Pawnmorph.Hediffs.Composable
         public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
         {
             return FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs
-                    .RandomElement();
+                                       .Where(pk => !blackList.Contains(pk))
+                                       .RandomElement();
         }
     }
 
