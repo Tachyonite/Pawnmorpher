@@ -1,0 +1,164 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="BoomalopePart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>BoomalopeMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+		<defName>EtherBoomalopeSnout</defName>
+		<label>boomasnout</label>
+		<description>The chemfuel-scented muzzle of a boomalope.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. Adaptation has removed some of the difficulty with speaking.</description>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.04</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.20</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<mutationMemory>EtherBoomalopeSnout</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+		<defName>EtherBoomalopeEar</defName>
+		<label>boomalopic</label>
+		<description>A boomalope's small but apparently present ear.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>Do boomalopes have ears? It seems so, seeing as [PAWN_nameDef] seems to have grown one.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+		</stages>
+		<mutationMemory>EtherBoomalopeEar</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BoomalopePart">
+		<defName>EtherChemfuelUdder</defName>
+		<label>chemical cyst</label>
+		<description>A large cyst filled with chemfuel now covers [PAWN_nameDef]'s waist. They can drain it to produce chemfuel.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<parts>
+			<li>Waist</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ChemMilkedMyself</thought>
+				<etherBondThought>ChemMilkedMyselfBond</etherBondThought>
+				<etherBrokenThought>ChemMilkedMyselfBroken</etherBrokenThought>
+				<stages>
+					<li>
+						<daysToProduce>2</daysToProduce>
+						<amount>10</amount>
+						<resource>Chemfuel</resource>
+					</li>
+					<li>
+						<daysToProduce>1</daysToProduce>
+						<amount>8</amount>
+						<resource>Chemfuel</resource>
+					</li>
+					<li>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>6</amount>
+						<resource>Chemfuel</resource>
+					</li>
+					<li>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>4</amount>
+						<resource>Chemfuel</resource>
+						<thought>ProductiveBliss</thought>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<hungerRateFactor>1.0</hungerRateFactor>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.3</minSeverity>
+				<hungerRateFactor>1.3</hungerRateFactor>
+				<label>productive</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.6</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<label>very productive</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.9</minSeverity>
+				<hungerRateFactor>2.0</hungerRateFactor>
+				<label>productive bliss</label>
+				<hediffGivers>
+					<li Class="HediffGiver_RandomDrugEffect">
+						<hediff>CatatonicBreakdown</hediff>
+						<minSeverity>0.50</minSeverity>
+						<baseMtbDays>2</baseMtbDays>
+						<partsToAffect>
+							<li>Brain</li>
+						</partsToAffect>
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

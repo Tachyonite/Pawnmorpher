@@ -1,0 +1,20 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="FoxMorphBase">
+		<defName>FennecFoxMorph</defName>
+		<label>foxmorph</label>
+		<race>Fox_Fennec</race>
+		<categories>
+			<li>Arid</li>
+			<li>Combat</li>
+			<li>Social</li>
+			<li>Canid</li>
+		</categories>
+		<partialTransformation>PawnmorphFennecFoxTFPartial</partialTransformation>
+		<fullTransformation>PawnmorphFennecFoxTF</fullTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(203,167,107)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

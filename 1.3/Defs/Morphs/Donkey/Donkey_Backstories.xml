@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>DonkeymorphGeneral</defName>
+		<title>escaped donkey</title>
+		<titleShort>donkeymorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was mutated into a work-donkey at a less-than-reputable carnival, but was able to escape with some remnant of [PAWN_possessive] humanity intact.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>DonkeyMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>
