@@ -2,8 +2,12 @@
 // last updated 08/24/2021  7:44 PM
 
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -36,6 +40,38 @@ namespace Pawnmorph.HPatches
 
                 _immunityCache[__instance] = __result;
                 return false;
+            }
+        }
+
+        [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ConfigErrors))]
+        static class AdditionalErrorChecks
+        {
+            static IEnumerable<string> Postfix(HediffDef __instance, IEnumerable<string> __result)
+            {
+                foreach (string s in __result.MakeSafe())
+                {
+                    yield return s; 
+                }
+
+                if (__instance.stages != null)
+                {
+                    StringBuilder builder = new StringBuilder(); 
+                    for (var index = 0; index < __instance.stages.Count; index++)
+                    {
+                        IInitializableStage instanceStage = __instance.stages[index] as IInitializableStage;
+                        if(instanceStage == null) continue;
+                        builder.Clear();
+                        foreach (string configError in instanceStage.ConfigErrors(__instance))
+                        {
+                            builder.AppendLine(configError); 
+                        }
+
+                        if (builder.Length > 0)
+                        {
+                            yield return $"in stage {index}:\n" + builder; 
+                        }
+                    }
+                }
             }
         }
     }

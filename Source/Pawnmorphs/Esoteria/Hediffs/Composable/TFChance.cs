@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
@@ -8,7 +10,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines what the chance of a full transformation is
     /// </summary>
-    public abstract class TFChance
+    public abstract class TFChance : IInitializableStage
     {
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
@@ -22,6 +24,16 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
     }
 
     /// <summary>

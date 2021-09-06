@@ -10,7 +10,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines which mutations to add
     /// </summary>
-    public abstract class MutTypes
+    public abstract class MutTypes : IInitializableStage
     {
         /// <summary>
         /// The epsilon for chance comparison.
@@ -38,6 +38,16 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>();
+        }
     }
 
     /// <summary>
@@ -347,6 +357,16 @@ namespace Pawnmorph.Hediffs.Composable
             if (other == null) return false;
             if (!(other is MutTypes_Category oCat)) return false;
             return oCat.category == category; 
+        }
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            if (category == null) yield return "no category set"; 
         }
     }
 }

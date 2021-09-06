@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
@@ -8,7 +10,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines how quickly mutations are gained
     /// </summary>
-    public abstract class MutRate
+    public abstract class MutRate : IInitializableStage
     {
         /// <summary>
         /// How many mutations to queue up for the next second.
@@ -45,6 +47,16 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
     }
 
     /// <summary>
