@@ -284,4 +284,69 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns>The string.</returns>
         public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
     }
+
+    /// <summary>
+    ///     mut type that picks from mutation categories
+    /// </summary>
+    /// <seealso cref="Pawnmorph.Hediffs.Composable.MutTypes" />
+    public class MutTypes_Category : MutTypes
+    {
+        /// <summary>
+        ///     The category to chose from
+        /// </summary>
+        public MutationCategoryDef category;
+
+
+        private List<MutationEntry> _cachedEntries;
+
+
+        [NotNull]
+        private IReadOnlyList<MutationEntry> CachedEntries
+        {
+            get
+            {
+                if (_cachedEntries == null)
+                    _cachedEntries = category.AllMutations.Where(m => m.RestrictionLevel < category.restrictionLevel)
+                                             .Select(m => MutationEntry.FromMutation(m))
+                                             .ToList();
+
+                return _cachedEntries;
+            }
+        }
+
+
+        /// <summary>
+        ///     Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
+        public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
+        {
+            return CachedEntries;
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            return $"choosing from {category.defName}"; 
+        }
+
+        /// <summary>
+        ///     Chechs whether this MutTypes is equivalent to another
+        ///     (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            if (other == this) return true;
+            if (other == null) return false;
+            if (!(other is MutTypes_Category oCat)) return false;
+            return oCat.category == category; 
+        }
+    }
 }
