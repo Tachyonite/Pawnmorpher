@@ -1,0 +1,26 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>BoarMorph</defName>
+		<label>boarmorph</label>
+		<description>A humanoid with many boar like characteristics resulting when a human is exposed to boar specific mutagens. Usually found with thick hide and large tusks making them dangerous combatants.</description>
+		<race>WildBoar</race>
+		<classification>Suid</classification>
+		<categories>
+			<li>Temperate</li>
+			<li>Tropical</li>
+			<li>Combat</li>
+			<li>Production</li>
+		</categories>
+		<fullTransformation>PawnmorphBoarTF</fullTransformation>
+		<partialTransformation>PawnmorphBoarTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(155,116,89)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BoarTransformationMemory</transformationMemory>
+			<revertedMemory>BoarRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

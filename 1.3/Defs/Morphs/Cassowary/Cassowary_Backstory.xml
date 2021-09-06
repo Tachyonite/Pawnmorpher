@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>CassowarymorphGeneral</defName>
+		<title>manhunter victim</title>
+		<titleShort>cassowarymorph</titleShort>
+		<baseDescription>[PAWN_nameDef]'s previous colony was attacked by a group of manhunting cassowaries. After the attack, [PAWN_nameDef] woke up like this to a destroyed colony.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>CassowaryMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>

@@ -1,0 +1,189 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="DeerPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>DeerMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
+		<defName>EtherDeerSnout</defName>
+		<label>cervine snout</label>
+		<description>The long, sleek muzzle of a deer.</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<mutationTale>GrewDeerMuzzle</mutationTale>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<description>[PAWN_nameDef]'s face has become a bestial, deerlike snout with a wide nose that picks up the scents of predators. Unfortunately, talking is difficult.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.60</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>pressing out</labelOverride>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<minSeverity>0</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose, picking up scents of predators.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.40</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose, picking up scents of predators. Adaptation has removed some of the difficulty with speaking.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.08</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose that picks up the scents of predators. [PAWN_possessive] nose is adept at finding the best fruits and veggies, improving [PAWN_possessive] foraging.</description>
+				<minSeverity>1.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.40</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PlantHarvestYield>0.15</PlantHarvestYield>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>5.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
+		<defName>EtherDeerEar</defName>
+		<label>cervine</label>
+		<description>The smooth, long ears of a deer sit atop [PAWN_nameDef]'s head, keeping watch for predators.</description>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
+		<defName>EtherShortTail</defName>
+		<label>short tail</label>
+		<description>A short tail juts out from [PAWN_nameDef]'s spine, flaring up whenever danger is sensed.</description>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.005</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
+		<defName>EtherAntlers</defName>
+		<label>antlers</label>
+		<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<mutationTale>GrewAntlers</mutationTale>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.05</severityPerDay>
+			</li>
+		</comps>
+		<initialSeverity>0.1</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>fawn</label>
+				<statOffsets>
+					<SocialImpact>+0.02</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.3</minSeverity>
+				<label>buck</label>
+				<statOffsets>
+					<SocialImpact>+0.07</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.7</minSeverity>
+				<label>stag</label>
+				<statOffsets>
+					<SocialImpact>+0.15</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="ComboPartBase" Name="HellhoundPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -26,8 +26,7 @@
 			<li>Head</li>
 		</parts>
 		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
 		</stages>
 		<categories>
 			<li>Major</li>
@@ -44,8 +43,7 @@
 			<li>Major</li>
 		</categories>
 		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
 		</stages>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -172,8 +170,7 @@
 			<li>Spine</li>
 		</parts>
 		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">

@@ -1,0 +1,51 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SquirrelTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>Does anyone have any acorns?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>Climbing trees, burying nuts... this is the life!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>These giant teeth, this massive, bushy tail... turn me back, please!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SquirrelRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Back to normal! Those teeth were annoying.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw, but I kind of liked being a squirrel.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm never going to eat nuts again!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But I wanted to be a cute squirrel!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

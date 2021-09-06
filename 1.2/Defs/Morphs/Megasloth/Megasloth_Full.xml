@@ -1,0 +1,69 @@
+<Defs>
+	<HediffDef ParentName="NewAspectedMorphParent">
+		<defName>PawnmorphMegaslothTF</defName>
+		<label>megamorph</label>
+		<description>This person has mechanites in their blood that are slowly mutating them into a megamorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far hairier than normal.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.FullTransformationStage">
+				<label>reeling</label>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<pawnkinds>
+					<li>Megasloth</li>
+				</pawnkinds>
+				<transformationTale>TransformationMisc</transformationTale>
+			</li>
+			<li Class="Pawnmorph.Hediffs.TransformationStage">
+				<label>transforming</label>
+				<minSeverity>0.6</minSeverity>
+				<hungerRateFactor>3</hungerRateFactor>
+				<painOffset>0.1</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<letterText>TransformationStageWarningContent</letterText>
+				<letterLabel>TransformationStageWarningLabel</letterLabel>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage" >
+				<label>changing</label>
+				<minSeverity>0.65</minSeverity>
+				<hungerRateFactor>3</hungerRateFactor>
+				<painOffset>0.1</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<morph>MegaslothMorph</morph>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

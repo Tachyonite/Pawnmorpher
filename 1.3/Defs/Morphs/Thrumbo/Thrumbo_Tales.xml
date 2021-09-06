@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>GrewThrumboHorn</defName>
+    <label>grew thrumbo horn</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] growing a large horn</li>
+				<li>tale_noun->[PAWN_nameDef] growing a large, sharp, horn</li>
+				<li>tale_noun->[PAWN_nameDef] growing a thrumbo horn</li>
+        <li>image->[PAWN_nameFull] rubs [PAWN_possessive] forehead [circumstance_group]</li>
+        <li>circumstance_phrase->while others stair at [PAWN_possessive] horn</li>
+        <li>circumstance_phrase->while someone begins polishing [PAWN_possessive] horn</li>
+        <li>circumstance_phrase->while someone rubs [PAWN_possessive] new horn</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewThrumboMuzzle</defName>
+		<label>grew thrumbo muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] grew a thrumbic muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming that of a thrumbo</li>
+				<li>image->[PAWN_nameFull]'s face begins to push out into a large muzzle [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s head begins to reshape into a large muzzle [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems disturbed by [PAWN_possessive] new thrumbic muzzle.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems oddly pleased with [PAWN_possessive] thrumbic muzzle.</li>
+			</rulesStrings>
+		</rulePack>
+
+	</TaleDef>
+</Defs>

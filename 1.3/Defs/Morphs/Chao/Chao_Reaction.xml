@@ -1,0 +1,18 @@
+<Defs>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>EtherReactionChaosTF</defName>
+		<hediff>FullRandomTFAnyOutcome</hediff>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>What have I become?</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>feeling chaotic</label>
+				<description>My whole body is warping before my eyes! Am I going to survive?!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>
