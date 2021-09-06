@@ -107,9 +107,16 @@
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
             <xs:element name="painOffset" minOccurs="0" type="xs:float" />
+            <!-- mutation specific fields -->
             <xs:element name="spreadOrder" minOccurs="0" type="MutTypeField" />
             <xs:element name="mutationRate" minOccurs="0" type="MutTypeField" />
-            <xs:element name="mutationType" minOccurs="0" type="MutTypeField" />
+            <xs:element name="mutationTypes" minOccurs="0" type="MutTypeField" />
+            <!-- Transformation specific fields  -->
+            <xs:element name="tfChance" minOccurs="0" type="MutTypeField" />
+            <xs:element name="tfTypes" minOccurs="0" type="MutTypeField" />
+            <xs:element name="tfGenderSelector" minOccurs="0" type="MutTypeField" />
+            <xs:element name="tfSettings" minOccurs="0" type="MutTypeField" />
+
             <xs:element name="vomitMtbDays" minOccurs="0" type="xs:float" />
             <xs:element name="becomeVisible" minOccurs="0" type="xs:boolean" />
             <xs:element name="capMods" minOccurs="0">
@@ -140,6 +147,8 @@
     <xs:simpleType name="CustomHediffStages">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Pawnmorph.Hediffs.HediffStage_Mutation" />
+            <xs:enumeration value="Pawnmorph.Hediffs.HediffStage_Transformation" />
+
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="MutTypeField">
