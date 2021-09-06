@@ -22,7 +22,7 @@ namespace Pawnmorph.Hediffs
         /// The rate.
         /// </value>
         [CanBeNull]
-        public MutRate Rate => Props.muteRate;
+        public MutRate Rate => Props.mutRate;
 
         /// <summary>
         /// Gets the types.
@@ -44,7 +44,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The mute rate
         /// </summary>
-        public MutRate muteRate;
+        public MutRate mutRate;
         /// <summary>
         /// The mut types
         /// </summary>
@@ -63,9 +63,9 @@ namespace Pawnmorph.Hediffs
                 yield return configError; 
             }
 
-            if (mutTypes == null && muteRate == null)
+            if (mutTypes == null && mutRate == null)
             {
-                yield return $"neither {nameof(mutTypes)} nor {muteRate} is set!";
+                yield return $"neither {nameof(mutTypes)} nor {mutRate} is set!";
             }
         }
     }

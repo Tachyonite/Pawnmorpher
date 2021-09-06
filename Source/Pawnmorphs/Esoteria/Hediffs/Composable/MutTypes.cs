@@ -252,7 +252,7 @@ namespace Pawnmorph.Hediffs.Composable
     }
 
     /// <summary>
-    /// A MutTypes that selects mutations defined in HediffComp_MutagenicTypes
+    /// A MutTypes that selects mutations defined in HediffComp_Composable
     /// 
     /// Most "dynamic" hediffs that want to share mutation data across stages will
     /// want to use this MutTypes, as MutTypes are stateless.
@@ -271,9 +271,9 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
-            return hediff.TryGetComp<HediffComp_MutTypeBase>()
-                    .GetMutations()
-                    .Select(m => MutationEntry.FromMutation(m, chance));
+            return hediff.TryGetComp<HediffComp_Composable>()
+                         .Types.GetMutations(hediff)
+                         .Select(m => MutationEntry.FromMutation(m.mutation, chance)); 
         }
 
         /// <summary>
@@ -294,6 +294,17 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            var props = parentDef.CompProps<HediffCompProps_Composable>();
+            if (props == null) yield return $"no {nameof(HediffCompProps_Composable)} found!";
+        }
     }
 
     /// <summary>

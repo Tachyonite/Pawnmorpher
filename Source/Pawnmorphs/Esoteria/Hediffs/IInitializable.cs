@@ -32,6 +32,6 @@ namespace Pawnmorph.Hediffs
         /// <param name="parentDef">The parent definition.</param>
         /// <returns></returns>
         [NotNull]
-        IEnumerable<string> ConfigErrors(HediffDef parentDef); 
+        IEnumerable<string> ConfigErrors([NotNull] HediffDef parentDef); 
     }
 }

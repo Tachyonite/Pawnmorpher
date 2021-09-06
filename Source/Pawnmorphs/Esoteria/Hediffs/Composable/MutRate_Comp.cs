@@ -1,6 +1,7 @@
 ﻿// MutRate_Comp.cs created by Iron Wolf for Pawnmorph on 09/05/2021 8:28 PM
 // last updated 09/05/2021  8:28 PM
 
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
@@ -23,7 +24,7 @@ namespace Pawnmorph.Hediffs.Composable
                               hDiff.def.shortHash);
             MutRate rate = comp?.Rate;
             if (rate == null)
-                Log.ErrorOnce($"{hDiff.def} has {nameof(MutRate_Comp)} but {nameof(HediffComp_Composable)} is missing {nameof(HediffCompProps_Composable.muteRate)}!",
+                Log.ErrorOnce($"{hDiff.def} has {nameof(MutRate_Comp)} but {nameof(HediffComp_Composable)} is missing {nameof(HediffCompProps_Composable.mutRate)}!",
                               hDiff.def.shortHash);
             return rate;
         }
@@ -55,6 +56,17 @@ namespace Pawnmorph.Hediffs.Composable
         public override int GetMutationsPerSeverity(Hediff_MutagenicBase hediff, float sevChange)
         {
             return GetCompRate(hediff)?.GetMutationsPerSeverity(hediff, sevChange) ?? 0; 
+        }
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            var props = parentDef.CompProps<HediffCompProps_Composable>();
+            if (props == null) yield return $"no {nameof(HediffCompProps_Composable)}!";
         }
     }
 }
