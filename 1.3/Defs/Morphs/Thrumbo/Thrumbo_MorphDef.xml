@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>ThrumboMorph</defName>
+		<label>thrumbomorph</label>
+		<description>A large humanoid often resembling a bipedal thrumbo, usually sporting the characteristic horn. Much like feral thrumbos they are exceptionally dangerous in combat, and enjoy eating trees.</description>
+		<race>Thrumbo</race>
+		<classification>EvenToedUngulate</classification>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<fullTransformation>PawnmorphThrumboTF</fullTransformation>
+		<partialTransformation>PawnmorphThrumboTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(255,255,255)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ThrumboTransformationMemory</transformationMemory>
+			<revertedMemory>ThrumboRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

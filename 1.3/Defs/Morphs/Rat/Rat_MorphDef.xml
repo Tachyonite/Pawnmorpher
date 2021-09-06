@@ -1,0 +1,27 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>RatMorph</defName>
+		<label>ratmorph</label>
+		<description>A smaller, ratlike humanoid. These former humans share many characteristics with rats, usually making them fragile in combat, but their dextrous paws make them good crafters and artists.</description>
+		<race>Rat</race>
+		<classification>Rodent</classification>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Tropical</li>
+			<li>Crafter</li>
+			<li>Rodent</li>
+		</categories>
+		<fullTransformation>PawnmorphRatTF</fullTransformation>
+		<partialTransformation>PawnmorphRatTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(110,95,82)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>RatTransformationMemory</transformationMemory>
+			<revertedMemory>RatRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

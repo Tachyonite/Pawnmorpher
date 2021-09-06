@@ -1,0 +1,25 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
+		<defName>LabradorRetrieverMorph</defName>
+		<label>labmorph</label>
+		<description>Always dependable and willing to defend their home, labmorphs are a type of dogmorph that everyone will get along with.</description>
+		<race>LabradorRetriever</race>
+		<classification>Canid</classification>
+		<categories>
+			<li>Pet</li>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
+		<fullTransformation>PawnmorphLabradorRetrieverTF</fullTransformation>
+		<partialTransformation>PawnmorphLabradorRetrieverTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(220,198,160)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>LabradorRetrieverTransformationMemory</transformationMemory>
+			<revertedMemory>LabradorRetrieverRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>
