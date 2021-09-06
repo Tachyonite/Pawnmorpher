@@ -330,6 +330,7 @@ namespace Pawnmorph.Hediffs
         {
             var oldStage = cachedStage;
 
+
             cachedStageIndex = CurStageIndex;
             cachedStage = def?.stages?[cachedStageIndex];
 
@@ -363,6 +364,19 @@ namespace Pawnmorph.Hediffs
 
             foreach (var comp in ObserverComps)
                 comp.StageChanged();
+
+            var nextStage = GetNextStage() as HediffStage_Transformation;
+            nextStage?.tfSettings?.TryDisplayWarning(this); //if the next stage is the transformation stage, tell it to display the warning if appropriate 
+        }
+
+        [CanBeNull]
+        HediffStage GetNextStage()
+        {
+            var upward = (this.TryGetComp<HediffComp_SeverityPerDay>()?.SeverityChangePerDay() ?? 1) > 0; //hacky 
+
+            var nIdx = CurStageIndex + (upward ? 1: -1);
+            if (nIdx >= def.stages.Count || nIdx < 0) return null;
+            return def.stages[nIdx]; 
         }
 
         /// <summary>
