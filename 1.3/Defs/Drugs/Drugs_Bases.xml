@@ -63,7 +63,7 @@
 			<li>ExoticMisc</li>
 		</tradeTags>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
+			<drugCategory>None</drugCategory>
 		</ingestible>
 	</ThingDef>
 

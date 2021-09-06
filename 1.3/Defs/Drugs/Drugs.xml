@@ -15,7 +15,7 @@
 		</statBases>
 		<techLevel>Ultra</techLevel>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
+			<drugCategory>None</drugCategory>
 		</ingestible>
 		<tradeTags>
 			<li>ExoticMisc</li>
