@@ -18,7 +18,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// </summary>
         /// <returns>The number of mutations to add.</returns>
         /// <param name="hediff">Hediff.</param>
-        public virtual int GetMutationsPerSecond(Hediff_MutagenicBase hediff)
+        public virtual int GetMutationsPerSecond([NotNull] Hediff_MutagenicBase hediff)
         {
             return 0;
         }
@@ -34,7 +34,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns>The number of mutations to add.</returns>
         /// <param name="hediff">Hediff.</param>
         /// <param name="sevChange">How much severity changed by.</param>
-        public virtual int GetMutationsPerSeverity(Hediff_MutagenicBase hediff, float sevChange)
+        public virtual int GetMutationsPerSeverity([NotNull] Hediff_MutagenicBase hediff, float sevChange)
         {
             return 0;
         }
