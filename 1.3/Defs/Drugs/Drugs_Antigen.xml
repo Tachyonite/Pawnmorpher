@@ -2,7 +2,7 @@
 	<ThingDef ParentName="SerumBase">
 		<defName>Antigen</defName>
 		<label>antigen</label>
-		<description>A concentration of antigenic mechanites that have been distilled from glowbulbs. When injected, it can neutralize any active mutagenic mechanites in the body, but it offers no long term protection against future exposure. Also used in the production of many mutagen-neutralising or reversing agents.
+		<description>A concentration of antigenic mechanites that have been distilled from glowvine seedpods. When injected, it can neutralize any active mutagenic mechanites in the body, but it offers no long term protection against future exposure. Also used in the production of many mutagen-neutralising or reversing agents.
 
 Raw antigen is often used as an emergency treatment for mutagenic diseases and mutagenic buildup. Those who intentionally inject themselves with morph serums also find it a cheap and reliable way to halt the effects of the serum before they fully transform.</description>
 		<graphicData>
@@ -72,9 +72,9 @@ Raw antigen is often used as an emergency treatment for mutagenic diseases and m
 	<ThingDef ParentName="MedicineBase">
 		<defName>PM_HaltCream</defName>
 		<label>halt cream</label>
-		<description>A balm that, when applied to a mutation, has a chance to halt its progression. It can't remove mutations, but if applied soon after an unwanted mutation is gained it can prevent it from getting worse. Higher medical skill increases the chances of success.
+		<description>A balm of concentrated antigen that, when applied to a mutation, has a chance to halt its progression. It can't remove mutations, but if applied immediately after an unwanted mutation is gained it can prevent it from getting worse. Higher medical skill increases the chances of success.
 
-Halting cream is often used by tribal nations to prevent mutagen exposure victims from losing their hands.</description>
+Halting cream is often used by industrial nations that lack the technology to produce reverter to prevent mutagen exposure victims from losing use of their hands.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/HaltingCream</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -106,7 +106,7 @@ Halting cream is often used by tribal nations to prevent mutagen exposure victim
 	<ThingDef ParentName="MedicineBase">
 		<defName>PM_AdaptionCream</defName>
 		<label>adaption cream</label>
-		<description>An advanced balm that, when applied to a mutation, causes the mutation to begin to adapt to a more morph-friendly state. Adapted mutations are more beneficial or less hindering than normal mutations, but not all kinds of mutations can adapt. Paragon morphs are already adapted beyond the limits of adaption cream and so will not benefit further from its effects.
+		<description>An advanced balm of antigen and slurry that, when applied to a mutation, stimulates the mutation to begin adapting to a more morph-friendly state. Adapted mutations are more beneficial or less hindering than normal mutations, though not all kinds of mutations can adapt. Paragon morphs are already adapted beyond the limits of adaption cream and so will not benefit further from its effects.
 
 Adaption cream is often used to partially restore manipulation to unlucky morphs that lose their fingers to mutations.</description>
 		<graphicData>

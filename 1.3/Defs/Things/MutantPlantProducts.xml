@@ -2,7 +2,9 @@
 	<ThingDef ParentName="TFItemBase">
         <defName>Chaobulb</defName>
         <label>chaobulb seedpod</label>
-        <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Said to have mutagenic properties, often used by tribes to connect with nature and bring out their inner warrior animal.</description>
+        <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Mutagenic mechanites replicate within chaobulb plants and congregate in their bulbs, making it a simple, if work-intensive, way to produce more of them.
+
+Raw chaobulbs are often used by tribes to connect with nature and bring out their inner warrior animal.</description>
         <graphicData>
             <texPath>Plants/Items/ChaobulbFruit</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
@@ -44,7 +46,9 @@
     <ThingDef ParentName="TFItemBase">
         <defName>Glowvine</defName>
         <label>glowvine seedpod</label>
-					<description>seedpod from a mutated healroot plant. Can be refined into anti-mutagenic drugs</description>
+		<description>A blue seedpod harvested from a mutated healroot plant. It contains a naturally-occuring strain of mutagenic mechanites known as antigen, which have dampening effects on most other kinds of mutagenic mechanites. Antigen can be extracted and refined into various anti-mutagenic drugs.
+
+When eaten in its raw form, glowvine will slow down the effects of mutagenic mechanites, though it's not powerful to halt them completely. Tribes often use them as a low-tech treatment to lessen the effects of mutagenic diseases and buildup.</description>
         <graphicData>
             <texPath>Plants/Items/GlowvineFruit</texPath>
             <graphicClass>Graphic_StackCount</graphicClass>
@@ -80,7 +84,7 @@
 	
 	<HediffDef>
 		<defName>StabiliserLow</defName>
-		<description>This pawn genome is slightly stabilised against further mutations. This lasts for a day.</description>
+		<description>This pawn has unrefined antigen circulating in their system, slowing the effects of mutagenic mechanites. This lasts for a day.</description>
 		<hediffClass>HediffWithComps</hediffClass>
 		<label>mutations slowed</label>
 		<defaultLabelColor>(179,86,132)</defaultLabelColor>

@@ -3,7 +3,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>UdderPill</defName>
 		<label>mutapill, booster</label>
-		<description>A pill to boost production mutations. Taking multiple doses will further improve production rates, but is not recommended. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.
+		<description>A pill contianing reconfigured mechanites tuned specifically to boost production mutations. Taking them will cause a morph to produce resources more rapidly, at a cost of increased hunger. Taking multiple doses will further improve production rates, but is not recommended. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.
 
 Booster pills are illegal throughout civilized space, but are a staple for certain unethical farms to increase the yield of their "alternative livestock".</description>
 		<graphicData>
@@ -141,7 +141,7 @@ Feral pills are highly illegal in civilized space. At least one exotic animal tr
 	<ThingDef ParentName="PM_PillBase">
 		<defName>DryPills</defName>
 		<label>mutapill, dry</label>
-		<description>A pill continaning targeted mechanites that permanantly suppresses certain unwanted biological processes. It will permanantly disable all production mutations on a pawn, preventing them from producing any resources.
+		<description>A pill containing targeted mechanites that permanantly suppresses certain unwanted biological processes. It will permanantly disable all production mutations on a pawn, preventing them from producing any resources.
 
 Dry pills are often used to make mutagen exposure victims more comfortable until they can be reverted. It also works as a preventative measure against becoming etherbroken/bonded for production morphs who prefer to keep their forms but don't wish to produce.</description>
 		<graphicData>
@@ -184,11 +184,11 @@ Dry pills are often used to make mutagen exposure victims more comfortable until
 	<ThingDef ParentName="PM_PillBase">
 		<defName>AspectReverterPills</defName>
 		<label>mutapill, X-aspect</label>
-		<description>A pill that triggers a mechanite "reboot" within a pawn's body, restoring it to a base state. This has the effect of removing all aspects from a mutated pawn, but will not remove any mutations. It will cure etherbonded and etherbroken pawns, allow dry pawns to produce resources again, and restore boosted pawns to normal production levels once more.
+		<description>A pill that triggers a soft mechanite "reboot" within a pawn's body, restoring it to a base state. This has the effect of removing all aspects from a mutated pawn, but does not remove any mutations. It will cure etherbonded and etherbroken pawns, allow dry pawns to produce resources again, and restore boosted pawns to normal production levels once more.
 
 It will not cure certain species-specific aspects, such as pack or herd mentalties. Warning: Paragon morphs will lose their paragon status if given X-aspect.
 
-X-aspect is most commonly used to restore human-level sapience to etherbroken and etherbonded pawns when reverter can't be found or is unwanted. It does not prevent a pawn from regaining it, however, so a course of dry pills is recommended afterward. However, certain unethical farmers are known to exploit this property to ensure their "alternative livestock" become etherbonded.</description>
+X-aspect is most commonly used to restore human-level sapience to etherbroken and etherbonded pawns when reverter is not an option. It does not prevent a pawn from becoming etherbroken a second time, however, so it is usually followed up with a course of dry pills. However, certain unethical farmers are known to exploit this property to ensure their "alternative livestock" become etherbonded.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills-28</texPath>
 		</graphicData>
@@ -225,7 +225,7 @@ X-aspect is most commonly used to restore human-level sapience to etherbroken an
 		<label>mutapill, stabiliser</label>
 		<description>These pills contain a refined form of antigen in a slow-release capsule.  When taken, they will neutralize any active mutagenic mechanites in the body and prevent further mutations for five days.
 
-Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic diseases and mutagenic buildup when working in highly contaminated areas. It's also officially prescribed alongside mutagen injectors to halt the transformation process when finished, though most mutagen junkies find raw antigen to be a cheaper and equally-effective alternative.</description>
+Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic diseases and mutagenic buildup when working in highly contaminated areas. It's also officially prescribed alongside mutagen injectors to halt the transformation process when finished, though most mutagen junkies prefer raw antigen as a cheaper and equally-effective alternative.</description>
 		<graphicData>
 			<texPath>Things/Item/Drug/pills2</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -274,7 +274,7 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenAccelerator</defName>
 		<label>mutapill, accelerator</label>
-		<description>These pills contain booster mechanites, which will link up with any mutagenic mechanites and enhance their effect.  This greatly increases the rate of mutation for five days. It also increases the likelihood of a pawn fully transforming.
+		<description>These pills contain booster mechanites, which will link up with any mutagenic mechanites in the body and allow them to work faster. This greatly increases the rate of gaining and adapting to mutations for five days. It also increases the likelihood of a pawn fully transforming into an animal.
 
 Accelerators are commonly used by mutagen junkies looking to quickly get their transformation fix. More than a few have misjudged their stabilizer dose and accidentally ended up on all fours.</description>
 		<graphicData>
