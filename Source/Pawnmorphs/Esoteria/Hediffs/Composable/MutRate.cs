@@ -12,6 +12,8 @@ namespace Pawnmorph.Hediffs.Composable
     /// </summary>
     public abstract class MutRate : IInitializableStage
     {
+        static MutRate() { None = new NoneRate();}//a bit hacky but only ever need 1 instance of this 
+
         /// <summary>
         /// How many mutations to queue up for the next second.
         /// 
@@ -57,6 +59,29 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return Enumerable.Empty<string>(); 
         }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            //empty 
+        }
+
+
+        class NoneRate : MutRate //a bit hacky but only ever need 1 instance of this 
+        {
+            //empty 
+        }
+
+        /// <summary>
+        /// instance of <see cref="MutRate"/>. that always returns zero. ie the null rate 
+        /// </summary>
+        /// <value>
+        /// The none.
+        /// </value>
+        public static MutRate None { get; }
     }
 
     /// <summary>

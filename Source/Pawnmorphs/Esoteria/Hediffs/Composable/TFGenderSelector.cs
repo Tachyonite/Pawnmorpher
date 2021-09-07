@@ -33,6 +33,15 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return Enumerable.Empty<string>(); 
         }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public void ResolveReferences(HediffDef parent)
+        {
+            //empty 
+        }
     }
 
     /// <summary>

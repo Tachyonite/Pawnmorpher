@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Composable.Hediffs;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -24,6 +25,12 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         [UsedImplicitly] public string labelOverride;
 
+
+        /// <summary>
+        /// the alert this stage sends out once entered 
+        /// </summary>
+        [UsedImplicitly, CanBeNull] public StageAlert alert; 
+
         /// <summary>
         /// Gets the description override.
         /// </summary>
@@ -44,6 +51,15 @@ namespace Pawnmorph.Hediffs
         public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
             return Enumerable.Empty<string>(); 
+        }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            
         }
     }
 }

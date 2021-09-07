@@ -74,5 +74,19 @@ namespace Pawnmorph.HPatches
                 }
             }
         }
+        [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ResolveReferences)) ]
+        static class AdditionalResolveReferencesChecks
+        {
+            static void Postfix(HediffDef __instance)
+            {
+                if (__instance?.stages != null)
+                {
+                    foreach (IInitializableStage iStage in __instance.stages.OfType<IInitializableStage>())
+                    {
+                        iStage.ResolveReferences(__instance); 
+                    }
+                }
+            }
+        }
     }
 }
