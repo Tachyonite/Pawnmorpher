@@ -1,0 +1,29 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
+		<defName>HuskyMorph</defName>
+		<label>huskymorph</label>
+		<description>A large humanoid canine resembling a husky. These former humans now share many mental traits with their animal counterparts, such as pack-mindedness and keen hunting instincts.</description>
+		<race>Husky</race>
+		<classification>Canid</classification>
+		<categories>
+			<li>Pet</li>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
+		<associatedAnimals>
+			<li>YorkshireTerrier</li>
+			<li>LabradorRetriever</li>
+		</associatedAnimals>
+		<fullTransformation>PawnmorphHuskyTF</fullTransformation>
+		<partialTransformation>PawnmorphHuskyTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(137,133,133)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>HuskyTransformationMemory</transformationMemory>
+			<revertedMemory>HuskyRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,24 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>IguanaMorph</defName>
+		<label>iguanamorph</label>
+		<description>A scaly reptile morph with traits similar to that of an iguana.</description>
+		<race>Iguana</race>
+		<classification>Reptile</classification>
+		<categories>
+			<li>Arid</li>
+			<li>Reptile</li>
+		</categories>
+		<fullTransformation>PawnmorphIguanaTF</fullTransformation>
+		<partialTransformation>PawnmorphIguanaTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(101,115,57)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>IguanaTransformationMemory</transformationMemory>
+			<revertedMemory>IguanaRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

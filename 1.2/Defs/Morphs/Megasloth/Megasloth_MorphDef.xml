@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>MegaslothMorph</defName>
+		<label>slothmorph</label>
+		<description>Slothmorphs are massive herbivorous humanoids covered in fluff. Their fur is very insulating, and can be shaved to make clothing, bedrolls and other fluffy stuff. And no, they won't be your pillow, so don't ask them (it's rude).</description>
+		<race>Megasloth</race>
+		<classification>ThickFur</classification>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<fullTransformation>PawnmorphMegaslothTF</fullTransformation>
+		<partialTransformation>PawnmorphMegaslothTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(191,157,113)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>MegaslothTransformationMemory</transformationMemory>
+			<revertedMemory>MegaslothRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

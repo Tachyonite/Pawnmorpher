@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>HorseTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>I feel like galloping across a steppe.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>Gaze in awe upon me and my glorious mane!</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>My throat feels so hoarse right now. Wait...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>This is awesome, but I wonder what it would feel like to gallop on all fours.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>HorseRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>Finally, maybe all those flies will finally leave me alone.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>No! My glorious mane! It's gone!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Phew, I was sure I was bound for the glue factory soon.</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw, I can't even gallop now.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

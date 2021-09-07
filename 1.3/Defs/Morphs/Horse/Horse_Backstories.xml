@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>HorsemorphGeneral</defName>
+		<title>draft horse</title>
+		<titleShort>horsemorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made use of [PAWN_objective] to pull the ploughs and farm equipment there. [PAWN_pronoun] broke a leg and was sold off, where he made his escape en route to who-knows-where.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>HorseMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>

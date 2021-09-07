@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>CassowaryMorph</defName>
+		<label>cassowarymorph</label>
+		<description>A human who now shares many features with cassowaries due to exposure to mechanite mutagens. They usually have sharp talons and large beaks. Their glare can frighten even the best melee fighters.</description>
+		<race>Cassowary</race>
+		<classification>Ratite</classification>
+		<categories>
+			<li>Arid</li>
+			<li>Avian</li>
+			<li>Combat</li>
+		</categories>
+		<fullTransformation>PawnmorphCassowaryTF</fullTransformation>
+		<partialTransformation>PawnmorphCassowaryTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(76,83,100)</skinColorOverride>
+				<femaleSkinColorOverride>(76,83,100)</femaleSkinColorOverride>
+				<hairColorOverride>(150,200,225)</hairColorOverride>
+				<femaleHairColorOverride>(150,200,225)</femaleHairColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CassowaryTransformationMemory</transformationMemory>
+			<revertedMemory>CassowaryRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,30 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="HerdMorph">
+		<defName>CowMorph</defName>
+		<label>cowmorph</label>
+		<description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk.</description>
+		<race>Cow</race>
+		<classification>Bovid</classification>
+		<categories>
+			<li>Farm</li>
+			<li>Production</li>
+			<li>Bovid</li>
+		</categories>
+		<associatedAnimals>
+			<li>Bison</li>
+			<li>Yak</li>
+		</associatedAnimals>
+		<fullTransformation>PawnmorphCowTF</fullTransformation>
+		<partialTransformation>PawnmorphCowTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(170,170,170)</skinColorOverride>
+				<femaleSkinColorOverride>(200,200,200)</femaleSkinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CowTransformationMemory</transformationMemory>
+			<revertedMemory>CowRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

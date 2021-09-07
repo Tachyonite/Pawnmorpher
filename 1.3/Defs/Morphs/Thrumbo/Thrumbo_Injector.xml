@@ -1,0 +1,15 @@
+<Defs>
+	<ThingDef ParentName="PowerfulInjectorBase">
+		<defName>ThrumboTransformer</defName>
+		<label>mutasyringe, thrumbo</label>
+		<description>A mutagenic injector filled with mechanites and thrumbo DNA. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>PawnmorphThrumboTF</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+</Defs>

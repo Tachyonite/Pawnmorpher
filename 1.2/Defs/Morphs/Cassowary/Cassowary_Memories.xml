@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CassowaryTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>Why do I feel like attacking the next person I see?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>These legs feel so powerful! This beak looks so threatening!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>These feathers are coarse and disgusting. Is this a tumor growing out of my head?!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>I never thought I could feel so strong with avian genes!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CassowaryRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to normal! I very much prefer not being a living dinosaur.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Awww... I'll miss those strong legs.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>No more rough feathers. I'm not going to miss that growth on my head either.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>
