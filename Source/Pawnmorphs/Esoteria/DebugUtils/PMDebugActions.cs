@@ -328,8 +328,6 @@ namespace Pawnmorph.DebugUtils
                 ColonistRelationChanceFactor = 99999,
             };
 
-
-
             var oPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(pawn, fhRequest); //sloppy but good enough for testing 
             FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn, 0.2f);
             var inst = new TransformedPawnSingle
@@ -339,21 +337,11 @@ namespace Pawnmorph.DebugUtils
                 mutagenDef = MutagenDefOf.defaultMutagen
             };
 
-
             var gameComp = Find.World.GetComponent<PawnmorphGameComp>();
             gameComp.AddTransformedPawn(inst);
             if (pawn.Faction == null && pawn.GetCorrectMap() != null)
             {
-                RelatedFormerHumanUtilities.debug = true;
-
-                try
-                {
-                    RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
-                }
-                finally
-                {
-                    RelatedFormerHumanUtilities.debug = false; 
-                }
+                RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
             }
         }
 
