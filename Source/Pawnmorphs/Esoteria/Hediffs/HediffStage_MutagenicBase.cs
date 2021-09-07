@@ -13,7 +13,7 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffStage" />
     /// <seealso cref="Pawnmorph.Hediffs.IDescriptiveStage" />
     /// <seealso cref="Pawnmorph.Hediffs.Hediff_MutagenicBase" />
-    public abstract class HediffStage_MutagenicBase : HediffStage, IDescriptiveStage, IInitializableStage
+    public class HediffStage_MutagenicBase : HediffStage, IDescriptiveStage, IInitializableStage
     {
         /// <summary>
         /// The description.
@@ -27,9 +27,9 @@ namespace Pawnmorph.Hediffs
 
 
         /// <summary>
-        /// the alert this stage sends out once entered 
+        ///     the alert this stage sends out once entered
         /// </summary>
-        [UsedImplicitly, CanBeNull] public StageAlert alert; 
+        [UsedImplicitly] [CanBeNull] public StageAlert alert; 
 
         /// <summary>
         /// Gets the description override.

@@ -21,13 +21,12 @@
 				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting" />
 				<tfSettings>
 					<tfTale>TransformationCanid</tfTale>
-					<displayWarning>true</displayWarning>
 				</tfSettings>
 				<tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
 					<chance>0.1</chance>
 				</tfGenderSelector>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_MutagenicBase">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
 				<painOffset>0.1</painOffset>
@@ -46,6 +45,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<alert />
 			</li>
 			<li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
 				<label>changing</label>

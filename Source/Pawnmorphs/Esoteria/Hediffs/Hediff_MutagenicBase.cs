@@ -334,6 +334,8 @@ namespace Pawnmorph.Hediffs
             cachedStageIndex = CurStageIndex;
             cachedStage = def?.stages?[cachedStageIndex];
 
+            if (cachedStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this); 
+
             if (cachedStage is HediffStage_Mutation newMutStage)
             {
                 cachedStageType = StageType.Mutation;
@@ -365,19 +367,9 @@ namespace Pawnmorph.Hediffs
             foreach (var comp in ObserverComps)
                 comp.StageChanged();
 
-            var nextStage = GetNextStage() as HediffStage_Transformation;
-            nextStage?.tfSettings?.TryDisplayWarning(this); //if the next stage is the transformation stage, tell it to display the warning if appropriate 
         }
 
-        [CanBeNull]
-        HediffStage GetNextStage()
-        {
-            var upward = (this.TryGetComp<HediffComp_SeverityPerDay>()?.SeverityChangePerDay() ?? 1) > 0; //hacky 
-
-            var nIdx = CurStageIndex + (upward ? 1: -1);
-            if (nIdx >= def.stages.Count || nIdx < 0) return null;
-            return def.stages[nIdx]; 
-        }
+      
 
         /// <summary>
         /// Queues up a number of mutations to be added to the pawn.  Negative amounts
