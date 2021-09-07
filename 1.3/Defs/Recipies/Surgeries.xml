@@ -6,6 +6,7 @@
         <workerClass>Pawnmorph.RecipeWorkers.ApplyHaltingCream</workerClass>
         <jobString>Applying halt cream.</jobString>
         <workAmount>1000</workAmount>
+        <anesthetize>false</anesthetize>
         <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
         <ingredients>
             <li>
@@ -30,6 +31,7 @@
         <workerClass>Pawnmorph.RecipeWorkers.ApplyAdaptationCream</workerClass>
         <jobString>Applying adaption cream.</jobString>
         <workAmount>1300</workAmount>
+        <anesthetize>false</anesthetize>
         <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
         <ingredients>
             <li>
