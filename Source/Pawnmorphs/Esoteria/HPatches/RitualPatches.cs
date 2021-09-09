@@ -24,8 +24,8 @@ namespace Pawnmorph.HPatches
                 (TransformedPawn pawn, TransformedStatus status)? tup = pmWorldComp.GetTransformedPawnContaining(p); //something is causing extra funerals for transformed pawns and I can't find it 
                 if (tup != null) //so just doing a dumb brute force fix. this isn't particularly efficient. Too bad! 
                 {
-                    (TransformedPawn tfP, TransformedStatus status) = tup.Value;
-                    if (status == TransformedStatus.Original && tfP.TransformedPawns.Any(pawn => pawn?.Dead != true))
+                    (TransformedPawn _, TransformedStatus status) = tup.Value;
+                    if (status == TransformedStatus.Original)
                         return false;
                 }
                 return true; 
