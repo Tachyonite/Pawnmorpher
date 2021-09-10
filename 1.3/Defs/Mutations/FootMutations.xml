@@ -33,7 +33,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<labelOverride>footpaw</labelOverride>
-				<description>[PAWN_nameDef]'s foot resebles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
+				<description>[PAWN_nameDef]'s foot resembles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
@@ -276,13 +276,13 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef]'s foot has been replaced with a padded avian claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s toes stretch out into large birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
@@ -336,13 +336,13 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian-looking claw. The webbing makes it harder to walk.</description>
+				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian foot. The shape makes it harder to walk, so [PAWN_pronoun] has started waddling. The foot makes audible slapping noises when it hits the ground.</description>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws with webbing between them.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s webbed foot's shape has altered slightly, allowing them to walk normally again.</description>
 			</li>
 		</stages>
 		<comps>
