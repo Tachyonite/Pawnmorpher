@@ -123,7 +123,6 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
-				<label>adapted</label>
 				<description>[PAWN_nameDef]'s toes stretch out into long sharp talons that wouldn't be out of place on a dinosaur.</description>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				<statOffsets>
