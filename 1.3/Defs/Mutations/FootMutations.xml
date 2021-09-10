@@ -27,13 +27,15 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<label>adapted</label>
 				<description>[PAWN_nameDef]'s foot has been wholly replaced by an animalistic paw, severly hampering their chances of ever wearing shoes again.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<labelOverride>footpaw</labelOverride>
-				<description>[PAWN_nameDef]'s foot resebles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s foot resembles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
@@ -74,6 +76,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<label>adapted</label>
 				<description>[PAWN_nameDef]'s foot has mutated into a veritable hoof, with a split down the middle.</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
@@ -121,6 +124,7 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1</minSeverity>
+				<label>adapted</label>
 				<description>[PAWN_nameDef]'s foot has reshaped into a singular hoof.</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
@@ -168,12 +172,14 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
+				<label>adapted</label>
 				<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<labelOverride>hoof-foot</labelOverride>
+				<label>paragon</label>
 				<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
 				<partEfficiencyOffset>0.15</partEfficiencyOffset>
 			</li>
@@ -211,13 +217,14 @@
 				<partEfficiencyOffset>0.04</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>adapted</label>
 				<minSeverity>1.0</minSeverity>
 				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
+				<label>manipulative</label>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<capMods>
@@ -276,13 +283,14 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<label>adapted</label>
+				<description>[PAWN_nameDef]'s foot has been replaced with a padded avian claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s toes stretch out into large birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
@@ -335,14 +343,15 @@
 				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>adapted</label>
 				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian-looking claw. The webbing makes it harder to walk.</description>
+				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian foot. The shape makes it harder to walk, so [PAWN_pronoun] has started waddling. The foot makes audible slapping noises when it hits the ground.</description>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws with webbing between them.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s webbed foot's shape has altered slightly, allowing them to walk normally again.</description>
 			</li>
 		</stages>
 		<comps>

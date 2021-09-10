@@ -97,7 +97,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="CassowaryPart">
 		<defName>EtherCassowaryFoot</defName>
-		<label>ratite</label>
+		<label>clawed ratite</label>
 		<description>A scary cassowary foot.</description>
 		<parts>
 			<li>Foot</li>
@@ -123,7 +123,8 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s toes stretch out into long sharp claws that wouldn't be out of place on a dinosaur.</description>
+				<label>adapted</label>
+				<description>[PAWN_nameDef]'s toes stretch out into long sharp talons that wouldn't be out of place on a dinosaur.</description>
 				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
@@ -131,8 +132,8 @@
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long sharp claws that wouldn't be out of place on a dinosaur. They have adapted to make walking easier.</description>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s toes stretch out into long sharp talons that wouldn't be out of place on a dinosaur. The large talons somehow don't get in the way of movement.</description>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
 				</statOffsets>
