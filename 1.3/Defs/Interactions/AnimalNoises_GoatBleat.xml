@@ -71,9 +71,8 @@
 				<li>talkedabout->[TalkedAbout]</li>
 				<li>talkedabout->[noisedabout]</li>
 				
-				<li>noisedabout->bleated at</li>
-				<li>noisedabout->bleated to</li>
-				<li>noisedabout->baaed at</li>
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->baaed about</li>
 
 				<li>topic(p=2)->[animaltopic]</li>
 				<li>topic->[MorphTopic]</li>

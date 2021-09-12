@@ -16,7 +16,7 @@ namespace Pawnmorph
     /// hediff representing a mutation 
     /// </summary>
     /// <seealso cref="Verse.HediffWithComps" />
-    public class Hediff_AddedMutation : HediffWithComps, IDescriptiveHediff
+    public class Hediff_AddedMutation : Hediff_StageChanges
     {
         [NotNull]
         private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
@@ -113,8 +113,7 @@ namespace Pawnmorph
         {
             get
             {
-                var lOverride = (CurStage as MutationStage)?.labelOverride;
-                var label = string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride;
+                var label = base.LabelBase;
 
                 if (SeverityAdjust?.Halted == true)
                 {
@@ -132,7 +131,7 @@ namespace Pawnmorph
         /// <value>
         /// The description.
         /// </value>
-        public virtual string Description
+        public override string Description // TODO - the extra features here might be better off in Hediff_Descriptive
         {
             get
             {
@@ -260,25 +259,11 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        /// called every tick 
-        /// </summary>
-        public override void Tick()
-        {
-            base.Tick();
-
-            if (_currentStageIndex != CurStageIndex)
-            {
-                _currentStageIndex = CurStageIndex;
-                OnStageChanges(); 
-            }
-        }
-
-        /// <summary>
         /// Called when the hediff stage changes.
         /// </summary>
-        protected virtual void OnStageChanges()
+        protected override void OnStageChanged(HediffStage oldStage, HediffStage newStage)
         {
-            if (CurStage is MutationStage mStage)
+            if (newStage is MutationStage mStage)
             {
                 //check for aspect skips 
                 if (mStage.SkipAspects.Any(e => e.Satisfied(pawn)))
@@ -289,9 +274,7 @@ namespace Pawnmorph
 
             }
 
-
-
-            if (CurStage is IExecutableStage exeStage)
+            if (newStage is IExecutableStage exeStage)
             {
                 exeStage.EnteredStage(this); 
             }

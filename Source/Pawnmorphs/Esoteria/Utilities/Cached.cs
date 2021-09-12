@@ -61,7 +61,6 @@ namespace Pawnmorph.Utilities
         /// </summary>
         public void Recalculate()
         {
-            _value = default;
             _cached = false; 
         }
     }
