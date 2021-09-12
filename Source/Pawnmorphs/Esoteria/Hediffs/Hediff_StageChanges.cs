@@ -33,6 +33,15 @@ namespace Pawnmorph.Hediffs
         public override HediffStage CurStage => cachedStage;
 
         /// <summary>
+        /// Called after the hediff is created, but before it's added to a pawn
+        /// </summary>
+        public override void PostMake()
+        {
+            base.PostMake();
+            RecacheStage(base.CurStageIndex);
+        }
+
+        /// <summary>
         /// Ticks this instance.
         /// </summary>
         public override void Tick()
