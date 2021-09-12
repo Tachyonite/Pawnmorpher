@@ -874,6 +874,8 @@
     <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
     <Compile Include="FormerHumans\FormerHumanPawnGenerator.cs" />
     <Compile Include="Thoughts\Thought_RelatedFormerHuman.cs" />
+    <Compile Include="Hediffs\Hediff_StageChanges.cs" />
+    <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
