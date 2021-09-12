@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -14,14 +15,13 @@ namespace Pawnmorph.Hediffs
 {
     /// <summary>
     ///     hediff comp that acts like severity per day but if affected by the 'Mutation Adaptability Stat'
+    ///     Replicates the behavior of HediffComp_SeverityPerDay instead of inheriting from it for performance reasons
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{T}" />
-    public class Comp_MutationSeverityAdjust : HediffComp_SeverityPerDay
+    public class Comp_MutationSeverityAdjust : HediffComp, IStageChangeObserverComp
     {
         private const float EPSILON = 0.001f;
         private bool _halted;
-
-        private int _curStageIndex = -1;
 
         private float _offset; 
 
@@ -164,7 +164,6 @@ namespace Pawnmorph.Hediffs
         {
             base.CompExposeData();
             Scribe_Values.Look(ref _halted, nameof(_halted));
-            Scribe_Values.Look(ref _curStageIndex, nameof(_curStageIndex));
             Scribe_Values.Look(ref _offset, nameof(SeverityOffset));
         }
 
@@ -184,15 +183,6 @@ namespace Pawnmorph.Hediffs
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
-            base.CompPostTick(ref severityAdjustment);
-
-            int sIndex = parent.CurStageIndex;
-            if (sIndex != _curStageIndex)
-            {
-                _curStageIndex = sIndex;
-                CheckIfHalted();
-            }
-
             int tickRate = TickRate; //prioritize updating spawned pawns over world pawns 
 
             if (Pawn.IsHashIntervalTick(tickRate))
@@ -201,8 +191,19 @@ namespace Pawnmorph.Hediffs
                 MutationAdaptability.Recalculate();
                 IsReverting.Recalculate();
                 ShouldRemove.Recalculate();
+
+                severityAdjustment += SeverityChangePerDay() * tickRate / 60000;
             }
         }
+
+        /// <summary>
+        /// Called when the stage changes on the parent hediff
+        /// </summary>
+        public void OnStageChanged(HediffStage oldStage, HediffStage newStage)
+        {
+            CheckIfHalted();
+        }
+
 
         /// <summary>
         ///     manually purges all cached data to force the adjustment speed to be recalculated the next time it's called
@@ -228,7 +229,7 @@ namespace Pawnmorph.Hediffs
         ///     get the change in severity per day
         /// </summary>
         /// <returns></returns>
-        public override float SeverityChangePerDay()
+        public virtual float SeverityChangePerDay()
         {
             if (IsReverting.Value)
             {
@@ -239,7 +240,7 @@ namespace Pawnmorph.Hediffs
             float maxSeverity = EffectiveMax;
             float minSeverity = Mathf.Min(EffectiveMax, 0); //have the stat influence how high or low the severity can be 
             float sMult = Props.statEffectMult * (EffectiveMax + 1);
-            float sevPerDay = base.SeverityChangePerDay() * sMult;
+            float sevPerDay = Props.severityPerDay * sMult;
             //make sure the severity can only stay between the max and min 
             if (parent.Severity > maxSeverity) sevPerDay = Mathf.Min(0, sevPerDay);
             if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay);
@@ -287,6 +288,21 @@ namespace Pawnmorph.Hediffs
         }
 
         /// <summary>
+        /// Returns a debug string added to the debug tooltip for hediffs with this comp
+        /// </summary>
+        /// <returns>The debug string.</returns>
+        public override string CompDebugString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(base.CompDebugString());
+            if (!Pawn.Dead)
+            {
+                stringBuilder.AppendLine("severity/day: " + SeverityChangePerDay().ToString("F3"));
+            }
+            return stringBuilder.ToString().TrimEndNewlines();
+        }
+
+        /// <summary>
         /// Generates the random reversion speed.  Each mutation will have a different reversion speed so that they don't
         /// all disappear at exactly the same time.  The distribution is weighted so that many mutations have similar speeds,
         /// but a significant number of outliers are slower.  This means morphs will start losing mutations quickly, but the
@@ -309,9 +325,14 @@ namespace Pawnmorph.Hediffs
     ///     comp properties for mutation adjust hediff comp
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{T}" />
-    public class CompProperties_MutationSeverityAdjust : HediffCompProperties_SeverityPerDay
+    public class CompProperties_MutationSeverityAdjust : HediffCompProperties
     {
         private const float EPSILON = 0.01f;
+
+        /// <summary>
+        /// The severity change per day.
+        /// </summary>
+        public float severityPerDay;
 
         /// <summary>
         ///     The stat effect multiplier

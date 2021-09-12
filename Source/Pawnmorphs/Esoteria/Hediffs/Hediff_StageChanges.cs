@@ -18,6 +18,15 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private HediffStage cachedStage;
 
         private List<IStageChangeObserverComp> observerComps;
+        private IEnumerable<IStageChangeObserverComp> ObserverComps
+        {
+            get
+            {
+                if (observerComps == null)
+                    observerComps = comps.MakeSafe().OfType<IStageChangeObserverComp>().ToList();
+                return observerComps;
+            }
+        }
 
         // CurStageIndex is kind of expensive to calculate, so use the cache when possible
         public override int CurStageIndex => cachedStageIndex;
@@ -64,11 +73,10 @@ namespace Pawnmorph.Hediffs
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), -1);
+            Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), base.CurStageIndex);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                observerComps = comps.MakeSafe().OfType<IStageChangeObserverComp>().ToList();
                 RecacheStage(cachedStageIndex);
             }
         }
