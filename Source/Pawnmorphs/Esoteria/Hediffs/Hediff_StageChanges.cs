@@ -47,7 +47,7 @@ namespace Pawnmorph.Hediffs
 
                 OnStageChanged(oldStage, cachedStage);
 
-                foreach (var comp in observerComps)
+                foreach (var comp in ObserverComps)
                     comp.OnStageChanged(oldStage, cachedStage);
             }
         }
