@@ -129,10 +129,6 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        // HediffComp_SeverityPerDay only updates severity once every 200 ticks so faster tickrates do nothing
-        // World pawns get a slower tickrate here so that large numbers of world morphs don't slow the game down
-        private int TickRate => Pawn.SpawnedOrAnyParentSpawned ? 200 : 600;
-
         // These values only get recalculated every so often because of how expensive they are to calculate
         //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
         private readonly Cached<float> StatAdjust;
@@ -183,16 +179,14 @@ namespace Pawnmorph.Hediffs
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
-            int tickRate = TickRate; //prioritize updating spawned pawns over world pawns 
-
-            if (Pawn.IsHashIntervalTick(tickRate))
+            if (Pawn.IsHashIntervalTick(200))
             {
                 StatAdjust.Recalculate();
                 MutationAdaptability.Recalculate();
                 IsReverting.Recalculate();
                 ShouldRemove.Recalculate();
 
-                severityAdjustment += SeverityChangePerDay() * tickRate / 60000;
+                severityAdjustment += SeverityChangePerDay() / 300f; // 60000 / 200
             }
         }
 
@@ -238,8 +232,8 @@ namespace Pawnmorph.Hediffs
 
             if (Halted) return 0;
             float maxSeverity = EffectiveMax;
-            float minSeverity = Mathf.Min(EffectiveMax, 0); //have the stat influence how high or low the severity can be 
-            float sMult = Props.statEffectMult * (EffectiveMax + 1);
+            float minSeverity = Mathf.Min(maxSeverity, 0); //have the stat influence how high or low the severity can be
+            float sMult = Props.statEffectMult * (maxSeverity + 1);
             float sevPerDay = Props.severityPerDay * sMult;
             //make sure the severity can only stay between the max and min 
             if (parent.Severity > maxSeverity) sevPerDay = Mathf.Min(0, sevPerDay);
