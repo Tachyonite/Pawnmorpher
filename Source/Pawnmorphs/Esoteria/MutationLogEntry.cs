@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -18,15 +19,39 @@ namespace Pawnmorph
     /// <summary> Log entry for when a pawn mutates. </summary>
     public class MutationLogEntry : LogEntry
     {
+
         // Rule pack constants.
         private const string PAWN_IDENTIFIER = "PAWN";
         private const string MUTATION_IDENTIFIER = "MUTATION";
         private const string RP_ROOT_RULE = "mutation_log";
         private const string PART_LABEL = "PART";
 
+        /// <summary>
+        /// identifier for a block of text representing the cause of the mutation from a mutagen 
+        /// </summary>
+        public const string MUTAGEN_CAUSE_STRING = "mutagen_cause";
+
         private HediffDef _mutationDef;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
+        [CanBeNull] private MutagenDef _mutagenCause;
+        [CanBeNull] private MutationCauses _causes; 
+
+        
+        [NotNull] private MutagenDef BestMutagenCause
+        {
+            get
+            {
+                if (_mutagenCause == null)
+                {
+                    _mutagenCause = _causes?.GetAllCauses<MutagenDef>()?.FirstOrDefault()?.causeDef; 
+                    
+                }
+
+                return _mutagenCause ?? MutagenDefOf.defaultMutagen; 
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
         /// </summary>
@@ -34,13 +59,32 @@ namespace Pawnmorph
         {
         }
 
+
+        /// <summary>
+        /// Gets the causes.
+        /// </summary>
+        /// <value>
+        /// The causes.
+        /// </value>
+        [NotNull]
+        public MutationCauses Causes
+        {
+            get
+            {
+                if(_causes == null) _causes = new MutationCauses();
+                
+                return _causes; 
+            }
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutationDef">The mutation definition.</param>
         /// <param name="mutatedParts">The mutated parts.</param>
-        public MutationLogEntry(Pawn pawn, HediffDef mutationDef,
+        public MutationLogEntry(Pawn pawn, HediffDef mutationDef, [CanBeNull] MutagenDef mutagenCause, 
                                 IEnumerable<BodyPartDef> mutatedParts)
         {
             _mutatedRecords = mutatedParts.ToList();
@@ -80,7 +124,7 @@ namespace Pawnmorph
             Scribe_Defs.Look(ref _mutationDef, nameof(_mutationDef));
             Scribe_Collections.Look(ref _mutatedRecords, nameof(_mutatedRecords), LookMode.Def);
             Scribe_References.Look(ref _pawn, nameof(_pawn));
-
+            Scribe_Deep.Look(ref _causes, "causes"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit) _mutatedRecords = _mutatedRecords ?? new List<BodyPartDef>();
         }
 
@@ -109,6 +153,8 @@ namespace Pawnmorph
             return
                 $"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
         }
+
+        private const string UNKNOWN_CAUSE = "PmUnkownMutagenCause"; 
 
         /// <summary>
         /// create the main log text 
@@ -143,6 +189,18 @@ namespace Pawnmorph
                 IEnumerable<Rule> partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
                 IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);
 
+                if (_causes != null)
+                {
+                    grammarRequest.Rules.AddRange(_causes.GenerateRules());
+                }
+
+                if (!grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
+                {
+                    grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
+                }
+
+
+
                 // Add the rules.
                 grammarRequest.Rules.AddRange(pawnR);
                 grammarRequest.Rules.AddRange(mutR);
@@ -158,12 +216,15 @@ namespace Pawnmorph
                 Rand.PopState(); // Make sure to always pop rand.
             }
 
-            return _mutationDef.LabelCap; //TODO generate string 
+            return _mutationDef?.LabelCap ?? "INVALID MUTATION LOG ENTRY"; 
         }
+
 
         private const string MODIFIER_RULE_KEYWORD = "modifier";
         private const string VOWEL_CHECK = "aeiouAEIOU";
 
+
+        
 
         /// <summary>
         /// if a word starts with a vowel, return 'an' else return 'a'

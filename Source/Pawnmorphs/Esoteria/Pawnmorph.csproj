@@ -391,6 +391,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
@@ -524,6 +525,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ICauseRulePackContainer.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
@@ -558,6 +560,9 @@
     <Compile Include="Mental\State_Hunting.cs" />
     <Compile Include="MutagenicBuildupUtilities.cs" />
     <Compile Include="MutationCategoryDefOf.cs" />
+    <Compile Include="MutationCauses.CauseEntry.cs" />
+    <Compile Include="MutationCauses.cs" />
+    <Compile Include="MutationCauseUtility.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_Hellhound.cs" />
@@ -579,6 +584,7 @@
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />

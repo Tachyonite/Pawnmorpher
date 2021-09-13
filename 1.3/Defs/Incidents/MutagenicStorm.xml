@@ -29,6 +29,11 @@
 		<endMessage>The worst of the toxic fallout has settled.</endMessage>
 		<letterText>An unknown source far away has released a plume of mutagenic mechanites into the air, which are now passing over the area. \n\nAnyone outside will slowly mutate, and as the number of mechanites in their system increases, the mutations will increase in severity. \n\nIt can last from a few days to over a season.</letterText>
 		<canBePermanent>true</canBePermanent>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>PM_FalloutMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</GameConditionDef>
 	
 	

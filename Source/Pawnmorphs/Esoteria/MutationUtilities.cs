@@ -718,11 +718,6 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
                 TaleRecorder.RecordTale(mutation.mutationTale, pawn);
 
-            if (aEffects.AddLogEntry && !addedParts.NullOrEmpty())
-            {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p?.Part != null).Select(p => p.Part.def).Distinct());
-                Find.PlayLog?.Add(logEntry);
-            }
 
             if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
@@ -738,12 +733,7 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
                 TaleRecorder.RecordTale(mutation.mutationTale, pawn);
 
-            if (aEffects.AddLogEntry && addedParts?.Part != null)
-            {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Part.def);
-                Find.PlayLog?.Add(logEntry);
-            }
-
+         
             if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
         }
