@@ -109,9 +109,7 @@ namespace Pawnmorph.ThingComps
             if (!CanBeFormerHuman())
                 return false;
 
-            // The former human chance is 0-100 for legacy reasons
-            // TODO see if we can migrate these settings to 0-1
-            return Rand.Value < (PawnmorpherMod.Settings.formerChance / 100f);
+            return Rand.Value < PawnmorpherMod.Settings.formerChance;
         }
 
         /// <summary>

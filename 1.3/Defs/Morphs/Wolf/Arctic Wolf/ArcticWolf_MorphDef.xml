@@ -12,7 +12,7 @@
 		<partialTransformation>PawnmorphArcticWolfTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(104,98,93)</skinColorOverride>
+				<skinColorOverride>(249,242,221)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>

@@ -22,6 +22,7 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 using AlienRace;
+using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -313,6 +314,35 @@ namespace Pawnmorph.DebugUtils
 
             FormerHumanUtilities.MakeAnimalSapient(pawn, Rand.Range(0.1f, 1f));
 
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void MakeAnimalRelatedFormerHuman(Pawn pawn)
+        {
+            if (pawn == null) return;
+            if (pawn.GetSapienceState() != null) return;
+            if (!pawn.RaceProps.Animal) return;
+
+            var fhRequest = new FHGenerationSettings
+            {
+                ColonistRelationChanceFactor = 99999,
+            };
+
+            var oPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(pawn, fhRequest); //sloppy but good enough for testing 
+            FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn, 0.2f);
+            var inst = new TransformedPawnSingle
+            {
+                original = oPawn,
+                animal = pawn,
+                mutagenDef = MutagenDefOf.defaultMutagen
+            };
+
+            var gameComp = Find.World.GetComponent<PawnmorphGameComp>();
+            gameComp.AddTransformedPawn(inst);
+            if (pawn.Faction == null && pawn.GetCorrectMap() != null)
+            {
+                RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
+            }
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]

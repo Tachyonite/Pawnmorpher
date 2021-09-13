@@ -2,7 +2,7 @@
 	<ThingDef ParentName="TrapIEDBase">
 		<defName>TrapIED_TF</defName>
 		<label>IED mutagen trap</label>
-		<description>A pair of mutagenic shells connected to a touch-activated trigger. The explosion can mutate organics caught in the blast. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+		<description>A pair of mutagenic shells connected to a trigger which detonates on touch or bullet impact. The explosion can mutate organics caught in the blast. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
 		<graphicData>
 			<texPath>Things/Building/tfIED</texPath>
 		</graphicData>
@@ -20,6 +20,11 @@
 				<postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
 				<postExplosionSpawnChance>0.5</postExplosionSpawnChance>
 				<postExplosionSpawnThingCount>3</postExplosionSpawnThingCount>
+				<startWickOnDamageTaken>
+					<li>Bullet</li>
+					<li>Arrow</li>
+					<li>ArrowHighVelocity</li>
+				</startWickOnDamageTaken>
 			</li>
 		</comps>
 		<specialDisplayRadius>5.9</specialDisplayRadius>
