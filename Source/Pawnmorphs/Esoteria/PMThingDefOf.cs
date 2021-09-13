@@ -20,6 +20,7 @@ namespace Pawnmorph
         public static ThingDef Morphsilk;
         public static ThingDef CrashedMutagenicShipPartIncoming;
         public static ThingDef Mutanite;
+        public static ThingDef Neutroamine; 
 
 
         public static ThingDef EggChickenUnfertilized;
