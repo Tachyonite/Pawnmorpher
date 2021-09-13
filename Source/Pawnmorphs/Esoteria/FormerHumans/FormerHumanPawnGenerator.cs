@@ -58,7 +58,7 @@ namespace Pawnmorph.FormerHumans
         /// </summary>
         /// <param name="settings">The settings of the generated pawn</param>
         /// <returns></returns>
-        public static Pawn GenerateRandomPawn(FHGenerationSettings settings = default)
+        public static Pawn GenerateRandomPawn(in FHGenerationSettings settings = default)
         {
             PawnKindDef kind = settings.PawnKind ?? PawnKindDefOf.SpaceRefugee;
             Faction faction = settings.Faction ?? DownedRefugeeQuestUtility.GetRandomFactionForRefugee();
@@ -66,7 +66,7 @@ namespace Pawnmorph.FormerHumans
             var request = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                     fixedBiologicalAge: settings.BioAge, fixedChronologicalAge: settings.ChronoAge,
                     fixedBirthName: settings.FirstName, fixedLastName: settings.LastName,
-                    fixedGender: settings.Gender);
+                    fixedGender: settings.Gender, colonistRelationChanceFactor:settings.ColonistRelationChanceFactor ?? 1);
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             CleanupPawn(pawn);
             return pawn;
@@ -224,6 +224,11 @@ namespace Pawnmorph.FormerHumans
         /// </summary>
         /// <value>The first name.</value>
         public string LastName { get; set; }
+
+        ///<summary>
+        /// multiplier on the chance the former human is related to a colonist 
+        /// </summary>
+        public float? ColonistRelationChanceFactor { get; set; }
 
         /// <summary>
         /// The fixed gender of the pawn, if set

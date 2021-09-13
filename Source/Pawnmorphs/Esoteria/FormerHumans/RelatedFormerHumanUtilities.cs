@@ -1,4 +1,8 @@
-﻿using Pawnmorph.Letters;
+﻿using System;
+using System.Text;
+using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
+using Pawnmorph.Letters;
 using RimWorld;
 using Verse;
 
@@ -65,24 +69,49 @@ namespace Pawnmorph.FormerHumans
         /// Generates an offer quest from this former human to join the colony
         /// </summary>
         /// <param name="formerHuman">The former human.</param>
-        public static void OfferJoinColonyIfRelated(Pawn formerHuman)
+        public static void OfferJoinColonyIfRelated([NotNull] Pawn formerHuman)
         {
+            if (formerHuman == null) throw new ArgumentNullException(nameof(formerHuman));
+
+            StringBuilder debugString = new StringBuilder();
+
             // Don't let former humans offer to join if they're in trade ships,
             // dead, part of the colony, etc.
             if (!EligableToJoinColony(formerHuman))
+            {
+                DebugLogUtils.Pedantic($"{formerHuman.Name?.ToStringFull ?? formerHuman.Label} not eligable to join the colony");
                 return;
+            }
 
             (var colonist, var relation) = formerHuman.GetRelatedColonistAndRelation();
+
+            if (relation != null)
+                debugString.AppendLine($"found {relation.label} for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
+            else
+                debugString.AppendLine($"no relation for ");
+
             // TODO should bonds be excluded from this?
             if (relation != null && relation != PawnRelationDefOf.Bond)
             {
                 // TODO this doesn't work for newly-generated former humans.
                 // Need to refactor the way they're generated to ensure the sapience tracker is in a good state
-                if (formerHuman.GetQuantizedSapienceLevel() <= SapienceLevel.Conflicted) //sapience level enum is in reverse order. Sapient < Feral 
+                SapienceLevel? qSapience = formerHuman.GetQuantizedSapienceLevel();
+                debugString.AppendLine($"{formerHuman.Name?.ToStringFull ?? formerHuman.Label} sapience level is {qSapience}");
+
+                if (qSapience <= SapienceLevel.Conflicted
+                ) //sapience level enum is in reverse order. Sapient < Feral 
+                {
+                    debugString.AppendLine($"Generating sapient letter for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
                     ChoiceLetter_FormerHumanJoins.SendSapientLetterFor(formerHuman, colonist, relation);
+                }
                 else
+                {
+                    debugString.AppendLine($"Generating feral letter for {formerHuman.Name?.ToStringFull ?? formerHuman.Label}");
                     ChoiceLetter_FormerHumanJoins.SendFeralLetterFor(formerHuman, colonist, relation);
+                }
             }
+
+            DebugLogUtils.Pedantic(debugString.ToString());
         }
 
         /// <summary>

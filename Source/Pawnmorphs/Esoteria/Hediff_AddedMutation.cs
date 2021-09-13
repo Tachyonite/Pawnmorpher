@@ -16,7 +16,7 @@ namespace Pawnmorph
     ///     hediff representing a mutation
     /// </summary>
     /// <seealso cref="Verse.HediffWithComps" />
-    public class Hediff_AddedMutation : HediffWithComps, IDescriptiveHediff
+    public class Hediff_AddedMutation : Hediff_StageChanges
     {
         /// <summary>
         ///     The mutation description
@@ -39,29 +39,6 @@ namespace Pawnmorph
         private bool _waitingForUpdate;
 
         private int _currentStageIndex = -1;
-
-        /// <summary>
-        ///     Gets the description.
-        /// </summary>
-        /// <value>
-        ///     The description.
-        /// </value>
-        public virtual string Description
-        {
-            get
-            {
-                string desc;
-                if (!_descCache.TryGetValue(CurStageIndex, out desc))
-                {
-                    var builder = new StringBuilder();
-                    CreateDescription(builder);
-                    desc = builder.ToString();
-                    _descCache[CurStageIndex] = desc;
-                }
-
-                return desc;
-            }
-        }
 
 
         /// <summary>
@@ -135,8 +112,7 @@ namespace Pawnmorph
         {
             get
             {
-                string lOverride = (CurStage as MutationStage)?.labelOverride;
-                string label = string.IsNullOrEmpty(lOverride) ? base.LabelBase : lOverride;
+                var label = base.LabelBase;
 
                 if (SeverityAdjust?.Halted == true) label += " (halted)";
 
@@ -150,6 +126,23 @@ namespace Pawnmorph
         /// <value>
         ///     The causes.
         /// </value>
+        public override string Description // TODO - the extra features here might be better off in Hediff_Descriptive
+        {
+            get
+            {
+                string desc;
+                if (!_descCache.TryGetValue(CurStageIndex, out desc))
+                {
+                    StringBuilder builder = new StringBuilder();
+                    CreateDescription(builder);
+                    desc = builder.ToString();
+                    _descCache[CurStageIndex] = desc;
+                }
+
+                return desc;
+            }
+        }
+
         [NotNull]
         public MutationCauses Causes => _causes;
 
@@ -217,9 +210,24 @@ namespace Pawnmorph
         /// </value>
         public bool ProgressionHalted => SeverityAdjust?.Halted == true;
 
-     
+
 
         /// <summary>
+        /// Called when the hediff stage changes.
+        /// </summary>
+        protected override void OnStageChanged(HediffStage oldStage, HediffStage newStage)
+        {
+            if (newStage is MutationStage mStage)
+            {
+                //check for aspect skips 
+                if (mStage.SkipAspects.Any(e => e.Satisfied(pawn)))
+                {
+                    SkipStage();
+                    return;
+                }
+            }
+        }
+
         ///     checks if this mutation blocks the addition of a new mutation at the given part
         /// </summary>
         /// <param name="otherMutation">The other mutation.</param>

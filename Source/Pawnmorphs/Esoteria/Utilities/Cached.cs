@@ -23,7 +23,11 @@ namespace Pawnmorph.Utilities
         /// </value>
         public T Value {
             get {
-                if (!_cached) _value = valueGetter.Invoke();
+                if (!_cached)
+                {
+                    _value = valueGetter.Invoke();
+                    _cached = true;
+                }
                 return (T)_value;
             }
         }
@@ -57,7 +61,6 @@ namespace Pawnmorph.Utilities
         /// </summary>
         public void Recalculate()
         {
-            _value = default;
             _cached = false; 
         }
     }

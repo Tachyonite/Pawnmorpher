@@ -2,7 +2,9 @@
 	<ThingDef ParentName="SerumBase">
 		<defName>MechaniteSlurry</defName>
 		<label>mechanite slurry</label>
-		<description>Mechanites suspended in an organic binding agent composes this pseudofluid. It is not recommended to ingest unless absolutely necesary, as it causes constant and rapid mutation.</description>
+		<description>Mechanites suspended in an organic binding agent composes this pseudofluid. It is strongly recommended not to ingest raw slurry, as it will cause constant, rapid, and uncontrolled mutation. With further processing, it can be refined into safer and more controlled forms.
+
+Although it induces rapid and uncontrollable mutations, some desperate individuals are known to injest it in the hopes it may provide them useful mutations, or simply because they enjoy the transformation process. Some rimworld warlords are known to feed prisoners slurry to make them into production slaves, or simply as a form of sadistic entertainment.</description>
 		<graphicData>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<texPath>Things/Item/Drug/Slurry</texPath>

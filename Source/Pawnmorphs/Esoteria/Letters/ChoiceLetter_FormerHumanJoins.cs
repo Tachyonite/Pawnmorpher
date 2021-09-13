@@ -16,9 +16,9 @@ namespace Pawnmorph.Letters
         private const string TITLE = "PMLetterFormerHumanJoinTitle";
         private const string TEXT = "PMLetterFormerHumanJoinContent";
 
-        private const string FERAL_LABEL = "PMLetterFormerHumanJoinLabel";
-        private const string FERAL_TITLE = "PMLetterFormerHumanJoinTitle";
-        private const string FERAL_TEXT = "PMLetterFormerHumanJoinContent";
+        private const string FERAL_LABEL = "PMLetterFormerHumanJoinFeralLabel";
+        private const string FERAL_TITLE = "PMLetterFormerHumanJoinFeralTitle";
+        private const string FERAL_TEXT = "PMLetterFormerHumanJoinFeralContent";
 
         private const string ACCEPT = "AcceptButton";
         private const string REJECT = "PMRejectUpset";

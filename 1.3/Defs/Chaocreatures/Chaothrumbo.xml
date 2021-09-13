@@ -135,7 +135,7 @@
 					</shadowData>
 				</bodyGraphicData>
 				<dessicatedBodyGraphicData>
-					<texPath>Things/Pawn/Animal/Thrumbo/Dessicated_Thrumb</texPath>
+					<texPath>Things/Pawn/Animal/Thrumbo/Dessicated_Thrumbo</texPath>
 					<drawSize>2.5</drawSize>
 				</dessicatedBodyGraphicData>
 			</li>
