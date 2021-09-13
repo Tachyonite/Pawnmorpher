@@ -429,6 +429,7 @@
     <Compile Include="Hediffs\IInitializable.cs" />
     <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
+    <Compile Include="Hediffs\MorphHediffGenerator.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
     <Compile Include="Hediffs\MutagenicPain.cs" />
@@ -777,6 +778,7 @@
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="Things\ExpandedPlant.cs" />
+    <Compile Include="Things\InjectorGenerator.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
