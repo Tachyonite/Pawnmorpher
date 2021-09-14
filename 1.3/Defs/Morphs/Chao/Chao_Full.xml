@@ -1,7 +1,7 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
 	<HediffDef Name="PM_RandomTfBase" ParentName="MorphParent">
 		<defName>FullRandomTFAnyOutcome</defName>
-		<label>Chaomorph</label>
+		<label>chaomorph</label>
 		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
 		<stages>
 			<li>
