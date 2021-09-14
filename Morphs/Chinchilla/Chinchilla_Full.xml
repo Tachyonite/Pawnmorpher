@@ -16,7 +16,7 @@
 				<pawnkinds>
 					<li>Chinchilla</li>
 				</pawnkinds>
-				<transformationTale>TransformationCanid</transformationTale>
+				<transformationTale>TransformationMisc</transformationTale>
 			</li>
 			<li Class="Pawnmorph.Hediffs.TransformationStage">
 				<label>transforming</label>
