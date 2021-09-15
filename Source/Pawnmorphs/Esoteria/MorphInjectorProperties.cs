@@ -65,6 +65,14 @@ namespace Pawnmorph
         [Unsaved] private List<ThingDefCountClass> _costListGenerated;
 
         /// <summary>
+        /// Gets the recipe maker.
+        /// </summary>
+        /// <value>
+        /// The recipe maker.
+        /// </value>
+        public RecipeMakerProperties RecipeMaker => _recipeMakerGenerated; 
+
+        /// <summary>
         /// Gets the cost list.
         /// </summary>
         /// <value>
@@ -122,6 +130,18 @@ namespace Pawnmorph
                     texPath = "Things/Item/Drug/Specific",
                     graphicClass = typeof(Graphic_Single)
                 };
+
+            if (recipeMaker != null) _recipeMakerGenerated = recipeMaker;
+            else
+            {
+                _recipeMakerGenerated = new RecipeMakerProperties()
+                {
+                    productCount = 1,
+                    recipeUsers = new List<ThingDef>() { PMThingDefOf.PM_InjectorLab},
+                    researchPrerequisite = PMResearchProjectDefOf.Injectors,
+                  useIngredientsForColor  = false,
+                };
+            }
         }
     }
 

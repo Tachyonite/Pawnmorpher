@@ -39,5 +39,7 @@ namespace Pawnmorph
 
         public static ThingDef PM_Filth_Slurry;
         public static ThingDef PM_NewMutagenicChamber;
+
+        public static ThingDef PM_InjectorLab; 
     }
 }
