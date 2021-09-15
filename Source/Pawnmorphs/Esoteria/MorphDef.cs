@@ -83,12 +83,34 @@ namespace Pawnmorph
         [CanBeNull] public HediffDef fullTransformation;
 
         /// <summary>
+        /// properties for the generated full tf hediff 
+        /// </summary>
+        [CanBeNull] public MorphHediffProperties fullTfHediffProps; 
+        
+
+        /// <summary>
         ///     The partial transformation chain
         /// </summary>
         [CanBeNull] public HediffDef partialTransformation;
 
+        /// <summary>
+        /// properties for the generated partial tf hediff 
+        /// </summary>
+        [CanBeNull] public MorphHediffProperties partialTfHediffProps;
+
+        /// <summary>
+        /// The injector definition
+        /// </summary>
+        [CanBeNull] public ThingDef injectorDef;
+
+        /// <summary>
+        /// The properties for the generated injector def 
+        /// </summary>
+        [CanBeNull] public MorphInjectorProperties injectorProperties; 
+        
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
+
 
 
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
@@ -434,6 +456,8 @@ namespace Pawnmorph
             _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
             _secondaryPawnKindDefs =
                 DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race || AllAssociatedAnimals.Contains(p.race)).ToList();
+            injectorProperties?.ResolveReferences();
+            
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

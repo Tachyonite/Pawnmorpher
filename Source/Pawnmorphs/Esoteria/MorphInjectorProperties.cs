@@ -17,26 +17,81 @@ namespace Pawnmorph
     public class MorphInjectorProperties
     {
         private const string DEFAULT_TRADER_TAG = "ExoticMisc";
+        /// <summary>
+        /// The stat bases for the initial mutation stage 
+        /// </summary>
         public List<StatModifier> statBases;
+        /// <summary>
+        /// The tech level of the injector 
+        /// </summary>
         public TechLevel techLevel = TechLevel.Industrial;
+        /// <summary>
+        /// The trader tags for the injector 
+        /// </summary>
         public List<string> traderTags;
+        /// <summary>
+        /// if to add the default trader tags to the trader tags list 
+        /// </summary>
         public bool useDefaultTags = true;
+        /// <summary>
+        /// The cost list for the recipe
+        /// ignored if <see cref="recipeMaker"/> is explicitly set 
+        /// </summary>
         public List<ThingDefCountClass> costList;
+        /// <summary>
+        /// how much slurry is needed to make the injector 
+        /// </summary>
         public int slurryCost;
+        /// <summary>
+        /// The neutroamine cost to make this injector 
+        /// </summary>
         public int neutroamineCost;
+        /// <summary>
+        /// The mutanite cost to make this injector 
+        /// </summary>
         public int mutaniteCost;
 
-        public RecipeMakerProperties recipeMaker;
-
+        /// <summary>
+        /// The graphic data for the injector 
+        /// </summary>
         public GraphicData graphicData;
 
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)] RecipeMakerProperties recipeMaker;
+
+
+        [Unsaved] private RecipeMakerProperties
+            _recipeMakerGenerated;
+
+        [Unsaved] private List<ThingDefCountClass> _costListGenerated;
+
+        /// <summary>
+        /// Gets the cost list.
+        /// </summary>
+        /// <value>
+        /// The cost list.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<ThingDefCountClass> CostList => _costListGenerated; 
+        
         /// <summary>
         ///     gets all configuration errors with this instance.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ConfigErrors()
         {
-            yield break;
+            if (costList != null)
+            {
+                if (mutaniteCost > 0 && costList.Any(c => c.thingDef == PMThingDefOf.Mutanite))
+                {
+                    yield return $"{nameof(costList)} includes mutanite but {nameof(mutaniteCost)} is also set!";
+                }
+
+                if (slurryCost > 0 && costList.Any(c => c.thingDef == PMThingDefOf.MechaniteSlurry))
+                    yield return $"{nameof(costList)} includes slurry but {nameof(slurryCost)} is also set!";
+
+                if (neutroamineCost > 0 && costList.Any(c => c.thingDef == PMThingDefOf.Neutroamine))
+                    yield return $"{nameof(costList)} includes neutromine but {nameof(neutroamineCost)} is also set!";
+            }
         }
 
         /// <summary>
@@ -51,17 +106,15 @@ namespace Pawnmorph
                     traderTags.Add(DEFAULT_TRADER_TAG);
             }
 
-            if (costList == null)
-            {
-                costList = new List<ThingDefCountClass>();
-                if (slurryCost > 0) costList.Add(new ThingDefCountClass(PMThingDefOf.MechaniteSlurry, slurryCost));
+            _costListGenerated = new List<ThingDefCountClass>();
+            if (costList != null) _costListGenerated.AddRange(costList);
 
-                if (neutroamineCost > 0) costList.Add(new ThingDefCountClass(PMThingDefOf.Neutroamine, neutroamineCost));
+            if (mutaniteCost > 0) _costListGenerated.Add(new ThingDefCountClass(PMThingDefOf.Mutanite, mutaniteCost));
 
-                if (mutaniteCost > 0) costList.Add(new ThingDefCountClass(PMThingDefOf.Mutanite, mutaniteCost));
-                //TODO generate market value 
-            }
+            if (slurryCost > 0)
+                _costListGenerated.Add(new ThingDefCountClass(PMThingDefOf.MechaniteSlurry, mutaniteCost));
 
+            if (neutroamineCost > 0) _costListGenerated.Add(new ThingDefCountClass(PMThingDefOf.Neutroamine, neutroamineCost));
 
             if (graphicData == null)
                 graphicData = new GraphicData
