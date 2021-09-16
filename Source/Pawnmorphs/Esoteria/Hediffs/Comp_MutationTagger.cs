@@ -2,6 +2,7 @@
 // last updated 02/12/2021  7:12 AM
 
 using System;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using RimWorld;
@@ -23,7 +24,9 @@ namespace Pawnmorph.Hediffs
 
         bool CanTag(MutationDef mDef)
         {
-            if (mDef.IsRestricted) return false; 
+            if (mDef.IsRestricted) return false;
+            if (DB.StoredMutations.Contains(mDef)) return false;
+
             var curve = Curve;
             float chance; 
             if (curve != null)
