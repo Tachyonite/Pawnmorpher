@@ -38,15 +38,6 @@ namespace Pawnmorph.ThingComps
 
         private MutationGenomeStorageProps Props => (MutationGenomeStorageProps) props;
 
-        bool CanAddAny
-        {
-            get
-            {
-                var wComp = Find.World.GetComponent<ChamberDatabase>();
-                return Mutation.AllMutations.Where(m => m.isTaggable).Any(m => wComp.CanAddToDatabase(m)); 
-            }
-        }
-
         /// <summary>
         ///     gets float menu options for this comp .
         /// </summary>
@@ -73,9 +64,10 @@ namespace Pawnmorph.ThingComps
                     JobFailReason.Is("ReservedBy".Translate(pawn.LabelShort, pawn));
                 else
                     JobFailReason.Is("Reserved".Translate());
-            }else if (!CanAddAny)
+            }
+            else if (!wComp.CanAddAnyToDatabase(Mutation.AllMutations, out string reason))
             {
-                JobFailReason.Is(CANNOT_STORE_MUTATION.Translate(Props.mutation.Named(MUTATION_NAME)));
+                JobFailReason.Is(reason);
             }
 
             HaulAIUtility.PawnCanAutomaticallyHaul(selPawn, parent, true);
