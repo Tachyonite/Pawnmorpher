@@ -9,6 +9,7 @@
 		<maxSeverity>1</maxSeverity>
 		<categories>
 			<li>Major</li>
+			<li>Powerful</li>
 		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
@@ -35,13 +36,14 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherBellowingLung</defName>
 		<label>bellowing lung</label>
-		<description>A large, powerful lung for intensive breathing. Causes</description>
+		<description>A large, powerful lung for intensive breathing.</description>
 		<parts>
 			<li>Lung</li>
 		</parts>
 		<maxSeverity>1</maxSeverity>
 		<categories>
 			<li>Major</li>
+			<li>Powerful</li>
 		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
