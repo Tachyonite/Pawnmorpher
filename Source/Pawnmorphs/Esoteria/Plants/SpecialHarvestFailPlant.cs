@@ -17,7 +17,7 @@ namespace Pawnmorph.Plants
         /// </summary>
         /// <param name="harvester">The harvester.</param>
         /// <returns></returns>
-        public abstract int GetYieldNow(Pawn harvester); 
+        public abstract int GetYieldNow(Pawn harvester);
     }
 
 
@@ -27,6 +27,8 @@ namespace Pawnmorph.Plants
     /// <seealso cref="Pawnmorph.Plants.SpecialHarvestFailPlant" />
     public class Chaobulb : SpecialHarvestFailPlant
     {
+        private const string FAILED_HARVEST_MESSAGE = "PMFailedChaobulbHarvest";
+
         /// <summary>
         /// Gets the yield now.
         /// </summary>
@@ -40,6 +42,7 @@ namespace Pawnmorph.Plants
 
             if(failed && PMUtilities.HazardousChaobulb)
             {
+                Messages.Message(FAILED_HARVEST_MESSAGE.Translate(harvester.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
                 MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, harvester, 0.1f);
                 return 0; 
             }

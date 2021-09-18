@@ -9,6 +9,9 @@
 		<parts>
 			<li>Jaw</li>
 		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
@@ -102,6 +105,7 @@
 			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherElephantHand</defName>
 		<label>stump hand</label>
@@ -180,6 +184,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherElephantLeg</defName>
 		<label>thick leg</label>
@@ -187,6 +192,9 @@
 		<parts>
 			<li>Leg</li>
 		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
@@ -221,6 +229,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherElephantFoot</defName>
 		<label>stumpy</label>
@@ -265,6 +274,7 @@
 				</statOffsets>
 			</li>
 		</stages>
+		
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

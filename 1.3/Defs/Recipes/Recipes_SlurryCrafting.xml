@@ -124,7 +124,7 @@
 		<defName>Make_ResurrectorFromMutonite</defName>
 		<label>fabricate reincarnator mech serum</label>
 		<description>Reshape mechanites into a reincarnator serum from slurry. Caution, this may have unintended side-effects being made from mutagenic mechanites.</description>
-		<jobString>TODO.</jobString>
+		<jobString>fabricating reincarnator mech serum</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>6000</workAmount>
@@ -194,7 +194,7 @@
 		<defName>Make_HealerFromMutonite</defName>
 		<label>fabricate mutagenic healer mech serum</label>
 		<description>Reprogram a large quantity of mutagenic mechanites with healer protocols. Due to the sheer number of mechanites being reprogrammed, a few mechanites will fail to be neutralised and there is a high probability that the restored areas will be mutated as a result.</description>
-		<jobString>TODO.</jobString>
+		<jobString>fabricating mutagenic healer mech serum</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
 		<workAmount>4000</workAmount>

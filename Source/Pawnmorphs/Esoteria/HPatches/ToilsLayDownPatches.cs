@@ -24,8 +24,9 @@ namespace Pawnmorph.HPatches
                 memories.RemoveMemoriesOfDef(sleepingThought); 
             }
 
-
-            var group = actor.def.GetMorphOfRace()?.@group;
+            // Make sure we get the morphdef regardless of whether they're anthro or feral
+            var morph = actor.def.GetMorphOfRace() ?? actor.def.TryGetBestMorphOfAnimal();
+            var group = morph?.@group;
             if (group == null) return;
 
             // More or less duplicating the vanilla logic here.  It sucks, but some of the the bedroom levels don't leave memories (and ascetics never have bedroom thoughts)
