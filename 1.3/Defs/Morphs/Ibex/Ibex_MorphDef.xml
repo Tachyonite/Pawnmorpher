@@ -1,15 +1,18 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>IbexMorph</defName>
 		<label>ibexmorph</label>
 		<description>!!!IbexMorph needs a description!!!</description>
 		<race>Ibex</race>
-		<classification>Bovid</classification>
+		<classification>Caprid</classification>
 		<categories>
 			<li>Cold</li>
 			<li>Temperate</li>
 			<li>Bovid</li>
 		</categories>
+		<associatedAnimals>
+			<li>Ibex</li>
+		</associatedAnimals>
 		<fullTransformation>PawnmorphIbexTF</fullTransformation>
 		<partialTransformation>PawnmorphIbexTFPartial</partialTransformation>
 		<raceSettings>
