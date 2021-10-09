@@ -337,6 +337,15 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherRatSnout>
+					<EtherChinchillaSnout>
+						<path>Parts/Chinchilla/Chinchilla_Jaw</path>
+						<severity>
+							<a0.5>Parts/Chinchilla/Chinchilla_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherChinchillaSnout>
 					<EtherRhinocerosJaw>
 						<path>Parts/Rhinoceros/Rhinoceros_Jaw</path>
 						<severity>
@@ -364,6 +373,15 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherGoatSnout>
+					<EtherIbexSnout>
+						<path>Parts/Ibex/Ibex_Jaw</path>
+						<severity>
+							<a0.5>Parts/Ibex/Ibex_Jaw</a0.5>
+							<a0.3>Parts/Partials/PartialMuzzle/PartialSnoutOvine</a0.3>
+							<a0.1>Parts/Partials/PartialMuzzle/TinySnout</a0.1>
+							<a0.0>Parts/None/None</a0.0>
+						</severity>
+					</EtherIbexSnout>
 					<EtherSquirrelJaw>
 						<path>Parts/Squirrel/Squirrel_Jaw</path>
 						<severity>
@@ -494,9 +512,11 @@
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left</EtherRaccoonEar>
 					<EtherRatEar>Parts/Rat/Rat_Ear_Left</EtherRatEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left</EtherChinchillaEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Left</EtherGoatEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left</EtherIbexEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left</EtherSquirrelEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</EtherAlphabeaverEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
@@ -575,9 +595,11 @@
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Left_Behind</EtherRaccoonEar>
 					<EtherRatEar>Parts/Rat/Rat_Ear_Left_Behind</EtherRatEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</EtherChinchillaEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left_Behind</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Left_Behind</EtherGoatEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Left_Behind</EtherIbexEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Left_Behind</EtherSquirrelEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</EtherAlphabeaverEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
@@ -654,9 +676,11 @@
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right</EtherRaccoonEar>
 					<EtherRatEar>Parts/Rat/Rat_Ear_Right</EtherRatEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right</EtherChinchillaEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Right</EtherGoatEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right</EtherIbexEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right</EtherSquirrelEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</EtherAlphabeaverEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
@@ -733,9 +757,11 @@
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right_Behind</EtherPigEar>
 					<EtherRaccoonEar>Parts/Raccoon/Raccoon_Ear_Right_Behind</EtherRaccoonEar>
 					<EtherRatEar>Parts/Rat/Rat_Ear_Right_Behind</EtherRatEar>
+					<EtherChinchillaEar>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</EtherChinchillaEar>
 					<EtherRhinocerosEar>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</EtherRhinocerosEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right_Behind</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Right_Behind</EtherGoatEar>
+					<EtherIbexEar>Parts/Ibex/Ibex_Ear_Right_Behind</EtherIbexEar>
 					<EtherSquirrelEar>Parts/Squirrel/Squirrel_Ear_Right_Behind</EtherSquirrelEar>
 					<EtherAlphabeaverEar>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</EtherAlphabeaverEar>
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
@@ -787,9 +813,11 @@
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
 					<EtherRatTail>Parts/ratface/rattail</EtherRatTail>
+					<EtherChinchillaTail>Parts/Chinchilla/Chinchilla_Tail</EtherChinchillaTail>
 					<EtherRhinocerosTail>Parts/Rhinoceros/Rhinoceros_Tail</EtherRhinocerosTail>
 					<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					<EtherGoatTail>Parts/Goat/Goat_Tail</EtherGoatTail>
+					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
 					<EtherSquirrelTail>Parts/Squirrel/Squirrel_Tail</EtherSquirrelTail>
 					<EtherAlphabeaverTail>Parts/Alphabeaver/Alphabeaver_Tail</EtherAlphabeaverTail>
 					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
@@ -970,6 +998,14 @@
 							<a0.0>Parts/Goat/GoatHorns_a</a0.0>
 						</severity>
 					</EtherGoatHorns>
+					<EtherIbexHorns>
+						<path>Parts/Ibex/Ibex_Horn_C</path>
+						<severity>
+							<a1.0>Parts/Ibex/Ibex_Horn_C</a1.0>
+							<a0.5>Parts/Ibex/Ibex_Horn_B</a0.5>
+							<a0.0>Parts/Ibex/Ibex_Horn_A</a0.0>
+						</severity>
+					</EtherIbexHorns>
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 					<EtherGazelleAntlers>Parts/Gazelle/Gazelle_Antlers</EtherGazelleAntlers>
 					<EtherCaribouAntlers>Parts/Caribou/Caribou_Antlers</EtherCaribouAntlers>
@@ -978,7 +1014,8 @@
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
-				<!-- Cobra Hood (Foreground) -->
+				<!-- Cobra Hood (Foreg
+				round) -->
 				<debug>false</debug>
 				<anchorID>CobraHood</anchorID>
 				<path>Parts/None/None</path>

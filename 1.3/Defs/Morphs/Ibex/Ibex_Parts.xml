@@ -1,16 +1,16 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Abstract="True" ParentName="PawnmorphPart" Name="GoatPart">
-		<classInfluence>GoatMorph</classInfluence>
+	<Pawnmorph.Hediffs.MutationDef Name="IbexPart" ParentName="PawnmorphPart" Abstract="true">
+		<classInfluence>IbexMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
-		<defName>EtherGoatSnout</defName>
-		<label>goat snout</label>
-		<description>A very goatlike snout.</description>
+	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
+		<defName>EtherIbexSnout</defName>
+		<label>ibex snout</label>
+		<description>!!!EtherIbexJaw needs a description!!!</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
-		<stages>
+				<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<labelOverride>pressing out</labelOverride>
 				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
@@ -76,11 +76,11 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
-		<defName>EtherGoatEar</defName>
-		<label>goat ear</label>
-		<description>Fluffy, caprine ears sit at the side of [PAWN_nameDef]'s head, like a goat.</description>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
+		<defName>EtherIbexEar</defName>
+		<label>ibex ear</label>
+		<description>!!!EtherIbexEar needs a description!!!</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -91,10 +91,10 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
-		<defName>EtherGoatTail</defName>
-		<label>goat tail</label>
-		<description>A Goatlike tail. It's very wooly but short and not incredibly useful.</description>
+	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
+		<defName>EtherIbexTail</defName>
+		<label>ibex tail</label>
+		<description>!!!EtherIbexTail needs a description!!!</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 			</li>
@@ -104,9 +104,10 @@
 			<li>MorphTail</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
-		<defName>EtherGoatEye</defName>
-		<label>goat eye</label>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
+		<defName>EtherIbexEye</defName>
+		<label>ibex eye</label>
 		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
 		<parts>
 			<li>Eye</li>
@@ -125,10 +126,11 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
-		<defName>EtherGoatHorns</defName>
-		<label>goat horns</label>
-		<description>The curved horns of a goat. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
+		<defName>EtherIbexHorns</defName>
+		<label>ibex horns</label>
+		<description>The curved horns of an ibex. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
 		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

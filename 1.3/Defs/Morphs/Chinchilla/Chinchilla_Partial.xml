@@ -1,9 +1,10 @@
 <Defs>
-	<HediffDef ParentName="NewPartialMorphParent">
-		<defName>PawnmorphIbexTFPartial</defName>
-		<label>ibexmorph partial</label>
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>PawnmorphChinchillaTFPartial</defName>
+		<label>chinchillamorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with chinchilla-esque mutations.</description>
 		<stages>
-			<li  Class="Pawnmorph.Hediffs.MorphTransformationStage">
+			<li Class="Pawnmorph.Hediffs.MorphTransformationStage">
 				<painOffset>0.1</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -20,7 +21,7 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<morph>IbexMorph</morph>
+				<morph>ChinchillaMorph</morph>
 			</li>
 		</stages>
 	</HediffDef>
