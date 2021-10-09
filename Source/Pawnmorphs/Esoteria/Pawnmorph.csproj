@@ -590,6 +590,7 @@
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
+    <Compile Include="PMImplicitDefGenerator.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMIssueDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
