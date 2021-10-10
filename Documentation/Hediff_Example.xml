@@ -18,8 +18,17 @@
                 <severityPerDayImmune>-0.25</severityPerDayImmune>
                 <immunityPerDayNotSick>-0.06</immunityPerDayNotSick>
             </li>
-            <li Class="Pawnmorph.Hediffs.HediffCompProperties_MutType_Morph">
-                <morphDef>WolfMorph</morphDef>
+            <li Class="Pawnmorph.Hediffs.HediffComp_Composable">
+                <mutTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Morph">
+                    <morphDef>WolfMorph</morphDef>
+                </mutTypes>
+
+                <!-- 
+                    mut rate classes can be used in conjuction with MutRate_Comp in the stages 
+                <mutRate Class="Pawnmorph.Hediffs.Composable.$MutRateClass">
+                    ...
+                </mutRate>
+                -->
             </li>
         </comps>
         <defName>Lycanthropy</defName>
