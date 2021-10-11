@@ -10,9 +10,9 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines how quickly mutations are gained
     /// </summary>
-    public abstract class MutRate : IInitializableStage
+    public abstract class MutRate : IInitializableStage, IMutRate
     {
-        static MutRate() { None = new NoneRate();}//a bit hacky but only ever need 1 instance of this 
+        static MutRate() { None = new NoneRate(); }//a bit hacky but only ever need 1 instance of this 
 
         /// <summary>
         /// How many mutations to queue up for the next second.
@@ -57,7 +57,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns></returns>
         public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
         {
-            return Enumerable.Empty<string>(); 
+            return Enumerable.Empty<string>();
         }
 
         /// <summary>

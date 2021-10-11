@@ -13,8 +13,9 @@ namespace Pawnmorph.Hediffs
     /// <see cref=""/>
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{Pawnmorph.Hediffs.HediffCompProps_Composable}" />
-    public class HediffComp_Composable : HediffCompBase<HediffCompProps_Composable>
+    public class HediffComp_Composable : HediffCompBase<HediffCompProps_Composable>, IMutRate
     {
+
         /// <summary>
         /// Gets the mut rate.
         /// </summary>
@@ -31,7 +32,22 @@ namespace Pawnmorph.Hediffs
         /// The types.
         /// </value>
         [CanBeNull]
-        public MutTypes Types => Props.mutTypes; 
+        public MutTypes Types => Props.mutTypes;
+
+        string IMutRate.DebugString(Hediff_MutagenicBase hediff)
+        {
+            return Rate.DebugString(hediff); 
+        }
+
+        int IMutRate.GetMutationsPerSecond(Hediff_MutagenicBase hediff)
+        {
+            return Rate.GetMutationsPerSecond(hediff); 
+        }
+
+        int IMutRate.GetMutationsPerSeverity(Hediff_MutagenicBase hediff, float sevChange)
+        {
+            return Rate.GetMutationsPerSeverity(hediff, sevChange); 
+        }
     }
 
 
@@ -69,4 +85,5 @@ namespace Pawnmorph.Hediffs
             }
         }
     }
+
 }
