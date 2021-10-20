@@ -26,6 +26,11 @@ namespace Pawnmorph
         public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
 
         /// <summary>
+        /// The adjective for this morph. ex. wolf morph should be "wolfish" or "lupine"
+        /// </summary>
+        public string adjective; 
+
+        /// <summary>
         ///     The creature this race is a morph of.<br />
         ///     For example, a Wargmorph's race should be Warg.
         /// </summary>
@@ -112,7 +117,6 @@ namespace Pawnmorph
         [Unsaved] public ThingDef hybridRaceDef;
 
 
-
         [Unsaved] private readonly Dictionary<BodyDef, float> _maxInfluenceCached = new Dictionary<BodyDef, float>();
 
         [Unsaved] private Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
@@ -120,7 +124,7 @@ namespace Pawnmorph
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
 
         [Unsaved] private List<PawnKindDef> _primaryPawnKindDefs;
-        [Unsaved] private List<PawnKindDef> _secondaryPawnKindDefs; 
+        [Unsaved] private List<PawnKindDef> _secondaryPawnKindDefs;
 
 
         /// <summary>

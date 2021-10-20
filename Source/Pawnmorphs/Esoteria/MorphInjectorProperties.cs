@@ -184,5 +184,22 @@ namespace Pawnmorph
         ///     The cap mods to use
         /// </summary>
         [CanBeNull] public List<PawnCapacityModifier> capMods;
+
+        /// <summary>
+        /// The aspect givers
+        /// </summary>
+        [CanBeNull] public List<AspectGiver> aspectGivers;
+
+        /// <summary>
+        /// The label of the generated hediff. 
+        /// </summary>
+        [CanBeNull]
+        public string label;
+
+        /// <summary>
+        /// The description of the generated hediff 
+        /// </summary>
+        [CanBeNull]
+        public string description;
     }
 }

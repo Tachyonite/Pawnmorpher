@@ -39,4 +39,12 @@
 	 -->
 	<MessagePawnResurrectedTransformed>{0} was resurrected, but the mechanite infusion in the serum brought them back as a {2}!</MessagePawnResurrectedTransformed>
 
+	<PMReelingLabel>reeling</PMReelingLabel>
+	<PMTransformingLabel>transforming</PMTransformingLabel>
+	<PMChangingLabel>changing</PMChangingLabel>
+	<PMFullMorphTfDescription>This person has mechanites in their blood that are slowly mutating them into a {Morph}. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more {MorphAdjective} than human.</PMFullMorphTfDescription>
+	<PMPartialMorphTfDescription>
+		This person has mechanites in their blood that are slowly mutating them into a {Morph}. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more {MorphAdjective} than human.
+	</PMPartialMorphTfDescription>
+
 </LanguageData>
