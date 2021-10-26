@@ -31,15 +31,27 @@ namespace Pawnmorph.Hediffs
         /// <value>
         /// All generated hediff defs.
         /// </value>
+        [NotNull]
         public static IReadOnlyList<HediffDef> AllGeneratedHediffDefs => _allGeneratedHediffs;
 
+
+        /// <summary>
+        /// Generates all morph hediffs.
+        /// </summary>
+        public static void GenerateAllMorphHediffs()
+        {
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                TryGenerateHediffs(morphDef); 
+            }
+        }
 
         /// <summary>
         /// Tries to generate the transformation hediffs for the given morph .
         /// </summary>
         /// <param name="mDef">The m definition.</param>
         /// <exception cref="ArgumentNullException">mDef</exception>
-        public static void TryGenerateHediffs([NotNull] MorphDef mDef)
+        static void TryGenerateHediffs([NotNull] MorphDef mDef)
         {
             if (mDef == null) throw new ArgumentNullException(nameof(mDef));
 
