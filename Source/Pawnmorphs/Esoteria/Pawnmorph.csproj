@@ -586,6 +586,7 @@
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
+    <Compile Include="PMEffecterDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
     <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
@@ -600,6 +601,7 @@
     <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
     <Compile Include="PMRelationUtilities.cs" />
     <Compile Include="PMResearchProjectDefOf.cs" />
+    <Compile Include="PMSoundDefOf.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMTexButton.cs" />
     <Compile Include="PMTextures.cs" />

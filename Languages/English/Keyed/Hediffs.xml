@@ -46,5 +46,8 @@
 	<PMPartialMorphTfDescription>
 		This person has mechanites in their blood that are slowly mutating them into a {Morph}. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more {MorphAdjective} than human.
 	</PMPartialMorphTfDescription>
+	<PMInjectorLabel>mutasyringe, {Animal}</PMInjectorLabel>
+	<PMInjectorIngestCommand>Inject &gt;0&lt;</PMInjectorIngestCommand>
+	<PMInjectorReport>Injecting &gt;0&lt;</PMInjectorReport>
 
 </LanguageData>

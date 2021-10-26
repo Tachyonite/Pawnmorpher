@@ -111,8 +111,8 @@ namespace Pawnmorph
         /// <summary>
         /// The properties for the generated injector def 
         /// </summary>
-        [CanBeNull] public MorphInjectorProperties injectorProperties; 
-        
+        [CanBeNull] public MorphInjectorProperties injectorProperties;
+
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
 

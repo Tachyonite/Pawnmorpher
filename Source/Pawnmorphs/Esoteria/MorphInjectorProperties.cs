@@ -17,6 +17,12 @@ namespace Pawnmorph
     public class MorphInjectorProperties
     {
         private const string DEFAULT_TRADER_TAG = "ExoticMisc";
+
+        /// <summary>
+        /// The label for the generated injector 
+        /// </summary>
+        public string label;
+
         /// <summary>
         /// The stat bases for the initial mutation stage 
         /// </summary>
@@ -50,6 +56,8 @@ namespace Pawnmorph
         /// The mutanite cost to make this injector 
         /// </summary>
         public int mutaniteCost;
+
+        public List<IngestionOutcomeDoer> outcomeDoers; 
 
         /// <summary>
         /// The graphic data for the injector 
@@ -102,6 +110,8 @@ namespace Pawnmorph
             }
         }
 
+
+
         /// <summary>
         ///     Resolves the references.
         /// </summary>
@@ -133,15 +143,17 @@ namespace Pawnmorph
 
             if (recipeMaker != null) _recipeMakerGenerated = recipeMaker;
             else
-            {
-                _recipeMakerGenerated = new RecipeMakerProperties()
+                _recipeMakerGenerated = new RecipeMakerProperties
                 {
                     productCount = 1,
-                    recipeUsers = new List<ThingDef>() { PMThingDefOf.PM_InjectorLab},
+                    recipeUsers = new List<ThingDef> {PMThingDefOf.PM_InjectorLab},
                     researchPrerequisite = PMResearchProjectDefOf.Injectors,
-                  useIngredientsForColor  = false,
+                    useIngredientsForColor = false,
+                    soundWorking = PMSoundDefOf.Recipe_CookMeal,
+                    effectWorking = PMEffecterDefOf.Cook,
+                    workSkill = SkillDefOf.Intellectual,
+                    workSpeedStat = PMStatDefOf.DrugSynthesisSpeed
                 };
-            }
         }
     }
 
