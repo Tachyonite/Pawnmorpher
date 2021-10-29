@@ -8,6 +8,7 @@ using Pawnmorph.Composable.Hediffs;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs.Composable;
 using RimWorld;
+using UnityEngine.Analytics;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -57,16 +58,22 @@ namespace Pawnmorph.Hediffs
 
             if (mDef.fullTransformation == null && mDef.fullTfHediffProps != null)
             {
-                var fullHDef = GenerateFullHediffFor(mDef);
-                _allGeneratedHediffs.Add(fullHDef);
-                mDef.fullTransformation = fullHDef; 
+                HediffDef fullHDef = GenerateFullHediffFor(mDef);
+                if (fullHDef != null)
+                {
+                    _allGeneratedHediffs.Add(fullHDef);
+                    mDef.fullTransformation = fullHDef;
+                }
             }
 
             if (mDef.partialTransformation == null && mDef.partialTfHediffProps != null)
             {
-                var partial = GeneratePartialHediffFor(mDef);
-                _allGeneratedHediffs.Add(partial);
-                mDef.partialTransformation = partial;
+                HediffDef partial = GeneratePartialHediffFor(mDef);
+                if (partial != null)
+                {
+                    _allGeneratedHediffs.Add(partial);
+                    mDef.partialTransformation = partial;
+                }
             }
         }
         

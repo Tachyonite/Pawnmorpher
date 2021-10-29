@@ -52,7 +52,8 @@ namespace Pawnmorph.Things
                 if (morphDef.injectorDef == null)
                 {
                     morphDef.injectorDef = CreateInjectorDefFor(morphDef);
-                    _generatedInjectorDefs.Add(morphDef.injectorDef);
+                    if(morphDef.injectorDef != null)
+                        _generatedInjectorDefs.Add(morphDef.injectorDef);
                 }
         }
 
