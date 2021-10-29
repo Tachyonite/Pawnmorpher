@@ -84,7 +84,8 @@ namespace Pawnmorph.Things
                                       .Replace("<", "{")
                                       .Replace(">", "}"), //hacky way to get "nested" translation strings 
                 ingestReportString = INGEST_REPORT_STRING.Translate().Replace("<", "{").Replace(">", "}"),
-                outcomeDoers = GetOutcomeDooers(mDef)
+                outcomeDoers = GetOutcomeDooers(mDef),
+                preferability = FoodPreferability.NeverForNutrition
             };
             var tDef = new ThingDef
             {
@@ -92,6 +93,7 @@ namespace Pawnmorph.Things
                 label = GetInjectorLabel(mDef),
                 modContentPack = mDef.modContentPack,
                 graphicData = props.graphicData,
+                thingClass = typeof(ThingWithComps),
                 statBases = GetStatModifiers(props),
                 thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.Injector, ThingCategoryDefOf.Drugs},
                 rotatable = false,
@@ -100,6 +102,7 @@ namespace Pawnmorph.Things
                 tradeTags = props.traderTags,
                 costList = props.CostList.ToList(),
                 recipeMaker = props.RecipeMaker,
+                
                 socialPropernessMatters = true,
                 comps = comps
             };
