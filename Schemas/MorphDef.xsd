@@ -49,6 +49,7 @@
 									</xs:all>
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="injectorDef" type="xs:string" minOccurs="0" />
 							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />
 							<xs:element name="fullTransformation" type="xs:string" minOccurs="0" />
 							<xs:element name="partialTransformation" type="xs:string" minOccurs="0"/>
@@ -60,6 +61,9 @@
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="classification" type="AnimalClassification" minOccurs="0"/>
+							<xs:element name="injectorProperties" type="MorphInjectorProperties" minOccurs="0" nillable="true" />
+							<xs:element name="fullTfHediffProps" type="MorphHediffProperties" minOccurs="0" nillable="true" />
+							<xs:element name="partialTfHediffProps" type="MorphHediffProperties" minOccurs="0" nillable="true" />
 						</xs:all>
 						<xs:attribute name="ParentName" type="xs:string" use="optional" />
 						<xs:attribute name="Name" type="xs:string" use="optional" />
