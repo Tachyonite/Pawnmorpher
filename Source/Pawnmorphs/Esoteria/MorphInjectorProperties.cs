@@ -24,6 +24,11 @@ namespace Pawnmorph
         public string label;
 
         /// <summary>
+        /// The work amount
+        /// </summary>
+        public int workAmount; 
+
+        /// <summary>
         /// The stat bases for the initial mutation stage 
         /// </summary>
         public List<StatModifier> statBases;
@@ -57,6 +62,10 @@ namespace Pawnmorph
         /// </summary>
         public int mutaniteCost;
 
+
+        /// <summary>
+        /// list of additional outcome doers on the injector 
+        /// </summary>
         public List<IngestionOutcomeDoer> outcomeDoers; 
 
         /// <summary>
@@ -152,7 +161,8 @@ namespace Pawnmorph
                     soundWorking = PMSoundDefOf.Recipe_CookMeal,
                     effectWorking = PMEffecterDefOf.Cook,
                     workSkill = SkillDefOf.Intellectual,
-                    workSpeedStat = PMStatDefOf.DrugSynthesisSpeed
+                    workSpeedStat = PMStatDefOf.DrugSynthesisSpeed,
+                    workAmount = workAmount,
                 };
         }
     }
