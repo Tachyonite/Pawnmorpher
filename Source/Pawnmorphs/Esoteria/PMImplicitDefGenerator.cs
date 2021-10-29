@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Recipes;
 using Pawnmorph.Things;
@@ -38,6 +39,9 @@ namespace Pawnmorph
         /// </summary>
         public static void GenerateImplicitDefs()
         {
+            //note: do not put hybrid race generation here. that needs to be handled in main initialization 
+
+            GenomeDefGenerator.GenerateGenomes(); //handles it's own hash's and resolve refs 
             _defList.Clear();
             MorphHediffGenerator.GenerateAllMorphHediffs();
             InjectorGenerator.GenerateInjectorDefs();
