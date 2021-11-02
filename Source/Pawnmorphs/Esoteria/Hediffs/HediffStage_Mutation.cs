@@ -17,6 +17,8 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.Hediff" />
     public class HediffStage_Mutation : HediffStage_MutagenicBase
     {   
+        //cna spreadOrder, mutationRate and/or mutationType ever be null?
+
         /// <summary>
         /// Controls the order that mutations spread over the body
         /// </summary>

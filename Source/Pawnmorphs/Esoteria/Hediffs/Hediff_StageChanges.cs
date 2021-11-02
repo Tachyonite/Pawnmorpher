@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -74,7 +75,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Called when the stage changes
         /// </summary>
-        protected abstract void OnStageChanged(HediffStage oldStage, HediffStage newStage);
+        protected abstract void OnStageChanged([NotNull] HediffStage oldStage,  [NotNull] HediffStage newStage);
 
         /// <summary>
         /// Exposes data to be saved/loaded from XML upon saving the game

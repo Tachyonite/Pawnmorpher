@@ -388,13 +388,11 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Updates the cached stage values
         /// </summary>
-        protected override void OnStageChanged(HediffStage oldStage, HediffStage newStage)
+        protected override void OnStageChanged( HediffStage oldStage, HediffStage newStage)
         {
-           
+            if (oldStage == null) throw new ArgumentNullException(nameof(oldStage));
+            if (newStage == null) throw new ArgumentNullException(nameof(newStage));
 
-
-          
-         
 
             if (newStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this); 
 
@@ -406,9 +404,9 @@ namespace Pawnmorph.Hediffs
                 // ones in the new stage are different
                 if (oldStage is HediffStage_Mutation oldMutStage)
                 {
-                    if (!newMutStage.spreadOrder.EquivalentTo(oldMutStage.spreadOrder))
+                    if (newMutStage.spreadOrder == null || !newMutStage.spreadOrder.EquivalentTo(oldMutStage.spreadOrder))
                         ResetSpreadList();
-                    if (!newMutStage.mutationTypes.EquivalentTo(oldMutStage.mutationTypes))
+                    if (newMutStage.mutationTypes == null || !newMutStage.mutationTypes.EquivalentTo(oldMutStage.mutationTypes))
                         ResetMutationList();
                 }
                 else
