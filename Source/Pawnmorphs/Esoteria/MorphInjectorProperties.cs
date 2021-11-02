@@ -2,6 +2,7 @@
 // last updated 09/13/2021  7:34 AM
 
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Composable.Hediffs;
 using Pawnmorph.Hediffs.Composable;
@@ -164,6 +165,24 @@ namespace Pawnmorph
                     workSpeedStat = PMStatDefOf.DrugSynthesisSpeed,
                     workAmount = workAmount,
                 };
+
+            if (statBases == null) statBases = new List<StatModifier>();
+            if (!statBases.Any(s => s.stat == StatDefOf.MarketValue))
+            {
+                StatModifier mkValue = new StatModifier()
+                {
+                    stat = StatDefOf.MarketValue,
+                    value = CalculateMarketValue()
+                };
+                statBases.Add(mkValue);
+            }
+        }
+
+        private const float WORK_TO_VALUE = 1; 
+        private float CalculateMarketValue()
+        {
+            return CostList.Sum(s => s.count * s.thingDef.GetStatValueAbstract(StatDefOf.MarketValue))
+                 + WORK_TO_VALUE * workAmount; 
         }
     }
 
