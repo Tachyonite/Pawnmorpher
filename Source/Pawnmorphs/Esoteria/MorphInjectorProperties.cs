@@ -29,7 +29,7 @@ namespace Pawnmorph
         public int workAmount; 
 
         /// <summary>
-        /// The stat bases for the initial mutation stage 
+        /// The stat bases for the injector 
         /// </summary>
         public List<StatModifier> statBases;
         /// <summary>
