@@ -162,6 +162,9 @@ namespace Pawnmorph.Hediffs
                 MarkForRemoval();
             ThingDef weaponSource = dinfo?.Weapon;
             
+            ResetMutationList();
+            ResetSpreadList();
+
             if (weaponSource != null)
             {
                 MutagenDef mutSource = weaponSource.GetModExtension<MutagenExtension>()?.mutagen;
@@ -385,6 +388,7 @@ namespace Pawnmorph.Hediffs
             return false;
         }
 
+
         /// <summary>
         /// Updates the cached stage values
         /// </summary>
@@ -456,7 +460,9 @@ namespace Pawnmorph.Hediffs
         {
             if (CurStage is HediffStage_Mutation mutStage)
             {
-                var spreadList = mutStage.spreadOrder.GetSpreadList(this);
+                var spreadList = mutStage.spreadOrder?.GetSpreadList(this);
+                if(spreadList == null)
+                    return;
                 bodyMutationManager.ResetSpreadList(spreadList);
 
                 // Let the observers know we've reset our spreading
@@ -473,7 +479,8 @@ namespace Pawnmorph.Hediffs
         {
             if (CurStage is HediffStage_Mutation mutStage)
             {
-                var mutations = mutStage.mutationTypes.GetMutations(this);
+                var mutations = mutStage.mutationTypes?.GetMutations(this);
+                if (mutations == null) return; 
                 bodyMutationManager.ResetMutationList(mutations);
 
                 // Let the observers know we've reset our mutation types

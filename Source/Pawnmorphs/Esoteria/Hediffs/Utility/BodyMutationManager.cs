@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Pawnmorph.Utilities.Collections;
 using Verse;
@@ -92,8 +93,10 @@ namespace Pawnmorph.Hediffs.Utility
         /// on has changed)
         /// </summary>
         /// <param name="spreadOrder">The new spread order to use.</param>
-        public void ResetSpreadList(IEnumerable<BodyPartRecord> spreadOrder)
+        /// <exception cref="ArgumentNullException">spreadOrder</exception>
+        public void ResetSpreadList([NotNull] IEnumerable<BodyPartRecord> spreadOrder)
         {
+            if (spreadOrder == null) throw new ArgumentNullException(nameof(spreadOrder));
             // Append null so that we handle full-body mutations as part of the list
             spreadList = new BodyPartChecklist(spreadOrder.Append(null));
             ResetBodyPartMutationList();
@@ -152,10 +155,14 @@ namespace Pawnmorph.Hediffs.Utility
         /// <returns>The debug string.</returns>
         public string DebugString()
         {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("  BodyMutationManager");
-            builder.AppendLine($"    Next Body Part: {spreadList?.Entry?.def?.defName} ({spreadList.Index + 1}/{spreadList.Count})");
-            builder.AppendLine($"    Next Mutation: {bodyPartMutationList?.Entry?.mutation?.defName} ({bodyPartMutationList.Index + 1}/{bodyPartMutationList.Count})");
+            var builder = new StringBuilder();
+            builder.AppendLine("BodyMutationManager");
+
+            if (spreadList != null)
+                builder.AppendLine($"Next Body Part: {spreadList?.Entry?.def?.defName} ({spreadList.Index + 1}/{spreadList.Count})");
+            else
+                builder.AppendLine("no spread list");
+            builder.AppendLine($"Next Mutation: {bodyPartMutationList?.Entry?.mutation?.defName} ({bodyPartMutationList.Index + 1}/{bodyPartMutationList.Count})");
             return builder.ToString();
         }
     }
