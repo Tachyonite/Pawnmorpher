@@ -30,8 +30,26 @@ namespace Pawnmorph.Hediffs
         }
 
         // CurStageIndex is kind of expensive to calculate, so use the cache when possible
+
+        /// <summary>
+        /// Gets the index of the current stage.
+        /// </summary>
+        /// <value>
+        /// The index of the current stage.
+        /// </value>
         public override int CurStageIndex => cachedStageIndex;
-        public override HediffStage CurStage => cachedStage;
+
+        /// <summary>
+        /// Gets the current stage.
+        /// </summary>
+        /// <value>
+        /// The current stage.
+        /// </value>
+        [NotNull]
+        public override HediffStage CurStage
+        {
+            get { return cachedStage ?? (cachedStage = def.stages[base.CurStageIndex]); }
+        }
 
         /// <summary>
         /// Called after the hediff is created, but before it's added to a pawn

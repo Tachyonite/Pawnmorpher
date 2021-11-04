@@ -57,6 +57,7 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{Pawnmorph.Hediffs.HediffComp_Composable}" />
     public class HediffCompProps_Composable : HediffCompPropertiesBase<HediffComp_Composable>
     {
+        
         /// <summary>
         /// The mute rate
         /// </summary>
