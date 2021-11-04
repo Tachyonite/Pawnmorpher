@@ -60,6 +60,18 @@ namespace Pawnmorph.Things
         private static ThingDef CreateInjectorDefFor([NotNull] MorphDef mDef)
         {
             if (mDef == null) throw new ArgumentNullException(nameof(mDef));
+
+            //check for an explicitly made injector that isn't linked 
+            string defName = CreateInjectorDefName(mDef);
+
+            ThingDef collision = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            if (collision != null)
+            {
+                Log.Warning($"found predefined def {defName} that wasn't listed in {mDef.defName}'s {nameof(MorphDef.injectorDef)} field!");
+                mDef.injectorDef = collision;
+                return null;
+            }
+            
             MorphInjectorProperties props = mDef.injectorProperties;
             if (props == null)
             {
@@ -89,7 +101,7 @@ namespace Pawnmorph.Things
             };
             var tDef = new ThingDef
             {
-                defName = CreateInjectorDefName(mDef),
+                defName = defName,
                 label = GetInjectorLabel(mDef),
                 modContentPack = mDef.modContentPack,
                 graphicData = props.graphicData,

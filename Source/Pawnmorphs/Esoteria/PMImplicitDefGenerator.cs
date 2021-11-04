@@ -11,6 +11,7 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.Recipes;
 using Pawnmorph.Things;
 using Pawnmorph.Utilities;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph
@@ -77,6 +78,13 @@ namespace Pawnmorph
             _defSts.AddRange(PMRecipeDefGenerator.AllRecipes.Select(d => new DefSt(d, typeof(RecipeDef))));
 
             foreach (DefSt defSt in _defSts) GiveShortHash(defSt.def, defSt.type);
+
+            //register defs 
+            DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs); 
+            DefDatabase<ThingDef>.Add(InjectorGenerator.GeneratedInjectorDefs);
+            DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes); 
+            ResourceCounter.ResetDefs();
+
         }
 
         private static void GiveShortHash([NotNull] Def def, [NotNull] Type type)
