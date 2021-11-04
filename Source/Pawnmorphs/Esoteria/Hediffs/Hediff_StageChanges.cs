@@ -45,10 +45,10 @@ namespace Pawnmorph.Hediffs
         /// <value>
         /// The current stage.
         /// </value>
-        [NotNull]
+        [CanBeNull]
         public override HediffStage CurStage
         {
-            get { return cachedStage ?? (cachedStage = def.stages[base.CurStageIndex]); }
+            get { return cachedStage ?? (cachedStage = def?.stages?[base.CurStageIndex]); }
         }
 
         /// <summary>
