@@ -75,7 +75,6 @@ namespace Pawnmorph.Things
             MorphInjectorProperties props = mDef.injectorProperties;
             if (props == null)
             {
-                Log.Error($"{mDef.defName} has null {nameof(MorphDef.injectorProperties)}!");
                 return null;
             }
 
