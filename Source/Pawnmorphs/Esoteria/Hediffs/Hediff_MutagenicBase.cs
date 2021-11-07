@@ -502,7 +502,7 @@ namespace Pawnmorph.Hediffs
                 if (CurStageIndex != -1 && CurStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
-                    int mutations = mutStage.mutationRate.GetMutationsPerSeverity(this, diff);
+                    int mutations = mutStage.mutationRate?.GetMutationsPerSeverity(this, diff) ?? 0;
                     QueueUpMutations(mutations);
                 }
                 base.Severity = value;
