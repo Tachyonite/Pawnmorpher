@@ -74,6 +74,11 @@ namespace Pawnmorph.Hediffs
                 yield return $"none of {nameof(mutationRate)}, {nameof(mutationTypes)}, or {spreadOrder} are set";
 
 
+            if (mutationRate == null)
+            {
+                yield return $"{nameof(mutationRate)} is not defined"; 
+            }
+
             var enumerable = GenerateSubErrors(mutationRate, nameof(mutationRate))
                             .Concat(GenerateSubErrors(mutationTypes, nameof(mutationTypes)))
                             .Concat(GenerateSubErrors(spreadOrder, nameof(spreadOrder)));
