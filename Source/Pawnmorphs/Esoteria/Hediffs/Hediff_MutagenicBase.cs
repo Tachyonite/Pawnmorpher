@@ -239,6 +239,10 @@ namespace Pawnmorph.Hediffs
             // but we'll queue them up so they only happen once a second
             if(stage.mutationRate != null)
                 QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
+            else
+            {
+                Log.ErrorOnce($"{def.defName} has stage {CurStageIndex} with no mutation rate!", GetHashCode()); 
+            }
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
