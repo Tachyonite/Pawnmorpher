@@ -90,7 +90,7 @@ namespace Pawnmorph
         /// <summary>
         /// properties for the generated full tf hediff 
         /// </summary>
-        [CanBeNull] public MorphHediffProperties fullTfHediffProps = new MorphHediffProperties();  
+        [CanBeNull] public MorphHediffProperties fullTfHediffProps;  
         
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Pawnmorph
         /// <summary>
         /// properties for the generated partial tf hediff 
         /// </summary>
-        [CanBeNull] public MorphHediffProperties partialTfHediffProps = new MorphHediffProperties();
+        [CanBeNull] public MorphHediffProperties partialTfHediffProps; 
 
         /// <summary>
         /// The injector definition
@@ -111,7 +111,7 @@ namespace Pawnmorph
         /// <summary>
         /// The properties for the generated injector def 
         /// </summary>
-        [CanBeNull] public MorphInjectorProperties injectorProperties = new MorphInjectorProperties(); 
+        [CanBeNull] public MorphInjectorProperties injectorProperties; 
 
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
