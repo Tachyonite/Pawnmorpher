@@ -237,7 +237,8 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
-            QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
+            if(stage.mutationRate != null)
+                QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
