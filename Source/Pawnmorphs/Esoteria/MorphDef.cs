@@ -320,6 +320,7 @@ namespace Pawnmorph
         {
             foreach (string configError in base.ConfigErrors()) yield return configError;
 
+
             if (race == null)
                 yield return "No race def found!";
             else if (race.race == null) yield return $"Race {race.defName} has no race properties! Are you sure this is a race?";
@@ -455,6 +456,11 @@ namespace Pawnmorph
             if (associatedAnimals == null)
             {
 
+            }
+
+            if (injectorProperties == null && injectorDef == null)
+            {
+                Log.Warning($"{defName} has neither {nameof(injectorProperties)} nor {nameof(injectorDef)} set!");
             }
 
             _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
