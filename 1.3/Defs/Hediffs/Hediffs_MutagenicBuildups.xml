@@ -198,7 +198,7 @@
             </li>
         </comps>
         <stages>
-            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+            <li>
                 <label>initial</label>
                 <becomeVisible>false</becomeVisible>
             </li>

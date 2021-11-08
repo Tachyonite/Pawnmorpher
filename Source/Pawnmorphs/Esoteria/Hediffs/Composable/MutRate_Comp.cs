@@ -1,8 +1,11 @@
 ﻿// MutRate_Comp.cs created by Iron Wolf for Pawnmorph on 09/05/2021 8:28 PM
 // last updated 09/05/2021  8:28 PM
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -14,19 +17,36 @@ namespace Pawnmorph.Hediffs.Composable
     /// <seealso cref="Pawnmorph.Hediffs.Composable.MutRate" />
     public class MutRate_Comp : MutRate
     {
+        private IMutRate _cachedRate; 
 
         [CanBeNull]
-        MutRate GetCompRate([NotNull] Hediff hDiff)
+        IMutRate GetCompRate([NotNull] Hediff hDiff)
         {
-            var comp = hDiff.TryGetComp<HediffComp_Composable>();
-            if (comp == null)
-                Log.ErrorOnce($"{hDiff.def} has {nameof(MutRate_Comp)} but no {nameof(HediffComp_Composable)}!",
-                              hDiff.def.shortHash);
-            MutRate rate = comp?.Rate;
+            if (hDiff == null) throw new ArgumentNullException(nameof(hDiff));
+            if (_cachedRate != null) return _cachedRate; //ok to cache this, comps should never be added/removed during runtime 
+            var cHDiff = hDiff as HediffWithComps;
+            var rate = cHDiff?.comps?.OfType<IMutRate>().FirstOrDefault();
             if (rate == null)
-                Log.ErrorOnce($"{hDiff.def} has {nameof(MutRate_Comp)} but {nameof(HediffComp_Composable)} is missing {nameof(HediffCompProps_Composable.mutRate)}!",
+            {
+
+                string mErr = "";
+                if (cHDiff != null)
+                {
+                    mErr = string.Join(",", cHDiff.comps.MakeSafe().Select(c => c.GetType().Name));
+                }
+                else
+                {
+                    mErr = $"{hDiff.def.defName} is not a hediff with comps"; 
+                }
+
+                Log.ErrorOnce($"{hDiff.def} has {nameof(MutRate_Comp)} but no {nameof(IMutRate)}!checked comps:{mErr}",
                               hDiff.def.shortHash);
-            return rate;
+
+            }
+            
+          
+            _cachedRate = rate;
+            return _cachedRate; 
         }
 
         /// <summary>

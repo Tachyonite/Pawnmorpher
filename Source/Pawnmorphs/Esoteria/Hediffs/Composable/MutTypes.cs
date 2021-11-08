@@ -376,14 +376,14 @@ namespace Pawnmorph.Hediffs.Composable
         [NotNull]
         private IEnumerable<MutationEntry> GetOrCachedEntries()
         {
-            return categories.SelectMany(c => c.AllMutations.Where(m => m.RestrictionLevel < c.restrictionLevel))
+            return categories.SelectMany(c => c.AllMutations.Where(m => m.RestrictionLevel <= c.restrictionLevel))
                              .Select(m => MutationEntry.FromMutation(m));
         }
 
         [NotNull]
         private IEnumerable<MutationEntry> GetAndCachedEntries()
         {
-            return categories.Select(c => c.AllMutations.Where(m => m.RestrictionLevel < c.restrictionLevel))
+            return categories.Select(c => c.AllMutations.Where(m => m.RestrictionLevel <= c.restrictionLevel))
                              .IntersectAll()
                              .Select(m => MutationEntry.FromMutation(m));
         }
@@ -406,7 +406,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// <returns>The string.</returns>
         public override string DebugString(Hediff_MutagenicBase hediff)
         {
-            return $"choosing from [{string.Join(",", categories.Select(c => c.defName))}]";
+            return $"choosing from [{string.Join(",", categories.Select(c => c.defName))}] choosing from {CachedEntries.Count} entries";
         }
 
         /// <summary>

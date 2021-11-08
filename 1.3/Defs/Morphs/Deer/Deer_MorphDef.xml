@@ -13,7 +13,6 @@
 		
 		<associatedAnimals>
 			<li>Elk</li>
-			<li>Ibex</li>
 		</associatedAnimals>
 
 		<fullTransformation>PawnmorphDeerTF</fullTransformation>

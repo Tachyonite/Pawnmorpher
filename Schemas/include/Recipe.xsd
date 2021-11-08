@@ -1,0 +1,66 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="Enums.xsd" />
+    <xs:include schemaLocation="CommonComplex.xsd" />
+    <xs:include schemaLocation="SimpleTypes.xsd" />
+
+    <xs:complexType name="ThingFilter">
+        <xs:all>
+            <xs:element name="allowedHitPointsPercents" type="FloatRange" minOccurs="0" />
+            <xs:element name="allowedHitPointsConfigurable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowedQualities" type="QualityRange" minOccurs="0" />
+            <xs:element name="allowedQualitiesConfigurable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="customSummary" type="xs:string" minOccurs="0" />
+            <xs:element name="thingDefs" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="categories" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="tradeTagsToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="tradeTagsToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="thingSetMakerTagsToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="thingSetMakerTagsToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="disallowedCategories" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="specialFiltersToAllow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="specialFiltersToDisallow" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="stuffCategoriesToAllow" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="allowAllWhoCanMake" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="disallowWorsePreferability" type="FoodPreferability" minOccurs="0" />
+            <xs:element name="disallowInediblebyHumans" type="xs:boolean" minOccurs="0" />
+            <xs:element name="disallowNotEverStorable" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowWithComp" type="xs:string" minOccurs="0" />
+            <xs:element name="disallowWithComp" type="xs:string" minOccurs="0" />
+            <xs:element name="disallowCheaperThan" type="xs:float" minOccurs="0" />
+
+            <xs:element name="disallowedThingDefs" type="ListOfStrings" minOccurs="0" />
+
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="RecipeMaker">
+        <xs:all>
+            <xs:element name="productCount" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="targetCountAdjustment" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="bulkRecipeCount" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="workAmount" type="xs:positiveInteger" minOccurs="0" />
+            <xs:element name="useIngredientsForColor" type="xs:boolean" minOccurs="0" />
+            <xs:element name="workSpeedStat" type="xs:string" minOccurs="0" />
+            <xs:element name="effiencyStat" type="xs:string" minOccurs="0" />
+            <xs:element name="defaultIngredientFilter" type="ThingFilter" minOccurs="0" />
+            <xs:element name="skillRequirements" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents="lax" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="workSkill" type="xs:string" minOccurs="0" />
+            <xs:element name="effectWorking" type="xs:string" minOccurs="0" />
+            <xs:element name="soundWorking" type="xs:string" minOccurs="0" />
+            <xs:element name="recipeUsers" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="researchPrerequisite" type="xs:string" minOccurs="0" />
+            <xs:element name="memePrerequisitesAny" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="researchPrerequisites" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="factionPrerequisiteTags" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="FromIdeoBuildingPreceptOnly" type="xs:boolean" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

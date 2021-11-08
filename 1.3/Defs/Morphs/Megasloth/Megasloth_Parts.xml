@@ -2,6 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name="MegaslothPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>MegaslothMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
@@ -59,6 +60,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
@@ -94,6 +96,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothArm</defName>
 		<description>[PAWN_nameDef]'s arm has become muscular and fuzzy, greatly enhancing their strength as well as making them somewhat more resistant to temperature.</description>
@@ -116,6 +119,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothHand</defName>
 		<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
@@ -123,6 +127,9 @@
 		<parts>
 			<li>Hand</li>
 		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>unfamiliar</label>
@@ -164,6 +171,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothLeg</defName>
 		<description>[PAWN_nameDef]'s leg has become fuzzy and muscular, enhancing their strength and resistance to temperature, but slowing their movement.</description>
@@ -190,6 +198,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegaslothFoot</defName>
 		<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of [PAWN_possessive] feet. As you can imagine, this makes getting anywhere somewhat difficult.</description>
@@ -224,6 +233,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>

@@ -34,7 +34,7 @@ namespace Pawnmorph
         /// <value>
         ///   <c>true</c> if the parent hediff should be removed; otherwise, <c>false</c>.
         /// </value>
-        public override bool CompShouldRemove => stacks > 0; 
+        public override bool CompShouldRemove => stacks <= 0; 
 
         /// <summary>called after the parent is merged with the other hediff</summary>
         /// <param name="other">The other.</param>
@@ -43,7 +43,12 @@ namespace Pawnmorph
             base.CompPostMerged(other);
 
             var comp = other.TryGetComp<HediffComp_Single>();
-            stacks = Mathf.Min(Props.maxStacks, stacks + comp.stacks); 
+            var oStacks = stacks; 
+            stacks = Mathf.Min(Props.maxStacks, stacks + comp.stacks);
+            if (oStacks != stacks && other is Hediff_MutagenicBase mBase)
+            {
+                mBase.ClearCaches();
+            }
         }
         /// <summary>Gets the properties.</summary>
         /// <value>The properties.</value>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -29,8 +30,26 @@ namespace Pawnmorph.Hediffs
         }
 
         // CurStageIndex is kind of expensive to calculate, so use the cache when possible
+
+        /// <summary>
+        /// Gets the index of the current stage.
+        /// </summary>
+        /// <value>
+        /// The index of the current stage.
+        /// </value>
         public override int CurStageIndex => cachedStageIndex;
-        public override HediffStage CurStage => cachedStage;
+
+        /// <summary>
+        /// Gets the current stage.
+        /// </summary>
+        /// <value>
+        /// The current stage.
+        /// </value>
+        [CanBeNull]
+        public override HediffStage CurStage
+        {
+            get { return cachedStage ?? (cachedStage = def?.stages?[base.CurStageIndex]); }
+        }
 
         /// <summary>
         /// Called after the hediff is created, but before it's added to a pawn
@@ -74,7 +93,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Called when the stage changes
         /// </summary>
-        protected abstract void OnStageChanged(HediffStage oldStage, HediffStage newStage);
+        protected abstract void OnStageChanged([NotNull] HediffStage oldStage,  [NotNull] HediffStage newStage);
 
         /// <summary>
         /// Exposes data to be saved/loaded from XML upon saving the game

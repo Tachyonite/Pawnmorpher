@@ -50,7 +50,7 @@ namespace Pawnmorph
             var sRFactor = -pawn.GetStatValue(PMStatDefOf.SapienceRecoverFactor);
 
             var netFactor =  sRFactor;
-            return INSTINCT_PER_TICK_SCALAR *  netFactor * TimeMetrics.TICK_PERIOD * pawn.GetStatValue(PMStatDefOf.SapientAnimalA); //TODO what else should influence the recover rate? 
+            return INSTINCT_PER_TICK_SCALAR *  netFactor * TimeMetrics.TICK_PERIOD * pawn.GetStatValue(PMStatDefOf.SapientAnimalA); 
         }
 
         static InstinctUtilities()

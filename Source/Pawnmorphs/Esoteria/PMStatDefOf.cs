@@ -104,5 +104,9 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(PMStatDefOf));
         }
+        /// <summary>
+        /// The drug synthesis speed stat 
+        /// </summary>
+        public static StatDef DrugSynthesisSpeed; 
     }
 }
