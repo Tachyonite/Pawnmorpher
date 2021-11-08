@@ -5,7 +5,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
 		<defName>EtherGoatSnout</defName>
-		<label>caprine snout</label>
+		<label>goat snout</label>
 		<description>A very goatlike snout.</description>
 		<parts>
 			<li>Jaw</li>
@@ -76,9 +76,10 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
 		<defName>EtherGoatEar</defName>
-		<label>caprine</label>
+		<label>goat ear</label>
 		<description>Fluffy, caprine ears sit at the side of [PAWN_nameDef]'s head, like a goat.</description>
 		<parts>
 			<li>Ear</li>
@@ -89,9 +90,10 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
 		<defName>EtherGoatTail</defName>
-		<label>Goat tail</label>
+		<label>goat tail</label>
 		<description>A Goatlike tail. It's very wooly but short and not incredibly useful.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">

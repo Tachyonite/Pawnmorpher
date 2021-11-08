@@ -1,5 +1,5 @@
 <Defs>
-    <ThingDef Name="InjectorBase" ParentName="PM_Injection" Abstract="True">
+	<ThingDef Name="InjectorBase" ParentName="PM_Injection" Abstract="True">
 		<graphicData>
 			<texPath>Things/Item/Drug/Specific</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -30,10 +30,10 @@
 			<MechaniteSlurry>3</MechaniteSlurry>
 			<Neutroamine>4</Neutroamine>
 		</costList>
-					<comps>
-						<li Class="CompProperties_Drug">
-							<listOrder>1000</listOrder>
-						</li>
-					</comps>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 </Defs>

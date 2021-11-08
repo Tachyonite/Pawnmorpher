@@ -17,6 +17,8 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.Hediff" />
     public class HediffStage_Mutation : HediffStage_MutagenicBase
     {   
+        //cna spreadOrder, mutationRate and/or mutationType ever be null?
+
         /// <summary>
         /// Controls the order that mutations spread over the body
         /// </summary>
@@ -71,6 +73,11 @@ namespace Pawnmorph.Hediffs
             if (mutationRate == null && mutationTypes == null && spreadOrder == null)
                 yield return $"none of {nameof(mutationRate)}, {nameof(mutationTypes)}, or {spreadOrder} are set";
 
+
+            if (mutationRate == null)
+            {
+                yield return $"{nameof(mutationRate)} is not defined"; 
+            }
 
             var enumerable = GenerateSubErrors(mutationRate, nameof(mutationRate))
                             .Concat(GenerateSubErrors(mutationTypes, nameof(mutationTypes)))

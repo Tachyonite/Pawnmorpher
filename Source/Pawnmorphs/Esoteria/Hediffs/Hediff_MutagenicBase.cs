@@ -162,6 +162,9 @@ namespace Pawnmorph.Hediffs
                 MarkForRemoval();
             ThingDef weaponSource = dinfo?.Weapon;
             
+            ResetMutationList();
+            ResetSpreadList();
+
             if (weaponSource != null)
             {
                 MutagenDef mutSource = weaponSource.GetModExtension<MutagenExtension>()?.mutagen;
@@ -170,6 +173,8 @@ namespace Pawnmorph.Hediffs
 
                 _causes.Add(MutationCauses.WEAPON_PREFIX, weaponSource);
             }
+            if(def.stages != null && def.stages.Count > 0)
+                CheckCurrentStage(null, def.stages[base.CurStageIndex]);
         }
 
 
@@ -217,6 +222,14 @@ namespace Pawnmorph.Hediffs
             _painStatValue.Recalculate();
             mutagenSensitivity.Recalculate();
             _bestMutagenCause.Recalculate();
+
+            cachedStageType = StageType.None;
+            if (def.stages != null)
+            {
+                var cStage = def.stages[base.CurStageIndex];
+                
+                CheckCurrentStage(null, cStage);
+            }
         }
         
         /// <summary>
@@ -234,7 +247,12 @@ namespace Pawnmorph.Hediffs
 
             // MutationRates can request multiple muations be added at once,
             // but we'll queue them up so they only happen once a second
-            QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
+            if(stage.mutationRate != null)
+                QueueUpMutations(stage.mutationRate.GetMutationsPerSecond(this));
+            else
+            {
+                Log.ErrorOnce($"{def.defName} has stage {CurStageIndex} with no mutation rate!", GetHashCode()); 
+            }
 
             // Add a queued mutation, if any are waiting
             if (queuedMutations > 0)
@@ -385,20 +403,28 @@ namespace Pawnmorph.Hediffs
             return false;
         }
 
+
         /// <summary>
         /// Updates the cached stage values
         /// </summary>
-        protected override void OnStageChanged(HediffStage oldStage, HediffStage newStage)
+        protected override void OnStageChanged( HediffStage oldStage, HediffStage newStage)
         {
-           
+            if (oldStage == null) throw new ArgumentNullException(nameof(oldStage));
+            if (newStage == null) throw new ArgumentNullException(nameof(newStage));
 
 
-          
-         
+            if (newStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this);
 
-            if (newStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this); 
+            CheckCurrentStage(oldStage, newStage, true);
 
-            if (newStage is HediffStage_Mutation newMutStage)
+            foreach (var comp in ObserverComps)
+                comp.StageChanged();
+
+        }
+
+        private void CheckCurrentStage([CanBeNull] HediffStage oldStage, [NotNull]HediffStage currentStage, bool doTf = false)
+        {
+            if (currentStage is HediffStage_Mutation newMutStage)
             {
                 cachedStageType = StageType.Mutation;
 
@@ -406,9 +432,9 @@ namespace Pawnmorph.Hediffs
                 // ones in the new stage are different
                 if (oldStage is HediffStage_Mutation oldMutStage)
                 {
-                    if (!newMutStage.spreadOrder.EquivalentTo(oldMutStage.spreadOrder))
+                    if (newMutStage.spreadOrder == null || !newMutStage.spreadOrder.EquivalentTo(oldMutStage.spreadOrder))
                         ResetSpreadList();
-                    if (!newMutStage.mutationTypes.EquivalentTo(oldMutStage.mutationTypes))
+                    if (newMutStage.mutationTypes == null || !newMutStage.mutationTypes.EquivalentTo(oldMutStage.mutationTypes))
                         ResetMutationList();
                 }
                 else
@@ -417,26 +443,22 @@ namespace Pawnmorph.Hediffs
                     ResetMutationList();
                 }
             }
-            else if (newStage is HediffStage_Transformation)
+            else if (currentStage is HediffStage_Transformation)
             {
                 cachedStageType = StageType.Transformation;
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
-                if (!this.IsImmune())
+                if (!this.IsImmune() && doTf)
                     CheckAndDoTransformation();
             }
             else
             {
                 cachedStageType = StageType.None;
             }
-
-            foreach (var comp in ObserverComps)
-                comp.StageChanged();
-
         }
 
-      
+
 
         /// <summary>
         /// Queues up a number of mutations to be added to the pawn.  Negative amounts
@@ -458,7 +480,9 @@ namespace Pawnmorph.Hediffs
         {
             if (CurStage is HediffStage_Mutation mutStage)
             {
-                var spreadList = mutStage.spreadOrder.GetSpreadList(this);
+                var spreadList = mutStage.spreadOrder?.GetSpreadList(this);
+                if(spreadList == null)
+                    return;
                 bodyMutationManager.ResetSpreadList(spreadList);
 
                 // Let the observers know we've reset our spreading
@@ -475,7 +499,8 @@ namespace Pawnmorph.Hediffs
         {
             if (CurStage is HediffStage_Mutation mutStage)
             {
-                var mutations = mutStage.mutationTypes.GetMutations(this);
+                var mutations = mutStage.mutationTypes?.GetMutations(this);
+                if (mutations == null) return; 
                 bodyMutationManager.ResetMutationList(mutations);
 
                 // Let the observers know we've reset our mutation types
@@ -494,10 +519,10 @@ namespace Pawnmorph.Hediffs
             set
             {
                 // Severity changes can potentially queue up mutations
-                if (CurStage is HediffStage_Mutation mutStage)
+                if (CurStageIndex != -1 && CurStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
-                    int mutations = mutStage.mutationRate.GetMutationsPerSeverity(this, diff);
+                    int mutations = mutStage.mutationRate?.GetMutationsPerSeverity(this, diff) ?? 0;
                     QueueUpMutations(mutations);
                 }
                 base.Severity = value;
@@ -561,7 +586,9 @@ namespace Pawnmorph.Hediffs
         public override string DebugString()
         {
             StringBuilder builder = new StringBuilder(base.DebugString());
-            builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:");
+            builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:cached stage type {cachedStageType}");
+
+
 
             if (CurStage is HediffStage_Mutation mutationStage)
             {
@@ -579,6 +606,11 @@ namespace Pawnmorph.Hediffs
             else
             {
                 builder.AppendLine("  Other Stage");
+            }
+
+            if (queuedMutations > 0)
+            {
+                builder.AppendLine($"queued mutations:{queuedMutations}");
             }
 
             return builder.ToString();
