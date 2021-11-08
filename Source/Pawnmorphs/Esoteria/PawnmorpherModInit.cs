@@ -40,6 +40,7 @@ namespace Pawnmorph
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
                 CheckForModConflicts();
+                DisplayGroupedModIssues(); 
                 try
                 {
                     
@@ -57,6 +58,35 @@ namespace Pawnmorph
             catch (Exception e)
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
+            }
+        }
+
+        private static void DisplayGroupedModIssues()
+        {
+            CheckForMorphInjectorDefs(); 
+
+        }
+
+        private static void CheckForMorphInjectorDefs()
+        {
+            IEnumerable<IGrouping<ModContentPack, MorphDef>> mDefs = MorphDef
+                                                                    .AllDefs.Where(md => md.injectorProperties == null
+                                                                                      && md.injectorDef == null)
+                                                                    .GroupBy(m => m.modContentPack);
+
+
+            foreach (IGrouping<ModContentPack, MorphDef> morphDefs in mDefs)
+            {
+                ModContentPack key = morphDefs.Key;
+                List<MorphDef> lst = morphDefs.ToList();
+                if (lst.Count > 0)
+                {
+                    var builder = new StringBuilder();
+                    builder.AppendLine($"in {key.Name} found {lst.Count} morph defs missing {nameof(MorphDef.injectorDef)} and {nameof(MorphDef.injectorProperties)}:");
+                    foreach (MorphDef morphDef in lst) builder.AppendLine(morphDef.defName);
+
+                    Log.Warning(builder.ToString());
+                }
             }
         }
 

@@ -458,10 +458,7 @@ namespace Pawnmorph
 
             }
 
-            if (injectorProperties == null && injectorDef == null)
-            {
-                Log.Warning($"{defName} has neither {nameof(injectorProperties)} nor {nameof(injectorDef)} set!");
-            }
+            
 
             _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
             _secondaryPawnKindDefs =
