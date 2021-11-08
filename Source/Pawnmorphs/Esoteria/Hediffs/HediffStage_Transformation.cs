@@ -4,6 +4,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
 using Verse;
+using System.Linq ;
 
 namespace Pawnmorph.Hediffs
 {
@@ -20,27 +21,27 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Controls the chance of a full transformation
         /// </summary>
-        [UsedImplicitly] public TFChance tfChance;
+        [UsedImplicitly, NotNull] public TFChance tfChance;
 
         /// <summary>
         /// Controls what kind of animals transformations can result in
         /// </summary>
-        [UsedImplicitly] public TFTypes tfTypes;
+        [UsedImplicitly, NotNull] public TFTypes tfTypes;
 
         /// <summary>
         /// Controls the gender of the post-transformation pawn
         /// </summary>
-        [UsedImplicitly] public TFGenderSelector tfGenderSelector;
+        [UsedImplicitly, NotNull] public TFGenderSelector tfGenderSelector;
 
         /// <summary>
         /// Controls miscellaneous settings related to full transformations
         /// </summary>
-        [UsedImplicitly] public TFMiscSettings tfSettings;
+        [UsedImplicitly, NotNull] public TFMiscSettings tfSettings = new TFMiscSettings();
 
         /// <summary>
         /// Callbacks called on the transformed pawn to perform additional behavior
         /// </summary>
-        [UsedImplicitly] public List<TFCallback> tfCallbacks;
+        [UsedImplicitly, CanBeNull] public List<TFCallback> tfCallbacks;
 
         /// <summary>
         /// Returns a debug string displayed when inspecting hediffs in dev mode
@@ -79,5 +80,62 @@ namespace Pawnmorph.Hediffs
 
             return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            List<string> tmpList = new List<string>();  
+            foreach (string configError in base.ConfigErrors(parentDef))
+            {
+                yield return configError;
+            }
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
+            if (tfChance == null) yield return $"{nameof(tfChance)} has not been set";
+              
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
+            if (tfTypes == null) yield return $"{nameof(tfTypes)} has not been set";
+
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // ReSharper disable once HeuristicUnreachableCode
+            if (tfGenderSelector == null) yield return $"{nameof(tfGenderSelector)} has not been set";
+
+
+            var enumerable = GenerateSubErrors(tfChance, nameof(tfChance));
+            enumerable = enumerable.Concat(GenerateSubErrors(tfTypes, nameof(tfTypes)))
+                                   .Concat(GenerateSubErrors(tfGenderSelector, nameof(tfGenderSelector)));
+
+            foreach (string error in enumerable)
+            {
+                yield return error;
+            }
+
+            IEnumerable<string> GenerateSubErrors(IInitializableStage stage, string stageName)
+            {
+                if (stage == null) yield break;
+                tmpList.Clear();
+                foreach (string configError in stage.ConfigErrors(parentDef))
+                {
+                    tmpList.Add(configError);
+                }
+
+                if (tmpList.Count > 0)
+                {
+                    yield return $"in {stageName}:";
+                }
+
+                foreach (string s in tmpList)
+                {
+                    yield return "\t" + s;
+                }
+            }
+
+        }
+
     }
 }

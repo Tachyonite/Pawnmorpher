@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -10,7 +11,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines which mutations to add
     /// </summary>
-    public abstract class MutTypes
+    public abstract class MutTypes : IInitializableStage
     {
         /// <summary>
         /// The epsilon for chance comparison.
@@ -38,6 +39,25 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>();
+        }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            //empty 
+        }
     }
 
     /// <summary>
@@ -241,7 +261,7 @@ namespace Pawnmorph.Hediffs.Composable
     }
 
     /// <summary>
-    /// A MutTypes that selects mutations defined in HediffComp_MutagenicTypes
+    /// A MutTypes that selects mutations defined in HediffComp_Composable
     /// 
     /// Most "dynamic" hediffs that want to share mutation data across stages will
     /// want to use this MutTypes, as MutTypes are stateless.
@@ -260,9 +280,9 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
-            return hediff.TryGetComp<HediffComp_MutTypeBase>()
-                    .GetMutations()
-                    .Select(m => MutationEntry.FromMutation(m, chance));
+            return hediff.TryGetComp<HediffComp_Composable>()
+                         .Types.GetMutations(hediff)
+                         .Select(m => MutationEntry.FromMutation(m.mutation, chance)); 
         }
 
         /// <summary>
@@ -283,5 +303,139 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            var props = parentDef.CompProps<HediffCompProps_Composable>();
+            if (props == null) yield return $"no {nameof(HediffCompProps_Composable)} found!";
+        }
+    }
+
+    /// <summary>
+    ///     mut type that picks from mutation categories
+    /// </summary>
+    /// <seealso cref="Pawnmorph.Hediffs.Composable.MutTypes" />
+    public class MutTypes_Category : MutTypes
+    {
+        /// <summary>
+        ///     The category to chose from
+        /// </summary>
+        public List<MutationCategoryDef> categories;
+
+        /// <summary>
+        ///     how the mutations are selected from the list of categories
+        /// </summary>
+        public OperatorType operatorType = OperatorType.Or;
+
+        private List<MutationEntry> _cachedEntries;
+
+        /// <summary>
+        ///     how to select mutations from the categories
+        /// </summary>
+        public enum OperatorType
+        {
+            /// <summary>
+            ///     take mutations from all categories
+            /// </summary>
+            Or,
+
+            /// <summary>
+            ///     take mutations from the intersection of the categories
+            /// </summary>
+            And
+        }
+
+
+        [NotNull]
+        private IReadOnlyList<MutationEntry> CachedEntries
+        {
+            get
+            {
+                if (_cachedEntries == null)
+                    switch (operatorType)
+                    {
+                        case OperatorType.Or:
+                            _cachedEntries = GetOrCachedEntries().ToList();
+                            break;
+                        case OperatorType.And:
+                            _cachedEntries = GetAndCachedEntries().ToList();
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                return _cachedEntries;
+            }
+        }
+
+        [NotNull]
+        private IEnumerable<MutationEntry> GetOrCachedEntries()
+        {
+            return categories.SelectMany(c => c.AllMutations.Where(m => m.RestrictionLevel <= c.restrictionLevel))
+                             .Select(m => MutationEntry.FromMutation(m));
+        }
+
+        [NotNull]
+        private IEnumerable<MutationEntry> GetAndCachedEntries()
+        {
+            return categories.Select(c => c.AllMutations.Where(m => m.RestrictionLevel <= c.restrictionLevel))
+                             .IntersectAll()
+                             .Select(m => MutationEntry.FromMutation(m));
+        }
+
+
+        /// <summary>
+        ///     Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
+        public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
+        {
+            return CachedEntries;
+        }
+
+        /// <summary>
+        ///     A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            return $"choosing from [{string.Join(",", categories.Select(c => c.defName))}] choosing from {CachedEntries.Count} entries";
+        }
+
+        /// <summary>
+        ///     Chechs whether this MutTypes is equivalent to another
+        ///     (meaning they produce the same list of mutations)
+        /// </summary>
+        /// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+        /// <param name="other">The other MutTypes.</param>
+        public override bool EquivalentTo(MutTypes other)
+        {
+            if (other == this) return true;
+            if (other == null) return false;
+            if (!(other is MutTypes_Category oCat)) return false;
+            if (oCat.categories?.Count != categories.Count) return false;
+            for (var i = 0; i < categories.Count; i++)
+                if (oCat.categories[i] != categories[i])
+                    return false;
+
+            return true;
+        }
+
+        /// <summary>
+        ///     gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            if (categories == null) yield return "no category set";
+        }
     }
 }

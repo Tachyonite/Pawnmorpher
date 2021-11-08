@@ -4,7 +4,7 @@
 		<label>chaomorph partial</label>
 		<description>This person has mechanites in their blood that are providing them with all sorts of mutations.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
 				<painOffset>0.3</painOffset>
 				<vomitMtbDays>1</vomitMtbDays>
 				<capMods>
@@ -21,15 +21,11 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-						<blackListCategories>
-							<li>Powerful</li>
-						</blackListCategories>
-						<mtbDays>0.067</mtbDays> <!-- 15 mutations per day base -->
-					</li>
-				</hediffGivers>
+				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All"></mutationTypes>
+				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_PartialStacks">
+					<meanMutationsPerDay>15</meanMutationsPerDay>
+				</mutationRate>
 			</li>
 		</stages>
 	</HediffDef>

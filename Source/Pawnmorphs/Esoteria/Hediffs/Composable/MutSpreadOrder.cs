@@ -10,7 +10,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines the order in which mutations spread through a person
     /// </summary>
-    public abstract class MutSpreadOrder
+    public abstract class MutSpreadOrder : IInitializableStage
     {
         /// <summary>
         /// Gets the the spread manager that will be used to control the spread order
@@ -32,6 +32,25 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            //empty 
+        }
     }
 
     /// <summary>

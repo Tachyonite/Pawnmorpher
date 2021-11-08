@@ -391,6 +391,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
@@ -409,6 +410,10 @@
     <Compile Include="Graphics\TaggedBodyAddon.cs" />
     <Compile Include="HairDefOf.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
+    <Compile Include="Hediffs\Composable\IMutRate.cs" />
+    <Compile Include="Hediffs\Composable\StageAlert.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_Comp.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_MutationsPerSeverityQuadratic.cs" />
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
@@ -420,10 +425,12 @@
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />
     <Compile Include="Hediffs\Giver_ChaomorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
+    <Compile Include="Hediffs\HediffComp_Composable.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
     <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
+    <Compile Include="Hediffs\MorphHediffGenerator.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
     <Compile Include="Hediffs\MutagenicPain.cs" />
@@ -520,6 +527,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ICauseRulePackContainer.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
@@ -552,8 +560,12 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="MorphInjectorProperties.cs" />
     <Compile Include="MutagenicBuildupUtilities.cs" />
     <Compile Include="MutationCategoryDefOf.cs" />
+    <Compile Include="MutationCauses.CauseEntry.cs" />
+    <Compile Include="MutationCauses.cs" />
+    <Compile Include="MutationCauseUtility.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_Hellhound.cs" />
@@ -574,10 +586,13 @@
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
+    <Compile Include="PMEffecterDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
+    <Compile Include="PMImplicitDefGenerator.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMIssueDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
@@ -585,6 +600,8 @@
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
     <Compile Include="PMRelationUtilities.cs" />
+    <Compile Include="PMResearchProjectDefOf.cs" />
+    <Compile Include="PMSoundDefOf.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMTexButton.cs" />
     <Compile Include="PMTextures.cs" />
@@ -597,6 +614,7 @@
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="Recipes\PMRecipeDefGenerator.cs" />
     <Compile Include="RecipeWorkers\ApplyAdaptationCream.cs" />
     <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
     <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
@@ -767,6 +785,7 @@
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="Things\ExpandedPlant.cs" />
+    <Compile Include="Things\InjectorGenerator.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />

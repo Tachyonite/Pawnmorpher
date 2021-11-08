@@ -16,7 +16,7 @@
             <li>Injector</li>
         </thingCategories>
         <ingestible>
-            <drugCategory>Medical</drugCategory>
+            <drugCategory>None</drugCategory>
             <outcomeDoers>
                 <li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
                     <hediffDefs>

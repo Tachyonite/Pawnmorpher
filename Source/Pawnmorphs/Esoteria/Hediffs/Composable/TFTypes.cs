@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -8,7 +9,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines what kind(s) of animals a pawn can be transformed into
     /// </summary>
-    public abstract class TFTypes
+    public abstract class TFTypes : IInitializableStage
     {
         /// <summary>
         /// Gets a pawn kind to transform the pawn into
@@ -23,6 +24,26 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            
+        }
     }
 
     /// <summary>
@@ -48,6 +69,12 @@ namespace Pawnmorph.Hediffs.Composable
     public class TFTypes_All : TFTypes
     {
         /// <summary>
+        /// The black list of animals that will not be chosen 
+        /// </summary>
+        [NotNull]
+        public List<PawnKindDef> blackList = new List<PawnKindDef>();  
+
+        /// <summary>
         /// Gets a pawn kind to transform the pawn into
         /// </summary>
         /// <returns>The mutations.</returns>
@@ -55,7 +82,8 @@ namespace Pawnmorph.Hediffs.Composable
         public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
         {
             return FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs
-                    .RandomElement();
+                                       .Where(pk => !blackList.Contains(pk))
+                                       .RandomElement();
         }
     }
 

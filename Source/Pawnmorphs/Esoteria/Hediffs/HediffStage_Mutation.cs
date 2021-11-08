@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
@@ -15,6 +17,8 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.Hediff" />
     public class HediffStage_Mutation : HediffStage_MutagenicBase
     {   
+        //cna spreadOrder, mutationRate and/or mutationType ever be null?
+
         /// <summary>
         /// Controls the order that mutations spread over the body
         /// </summary>
@@ -56,5 +60,58 @@ namespace Pawnmorph.Hediffs
 
             return stringBuilder.ToString();
         }
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public override IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            List<string> tmpList = new List<string>();
+
+            if (mutationRate == null && mutationTypes == null && spreadOrder == null)
+                yield return $"none of {nameof(mutationRate)}, {nameof(mutationTypes)}, or {spreadOrder} are set";
+
+
+            if (mutationRate == null)
+            {
+                yield return $"{nameof(mutationRate)} is not defined"; 
+            }
+
+            var enumerable = GenerateSubErrors(mutationRate, nameof(mutationRate))
+                            .Concat(GenerateSubErrors(mutationTypes, nameof(mutationTypes)))
+                            .Concat(GenerateSubErrors(spreadOrder, nameof(spreadOrder)));
+            foreach (string s in enumerable)
+            {
+                yield return s; 
+            }
+
+            
+            IEnumerable<string> GenerateSubErrors(IInitializableStage stage, string stageName)
+            {
+                if (stage == null) yield break;
+                tmpList.Clear();
+                foreach (string configError in stage.ConfigErrors(parentDef))
+                {
+                    tmpList.Add(configError); 
+                }
+
+                if (tmpList.Count > 0)
+                {
+                    yield return $"in {stageName}:"; 
+                }
+
+                foreach (string s in tmpList)
+                {
+                    yield return "\t" + s; 
+                }
+            }
+         
+        }
+
+
+
+        
     }
 }

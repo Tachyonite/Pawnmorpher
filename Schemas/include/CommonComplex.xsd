@@ -18,6 +18,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
     </xs:complexType>
 
     <xs:complexType name="StatModifier">
@@ -253,4 +254,5 @@
 
         </xs:all>
     </xs:complexType>
+
 </xs:schema>

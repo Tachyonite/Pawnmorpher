@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 using Verse;
@@ -8,7 +10,7 @@ namespace Pawnmorph.Hediffs.Composable
     /// <summary>
     /// A class that determines what the chance of a full transformation is
     /// </summary>
-    public abstract class TFChance
+    public abstract class TFChance : IInitializableStage
     {
         /// <summary>
         /// Whether or not to transform the pawn.  Checked only upon entering a stage.
@@ -22,6 +24,25 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">The parent hediff.</param>
         /// <returns>The string.</returns>
         public virtual string DebugString(Hediff_MutagenicBase hediff) => "";
+
+        /// <summary>
+        /// gets all configuration errors in this stage .
+        /// </summary>
+        /// <param name="parentDef">The parent definition.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> ConfigErrors(HediffDef parentDef)
+        {
+            return Enumerable.Empty<string>(); 
+        }
+
+        /// <summary>
+        /// Resolves all references in this instance.
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        public virtual void ResolveReferences(HediffDef parent)
+        {
+            //empty 
+        }
     }
 
     /// <summary>
@@ -90,6 +111,15 @@ namespace Pawnmorph.Hediffs.Composable
     public class TFChance_BySetting : TFChance
     {
         /// <summary>
+        /// The chance offset
+        /// </summary>
+        public float offset;
+        /// <summary>
+        /// The chance multiplier 
+        /// </summary>
+        public float mult = 1; 
+
+        /// <summary>
         /// Whether or not transformation sensitivity is respected.
         /// If true, the chance will be multiplied by the sensitivity stat
         /// </summary>
@@ -102,8 +132,8 @@ namespace Pawnmorph.Hediffs.Composable
         public override bool ShouldTransform(Hediff_MutagenicBase hediff)
         {
             // The setting is [0 - 100] rather than [0 - 1], so scale it down
-            float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f;
-
+            float tfChance = (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f);
+            tfChance = (tfChance + offset) * mult; //take into account any offset or multiplier 
             if (affectedBySensitivity)
                 tfChance *= hediff.TransformationSensitivity;
 

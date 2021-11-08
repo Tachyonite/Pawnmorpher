@@ -110,22 +110,6 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        /// <summary>Gets the label base.</summary>
-        /// <value>The label base.</value>
-        public override string LabelBase
-        {
-            get
-            {
-                string label = base.LabelBase;
-
-                if(SingleComp != null)
-                    label = $"{label} x{SingleComp.stacks}";
-
-                return label; 
-
-            }
-        }
-
         /// <summary>Gets the minimum mutations per check.</summary>
         /// if greater then 1, every-time a mutation is possible don't stop iterating over the parts until a body part that can be mutated is found 
         /// <value>The minimum mutations per check.</value>
@@ -233,18 +217,7 @@ namespace Pawnmorph.Hediffs
             if (pawn.IsHashIntervalTick(10000) && CanReset) ResetMutationOrder();
         }
 
-        void DecrementPartialComp()
-        {
-            var sComp = SingleComp;
-            if (sComp == null) return;
-            sComp.stacks--;
-
-            if (sComp.stacks <= 0)
-            {
-                forceRemove = true; 
-            }
-            
-        }
+     
 
    
 
@@ -347,7 +320,6 @@ namespace Pawnmorph.Hediffs
 
             if (FinishedAddingMutations)
             {
-                DecrementPartialComp(); //decrement only if we're finished adding mutations 
                 return;
             }
             if (!AnyMutationsInStage(CurStage)) return; 
@@ -419,30 +391,14 @@ namespace Pawnmorph.Hediffs
             return false; 
         }
 
-        /// <summary>
-        /// Gets the single comp for partial transformation hediffs 
-        /// </summary>
-        /// <value>
-        /// The single comp.
-        /// </value>
-        [CanBeNull]
-        protected HediffComp_Single SingleComp => this.TryGetComp<HediffComp_Single>(); //TODO: remove this and have HediffComp_Single implement ITfHediffObserverComp, TransformationBase doesn't need to know if it has this comp specifically 
-
+    
         /// <summary>
         /// Called when mutations are added the pawn.
         /// </summary>
         /// <param name="mutationsAdded">The mutations added.</param>
-        protected virtual void OnMutationsAdded(int mutationsAdded) //TODO remove this when refactoring HediffComp_Single 
+        protected virtual void OnMutationsAdded(int mutationsAdded)
         {
-            var sComp = SingleComp;
-            if(sComp != null)
-            {
-                sComp.stacks = Mathf.Max(sComp.stacks - mutationsAdded, 0);
-                if (sComp.stacks <= 0)
-                {
-                    forceRemove = true; 
-                }
-            }
+         
         }
 
         private void AddPartMutations()
