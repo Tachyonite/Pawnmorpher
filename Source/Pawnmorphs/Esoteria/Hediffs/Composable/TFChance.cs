@@ -111,6 +111,15 @@ namespace Pawnmorph.Hediffs.Composable
     public class TFChance_BySetting : TFChance
     {
         /// <summary>
+        /// The chance offset
+        /// </summary>
+        public float offset;
+        /// <summary>
+        /// The chance multiplier 
+        /// </summary>
+        public float mult = 1; 
+
+        /// <summary>
         /// Whether or not transformation sensitivity is respected.
         /// If true, the chance will be multiplied by the sensitivity stat
         /// </summary>
@@ -123,8 +132,8 @@ namespace Pawnmorph.Hediffs.Composable
         public override bool ShouldTransform(Hediff_MutagenicBase hediff)
         {
             // The setting is [0 - 100] rather than [0 - 1], so scale it down
-            float tfChance = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f;
-
+            float tfChance = (LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().transformChance / 100f);
+            tfChance = (tfChance + offset) * mult; //take into account any offset or multiplier 
             if (affectedBySensitivity)
                 tfChance *= hediff.TransformationSensitivity;
 

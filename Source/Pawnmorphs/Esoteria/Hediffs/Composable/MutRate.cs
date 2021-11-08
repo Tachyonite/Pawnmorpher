@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -110,12 +111,32 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override int GetMutationsPerSecond(Hediff_MutagenicBase hediff)
         {
+            float mutations = GetEffectiveMutationsPerDay(hediff);
+            return TryGainMutation(mutations);
+        }
+
+        /// <summary>
+        /// Gets the effective mutations per day.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns></returns>
+        protected virtual float GetEffectiveMutationsPerDay(Hediff_MutagenicBase hediff)
+        {
             float mutations = meanMutationsPerDay;
             if (affectedBySensitivity)
                 mutations *= hediff.MutagenSensitivity;
+            return mutations;
+        }
 
+        /// <summary>
+        /// Tries the gain mutation.
+        /// </summary>
+        /// <param name="mutationsPerDay">The mutations per day.</param>
+        /// <returns></returns>
+        private int TryGainMutation(float mutationsPerDay)
+        {
             //Don't worry about division by zero, MTBEventOccurs handles positive infinity
-            if (Rand.MTBEventOccurs(1f / mutations, 60000, 60))
+            if (Rand.MTBEventOccurs(1f / mutationsPerDay, 60000, 60))
                 return 1;
 
             return 0;
@@ -197,6 +218,56 @@ namespace Pawnmorph.Hediffs.Composable
             if (affectedBySensitivity)
                 builder.AppendLine($"Mutations/Severity w/ Sensitivity: {meanMutationsPerSeverity * hediff.MutagenSensitivity}");
             return builder.ToString();
+        }
+    }
+
+    /// <summary>
+    /// h
+    /// </summary>
+    /// <seealso cref="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay" />
+    public class MutRate_PartialStacks : MutRate_MutationsPerDay
+    {
+        /// <summary>
+        /// The stack power
+        /// </summary>
+        public float stackPower = 1.2f;
+        /// <summary>
+        /// The stack multiplier
+        /// </summary>
+        public float stackMult = 1f;
+
+
+        /// <summary>
+        /// Gets the effective mutations per day.
+        /// </summary>
+        /// <param name="hediff">The hediff.</param>
+        /// <returns></returns>
+        protected override float GetEffectiveMutationsPerDay(Hediff_MutagenicBase hediff)
+        {
+
+
+            float rate = base.GetEffectiveMutationsPerDay(hediff);
+            var partialComp = hediff.TryGetComp<HediffComp_Single>(); //cache this? 
+            
+            if (partialComp != null)
+            {
+                rate = rate * Mathf.Max(partialComp.stacks * stackMult,1); 
+            }
+
+            return rate; 
+        }
+
+        /// <summary>
+        /// A debug string printed out when inspecting the hediffs
+        /// </summary>
+        /// <param name="hediff">The parent hediff.</param>
+        /// <returns>The string.</returns>
+        public override string DebugString(Hediff_MutagenicBase hediff)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(base.DebugString(hediff));
+            builder.AppendLine($"effective mutation rate per second: {GetEffectiveMutationsPerDay(hediff)}");
+            return builder.ToString(); 
         }
     }
 }

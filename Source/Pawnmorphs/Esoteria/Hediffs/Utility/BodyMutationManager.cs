@@ -157,7 +157,7 @@ namespace Pawnmorph.Hediffs.Utility
         {
             var builder = new StringBuilder();
             builder.AppendLine("BodyMutationManager");
-
+            builder.AppendLine($"Has Mutations:{HasMutations()}");
             if (spreadList != null)
                 builder.AppendLine($"Next Body Part: {spreadList?.Entry?.def?.defName} ({spreadList.Index + 1}/{spreadList.Count})");
             else

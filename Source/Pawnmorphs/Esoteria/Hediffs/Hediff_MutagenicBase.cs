@@ -173,6 +173,8 @@ namespace Pawnmorph.Hediffs
 
                 _causes.Add(MutationCauses.WEAPON_PREFIX, weaponSource);
             }
+            if(def.stages != null && def.stages.Count > 0)
+                CheckCurrentStage(null, def.stages[base.CurStageIndex]);
         }
 
 
@@ -220,6 +222,14 @@ namespace Pawnmorph.Hediffs
             _painStatValue.Recalculate();
             mutagenSensitivity.Recalculate();
             _bestMutagenCause.Recalculate();
+
+            cachedStageType = StageType.None;
+            if (def.stages != null)
+            {
+                var cStage = def.stages[base.CurStageIndex];
+                
+                CheckCurrentStage(null, cStage);
+            }
         }
         
         /// <summary>
@@ -403,9 +413,18 @@ namespace Pawnmorph.Hediffs
             if (newStage == null) throw new ArgumentNullException(nameof(newStage));
 
 
-            if (newStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this); 
+            if (newStage is HediffStage_MutagenicBase mBase) mBase.alert?.SendAlert(this);
 
-            if (newStage is HediffStage_Mutation newMutStage)
+            CheckCurrentStage(oldStage, newStage, true);
+
+            foreach (var comp in ObserverComps)
+                comp.StageChanged();
+
+        }
+
+        private void CheckCurrentStage([CanBeNull] HediffStage oldStage, [NotNull]HediffStage currentStage, bool doTf = false)
+        {
+            if (currentStage is HediffStage_Mutation newMutStage)
             {
                 cachedStageType = StageType.Mutation;
 
@@ -424,26 +443,22 @@ namespace Pawnmorph.Hediffs
                     ResetMutationList();
                 }
             }
-            else if (newStage is HediffStage_Transformation)
+            else if (currentStage is HediffStage_Transformation)
             {
                 cachedStageType = StageType.Transformation;
 
                 // Only try to transform the pawn when entering a transformation stage
                 // NOTE: This triggers regardless of whether the stages are increasing or decreasing.
-                if (!this.IsImmune())
+                if (!this.IsImmune() && doTf)
                     CheckAndDoTransformation();
             }
             else
             {
                 cachedStageType = StageType.None;
             }
-
-            foreach (var comp in ObserverComps)
-                comp.StageChanged();
-
         }
 
-      
+
 
         /// <summary>
         /// Queues up a number of mutations to be added to the pawn.  Negative amounts
@@ -571,7 +586,9 @@ namespace Pawnmorph.Hediffs
         public override string DebugString()
         {
             StringBuilder builder = new StringBuilder(base.DebugString());
-            builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:");
+            builder.AppendLine($"{nameof(Hediff_MutagenicBase)}:cached stage type {cachedStageType}");
+
+
 
             if (CurStage is HediffStage_Mutation mutationStage)
             {
@@ -589,6 +606,11 @@ namespace Pawnmorph.Hediffs
             else
             {
                 builder.AppendLine("  Other Stage");
+            }
+
+            if (queuedMutations > 0)
+            {
+                builder.AppendLine($"queued mutations:{queuedMutations}");
             }
 
             return builder.ToString();

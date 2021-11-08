@@ -4,7 +4,7 @@
 		<label>chaomorph</label>
 		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
 		<stages>
-			<li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
 				<label>reeling</label>
 				<hungerRateFactor>1.6</hungerRateFactor>
 				<painOffset>0.05</painOffset>
@@ -14,17 +14,19 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.Hediffs.Giver_ChaomorphTf">
-						<hediff>TransformedHuman</hediff>
-						<forceGender>Switch</forceGender>
-						<forceGenderChance>25</forceGenderChance>
-						<tale>TransformationMisc</tale>
-						<changeChance>90</changeChance>
-					</li>
-				</hediffGivers>
+				<tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_Chao" />
+				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting">
+					<mult>1.25</mult>
+					<offset>0.1</offset>
+				</tfChance>
+				<tfSettings>
+					<tfTale>TransformationMisc</tfTale>
+				</tfSettings>
+				<tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+					<chance>0.25</chance>
+				</tfGenderSelector>
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_MutagenicBase">
 				<label>transforming</label>
 				<minSeverity>0.6</minSeverity>
 				<painOffset>0.5</painOffset>
@@ -43,8 +45,9 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
+				<alert />
 			</li>
-			<li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
 				<label>changing</label>
 				<minSeverity>0.65</minSeverity>
 				<painOffset>0.3</painOffset>
@@ -63,15 +66,11 @@
 						<offset>-0.05</offset>
 					</li>
 				</capMods>
-				<hediffGivers>
-					<li Class="Pawnmorph.Hediffs.Giver_MutationChaotic">
-						<hediff>EtherWolfMuzzle</hediff> <!-- not used but needed for prepare carefully to initialize -->
-						<blackListCategories>
-							<li>Powerful</li>
-						</blackListCategories>
-						<mtbDays>0.067</mtbDays> <!-- 15 mutations per day base -->
-					</li>
-				</hediffGivers>
+				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All"></mutationTypes>
+				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
+					<meanMutationsPerDay>15</meanMutationsPerDay>
+				</mutationRate>
 			</li>
 		</stages>
 		<!-- add the mutagen source to make this morph give aspects to  -->
