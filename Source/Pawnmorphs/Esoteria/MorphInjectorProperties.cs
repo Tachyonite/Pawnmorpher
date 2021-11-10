@@ -27,7 +27,7 @@ namespace Pawnmorph
         /// <summary>
         /// The work amount
         /// </summary>
-        public int workAmount = 4000; 
+        public int workAmount; 
 
         /// <summary>
         /// The stat bases for the injector 
@@ -53,15 +53,15 @@ namespace Pawnmorph
         /// <summary>
         /// how much slurry is needed to make the injector 
         /// </summary>
-        public int slurryCost = 3; //1 is for debug, make a reasonable default value 
+        public int slurryCost = 1; //1 is for debug, make a reasonable default value 
         /// <summary>
         /// The neutroamine cost to make this injector 
         /// </summary>
-        public int neutroamineCost = 4;
+        public int neutroamineCost;
         /// <summary>
         /// The mutanite cost to make this injector 
         /// </summary>
-        public int mutaniteCost = 0;
+        public int mutaniteCost;
 
 
         /// <summary>
