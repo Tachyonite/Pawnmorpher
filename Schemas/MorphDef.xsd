@@ -258,7 +258,7 @@
 			<xs:element name="traderTags" type="ListOfStrings" minOccurs="0" />
 			<xs:element name="description" type="xs:string" minOccurs="0" />
 			<xs:element name="useDefaultTags" type="xs:boolean" minOccurs="0" />
-			<xs:element name="costList">
+			<xs:element name="costList" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
 						<xs:any processContents="lax" maxOccurs="unbounded" />

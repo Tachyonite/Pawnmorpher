@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>AlpacaMorph</defName>
 		<label>alpacamorph</label>
@@ -11,6 +11,9 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
+		<injectorProperties>
+			<label>mutasyringe, alpaca</label>
+		</injectorProperties>
 		<fullTransformation>PawnmorphAlpacaTF</fullTransformation>
 		<partialTransformation>PawnmorphAlpacaTFPartial</partialTransformation>
 		<raceSettings>
