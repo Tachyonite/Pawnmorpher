@@ -104,6 +104,7 @@ namespace Pawnmorph.Things
                 label = GetInjectorLabel(mDef),
                 modContentPack = mDef.modContentPack,
                 graphicData = props.graphicData,
+                description = props.description,
                 thingClass = typeof(ThingWithComps),
                 statBases = GetStatModifiers(props),
                 thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.Injector, ThingCategoryDefOf.Drugs},

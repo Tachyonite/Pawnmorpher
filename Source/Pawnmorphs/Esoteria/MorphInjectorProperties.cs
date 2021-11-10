@@ -81,6 +81,10 @@ namespace Pawnmorph
             _recipeMakerGenerated;
 
         [Unsaved] private List<ThingDefCountClass> _costListGenerated;
+        /// <summary>
+        /// The description of the injector 
+        /// </summary>
+        public string description;
 
         /// <summary>
         /// Gets the recipe maker.
