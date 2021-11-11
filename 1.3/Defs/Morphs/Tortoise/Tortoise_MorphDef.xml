@@ -10,6 +10,7 @@
 			<li>Tropical</li>
 			<li>Reptile</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphTortoiseTF</fullTransformation>
 		<partialTransformation>PawnmorphTortoiseTFPartial</partialTransformation>
 		<raceSettings>

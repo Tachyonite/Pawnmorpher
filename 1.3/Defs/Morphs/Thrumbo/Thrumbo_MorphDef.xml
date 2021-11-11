@@ -8,6 +8,7 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphThrumboTF</fullTransformation>
 		<partialTransformation>PawnmorphThrumboTFPartial</partialTransformation>
 		<raceSettings>

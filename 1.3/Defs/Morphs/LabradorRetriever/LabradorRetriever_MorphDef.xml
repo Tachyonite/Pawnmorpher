@@ -10,6 +10,7 @@
 			<li>Combat</li>
 			<li>Canid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphLabradorRetrieverTF</fullTransformation>
 		<partialTransformation>PawnmorphLabradorRetrieverTFPartial</partialTransformation>
 		<raceSettings>

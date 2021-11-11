@@ -9,6 +9,7 @@
 			<li>Temperate</li>
 			<li>Feline</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphLynxTF</fullTransformation>
 		<partialTransformation>PawnmorphLynxTFPartial</partialTransformation>
 		<raceSettings>

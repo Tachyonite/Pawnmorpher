@@ -12,6 +12,7 @@
 			<li>Crafter</li>
 			<li>Rodent</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphRatTF</fullTransformation>
 		<partialTransformation>PawnmorphRatTFPartial</partialTransformation>
 		<raceSettings>

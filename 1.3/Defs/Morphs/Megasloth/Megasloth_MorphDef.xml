@@ -8,6 +8,7 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphMegaslothTF</fullTransformation>
 		<partialTransformation>PawnmorphMegaslothTFPartial</partialTransformation>
 		<raceSettings>

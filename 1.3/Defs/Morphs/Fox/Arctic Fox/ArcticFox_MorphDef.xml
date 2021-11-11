@@ -9,6 +9,7 @@
 			<li>Social</li>
 			<li>Canid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<partialTransformation>PawnmorphArcticFoxTFPartial</partialTransformation>
 		<fullTransformation>PawnmorphArcticFoxTF</fullTransformation>
 		<raceSettings>

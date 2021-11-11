@@ -9,6 +9,7 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphPigTF</fullTransformation>
 		<partialTransformation>PawnmorphPigTFPartial</partialTransformation>
 		<raceSettings>

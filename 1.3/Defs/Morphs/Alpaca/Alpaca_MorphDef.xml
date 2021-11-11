@@ -11,9 +11,7 @@
 			<li>Farm</li>
 			<li>Production</li>
 		</categories>
-		<injectorProperties>
-			<label>mutasyringe, alpaca</label>
-		</injectorProperties>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphAlpacaTF</fullTransformation>
 		<partialTransformation>PawnmorphAlpacaTFPartial</partialTransformation>
 		<raceSettings>

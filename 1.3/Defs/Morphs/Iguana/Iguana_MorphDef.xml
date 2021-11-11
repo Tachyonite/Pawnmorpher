@@ -9,6 +9,7 @@
 			<li>Arid</li>
 			<li>Reptile</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphIguanaTF</fullTransformation>
 		<partialTransformation>PawnmorphIguanaTFPartial</partialTransformation>
 		<raceSettings>

@@ -10,11 +10,10 @@
 			<li>Combat</li>
 			<li>Cervid</li>
 		</categories>
-		
+		<injectorProperties></injectorProperties>
 		<associatedAnimals>
 			<li>Elk</li>
 		</associatedAnimals>
-
 		<fullTransformation>PawnmorphDeerTF</fullTransformation>
 		<partialTransformation>PawnmorphDeerTFPartial</partialTransformation>
 		<raceSettings>
