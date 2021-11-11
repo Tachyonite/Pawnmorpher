@@ -10,6 +10,7 @@
 			<li>Crafter</li>
 			<li>Rodent</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphAlphabeaverTF</fullTransformation>
 		<partialTransformation>PawnmorphAlphabeaverTFPartial</partialTransformation>
 		<raceSettings>

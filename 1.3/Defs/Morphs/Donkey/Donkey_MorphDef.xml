@@ -9,6 +9,7 @@
 			<li>Temperate</li>
 			<li>Farm</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphDonkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphDonkeyTFPartial</partialTransformation>
 		<raceSettings>

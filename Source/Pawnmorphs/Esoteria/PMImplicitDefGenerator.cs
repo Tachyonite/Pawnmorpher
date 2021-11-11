@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -79,12 +80,31 @@ namespace Pawnmorph
 
             foreach (DefSt defSt in _defSts) GiveShortHash(defSt.def, defSt.type);
 
+            //debug log 
+            DebugOutput();
+
             //register defs 
-            DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs); 
+            DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
             DefDatabase<ThingDef>.Add(InjectorGenerator.GeneratedInjectorDefs);
-            DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes); 
+            DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes);
             ResourceCounter.ResetDefs();
 
+        }
+
+        private static void DebugOutput()
+        {
+            var joinEnm = _defSts.GroupBy(d => d.type);
+            StringBuilder builder = new StringBuilder();
+            foreach (IGrouping<Type, DefSt> grouping in joinEnm)
+            {
+                builder.AppendLine($"def type {grouping.Key.Name}:");
+                foreach (DefSt defSt in grouping)
+                {
+                    builder.AppendLine($"\t{defSt.def.defName}");
+                }
+            }
+
+            Log.Message(builder.ToString());
         }
 
         private static void GiveShortHash([NotNull] Def def, [NotNull] Type type)

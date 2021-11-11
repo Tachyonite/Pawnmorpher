@@ -10,6 +10,7 @@
 			<li>Avian</li>
 			<li>Combat</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphCassowaryTF</fullTransformation>
 		<partialTransformation>PawnmorphCassowaryTFPartial</partialTransformation>
 		<raceSettings>

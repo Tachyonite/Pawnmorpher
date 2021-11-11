@@ -10,6 +10,7 @@
 			<li>Combat</li>
 			<li>Feline</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphCatTF</fullTransformation>
 		<partialTransformation>PawnmorphCatTFPartial</partialTransformation>
 		<raceSettings>

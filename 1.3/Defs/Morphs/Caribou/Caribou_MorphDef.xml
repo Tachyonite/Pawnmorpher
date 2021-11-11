@@ -9,6 +9,7 @@
 			<li>Cold</li>
 			<li>Cervid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphCaribouTF</fullTransformation>
 		<partialTransformation>PawnmorphCaribouTFPartial</partialTransformation>
 		<raceSettings>

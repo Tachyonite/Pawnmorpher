@@ -10,6 +10,7 @@
 			<li>Temperate</li>
 			<li>Bovid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<associatedAnimals>
 			<li>Ibex</li>
 		</associatedAnimals>

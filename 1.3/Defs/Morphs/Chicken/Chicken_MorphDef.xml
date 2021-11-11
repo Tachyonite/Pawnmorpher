@@ -10,6 +10,7 @@
 			<li>Production</li>
 			<li>Avian</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphChickenTF</fullTransformation>
 		<partialTransformation>PawnmorphChickenTFPartial</partialTransformation>
 		<raceSettings>

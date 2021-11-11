@@ -10,6 +10,7 @@
 			<li>Social</li>
 			<li>Crafter</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphMonkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphMonkeyTFPartial</partialTransformation>
 		<raceSettings>

@@ -11,6 +11,7 @@
 			<li>Production</li>
 			<li>Bovid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<associatedAnimals>
 			<li>Muffalo</li>
 		</associatedAnimals>

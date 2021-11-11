@@ -80,7 +80,9 @@ namespace Pawnmorph.Things
 
             var comps = new List<CompProperties>
             {
-                new CompProperties_Drug {listOrder = 1000}
+                new CompProperties_Drug {listOrder = 1000},
+                new CompProperties_UseEffectPlaySound() { soundOnUsed = SoundDefOf.MechSerumUsed},
+                new CompProperties_Forbiddable()
             };
 
             var ingestProps = new IngestibleProperties
@@ -104,11 +106,23 @@ namespace Pawnmorph.Things
                 label = GetInjectorLabel(mDef),
                 modContentPack = mDef.modContentPack,
                 graphicData = props.graphicData,
+                description = props.description,
                 thingClass = typeof(ThingWithComps),
+                useHitPoints = true,
+                resourceReadoutPriority = ResourceCountPriority.Middle,
+                category = ThingCategory.Item,
                 statBases = GetStatModifiers(props),
                 thingCategories = new List<ThingCategoryDef> {PMThingCategoryDefOf.Injector, ThingCategoryDefOf.Drugs},
                 rotatable = false,
                 techLevel = props.techLevel,
+                alwaysHaulable = true,
+                pathCost = 14,
+                allowedArchonexusCount = -1,
+                stackLimit = 75,
+                selectable = true,
+                altitudeLayer = AltitudeLayer.Item,
+                drawGUIOverlay = true,
+                drawerType = DrawerType.MapMeshOnly,
                 ingestible = ingestProps,
                 tradeTags = props.traderTags,
                 costList = props.CostList.ToList(),

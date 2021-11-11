@@ -463,7 +463,7 @@ namespace Pawnmorph
             _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
             _secondaryPawnKindDefs =
                 DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race || AllAssociatedAnimals.Contains(p.race)).ToList();
-            injectorProperties?.ResolveReferences();
+            injectorProperties?.ResolveReferences(race.label);
             
         }
 
