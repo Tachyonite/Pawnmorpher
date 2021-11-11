@@ -50,4 +50,80 @@
             </li>
         </stages>
     </ThoughtDef>
+	
+	    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherMuffaloJaw</defName>
+        <stages>
+            <li>
+                <label>Bovine face</label>
+                <description>My face is hot and fluffy, not a good mix...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine face</label>
+                <description>I'm so fluffy, and a nice shade of blue!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine face</label>
+                <description>If I hear "Why so blue?" one more time, I'm going to cry.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherMuffaloEar</defName>
+        <stages>
+            <li>
+                <label>Bovine ears</label>
+                <description>Blue floppy ears...cute!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine ears</label>
+                <description>Cute!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine ears</label>
+                <description>Two words. Why, Randy?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherMuffaloTail</defName>
+        <stages>
+            <li>
+                <label>Bovine tail</label>
+                <description>Muffalo have tails? I've never seen one.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine tail</label>
+                <description>It's a cute little tail.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bovine tail</label>
+                <description>Is someone flicking me? Where is it coming from?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
 </Defs>

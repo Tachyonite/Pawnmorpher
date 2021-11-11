@@ -51,6 +51,31 @@
         </stages>
     </ThoughtDef>
 
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCaribouJaw</defName>
+        <stages>
+            <li>
+                <label>Reindeer face</label>
+                <description>Oh deer, this is going to be tough to get used to.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer face</label>
+                <description>Where's my red nose?</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer face</label>
+                <description>STOP SINGING JINGLE BELLS TO ME!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherCaribouEar</defName>

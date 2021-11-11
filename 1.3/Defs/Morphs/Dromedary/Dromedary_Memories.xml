@@ -51,6 +51,31 @@
         </stages>
     </ThoughtDef>
 
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherDromedaryJaw</defName>
+        <stages>
+            <li>
+                <label>Camel face</label>
+                <description>This thing is only good for chewing grass.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel face</label>
+                <description>That bush is looking *really* delicious...</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel face</label>
+                <description>I want to eat a bush right now...this is horrible!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherDromedaryEar</defName>

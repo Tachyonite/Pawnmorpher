@@ -50,4 +50,105 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherThrumboSnout</defName>
+		<stages>
+			<li>
+				<label>Thrumbo face</label>
+				<description>A bit messy, I don't exactly like it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo face</label>
+				<description>I go really go for a tree right now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo face</label>
+				<description>Sloppy and gross, I want it off!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherThrumboEar</defName>
+		<stages>
+			<li>
+				<label>Thrumbo ear</label>
+				<description>They're pretty good at hearing, I'll give them that.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo ear</label>
+				<description>Wonderful ears for a wonderful creature!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo ear</label>
+				<description>They're stupid, and I don't want to have them...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherThrumboTail</defName>
+		<stages>
+			<li>
+				<label>Thrumbo tail</label>
+				<description>Having a tail is quite strange but it does feel very luxurious.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo tail</label>
+				<description>It's so soft and velvety! Who needs a pillow when I have this?</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thrumbo tail</label>
+				<description>I don't care if some think it's majestic, I HATE it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherThrumboHorn</defName>
+		<stages>
+			<li>
+				<label>Razor horn</label>
+				<description>Ouch! This thing is VERY sharp.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Razor horn</label>
+				<description>It's majestic...no wait, it's me that is majestic now.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Razor horn</label>
+				<description>Maybe if I let them cut it off and sell it...maybe they could get some medicine that could undo this...please...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

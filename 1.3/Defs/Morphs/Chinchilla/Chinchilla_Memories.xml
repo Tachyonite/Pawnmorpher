@@ -51,7 +51,31 @@
         </stages>
     </ThoughtDef>
 
-    
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherChinchillaJaw</defName>
+        <stages>
+            <li>
+                <label>Tiny rodent face</label>
+                <description>It's hard to eat when my mouth is so small!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent face</label>
+                <description>My face is so tiny and cute!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny rodent face</label>
+                <description>My face is so tiny!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherChinchillaEar</defName>
