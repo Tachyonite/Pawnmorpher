@@ -8,7 +8,7 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
-		<injectorProperties></injectorProperties>
+		<injectorDef>RhinocerosTransformer</injectorDef>
 		<fullTransformation>PawnmorphRhinocerosTF</fullTransformation>
 		<partialTransformation>PawnmorphRhinocerosTFPartial</partialTransformation>
 		<raceSettings>
