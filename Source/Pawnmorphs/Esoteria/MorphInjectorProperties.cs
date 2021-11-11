@@ -27,7 +27,12 @@ namespace Pawnmorph
         /// <summary>
         /// The work amount
         /// </summary>
-        public int workAmount = 4000; 
+        public int workAmount = 4000;
+
+        /// <summary>
+        /// The market value
+        /// </summary>
+        public int marketValue = 400;
 
         /// <summary>
         /// The stat bases for the injector 
@@ -181,7 +186,7 @@ namespace Pawnmorph
                 StatModifier mkValue = new StatModifier()
                 {
                     stat = StatDefOf.MarketValue,
-                    value = CalculateMarketValue()
+                    value = marketValue
                 };
                 statBases.Add(mkValue);
             }
@@ -190,6 +195,7 @@ namespace Pawnmorph
         private const float WORK_TO_VALUE = 1; 
         private float CalculateMarketValue()
         {
+            Log.Error($"{CostList.Sum(s => s.count * s.thingDef.GetStatValueAbstract(StatDefOf.MarketValue))}-{WORK_TO_VALUE}-{workAmount}");
             return CostList.Sum(s => s.count * s.thingDef.GetStatValueAbstract(StatDefOf.MarketValue))
                  + WORK_TO_VALUE * workAmount; 
         }
