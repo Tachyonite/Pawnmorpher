@@ -129,8 +129,14 @@ namespace Pawnmorph
         /// <summary>
         ///     Resolves the references.
         /// </summary>
-        public void ResolveReferences()
+        public void ResolveReferences(string animal)
         {
+            Log.Error($"{label}{description}{animal}");
+            if (string.IsNullOrEmpty(label))
+                label = "injectorLabel".Translate(animal);
+            if (string.IsNullOrEmpty(description))
+                description = "injectorDescription".Translate(animal);
+
             if (useDefaultTags)
             {
                 traderTags = traderTags ?? new List<string>();
