@@ -131,7 +131,6 @@ namespace Pawnmorph
         /// </summary>
         public void ResolveReferences(string animal)
         {
-            Log.Error($"{label}{description}{animal}");
             if (string.IsNullOrEmpty(label))
                 label = "injectorLabel".Translate(animal);
             if (string.IsNullOrEmpty(description))
