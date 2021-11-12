@@ -50,4 +50,130 @@
             </li>
         </stages>
     </ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherSnakeJaw</defName>
+        <stages>
+            <li>
+                <label>Snake face</label>
+                <description>Thissss long tounge makesss it hard not to ssssssslur my Sssssss ssssounds...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake face</label>
+                <description>Sssssharp fangs to match a sssharp tounge.</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake face</label>
+                <description>Sssssstupid tounge tassssting the sssstupid air... Now I have to tassste every rotten sssssmell too.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherSnakeHood</defName>
+        <stages>
+            <li>
+                <label>Snake hood</label>
+                <description>It'sss hard to fit a T-shirt over thissss hood now.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake hood</label>
+                <description>How exotic! I could ssscare away any jerks I don't like with thisss.</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake hood</label>
+                <description>It's annoyingly big and ssscaly...agh!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherSnakeTail</defName>
+        <stages>
+            <li>
+                <label>Snake tail</label>
+                <description>Thissss will take ssssome getting ussssed to.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake tail</label>
+                <description>Sssslithering here, sssslithering there, sssslithering everywhere!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Snake tail</label>
+                <description>I want my legsssss back!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSnakeHand</defName>
+		<stages>
+			<li>
+				<label>Snake...hands?</label>
+				<description>I ssssuppossse at leassssst I keep my handssss...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Snake...hands?</label>
+				<description>Armored handssss, no more paper cutsssss...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Snake...hands?</label>
+				<description>Thank whatever god there isss. I sssstill have handssss.</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSnakeEye</defName>
+		<stages>
+			<li>
+				<label>Snake eyes</label>
+				<description>At least I can sssstill ssssee properly.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Snake eyes</label>
+				<description>The eyesssss of a cunning tricksssssster...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Snake eyes</label>
+				<description>These eyesss look cold and unnatural...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

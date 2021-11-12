@@ -50,4 +50,111 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherDeerSnout</defName>
+		<stages>
+			<li>
+				<label>Deer face</label>
+				<description>Look at my nose, it's just so...animal.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Deer face</label>
+				<description>Berries are soooo good.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Deer face</label>
+				<description>I could really use some buckshot right now.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherDeerEar</defName>
+		<stages>
+			<li>
+				<label>Deer ears</label>
+				<description>Any noise causes them to flick up...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Deer ears</label>
+				<description>I can hear predators so easily now...uh, I mean, raiders!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Deer ears</label>
+				<description>Guns really hurt my ears...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherShortTail</defName>
+		<stages>
+			<li>
+				<label>Short tail</label>
+				<description>It'd be nice if it didn't flick up whenever people scare me...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Short tail</label>
+				<description>Flick, flick, flick, flick...oh, sorry!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Short tail</label>
+				<description>At least I can hide it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherAntlers</defName>
+		<stages>
+			<li>
+				<label>Antlers</label>
+				<description>They would be fine if they weren't constantly getting stuck in door frames.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>This is awesome! I feel like I could just ram into things and destroy them!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>This is ridiculous! How am I supposed to even get on shirts now?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>Closer to the forest, and closer to my dream.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>
