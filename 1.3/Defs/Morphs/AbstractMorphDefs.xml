@@ -30,6 +30,7 @@
 		<categories>
 			<li>Chimera</li>
 		</categories>
+		<noInjector>true</noInjector>
 		<fullTransformation>FullRandomTFAnyOutcome</fullTransformation>
 		<partialTransformation>FullRandomTF</partialTransformation>
 		<classification>Animal</classification>
