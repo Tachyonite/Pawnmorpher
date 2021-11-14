@@ -108,6 +108,13 @@ namespace Pawnmorph
         /// </summary>
         [CanBeNull] public ThingDef injectorDef;
 
+
+        /// <summary>
+        /// if this morph should have no injector or hediff specific for it 
+        /// </summary>
+        /// Note: this is for suppressing warnings about missing injectors 
+        public bool noInjector; 
+
         /// <summary>
         /// The properties for the generated injector def 
         /// </summary>

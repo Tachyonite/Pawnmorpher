@@ -71,7 +71,7 @@ namespace Pawnmorph
         {
             IEnumerable<IGrouping<ModContentPack, MorphDef>> mDefs = MorphDef
                                                                     .AllDefs.Where(md => md.injectorProperties == null
-                                                                                      && md.injectorDef == null)
+                                                                                      && md.injectorDef == null && !md.noInjector)
                                                                     .GroupBy(m => m.modContentPack);
 
 
