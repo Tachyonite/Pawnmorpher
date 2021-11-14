@@ -81,7 +81,7 @@ namespace Pawnmorph
             foreach (DefSt defSt in _defSts) GiveShortHash(defSt.def, defSt.type);
 
             //debug log 
-            DebugOutput();
+            //DebugOutput();
 
             //register defs 
             DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
