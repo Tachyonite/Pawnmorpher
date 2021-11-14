@@ -23,6 +23,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// </summary>
         /// <returns>The mutations.</returns>
         /// <param name="hediff">Hediff.</param>
+        [NotNull]
         public abstract IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff);
 
         /// <summary>
@@ -280,8 +281,34 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
         {
-            return hediff.TryGetComp<HediffComp_Composable>()
-                         .Types.GetMutations(hediff)
+
+            var comp = hediff.TryGetComp<HediffComp_Composable>();
+            if (comp == null)
+            {
+                var bComp = hediff.TryGetComp<HediffComp_MutTypeBase>();
+                
+                
+                if (bComp == null) //hacky, need a better solution 
+                {
+                    Log.Error($"unable to get {nameof(HediffComp_Composable)} on {hediff.def.defName}!");
+                    return null;
+                }
+                else
+                {
+
+                    return bComp.GetMutations().Select(m => MutationEntry.FromMutation(m, chance));
+
+                }
+            }
+
+            if (comp.Types == null)
+            {
+
+                Log.Error($"mutation types on {nameof(HediffComp_Composable)} on {hediff.def.defName} is null!");
+                return null; 
+            }
+
+            return comp.Types.GetMutations(hediff)
                          .Select(m => MutationEntry.FromMutation(m.mutation, chance)); 
         }
 

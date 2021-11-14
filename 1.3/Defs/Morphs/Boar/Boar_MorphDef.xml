@@ -11,6 +11,7 @@
 			<li>Combat</li>
 			<li>Production</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphBoarTF</fullTransformation>
 		<partialTransformation>PawnmorphBoarTFPartial</partialTransformation>
 		<raceSettings>

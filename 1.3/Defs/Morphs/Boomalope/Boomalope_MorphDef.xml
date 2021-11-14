@@ -12,6 +12,7 @@
 			<li>Production</li>
 			<li>Cervid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphBoomalopeTF</fullTransformation>
 		<partialTransformation>PawnmorphBoomalopeTFPartial</partialTransformation>
 		<raceSettings>

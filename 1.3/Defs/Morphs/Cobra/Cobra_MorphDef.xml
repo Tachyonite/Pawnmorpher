@@ -10,6 +10,7 @@
 			<li>Combat</li>
 			<li>Reptile</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphSnakeTF</fullTransformation>
 		<partialTransformation>PawnmorphSnakeTFPartial</partialTransformation>
 		<raceSettings>

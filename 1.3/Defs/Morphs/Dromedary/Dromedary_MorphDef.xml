@@ -8,6 +8,7 @@
 		<categories>
 			<li>Arid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphDromedaryTF</fullTransformation>
 		<partialTransformation>PawnmorphDromedaryTFPartial</partialTransformation>
 		<raceSettings>

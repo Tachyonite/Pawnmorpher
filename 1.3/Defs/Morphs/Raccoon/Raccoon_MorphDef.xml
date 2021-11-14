@@ -9,6 +9,7 @@
 			<li>Temperate</li>
 			<li>Rodent</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphRaccoonTF</fullTransformation>
 		<partialTransformation>PawnmorphRaccoonTFPartial</partialTransformation>
 		<raceSettings>

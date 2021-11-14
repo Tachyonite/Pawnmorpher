@@ -8,6 +8,7 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<injectorDef>ElephantTransformer</injectorDef>
 		<fullTransformation>PawnmorphElephantTF</fullTransformation>
 		<partialTransformation>PawnmorphElephantTFPartial</partialTransformation>
 		<raceSettings>

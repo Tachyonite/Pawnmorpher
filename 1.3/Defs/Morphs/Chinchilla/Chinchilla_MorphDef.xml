@@ -9,6 +9,7 @@
 			<li>Tropical</li>
 			<li>Rodent</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphChinchillaTF</fullTransformation>
 		<partialTransformation>PawnmorphChinchillaTFPartial</partialTransformation>
 		<raceSettings>

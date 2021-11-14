@@ -9,6 +9,7 @@
 			<li>Arid</li>
 			<li>Avian</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphEmuTF</fullTransformation>
 		<partialTransformation>PawnmorphEmuTFPartial</partialTransformation>
 		<raceSettings>

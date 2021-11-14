@@ -9,6 +9,7 @@
 			<li>Arid</li>
 			<li>Avian</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphOstrichTF</fullTransformation>
 		<partialTransformation>PawnmorphOstrichTFPartial</partialTransformation>
 		<raceSettings>

@@ -11,6 +11,7 @@
 			<li>Tropical</li>
 			<li>Farm</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphHorseTF</fullTransformation>
 		<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
 		<raceSettings>

@@ -9,6 +9,7 @@
 			<li>Farm</li>
 			<li>Avian</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphGooseTF</fullTransformation>
 		<partialTransformation>PawnmorphGooseTFPartial</partialTransformation>
 		<raceSettings>

@@ -10,6 +10,7 @@
 			<li>Social</li>
 			<li>Avian</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphTurkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphTurkeyTFPartial</partialTransformation>
 		<raceSettings>
