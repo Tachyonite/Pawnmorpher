@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="HerdMorph">
 		<defName>IbexMorph</defName>
 		<label>ibexmorph</label>
-		<description>!!!IbexMorph needs a description!!!</description>
+		<description>Ibexmorphs are similar but wilder relatives of goatmorphs. Their headbutts can be pretty effective at combat.</description>
 		<race>Ibex</race>
 		<classification>Caprid</classification>
 		<categories>

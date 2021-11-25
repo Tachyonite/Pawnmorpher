@@ -161,5 +161,6 @@
 				</statOffsets>
 			</li>
 		</stages>
+		<mutationMemory>EtherAntlers</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
