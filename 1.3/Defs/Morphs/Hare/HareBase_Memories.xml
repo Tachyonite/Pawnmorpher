@@ -124,4 +124,29 @@
         </stages>
     </ThoughtDef>
 
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHareLeg</defName>
+		<stages>
+			<li>
+				<label>Springy legs</label>
+				<description>If I hear one more 'spring in my step' joke...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Springy legs</label>
+				<description>I guess these things ARE lucky!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Springy legs</label>
+				<description>This is wrong. My feet are wrong, they're covered in fur...this is WRONG!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

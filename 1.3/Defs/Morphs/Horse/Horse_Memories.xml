@@ -50,4 +50,81 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHorseFace</defName>
+		<stages>
+			<li>
+				<label>Long face</label>
+				<description>Why?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Long face</label>
+				<description>So a horse walks into a bar...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Long face</label>
+				<description>I feel like the setup of a terrible joke!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHorseEar</defName>
+		<stages>
+			<li>
+				<label>Horse ear</label>
+				<description>They keep flicking around when I don't want them to.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horse ear</label>
+				<description>I feel so majestic!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horse ear</label>
+				<description>But I don't even like horses! I don't want their ears!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHorseTail</defName>
+		<stages>
+			<li>
+				<label>Horse tail</label>
+				<description>It's just a bundle of useless hair...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horse tail</label>
+				<description>It's not terribly useful, but boy is it aesthetic!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horse tail</label>
+				<description>Yeah, this is getting a trim.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

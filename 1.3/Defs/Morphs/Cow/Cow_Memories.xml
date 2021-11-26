@@ -50,4 +50,142 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCowSnout</defName>
+		<stages>
+			<li>
+				<label>Cow face</label>
+				<description>It's hard to talk right with this giant muzzle in the way.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>Hehe...Moooooooooo...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>I look and sound like a dumb animal!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>MOOOoooooo...MOOOoooooo...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCowEar</defName>
+		<stages>
+			<li>
+				<label>Cow ears</label>
+				<description>They're soft, but they are rather large...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow ears</label>
+				<description>These are a great looooook on me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow ears</label>
+				<description>Not my ears! I dooooon't want to be a coooow!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCowTail</defName>
+		<stages>
+			<li>
+				<label>Cow tail</label>
+				<description>Stop. Twitching!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow tail</label>
+				<description>The hole in the pants is worth it for this.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow tail</label>
+				<description>It's terribly uncomfortable, and I can't sit in a chair!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHorns</defName>
+		<stages>
+			<li>
+				<label>Horns</label>
+				<description>Well, I guess I'm done wearing hats...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horns</label>
+				<description>You mess with the bull, you get the horns!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horns</label>
+				<description>Maybe I can file them down...would they grow back?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherUdder</defName>
+		<stages>
+			<li>
+				<label>...udder?!</label>
+				<description>I regret everything, I don't like this at all.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>Oh, uhm. This is a strange turn of events, I have to think about this for a bit...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>OH GOD NO.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>I mean, it's kind of cool. I feel like a real cow now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

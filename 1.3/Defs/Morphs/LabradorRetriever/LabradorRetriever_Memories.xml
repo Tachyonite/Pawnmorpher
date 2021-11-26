@@ -50,4 +50,80 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherLabradorRetrieverJaw</defName>
+		<stages>
+			<li>
+				<label>Dog face</label>
+				<description>I just need to pant all the time...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog face</label>
+				<description>Look at my happy smile!</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog face</label>
+				<description>I can't be sad with this smile...</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherLabradorRetrieverEar</defName>
+		<stages>
+			<li>
+				<label>Dog ears</label>
+				<description>They flop around all the time, it's distracting.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog ears</label>
+				<description>I can hear better, and they're floppy and cute!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog ears</label>
+				<description>I want my own ears back, give them BARK!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherLabradorRetrieverTail</defName>
+		<stages>
+			<li>
+				<label>Dog tail</label>
+				<description>Now everyone knows what I'm thinking!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog tail</label>
+				<description>Awwww, it's so cute on me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Dog tail</label>
+				<description>Why do I have to ruin all my pants for a tail that won't stop wagging?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

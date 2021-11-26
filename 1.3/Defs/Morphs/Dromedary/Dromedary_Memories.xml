@@ -3,24 +3,19 @@
 		<defName>DromedaryTransformationMemory</defName>
         <stages>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>changed</label>
+                <description>I guess I can now live in a desert...</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>changed</label>
+                <description>Now I can live for two weeks without water!</description>
                 <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>changed</label>
+                <description>What the hell is wrong with my mouth? So much salvia...</description>
                 <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>+1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
@@ -29,28 +24,48 @@
 		<defName>DromedaryRevertedMemory</defName>
         <stages>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>reverted</label>
+                <description>I’m not gonna miss that hump!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I’m gonna miss being able to get away with spitting at people.</description>
                 <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>+3</baseMoodEffect>
-            </li>
-            <li>
-                <label>TODO</label>
-                <description>TODO</description>
+                <label>reverted</label>
+                <description>Finally, I’m as vulnerable to dehydration as nature intended!</description>
                 <baseMoodEffect>10</baseMoodEffect>
-            </li>
-            <li>
-                <label>TODO</label>
-                <description>TODO</description>
-                <baseMoodEffect>-5</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
 
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherDromedaryJaw</defName>
+        <stages>
+            <li>
+                <label>Camel face</label>
+                <description>This thing is only good for chewing grass.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel face</label>
+                <description>That bush is looking *really* delicious...</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Camel face</label>
+                <description>I want to eat a bush right now...this is horrible!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherDromedaryEar</defName>

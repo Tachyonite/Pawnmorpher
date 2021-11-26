@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>ChinchillaMorph</defName>
 		<label>chinchillamorph</label>
-		<description>!!!ChinchillaMorph needs a description!!!</description>
+		<description>A small chinchillalike humanoid. They are fragile in combat, but so adorable! They are very soft, but please ask before petting them...</description>
 		<race>Chinchilla</race>
 		<classification>Rodent</classification>
 		<categories>

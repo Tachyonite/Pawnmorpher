@@ -50,4 +50,80 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonJaw</defName>
+		<stages>
+			<li>
+				<label>Raccoon mask</label>
+				<description>I feel like I should be rooting around in a trash can.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon mask</label>
+				<description>Finally, these leftovers taste good!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon mask</label>
+				<description>Why do I want to eat garbage...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonEar</defName>
+		<stages>
+			<li>
+				<label>Raccoon ears</label>
+				<description>They're alright, but I'd prefer to have my normal ears.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon ears</label>
+				<description>These ears are kinda cool.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon ears</label>
+				<description>They're irritating and itchy.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonTail</defName>
+		<stages>
+			<li>
+				<label>Ringtail</label>
+				<description>The pattern on this thing is kinda cool, I guess.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ringtail</label>
+				<description>It's like a tube of fluffiness! Tails are great!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ringtail</label>
+				<description>It won't come off!!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

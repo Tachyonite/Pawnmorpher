@@ -238,7 +238,7 @@
 			<li>Foot</li>
 		</parts>
 		<mutationTale>GrewElephantFoot</mutationTale>
-		<mutationMemory>ElephantFootMemory</mutationMemory>
+		<mutationMemory>EtherElephantFoot</mutationMemory>
 		<categories>
 			<li>Major</li>
 		</categories>

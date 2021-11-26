@@ -24,6 +24,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElephantRevertedMemory</defName>
 		<stages>
@@ -49,23 +50,128 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	<ThoughtDef ParentName="MutationMemoryBase">
-		<defName>ElephantFootMemory</defName>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherTrunk</defName>
 		<stages>
 			<li>
-				<label>Elephant foot</label>
-				<description>My feet look like stumps. At least I don't have toes to stub anymore.</description>
+				<label>Trunk</label>
+				<description>What the...a trunk?</description>
+				<visible>true</visible>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
-				<label>Elephant foot</label>
-				<description>Stomp! Stomp! Stomp! I will trample my enemies!</description>
-				<baseMoodEffect>3</baseMoodEffect>
+				<label>Trunk</label>
+				<description>I gotta give this a toot.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
-				<label>Elephant foot</label>
-				<description>Curse these massive feet! I feel like I am going to put a hole in the floor.</description>
-				<baseMoodEffect>-4</baseMoodEffect>
+				<label>Trunk</label>
+				<description>My nose...it's horrible!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElephantEar</defName>
+		<stages>
+			<li>
+				<label>Huge ears</label>
+				<description>These things are always flopping around and getting in the way...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge ears</label>
+				<description>I can hear everything for miles!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge ears</label>
+				<description>Could it get any more obvious that I'm a mutated freak?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElephantTail</defName>
+		<stages>
+			<li>
+				<label>Elephant tail</label>
+				<description>This tail is pretty useless.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elephant tail</label>
+				<description>Well, a tail's a tail!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elephant tail</label>
+				<description>It's just...hanging there...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElephantFoot</defName>
+		<stages>
+			<li>
+				<label>Huge feet</label>
+				<description>These things are the size of a dinner plate.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge feet</label>
+				<description>Stomp, stomp, stomp! This is fun!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge feet</label>
+				<description>What am I gonna do with my shoes?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElephantLeg</defName>
+		<stages>
+			<li>
+				<label>Huge legs</label>
+				<description>I feel like I have trees for legs.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge legs</label>
+				<description>Try to push me over now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge legs</label>
+				<description>Now I have to wear XXL pants!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

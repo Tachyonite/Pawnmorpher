@@ -50,4 +50,80 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherPantherJaw</defName>
+		<stages>
+			<li>
+				<label>Panther face</label>
+				<description>It's hard to talk without purring.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther face</label>
+				<description>Mrrow!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther face</label>
+				<description>No! I don't want to purr!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherPantherEar</defName>
+		<stages>
+			<li>
+				<label>Panther ears</label>
+				<description>As far as things go, these aren't too bad.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther ears</label>
+				<description>I can hear everything!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther ears</label>
+				<description>I feel like an anime character...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherPantherTail</defName>
+		<stages>
+			<li>
+				<label>Panther tail</label>
+				<description>Why does this thing move so much?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther tail</label>
+				<description>It's so smooth and sleek!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Panther tail</label>
+				<description>How am I supposed to sit down in a chair with this thing?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

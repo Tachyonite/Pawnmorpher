@@ -99,4 +99,36 @@
             </li>
         </stages>
     </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherChemfuelUdder</defName>
+		<stages>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>What is...am I...LEAKING!?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>Okay, this is a bit too weird, even for me.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>This is...oh no, this is chemfuel...oh no no no...this can't be happening!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>I don't see the problem with this, especially if I'm going to be the full thing.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>
