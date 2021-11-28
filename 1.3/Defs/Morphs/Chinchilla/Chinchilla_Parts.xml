@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChinchillaPart">
 		<defName>EtherChinchillaSnout</defName>
 		<label>chinchilla snout</label>
-		<description>!!!EtherChinchillaJaw needs a description!!!</description>
+		<description>A cute chinchilla snout</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -112,7 +112,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChinchillaPart">
 		<defName>EtherChinchillaEar</defName>
 		<label>chinchilla ear</label>
-		<description>!!!EtherChinchillaEar needs a description!!!</description>
+		<description>Large ears clad in silky smooth fur has grown from [PAWN_nameDef]'s head, giving them an irresistably cute appearance </description>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -127,7 +127,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ChinchillaPart">
 		<defName>EtherChinchillaTail</defName>
 		<label>chinchilla tail</label>
-		<description>!!!EtherChinchillaTail needs a description!!!</description>
+		<description> A soft, fluffy tail with luxuriously smooth fur has grown from the base of [PAWN_nameDef]'s spine, charming and tempting everyone to touch it. </description>
 		<parts>
 			<li>Tail</li>
 			<li>MorphTail</li>
