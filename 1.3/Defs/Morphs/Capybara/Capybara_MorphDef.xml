@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CapybaraMorph</defName>
 		<label>capybaramorph</label>
-		<description>TODO</description>
+		<description>The capybaramorph is the result of a human highly contaminated by mechanites. It's highly social, friendly and even tempered.</description>
 		<race>Capybara</race>
 		<classification>Rodent</classification>
 		<categories>
