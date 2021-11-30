@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>DromedaryMorph</defName>
 		<label>camelmorph</label>
-		<description>TODO</description>
+		<description>Dromedaromorphs are the result of humans contaminated by high levels of mutating mechanites. Their ability to store water and vent excess heat makes them excel in desert environments</description>
 		<race>Dromedary</race>
 		<classification>Camelid</classification>
 		<categories>

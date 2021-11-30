@@ -6,7 +6,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
 		<defName>EtherIbexSnout</defName>
 		<label>ibex snout</label>
-		<description>!!!EtherIbexJaw needs a description!!!</description>
+		<description>The jaw of an Ibex goat</description>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -80,7 +80,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
 		<defName>EtherIbexEar</defName>
 		<label>ibex ear</label>
-		<description>!!!EtherIbexEar needs a description!!!</description>
+		<description>Fluffy, caprine ears sit at the side of [PAWN_nameDef]'s head, like an Ibex goat</description>
 		<parts>
 			<li>Ear</li>
 		</parts>
@@ -94,7 +94,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="IbexPart">
 		<defName>EtherIbexTail</defName>
 		<label>ibex tail</label>
-		<description>!!!EtherIbexTail needs a description!!!</description>
+		<description>A tail like that of an Ibex goat. It's very wooly but short and not very useful.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 			</li>
