@@ -12,13 +12,13 @@
 			</li>
 			<li>
 				<label>Tiny fox face</label>
-				<description>AAAAAAAAAAAAAAA!!!</description>
+				<description>I look great! Everyone will love me looking like this!</description>
 				<visible>true</visible>
 				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
 				<label>Tiny fox face</label>
-				<description>AAAAAAAAAAAAAAA!!!</description>
+				<description>I hate this, no one will take me seriously with a face like this!</description>
 				<visible>true</visible>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
