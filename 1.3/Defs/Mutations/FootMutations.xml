@@ -33,7 +33,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
 				<labelOverride>footpaw</labelOverride>
-				<description>[PAWN_nameDef]'s foot resebles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
+				<description>[PAWN_nameDef]'s foot resembles a mix of an animalistic paw and a normal foot, gaining the strengths of each while inheriting none of their weaknesses.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeDodgeChance>5</MeleeDodgeChance>
