@@ -1,0 +1,281 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="ComboPartBase" Name="HellhoundPart">
+		<classInfluence>PM_HellhoundMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundEar</defName>
+		<label>hellhound ear</label>
+		<description>[PAWN_nameDef]'s ears have become long and pointed, like that of a great canine</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+			</li>
+		</stages>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundHeadspike</defName>
+		<label>hellhound headspike</label>
+		<description>[PAWN_nameDef] has grown a large sharp spike on their skull</description>
+		<parts>
+			<li>Head</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundHorns</defName>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<label>hellhound horns</label>
+		<description>[PAWN_nameDef] has grown a pair of large horns from their skull</description>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>hellhound horns</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>9.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundSnout</defName>
+		<label>hellhound muzzle</label>
+		<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed</description>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<label>bestial</label>
+				<description>[PAWN_nameDef]'s face has turned into a bestial snout, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is much more difficult, but eating is easier. Many people find [PAWN_possessive] snout intimidating.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.45</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.1</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.20</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<label>adapted</label>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.3</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>paragon</label>
+				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Animals seem to find [PAWN_possessive] intimidating and are less likely to disobey [PAWN_possessive].</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<SocialImpact>-0.1</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundSpikes</defName>
+		<label>hellhound spikes</label>
+		<description>[PAWN_nameDef] has grown a series of sharp spikes from their spine</description>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundTail</defName>
+		<label>hellhound tail</label>
+		<description>[PAWN_nameDef] has grown a long muscular tail with a spaded tip</description>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.01</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+	<Pawnmorph.Hediffs.MutationDef ParentName="HellhoundPart">
+		<defName>PM_HellhoundPaws</defName>
+		<label>bone paws</label>
+		<description>By some horrific combination of mechanite functionality, these hands have externally ossified and are controlled by internal tendons. They are unnerving to look at and possess very sharp claws</description>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-1</minSeverity>
+				<partEfficiencyOffset>-0.9</partEfficiencyOffset>
+				<label>bestial</label>
+				<!-- only pawns with Afflicted Morph aspect can get this stage-->
+				<description>This bone paw has degraded into a more inflexible paw than normal, and is not very useful.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>clawed</labelOverride>
+				<description>Each finger on this hand is tipped with a sharp claw.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>padded</labelOverride>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.4</minSeverity>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<labelOverride>handpaw</labelOverride>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.6</minSeverity>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+				<labelOverride>inflexible handpaw</labelOverride>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.8</minSeverity>
+				<partEfficiencyOffset>-0.4</partEfficiencyOffset>
+				<label>unfamiliar</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.99</minSeverity>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has largely adapted to having bone paws, and is trying to recover flexibility in the digits.</description>
+				<label>adapted</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<!-- only pawns with the Paragon aspect can get this stage -->
+				<labelOverride>dextrous bone handpaw</labelOverride>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>Further adaptation to this bone paw has allowed it to become dextrous again, and with even finer manipulation than a regular hand.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>bone claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>8.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -37,7 +37,7 @@ namespace Pawnmorph.Thoughts
         public static ThoughtDef DefaultPermanentlyFeralReaction;
         public static ThoughtDef DefaultRevertedPawnReaction;
         public static ThoughtDef DefaultTransformationReaction;
-        public static ThoughtDef DefaultMergedThought; 
+        public static ThoughtDef DefaultMergedThought;
 
     }
 }

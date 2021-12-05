@@ -1,0 +1,24 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>LynxMorph</defName>
+		<label>lynxmorph</label>
+		<description>A human variant with feline-like features. They have a similar appearance to cats, but usually have tufted ears and a stubby tail. They are faster and more dexterous than regular humans, and they have an advantage in melee.</description>
+		<race>Lynx</race>
+		<classification>Feline</classification>
+		<categories>
+			<li>Temperate</li>
+			<li>Feline</li>
+		</categories>
+		<fullTransformation>PawnmorphLynxTF</fullTransformation>
+		<partialTransformation>PawnmorphLynxTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(220,198,160)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>LynxTransformationMemory</transformationMemory>
+			<revertedMemory>LynxRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

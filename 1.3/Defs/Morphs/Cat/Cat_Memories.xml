@@ -1,0 +1,179 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CatTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>morphed</label>
+				<description>I'm... a cat? No, don't pet me. I do have claws and I will cut you.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>morphed</label>
+				<description>Cat? I'm a kitty cat! And I dance dance dance, and I dance dance dance.</description>
+				<baseMoodEffect>+3</baseMoodEffect>
+			</li>
+			<li>
+				<label>morphed</label>
+				<description>The world is too detailed and so bright. I keep cutting myself with these damn claws.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>morphed</label>
+				<description>Wow, the world looks so sharp, and these claws are sharp too! Imagine if I could look into all the small places on all fours!</description>
+				<baseMoodEffect>+1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CatRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>I'm back to my normal, human self again! No more fur or claws.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw man, but I was really enjoying threatening to claw people.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>No more claws! Finally, I'll stop accidentally stabbing myself.</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I'm human again? I think I wanted the opposite of this.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCatMuzzle</defName>
+		<stages>
+			<li>
+				<label>Cat face</label>
+				<description>My jaw doesn't feel right...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat face</label>
+				<description>I have whiskers now!? Nyan!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat face</label>
+				<description>Great, a face not even a mother could love.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCatEar</defName>
+		<stages>
+			<li>
+				<label>Cat ears</label>
+				<description>These new ears look strange, but at least I can hear well enough.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat ears</label>
+				<description>I can hear everything, even the tiniest rodents!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat ears</label>
+				<description>I hear too much! Make the noise stop!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCatTail</defName>
+		<stages>
+			<li>
+				<label>Cat tail</label>
+				<description>This tail keeps getting in the way, but it's good for balance.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat tail</label>
+				<description>Aww! It's so cute!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat tail</label>
+				<description>I keep tripping over this stupid tail!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCatClaws</defName>
+		<stages>
+			<li>
+				<label>Claws</label>
+				<description>Yowtch! Poked myself again.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Claws</label>
+				<description>Claws are so useful, I'll never need a knife again!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Claws</label>
+				<description>I keep poking holes in my clothes with these unruly claws!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCatEye</defName>
+		<stages>
+			<li>
+				<label>Cat eyes</label>
+				<description>My eyes feel strange, but I can see better than I ever could before.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat eyes</label>
+				<description>I can see in the dark better than ever, and my eyes look so mysterious!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cat eyes</label>
+				<description>These slit pupils make me look unnatural.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

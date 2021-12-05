@@ -135,8 +135,8 @@ namespace Pawnmorph.ThingComps
             {
                 foreach (PawnKindDef kind in AllAnimalsSelectable)
                 {
-                    var tk = kind; 
-                    yield return new FloatMenuOption(tk.label, () => ChoseAnimal(tk));
+                    var tk = kind;
+                    yield return new FloatMenuOption(tk.LabelCap, () => ChoseAnimal(tk));
                 }
 
 
@@ -158,7 +158,7 @@ namespace Pawnmorph.ThingComps
         {
             _chosenKind = chosenKind;
             Gizmo.icon = _chosenKind.race.uiIcon;
-            Gizmo.defaultLabel = _chosenKind.label;
+            Gizmo.defaultLabel = _chosenKind.LabelCap;
             AnimalChosen?.Invoke(chosenKind); 
         }
 

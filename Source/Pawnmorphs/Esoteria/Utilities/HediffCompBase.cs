@@ -1,6 +1,8 @@
 ﻿// HediffCompBase.cs modified by Iron Wolf for Pawnmorph on 08/09/2019 9:05 AM
 // last updated 08/09/2019  9:05 AM
 
+using System;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.Utilities
@@ -14,7 +16,22 @@ namespace Pawnmorph.Utilities
         /// <value>
         ///     The props.
         /// </value>
-        public T Props => (T) props;
+        [NotNull]
+        public T Props
+        {
+            get
+            {
+                try
+                {
+                    return (T) props;
+                }
+                catch (InvalidCastException castException)
+                {
+                    throw new InvalidCastException($"in {Def.defName} could not cast {props.GetType().Name} to {typeof(T).Name}!",
+                                                   castException);
+                }
+            }
+        }
     }
 
     /// <summary> Convenient base class for comp properties that know their comp type. </summary>

@@ -1,0 +1,179 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>MonkeyTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I don't look *that* different, right?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Oooh oooh ah ah! I feel closer to my roots.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>It feels like I've gone back three steps in the evolutionary tree!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Monkey see, monkey do?</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>MonkeyRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I need to shave, I think I'm still hairier than before.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I suppose all things must come to an end...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>HUMAN AGAIN!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>This isn't what I wanted.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMonkeyJaw</defName>
+		<stages>
+			<li>
+				<label>Monkey face</label>
+				<description>I feel like I need to shave constantly...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey face</label>
+				<description>This isn't really all that different...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey face</label>
+				<description>I've taken a step *back*! This is terrible!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMonkeyEar</defName>
+		<stages>
+			<li>
+				<label>Monkey ears</label>
+				<description>My ears...they feel like they're larger.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey ears</label>
+				<description>Bigger ears! Awesome!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey ears</label>
+				<description>Why are my ears bigger, that's almost useless!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMonkeyTail</defName>
+		<stages>
+			<li>
+				<label>Monkey tail</label>
+				<description>Huh...I can pick things up with this tail. Neat.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey tail</label>
+				<description>It's like another hand. Who needs bionics when you have this?</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Monkey tail</label>
+				<description>I can feel it moving, and I really don't like the sensation of being able to control it!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMonkeyHand</defName>
+		<stages>
+			<li>
+				<label>Hairy hands</label>
+				<description>These kinda look like my normal hands...just more primitive.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hairy hands</label>
+				<description>I might get good wishes out these monkey paws!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hairy hands</label>
+				<description>My hands! They look weird and old!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMonkeyFoot</defName>
+		<stages>
+			<li>
+				<label>Hairy feet</label>
+				<description>Why can I grab things with my feet?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hairy feet</label>
+				<description>Even more hands!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hairy feet</label>
+				<description>Why do my shoes feel so big, and my feet so small?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

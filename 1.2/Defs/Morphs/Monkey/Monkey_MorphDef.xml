@@ -1,0 +1,25 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>MonkeyMorph</defName>
+		<label>monkeymorph</label>
+		<description>A fun-loving morph type, Monkeymorphs tend to like playing pranks on their friends.</description>
+		<race>Monkey</race>
+		<classification>Animal</classification>
+		<categories>
+			<li>Tropical</li>
+			<li>Social</li>
+			<li>Crafter</li>
+		</categories>
+		<fullTransformation>PawnmorphMonkeyTF</fullTransformation>
+		<partialTransformation>PawnmorphMonkeyTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(175,87,57)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>MonkeyTransformationMemory</transformationMemory>
+			<revertedMemory>MonkeyRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -124,5 +124,29 @@
             </li>
         </stages>
     </ThoughtDef>
-
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherBearPawHand</defName>
+		<stages>
+			<li>
+				<label>Giant paws</label>
+				<description>How am I supposed to do anything when I can't grab stuff?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant paws</label>
+				<description>Nice, I can claw people's eyes out!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant paws</label>
+				<description>These things are only good for hitting whoever did this to me.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 </Defs>

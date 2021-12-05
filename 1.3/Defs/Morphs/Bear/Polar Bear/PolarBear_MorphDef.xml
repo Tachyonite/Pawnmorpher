@@ -9,6 +9,7 @@
 			<li>Temperate</li>
 			<li>Combat</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(180,180,180)</skinColorOverride>

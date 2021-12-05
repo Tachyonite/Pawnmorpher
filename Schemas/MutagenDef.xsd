@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="include/SimpleTypes.xsd" />
+    <xs:include schemaLocation="include/CommonComplex.xsd" />
+    <xs:include schemaLocation="include/RulePack.xsd" />
+    <xs:element name="Defs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Pawnmorph.MutagenDef" type="MutagenDef" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="MutagenDef">
+        <xs:all>
+            <xs:element name="defName" type="xs:string" minOccurs="0" />
+            <xs:element name="label" type="xs:string" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+            <xs:element name="causeRulePack" type="RulePack" minOccurs="0" />
+
+            <xs:element name="appliesTfParalysis" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canInfectAnimals" type="xs:boolean" minOccurs="0" />
+            <xs:element name="canInfectMechanoids" type="xs:boolean" minOccurs="0" />
+
+            <xs:element name="mutagenType" type="xs:string" minOccurs="0" />
+            <xs:element name="revertedThoughtGood" type="xs:string" minOccurs="0" />
+            <xs:element name="revertedThoughtBad" type="xs:string" minOccurs="0" />
+
+
+            <xs:element name="transformedSapienceDropStd" type="xs:float" minOccurs="0" />
+            <xs:element name="transformedSapienceDropMean" type="xs:float" minOccurs="0" />
+
+            <xs:element name="revertedPrimalWish" type="xs:string" minOccurs="0" />
+            <xs:element name="transformedSapienceState" type="xs:string" minOccurs="0" />
+
+            <xs:element name="damageProperties" type="DamageProperties" minOccurs="0" />
+            <xs:element name="immunizingHediffs" type="ListOfDefs" nillable="true" minOccurs="0" />
+
+            <xs:element name="aspectGivers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AspectGiver" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="tfAspectGivers" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="AspectGiver" minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+        </xs:all>
+        <xs:attribute name="Name" type="xs:string" use="optional" />
+        <xs:attribute name="ParentName" type="xs:string" use="optional" />
+        <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="AspectGiver">
+        <xs:sequence>
+            <xs:any maxOccurs="unbounded" processContents="lax" />
+        </xs:sequence>
+        <xs:attribute name="Class" type="xs:string" use="required" />
+    </xs:complexType>
+    <xs:complexType name="DamageProperties">
+        <xs:all>
+            <xs:element name="apparelDamageOffset" type="xs:int" minOccurs="0" />
+            <xs:element name="spawnedBiproductMult" type="xs:float" minOccurs="0" />
+            <xs:element name="apparelDamageMultiplier" type="xs:float" minOccurs="0" />
+
+            <xs:element name="biproduct" type="xs:string" minOccurs="0" />
+
+        </xs:all>
+    </xs:complexType>
+</xs:schema>

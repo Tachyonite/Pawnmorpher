@@ -2,13 +2,14 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>CaribouMorph</defName>
 		<label>cariboumorph</label>
-		<description>TODO</description>
+		<description>Cariboumorphs are usually peaceful and imposing herbivorous humanoids who can live under harsh winters. However, if you bother them, their big antlers may hurt you pretty badly...</description>
 		<race>Caribou</race>
 		<classification>Cervid</classification>
 		<categories>
 			<li>Cold</li>
 			<li>Cervid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphCaribouTF</fullTransformation>
 		<partialTransformation>PawnmorphCaribouTFPartial</partialTransformation>
 		<raceSettings>

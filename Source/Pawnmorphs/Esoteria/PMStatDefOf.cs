@@ -91,10 +91,22 @@ namespace Pawnmorph
         /// </summary>
         [NotNull]
         public static StatDef SapienceRecoverFactor;
+
+
+        /// <summary>
+        ///     how much pain a pawn receives from mutations and transformations. percentage from [0,)
+        /// </summary>
+        [NotNull] [UsedImplicitly] public static StatDef PM_MutagenPainSensitivity; 
+
+
         // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(PMStatDefOf));
         }
+        /// <summary>
+        /// The drug synthesis speed stat 
+        /// </summary>
+        public static StatDef DrugSynthesisSpeed; 
     }
 }

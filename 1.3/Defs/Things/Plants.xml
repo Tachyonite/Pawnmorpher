@@ -8,7 +8,9 @@
     <ThingDef ParentName="PM_ChaobulbBase">
         <defName>Plant_ChaoBulb</defName>
         <label>chaobulb</label>
-        <description>A mutagen-infused plant that sprouts odd orange bulbs.</description>
+        <description>A mutagen-infused plant that sprouts odd orange bulbs. Chaobulb plants naturally collect trace amounts of raw resources out of the ground, which are then used by mutagenic mechanites to replicate. The mechanites are stored in the orange bulbs that give the plant its name, which can be harvested and processed into mechanite slurry.
+
+Chaobulb plants are delicate, and the bulbs are prone to rupturing if harvested incorrectly. They are slow to plant and harvest compared to other plants, and harvest failures have a risk of mutating the hapless farmer.</description>
         <statBases>
             <MaxHitPoints>60</MaxHitPoints>
             <Beauty>4</Beauty>
@@ -60,7 +62,9 @@
     <ThingDef ParentName="PM_ChaobulbBase">
         <defName>Plant_ChaoBulb_Domestic</defName>
         <label>chaobulb</label>
-        <description>A mutagen-infused plant that sprouts odd orange bulbs.</description>
+        <description>A mutagen-infused plant that sprouts odd orange bulbs. Chaobulb plants naturally collect trace amounts of raw resources out of the ground, which are then used by mutagenic mechanites to replicate. The mechanites are stored in the orange bulbs that give the plant its name, which can be harvested and processed into mechanite slurry.
+
+Chaobulb plants are delicate, and the bulbs are prone to rupturing if harvested incorrectly. They are slow to sow and harvest compared to other plants, and harvest failures have a risk of mutating the hapless farmer.</description>
         <statBases>
             <MaxHitPoints>60</MaxHitPoints>
             <Beauty>4</Beauty>
@@ -114,6 +118,9 @@
         <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
         <plant>
             <growDays>15</growDays>
+            <growMinGlow>0</growMinGlow>
+            <growOptimalGlow>0</growOptimalGlow>
+            <dieIfNoSunlight>false</dieIfNoSunlight>
         </plant>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
@@ -122,7 +129,7 @@
                 <maxOptimalGrowthTemperature>17</maxOptimalGrowthTemperature>
                 <maxGrowthTemperature>30</maxGrowthTemperature>
                 <minLeaflessTemperature>-200</minLeaflessTemperature>
-                <maxLeaflessTemperature>-2</maxLeaflessTemperature>
+                <maxLeaflessTemperature>-22</maxLeaflessTemperature>
             </li>
         </modExtensions>
     </ThingDef>
@@ -130,7 +137,9 @@
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs. NOTE: The stat panel lies, this plant will only grow at 0-15 degrees C (32-59F).</description>
+        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
+
+Antigen plants are delicate and sensitive to temperature. They take a long time to sow and harvest compared to other plants, and they will only grow in moderately cold temperatures. However, mutation has rendered them capable of growing without light, and so they are commonly grown within refridgerated darkhouses or caves.</description>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
             <Beauty>10</Beauty>
@@ -198,7 +207,9 @@
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine_Domestic</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs.</description>
+        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
+
+Antigen plants are delicate and sensitive to temperature. They take a long time to sow and harvest compared to other plants, and they will only grow in moderately cold temperatures. However, mutation has rendered them capable of growing without light, and so they are commonly grown within refridgerated darkhouses or caves.</description>
         <statBases>
             <MaxHitPoints>50</MaxHitPoints>
             <Beauty>10</Beauty>

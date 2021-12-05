@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SheepTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Ugh, that's a lot of hair. Where's the shears — er, I mean, razor?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>I'm so cute and fluffy!</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>I'm shedding everywhere, this is disgusting.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>Hmmm... I wonder how much more sheeplike I could baaaah?</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SheepRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>Ha, no more shearings for me!</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw, I liked having wool.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Thank Randy, I no longer smell like wet hair all the time.</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw, I wanted to be more sheepish, not less.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

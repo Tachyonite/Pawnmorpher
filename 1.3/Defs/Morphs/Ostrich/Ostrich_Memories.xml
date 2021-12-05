@@ -1,0 +1,129 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>OstrichTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I don't think I can get used to walking around like this.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Is anyone up for a race?</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>These feathers are coarse and disgusting. I don't want to be an overgrown chicken!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>This is pretty cool. I wonder how fast I can run now.</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>OstrichRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to normal! I very much prefer not being a living dinosaur.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Awww... I'll miss those fast legs.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>No more rough feathers! No more beak!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherOstrichJaw</defName>
+		<stages>
+			<li>
+				<label>Beak</label>
+				<description>I can't talk properly with this stupid beak!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Beak</label>
+				<description>Time to peck everyone I don't like.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Beak</label>
+				<description>My face! This is awf-scraw!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherOstrichEar</defName>
+		<stages>
+			<li>
+				<label>Earholes</label>
+				<description>What the, where are my ears?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Earholes</label>
+				<description>I suppose they're more streamlined now?</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Earholes</label>
+				<description>Hello?! I can't hear you! Speak up, I don't have proper ears now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherOstrichTail</defName>
+		<stages>
+			<li>
+				<label>Tailfeathers</label>
+				<description>...does this make my butt look big?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tailfeathers</label>
+				<description>It's kind of fun to wiggle it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tailfeathers</label>
+				<description>I look like a damn bird, whyyyy?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

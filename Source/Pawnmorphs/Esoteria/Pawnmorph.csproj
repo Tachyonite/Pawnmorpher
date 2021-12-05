@@ -391,6 +391,7 @@
     <Compile Include="DefExtensions\MutationRestriction.cs" />
     <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
     <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
@@ -409,6 +410,10 @@
     <Compile Include="Graphics\TaggedBodyAddon.cs" />
     <Compile Include="HairDefOf.cs" />
     <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
+    <Compile Include="Hediffs\Composable\IMutRate.cs" />
+    <Compile Include="Hediffs\Composable\StageAlert.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_Comp.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_MutationsPerSeverityQuadratic.cs" />
     <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
     <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
     <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
@@ -420,12 +425,15 @@
     <Compile Include="Hediffs\FullTransformationStageBase.cs" />
     <Compile Include="Hediffs\Giver_ChaomorphTf.cs" />
     <Compile Include="Hediffs\Giver_MutationClass.cs" />
+    <Compile Include="Hediffs\HediffComp_Composable.cs" />
     <Compile Include="Hediffs\IExecutableStage.cs" />
     <Compile Include="Hediffs\IInitializable.cs" />
     <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
     <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
+    <Compile Include="Hediffs\MorphHediffGenerator.cs" />
     <Compile Include="Hediffs\MorphTf.cs" />
     <Compile Include="Hediffs\MorphTransformationStage.cs" />
+    <Compile Include="Hediffs\MutagenicPain.cs" />
     <Compile Include="Hediffs\MutationDef.cs" />
     <Compile Include="Hediffs\MutationEntry.cs" />
     <Compile Include="Hediffs\MutationRetrievers\Morph.cs" />
@@ -487,6 +495,7 @@
     <Compile Include="HPatches\PortraitCachePatches.cs" />
     <Compile Include="HPatches\ProductionCompPatches.cs" />
     <Compile Include="HPatches\RelationshipPatches.cs" />
+    <Compile Include="HPatches\RitualPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
     <Compile Include="HPatches\StylePatches.cs" />
     <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
@@ -518,6 +527,7 @@
     <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ICauseRulePackContainer.cs" />
     <Compile Include="ISlurryReceiver.cs" />
     <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
@@ -550,8 +560,12 @@
     <Compile Include="Joy\Giver_TerrainProduction.cs" />
     <Compile Include="Mental\StateWorker_Hunt.cs" />
     <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="MorphInjectorProperties.cs" />
     <Compile Include="MutagenicBuildupUtilities.cs" />
     <Compile Include="MutationCategoryDefOf.cs" />
+    <Compile Include="MutationCauses.CauseEntry.cs" />
+    <Compile Include="MutationCauses.cs" />
+    <Compile Include="MutationCauseUtility.cs" />
     <Compile Include="MutationResult.cs" />
     <Compile Include="MutationRuleDef.cs" />
     <Compile Include="MutationRules\Worker_Hellhound.cs" />
@@ -572,10 +586,13 @@
     <Compile Include="PMConceptDefOf.cs" />
     <Compile Include="PMDamageDefOf.cs" />
     <Compile Include="PMDesignationDefOf.cs" />
+    <Compile Include="PMEffecterDefOf.cs" />
     <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
+    <Compile Include="PMImplicitDefGenerator.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
     <Compile Include="PMIssueDefOf.cs" />
     <Compile Include="PMNeedDefOf.cs" />
@@ -583,6 +600,8 @@
     <Compile Include="PMPlantUtilities.cs" />
     <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
     <Compile Include="PMRelationUtilities.cs" />
+    <Compile Include="PMResearchProjectDefOf.cs" />
+    <Compile Include="PMSoundDefOf.cs" />
     <Compile Include="PMStatDefOf.cs" />
     <Compile Include="PMTexButton.cs" />
     <Compile Include="PMTextures.cs" />
@@ -595,10 +614,12 @@
     <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
     <Compile Include="PreceptComps\VeneratedMutation.cs" />
     <Compile Include="ProductionBoost.cs" />
+    <Compile Include="Recipes\PMRecipeDefGenerator.cs" />
     <Compile Include="RecipeWorkers\ApplyAdaptationCream.cs" />
     <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
     <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
     <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="RestrictionLevel.cs" />
     <Compile Include="Rituals\AttachableOutcomeEffectWorkers\AddRandomVeneratedMutation.cs" />
     <Compile Include="Rituals\RoleTags.cs" />
     <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
@@ -622,6 +643,7 @@
     <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
+    <Compile Include="StatWorkers\HasMorphStat.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
@@ -729,11 +751,7 @@
     <Compile Include="HediffGiver_PermanentFeral.cs" />
     <Compile Include="HediffGiver_TF.cs" />
     <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
-    <Compile Include="CompProperties_FormerHumanChance.cs" />
-    <Compile Include="CompFormerHumanChance.cs" />
-    <Compile Include="CompAlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_AddSeverity.cs" />
-    <Compile Include="CompProperties_AlwaysFormerHuman.cs" />
     <Compile Include="HediffCompProperties_Production.cs" />
     <Compile Include="HediffCompProperties_Remove.cs" />
     <Compile Include="HediffCompProperties_Single.cs" />
@@ -767,6 +785,7 @@
     <Compile Include="ThingDef_TaggingBullet.cs" />
     <Compile Include="Things\Chaothrumbo.cs" />
     <Compile Include="Things\ExpandedPlant.cs" />
+    <Compile Include="Things\InjectorGenerator.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
     <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
     <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
@@ -843,17 +862,46 @@
     <Compile Include="Social\PMInteractionWeightsDef.cs" />
     <Compile Include="Utilities\Collections\Checklist.cs" />
     <Compile Include="Utilities\Collections\MultiDict.cs" />
+    <Compile Include="Hediffs\Hediff_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Composable\MutSpreadOrder.cs" />
+    <Compile Include="Hediffs\Composable\MutRate.cs" />
+    <Compile Include="Hediffs\Composable\MutTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFGenderSelector.cs" />
+    <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
+    <Compile Include="Hediffs\HediffStage_Transformation.cs" />
+    <Compile Include="Hediffs\HediffStage_Mutation.cs" />
+    <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="Hediffs\Composable\TFChance.cs" />
+    <Compile Include="Hediffs\Composable\TFCallback.cs" />
+    <Compile Include="Hediffs\HediffComp_MutTypeBase.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_Morph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomClassMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
+    <Compile Include="Hediffs\Utility\BodyMutationManager.cs" />
     <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
     <Compile Include="Hediffs\IMutagenicHediff.cs" />
-    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
+    <Compile Include="HPatches\ThingDefPatches.cs" />
+    <Compile Include="Obsolete\FormerHumanComps.cs" />
+    <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
+    <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
+    <Compile Include="Letters\PMLetterDefOf.cs" />
+    <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
+    <Compile Include="FormerHumans\FormerHumanPawnGenerator.cs" />
+    <Compile Include="Thoughts\Thought_RelatedFormerHuman.cs" />
+    <Compile Include="Hediffs\Hediff_StageChanges.cs" />
+    <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
-      <Version>7.2.1</Version>
+      <Version>9.0.0</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>

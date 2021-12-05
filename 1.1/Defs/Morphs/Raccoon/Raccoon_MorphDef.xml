@@ -1,0 +1,24 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+		<defName>RaccoonMorph</defName>
+		<label>raccoonmorph</label>
+		<description>A shorter humanoid that looks very similar to a raccoon due to exposure to mutagens. They usually have a mask of black fur around their eyes and a striped tail. Although they would prefer digging through trash, they make excellent crafters.</description>
+		<race>Raccoon</race>
+		<classification>Rodent</classification>
+		<categories>
+			<li>Temperate</li>
+			<li>Rodent</li>
+		</categories>
+		<fullTransformation>PawnmorphRaccoonTF</fullTransformation>
+		<partialTransformation>PawnmorphRaccoonTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(174,172,174)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>RaccoonTransformationMemory</transformationMemory>
+			<revertedMemory>RaccoonRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

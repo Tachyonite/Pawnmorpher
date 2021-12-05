@@ -35,6 +35,7 @@
 	</HediffDef>
 	<!-- Base of all Partial hediffs -->
 	<HediffDef Abstract="true" ParentName="NewAspectedMorphParent" Name="NewPartialAspectedMorphParent">
+		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Single" />
 		</comps>

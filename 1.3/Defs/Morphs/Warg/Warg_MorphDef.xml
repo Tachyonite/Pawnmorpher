@@ -9,6 +9,7 @@
 			<li>Canid</li>
 			<li>Combat</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphWargTF</fullTransformation>
 		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
 		<raceSettings>

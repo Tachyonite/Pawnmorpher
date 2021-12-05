@@ -11,6 +11,13 @@ namespace Pawnmorph
     public class PawnmorpherMod : Mod
     {
         PawnmorpherSettings settings;
+
+        /// <summary>
+        /// A convenience property to get the settings statically
+        /// </summary>
+        /// <value>The settings.</value>
+        public static PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PawnmorpherMod"/> class.
         /// </summary>
@@ -49,8 +56,8 @@ namespace Pawnmorph
             listingStandard.GapLine();
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
-            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToString("F1")}%");
-            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 100f);
+            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)}");
+            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 1f);
             listingStandard.Label($"{"partialChanceSliderLabel".Translate()}: {settings.partialChance.ToString("F1")}%");
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
@@ -75,7 +82,7 @@ namespace Pawnmorph
                 float f = (float) ((int) settings.logLevel);
                 var maxLevel = (int) LogLevel.Pedantic;
                 f = listingStandard.Slider(maxLevel - f, 0, maxLevel);
-                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel));
+                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
             }
 
             listingStandard.End();

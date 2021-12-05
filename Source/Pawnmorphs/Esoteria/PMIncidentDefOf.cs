@@ -15,9 +15,6 @@ namespace Pawnmorph
         }
 
         public static IncidentDef MutagenicShipPartCrash;
-        public static IncidentDef Disease_Cowflu;
-        public static IncidentDef Disease_Foxflu;
-        public static IncidentDef Disease_Chookflu;
         public static IncidentDef MutagenicFallout;
     }
 }

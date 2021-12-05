@@ -115,14 +115,9 @@ namespace Pawnmorph.Jobs
                 }
 
             
-                bool CanBeAdded(MutationDef mDef) 
+                bool CanBeAdded(MutationDef mDef)
                 {
-                    if (mDef.IsRestricted) //if the mutation is restricted, make sure the genome is for one of the restricted categories 
-                    {
-                        return mCategory.restricted && mDef.categories?.Contains(mCategory) == true; 
-                    }
-
-                    return true; 
+                    return mDef.RestrictionLevel <= mCategory.restrictionLevel && mDef.RestrictionLevel != RestrictionLevel.Always;
                 }
 
 

@@ -1,0 +1,27 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/BiomeDef//diseases</xpath>
+		<value>
+			<li>
+				<diseaseInc>Disease_Cowflu</diseaseInc>
+				<commonality>25</commonality>
+			</li>
+			<li>
+				<diseaseInc>Disease_Foxflu</diseaseInc>
+				<commonality>25</commonality>
+			</li>
+			<li>
+				<diseaseInc>Disease_Chookflu</diseaseInc>
+				<commonality>25</commonality>
+			</li>
+			<li>
+				<diseaseInc>Disease_Swineflu</diseaseInc>
+				<commonality>25</commonality>
+			</li>
+			<li>
+				<diseaseInc>Disease_Chaoflu</diseaseInc>
+				<commonality>25</commonality>
+			</li>
+		</value>
+	</Operation>
+</Patch>

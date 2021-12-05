@@ -24,6 +24,7 @@ namespace Pawnmorph.Chambers
         
         private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
         private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
+        private const string ALREADY_TAGGED_MULTI_REASON = "PMAlreadyTaggedMulti";
 
         /// <summary>
         ///     translation string for not enough free power
@@ -272,6 +273,12 @@ namespace Pawnmorph.Chambers
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
 
+            if (StoredMutations.Contains(mutationDef))
+            {
+                reason = ALREADY_TAGGED_REASON.Translate(mutationDef);
+                return false;
+            }
+
             if (FreeStorage < mutationDef.GetRequiredStorage())
             {
                 reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef, DatabaseUtilities.GetStorageString(mutationDef.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
@@ -284,10 +291,40 @@ namespace Pawnmorph.Chambers
                 return false;
             }
 
-            
-            if (StoredMutations.Contains(mutationDef))
+            reason = "";
+            return true;
+        }
+
+        /// <summary>
+        ///     Determines whether any of the specified mutation definitions can be
+        ///     added to the database, and outputs an error if not.
+        /// </summary>
+        /// <param name="mutationDefs">The mutation definitions.</param>
+        /// <param name="reason">The reason the mutation cannot be ad.</param>
+        /// <returns>
+        ///     <c>true</c> if at least one mutation definition can be added to database, otherwise <c>false</c>.
+        /// </returns>
+        public bool CanAddAnyToDatabase([NotNull] IEnumerable<MutationDef> mutationDefs, out string reason)
+        {
+            if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
+
+            List<MutationDef> validMutations = mutationDefs.Where(m => !StoredMutations.Contains(m)).ToList();
+            if (!validMutations.Any())
             {
-                reason = ALREADY_TAGGED_REASON.Translate(mutationDef);
+                reason = ALREADY_TAGGED_MULTI_REASON.Translate();
+                return false;
+            }
+
+            var smallestMutation = validMutations.MinBy(m => m.GetRequiredStorage());
+            if (FreeStorage < smallestMutation.GetRequiredStorage())
+            {
+                reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(smallestMutation.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
+                return false;
+            }
+
+            if (!CanTag)
+            {
+                reason = NOT_ENOUGH_POWER.Translate();
                 return false;
             }
 

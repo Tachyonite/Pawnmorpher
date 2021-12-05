@@ -33,6 +33,32 @@ namespace Pawnmorph.Utilities
         }
 
         /// <summary>
+        /// returns an enumeration of the intersection of all enumerables given 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">enumerable collection must contain at least 1 list - enumerable</exception>
+        public static IEnumerable<T> IntersectAll<T>([NotNull] this IEnumerable<IEnumerable<T>> enumerable)
+        {
+            List<IEnumerable<T>>
+                tmpList = enumerable
+                   .ToList(); //need to store it as a list first as we can't assume enumerable can be enumerated over multiple times 
+
+            if (tmpList.Count == 0)
+                throw new ArgumentException("enumerable collection must contain at least 1 list", nameof(enumerable));
+            var hSet = new HashSet<T>(tmpList[0].MakeSafe());
+            for (var i = 1; i < tmpList.Count; i++)
+            {
+                IEnumerable<T> l = tmpList[i];
+                hSet.IntersectWith(l.MakeSafe());
+                if (hSet.Count == 0) break;
+            }
+
+            return hSet; 
+        }
+
+        /// <summary>
         ///     Adds the range to this linked list at the end of the list.
         /// </summary>
         /// <typeparam name="T"></typeparam>

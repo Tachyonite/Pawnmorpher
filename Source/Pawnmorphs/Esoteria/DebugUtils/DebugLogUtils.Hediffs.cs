@@ -71,6 +71,19 @@ namespace Pawnmorph.DebugUtils
             DebugTables.MakeTablesDialog(hediffs, tableGetters.ToArray());
         }
 
+        [DebugAction(HEDIFF_CATEGORY_NAME, actionType = DebugActionType.ToolMapForPawns)]
+        static void DisplayMutationCauses(Pawn p)
+        {
+            var h = p?.health?.hediffSet;
+            if (h == null) return;
+            StringBuilder builder = new StringBuilder(); 
+            foreach (Hediff_AddedMutation hediff in h.hediffs.MakeSafe().OfType<Hediff_AddedMutation>())
+            {
+                builder.AppendLine($"{hediff.Label}:{hediff.Causes}");
+            }
+            Log.Message(builder.ToString());
+        }
+
         /// <summary>
         /// Displays the count of all hediff classes across all pawns in the world.
         /// </summary>

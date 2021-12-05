@@ -2,7 +2,7 @@
 	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
 		<defName>GazelleMorph</defName>
 		<label>gazellemorph</label>
-		<description>TODO</description>
+		<description>Gazellemorphs are fast and graceful but skittish and generally prefers flight over confrontation</description>
 		<race>Gazelle</race>
 		<classification>Bovid</classification>
 		<categories>
@@ -10,6 +10,7 @@
 			<li>Temperate</li>
 			<li>Bovid</li>
 		</categories>
+		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphGazelleTF</fullTransformation>
 		<partialTransformation>PawnmorphGazelleTFPartial</partialTransformation>
 		<raceSettings>

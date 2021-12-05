@@ -88,7 +88,7 @@ namespace Pawnmorph.StockGenerators
             if (mDef == null) return false;
             if (categoryFilter?.PassesFilter(mDef) == false) return false; 
 
-            return allowRestricted || !mDef.restricted; 
+            return allowRestricted || mDef.restrictionLevel == RestrictionLevel.UnRestricted; 
         }
 
         /// <summary>

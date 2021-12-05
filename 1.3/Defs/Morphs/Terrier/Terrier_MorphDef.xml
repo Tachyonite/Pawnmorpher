@@ -1,0 +1,30 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
+		<defName>TerrierMorph</defName>
+		<label>terriermorph</label>
+		<description>A large humanoid canine resembling a yorkshire terrier. These former humans now share many mental traits with their animal counterparts, such as pack-mindedness and keen hunting instincts.</description>
+		<race>YorkshireTerrier</race>
+		<classification>Canid</classification>
+		<categories>
+			<li>Pet</li>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
+		<injectorProperties></injectorProperties>
+		<associatedAnimals>
+			<li>YorkshireTerrier</li>
+			<li>LabradorRetriever</li>
+		</associatedAnimals>
+		<fullTransformation>PawnmorphTerrierTF</fullTransformation>
+		<partialTransformation>PawnmorphTerrierTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(200,165,65)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>TerrierTransformationMemory</transformationMemory>
+			<revertedMemory>TerrierRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

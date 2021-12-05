@@ -143,7 +143,7 @@ namespace Pawnmorph
 
         private void AddMutationLogFor(Pawn pawn)
         {
-            var log = new MutationLogEntry(pawn, hediff, partsToAffect);
+            var log = new MutationLogEntry(pawn, hediff, null, partsToAffect);
             Find.PlayLog.Add(log);
         }
 

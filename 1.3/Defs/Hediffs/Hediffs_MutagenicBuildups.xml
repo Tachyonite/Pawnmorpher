@@ -1,15 +1,31 @@
-<Defs>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ComposableHediffs.xsd">
 
+    <!--weapon base hediff  -->
     <HediffDef Name="PMMutagenicBuildupWBase" ParentName="MutagenicBuildupBase" Abstract="true">
         <makesSickThought>true</makesSickThought>
         <scenarioCanAdd>true</scenarioCanAdd>
         <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.HediffCompProps_Composable">
+                <mutRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSeverityQuadratic">
+                    <a>470.16</a>
+                    <b>538.77</b>
+                </mutRate>
+            </li>
+        </comps>
         <stages>
-            <li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>initial</label>
                 <becomeVisible>false</becomeVisible>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>initial</label>
                 <minSeverity>0.04</minSeverity>
                 <painOffset>0.1</painOffset>
@@ -19,15 +35,15 @@
                         <offset>-0.05</offset>
                     </li>
                 </capMods>
-                <height>2</height>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>70</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>minor</label>
                 <minSeverity>0.2</minSeverity>
                 <painOffset>0.2</painOffset>
@@ -37,16 +53,16 @@
                         <offset>-0.10</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <height>1</height>
-                <meanMutationsPerDay>140</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
-
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>moderate</label>
                 <minSeverity>0.40</minSeverity>
                 <vomitMtbDays>5</vomitMtbDays>
@@ -57,14 +73,16 @@
                         <offset>-0.15</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>300</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>serious</label>
                 <minSeverity>0.60</minSeverity>
                 <vomitMtbDays>1</vomitMtbDays>
@@ -75,14 +93,11 @@
                         <offset>-0.25</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>500</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>extreme</label>
                 <minSeverity>0.80</minSeverity>
                 <vomitMtbDays>0.5</vomitMtbDays>
@@ -93,33 +108,39 @@
                         <setMax>0.50</setMax>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>600</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <minSeverity>0.85</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.8</painOffset>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>900</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphFullTfStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <minSeverity>0.99</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.9</painOffset>
-                <morph>Animal</morph>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+                <minSeverity>1</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_Always" />
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_All">
+                    <blackList>
+                        <li>Thrumbo</li>
+                    </blackList>
+                </tfTypes>
+                <tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+                    <chance>0.3</chance>
+                </tfGenderSelector>
             </li>
         </stages>
     </HediffDef>
@@ -169,126 +190,134 @@
             <li Class="HediffCompProperties_Immunizable">
                 <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
             </li>
+            <li Class="Pawnmorph.Hediffs.HediffCompProps_Composable">
+                <mutRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSeverityQuadratic">
+                    <a>599.24</a>
+                    <b>40.041</b>
+                </mutRate>
+            </li>
         </comps>
         <stages>
             <li>
                 <label>initial</label>
                 <becomeVisible>false</becomeVisible>
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>initial</label>
                 <minSeverity>0.04</minSeverity>
                 <painOffset>0.1</painOffset>
-                <height>3</height>
+
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <offset>-0.05</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>4</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>minor</label>
                 <minSeverity>0.2</minSeverity>
                 <painOffset>0.2</painOffset>
-                <height>3</height>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <offset>-0.10</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>10</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
-
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>moderate</label>
                 <minSeverity>0.40</minSeverity>
                 <vomitMtbDays>5</vomitMtbDays>
                 <painOffset>0.3</painOffset>
-                <height>3</height>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <offset>-0.15</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>60</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>serious</label>
                 <minSeverity>0.60</minSeverity>
                 <vomitMtbDays>1</vomitMtbDays>
                 <painOffset>0.4</painOffset>
-                <height>2</height>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <offset>-0.25</offset>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>380</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>extreme</label>
                 <minSeverity>0.80</minSeverity>
                 <vomitMtbDays>0.5</vomitMtbDays>
                 <painOffset>0.6</painOffset>
-                <height>1</height>
                 <capMods>
                     <li>
                         <capacity>Consciousness</capacity>
                         <setMax>0.50</setMax>
                     </li>
                 </capMods>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>400</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphTransformationStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <minSeverity>0.85</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.8</painOffset>
-                <morph>Animal</morph>
-                <meanMutationsPerDay>500</meanMutationsPerDay>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
             </li>
-            <li Class="Pawnmorph.Hediffs.RandomMorphFullTfStage">
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <minSeverity>0.99</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.9</painOffset>
-                <morph>Animal</morph>
-                <categoryBlackList>
-                    <li>Powerful</li>
-                    <li>Chimera</li>
-                </categoryBlackList>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+                <minSeverity>1</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_Always" />
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_All">
+                    <blackList>
+                        <li>Thrumbo</li>
+                    </blackList>
+                </tfTypes>
+                <tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+                    <chance>0.3</chance>
+                </tfGenderSelector>
             </li>
         </stages>
 

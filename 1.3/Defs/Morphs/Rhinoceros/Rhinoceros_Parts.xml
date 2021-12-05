@@ -2,6 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name="RhinocerosPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>RhinocerosMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosJaw</defName>
 		<label>ceratorhine muzzle</label>
@@ -99,6 +100,7 @@
 			<li>Jaw</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosEar</defName>
 		<label>ceratorhine</label>
@@ -113,6 +115,7 @@
 			<li>Ear</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosTail</defName>
 		<label>rhinoceros tail</label>

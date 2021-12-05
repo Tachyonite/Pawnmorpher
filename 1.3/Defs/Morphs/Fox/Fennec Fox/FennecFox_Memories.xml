@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFennecFoxMuzzle</defName>
+		<stages>
+			<li>
+				<label>Tiny fox face</label>
+				<description>I have a sudden compulsion to begin screaming for no reason.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tiny fox face</label>
+				<description>I look great! Everyone will love me looking like this!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tiny fox face</label>
+				<description>I hate this, no one will take me seriously with a face like this!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFennecFoxEar</defName>
+		<stages>
+			<li>
+				<label>Huge fox ears</label>
+				<description>Okay, I'll admit it, these are pretty cool.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge fox ears</label>
+				<description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Huge fox ears</label>
+				<description>These ears are too damn big!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFennecFluffyTail</defName>
+		<stages>
+			<li>
+				<label>Fluffy tail</label>
+				<description>It gets in the way, but it's really fluffy...I could almost use it as a pillow.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluffy tail</label>
+				<description>It's so fluffy I think I'm gonna die!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluffy tail</label>
+				<description>Sure it's cute...but it's attached to me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

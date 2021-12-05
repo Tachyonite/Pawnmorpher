@@ -1,0 +1,159 @@
+<Defs>
+    <!-- EXAMPLE HEDIFF USING THE NEW COMPOSABLE HEDIFFS -->
+    <HediffDef ParentName="InfectionBase">
+        <hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
+        <makesAlert>true</makesAlert>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <makesSickThought>true</makesSickThought>
+        <tendable>true</tendable>
+        <maxSeverity>1.001</maxSeverity>
+        <comps>
+            <li Class="HediffCompProperties_TendDuration">
+                <baseTendDurationHours>12</baseTendDurationHours>
+                <severityPerDayTended>-1</severityPerDayTended>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProps_ImmunizableMutation">
+                <severityPerDayNotImmune>1</severityPerDayNotImmune>
+                <immunityPerDaySick>0.25</immunityPerDaySick>
+                <severityPerDayImmune>-0.25</severityPerDayImmune>
+                <immunityPerDayNotSick>-0.06</immunityPerDayNotSick>
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffComp_Composable">
+                <mutTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Morph">
+                    <morphDef>WolfMorph</morphDef>
+                </mutTypes>
+
+                <!-- 
+                    mut rate classes can be used in conjuction with MutRate_Comp in the stages 
+                <mutRate Class="Pawnmorph.Hediffs.Composable.$MutRateClass">
+                    ...
+                </mutRate>
+                -->
+            </li>
+        </comps>
+        <defName>Lycanthropy</defName>
+        <label>lycanthropy</label>
+        <description>Awoooooo!</description>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>neko</label>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSevChange">
+                    <meanMutationsPerSeverity>24</meanMutationsPerSeverity>
+                    <standardDeviation>6</standardDeviation>
+                </mutationRate>
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_List">
+                    <mutations>
+                        <li>EtherWolfTail</li>
+                        <li>EtherWolfEar</li>
+                    </mutations>
+                </mutationTypes>
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.25</minSeverity>
+                <label>minor</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.1</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_RandomSpread" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSevChange">
+                    <meanMutationsPerSeverity>12</meanMutationsPerSeverity>
+                    <standardDeviation>3</standardDeviation>
+                </mutationRate>
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_FromComp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.5</minSeverity>
+                <label>major</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_RandomSpread" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSevChange">
+                    <meanMutationsPerSeverity>24</meanMutationsPerSeverity>
+                    <standardDeviation>6</standardDeviation>
+                </mutationRate>
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_FromComp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.75</minSeverity>
+                <label>extreme</label>
+                <vomitMtbDays>1.5</vomitMtbDays>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Manipulation</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                    <li>
+                        <capacity>Breathing</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_RandomSpread" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSevChange">
+                    <meanMutationsPerSeverity>48</meanMutationsPerSeverity>
+                    <standardDeviation>12</standardDeviation>
+                </mutationRate>
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_FromComp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+                <minSeverity>1</minSeverity>
+                <label>tf time</label>
+                <tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_Always" />
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_FromComp" />
+                <tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+                    <chance>1</chance>
+                </tfGenderSelector>
+                <tfSettings Class="Pawnmorph.Hediffs.Composable.TFMiscSettings">
+                    <manhunterSettings>
+                        <mult>1</mult>
+                        <offset>1</offset>
+                    </manhunterSettings>
+                    <forcedSapience>0</forcedSapience>
+                </tfSettings>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

@@ -109,10 +109,10 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public bool memoryIgnoresLimit;
 
+        [Unsaved] private RestrictionLevel? _restrictionLevel;
 
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
-        [Unsaved] private bool? _isRestricted;
 
         [Unsaved] private List<ThingDef> _associatedAnimals;
 
@@ -185,13 +185,31 @@ namespace Pawnmorph.Hediffs
         /// </value>
         public bool IsRestricted
         {
+            get { return RestrictionLevel > RestrictionLevel.UnRestricted; }
+        }
+
+        /// <summary>
+        /// Gets the restriction level of this mutation
+        /// </summary>
+        /// <value>
+        /// The restriction level.
+        /// </value>
+        public RestrictionLevel RestrictionLevel
+        {
             get
             {
-                if (_isRestricted == null)
-                    _isRestricted =
-                        categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
+                if (_restrictionLevel == null)
+                {
+                    _restrictionLevel = RestrictionLevel.UnRestricted;
+                    foreach (MutationCategoryDef cat in categories.MakeSafe())
+                    {
+                       if(_restrictionLevel == RestrictionLevel.Always)break;
+                       if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel; 
+                    }
+                    
+                }
 
-                return _isRestricted.Value;
+                return _restrictionLevel.Value;
             }
         }
 
