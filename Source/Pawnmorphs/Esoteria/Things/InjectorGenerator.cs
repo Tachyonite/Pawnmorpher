@@ -98,7 +98,7 @@ namespace Pawnmorph.Things
                                       .Replace(">", "}"), //hacky way to get "nested" translation strings 
                 ingestReportString = INGEST_REPORT_STRING.Translate().Replace("<", "{").Replace(">", "}"),
                 outcomeDoers = GetOutcomeDooers(mDef),
-                preferability = FoodPreferability.NeverForNutrition
+                preferability = FoodPreferability.NeverForNutrition, drugCategory = DrugCategory.None
             };
             var tDef = new ThingDef
             {

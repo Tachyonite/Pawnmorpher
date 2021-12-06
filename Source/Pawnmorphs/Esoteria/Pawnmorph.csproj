@@ -467,6 +467,7 @@
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
     <Compile Include="HPatches\DrugPolicyPatches.cs" />
+    <Compile Include="HPatches\DrupPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\GiddyUpPatch.cs" />
