@@ -39,8 +39,15 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
                 CheckForObsoletedComponents();
-                CheckForModConflicts();
-                DisplayGroupedModIssues(); 
+                try
+                {
+                    CheckForModConflicts();
+                    DisplayGroupedModIssues();
+                }
+                catch (Exception e) // just logging, ok to catch and swallow the exception 
+                {
+                    Log.Error($"unable to display grouped mod issues due to caught exception:{e.GetType().Name}\n{e}");
+                }
                 try
                 {
                     
@@ -70,7 +77,7 @@ namespace Pawnmorph
         private static void CheckForMorphInjectorDefs()
         {
             IEnumerable<IGrouping<ModContentPack, MorphDef>> mDefs = MorphDef
-                                                                    .AllDefs.Where(md => md.injectorProperties == null
+                                                                    .AllDefs.Where(md => md?.modContentPack != null && md.injectorProperties == null
                                                                                       && md.injectorDef == null && !md.noInjector)
                                                                     .GroupBy(m => m.modContentPack);
 
@@ -78,6 +85,7 @@ namespace Pawnmorph
             foreach (IGrouping<ModContentPack, MorphDef> morphDefs in mDefs)
             {
                 ModContentPack key = morphDefs.Key;
+                if (key == null) continue; 
                 List<MorphDef> lst = morphDefs.ToList();
                 if (lst.Count > 0)
                 {
