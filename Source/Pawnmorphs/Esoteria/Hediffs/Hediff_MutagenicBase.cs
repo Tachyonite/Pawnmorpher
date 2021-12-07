@@ -60,7 +60,7 @@ namespace Pawnmorph.Hediffs
         ///     Gets the mutagen sensitivity sensitivity of the pawn
         /// </summary>
         /// <value>The mutagen sensitivity.</value>
-        public virtual float MutagenSensitivity => mutagenSensitivity.Value;
+        public virtual float MutagenSensitivity => 6.Value;
 
         /// <summary>
         /// Gets the causes of this hediff 
@@ -110,7 +110,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Controls whether or not this hediff gets removed 
         /// </summary>
-        public override bool ShouldRemove => forceRemove || base.ShouldRemove;
+        public override bool ShouldRemove => forceRemove || base.ShouldRemove || mutagenSensitivity.Value <= 0;
 
         /// <summary>
         /// Gets the pain offset for this hediff 

@@ -133,7 +133,7 @@ namespace Pawnmorph.Hediffs
                 vomitMtbDays = 1,
                 capMods = capMods,
                 mutationTypes = new MutTypes_Morph {morphDef = mDef},
-                mutationRate = new MutRate_MutationsPerDay {meanMutationsPerDay = 5}, //should this be in settings 
+                mutationRate = new MutRate_MutationsPerDay {meanMutationsPerDay = 7.7f}, //should this be in settings 
                 spreadOrder = new MutSpreadOrder_RandomSpread()
             };
             return stage;
@@ -197,7 +197,7 @@ namespace Pawnmorph.Hediffs
             var lst = new List<HediffStage>
             {
                 GenerateReelingStage(mDef, fTfProps),
-                GenerateChangingStage(mDef, fTfProps),
+                GenerateTransformingStage(mDef, fTfProps),
                 GenerateChangingStage(mDef, fTfProps)
             };
             return lst;
