@@ -128,7 +128,7 @@ namespace Pawnmorph.Hediffs
             var stage = new HediffStage_Mutation
             {
                 label = CHANGING_LABEL.Translate(),
-                minSeverity = 0.65f,
+                minSeverity = CHANGING_MIN_SEVERITY,
                 painOffset = 0.1f,
                 vomitMtbDays = 1,
                 capMods = capMods,
@@ -243,6 +243,9 @@ namespace Pawnmorph.Hediffs
             return stg;
         }
 
+        
+        private const float TF_MIN_SEVERITY = 0.4f;
+        private const float CHANGING_MIN_SEVERITY = 0.65f; 
         private static HediffStage GenerateTransformingStage([NotNull] MorphDef mDef, [NotNull] MorphHediffProperties hediffProps)
         {
             var capMods = new List<PawnCapacityModifier>
@@ -255,7 +258,7 @@ namespace Pawnmorph.Hediffs
             var stage = new HediffStage_MutagenicBase
             {
                 label = TRANSFORMING_LABEL.Translate(),
-                minSeverity = 0.6f,
+                minSeverity =TF_MIN_SEVERITY,
                 painOffset = 0.1f,
                 vomitMtbDays = 1,
                 alert = hediffProps.tfAlert ?? new StageAlert(),

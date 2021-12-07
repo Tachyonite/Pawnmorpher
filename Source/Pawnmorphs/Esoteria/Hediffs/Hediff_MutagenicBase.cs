@@ -60,7 +60,7 @@ namespace Pawnmorph.Hediffs
         ///     Gets the mutagen sensitivity sensitivity of the pawn
         /// </summary>
         /// <value>The mutagen sensitivity.</value>
-        public virtual float MutagenSensitivity => 6.Value;
+        public virtual float MutagenSensitivity => mutagenSensitivity.Value;
 
         /// <summary>
         /// Gets the causes of this hediff 
