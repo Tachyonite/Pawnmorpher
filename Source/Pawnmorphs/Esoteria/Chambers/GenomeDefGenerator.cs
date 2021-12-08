@@ -152,7 +152,6 @@ namespace Pawnmorph.Chambers
                 Log.Message(builder.ToString());
             }
 
-            ResourceCounter.ResetDefs();
         }
 
 
