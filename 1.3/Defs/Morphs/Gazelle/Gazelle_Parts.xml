@@ -168,6 +168,9 @@
 			<li>Tail</li>
 			<li>MorphTail</li>
 		</parts>
+		<graphics>
+			<Tail>Parts/Gazelle/Gazelle_Tail</Tail>
+		</graphics>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
@@ -187,6 +190,9 @@
 		<parts>
 			<li>Skull</li>
 		</parts>
+		<graphics>
+			<Horns>Parts/Gazelle/Gazelle_Antlers</Horns>
+		</graphics>
 		<mutationTale>GrewAntlers</mutationTale>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
