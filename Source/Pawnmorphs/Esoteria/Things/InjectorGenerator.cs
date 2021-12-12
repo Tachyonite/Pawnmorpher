@@ -136,6 +136,7 @@ namespace Pawnmorph.Things
                 drawGUIOverlay = true,
                 drawerType = DrawerType.MapMeshOnly,
                 ingestible = ingestProps,
+                uiIconPath = props.graphicData.texPath,
                 tradeTags = props.traderTags,
                 costList = props.CostList.ToList(),
                 recipeMaker = props.RecipeMaker,
