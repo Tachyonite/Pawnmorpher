@@ -32,7 +32,7 @@ namespace Pawnmorph.Hediffs.Utility
         /// Gets the total number of mutations available for the current limb.
         /// </summary>
         /// <value>
-        /// The remaining mutations.
+        /// The number of available mutations.
         /// </value>
         public int AvailableMutations => bodyPartMutationList.Count;
 
