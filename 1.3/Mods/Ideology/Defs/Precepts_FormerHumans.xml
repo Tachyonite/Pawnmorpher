@@ -63,7 +63,7 @@
     <PreceptDef ParentName="PM_Precept_FormerHumanNudityBase">
         <defName>PM_FormerHumanNudityLiked</defName>
         <label>animalistic</label>
-        <description>Former humans shouldn't reject the instincts of thier new bodies</description>
+        <description>Former humans shouldn't reject the instincts of their new bodies</description>
         <defaultSelectionWeight>1</defaultSelectionWeight>
         <countsTowardsPreceptLimit>true</countsTowardsPreceptLimit>
         <associatedMemes>
