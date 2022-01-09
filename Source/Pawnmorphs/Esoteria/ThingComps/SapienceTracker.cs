@@ -63,7 +63,7 @@ namespace Pawnmorph.ThingComps
         [CanBeNull]
         public Need_Control SapienceNeed => Pawn.needs?.TryGetNeed<Need_Control>();
 
-  
+
         /// <summary>
         ///     Gets a value indicating whether this instance is permanently feral.
         /// </summary>
@@ -191,7 +191,7 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public void MakePermanentlyFeral()
         {
-            if (!_isFormerHuman || _sapienceState == null)
+            if (!_isFormerHuman && !(_sapienceState != null && _sapienceState.IsFormerHuman))
             {
                 Log.Error($"trying to make a non former human \"{PMThingUtilities.GetDebugLabel(parent)}\" permanently feral");
                 return;
