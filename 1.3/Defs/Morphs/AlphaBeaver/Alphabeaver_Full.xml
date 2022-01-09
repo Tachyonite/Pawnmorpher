@@ -3,7 +3,7 @@
 		<defName>PawnmorphAlphabeaverTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<label>alphabeavermorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into an alphabeavermorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more alpaca than human.</description>
+		<description>This person has mechanites in their blood that are slowly mutating them into an alphabeavermorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more beaver than human.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
 				<label>reeling</label>
