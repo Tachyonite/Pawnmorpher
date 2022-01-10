@@ -38,6 +38,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
+
+        public List<MutationStagePatch> patches = new List<MutationStagePatch>();
+
         /// <summary>
         ///     The default chance to add this mutation
         /// </summary>
@@ -296,6 +299,13 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
+
+
+            foreach (MutationStagePatch stagePatch in patches)
+            {
+                stagePatch.Apply(this);
+            }
+
 
             if (parts != null)
             {
