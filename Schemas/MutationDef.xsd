@@ -53,6 +53,21 @@
                     <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
                 </xs:complexType>
             </xs:element>
+            <xs:element name="patches" minOccurs="0">
+				<xs:complexType>
+				    <xs:sequence>
+						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+								    <xs:element name="identity" type="xs:string" minOccurs="0" />
+								    <xs:element name="values" type="HediffStage" minOccurs="0" />
+								</xs:all>
+								<xs:attribute name="function" type="xs:string" use="optional" />
+							</xs:complexType>
+						</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+            </xs:element>
             <xs:element name="spawnThingOnRemoved" type="xs:string" minOccurs="0"/>
             <xs:element name="parts" minOccurs="0" type="ListOfStrings" />
             <xs:element name="categories" minOccurs="0" type="ListOfStrings" />
