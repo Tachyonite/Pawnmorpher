@@ -17,6 +17,12 @@ namespace Pawnmorph.Hediffs
     public class MutationStage : HediffStage, IDescriptiveStage, IExecutableStage
     {
         /// <summary>
+        /// Optional key that can be used to reference back to this specific stage.
+        /// </summary>
+        [CanBeNull]
+        public string key;
+
+        /// <summary>
         /// list of all aspect givers in this stage 
         /// </summary>
         [CanBeNull]
