@@ -38,7 +38,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
-
+        /// <summary>
+        ///     The stage patches that are applied once the object has been deserialized.
+        /// </summary>
         public List<MutationStagePatch> stagePatches = new List<MutationStagePatch>();
 
         /// <summary>

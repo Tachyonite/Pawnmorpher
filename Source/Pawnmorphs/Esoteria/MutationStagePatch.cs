@@ -78,11 +78,9 @@ namespace Pawnmorph.Hediffs
             if (string.IsNullOrWhiteSpace(this.stageKey))
                 return;
 
-            MutationStage stage = GetStage(mutation);
+            MutationStage stage = TryGetStage(mutation);
             if (stage != null)
                 mutation.stages.Remove(stage);
-            else
-                Log.Warning($"unable to find stage with key: {stageKey} in {mutation.ToString()}");
         }
 
 
@@ -95,7 +93,7 @@ namespace Pawnmorph.Hediffs
             if (values == null)
                 return;
 
-            MutationStage stage = GetStage(mutation);
+            MutationStage stage = TryGetStage(mutation);
             if (stage != null)
             {
                 // Get public instance fields that can be set.
@@ -121,7 +119,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        private MutationStage GetStage(MutationDef mutation)
+        /// <summary>
+        /// Attempts to find and return the stage with identical key from the provided <see cref="MutationDef"/>. Logs a warning and returns null if not found.
+        /// </summary>
+        private MutationStage TryGetStage(MutationDef mutation)
         {
             MutationStage stage = mutation.stages.FirstOrDefault(x => ((MutationStage)x).key == stageKey) as MutationStage;
             if (stage == null)
