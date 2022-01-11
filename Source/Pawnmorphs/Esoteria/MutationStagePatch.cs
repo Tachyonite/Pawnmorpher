@@ -14,10 +14,10 @@ namespace Pawnmorph.Hediffs
     public class MutationStagePatch
     {
         /// <summary>
-        /// Identity of the stage to affect when using modify or remove function.
+        /// Key of the stage to affect when using modify or remove function.
         /// </summary>
         [CanBeNull]
-        string identity = null;
+        string stageKey = null;
 
         /// <summary>
         /// The patch behavior. Can be either "add", "modify" or "remove".
@@ -63,30 +63,39 @@ namespace Pawnmorph.Hediffs
             if (values == null)
                 return;
 
-            mutation.stages.Add(values);
+            // Keep stage list sorted by minSeverity ASC, otherwise Rimworld throws a warning in the log.
+            for (int i = 0; i < mutation.stages.Count; i++)
+            {
+                if (mutation.stages[i].minSeverity < values.minSeverity)
+                    continue;
+
+                mutation.stages.Insert(i, values);
+            }
         }
 
         private void Remove(MutationDef mutation)
         {
-            if (String.IsNullOrWhiteSpace(identity))
+            if (string.IsNullOrWhiteSpace(this.stageKey))
                 return;
 
-            MutationStage stage = mutation.stages.FirstOrDefault(x => (x.overrideLabel ?? x.label) == identity) as MutationStage;
+            MutationStage stage = GetStage(mutation);
             if (stage != null)
                 mutation.stages.Remove(stage);
+            else
+                Log.Warning($"unable to find stage with key: {stageKey} in {mutation.ToString()}");
         }
 
 
 
         private void Modify(MutationDef mutation)
         {
-            if (String.IsNullOrWhiteSpace(identity))
+            if (string.IsNullOrWhiteSpace(this.stageKey))
                 return;
 
             if (values == null)
                 return;
 
-            MutationStage stage = mutation.stages.FirstOrDefault(x => (x.overrideLabel ?? x.label) == identity) as MutationStage;
+            MutationStage stage = GetStage(mutation);
             if (stage != null)
             {
                 // Get public instance fields that can be set.
@@ -110,6 +119,15 @@ namespace Pawnmorph.Hediffs
                     }
                 }
             }
+        }
+
+        private MutationStage GetStage(MutationDef mutation)
+        {
+            MutationStage stage = mutation.stages.FirstOrDefault(x => ((MutationStage)x).key == stageKey) as MutationStage;
+            if (stage == null)
+                Log.Warning($"unable to find stage with key: {stageKey} in {mutation.ToString()}");
+
+            return stage;
         }
 
     }

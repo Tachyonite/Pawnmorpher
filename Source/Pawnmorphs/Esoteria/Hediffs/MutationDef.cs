@@ -39,7 +39,7 @@ namespace Pawnmorph.Hediffs
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
 
-        public List<MutationStagePatch> patches = new List<MutationStagePatch>();
+        public List<MutationStagePatch> stagePatches = new List<MutationStagePatch>();
 
         /// <summary>
         ///     The default chance to add this mutation
@@ -301,7 +301,7 @@ namespace Pawnmorph.Hediffs
             }
 
 
-            foreach (MutationStagePatch stagePatch in patches)
+            foreach (MutationStagePatch stagePatch in stagePatches)
             {
                 stagePatch.Apply(this);
             }
