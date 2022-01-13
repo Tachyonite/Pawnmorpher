@@ -1,17 +1,11 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="LupineJawPart" ParentName="CanidJawPart" Abstract="true">
-		<defName>EtherLupineJaw</defName>
-		<label>lupine snout</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LupineEarPart" ParentName="CanidEarPart" Abstract="true">
-		<defName>EtherLupineEar</defName>
-		<label>lupine ear</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LupineTailPart" ParentName="CanidTailPart" Abstract="true">
-		<defName>EtherLupineTail</defName>
-		<label>lupine tail</label>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>
