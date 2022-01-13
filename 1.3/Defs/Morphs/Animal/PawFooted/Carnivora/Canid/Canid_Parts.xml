@@ -1,17 +1,34 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidJawPart" ParentName="CarnivoraJawPart" Abstract="true">
+		<defName>EtherCanidJaw</defName>
+		<label>canid snout</label>
+		<mutationTale>GrewCanidMuzzle</mutationTale>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidEarPart" ParentName="CarnivoraEarPart" Abstract="true">
+		<defName>EtherCanidEar</defName>
+		<label>canid ear</label>
+		<mutationTale>EarsChangedCanid</mutationTale>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidTailPart" ParentName="CarnivoraTailPart" Abstract="true">
+		<defName>EtherCanidTail</defName>
+		<label>canid tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
     <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
         <defName>PM_CanineEyes</defName>
         <label>canine</label>
+		<description>Golden- or orange-colored wolf eyes with a large, black-ringed iris.  They look striking, especially on a mutated human, but alas they are red-green colorblind.  They also have inferior visual acuity compared to a human's eyes, but they're well adapted to noticing motion.  A morph with these eyes will suffer at most vision-related tasks but once they adapt to the specialized senses they will fare better in melee combat than a baseline human.</description>
         <classInfluence>Canid</classInfluence>
-        <description>Golden- or orange-colored wolf eyes with a large, black-ringed iris.  They look striking, especially on a mutated human, but alas they are red-green colorblind.  They also have inferior visual acuity compared to a human's eyes, but they're well adapted to noticing motion.  A morph with these eyes will suffer at most vision-related tasks but once they adapt to the specialized senses they will fare better in melee combat than a baseline human.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.MutationStage">
-                <labelOverride>golden</labelOverride>
+                <label>golden</label>
                 <description>[PAWN_nameDef]'s eyes are turning gold.  Striking, but so far the change doesn't seem to have any practical effect.</description>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <minSeverity>0.1</minSeverity>
-                <labelOverride>golden (colorblind)</labelOverride>
+                <label>golden (colorblind)</label>
                 <description>[PAWN_nameDef]'s eyes have lost their ability to differentiate red and green as they become increasingly wolflike.</description>
                 <partEfficiencyOffset>-0.15</partEfficiencyOffset>
             </li>

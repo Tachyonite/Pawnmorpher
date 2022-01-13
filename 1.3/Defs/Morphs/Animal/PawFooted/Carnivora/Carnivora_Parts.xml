@@ -1,0 +1,16 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<defName>EtherCarnivoraJaw</defName>
+		<label>carnivora snout</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraEarPart" ParentName="PawFootedEarPart" Abstract="true">
+		<defName>EtherCarnivoraEar</defName>
+		<label>carnivora ear</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraTailPart" ParentName="PawFootedTailPart" Abstract="true">
+		<defName>EtherCarnivoraTail</defName>
+		<label>carnivora tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

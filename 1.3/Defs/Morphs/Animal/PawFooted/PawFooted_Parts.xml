@@ -1,0 +1,34 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<defName>EtherPawFootedJaw</defName>
+		<label>paw footed snout</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedEarPart" ParentName="AnimalEarPart" Abstract="true">
+		<defName>EtherPawFootedEar</defName>
+		<label>paw footed ear</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<defName>EtherPawFootedTail</defName>
+		<label>paw footed tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

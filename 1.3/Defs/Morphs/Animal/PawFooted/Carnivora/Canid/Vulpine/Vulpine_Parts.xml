@@ -1,0 +1,17 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="VulpineJawPart" ParentName="CanidJawPart" Abstract="true">
+		<defName>EtherVulpineJaw</defName>
+		<label>vulpine snout</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="VulpineEarPart" ParentName="CanidEarPart" Abstract="true">
+		<defName>EtherVulpineEar</defName>
+		<label>vulpine ear</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="VulpineTailPart" ParentName="CanidTailPart" Abstract="true">
+		<defName>EtherVulpineTail</defName>
+		<label>vulpine tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

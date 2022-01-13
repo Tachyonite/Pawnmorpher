@@ -1,0 +1,128 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphPart" Abstract="true">
+		<defName>EtherAnimalJaw</defName>
+		<label>animal snout</label>
+		<description>[PAWN_nameDef]'s face has pushed out into a muzzle like that on an animal</description>
+		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<graphics>
+			<Muzzle>Parts/None/None</Muzzle>
+		</graphics>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>pressing out</label>
+				<key>pressing</key>
+				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>adapting</label>
+				<key>adapting</key>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.2</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.5</offset>
+					</li>
+				</capMods>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>adapted</label>
+				<key>adapted</key>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+				<capMods>
+					<li>
+						<capacity>Talking</capacity>
+						<offset>-0.1</offset>
+					</li>
+					<li>
+						<capacity>Eating</capacity>
+						<offset>0.5</offset>
+					</li>
+				</capMods>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphPart" Abstract="true">
+		<defName>EtherAnimalEar</defName>
+		<label>animal ear</label>
+		<description>[PAWN_nameDef]'s ears have grown into animal ears</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<graphics>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/None/None</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<LeftEar>Parts/None/None</LeftEar>
+		</graphics>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>pressing out</label>
+				<key>pressing</key>
+				<description>[PAWN_nameDef]'s ears are growing.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>grown</label>
+				<key>grown</key>
+				<description>[PAWN_nameDef]'s ears look animal</description>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphPart" Abstract="true">
+		<defName>EtherAnimalTail</defName>
+		<label>animal tail</label>
+		<description>[PAWN_nameDef] has an animal tail</description>
+		<mutationTale>GrewTail</mutationTale>
+		<graphics>
+			<Tail>Parts/None/None</Tail>
+		</graphics>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>pressing out</label>
+				<key>pressing</key>
+				<description>A tail is growing behind [PAWN_nameDef].</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>grown</label>
+				<key>grown</key>
+				<description>[PAWN_nameDef] has an animal tail.</description>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

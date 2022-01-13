@@ -1,0 +1,17 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageJawPart" ParentName="CanidJawPart" Abstract="true">
+		<defName>EtherNecrophageJaw</defName>
+		<label>necrophage snout</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageEarPart" ParentName="CanidEarPart" Abstract="true">
+		<defName>EtherNecrophageEar</defName>
+		<label>necrophage ear</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageTailPart" ParentName="CanidTailPart" Abstract="true">
+		<defName>EtherNecrophageTail</defName>
+		<label>necrophage tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>
