@@ -2,7 +2,7 @@
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphFennecFoxTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
-		<label>foxmorph</label>
+		<label>fennecfoxmorph</label>
 		<description>This person has mechanites in their blood that are slowly mutating them into a foxmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more fennec than human. But would that really be so bad?</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
