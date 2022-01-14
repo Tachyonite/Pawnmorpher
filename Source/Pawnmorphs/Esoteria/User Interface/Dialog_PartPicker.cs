@@ -11,6 +11,7 @@ using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using Pawnmorph.GraphicSys;
 
 namespace Pawnmorph.User_Interface
 {
@@ -57,7 +58,8 @@ namespace Pawnmorph.User_Interface
         private const float BUTTON_HORIZONTAL_PADDING = 6f;
         private const float MENU_SECTION_CONSTRICTION_SIZE = 4f;
         private const float SLIDER_HEIGHT = 13f;
-        private static Vector2 PREVIEW_SIZE = new Vector2(200, 280);
+        private static int PREVIEW_POSITION_X = -10; // Render pawn away from the map to avoid capturing parts of the map.
+        private static Vector2Int PREVIEW_SIZE = new Vector2Int(200, 280);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CCW_BUTTON_SIZE = new Vector2(30, 30);
@@ -271,6 +273,10 @@ namespace Pawnmorph.User_Interface
                 SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
             }
 
+            var comp = pawn.GetComp<GraphicsUpdaterComp>();
+            comp.IsDirty = true;
+            comp.CompTick();
+            PortraitsCache.SetDirty(pawn);
             base.Close(doCloseSound);
 
             WindowClosed?.Invoke(this, addedMutations);
@@ -645,6 +651,8 @@ namespace Pawnmorph.User_Interface
         private void DrawSeverityBar(ref float curY, ref Rect partListViewRect, MutationLayer layer, MutationDef mutationDef, List<Hediff_AddedMutation> mutationsOfDef)
         {
             // Draw the various labels for the severity bar (need to refine this later).
+            // Update current mutation stage.
+            mutationsOfDef.FirstOrDefault().Tick();
             string stageLabelText = $"Stage {mutationsOfDef.FirstOrDefault().CurStageIndex}: {mutationsOfDef.FirstOrDefault().LabelCap}";
             Rect severityLabelsRect = new Rect(partListViewRect.x, curY, partListViewRect.width, Text.CalcHeight(stageLabelText, partListViewRect.width));
             Text.Anchor = TextAnchor.MiddleLeft;
@@ -769,17 +777,17 @@ namespace Pawnmorph.User_Interface
             if (pawn != null)
             {
                 recachePreview = false;
+
                 pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-                PortraitsCache.SetDirty(pawn);
+
                 RenderPawn();
-                InitCamera();
+
+                if (camera == null)
+                    InitCamera();
+
                 camera.gameObject.SetActive(true);
-                camera.transform.position = new Vector3(0f, pawn.Position.y + 1f, 0f);
-                camera.forceIntoRenderTexture = true;
-                camera.targetTexture = previewImage;
+                camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
                 camera.Render();
-                camera.targetTexture = null;
-                camera.forceIntoRenderTexture = false;
                 camera.gameObject.SetActive(false);
             }
             else
@@ -791,14 +799,18 @@ namespace Pawnmorph.User_Interface
         // Taken from RenderingTool.RenderPawnInternal in CharacterEditor
         private void RenderPawn()
         {
+            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            
+
             PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
             Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
-
+            
             Mesh bodyMesh = pawn.RaceProps.Humanlike ? MeshPool.humanlikeBodySet.MeshAt(previewRot) : graphics.nakedGraphic.MeshAt(previewRot);
-            Vector3 bodyOffset = new Vector3 (0f, pawn.Position.y + 0.007575758f, 0f);
+            Vector3 bodyOffset = new Vector3 (PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
             foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
             {
                 Material damagedMat = graphics.flasher.GetDamagedMat(mat);
+                damagedMat.color = pawn.GetHighestInfluence()?.GetSkinColorOverride(pawn) ?? damagedMat.color;
                 GenDraw.DrawMeshNowOrLater(bodyMesh, bodyOffset, quaternion, damagedMat, false);
                 bodyOffset.y += 0.00390625f;
                 if (!toggleClothesEnabled)
@@ -806,8 +818,8 @@ namespace Pawnmorph.User_Interface
                     break;
                 }
             }
-            Vector3 vector3 = new Vector3(0f, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
-            Vector3 vector4 = new Vector3(0f, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
+            Vector3 vector3 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
+            Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
             if (graphics.headGraphic != null)
             {
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
@@ -816,7 +828,7 @@ namespace Pawnmorph.User_Interface
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
-                Vector3 hairOffset = new Vector3(headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
+                Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
                 bool isWearingHat = false;
                 if (toggleClothesEnabled)
                 {
@@ -833,7 +845,7 @@ namespace Pawnmorph.User_Interface
                             }
                             else
                             {
-                                Vector3 hatOffset = new Vector3(headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
+                                Vector3 hatOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
                                 GenDraw.DrawMeshNowOrLater(hairMesh, hatOffset, quaternion, hatMat, false);
                             }
                         }
@@ -841,8 +853,12 @@ namespace Pawnmorph.User_Interface
                 }
                 if (!isWearingHat)
                 {
-                    Material hairMat = graphics.HairMatAt(previewRot);
-                    GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
+                    if (addedMutations.Parts.Any(x => x.IsInGroup(BodyPartGroupDefOf.UpperHead)) == false)
+                    {
+                        // Draw hair
+                        Material hairMat = graphics.HairMatAt(previewRot);
+                        GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
+                    }
                 }
             }
             if (toggleClothesEnabled)
@@ -856,10 +872,9 @@ namespace Pawnmorph.User_Interface
                     }
                 }
             }
-            ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
-            Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
 
-            HarmonyPatches.DrawAddons( PawnRenderFlags.Clothes,  vector3, hOffset, pawn, quaternion, previewRot);
+            Vector3 hOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
+            HarmonyPatches.DrawAddons(PawnRenderFlags.Clothes, vector3, hOffset, pawn, quaternion, previewRot);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)
@@ -894,9 +909,9 @@ namespace Pawnmorph.User_Interface
                 camera.renderingPath = RenderingPath.Forward;
                 camera.nearClipPlane = Current.Camera.nearClipPlane;
                 camera.farClipPlane = Current.Camera.farClipPlane;
-                camera.targetTexture = null;
                 camera.forceIntoRenderTexture = false;
-                previewImage = new RenderTexture((int)PREVIEW_SIZE.x, (int)PREVIEW_SIZE.y, 24);
+
+                previewImage = new RenderTexture(PREVIEW_SIZE.x, PREVIEW_SIZE.y, 24);
                 camera.targetTexture = previewImage;
             }
         }
