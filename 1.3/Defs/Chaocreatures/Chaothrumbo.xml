@@ -13,12 +13,6 @@
 			<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
 			<ArmorRating_Heat>0.50</ArmorRating_Heat>
 		</statBases>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
-				<chaoType>Special</chaoType>
-				<selectionWeight>-1</selectionWeight>
-			</li>
-		</modExtensions>
 		<uiIconScale>1.75</uiIconScale>
 		<tools>
 			<li>
@@ -115,6 +109,10 @@
 			<li>AnimalExotic</li>
 		</tradeTags>
 		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Special</chaoType>
+				<selectionWeight>-1</selectionWeight>
+			</li>
 			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
 				<transformedThought>PM_CThrumboTfThought</transformedThought>
 				<backstory>PM_ChaothrumboBackstory</backstory>
