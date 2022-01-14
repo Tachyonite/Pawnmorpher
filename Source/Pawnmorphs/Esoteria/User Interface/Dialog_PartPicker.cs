@@ -810,7 +810,6 @@ namespace Pawnmorph.User_Interface
             foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
             {
                 Material damagedMat = graphics.flasher.GetDamagedMat(mat);
-                damagedMat.color = pawn.GetHighestInfluence()?.GetSkinColorOverride(pawn) ?? damagedMat.color;
                 GenDraw.DrawMeshNowOrLater(bodyMesh, bodyOffset, quaternion, damagedMat, false);
                 bodyOffset.y += 0.00390625f;
                 if (!toggleClothesEnabled)
