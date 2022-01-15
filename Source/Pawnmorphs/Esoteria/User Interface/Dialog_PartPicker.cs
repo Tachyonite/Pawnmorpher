@@ -527,9 +527,14 @@ namespace Pawnmorph.User_Interface
 
         private void DrawPartButtons(ref float curY, Rect partListViewRect, List<Hediff_AddedMutation> mutations, List<BodyPartRecord> parts, MutationLayer layer, string label)
         {
-            // Draw the main mutation selection button. It should take up the whole width if there are no mutations, otherwise it will leave a space for the edit button.
-            float partButtonWidth = partListViewRect.width - (mutations.NullOrEmpty() ? 0 : editButtonWidth);
+            bool hasDetails = false;
+            if (mutations.Count > 0 && mutations.Any(x => x.SeverityAdjust != null))
+                hasDetails = true;
+
+            // Draw the main mutation selection button. It should take up the whole width if there are no details, otherwise it will leave a space for the edit button.
+            float partButtonWidth = partListViewRect.width - (hasDetails == false ? 0 : editButtonWidth);
             Rect partButtonRect = new Rect(partListViewRect.x, curY, partButtonWidth, Text.CalcHeight(label, partButtonWidth - BUTTON_HORIZONTAL_PADDING));
+
             if (Widgets.ButtonText(partButtonRect, label))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -575,7 +580,7 @@ namespace Pawnmorph.User_Interface
             curY += partButtonRect.height;
 
             // If there are actually mutations, draw the edit button.
-            if (!mutations.NullOrEmpty())
+            if (hasDetails)
             {
                 Rect editButtonRect = new Rect(partButtonWidth, partButtonRect.y, editButtonWidth, partButtonRect.height);
                 if (Widgets.ButtonText(editButtonRect, editButtonText))
@@ -585,7 +590,7 @@ namespace Pawnmorph.User_Interface
             }
 
             // If the currently selected part and layer match up with the part to give details for, draw the edit area below the buttons.
-            if (detailPart.Item1 == parts.FirstOrDefault() && detailPart.Item2 == layer)
+            if (hasDetails && detailPart.Item1 == parts.FirstOrDefault() && detailPart.Item2 == layer)
             {
                 foreach (MutationDef mutationDef in mutations.Select(m => m.Def).Distinct())
                 {
