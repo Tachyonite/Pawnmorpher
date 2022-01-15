@@ -237,7 +237,7 @@ namespace Pawnmorph
 
             List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
 
-            //bed stuff
+            //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod);
@@ -295,6 +295,7 @@ namespace Pawnmorph
             //roamer patches 
             methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
             methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
+
 
             //now patch them 
             foreach (var methodInfo in methodsToPatch)
