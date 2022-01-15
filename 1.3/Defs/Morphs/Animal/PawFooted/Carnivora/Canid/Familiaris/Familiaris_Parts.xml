@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisJawPart" ParentName="CanidJawPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisJaw</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -17,6 +18,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisEarPart" ParentName="CanidEarPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
@@ -28,6 +30,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisTailPart" ParentName="CanidTailPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

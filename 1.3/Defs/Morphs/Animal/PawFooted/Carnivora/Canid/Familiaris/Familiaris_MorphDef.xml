@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CanineMorph" Name="FamiliarisMorph">
+		<description>Always dependable and willing to defend their home, dogmorphs will get along with everyone.</description>
+		<classification>Canid</classification>
+		<transformSettings>
+			<transformationMemory>FamiliarisTransformationMemory</transformationMemory>
+			<revertedMemory>FamiliarisRevertedMemory</revertedMemory>
+		</transformSettings>
+		<fullTransformation>PawnmorphWolfTF</fullTransformation>
+		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>
+		<categories>
+			<li>Pet</li>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
+		<injectorProperties></injectorProperties>
+	</Pawnmorph.MorphDef>
+</Defs>
