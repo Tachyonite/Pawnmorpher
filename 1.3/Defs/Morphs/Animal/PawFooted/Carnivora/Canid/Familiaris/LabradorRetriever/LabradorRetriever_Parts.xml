@@ -31,6 +31,7 @@
 		<classInfluence>LabradorRetrieverMorph</classInfluence>
 		<defName>EtherLabradorRetrieverEar</defName>
 		<label>labrador ear</label>
+		<description>A floppy canine ear that wobbles all over the place.</description>
 		<graphics>
 			<LeftEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</LeftEarBehind>
@@ -56,6 +57,7 @@
 		<classInfluence>LabradorRetrieverMorph</classInfluence>
 		<defName>EtherLabradorRetrieverTail</defName>
 		<label>labrador tail</label>
+		<description>The briskly wagging, excitable tail of a labrador retriever.</description>
 		<graphics>
 			<Tail>Parts/LabradorRetriever/LabradorRetriever_Tail</Tail>
 		</graphics>

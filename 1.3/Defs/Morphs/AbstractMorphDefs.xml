@@ -11,17 +11,6 @@
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 
-	<Pawnmorph.MorphDef Abstract="true" Name="CanineMorph" ParentName="SensitiveFoodMorph">
-		<group>Canines</group>
-		<addedAspects>
-			<li>
-				<def>NaturalHunter</def>
-				<keepOnReversion>false</keepOnReversion>
-				<!-- if true the pawn will keep the affinity even if they stop being this morph -->
-			</li>
-		</addedAspects>
-	</Pawnmorph.MorphDef>
-
 	<Pawnmorph.MorphDef Abstract="true" Name="HerdMorph" ParentName="SensitiveFoodMorph">
 		<group>HerbivoreHerding</group>
 	</Pawnmorph.MorphDef>

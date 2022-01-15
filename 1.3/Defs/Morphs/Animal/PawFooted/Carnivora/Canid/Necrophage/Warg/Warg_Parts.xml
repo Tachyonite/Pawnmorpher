@@ -154,6 +154,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
 		<defName>PM_WargChest</defName>
 		<classInfluence>WargMorph</classInfluence>

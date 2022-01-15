@@ -32,6 +32,7 @@
 		<classInfluence>HuskyMorph</classInfluence>
 		<defName>EtherHuskyEar</defName>
 		<label>husky ear</label>
+		<description>Triangular, floofy black-and-white dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
 		<graphics>
 			<LeftEar>Parts/Husky/Husky_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Husky/Husky_Ear_Left_Behind</LeftEarBehind>
@@ -57,6 +58,7 @@
 		<classInfluence>HuskyMorph</classInfluence>
 		<defName>EtherHuskyTail</defName>
 		<label>husky tail</label>
+		<description>A wonderfully fluffy husky tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 		<graphics>
 			<Tail>Parts/huskyface/huskytail</Tail>
 		</graphics>

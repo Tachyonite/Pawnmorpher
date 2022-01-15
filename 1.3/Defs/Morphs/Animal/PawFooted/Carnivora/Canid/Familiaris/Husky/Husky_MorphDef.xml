@@ -3,6 +3,8 @@
 		<defName>HuskyMorph</defName>
 		<label>huskymorph</label>
 		<race>Husky</race>
+		<fullTransformation>PawnmorphHuskyTF</fullTransformation>
+		<partialTransformation>PawnmorphHuskyTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(137,133,133)</skinColorOverride>

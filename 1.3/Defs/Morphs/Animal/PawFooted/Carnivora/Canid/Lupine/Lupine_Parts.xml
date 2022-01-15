@@ -1,11 +1,68 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name ="LupineJawPart" ParentName="CanidJawPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef Name ="LupineEarPart" ParentName="CanidEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef Name ="LupineTailPart" ParentName="CanidTailPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfJawBase" ParentName="CanidJawPart" Abstract="true">
+		<mutationMemory>EtherWolfMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
+					<graphics>
+						<Muzzle>Parts/wolfface/wolfface</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+					<graphics>
+						<Muzzle>Parts/wolfface/wolfface</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfEarPart" ParentName="CanidEarPart" Abstract="true">
+		<mutationMemory>EtherWolfEar</mutationMemory>
+		<graphics>
+			<LeftEar>Parts/Wolf/Wolf_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Wolf/Wolf_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Wolf/Wolf_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Wolf/Wolf_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
+					<graphics>
+						<LeftEar>Parts/Wolf/Wolf_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Wolf/Wolf_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Wolf/Wolf_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Wolf/Wolf_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfTailPart" ParentName="CanidTailPart" Abstract="true">
+		<mutationMemory>EtherWolfTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/wolfface/wolftail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+					<graphics>
+						<Tail>Parts/wolfface/wolftail</Tail>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
 </Defs>

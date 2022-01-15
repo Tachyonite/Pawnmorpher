@@ -3,6 +3,8 @@
 		<defName>LabradorRetrieverMorph</defName>
 		<label>labmorph</label>
 		<race>LabradorRetriever</race>
+		<fullTransformation>PawnmorphLabradorRetrieverTF</fullTransformation>
+		<partialTransformation>PawnmorphLabradorRetrieverTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(220,198,160)</skinColorOverride>

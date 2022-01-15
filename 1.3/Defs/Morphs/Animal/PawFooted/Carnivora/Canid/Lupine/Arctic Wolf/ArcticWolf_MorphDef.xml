@@ -8,7 +8,6 @@
 			<li>Combat</li>
 			<li>Canid</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphArcticWolfTF</fullTransformation>
 		<partialTransformation>PawnmorphArcticWolfTFPartial</partialTransformation>
 		<raceSettings>

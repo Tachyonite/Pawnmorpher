@@ -3,6 +3,8 @@
 		<defName>TerrierMorph</defName>
 		<label>terriermorph</label>
 		<race>YorkshireTerrier</race>
+		<fullTransformation>PawnmorphTerrierTF</fullTransformation>
+		<partialTransformation>PawnmorphTerrierTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(200,165,65)</skinColorOverride>

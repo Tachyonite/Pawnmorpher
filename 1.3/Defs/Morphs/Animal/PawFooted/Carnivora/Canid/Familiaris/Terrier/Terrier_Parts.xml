@@ -31,6 +31,7 @@
 		<classInfluence>TerrierMorph</classInfluence>
 		<defName>EtherTerrierEar</defName>
 		<label>terrier ear</label>
+		<description>Fluffy, soft dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
 		<graphics>
 			<LeftEar>Parts/Terrier/Terrier_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
@@ -56,6 +57,7 @@
 		<classInfluence>TerrierMorph</classInfluence>
 		<defName>EtherTerrierTail</defName>
 		<label>terrier tail</label>
+		<description>A fluffy terrier tail points out from [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 		<graphics>
 			<Tail>Parts/Terrier/Terrier_Tail</Tail>
 		</graphics>

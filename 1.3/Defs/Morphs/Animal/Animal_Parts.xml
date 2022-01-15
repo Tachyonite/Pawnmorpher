@@ -55,7 +55,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapting</label>
 				<key>adapting</key>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -71,7 +71,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>adapted</label>
 				<key>adapted</key>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier.. Adaptation has removed some of the difficulty with talking</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
@@ -141,7 +141,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>grown</label>
 				<key>grown</key>
-				<description>[PAWN_nameDef]'s ears look animal</description>
+				<description>[PAWN_nameDef]'s ears are like ones of an animal</description>
 				<minSeverity>1</minSeverity>
 			</li>
 		</stages>

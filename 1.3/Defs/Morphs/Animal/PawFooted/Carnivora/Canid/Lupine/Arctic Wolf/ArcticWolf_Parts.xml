@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfJawBase">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfJaw</defName>
+		<label>arctic wolf muzzle</label>
+		<description>The wolf-like muzzle of an arctic wolf.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfEarPart">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfEar</defName>
+		<label>arctic wolf ear</label>
+		<description>The fuzzy pointy ear of an arctic wolf.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfTailPart">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfTail</defName>
+		<label>arctic wolf tail</label>
+		<description>The wolf-like tail of an arctic wolf.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherArcticWolfFur</defName>
+		<classInfluence>ArcticWolfMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

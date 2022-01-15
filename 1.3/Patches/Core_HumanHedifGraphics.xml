@@ -69,15 +69,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherDromedaryJaw>
-					<EtherArcticWolfJaw>
-						<path>Parts/wolfface/wolfface</path>
-						<severity>
-							<a0.5>Parts/wolfface/wolfface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherArcticWolfJaw>
 					<EtherBearMuzzle>
 						<path>Parts/Bear/Bear_Jaw</path>
 						<severity>
@@ -427,16 +418,7 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
-					</EtherWargMuzzle>		
-					<EtherWolfMuzzle>
-						<path>Parts/wolfface/wolfface</path>
-						<severity>
-							<a0.5>Parts/wolfface/wolfface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherWolfMuzzle>
+					</EtherWargMuzzle>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -563,7 +545,6 @@
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
-					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -647,7 +628,6 @@
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
-					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -729,7 +709,6 @@
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
-					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -811,7 +790,6 @@
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
-					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -867,7 +845,6 @@
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
-					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
