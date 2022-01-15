@@ -11,7 +11,6 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
 					<graphics>
 						<Muzzle>Parts/huskyface/huskyface</Muzzle>
 					</graphics>
@@ -20,7 +19,6 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a husky. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
 					<graphics>
 						<Muzzle>Parts/huskyface/huskyface</Muzzle>
 					</graphics>
@@ -29,43 +27,48 @@
 		</stagePatches>
 	
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisEarPart">
 		<classInfluence>HuskyMorph</classInfluence>
 		<defName>EtherHuskyEar</defName>
-		<label>canine</label>
-		<description>Triangular, floofy black-and-white dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+		<label>husky ear</label>
+		<graphics>
+			<LeftEar>Parts/Husky/Husky_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Husky/Husky_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Husky/Husky_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Husky/Husky_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/Husky/Husky_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Husky/Husky_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Husky/Husky_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Husky/Husky_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisTailPart">
 		<classInfluence>HuskyMorph</classInfluence>
 		<defName>EtherHuskyTail</defName>
-		<label>curled fluffy tail</label>
-		<description>A wonderfully fluffy husky tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<statOffsets>
-					<SocialImpact>+0.20</SocialImpact>
-				</statOffsets>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.02</offset>
-					</li>
-				</capMods>
+		<label>husky tail</label>
+		<graphics>
+			<Tail>Parts/huskyface/huskytail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/huskyface/huskytail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

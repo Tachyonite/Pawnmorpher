@@ -11,7 +11,6 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a labrador. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
 					<graphics>
 						<Muzzle>Parts/LabradorRetriever/LabradorRetriever_Jaw</Muzzle>
 					</graphics>
@@ -20,7 +19,6 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a labrador. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
 					<graphics>
 						<Muzzle>Parts/LabradorRetriever/LabradorRetriever_Jaw</Muzzle>
 					</graphics>
@@ -29,26 +27,47 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisEarPart">
 		<classInfluence>LabradorRetrieverMorph</classInfluence>
 		<defName>EtherLabradorRetrieverEar</defName>
 		<label>labrador ear</label>
-		<description>A floppy canine ear that wobbles all over the place.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		<graphics>
+			<LeftEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisTailPart">
 		<classInfluence>LabradorRetrieverMorph</classInfluence>
 		<defName>EtherLabradorRetrieverTail</defName>
 		<label>labrador tail</label>
-		<description>The briskly wagging, excitable tail of a labrador retriever.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		<graphics>
+			<Tail>Parts/LabradorRetriever/LabradorRetriever_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/LabradorRetriever/LabradorRetriever_Tail</Tail>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

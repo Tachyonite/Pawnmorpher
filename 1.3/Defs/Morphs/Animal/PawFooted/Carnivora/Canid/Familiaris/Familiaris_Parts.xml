@@ -1,11 +1,40 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisJawPart" ParentName="CanidJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisEarPart" ParentName="CanidEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Fluffy, dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisTailPart" ParentName="CanidTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wonderfully fluffy dog tail curls over [PAWN_nameDef]'s back. Was that a small wag just then?</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
 </Defs>

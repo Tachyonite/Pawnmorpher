@@ -547,8 +547,6 @@
 
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left</EtherHorseEar>
-					<EtherHuskyEar>Parts/Husky/Husky_Ear_Left</EtherHuskyEar>
-					<EtherTerrierEar>Parts/Terrier/Terrier_Ear_Left</EtherTerrierEar>															 
 					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Left</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left</EtherPigEar>
@@ -566,7 +564,6 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left</EtherWolfEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -634,7 +631,6 @@
 					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left_Behind</EtherHorseEar>
-					<EtherHuskyEar>Parts/Husky/Husky_Ear_Left_Behind</EtherHuskyEar>
 					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left_Behind</EtherPigEar>
@@ -652,7 +648,6 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Left_Behind</EtherWolfEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -718,8 +713,6 @@
 
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right</EtherHorseEar>
-					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right</EtherHuskyEar>
-					<EtherTerrierEar>Parts/Terrier/Terrier_Ear_Right</EtherTerrierEar>										  
 					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Right</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right</EtherPigEar>
@@ -737,7 +730,6 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right</EtherWolfEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -803,7 +795,6 @@
 
 					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right_Behind</EtherHorseEar>
-					<EtherHuskyEar>Parts/Husky/Husky_Ear_Right_Behind</EtherHuskyEar>
 					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right_Behind</EtherPigEar>
@@ -821,7 +812,6 @@
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</EtherThrumboEar>
 					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
 					<EtherWolfEar>Parts/Wolf/Wolf_Ear_Right_Behind</EtherWolfEar>
-					<EtherLabradorRetrieverEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</EtherLabradorRetrieverEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -862,8 +852,6 @@
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
-					<EtherHuskyTail>Parts/huskyface/huskytail</EtherHuskyTail>
-					<EtherTerrierEar>Parts/Terrier/Terrier_Tail</EtherTerrierEar>				
 					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>
 					<EtherRaccoonTail>Parts/Raccoon/Raccoon_Tail</EtherRaccoonTail>
@@ -880,7 +868,6 @@
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
-					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>

@@ -131,10 +131,10 @@
 				<key>growing</key>
 				<description>[PAWN_nameDef]'s ears look more and more animal.</description>
 				<graphics>
-					<LeftEarBehind>Parts/Partials/PointyEar/PointyEar</LeftEarBehind>
-					<RightEar>Parts/Partials/PointyEar/PointyEar</RightEar>
-					<RightEarBehindHead>Parts/Partials/PointyEar/PointyEar</RightEarBehindHead>
-					<LeftEar>Parts/Partials/PointyEar/PointyEar</LeftEar>
+					<LeftEarBehind>Parts/Partials/PointyEar/PointyEar_Left_Behind</LeftEarBehind>
+					<RightEar>Parts/Partials/PointyEar/PointyEar_Right</RightEar>
+					<RightEarBehindHead>Parts/Partials/PointyEar/PointyEar_Right_Behind</RightEarBehindHead>
+					<LeftEar>Parts/Partials/PointyEar/PointyEar_Left</LeftEar>
 				</graphics>
 				<minSeverity>0.5</minSeverity>
 			</li>
