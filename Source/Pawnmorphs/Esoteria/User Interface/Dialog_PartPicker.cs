@@ -120,6 +120,9 @@ namespace Pawnmorph.User_Interface
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
         private static float editButtonWidth = Text.CalcSize(editButtonText).x + 2 * BUTTON_HORIZONTAL_PADDING;
 
+        private ValueTuple<Color, Color> initialPawnColors;
+
+
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
 
@@ -247,6 +250,8 @@ namespace Pawnmorph.User_Interface
             // Settting flags for this window. 
             forcePause = true;
 
+            var initialSkin = pawn.GetComp<AlienPartGenerator.AlienComp>().GetChannel("skin");
+            initialPawnColors = new ValueTuple<Color,Color>(initialSkin.first, initialSkin.second);
          
             SetCaches();
         
@@ -778,8 +783,6 @@ namespace Pawnmorph.User_Interface
             {
                 recachePreview = false;
 
-                pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-
                 RenderPawn();
 
                 if (camera == null)
@@ -796,17 +799,49 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+
+        private Color? CalculatePawnSkin()
+        {
+            List<Tuple<int, ThingDef>> animals = addedMutations.mutationData.SelectMany(x => x.mutation.AssociatedAnimals)
+                                                                            .GroupBy(x => x)
+                                                                            .Select(x => Tuple.Create<int, ThingDef>(x.Count(), x.First()))
+                                                                            .ToList();
+
+            if (animals.Count == 0)
+                return null;
+
+            //Log.Message(String.Join(", ", animals.Select(x => x.Item2.defName + ": " + x.Item1)));
+
+            // Select the morph kind of which most added mutations are associated with.
+            ThingDef highestInfluence = animals.OrderByDescending(x => x.Item1).First().Item2;
+            MorphDef morph = highestInfluence.TryGetBestMorphOfAnimal();
+            return morph?.GetSkinColorOverride(pawn);
+        }
+
         // Taken from RenderingTool.RenderPawnInternal in CharacterEditor
         private void RenderPawn()
         {
-            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
-            
+            Color? hybridColor = CalculatePawnSkin();
+
+            var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+
+            if (hybridColor.HasValue)
+                comp.ColorChannels["skin"].first = hybridColor.Value;
+            else
+            {
+                comp.ColorChannels["skin"].first = initialPawnColors.Item1;
+                comp.ColorChannels["skin"].second = initialPawnColors.Item2;
+            }
+            comp.CompTick();
 
             PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
+            graphics.ResolveAllGraphics();
+
             Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
             
             Mesh bodyMesh = pawn.RaceProps.Humanlike ? MeshPool.humanlikeBodySet.MeshAt(previewRot) : graphics.nakedGraphic.MeshAt(previewRot);
             Vector3 bodyOffset = new Vector3 (PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
+
             foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
             {
                 Material damagedMat = graphics.flasher.GetDamagedMat(mat);
@@ -824,6 +859,7 @@ namespace Pawnmorph.User_Interface
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
                 Material material = graphics.HeadMatAt(previewRot);
+
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
