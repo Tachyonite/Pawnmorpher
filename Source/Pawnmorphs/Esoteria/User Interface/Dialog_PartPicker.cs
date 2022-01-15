@@ -519,7 +519,7 @@ namespace Pawnmorph.User_Interface
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
                     layer = MutationLayer.Core;
                 }
-                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap}").Distinct()))}";
                 DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
@@ -534,7 +534,6 @@ namespace Pawnmorph.User_Interface
             // Draw the main mutation selection button. It should take up the whole width if there are no details, otherwise it will leave a space for the edit button.
             float partButtonWidth = partListViewRect.width - (hasDetails == false ? 0 : editButtonWidth);
             Rect partButtonRect = new Rect(partListViewRect.x, curY, partButtonWidth, Text.CalcHeight(label, partButtonWidth - BUTTON_HORIZONTAL_PADDING));
-
             if (Widgets.ButtonText(partButtonRect, label))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
