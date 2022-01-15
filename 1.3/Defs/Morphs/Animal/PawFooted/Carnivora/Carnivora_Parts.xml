@@ -1,15 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraJawPart" ParentName="PawFootedJawPart" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraEarPart" ParentName="PawFootedEarPart" Abstract="true">
