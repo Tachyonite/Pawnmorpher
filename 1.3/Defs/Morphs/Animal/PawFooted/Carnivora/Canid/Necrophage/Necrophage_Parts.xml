@@ -17,8 +17,24 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageEarPart" ParentName="CanidEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Thick-skinned ears have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageTailPart" ParentName="CanidTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A canid tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

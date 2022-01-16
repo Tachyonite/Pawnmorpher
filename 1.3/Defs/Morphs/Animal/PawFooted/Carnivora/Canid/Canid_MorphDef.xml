@@ -1,7 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef Abstract="true" ParentName="SensitiveFoodMorph" Name="CanidMorph">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CarnivoraMorph" Name="CanidMorph">
 		<classification>Canid</classification>
-		<injectorProperties></injectorProperties>
 		<group>Canines</group>
 		<addedAspects>
 			<li>

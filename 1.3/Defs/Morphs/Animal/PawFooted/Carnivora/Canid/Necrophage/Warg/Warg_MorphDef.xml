@@ -8,20 +8,9 @@
 			<li>Canid</li>
 			<li>Combat</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphWargTF</fullTransformation>
 		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
 		<raceSettings>
-			<thoughtSettings>
-				<replacerList>
-					<li>
-						<original>AteCorpse</original>
-						<replacer>WargMorphAteCorpse</replacer>
-					</li>
-				</replacerList>
-				<suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
-				<canEatRaw>true</canEatRaw>
-			</thoughtSettings>
 			<graphicsSettings>
 				<skinColorOverride>(123,104,89)</skinColorOverride>
 			</graphicsSettings>

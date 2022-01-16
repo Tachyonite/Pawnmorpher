@@ -24,15 +24,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherComboWolfSpike>
-					<PM_HellhoundSnout>
-						<path>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</path>
-						<severity>
-							<a0.5>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</PM_HellhoundSnout>
 					<EtherAlpacaSnout>
 						<path>Parts/Alpaca/Alpaca_Jaw</path>
 						<severity>
@@ -410,15 +401,6 @@
 						</severity>
 					</EtherThrumboSnout>
 					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
-					<EtherWargMuzzle>
-						<path>Parts/wargface/wargface</path>
-						<severity>
-							<a0.5>Parts/wargface/wargface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherWargMuzzle>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -476,7 +458,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left</EtherAlpacaEar>
 					<EtherBearEar>Parts/Bear/Bear_Ear_Left</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Left</EtherBoarEar>
@@ -544,7 +525,6 @@
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left</EtherLynxEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left</EtherThrumboEar>
-					<EtherWargEar>Parts/Warg/Warg_Ear_Left</EtherWargEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -557,7 +537,6 @@
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Left_Behind</EtherAlpacaEar>
 					<EtherBearEar>Parts/Bear/Bear_Ear_Left_Behind</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Left_Behind</EtherBoarEar>
@@ -627,7 +606,6 @@
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Left_Behind</EtherLynxEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Left_Behind</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</EtherThrumboEar>
-					<EtherWargEar>Parts/Warg/Warg_Ear_Left_Behind</EtherWargEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -640,7 +618,6 @@
 				<anchorID>RightEar</anchorID>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherBearEar>Parts/Bear/Bear_Ear_Right</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Right</EtherBoarEar>
@@ -708,7 +685,6 @@
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right</EtherLynxEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right</EtherThrumboEar>
-					<EtherWargEar>Parts/Warg/Warg_Ear_Right</EtherWargEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -721,7 +697,6 @@
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<PM_HellhoundEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right_Behind</PM_HellhoundEar>
 					<EtherAlpacaEar>Parts/Alpaca/Alpaca_Ear_Right_Behind</EtherAlpacaEar>
 					<EtherBearEar>Parts/Bear/Bear_Ear_Right_Behind</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Right_Behind</EtherBoarEar>
@@ -789,7 +764,6 @@
 					<EtherLynxEar>Parts/Lynx/Lynx_Ear_Right_Behind</EtherLynxEar>
 					<EtherCougarEar>Parts/Cougar/Cougar_Ear_Right_Behind</EtherCougarEar>
 					<EtherThrumboEar>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</EtherThrumboEar>
-					<EtherWargEar>Parts/Warg/Warg_Ear_Right_Behind</EtherWargEar>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -804,7 +778,6 @@
 				<drawForFemale>true</drawForFemale> <!--Leave this here, it is hacky but necessary-->
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
-					<PM_HellhoundTail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</PM_HellhoundTail>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
@@ -844,7 +817,6 @@
 					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherThrumboTail>Parts/thrumboface/thrumbotail</EtherThrumboTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
-					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
@@ -966,9 +938,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<PM_HellhoundHeadspike>Parts/COMBINATIONS/Hellhound/Hellhound_Headspikes</PM_HellhoundHeadspike>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Skullspikes -->
@@ -996,7 +965,6 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
-					<PM_HellhoundHorns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</PM_HellhoundHorns>
 					<!-- REGULAR PAWN PIECES -->
 					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
 					<EtherSheepHorns>
@@ -1143,9 +1111,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<PM_HellhoundSpikes>Parts/COMBINATIONS/Hellhound/Hellhound_Spikes</PM_HellhoundSpikes>
-				</hediffGraphics>
 				<offsets>
 					<south/>
 					<north/>
