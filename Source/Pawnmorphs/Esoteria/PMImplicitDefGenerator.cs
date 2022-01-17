@@ -53,6 +53,7 @@ namespace Pawnmorph
             _defList.AddRange(MorphHediffGenerator.AllGeneratedHediffDefs);
 
             foreach (Def def in _defList) def?.ResolveReferences();
+           
 
             PMRecipeDefGenerator.GenerateRecipeDefs();
             foreach (RecipeDef allRecipe in PMRecipeDefGenerator.AllRecipes) allRecipe.ResolveReferences();
@@ -84,9 +85,16 @@ namespace Pawnmorph
             //DebugOutput();
 
             //register defs 
+
+
             DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
-            DefDatabase<ThingDef>.Add(InjectorGenerator.GeneratedInjectorDefs);
             DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes);
+
+            foreach (ThingDef tDef in InjectorGenerator.GeneratedInjectorDefs)
+            {
+                DefGenerator.AddImpliedDef(tDef);
+            }
+            
             ResourceCounter.ResetDefs();
 
         }
