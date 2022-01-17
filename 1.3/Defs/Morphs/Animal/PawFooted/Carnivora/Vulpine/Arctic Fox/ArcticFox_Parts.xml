@@ -1,0 +1,80 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxJawBase">
+		<defName>EtherArcticFoxMuzzle</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox muzzle</label>
+		<description>The vulpine muzzle of an arctic fox.</description>
+		<graphics>
+			<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherArcticFoxEar</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox ear</label>
+		<description>The vulpine ear of an arctic fox.</description>
+		<graphics>
+			<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherArcticFluffyTail</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox tail</label>
+		<description>The vulpine tail of an arctic fox.</description>
+		<graphics>
+			<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherArcticFoxFur</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

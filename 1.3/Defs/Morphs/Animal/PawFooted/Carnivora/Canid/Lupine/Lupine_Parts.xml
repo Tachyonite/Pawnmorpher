@@ -1,6 +1,9 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="WolfJawBase" ParentName="CanidJawPart" Abstract="true">
 		<mutationMemory>EtherWolfMuzzle</mutationMemory>
+		<graphics>
+			<Muzzle>Parts/wolfface/wolfface</Muzzle>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -35,9 +38,6 @@
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>

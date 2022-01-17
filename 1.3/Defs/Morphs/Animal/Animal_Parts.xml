@@ -85,6 +85,11 @@
 				<minSeverity>1</minSeverity>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
 		<parts>
 			<li>Jaw</li>
 		</parts>
@@ -145,6 +150,11 @@
 				<minSeverity>1</minSeverity>
 			</li>
 		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
 		<parts>
 			<li>Ear</li>
 		</parts>

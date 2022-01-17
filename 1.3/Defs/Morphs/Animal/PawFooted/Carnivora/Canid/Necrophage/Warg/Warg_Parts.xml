@@ -40,9 +40,6 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
