@@ -109,6 +109,10 @@
 			<li>AnimalExotic</li>
 		</tradeTags>
 		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Special</chaoType>
+				<selectionWeight>-1</selectionWeight>
+			</li>
 			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
 				<transformedThought>PM_CThrumboTfThought</transformedThought>
 				<backstory>PM_ChaothrumboBackstory</backstory>
