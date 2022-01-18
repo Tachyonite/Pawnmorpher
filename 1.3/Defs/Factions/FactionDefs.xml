@@ -73,11 +73,6 @@
             </li>
         </backstoryFilters>
         <geneticVariance>0.8</geneticVariance>
-        <caravanTraderKinds>
-            <li>Caravan_Outlander_BulkGoods</li>
-            <li>Caravan_Outlander_CombatSupplier</li>
-            <li>Caravan_Outlander_Exotic</li>
-        </caravanTraderKinds>
         <visitorTraderKinds>
             <li>Visitor_Outlander_Standard</li>
         </visitorTraderKinds>
