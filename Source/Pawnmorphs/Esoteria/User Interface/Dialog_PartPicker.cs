@@ -806,15 +806,25 @@ namespace Pawnmorph.User_Interface
 
         private Color? CalculatePawnSkin()
         {
-            List<Tuple<int, ThingDef>> animals = addedMutations.mutationData.SelectMany(x => x.mutation.AssociatedAnimals)
-                                                                            .GroupBy(x => x)
-                                                                            .Select(x => Tuple.Create<int, ThingDef>(x.Count(), x.First()))
-                                                                            .ToList();
+            // Get all current and new mutations.
+            List<MutationDef> currentMutations = pawnCurrentMutations.Select(x => x.Def).ToList();
+            currentMutations.AddRange(addedMutations.mutationData.Select(x => x.mutation));
+
+            // Exclude all mutations being removed.
+            IQueryable<MutationDef> removedMutations = addedMutations.mutationData.Where(x => x.removing).Select(x => x.mutation).AsQueryable();
+            currentMutations = currentMutations.Where(x => removedMutations.Contains(x) == false).Distinct().ToList();
+
+
+
+            List<Tuple<int, ThingDef>> animals = currentMutations.SelectMany(x => x.AssociatedAnimals.Distinct())
+                                                                 .GroupBy(x => x)
+                                                                 .Select(x => Tuple.Create<int, ThingDef>(x.Count(), x.First()))
+                                                                 .ToList();
 
             if (animals.Count == 0)
                 return null;
 
-            //Log.Message(String.Join(", ", animals.Select(x => x.Item2.defName + ": " + x.Item1)));
+            Log.Message(String.Join(", ", animals.OrderByDescending(x => x.Item1).Select(x => x.Item2.defName + ": " + x.Item1)));
 
             // Select the morph kind of which most added mutations are associated with.
             ThingDef highestInfluence = animals.OrderByDescending(x => x.Item1).First().Item2;
