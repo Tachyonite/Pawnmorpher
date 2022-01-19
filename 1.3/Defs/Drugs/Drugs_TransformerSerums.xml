@@ -229,6 +229,7 @@
 					<morphCategory>Powerful</morphCategory>
 					<fullTf>true</fullTf>
 					<severity>1.00</severity>
+					<allowRestricted>true</allowRestricted>
 				</li>
 			</outcomeDoers>
 		</ingestible>
