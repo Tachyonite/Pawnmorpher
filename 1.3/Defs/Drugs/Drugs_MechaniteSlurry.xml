@@ -19,10 +19,8 @@ Although it induces rapid and uncontrollable mutations, some desperate individua
 		<ingestible>
 			<drugCategory>Medical</drugCategory>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
-					<hediffDefs>
-						<li>FullRandomTFAnyOutcome</li>
-					</hediffDefs>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>FullRandomTFAnyOutcome</hediffDef>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>
