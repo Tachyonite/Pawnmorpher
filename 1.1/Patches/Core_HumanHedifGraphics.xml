@@ -20,7 +20,6 @@
 					<EtherBoarSnout>Parts/Boar/Boar_Jaw</EtherBoarSnout>
 					<EtherBoomalopeSnout>Parts/boomalopeface/boomalopeface</EtherBoomalopeSnout>
 					<EtherRaccoonJaw>Parts/Raccoon/Raccoon_Jaw</EtherRaccoonJaw>
-					<EtherCatMuzzle>Parts/catface/catface</EtherCatMuzzle>
 					<EtherBeak>Parts/chickenface/chickenface</EtherBeak>
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherCougarJaw>Parts/Cougar/Cougar_Jaw</EtherCougarJaw>
@@ -285,14 +284,6 @@
 							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
 					</EtherRaccoonJaw>
-					<EtherCatMuzzle>
-						<path>Parts/catface/catface</path>
-						<severity>
-							<a0.5>Parts/catface/catface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-						</severity>
-					</EtherCatMuzzle>
 					<EtherBeak>
 						<path>Parts/chickenface/chickenface</path>
 						<severity>
@@ -545,7 +536,6 @@
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
-					<EtherCatEar>Parts/catface/catears</EtherCatEar>
 					<EtherCowEar>Parts/cowface/cowears</EtherCowEar>
 					<EtherDeerEar>Parts/deerface/deerears</EtherDeerEar>
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
@@ -621,7 +611,6 @@
 					<EtherBearEar>Parts/bearface/bearears</EtherBearEar>
 					<EtherBoarEar>Parts/boarface/boarears</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/boomalopeface/boomalopeears</EtherBoomalopeEar>
-					<EtherCatEar>Parts/catface/catears</EtherCatEar>
 					<EtherCowEar>Parts/cowface/cowears</EtherCowEar>
 					<EtherDeerEar>Parts/deerface/deerears</EtherDeerEar>
 					<EtherElephantEar>Parts/elephantface/elephantears</EtherElephantEar>
@@ -1099,7 +1088,6 @@
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
-					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
