@@ -105,15 +105,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherRaccoonJaw>
-					<EtherCatMuzzle>
-						<path>Parts/catface/catface</path>
-						<severity>
-							<a0.5>Parts/catface/catface</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherCatMuzzle>
 					<EtherBeak>
 						<path>Parts/chickenface/chickenface</path>
 						<severity>
@@ -235,33 +226,6 @@
 						</severity>
 					</EtherDeerSnout>
 					<EtherTrunk>Parts/elephantface/elephantface</EtherTrunk>
-					<EtherFoxMuzzle>
-						<path>Parts/FoxUpdated/RedFox_Jaw</path>
-						<severity>
-							<a0.5>Parts/FoxUpdated/RedFox_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherFoxMuzzle>
-					<EtherFennecFoxMuzzle>
-						<path>Parts/FoxFennec/FennecFox_Jaw</path>
-						<severity>
-							<a0.5>Parts/FoxFennec/FennecFox_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherFennecFoxMuzzle>
-					<EtherArcticFoxMuzzle>
-						<path>Parts/FoxArctic/ArcticFox_Jaw</path>
-						<severity>
-							<a0.5>Parts/FoxArctic/ArcticFox_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherArcticFoxMuzzle>
 					<EtherHareJaw>
 						<path>Parts/Hare/Hare_Jaw</path>
 						<severity>
@@ -462,7 +426,6 @@
 					<EtherBearEar>Parts/Bear/Bear_Ear_Left</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Left</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Left</EtherBoomalopeEar>
-					<EtherCatEar>Parts/Cat/Cat_Ear_Left</EtherCatEar>
 					<EtherCowEar>Parts/Cow/Cow_Ear_Left</EtherCowEar>
 					<EtherYakEar>Parts/Yak/Yak_Ear_Left</EtherYakEar>
 					<EtherBisonEar>Parts/Bison/Bison_Ear_Left</EtherBisonEar>
@@ -470,27 +433,6 @@
 					<EtherDeerEar>Parts/Deer/Deer_Ear_Left</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Left</EtherDonkeyEar>
 					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Left</EtherElephantEar>
-					<EtherFoxEar>
-						<path>Parts/FoxUpdated/RedFox_Ear_Left</path>
-						<severity>
-							<a1.0>Parts/FoxUpdated/RedFox_Ear_Left</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
-						</severity>
-					</EtherFoxEar>
-					<EtherArcticFoxEar>
-						<path>Parts/FoxArctic/ArcticFox_Ear_Left</path>
-						<severity>
-							<a1.0>Parts/FoxArctic/ArcticFox_Ear_Left</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
-						</severity>
-					</EtherArcticFoxEar>
-					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/FennecFox_Ear_Left</path>
-						<severity>
-							<a1.0>Parts/FoxFennec/FennecFox_Ear_Left</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left</a0.0>
-						</severity>
-					</EtherFennecFoxEar>
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Left</path>
 						<severity>
@@ -541,7 +483,6 @@
 					<EtherBearEar>Parts/Bear/Bear_Ear_Left_Behind</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Left_Behind</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Left_Behind</EtherBoomalopeEar>
-					<EtherCatEar>Parts/Cat/Cat_Ear_Left_Behind</EtherCatEar>
 					<EtherCowEar>Parts/Cow/Cow_Ear_Left_Behind</EtherCowEar>
 					<EtherYakEar>Parts/Yak/Yak_Ear_Left_Behind</EtherYakEar>
 					<EtherBisonEar>Parts/Bison/Bison_Ear_Left_Behind</EtherBisonEar>
@@ -567,28 +508,6 @@
 						</severity>
 					</EtherDromedaryEar>
 					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
-
-					<EtherFoxEar>
-						<path>Parts/FoxUpdated/RedFox_Ear_Left_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxUpdated/RedFox_Ear_Left_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
-						</severity>
-					</EtherFoxEar>
-					<EtherArcticFoxEar>
-						<path>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
-						</severity>
-					</EtherArcticFoxEar>
-					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/FennecFox_Ear_Left_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxFennec/FennecFox_Ear_Left_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Left_Behind</a0.0>
-						</severity>
-					</EtherFennecFoxEar>
 					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left_Behind</EtherHorseEar>
 					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
@@ -622,7 +541,6 @@
 					<EtherBearEar>Parts/Bear/Bear_Ear_Right</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Right</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Right</EtherBoomalopeEar>
-					<EtherCatEar>Parts/Cat/Cat_Ear_Right</EtherCatEar>
 					<EtherCowEar>Parts/Cow/Cow_Ear_Right</EtherCowEar>
 					<EtherYakEar>Parts/Yak/Yak_Ear_Right</EtherYakEar>
 					<EtherBisonEar>Parts/Bison/Bison_Ear_Right</EtherBisonEar>
@@ -630,27 +548,6 @@
 					<EtherDeerEar>Parts/Deer/Deer_Ear_Right</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
 					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Right</EtherElephantEar>
-					<EtherFoxEar>
-						<path>Parts/FoxUpdated/RedFox_Ear_Right</path>
-						<severity>
-							<a1.0>Parts/FoxUpdated/RedFox_Ear_Right</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
-						</severity>
-					</EtherFoxEar>
-					<EtherArcticFoxEar>
-						<path>Parts/FoxArctic/ArcticFox_Ear_Right</path>
-						<severity>
-							<a1.0>Parts/FoxArctic/ArcticFox_Ear_Right</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
-						</severity>
-					</EtherArcticFoxEar>
-					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/FennecFox_Ear_Right</path>
-						<severity>
-							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right</a0.0>
-						</severity>
-					</EtherFennecFoxEar>
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Right</path>
 						<severity>
@@ -701,7 +598,6 @@
 					<EtherBearEar>Parts/Bear/Bear_Ear_Right_Behind</EtherBearEar>
 					<EtherBoarEar>Parts/Boar/Boar_Ear_Right_Behind</EtherBoarEar>
 					<EtherBoomalopeEar>Parts/Boomalope/Boomalope_Ear_Right_Behind</EtherBoomalopeEar>
-					<EtherCatEar>Parts/Cat/Cat_Ear_Right_Behind</EtherCatEar>
 					<EtherCowEar>Parts/Cow/Cow_Ear_Right_Behind</EtherCowEar>
 					<EtherYakEar>Parts/Yak/Yak_Ear_Right_Behind</EtherYakEar>
 					<EtherBisonEar>Parts/Bison/Bison_Ear_Right_Behind</EtherBisonEar>
@@ -709,27 +605,6 @@
 					<EtherDeerEar>Parts/Deer/Deer_Ear_Right_Behind</EtherDeerEar>
 					<EtherDonkeyEar>Parts/Donkey/Donkey_Ear_Right_Behind</EtherDonkeyEar>
 					<EtherElephantEar>Parts/Elephant/Elephant_Ear_Right_Behind</EtherElephantEar>
-					<EtherFoxEar>
-						<path>Parts/FoxUpdated/RedFox_Ear_Right_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxUpdated/RedFox_Ear_Right_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
-						</severity>
-					</EtherFoxEar>
-					<EtherArcticFoxEar>
-						<path>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
-						</severity>
-					</EtherArcticFoxEar>
-					<EtherFennecFoxEar>
-						<path>Parts/FoxFennec/FennecFox_Ear_Right_Behind</path>
-						<severity>
-							<a1.0>Parts/FoxFennec/FennecFox_Ear_Right_Behind</a1.0>
-							<a0.0>Parts/Partials/PointyEar/PointyEar_Right_Behind</a0.0>
-						</severity>
-					</EtherFennecFoxEar>
 					<EtherCaribouEar>
 						<path>Parts/Caribou/Caribou_Ear_Right_Behind</path>
 						<severity>
@@ -781,7 +656,6 @@
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherBearTail>Parts/bearface/beartail</EtherBearTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
-					<EtherCatTail>Parts/catface/cattail</EtherCatTail>
 					<EtherCougarTail>Parts/Cougar/Cougar_Tail</EtherCougarTail>
 					<EtherLynxTail>Parts/Lynx/Lynx_Tail</EtherLynxTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
@@ -797,9 +671,6 @@
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
 					<EtherDonkeyTail>Parts/Donkey/Donkey_Tail</EtherDonkeyTail>
 					<EtherElephantTail>Parts/elephantface/elephanttail</EtherElephantTail>
-					<EtherFluffyTail>Parts/FoxUpdated/RedFox_Tail</EtherFluffyTail>
-					<EtherArcticFluffyTail>Parts/FoxArctic/ArcticFox_Tail</EtherArcticFluffyTail>
-					<EtherFennecFluffyTail>Parts/FoxFennec/FennecFox_Tail</EtherFennecFluffyTail>
 					<EtherMegaslothTail>Parts/megaslothface/megaslothtail</EtherMegaslothTail>
 					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
