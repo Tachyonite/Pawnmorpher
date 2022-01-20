@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="FelisJawPart">
 		<classInfluence>CatMorph</classInfluence>
 		<defName>EtherCatMuzzle</defName>
-		<label>feline muzzle</label>
+		<label>cat muzzle</label>
 		<description>The neat and tidy bewhiskered muzzle of a cat.</description>
 		<graphics>
 			<Muzzle>Parts/catface/catface</Muzzle>
@@ -30,7 +30,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="FelisEarPart">
 		<classInfluence>CatMorph</classInfluence>
 		<defName>EtherCatEar</defName>
-		<label>feline</label>
+		<label>cat ear</label>
 		<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
 		<graphics>
 			<LeftEar>Parts/Cat/Cat_Ear_Left</LeftEar>

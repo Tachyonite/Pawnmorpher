@@ -1,58 +1,30 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="CougarPart" ParentName="PawnmorphPart" Abstract="true">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineJawPart">
 		<classInfluence>CougarMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
 		<defName>EtherCougarJaw</defName>
 		<label>cougar snout</label>
 		<description>The ruddy, dangerous snout of a cougar.</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>[PAWN_nameDef]'s face has pressed out into this rather feline shape, which is useful for eating, though they may hiss and meow more than talk.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
-				<description>[PAWN_nameDef]'s face has pressed out into this rather feline shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
-				<minSeverity>1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -62,45 +34,57 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10</power>
-						<cooldownTime>2</cooldownTime>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineEarPart">
+		<classInfluence>CougarMorph</classInfluence>
 		<defName>EtherCougarEar</defName>
 		<label>feline</label>
 		<description>This ear has grown pointed and furred, keen and twitching, turning to listen to distant sounds.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<graphics>
+			<LeftEar>Parts/Cougar/Cougar_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Cougar/Cougar_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Cougar/Cougar_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Cougar/Cougar_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/Cougar/Cougar_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Cougar/Cougar_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Cougar/Cougar_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Cougar/Cougar_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="CougarPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
 		<defName>EtherCougarTail</defName>
 		<label>cougar tail</label>
-		<description>A long, catlike tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+		<graphics>
+			<Tail>Parts/Cougar/Cougar_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/Cougar/Cougar_Tail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

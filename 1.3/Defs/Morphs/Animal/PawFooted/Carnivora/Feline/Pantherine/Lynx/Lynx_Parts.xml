@@ -1,58 +1,30 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="LynxPart" ParentName="PawnmorphPart" Abstract="true">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineJawPart">
 		<classInfluence>LynxMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
 		<defName>EtherLynxJaw</defName>
 		<label>lynx snout</label>
 		<description>The rather regal face of a lynx.</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
-				<minSeverity>1</minSeverity>
-				<description>[PAWN_nameDef]'s face has grown into a rather regal face resembling a lynx's. Adaptation has removed some of the difficulty with speaking.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -62,46 +34,58 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10</power>
-						<cooldownTime>2</cooldownTime>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineEarPart">
+		<classInfluence>LynxMorph</classInfluence>
 		<defName>EtherLynxEar</defName>
-		<label>lynx-like</label>
+		<label>lynx ear</label>
 		<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<stages>
-			<li>
-				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+		<graphics>
+			<LeftEar>Parts/Lynx/Lynx/Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Lynx/Lynx/Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Lynx/Lynx/Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Lynx/Lynx/Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/Lynx/Lynx/Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Lynx/Lynx/Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Lynx/Lynx/Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Lynx/Lynx/Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="LynxPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
+		<classInfluence>LynxMorph</classInfluence>
 		<defName>EtherLynxTail</defName>
-		<label>stubby feline tail</label>
+		<label>lynx tail</label>
 		<description>Unlike most felines, the tail of a lynx is short and stubby. [PAWN_nameDef] has one of them now.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<graphics>
+			<Tail>Parts/Lynx/Lynx/Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/Lynx/Lynx/Tail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

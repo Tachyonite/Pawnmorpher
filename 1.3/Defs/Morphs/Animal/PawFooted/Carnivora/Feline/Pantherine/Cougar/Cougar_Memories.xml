@@ -75,55 +75,5 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherCougarEar</defName>
-		<stages>
-			<li>
-				<label>Cougar ear</label>
-				<description>Ouch, these things can hear everything.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cougar ear</label>
-				<description>I can hear everything!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cougar ear</label>
-				<description>I feel like an anime character...</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherCougarTail</defName>
-		<stages>
-			<li>
-				<label>Cougar tail</label>
-				<description>This thing is getting in the way a bit.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cougar tail</label>
-				<description>Wow, I have a tail! Awesome!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cougar tail</label>
-				<description>This thing keeps getting in my way! Get it off me!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
 	
 </Defs>

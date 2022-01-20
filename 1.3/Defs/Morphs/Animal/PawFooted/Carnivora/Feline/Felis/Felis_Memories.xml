@@ -78,56 +78,6 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherCatEar</defName>
-		<stages>
-			<li>
-				<label>Cat ears</label>
-				<description>These new ears look strange, but at least I can hear well enough.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat ears</label>
-				<description>I can hear everything, even the tiniest rodents!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat ears</label>
-				<description>I hear too much! Make the noise stop!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherCatTail</defName>
-		<stages>
-			<li>
-				<label>Cat tail</label>
-				<description>This tail keeps getting in the way, but it's good for balance.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat tail</label>
-				<description>Aww! It's so cute!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat tail</label>
-				<description>I keep tripping over this stupid tail!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
 		<defName>EtherCatClaws</defName>
 		<stages>
 			<li>
@@ -147,31 +97,6 @@
 				<description>I keep poking holes in my clothes with these unruly claws!</description>
 				<visible>true</visible>
 				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherCatEye</defName>
-		<stages>
-			<li>
-				<label>Cat eyes</label>
-				<description>My eyes feel strange, but I can see better than I ever could before.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat eyes</label>
-				<description>I can see in the dark better than ever, and my eyes look so mysterious!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cat eyes</label>
-				<description>These slit pupils make me look unnatural.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
