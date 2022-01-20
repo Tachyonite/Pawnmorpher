@@ -20,7 +20,7 @@ namespace Pawnmorph.Chambers
     /// <summary>
     /// </summary>
     /// <seealso cref="Building_Casket" />
-    public class MutaChamber : Building_Casket
+    public class MutaChamber : Building_Casket, ISuspendableThingHolder
     {
         private const int REFUEL_CHECK_TIMER = 100;
 
@@ -39,6 +39,7 @@ namespace Pawnmorph.Chambers
         private int _timer = 0;
         private int _curMutationIndex = -1;
         private bool _initialized;
+
 
         private ChamberState _innerState = ChamberState.WaitingForPawn;
 
@@ -77,6 +78,13 @@ namespace Pawnmorph.Chambers
 
         private IReadOnlyAddedMutations _addedMutationData;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has its contents suspended / in stasis.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is contents suspended; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsContentsSuspended => true;
 
         /// <summary>
         ///     Gets the current use.
@@ -117,7 +125,7 @@ namespace Pawnmorph.Chambers
             get
             {
                 if (_power == null) _power = GetComp<CompPowerTrader>();
-
+                
                 return _power;
             }
         }
@@ -645,6 +653,14 @@ namespace Pawnmorph.Chambers
 
 
             mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
+            UpdatePawnVisuals(pawn);
+        }
+
+        private void UpdatePawnVisuals([NotNull] Pawn pawn)
+        {
+            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            comp.IsDirty = true;
+            comp.CompTick();
         }
 
         private void CheckMutationProgress()
@@ -817,7 +833,6 @@ namespace Pawnmorph.Chambers
             if (_addedMutationData == null) return;
             var pawn = innerContainer?.FirstOrDefault() as Pawn;
             if (pawn == null) return;
-
 
             for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
             {
@@ -1009,7 +1024,14 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
-            if (addedmutations?.Any() != true) return;
+            var pawn = innerContainer.FirstOrDefault() as Pawn;
+            if (addedmutations?.Any() != true)
+            {
+                if (pawn != null)
+                    UpdatePawnVisuals(pawn);
+                
+                return;
+            }
 
 
             _addedMutationData = new AddedMutations(addedmutations);
@@ -1021,8 +1043,9 @@ namespace Pawnmorph.Chambers
             sender.Reset();
 
             //remove any mutations left over 
-            var pawn = innerContainer.FirstOrDefault() as Pawn;
-            if (pawn == null) return;
+            if (pawn == null) 
+                return;
+
             foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
             {
                 var hediff =
