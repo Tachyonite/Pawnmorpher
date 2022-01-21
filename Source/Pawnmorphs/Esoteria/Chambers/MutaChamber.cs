@@ -1046,11 +1046,12 @@ namespace Pawnmorph.Chambers
             }
 
             var pawn = innerContainer.FirstOrDefault() as Pawn;
+            if (pawn == null)
+                return;
+
             if (addedmutations?.Any() != true)
             {
-                if (pawn != null)
-                    UpdatePawnVisuals(pawn);
-                
+                UpdatePawnVisuals(pawn);
                 return;
             }
 
@@ -1064,9 +1065,6 @@ namespace Pawnmorph.Chambers
             sender.Reset();
 
             //remove any mutations left over 
-            if (pawn == null) 
-                return;
-
             foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
             {
                 var hediff =
