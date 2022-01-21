@@ -80,9 +80,9 @@
                 </alwaysAvailable>
             </li>
             <li Class="Pawnmorph.ThingComps.FillableBarDrawerProps">
-                <barSize>(2.3, 2.3)</barSize>
+                <barSize>(2.2, 2.0)</barSize>
                 <period>10.0</period>
-                <barOffset>(0,-0.5,0)</barOffset>
+                <barOffset>(0,-0.5,0.1)</barOffset>
                 <barColor>50,200,50,70</barColor>
             </li>
             <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
