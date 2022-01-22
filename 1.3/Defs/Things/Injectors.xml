@@ -62,11 +62,11 @@
             <texPath>Things/Item/GenecardCorrupted</texPath>
         </graphicData>
         <comps Inherit="false">
+			<li Class="CompProperties_Forbiddable" />
             <li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps">
                 <consumedOnUse>false</consumedOnUse>
                 <animal>PM_Chaothrumbo</animal>
             </li>
-
         </comps>
     </ThingDef>
 </Defs>
