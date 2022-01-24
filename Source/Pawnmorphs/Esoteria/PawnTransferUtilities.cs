@@ -252,8 +252,6 @@ namespace Pawnmorph
             IEnumerable<Hediff> tHediffs = health1?.hediffSet?.hediffs?.Where(selector);
             foreach (Hediff hediff in tHediffs.MakeSafe())
             {
-                Log.Message($"Found hediff {hediff.def.defName}");
-
                 BodyPartRecord otherRecord;
                 if (hediff.Part == null) 
                     otherRecord = null;
@@ -261,10 +259,7 @@ namespace Pawnmorph
                     otherRecord = transferFunc(hediff.Part);
 
                 if (otherRecord == null && hediff.Part != null)
-                {
-                    Log.Message($"Failed to transfer hediff {hediff.def.defName}");
                     continue;
-                }
 
                 if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) 
                     continue;
