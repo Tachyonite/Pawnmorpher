@@ -77,6 +77,18 @@ namespace Pawnmorph
             return curRecord;
         }
 
+
+
+        [CanBeNull]
+        public static BodyPartRecord GetRecord([NotNull] this BodyDef bodyDef, [NotNull] BodyPartRecord partRecord)
+        {
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+            if (partRecord == null) throw new ArgumentNullException(nameof(partRecord));
+
+
+            return bodyDef.GetPartsWithDef(partRecord.def).FirstOrDefault(x => x.Label == partRecord.Label);
+        }
+
         /// <summary>
         /// Gets all non missing parts of the given part defs 
         /// </summary>
