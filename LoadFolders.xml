@@ -3,10 +3,12 @@
         <li>/</li>
         <li>1.1</li>
         <li IfModActive="PeteTimesSix.CompactHediffs">1.1/ModIntegrations/CompactHediffs/</li>
+        <li IfModActive="VanillaExpanded.VCookE">1.1/Mods/VCE</li>
     </v1.1>
     <v1.2>
         <li>/</li>
         <li>1.2</li>
+        <li IfModActive="VanillaExpanded.VCookE">1.2/Mods/VCE</li>
     </v1.2>
     <v1.3>
         <li>/</li>
@@ -14,5 +16,6 @@
 		<li IfModActive="Ludeon.RimWorld.Ideology">1.3/Mods/Ideology</li>	
         <li IfModActive="RaZim.ZGFMartens">1.3/Mods/Martens</li>
         <li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.3/Mods/VEF</li>
+        <li IfModActive="VanillaExpanded.VCookE">1.3/Mods/VCE</li>
     </v1.3>
 </loadFolders>
