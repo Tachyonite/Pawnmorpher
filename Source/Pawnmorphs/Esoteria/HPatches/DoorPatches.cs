@@ -17,7 +17,7 @@ namespace Pawnmorph.HPatches
             if (__result)
             {
                 // Block former humans from passing through door if the pawn's faction is hostile to the door's faction.
-                if (p.Faction.HostileTo(__instance.Faction))
+                if (p.Faction == null || p.Faction.HostileTo(__instance.Faction))
                 {
                     if (p.IsFormerHuman())
                     {
