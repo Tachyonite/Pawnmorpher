@@ -20,7 +20,7 @@ namespace Pawnmorph.Chambers
     /// <summary>
     /// </summary>
     /// <seealso cref="Building_Casket" />
-    public class MutaChamber : Building_Casket
+    public class MutaChamber : Building_Casket, ISuspendableThingHolder
     {
         private const int REFUEL_CHECK_TIMER = 100;
 
@@ -40,10 +40,10 @@ namespace Pawnmorph.Chambers
         private int _curMutationIndex = -1;
         private bool _initialized;
 
+
         private ChamberState _innerState = ChamberState.WaitingForPawn;
 
         private ChamberUse _currentUse;
-
 
         private CompRefuelable _refuelable;
 
@@ -77,6 +77,13 @@ namespace Pawnmorph.Chambers
 
         private IReadOnlyAddedMutations _addedMutationData;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has its contents suspended / in stasis.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance's contents are suspended; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsContentsSuspended => PowerCompTrader?.PowerOn ?? false;
 
         /// <summary>
         ///     Gets the current use.
@@ -117,7 +124,7 @@ namespace Pawnmorph.Chambers
             get
             {
                 if (_power == null) _power = GetComp<CompPowerTrader>();
-
+                
                 return _power;
             }
         }
@@ -467,7 +474,9 @@ namespace Pawnmorph.Chambers
 
             if (!Refuelable.HasFuel) return;
 
-            if (_innerState != ChamberState.Active) return;
+            if (_innerState != ChamberState.Active) 
+                return;
+
             if (_timer <= 0)
             {
                 try
@@ -477,28 +486,50 @@ namespace Pawnmorph.Chambers
                 catch (Exception e)
                 {
                     Log.Error($"unable to eject pawns from chamber!\ncaught exception {e.GetType().Name}\n{e}");
+                    ResetChamber();
                 } //make sure an exception while ejecting a pawn doesn't put the chamber in a bad state 
-
-                _currentUse = ChamberUse.Tf; //this should be the default 
-                _innerState = ChamberState.WaitingForPawn;
-                _timer = 0;
                 return;
             }
 
-            if (PowerCompTrader?.PowerOn == false) return;
+            // If it no longer contains a pawn (pawn probably died) then eject whatever and reset.
+            for (int i = 0; i < innerContainer.Count; i++)
+            {
+                if (innerContainer[i] is Pawn == false)
+                {
+                    try
+                    {
+                        EjectContents();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error($"unable to eject content from chamber!\ncaught exception {e.GetType().Name}\n{e}");
+                        ResetChamber();
+                    }
+                    return;
+                }
+            }
+            
+            if (PowerCompTrader?.PowerOn == false) 
+                return;
 
+            if (!Flickable.SwitchIsOn) 
+                return;
 
-            if (!Flickable.SwitchIsOn) return;
             Refuelable.Notify_UsedThisTick();
+
+
             _timer -= 1;
+            Pawn pawn = (Pawn)innerContainer[0];
             switch (_currentUse)
             {
                 case ChamberUse.Mutation:
-                    CheckMutationProgress();
+                    CheckMutationProgress(pawn);
                     break;
+
                 case ChamberUse.Tf:
-                    CheckTfMutationProgress();
+                    CheckTfMutationProgress(pawn);
                     break;
+
                 case ChamberUse.Merge:
                 default:
                     break;
@@ -645,28 +676,35 @@ namespace Pawnmorph.Chambers
 
 
             mutationData.ApplyMutationData(pawn, MutationUtilities.AncillaryMutationEffects.HistoryOnly);
+            UpdatePawnVisuals(pawn);
         }
 
-        private void CheckMutationProgress()
+        private void UpdatePawnVisuals([NotNull] Pawn pawn)
         {
-            if (_addedMutationData == null) return;
+            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            comp.IsDirty = true;
+            comp.CompTick();
+        }
 
+        private void CheckMutationProgress([NotNull] Pawn pawn)
+        {
+            if (_addedMutationData == null) 
+                return;
 
             int mx = _addedMutationData.Count;
-            if (mx == 0) return;
+            if (mx == 0) 
+                return;
+
             int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx - 1));
             if (idx != _curMutationIndex)
             {
-                var pawn = innerContainer?.FirstOrDefault() as Pawn;
-                if (pawn == null) return;
-
                 _curMutationIndex = idx;
                 IReadOnlyMutationData mutationData = _addedMutationData[_curMutationIndex];
                 ApplyMutationData(pawn, mutationData);
             }
         }
 
-        private void CheckTfMutationProgress()
+        private void CheckTfMutationProgress([NotNull] Pawn pawn)
         {
             if (AnimalMutations.Count == 0) return;
 
@@ -675,8 +713,6 @@ namespace Pawnmorph.Chambers
             if (idx != _curMutationIndex)
             {
                 _curMutationIndex = idx;
-                var pawn = innerContainer?.FirstOrDefault() as Pawn;
-                if (pawn == null) return;
                 MutationDef mut = AnimalMutations[idx];
                 MutationResult muts =
                     MutationUtilities.AddMutation(pawn, mut, ancillaryEffects: MutationUtilities.AncillaryMutationEffects.None);
@@ -818,7 +854,6 @@ namespace Pawnmorph.Chambers
             var pawn = innerContainer?.FirstOrDefault() as Pawn;
             if (pawn == null) return;
 
-
             for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
             {
                 IReadOnlyMutationData mut = _addedMutationData[i];
@@ -924,6 +959,7 @@ namespace Pawnmorph.Chambers
             _currentUse = ChamberUse.Tf;
             _addedMutationData = null;
             _curMutationIndex = -1;
+            _timer = 0;
         }
 
         private void SetActive()
@@ -1009,7 +1045,15 @@ namespace Pawnmorph.Chambers
                 return;
             }
 
-            if (addedmutations?.Any() != true) return;
+            var pawn = innerContainer.FirstOrDefault() as Pawn;
+            if (pawn == null)
+                return;
+
+            if (addedmutations?.Any() != true)
+            {
+                UpdatePawnVisuals(pawn);
+                return;
+            }
 
 
             _addedMutationData = new AddedMutations(addedmutations);
@@ -1021,8 +1065,6 @@ namespace Pawnmorph.Chambers
             sender.Reset();
 
             //remove any mutations left over 
-            var pawn = innerContainer.FirstOrDefault() as Pawn;
-            if (pawn == null) return;
             foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
             {
                 var hediff =
