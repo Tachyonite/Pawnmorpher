@@ -402,25 +402,32 @@ namespace Pawnmorph
         public static void TransferRelations([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
                                              Predicate<PawnRelationDef> predicate = null)
         {
-            if (pawn1.relations == null) return;
+            if (pawn1.relations == null) 
+                return;
+
             List<DirectPawnRelation> enumerator = pawn1.relations.DirectRelations.MakeSafe().ToList();
             predicate = predicate ?? (r => true); //if no filter is set, have it pass everything 
+
             foreach (DirectPawnRelation directPawnRelation in enumerator.Where(d => predicate(d.def)))
             {
-                if (directPawnRelation.def.implied) continue;
-                pawn1.relations?.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
+                if (directPawnRelation.def == null || directPawnRelation.def.implied) 
+                    continue;
+
+                pawn1.relations.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
                 pawn2.relations?.AddDirectRelation(directPawnRelation.def,
                                                    directPawnRelation.otherPawn); //TODO restrict these to special relationships? 
             }
 
-            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.ToList()
-            ) //make copies so we don't  invalidate the enumerator mid way through 
-            foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
-            {
-                if (pawnRelationDef.implied) continue;
-                pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
-                pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
-            }
+            //make copies so we don't  invalidate the enumerator mid way through 
+            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.MakeSafe().ToList())
+                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
+                {
+                    if (pawnRelationDef.implied) 
+                        continue;
+
+                    pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
+                    pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
+                }
         }
 
         /// <summary>
