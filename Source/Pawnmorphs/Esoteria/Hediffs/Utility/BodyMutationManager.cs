@@ -28,6 +28,13 @@ namespace Pawnmorph.Hediffs.Utility
         [Unsaved]
         private readonly List<MutationEntry> wholeBodyMutationCache = new List<MutationEntry>();
 
+        /// <summary>
+        /// Gets the total number of mutations available for the current limb.
+        /// </summary>
+        /// <value>
+        /// The number of available mutations.
+        /// </value>
+        public int AvailableMutations => bodyPartMutationList.Count;
 
         /// <summary>
         /// Gets the current body part.

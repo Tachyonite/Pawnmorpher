@@ -70,7 +70,7 @@ namespace Pawnmorph.Composable.Hediffs
             TaggedString content = string.IsNullOrEmpty(letterContentText)
                                        ? DEFAULT_WARNING_CONTENT.Translate(pArg)
                                        : letterContentText.Formatted(PAWN_ID);
-            Find.LetterStack.ReceiveLetter(label, content, letterDef, new LookTargets(mBase.pawn));
+            Find.LetterStack.ReceiveLetter(label, content, letterDef ?? LetterDefOf.NeutralEvent, new LookTargets(mBase.pawn));
         }
     }
 }

@@ -10,6 +10,7 @@
         this is houw you add custom graphics to this mutation        <graphics>
             each entry should be an anchorID and texture path as shown below 
             the given texture will render on the pawn at  the corresponding 'anchor' (see Human Graphics Patch) when a pawn has that mutation on that part
+            see Gazelle_Parts.xml for a concrete example 
             <AnchorID>TexturePath/ToMutation</AnchorID>
         </graphics>
 

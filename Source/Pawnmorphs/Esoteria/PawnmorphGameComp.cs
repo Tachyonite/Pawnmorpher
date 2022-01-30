@@ -72,7 +72,23 @@ namespace Pawnmorph
         {
             base.FinalizeInit();
 
-            AddSurgeriesToMorphs(); 
+            AddSurgeriesToMorphs();
+
+            CheckForBadDrugPolicies(); 
+        }
+
+        private void CheckForBadDrugPolicies()
+        {
+            var drugDB = Current.Game?.drugPolicyDatabase;
+            if (drugDB == null)
+            {
+                return; 
+            }
+
+            foreach (DrugPolicy drugPolicy in drugDB.AllPolicies.MakeSafe())
+            {
+                drugPolicy.InitializeIfNeeded(true); 
+            }
         }
 
         private void AddSurgeriesToMorphs()

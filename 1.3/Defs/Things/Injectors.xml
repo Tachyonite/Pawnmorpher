@@ -16,7 +16,7 @@
             <li>Injector</li>
         </thingCategories>
         <ingestible>
-            <drugCategory>None</drugCategory>
+            <drugCategory>Medical</drugCategory>
             <outcomeDoers>
                 <li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
                     <hediffDefs>
@@ -62,11 +62,11 @@
             <texPath>Things/Item/GenecardCorrupted</texPath>
         </graphicData>
         <comps Inherit="false">
+			<li Class="CompProperties_Forbiddable" />
             <li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps">
                 <consumedOnUse>false</consumedOnUse>
                 <animal>PM_Chaothrumbo</animal>
             </li>
-
         </comps>
     </ThingDef>
 </Defs>

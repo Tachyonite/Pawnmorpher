@@ -124,7 +124,7 @@ namespace Pawnmorph.Hediffs.Composable
         {
             float mutations = meanMutationsPerDay;
             if (affectedBySensitivity)
-                mutations *= hediff.MutagenSensitivity;
+                mutations *= Mathf.Pow(hediff.MutagenSensitivity,2 );
             return mutations;
         }
 
@@ -152,7 +152,7 @@ namespace Pawnmorph.Hediffs.Composable
             StringBuilder builder = new StringBuilder();
             builder.AppendLine($"Mutations/Day: {meanMutationsPerDay}");
             if (affectedBySensitivity)
-                builder.AppendLine($"Mutations/Day w/ Sensitivity: {meanMutationsPerDay * hediff.MutagenSensitivity}");
+                builder.AppendLine($"Mutations/Day w/ Sensitivity: {meanMutationsPerDay * Mathf.Pow(hediff.MutagenSensitivity,2)}");
             return builder.ToString();
         }
     }

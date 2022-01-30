@@ -908,11 +908,9 @@
 					<EtherWargTail>Parts/wargface/wargtail</EtherWargTail>
 					<EtherWolfTail>Parts/wolfface/wolftail</EtherWolfTail>
 					<EtherLabradorRetrieverTail>Parts/LabradorRetriever/LabradorRetriever_Tail</EtherLabradorRetrieverTail>
-					<EtherGazelleTail>Parts/Gazelle/Gazelle_Tail</EtherGazelleTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherCapybaraTail>Parts/Capybara/Capybara_Tail</EtherCapybaraTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
-
 				</hediffGraphics>
 				<offsets>
 					<south>
@@ -1103,9 +1101,7 @@
 						</severity>
 					</EtherYakHorns>							 
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
-					<EtherGazelleAntlers>Parts/Gazelle/Gazelle_Antlers</EtherGazelleAntlers>
 					<EtherCaribouAntlers>Parts/Caribou/Caribou_Antlers</EtherCaribouAntlers>
-
 					<EtherThrumboHorn>Parts/thrumboface/thrumbohorn</EtherThrumboHorn>
 				</hediffGraphics>
 			</li>

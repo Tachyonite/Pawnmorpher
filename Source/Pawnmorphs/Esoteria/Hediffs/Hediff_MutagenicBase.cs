@@ -110,7 +110,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Controls whether or not this hediff gets removed 
         /// </summary>
-        public override bool ShouldRemove => forceRemove || base.ShouldRemove;
+        public override bool ShouldRemove => forceRemove || base.ShouldRemove || mutagenSensitivity.Value <= 0;
 
         /// <summary>
         /// Gets the pain offset for this hediff 
@@ -300,6 +300,26 @@ namespace Pawnmorph.Hediffs
                 if (!bodyMutationManager.HasMutations())
                     continue;
 
+                if (this.CurStage is HediffStage_Mutation mutationStage)
+                {
+                    // If completely random provide a small chance to skip a limb
+                    if (mutationStage.mutationTypes is MutTypes_All)
+                    {
+                        // Only provide a chance to completely skip if there is 25% or less chance to get identical mutations.
+                        if (bodyMutationManager.AvailableMutations <= 4)
+                        {
+                            float skipChance = 1F / (bodyMutationManager.AvailableMutations + 1);
+                            if (Rand.Chance(skipChance))
+                            {
+    #if DEBUG
+                                Log.Message($"Skipped mutating limb {bodyMutationManager.BodyPart.Label} for {pawn.Name} - {bodyMutationManager.AvailableMutations} mutations available. ({skipChance*100}% chance)");
+    #endif
+                                continue;
+                            }
+                        }
+                    }
+                }
+
                 // Check all mutations in order until we add one
                 do
                 {
@@ -483,6 +503,7 @@ namespace Pawnmorph.Hediffs
                 var spreadList = mutStage.spreadOrder?.GetSpreadList(this);
                 if(spreadList == null)
                     return;
+
                 bodyMutationManager.ResetSpreadList(spreadList);
 
                 // Let the observers know we've reset our spreading

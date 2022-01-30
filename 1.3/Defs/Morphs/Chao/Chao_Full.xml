@@ -1,6 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
 	<HediffDef Name="PM_RandomTfBase" ParentName="MorphParent">
 		<defName>FullRandomTFAnyOutcome</defName>
+		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<label>chaomorph</label>
 		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
 		<stages>
@@ -67,7 +68,7 @@
 					</li>
 				</capMods>
 				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
-				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All"></mutationTypes>
+				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
 				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
 					<meanMutationsPerDay>15</meanMutationsPerDay>
 				</mutationRate>

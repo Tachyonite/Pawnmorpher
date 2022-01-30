@@ -4,7 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -24,6 +26,8 @@ namespace Pawnmorph.Things
 
         [NotNull] private static readonly List<ThingDef> _generatedInjectorDefs = new List<ThingDef>();
 
+
+       
         static InjectorGenerator()
         {
             _defaultStatModifiers = new[]
@@ -32,7 +36,13 @@ namespace Pawnmorph.Things
                 new StatModifier {stat = StatDefOf.WorkToMake, value = 4000},
                 new StatModifier {stat = StatDefOf.MarketValue, value = 400}
             };
+
+            
+            
+
         }
+
+        
 
         /// <summary>
         ///     Gets all generated injector defs.
@@ -55,6 +65,8 @@ namespace Pawnmorph.Things
                     if(morphDef.injectorDef != null)
                         _generatedInjectorDefs.Add(morphDef.injectorDef);
                 }
+
+            ResolveThingCategories();
         }
 
         private static ThingDef CreateInjectorDefFor([NotNull] MorphDef mDef)
@@ -98,7 +110,7 @@ namespace Pawnmorph.Things
                                       .Replace(">", "}"), //hacky way to get "nested" translation strings 
                 ingestReportString = INGEST_REPORT_STRING.Translate().Replace("<", "{").Replace(">", "}"),
                 outcomeDoers = GetOutcomeDooers(mDef),
-                preferability = FoodPreferability.NeverForNutrition
+                preferability = FoodPreferability.NeverForNutrition, drugCategory = DrugCategory.None
             };
             var tDef = new ThingDef
             {
@@ -124,6 +136,7 @@ namespace Pawnmorph.Things
                 drawGUIOverlay = true,
                 drawerType = DrawerType.MapMeshOnly,
                 ingestible = ingestProps,
+                uiIconPath = props.graphicData.texPath,
                 tradeTags = props.traderTags,
                 costList = props.CostList.ToList(),
                 recipeMaker = props.RecipeMaker,
@@ -154,6 +167,29 @@ namespace Pawnmorph.Things
                 baseOutcomes.Add(new IngestionOutcomeDoer_GiveHediff {hediffDef = mDef.fullTransformation, severity = 1});
 
             return baseOutcomes;
+        }
+
+        static void ResolveThingCategories()
+        {
+
+            List<ThingCategoryDef> lst = new List<ThingCategoryDef>(); 
+            //manually put the generated thing defs into their categories 
+            foreach (ThingDef injectorDef in GeneratedInjectorDefs)
+            {
+                foreach (ThingCategoryDef cat in injectorDef.thingCategories.MakeSafe())
+                {
+                    
+                    cat.childThingDefs?.Add(injectorDef);
+                    if (!lst.Contains(cat)) lst.Add(cat); 
+                }
+            }
+
+            //now call resolve references again on these, should be fine 
+            foreach (ThingCategoryDef cat in lst)
+            {
+                cat.ResolveReferences();
+            }
+
         }
 
         private static List<StatModifier> GetStatModifiers([NotNull] MorphInjectorProperties props)

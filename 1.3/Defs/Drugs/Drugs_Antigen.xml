@@ -60,12 +60,21 @@ Raw antigen is often used as an emergency treatment for mutagenic diseases and m
 		<isBad>false</isBad>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
-				<severityPerDay>-2</severityPerDay>
+				<severityPerDay>-4</severityPerDay>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
 				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
 			</li>
 		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-1.5</MutagenSensitivity>
+					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
 	</HediffDef>
 
 
@@ -98,6 +107,7 @@ Halting cream is often used by industrial nations that lack the technology to pr
 			<workAmount>400</workAmount>
 			<recipeUsers>
 				<li>DrugLab</li>
+				<li>MutagenLab</li>
 			</recipeUsers>
 			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		</recipeMaker>

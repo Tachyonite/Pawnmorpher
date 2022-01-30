@@ -96,8 +96,7 @@ namespace Pawnmorph
         {
             if (record == null) throw new ArgumentNullException(nameof(record));
             if (otherDef == null) throw new ArgumentNullException(nameof(otherDef));
-            PartAddress pAddr = record.GetAddress();
-            return otherDef.GetRecordAt(pAddr);
+            return otherDef.GetRecord(record);
         }
 
         /// <summary>
@@ -254,13 +253,16 @@ namespace Pawnmorph
             foreach (Hediff hediff in tHediffs.MakeSafe())
             {
                 BodyPartRecord otherRecord;
-                if (hediff.Part == null) otherRecord = null;
+                if (hediff.Part == null) 
+                    otherRecord = null;
                 else
                     otherRecord = transferFunc(hediff.Part);
 
-                if (otherRecord == null && hediff.Part != null) continue;
+                if (otherRecord == null && hediff.Part != null)
+                    continue;
 
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) continue;
+                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) 
+                    continue;
 
                 Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
                 health2.AddHediff(newHediff);

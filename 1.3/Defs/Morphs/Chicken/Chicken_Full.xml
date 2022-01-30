@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/ComposableHediffs.xsd">
 	<HediffDef ParentName="NewAspectedMorphParent">
 		<defName>PawnmorphChickenTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
@@ -70,7 +70,7 @@
 					<morphDef>ChookMorph</morphDef>
 				</mutationTypes>
 				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
-					<meanMutationsPerDay>5</meanMutationsPerDay>
+					<meanMutationsPerDay>7.7</meanMutationsPerDay>
 				</mutationRate>
 				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_RandomSpread" />
 			</li>
