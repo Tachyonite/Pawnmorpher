@@ -36,7 +36,12 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// the max health offset of this particular part 
         /// </summary>
-        public float healthOffset = 0; 
+        public float healthOffset = 0;
+
+        /// <summary>
+        /// the max health modifier of this pawn's bodyparts.
+        /// </summary>
+        public float globalHealthMultiplier = 0;
 
         /// <summary>
         /// The label override
