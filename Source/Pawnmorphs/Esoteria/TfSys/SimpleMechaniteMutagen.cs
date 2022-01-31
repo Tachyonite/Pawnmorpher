@@ -311,6 +311,11 @@ namespace Pawnmorph.TfSys
             if (animal == null) return false; 
             var rFaction = transformedPawn.FactionResponsible;
 
+            float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.animal, transformedPawn.original.RaceProps);
+            float originalAge = transformedPawn.original.ageTracker.AgeBiologicalYearsFloat;
+
+            long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
+            transformedPawn.original.ageTracker.AgeBiologicalTicks += agedTicksDelta;
 
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 

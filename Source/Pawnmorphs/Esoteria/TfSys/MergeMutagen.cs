@@ -173,6 +173,17 @@ namespace Pawnmorph.TfSys
             PawnRelationDef mergeMateEx = DefDatabase<PawnRelationDef>.GetNamed("ExMerged"); //TODO put these in a DefOf 
 
 
+
+            foreach (Pawn originalPawn in transformedPawn.originals)
+            {
+                float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.meld, originalPawn.RaceProps);
+                float originalAge = originalPawn.ageTracker.AgeBiologicalYearsFloat;
+
+                long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
+                originalPawn.ageTracker.AgeBiologicalTicks += agedTicksDelta;
+            }
+
+
             var firstO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[0], meld.PositionHeld, meld.MapHeld);
             var secondO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[1], meld.PositionHeld, meld.MapHeld);
 
