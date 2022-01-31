@@ -176,21 +176,27 @@ namespace Pawnmorph.TfSys
             var firstO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[0], meld.PositionHeld, meld.MapHeld);
             var secondO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[1], meld.PositionHeld, meld.MapHeld);
 
-            var thoughtDef = AddRandomThought(firstO, formerHumanHediff.CurStageIndex);
-
-            AddRandomThought(secondO, formerHumanHediff.CurStageIndex); 
-
             for (var i = 0; i < 10; i++)
             {
                 IntermittentMagicSprayer.ThrowMagicPuffDown(meld.Position.ToVector3(), meld.MapHeld);
                 IntermittentMagicSprayer.ThrowMagicPuffUp(meld.Position.ToVector3(), meld.MapHeld);
             }
 
+            var traits = firstO.story.traits;
+            bool relationIsMergeMate = false;
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            {
+                relationIsMergeMate = true;
+            }
+            else if (traits.HasTrait(TraitDefOf.BodyPurist))
+            {
+                relationIsMergeMate = false;
+            }
+            else
+                relationIsMergeMate = Rand.Value < 0.5;
 
-            PawnRelationDef addDef;
 
-            bool relationIsMergeMate = thoughtDef == def.revertedThoughtGood;
-            addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
+            PawnRelationDef addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
 
             firstO.relations.AddDirectRelation(addDef, secondO);
 
