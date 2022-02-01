@@ -148,20 +148,30 @@ namespace Pawnmorph
             if (record == null) throw new ArgumentNullException(nameof(record));
 
             MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
-            if (mTracker == null) return record.def.hitPoints;
+            if (mTracker == null) 
+                return record.def.hitPoints;
+
             float offset = 0;
+            float maxPartHealth = record.def.GetMaxHealth(p);
             foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
             {
-                if (mutation.Part != record) continue;
                 MutationStage mStage = mutation.CurrentMutationStage;
-                if (mStage == null) continue;
+
+                if (mStage == null)
+                    continue;
+
+                if (mStage.globalHealthMultiplier != 0)
+                    offset = maxPartHealth * mStage.globalHealthMultiplier;
+
+                if (mutation.Part != record) 
+                    continue;
 
                 offset += mStage.healthOffset;
             }
 
             return
                 offset * p.HealthScale
-              + record.def.GetMaxHealth(p); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
+              + maxPartHealth; //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
         }
 
 
