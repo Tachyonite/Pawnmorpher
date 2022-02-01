@@ -919,16 +919,19 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Determines whether the given pawn is a former human.
+        /// Determines whether the given pawn is a former human.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="countPermanentlyFeral">if set to <c>true</c> permanently feral pawns count as former humans.</param>
         /// <returns>
-        ///     <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
+        ///   <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsFormerHuman([NotNull] this Pawn pawn)
+        public static bool IsFormerHuman([NotNull] this Pawn pawn, bool countPermanentlyFeral= true)
         {
-            return pawn.GetSapienceState()?.IsFormerHuman == true;
+            SapienceState sState = pawn.GetSapienceState();
+            return (sState?.IsFormerHuman == true )&& (countPermanentlyFeral || sState.Tracker?.IsPermanentlyFeral == false);
         }
+
 
         /// <summary>
         ///     Determines whether this instance is humanlike.
