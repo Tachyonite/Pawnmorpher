@@ -53,6 +53,14 @@ namespace Pawnmorph.ThingComps
         public AnimalSelectorCompProperties Props => (AnimalSelectorCompProperties) props;
 
         /// <summary>
+        /// Gets or sets a filter to specify what should (true) or shouldn't (false) be selectable.
+        /// </summary>
+        /// <value>
+        /// The species filter.
+        /// </value>
+        [CanBeNull] public System.Func<PawnKindDef, bool> SpeciesFilter { get; set; } = null;
+
+        /// <summary>
         /// Gets the kind of the chosen.
         /// </summary>
         /// <value>
@@ -74,7 +82,8 @@ namespace Pawnmorph.ThingComps
                 {
                     var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true);
+                    // include if tagged or always available and filter returns true if any.
+                    return Props.AllAnimals.Where(t => (comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true) && (SpeciesFilter == null || SpeciesFilter(t)));
                 }
 
                 return Props.AllAnimals;
@@ -138,8 +147,6 @@ namespace Pawnmorph.ThingComps
                     var tk = kind;
                     yield return new FloatMenuOption(tk.LabelCap, () => ChoseAnimal(tk));
                 }
-
-
             }
         }
 

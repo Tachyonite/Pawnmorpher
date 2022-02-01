@@ -406,6 +406,13 @@ namespace Pawnmorph.Chambers
         /// <returns></returns>
         public override IEnumerable<Gizmo> GetGizmos()
         {
+            if (SelectorComp?.Enabled == true)
+            {
+                Pawn pawn = innerContainer.OfType<Pawn>().FirstOrDefault();
+                if (pawn != null)
+                    SelectorComp.SpeciesFilter = (x) => x.GetModExtension<ChamberAnimalTfController>()?.CanInitiateTransformation(pawn, x, this) ?? true;
+            }
+
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
             if (DebugSettings.godMode && (_innerState == ChamberState.Active || _innerState == ChamberState.WaitingForSpecialThing)) yield return DebugFinishGizmo;
