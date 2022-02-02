@@ -293,7 +293,16 @@ namespace Pawnmorph.Chambers
             {
 
                 if (Glower != null) Glower.Props.glowColor = _innerState == ChamberState.Active ? GlowColor : Clear;
+
+                SelectorComp.OnClick += SelectorComp_OnClick;
             }
+        }
+
+        private void SelectorComp_OnClick([NotNull] AnimalSelectorComp comp)
+        {
+            Pawn pawn = innerContainer.OfType<Pawn>().FirstOrDefault();
+            if (pawn != null)
+                comp.SpeciesFilter = (x) => x.GetModExtension<ChamberAnimalTfController>()?.CanInitiateTransformation(pawn, x, this) ?? true;
         }
 
 

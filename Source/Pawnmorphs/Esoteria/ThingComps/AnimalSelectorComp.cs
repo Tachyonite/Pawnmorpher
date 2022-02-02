@@ -28,7 +28,19 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         /// Occurs when an animal is chosen.
         /// </summary>
-        public event AnimalChosenHandler AnimalChosen; 
+        public event AnimalChosenHandler AnimalChosen;
+
+
+        /// <summary>
+        /// Simple delegate for the <see cref="OnClick"/> event 
+        /// </summary>
+        /// <param name="comp">The <see cref="AnimalSelectorComp" /> that triggered the event.</param>
+        public delegate void OnClickHandler([NotNull] AnimalSelectorComp comp);
+
+        /// <summary>
+        /// Triggers when selector action is clicked but before anything else.
+        /// </summary>
+        public event OnClickHandler OnClick;
 
 
         private bool _enabled = true;
@@ -53,6 +65,14 @@ namespace Pawnmorph.ThingComps
         public AnimalSelectorCompProperties Props => (AnimalSelectorCompProperties) props;
 
         /// <summary>
+        /// Gets or sets a filter to specify what should (true) or shouldn't (false) be selectable.
+        /// </summary>
+        /// <value>
+        /// The species filter.
+        /// </value>
+        [CanBeNull] public System.Func<PawnKindDef, bool> SpeciesFilter { get; set; } = null;
+
+        /// <summary>
         /// Gets the kind of the chosen.
         /// </summary>
         /// <value>
@@ -74,7 +94,8 @@ namespace Pawnmorph.ThingComps
                 {
                     var comp = PMComp;
 
-                    return Props.AllAnimals.Where(t => comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true);
+                    // include if tagged or always available and filter returns true if any.
+                    return Props.AllAnimals.Where(t => (comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true) && (SpeciesFilter == null || SpeciesFilter(t)));
                 }
 
                 return Props.AllAnimals;
@@ -124,6 +145,7 @@ namespace Pawnmorph.ThingComps
 
         private void GizmoAction()
         {
+            OnClick?.Invoke(this);
             var options = GetOptions.ToList();
             if (options.Count == 0) return; 
             Find.WindowStack.Add(new FloatMenu(options)); 
@@ -138,8 +160,6 @@ namespace Pawnmorph.ThingComps
                     var tk = kind;
                     yield return new FloatMenuOption(tk.LabelCap, () => ChoseAnimal(tk));
                 }
-
-
             }
         }
 
