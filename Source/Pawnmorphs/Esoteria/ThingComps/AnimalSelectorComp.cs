@@ -146,7 +146,6 @@ namespace Pawnmorph.ThingComps
         private void GizmoAction()
         {
             OnClick?.Invoke(this);
-            Log.Message("Action!");
             var options = GetOptions.ToList();
             if (options.Count == 0) return; 
             Find.WindowStack.Add(new FloatMenu(options)); 

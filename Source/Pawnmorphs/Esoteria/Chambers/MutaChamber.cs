@@ -300,7 +300,6 @@ namespace Pawnmorph.Chambers
 
         private void SelectorComp_OnClick([NotNull] AnimalSelectorComp comp)
         {
-            Log.Message("OnClick");
             Pawn pawn = innerContainer.OfType<Pawn>().FirstOrDefault();
             if (pawn != null)
                 comp.SpeciesFilter = (x) => x.GetModExtension<ChamberAnimalTfController>()?.CanInitiateTransformation(pawn, x, this) ?? true;
