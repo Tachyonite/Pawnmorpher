@@ -28,7 +28,19 @@ namespace Pawnmorph.ThingComps
         /// <summary>
         /// Occurs when an animal is chosen.
         /// </summary>
-        public event AnimalChosenHandler AnimalChosen; 
+        public event AnimalChosenHandler AnimalChosen;
+
+
+        /// <summary>
+        /// Simple delegate for the <see cref="OnClick"/> event 
+        /// </summary>
+        /// <param name="comp">The <see cref="AnimalSelectorComp" /> that triggered the event.</param>
+        public delegate void OnClickHandler([NotNull] AnimalSelectorComp comp);
+
+        /// <summary>
+        /// Triggers when selector action is clicked but before anything else.
+        /// </summary>
+        public event OnClickHandler OnClick;
 
 
         private bool _enabled = true;
@@ -133,6 +145,8 @@ namespace Pawnmorph.ThingComps
 
         private void GizmoAction()
         {
+            OnClick?.Invoke(this);
+            Log.Message("Action!");
             var options = GetOptions.ToList();
             if (options.Count == 0) return; 
             Find.WindowStack.Add(new FloatMenu(options)); 
