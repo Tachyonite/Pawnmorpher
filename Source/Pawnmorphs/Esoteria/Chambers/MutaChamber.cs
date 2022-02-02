@@ -291,7 +291,6 @@ namespace Pawnmorph.Chambers
             Scribe_Values.Look(ref _curMutationIndex, "curMutationIndex");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (PowerCompTrader != null) PowerCompTrader.PowerOn = _innerState == ChamberState.Active;
 
                 if (Glower != null) Glower.Props.glowColor = _innerState == ChamberState.Active ? GlowColor : Clear;
             }
@@ -933,9 +932,8 @@ namespace Pawnmorph.Chambers
 
         private void Initialize()
         {
-            if (_innerState == ChamberState.Active) SetActive();
-            else SetInactive();
-
+            if (Glower != null)
+                UpdateGlow(Glower, Map, false);
 
             SelectorComp.Enabled = Occupied && _innerState == ChamberState.Idle;
             if (_innerState == ChamberState.Active && _timer == -1)
@@ -967,35 +965,30 @@ namespace Pawnmorph.Chambers
             _addedMutationData = null;
             _curMutationIndex = -1;
             _timer = 0;
+
+            if (Glower != null)
+                UpdateGlow(Glower, Map, false);
         }
 
         private void SetActive()
         {
             FillableDrawer?.Trigger();
-            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
-            Glower?.UpdateLit(Map);
 
             PowerCompTrader.PowerOn = true;
             if (Glower != null)
             {
                 Glower.Props.glowColor = GlowColor;
-                Glower.UpdateLit(Map);
-                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+                UpdateGlow(Glower, Map, true);
             }
         }
 
         private void SetInactive()
         {
-            PowerCompTrader.PowerOn = !PowerCompTrader.PowerOn;
-            Glower?.UpdateLit(Map);
-
-
             PowerCompTrader.PowerOn = false;
             if (Glower != null)
             {
                 Glower.Props.glowColor = Clear;
-                Glower.UpdateLit(Map);
-                Log.Message($"{ThingID} {Glower.Glows}|{PowerCompTrader.PowerOn}");
+                UpdateGlow(Glower, Map, false);
             }
         }
 
@@ -1081,6 +1074,17 @@ namespace Pawnmorph.Chambers
             }
 
             SelectorComp.Enabled = false;
+        }
+
+        private void UpdateGlow(CompGlower glowerComp, Map map, bool lit)
+        {
+            map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
+
+            if (lit)
+                map.glowGrid.RegisterGlower(glowerComp);
+            else
+                map.glowGrid.DeRegisterGlower(glowerComp);
+
         }
 
         private enum ChamberState

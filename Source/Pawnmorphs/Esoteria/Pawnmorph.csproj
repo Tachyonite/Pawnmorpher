@@ -462,6 +462,7 @@
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\AutoSlaughterPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
