@@ -642,13 +642,8 @@ namespace Pawnmorph
 
             List<ISocialThought> outThoughts = new List<ISocialThought>();
             otherPawnThoughts.GetSocialThoughts(original, outThoughts);
-            Log.Message($"{otherPawn.Label}: found thoughts: {String.Join(", ", outThoughts.Select(x => x.ToString()))}");
             foreach (Thought_MemorySocial item in outThoughts.OfType<Thought_MemorySocial>())
-            {
-
-                Log.Message("Transferred thought: " + item.ToString());
                 item.otherPawn = transformed;
-            }
         }
 
         /// <summary>
