@@ -424,7 +424,7 @@ namespace Pawnmorph
                 {
                     if (pawnRelationDef.implied) 
                         continue;
-
+                    
                     pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
                     pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
                 }
@@ -609,11 +609,45 @@ namespace Pawnmorph
                 }
 
 
-                if (memory.otherPawn == null)
-                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
+                thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
 
                 newMemory.age = memory.age;
                 newMemory.moodPowerFactor = memory.moodPowerFactor;
+            }
+
+            // For each pawn with an opinion of the original, update their memories to point at the transformed pawn.
+            IEnumerable<Pawn> distinctOtherPawns = thoughtHandler1.memories.Memories.Where(x => x.otherPawn != null).Select(x => x.otherPawn).Distinct();
+            foreach (Pawn otherPawn in distinctOtherPawns)
+            {
+                TransferRemoteSocialThoughts(pawn1, pawn2, otherPawn);
+            }
+
+        }
+
+
+        private static void TransferRemoteSocialThoughts(Pawn original, Pawn transformed, Pawn otherPawn)
+        {
+            if (original == null)
+                throw new ArgumentNullException(nameof(original));
+            if (transformed == null)
+                throw new ArgumentNullException(nameof(transformed));
+            if (otherPawn == null)
+                throw new ArgumentNullException(nameof(otherPawn));
+
+
+            ThoughtHandler otherPawnThoughts = otherPawn.needs?.mood?.thoughts;
+            if (otherPawnThoughts == null)
+                return;
+
+
+            List<ISocialThought> outThoughts = new List<ISocialThought>();
+            otherPawnThoughts.GetSocialThoughts(original, outThoughts);
+            Log.Message($"{otherPawn.Label}: found thoughts: {String.Join(", ", outThoughts.Select(x => x.ToString()))}");
+            foreach (Thought_MemorySocial item in outThoughts.OfType<Thought_MemorySocial>())
+            {
+
+                Log.Message("Transferred thought: " + item.ToString());
+                item.otherPawn = transformed;
             }
         }
 
@@ -666,6 +700,34 @@ namespace Pawnmorph
                     return skillRecord;
 
             return null;
+        }
+
+        internal static void TransferInteractions(Pawn originalPawn, Pawn transformedPawn)
+        {
+            if (originalPawn == null)
+                throw new ArgumentNullException(nameof(originalPawn));
+
+            if (transformedPawn == null)
+                throw new ArgumentNullException(nameof(transformedPawn));
+
+
+
+            FieldInfo initiatorField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "initiator");
+            FieldInfo recipientField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "recipient");
+            foreach (PlayLogEntry_Interaction item in Find.PlayLog.AllEntries.OfType<PlayLogEntry_Interaction>())
+            {
+                if (item.Concerns(originalPawn))
+                {
+
+                    Pawn initiator = initiatorField.GetValue(item) as Pawn;
+                    if (initiator == originalPawn)
+                        initiatorField.SetValue(item, transformedPawn);
+
+                    Pawn recipient = recipientField.GetValue(item) as Pawn;
+                    if (recipient == originalPawn)
+                        recipientField.SetValue(item, transformedPawn);
+                }
+            }
         }
     }
 }
