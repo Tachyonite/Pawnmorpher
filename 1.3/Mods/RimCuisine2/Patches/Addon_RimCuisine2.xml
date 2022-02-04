@@ -1,5 +1,6 @@
 <Patch>
     <Operation Class="PatchOperationSequence">
+		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationAdd">
 				<xpath>/Defs/Pawnmorph.Hediffs.MutationDef[defName="EtherBoarSnout"]/comps/li[@Class = "Pawnmorph.Hediffs.CompProperties_TerrainProduction"]/entries</xpath>
