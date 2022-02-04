@@ -508,6 +508,11 @@ namespace Pawnmorph.Hybrids
 
             var hRace = morph.hybridRaceDef;
 
+            if(!oldRace.IsHybridRace()) //rescan the graphics if the old race is not a morph (ie, human) and save the graphics settings for reversion later 
+            {
+                var cacherComp = pawn.TryGetComp<InitialGraphicsComp>();
+                cacherComp?.ScanGraphics();
+            }
            
 
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
