@@ -3,7 +3,7 @@
 		<success>Always</success>
 		<operations>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/HediffDef[defName="EtherBoarSnout"]/comps/li[@Class = "Pawnmorph.Hediffs.CompProperties_TerrainProduction"]/entries</xpath>
+				<xpath>/Defs/Pawnmorph.Hediffs.MutationDef[defName="EtherBoarSnout"]/comps/li[@Class = "Pawnmorph.Hediffs.CompProperties_TerrainProduction"]/entries</xpath>
 				<value>
 					<li>
 						<terrain>SoilRich</terrain>
@@ -14,7 +14,7 @@
 				</value>
 			</li>
 			<li Class="PatchOperationAdd">
-				<xpath>/Defs/HediffDef[defName="EtherPigSnout"]/comps/li[@Class = "Pawnmorph.Hediffs.CompProperties_TerrainProduction"]/entries</xpath>
+				<xpath>/Defs/Pawnmorph.Hediffs.MutationDef[defName="EtherPigSnout"]/comps/li[@Class = "Pawnmorph.Hediffs.CompProperties_TerrainProduction"]/entries</xpath>
 				<value>
 					<li>
 						<terrain>SoilRich</terrain>
