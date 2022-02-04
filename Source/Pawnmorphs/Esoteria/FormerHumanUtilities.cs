@@ -1196,6 +1196,7 @@ namespace Pawnmorph
                                                   h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
                                                     == true);
             PawnTransferUtilities.TransferThoughts(original, transformedPawn);
+            PawnTransferUtilities.TransferInteractions(original, transformedPawn);
 
             PawnTransferUtilities.TransferQuestRelations(original, transformedPawn);
 
