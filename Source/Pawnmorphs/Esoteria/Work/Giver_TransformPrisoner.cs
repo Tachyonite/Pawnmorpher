@@ -62,6 +62,17 @@ namespace Pawnmorph.Work
 
                 return null; 
             }
+
+            if (pawn.CanReserve(prisoner, ignoreOtherReservations: forced) == false)
+            {
+                if (logging)
+                {
+                    Log.Message($"{prisoner.Name} cannot be reserved!");
+                }
+
+                return null;
+            }
+
             var guest = prisoner.guest; 
             
             if(guest == null)
@@ -105,77 +116,6 @@ namespace Pawnmorph.Work
             job.count = 1; 
             return job; 
         }
-
-        /// <summary>
-        /// Determines whether this instance has a job for the given pawn with the given thing.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="t">The t.</param>
-        /// <param name="forced">if set to <c>true</c> [forced].</param>
-        /// <returns>
-        ///   <c>true</c> if [has job on thing] [the specified pawn]; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
-        {
-            bool logging = pawn.jobs?.debugLog == true;
-            if (!(t is Pawn prisoner))
-            {
-                if (logging)
-                {
-                    Log.Message($"{pawn.Name} cannot transform non pawn {t.ThingID}");
-                }
-                return false;
-            }
-
-            if (!prisoner.IsPrisonerOfColony)
-            {
-                if (logging)
-                {
-                    Log.Message($"{prisoner.Name} is not a prisoner");
-                }
-
-                return false;
-            }
-            var guest = prisoner.guest;
-
-            if (guest == null)
-            {
-                if (logging)
-                {
-                    Log.Message($"{prisoner.Name} does not have a guest tracker");
-                }
-
-                return false;
-            }
-
-            if (guest.interactionMode != PMPrisonerInteractionModeDefOf.PM_Transform)
-            {
-                if (logging)
-                    Log.Message($"{prisoner.Name} is not set to be transformed");
-                return false;
-            }
-
-            if (!EnsurePrisonerIsTransformable(prisoner))
-            {
-                if (logging)
-                {
-                    Log.Message($"{prisoner.Name} cannot be transformed!");
-                }
-
-                return false;
-            }
-
-            var chamber = FindValidChamberFor(pawn, prisoner);
-            if (chamber == null)
-            {
-                if (logging)
-                    Log.Message($"cannot find chamber for {prisoner.Name}");
-                return false;
-            }
-
-            return true;
-        }
-
 
         [CanBeNull]
         MutaChamber FindValidChamberFor([NotNull] Pawn worker, [NotNull] Pawn prisoner)
