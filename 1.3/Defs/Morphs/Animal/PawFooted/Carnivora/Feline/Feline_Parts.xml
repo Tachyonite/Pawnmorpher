@@ -13,6 +13,12 @@
 					<description>[PAWN_nameDef]'s face has pressed out into this rather feline shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into this rather feline shape, which is useful for eating.</description>
+				</values>
+			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 

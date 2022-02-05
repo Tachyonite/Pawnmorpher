@@ -23,6 +23,15 @@
 					</graphics>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a great canine. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
+					<graphics>
+						<Muzzle>Parts/wolfface/wolfface</Muzzle>
+					</graphics>
+				</values>
+			</li>
 		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

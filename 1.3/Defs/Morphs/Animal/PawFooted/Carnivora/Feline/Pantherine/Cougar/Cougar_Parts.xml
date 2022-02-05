@@ -24,6 +24,14 @@
 					</graphics>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
+					</graphics>
+				</values>
+			</li>
 		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

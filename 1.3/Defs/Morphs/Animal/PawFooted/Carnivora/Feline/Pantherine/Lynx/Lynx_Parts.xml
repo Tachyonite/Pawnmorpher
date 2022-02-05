@@ -24,6 +24,14 @@
 					</graphics>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
+					</graphics>
+				</values>
+			</li>
 		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
@@ -49,20 +57,20 @@
 		<label>lynx ear</label>
 		<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
 		<graphics>
-			<LeftEar>Parts/Lynx/Lynx/Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Lynx/Lynx/Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Lynx/Lynx/Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Lynx/Lynx/Ear_Right_Behind</RightEarBehindHead>
+			<LeftEar>Parts/Lynx/Lynx_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Lynx/Lynx_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Lynx/Lynx_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Lynx/Lynx_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<graphics>
-						<LeftEar>Parts/Lynx/Lynx/Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Lynx/Lynx/Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Lynx/Lynx/Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Lynx/Lynx/Ear_Right_Behind</RightEarBehindHead>
+						<LeftEar>Parts/Lynx/Lynx_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Lynx/Lynx_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Lynx/Lynx_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Lynx/Lynx_Ear_Right_Behind</RightEarBehindHead>
 					</graphics>
 				</values>
 			</li>
@@ -75,14 +83,14 @@
 		<label>lynx tail</label>
 		<description>Unlike most felines, the tail of a lynx is short and stubby. [PAWN_nameDef] has one of them now.</description>
 		<graphics>
-			<Tail>Parts/Lynx/Lynx/Tail</Tail>
+			<Tail>Parts/Lynx/Lynx_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<graphics>
-						<Tail>Parts/Lynx/Lynx/Tail</Tail>
+						<Tail>Parts/Lynx/Lynx_Tail</Tail>
 					</graphics>
 				</values>
 			</li>

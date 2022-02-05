@@ -14,6 +14,12 @@
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
+				</values>
+			</li>
 		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

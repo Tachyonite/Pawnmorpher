@@ -13,6 +13,12 @@
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a big dog. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a big dog. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
+				</values>
+			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
