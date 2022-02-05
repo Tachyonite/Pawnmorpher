@@ -5,9 +5,6 @@
 		<race>Fox_Fennec</race>
 		<categories>
 			<li>Arid</li>
-			<li>Combat</li>
-			<li>Social</li>
-			<li>Canid</li>
 		</categories>
 		<injectorProperties></injectorProperties>
 		<partialTransformation>PawnmorphFennecFoxTFPartial</partialTransformation>

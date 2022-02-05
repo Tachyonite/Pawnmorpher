@@ -6,7 +6,6 @@
 		<race>Lynx</race>
 		<categories>
 			<li>Temperate</li>
-			<li>Feline</li>
 		</categories>
 		<fullTransformation>PawnmorphLynxTF</fullTransformation>
 		<partialTransformation>PawnmorphLynxTFPartial</partialTransformation>

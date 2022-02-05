@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="NecrophageJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerJawPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>
 		<defName>PM_HellhoundSnout</defName>
 		<label>hellhound muzzle</label>
@@ -55,7 +55,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="NecrophageEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerEarPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>
 		<defName>PM_HellhoundEar</defName>
 		<label>hellhound ear</label>
@@ -85,7 +85,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="NecrophageTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerTailPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>
 		<defName>PM_HellhoundTail</defName>
 		<label>hellhound tail</label>

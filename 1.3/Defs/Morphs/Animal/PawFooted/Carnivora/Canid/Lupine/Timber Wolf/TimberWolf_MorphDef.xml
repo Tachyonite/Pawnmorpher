@@ -6,8 +6,6 @@
 		<!--explicitHybridRace>WolfMorphRace_Explicit</explicitHybridRace-->
 		<categories>
 			<li>Temperate</li>
-			<li>Combat</li>
-			<li>Canid</li>
 		</categories>
 		<fullTransformation>PawnmorphWolfTF</fullTransformation>
 		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>

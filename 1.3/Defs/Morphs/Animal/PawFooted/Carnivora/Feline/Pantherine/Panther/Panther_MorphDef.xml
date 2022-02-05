@@ -6,8 +6,6 @@
 		<race>Panther</race>
 		<categories>
 			<li>Tropical</li>
-			<li>Combat</li>
-			<li>Feline</li>
 		</categories>
 		<fullTransformation>PawnmorphPantherTF</fullTransformation>
 		<partialTransformation>PawnmorphPantherTFPartial</partialTransformation>

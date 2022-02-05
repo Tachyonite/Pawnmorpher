@@ -369,7 +369,7 @@
 
 						<!-- Morph Parts -->
 						<Pawnmorph.Hediffs.MutationDef Name="LeopardPart" ParentName="PawnmorphPart" Abstract="True">
-							<classInfluence>Leopard</classInfluence>
+							<classInfluence>Pantherine</classInfluence>
 						</Pawnmorph.Hediffs.MutationDef>
 
 						<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="LeopardJawBase">

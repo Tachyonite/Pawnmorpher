@@ -1,6 +1,10 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef Abstract="true" ParentName="CanidMorph" Name="NecrophageMorph">
-		<classification>Canid</classification>
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CanidMorph" Name="ScavengerMorph">
+		<classification>Scavenger</classification>
+		<categories>
+			<li>Canid</li>
+			<li>Combat</li>
+		</categories>
 		<raceSettings>
 			<thoughtSettings>
 				<replacerList>

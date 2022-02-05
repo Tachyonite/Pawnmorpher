@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="BearPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>Bear</classInfluence>
+		<classInfluence>Ursine</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="BearJawBase">
 		<label>ursine muzzle</label>
@@ -275,7 +275,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
 		<defName>PM_BearTorso</defName>
-		<classInfluence>Bear</classInfluence>
+		<classInfluence>Ursine</classInfluence>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>

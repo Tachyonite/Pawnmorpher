@@ -7,7 +7,6 @@
 		<categories>
 			<li>Arid</li>
 			<li>Temperate</li>
-			<li>Feline</li>
 		</categories>
 		<fullTransformation>PawnmorphCougarTF</fullTransformation>
 		<partialTransformation>PawnmorphCougarTFPartial</partialTransformation>

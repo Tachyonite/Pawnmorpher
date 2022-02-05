@@ -2,6 +2,10 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="CanidMorph" Name="WolfMorphBase">
 		<description>Wolfmorphs usually stand on their paws and possess keen nose seeking prey, with grey or brown fur covering them. They make excellent fighters.</description>
 		<classification>Wolf</classification>
+		<categories>
+			<li>Combat</li>
+			<li>Canid</li>
+		</categories>
 		<transformSettings>
 			<transformationMemory>WolfTransformationMemory</transformationMemory>
 			<revertedMemory>WolfRevertedMemory</revertedMemory>

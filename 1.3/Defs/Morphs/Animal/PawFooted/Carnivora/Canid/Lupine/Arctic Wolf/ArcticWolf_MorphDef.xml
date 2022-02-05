@@ -5,8 +5,6 @@
 		<race>Wolf_Arctic</race>
 		<categories>
 			<li>Cold</li>
-			<li>Combat</li>
-			<li>Canid</li>
 		</categories>
 		<fullTransformation>PawnmorphArcticWolfTF</fullTransformation>
 		<partialTransformation>PawnmorphArcticWolfTFPartial</partialTransformation>

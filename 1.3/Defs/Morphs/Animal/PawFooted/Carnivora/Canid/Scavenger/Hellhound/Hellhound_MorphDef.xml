@@ -1,13 +1,11 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="NecrophageMorph">
+	<Pawnmorph.MorphDef ParentName="ScavengerMorph">
 		<defName>PM_HellhoundMorph</defName>
 		<label>hellhoundmorph</label>
 		<race>EtherHellhound</race>
 		<description>A large, heavily mutated canid morph resembling a warg morph but significantly larger and usually with additional mutations.</description>
 		<categories>
 			<li>Combo</li>
-			<li>Canid</li>
-			<li>Combat</li>
 		</categories>
 		<noInjector>true</noInjector>
 		<raceSettings>

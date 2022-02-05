@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageJawPart" ParentName="CanidJawPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerJawPart" ParentName="CanidJawPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -22,7 +22,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageEarPart" ParentName="CanidEarPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerEarPart" ParentName="CanidEarPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
@@ -33,7 +33,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="NecrophageTailPart" ParentName="CanidTailPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerTailPart" ParentName="CanidTailPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

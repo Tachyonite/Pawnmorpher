@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name="HarePart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>Hare</classInfluence>
+		<classInfluence>Leporid</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PawnmorphPart" Name="HareJawBase">
 		<label>leporine muzzle</label>
