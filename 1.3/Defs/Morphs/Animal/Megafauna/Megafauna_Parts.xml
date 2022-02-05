@@ -1,4 +1,22 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaEarPart" ParentName="AnimalEarPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherStrongHeart</defName>
 		<label>strong heart</label>
@@ -33,6 +51,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherBellowingLung</defName>
 		<label>bellowing lung</label>

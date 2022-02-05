@@ -54,7 +54,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerEarPart">
 		<classInfluence>WargMorph</classInfluence>
 		<defName>EtherWargEar</defName>
-		<label>warglike</label>
+		<label>warglike ear</label>
 		<description>The rugged, pointed ear of a hungry warg.</description>
 		<graphics>
 			<LeftEar>Parts/Warg/Warg_Ear_Left</LeftEar>

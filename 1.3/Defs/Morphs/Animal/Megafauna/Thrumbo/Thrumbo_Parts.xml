@@ -1,9 +1,4 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="ThrumboPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>ThrumboMorph</classInfluence>
-		<value>20</value>
-	</Pawnmorph.Hediffs.MutationDef>
-	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
 		<defName>ThrumboFur</defName>
 		<classInfluence>ThrumboMorph</classInfluence>
@@ -12,89 +7,44 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
+		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>
 		<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>-0.5</minSeverity>
-				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze, though talking is much harder.</description>
-				<label>bestial</label>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/wargface/wargface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
+					<graphics>
+						<Muzzle>Parts/thrumboface/thrumboface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.05</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adaptation has removed most of the difficulty with speaking.</description>
+					<graphics>
+						<Muzzle>Parts/thrumboface/thrumboface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.20</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An impressive snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Further adaptation has brought out the wise thrumbo inside.</description>
+					<graphics>
+						<Muzzle>Parts/thrumboface/thrumboface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adaptation has removed most of the difficulty with speaking.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.04</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>paragon</label>
-				<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Further adaptation has brought out the wise thrumbo inside.</description>
-				<minSeverity>1.5</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
-				<statOffsets>
-					<SocialImpact>+0.10</SocialImpact>
-				</statOffsets>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -110,49 +60,59 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaEarPart">
+		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboEar</defName>
-		<label>thrumbic</label>
-		<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do — white-furred, rounded and beautiful.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+		<label>thrumbic ear</label>
+		<description>The fluffy ears of a thrumbo.</description>
+		<graphics>
+			<LeftEar>Parts/Thrumbo/Thrumbo_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Thrumbo/Thrumbo_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do — white-furred, rounded and beautiful.</description>
+					<graphics>
+						<LeftEar>Parts/Thrumbo/Thrumbo_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Thrumbo/Thrumbo_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaTailPart">
+		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
-		<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.01</offset>
-					</li>
-				</capMods>
+		<description>The fluffy tail of a thrumbo.</description>
+		<graphics>
+			<Tail>Parts/thrumboface/thrumbotail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
+					<graphics>
+						<Tail>Parts/thrumboface/thrumbotail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThrumboPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
 		<description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head.</description>

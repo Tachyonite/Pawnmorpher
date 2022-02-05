@@ -1,45 +1,41 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="ElephantPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideJawPart">
 		<classInfluence>ElephantMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
 		<defName>EtherTrunk</defName>
 		<label>elephant trunk</label>
 		<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<categories>
-			<li>Powerful</li>
-		</categories>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.50</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/elephantface/elephantface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an elephant. Speaking is difficult, but eating is easier.</description>
+					<graphics>
+						<Muzzle>Parts/elephantface/elephantface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.10</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an elephant. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+					<graphics>
+						<Muzzle>Parts/elephantface/elephantface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of an elephant.</description>
+					<graphics>
+						<Muzzle>Parts/elephantface/elephantface</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -65,48 +61,59 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
+		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantEar</defName>
-		<label>elephantine</label>
-		<description>Wow, those are big ears, [PAWN_nameDef]. [PAWN_pronoun] looks like a dumbo, doesn't [PAWN_pronoun].</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Hearing</capacity>
-						<offset>0.25</offset>
-					</li>
-				</capMods>
-				<statOffsets>
-					<ComfyTemperatureMin>2</ComfyTemperatureMin>
-					<ComfyTemperatureMax>5</ComfyTemperatureMax>
-				</statOffsets>
+		<label>elephantine ears</label>
+		<description>The ears of an elephant.</description>
+		<graphics>
+			<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Elephant/Elephant_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Elephant/Elephant_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Wow, those are big ears, [PAWN_nameDef]. [PAWN_pronoun] looks like a dumbo, doesn't [PAWN_pronoun].</description>
+					<graphics>
+						<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Elephant/Elephant_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Elephant/Elephant_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
-		<defName>EtherElephantTail</defName>
-		<label>elephant tail</label>
-		<description>A tail of an elephant. It swishes gently at flies that gather.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideTailPart">
+		<classInfluence>ElephantMorph</classInfluence>
+		<defName>EtherElephantTail</defName>
+		<label>elephant tail</label>
+		<description>A tail of an elephant.</description>
+		<graphics>
+			<Tail>Parts/elephantface/elephanttail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long tail that swishes gently at flies that gather.</description>
+					<graphics>
+						<Tail>Parts/elephantface/elephanttail</Tail>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantHand</defName>
 		<label>stump hand</label>
 		<description>Thick, leathery elephant stumps have replaced this hand.  Doing any kind of fine manipulation with it will be exceedingly challenging.</description>
@@ -185,7 +192,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantLeg</defName>
 		<label>thick leg</label>
 		<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide.</description>
@@ -230,7 +238,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantFoot</defName>
 		<label>stumpy</label>
 		<description>An stump-like elphant foot.</description>

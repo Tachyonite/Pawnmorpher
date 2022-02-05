@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="ThickFurJawPart" ParentName="MegafaunaJawPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ThickFurEarPart" ParentName="MegafaunaEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ThickFurTailPart" ParentName="MegafaunaTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="ThickFurLimb">
+		<defName>EtherThickFurLimb</defName>
+		<label>thick fur</label>
+		<description>A heavy coat of fur drapes across this limb, insulating a lot of heat.</description>
+		<mutationMemory>EtherThickFurLimb</mutationMemory>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+		</comps>
+		<classInfluence>ThickFur</classInfluence>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>light hair</labelOverride>
+				<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>thin fur</labelOverride>
+				<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
+				<minSeverity>0.2</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>fur patches</labelOverride>
+				<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>dense fur</labelOverride>
+				<description>The fur has become denser on [PAWN_nameDef]'s limb, making the skin underneath hard to see.</description>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>thickly furred</labelOverride>
+				<description>The fur drapes [PAWN_nameDef]'s limb entirely. It's quite heavy and rather warm.</description>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-0.3</ComfyTemperatureMin>
+					<ComfyTemperatureMax>-0.1</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

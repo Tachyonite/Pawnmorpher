@@ -1,62 +1,41 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="RhinocerosPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideJawPart">
 		<classInfluence>RhinocerosMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
 		<defName>EtherRhinocerosJaw</defName>
 		<label>ceratorhine muzzle</label>
 		<description>The dangerously horned snout of a rhino.</description>
-		<categories>
-			<li>Powerful</li>
-		</categories>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.05</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes.</description>
+					<graphics>
+						<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>A oversize rhino jaw, complete with horn perfect for goring your foes.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. Adaptation has removed some of the difficulty with speaking.</description>
+					<graphics>
+						<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
-				<minSeverity>1</minSeverity>
-				<description>A oversize rhino jaw, complete with horn perfect for goring your foes. Adaptation has removed some of the difficulty with speaking.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An impressive oversized rhino jaw, complete with horn perfect for goring your foes.</description>
+					<graphics>
+						<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -92,41 +71,54 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
 		<defName>EtherRhinocerosEar</defName>
-		<label>ceratorhine</label>
+		<label>rhinoceros ear</label>
 		<description>A large, curved rhinoceros ear.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+		<graphics>
+			<LeftEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The curved ears of a rhinoceros.</description>
+					<graphics>
+						<LeftEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerosPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideTailPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
 		<defName>EtherRhinocerosTail</defName>
 		<label>rhinoceros tail</label>
-		<description>A short, leathery rhinoceros tail, complete with tuft.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		<description>The tail of a rhinoceros.</description>
+		<graphics>
+			<Tail>Parts/Rhinoceros/Rhinoceros_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short, leathery rhinoceros tail, complete with tuft.</description>
+					<graphics>
+						<Tail>Parts/Rhinoceros/Rhinoceros_Tail</Tail>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

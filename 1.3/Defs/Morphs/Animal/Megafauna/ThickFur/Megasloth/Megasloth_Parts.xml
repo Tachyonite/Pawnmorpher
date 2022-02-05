@@ -1,44 +1,42 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="MegaslothPart" ParentName="PawnmorphPart" Abstract="true">
-		<classInfluence>MegaslothMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
 		<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier.</description>
+					<graphics>
+						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-						<!-- I'm using 20% of the base reduction for the adapted across the board, might need balancing though-->
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<label>adapted</label>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+					<graphics>
+						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An impressive snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier.</description>
+					<graphics>
+						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -54,31 +52,28 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-				<!-- takes 4 days to progress -->
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaTailPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
-		<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<description>The tail of a megasloth.</description>
+		<graphics>
+			<Tail>Parts/megaslothface/megaslothtail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
+					<graphics>
+						<Tail>Parts/megaslothface/megaslothtail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -97,7 +92,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothArm</defName>
 		<description>[PAWN_nameDef]'s arm has become muscular and fuzzy, greatly enhancing their strength as well as making them somewhat more resistant to temperature.</description>
 		<label>megatherine arm</label>
@@ -120,7 +116,8 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothHand</defName>
 		<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
 		<label>clawed hand</label>
@@ -172,7 +169,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothLeg</defName>
 		<description>[PAWN_nameDef]'s leg has become fuzzy and muscular, enhancing their strength and resistance to temperature, but slowing their movement.</description>
 		<label>megatherine leg</label>
@@ -199,7 +197,8 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothFoot</defName>
 		<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of [PAWN_possessive] feet. As you can imagine, this makes getting anywhere somewhat difficult.</description>
 		<label>clawed foot</label>
@@ -234,7 +233,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegaslothPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>
 		<description>Long, fuzzy hair coats the whole of [PAWN_nameDef]'s body, keeping them warm and comfortable.</description>

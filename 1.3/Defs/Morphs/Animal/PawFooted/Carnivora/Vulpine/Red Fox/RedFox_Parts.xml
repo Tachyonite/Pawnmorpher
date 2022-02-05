@@ -39,7 +39,7 @@
 		<defName>EtherFoxEar</defName>
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox ear</label>
-		<description>The vulpine ear of an red fox.</description>
+		<description>The vulpine ear of a red fox.</description>
 		<graphics>
 			<LeftEar>Parts/FoxUpdated/RedFox_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/FoxUpdated/RedFox_Ear_Left_Behind</LeftEarBehind>
