@@ -525,7 +525,7 @@ namespace Pawnmorph.Hybrids
             }
 
             if (displayNotifications && (pawn.IsColonist || pawn.IsPrisonerOfColony))
-                SendHybridTfMessage(pawn, tfSettings);
+                SendHybridTfMessage(pawn, oldRace, tfSettings);
 
      
 
@@ -627,12 +627,12 @@ namespace Pawnmorph.Hybrids
             }
         }
 
-        private static void SendHybridTfMessage(Pawn pawn, MorphDef.TransformSettings tfSettings)
+        private static void SendHybridTfMessage(Pawn pawn, ThingDef oldRace, MorphDef.TransformSettings tfSettings)
         {
             string label;
 
             label = string.IsNullOrEmpty(tfSettings?.transformationMessage)
-                        ? RACE_CHANGE_MESSAGE_ID.Translate(pawn.LabelShort)
+                        ? RACE_CHANGE_MESSAGE_ID.Translate(pawn.LabelShort, oldRace.label)
                         : tfSettings.transformationMessage.Formatted(pawn.LabelShort);
 
             label = label.CapitalizeFirst(); 
