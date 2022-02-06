@@ -82,14 +82,14 @@ namespace Pawnmorph
             }
 
             //check for split mind 
-            if (traits.Contains(PMTraitDefOf.MutationAffinity) && traits.Contains(TraitDefOf.BodyPurist))
-            {
-                traits.Remove(PMTraitDefOf.MutationAffinity);
-                traits.Remove(TraitDefOf.BodyPurist);
+            //if (traits.Contains(PMTraitDefOf.MutationAffinity) && traits.Contains(TraitDefOf.BodyPurist))
+            //{
+            //    traits.Remove(PMTraitDefOf.MutationAffinity);
+            //    traits.Remove(TraitDefOf.BodyPurist);
 
-                AspectTracker at = mergedPawn.GetAspectTracker();
-                at?.Add(AspectDefOf.SplitMind);
-            }
+            //    AspectTracker at = mergedPawn.GetAspectTracker();
+            //    at?.Add(AspectDefOf.SplitMind);
+            //}
 
             foreach (TraitDef traitDef in traits) mTraits.GainTrait(new Trait(traitDef, 0, true));
         }
