@@ -225,24 +225,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherDeerSnout>
-					<EtherHareJaw>
-						<path>Parts/Hare/Hare_Jaw</path>
-						<severity>
-							<a0.5>Parts/Hare/Hare_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherHareJaw>
-					<EtherSnowhareJaw>
-						<path>Parts/Hare/Hare_Jaw</path>
-						<severity>
-							<a0.5>Parts/Hare/Hare_Jaw</a0.5>
-							<a0.3>Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
-							<a0.1>Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherSnowhareJaw>
 					<EtherHorseSnout>
 						<path>Parts/horseface/horseface</path>
 						<severity>
@@ -429,7 +411,6 @@
 					</EtherDromedaryEar>
 					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left</EtherCapybaraEar>
 
-					<EtherHareEar>Parts/Hare/Hare_Ear_Left</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left</EtherHorseEar>
 					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Left</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left</EtherPantherEar>
@@ -483,7 +464,6 @@
 						</severity>
 					</EtherDromedaryEar>
 					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Left_Behind</EtherCapybaraEar>
-					<EtherHareEar>Parts/Hare/Hare_Ear_Left_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left_Behind</EtherHorseEar>
 					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Left_Behind</EtherPantherEar>
@@ -537,7 +517,6 @@
 					</EtherDromedaryEar>
 					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right</EtherCapybaraEar>
 
-					<EtherHareEar>Parts/Hare/Hare_Ear_Right</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right</EtherHorseEar>
 					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Right</EtherMonkeyEar>
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right</EtherPantherEar>
@@ -591,7 +570,6 @@
 					</EtherDromedaryEar>
 					<EtherCapybaraEar>Parts/Capybara/Capybara_Ear_Right_Behind</EtherCapybaraEar>
 
-					<EtherHareEar>Parts/Hare/Hare_Ear_Right_Behind</EtherHareEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right_Behind</EtherHorseEar>
 					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPantherEar>Parts/Panther/Panther_Ear_Right_Behind</EtherPantherEar>
@@ -637,7 +615,6 @@
 					<EtherBisonTail>Parts/Bison/Bison_Tail</EtherBisonTail>				  
 					<EtherShortTail>Parts/deerface/deertail</EtherShortTail>
 					<EtherDonkeyTail>Parts/Donkey/Donkey_Tail</EtherDonkeyTail>
-					<EtherHareTail>Parts/Hare/Hare_Tail</EtherHareTail>
 					<EtherHorseTail>Parts/horseface/horsetail</EtherHorseTail>
 					<EtherPantherTail>Parts/Panther/Panther_Tail</EtherPantherTail>
 					<EtherCurlyTail>Parts/pigface/pigtail</EtherCurlyTail>

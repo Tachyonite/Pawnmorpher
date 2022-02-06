@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="HareMorphBase">
+	<Pawnmorph.MorphDef ParentName="LeporidMorph">
 		<defName>HareMorph</defName>
 		<label>haremorph</label>
 		<race>Hare</race>
@@ -8,7 +8,6 @@
 			<li>Temperate</li>
 			<li>Farm</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphHareTF</fullTransformation>
 		<partialTransformation>PawnmorphHareTFPartial</partialTransformation>
 		<raceSettings>

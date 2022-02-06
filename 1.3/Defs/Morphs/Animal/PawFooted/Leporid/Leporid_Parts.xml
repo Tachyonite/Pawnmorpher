@@ -1,0 +1,132 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedJawPart">
+		<defName>EtherHareMuzzle</defName>
+		<classInfluence>Leporid</classInfluence>
+		<label>hare muzzle</label>
+		<description>The fluffy muzzle of a hare.</description>
+		<mutationMemory>EtherHareJaw</mutationMemory>
+		<graphics>
+			<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. Adaptation has removed some of the difficulty with speaking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>3.4</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedEarPart">
+		<defName>EtherHareEar</defName>
+		<classInfluence>Leporid</classInfluence>
+		<label>hare ear</label>
+		<description>The fluffy ear of a hare.</description>
+		<graphics>
+			<LeftEar>Parts/Hare/Hare_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Hare/Hare_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Hare/Hare_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Hare/Hare_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<mutationMemory>EtherHareEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/Hare/Hare_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Hare/Hare_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Hare/Hare_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Hare/Hare_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+					<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedTailPart">
+		<defName>EtherHareTail</defName>
+		<classInfluence>Leporid</classInfluence>
+		<label>hare tail</label>
+		<description>The small and very fluffy tail of a hare.</description>
+		<mutationMemory>EtherHareTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Hare/Hare_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/Hare/Hare_Tail</Tail>
+					</graphics>
+					<description>A small puff of fluff peaks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>Leporid</classInfluence>
+		<defName>EtherHareLeg</defName>
+		<label>spring-loaded leg</label>
+		<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.50</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<countToAffect>2</countToAffect>
+		<categories>
+			<li>Minor</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>
