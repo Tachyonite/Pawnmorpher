@@ -153,6 +153,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>Ursine</classInfluence>
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>
 		<description>Massive, clawed paws that belong on a bear rather than a human.  They are deadly in a fight, but are rather useless at fine manipulation.</description>

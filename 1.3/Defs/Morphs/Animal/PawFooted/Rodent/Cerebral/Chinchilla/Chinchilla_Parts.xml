@@ -43,7 +43,7 @@
 		<graphics>
 			<LeftEar>Parts/Chinchilla/Chinchilla_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
+			<RightEar>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
@@ -54,7 +54,7 @@
 					<graphics>
 						<LeftEar>Parts/Chinchilla/Chinchilla_Ear_Left</LeftEar>
 						<LeftEarBehind>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
+						<RightEar>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
 						<RightEarBehindHead>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</RightEarBehindHead>
 					</graphics>
 				</values>

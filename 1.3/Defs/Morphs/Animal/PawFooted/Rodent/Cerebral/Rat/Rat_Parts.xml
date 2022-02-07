@@ -84,56 +84,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherDextrousPawHand</defName>
-		<label>dextrous paw</label>
-		<description>Thankfully, this more manipulative paw allows [PAWN_nameDef] to keep their thumbs.</description>
-		<initialSeverity>0</initialSeverity>
-		<classInfluence>Rodent</classInfluence>
-		<parts>
-			<li>Hand</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
-				<label>unfamiliar</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.99</minSeverity>
-				<label>adapted</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity> <!-- Adaption Cream -->
-				<label>enhanced</label>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity> <!-- Paragon -->
-				<label>paragon</label>
-				<partEfficiencyOffset>0.2</partEfficiencyOffset>
-			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>claws</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>2.0</power>
-						<cooldownTime>1</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>RatMorph</classInfluence>
 		<defName>EtherRatFoot</defName>
 		<label>rodent</label>
 		<description>[PAWN_nameDef]'s feet are dextrous and elongated, but hairless and pale.</description>
