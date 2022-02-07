@@ -7,9 +7,7 @@
 		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
 		<categories>
 			<li>Cold</li>
-			<li>Combat</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(112,82,65)</skinColorOverride>

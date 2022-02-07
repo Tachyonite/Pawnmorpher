@@ -2,6 +2,9 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="PawFootedMorph" Name="UrsineMorph">
 		<description>Bearmorphs are combat experts. Usually equipped with large claws, paws and maws, they are devastatingly dangerous up close. But they have a tender heart, and a soft spot for plush toys of the ursine variety.</description>
 		<classification>Ursine</classification>
+		<categories>
+			<li>Combat</li>
+		</categories>
 		<transformSettings>
 			<transformationMemory>BearTransformationMemory</transformationMemory>
 			<revertedMemory>BearRevertedMemory</revertedMemory>
