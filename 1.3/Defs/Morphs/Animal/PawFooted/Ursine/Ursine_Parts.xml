@@ -1,10 +1,260 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<mutationMemory>EtherBearMuzzle</mutationMemory>
+		<graphics>
+			<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+					</graphics>
+					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+					</graphics>
+					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+					</graphics>
+					<description>An impressive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineEarPart" ParentName="PawFootedEarPart" Abstract="true">
+		<mutationMemory>EtherBearEar</mutationMemory>
+		<graphics>
+			<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+					<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineTailPart" ParentName="PawFootedTailPart" Abstract="true">
+		<mutationMemory>EtherBearTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/bearface/beartail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<graphics>
+						<Tail>Parts/bearface/beartail</Tail>
+					</graphics>
+					<description>A short tail, like that of a bear. Not much of a tail, really.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>PM_BearArms</defName>
+		<label>ursine</label>
+		<description>[PAWN_nameDef]'s arms have grown significant muscle mass</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.15</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.05</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.4</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.1</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<labelOverride>ursine</labelOverride>
+				<statOffsets>
+					<CarryingCapacity>0.15</CarryingCapacity>
+					<MeleeArmorPenetration>0.2</MeleeArmorPenetration>
+					<PM_NaturalMeleeEffectiveness>0.1</PM_NaturalMeleeEffectiveness>
+
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2</minSeverity>
+				<label>paragon</label>
+				<statOffsets>
+					<CarryingCapacity>0.25</CarryingCapacity>
+					<PM_NaturalMeleeEffectiveness>0.2</PM_NaturalMeleeEffectiveness>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Arm</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherBearPawHand</defName>
+		<label>huge paw</label>
+		<description>Massive, clawed paws that belong on a bear rather than a human.  They are deadly in a fight, but are rather useless at fine manipulation.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>clawed</labelOverride>
+				<description>Each finger on this hand is tipped with a huge, sharp claw.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>large padded</labelOverride>
+				<description>In addition to massive claws, this hand is growing larger and developing thick pads on the palm and each fingertip.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.4</minSeverity>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<labelOverride>large handpaw</labelOverride>
+				<description>This hand is has grown noticably larger and is starting to look more like a paw than a hand.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.6</minSeverity>
+				<partEfficiencyOffset>-0.3</partEfficiencyOffset>
+				<labelOverride>large inflexible handpaw</labelOverride>
+				<description>This hand's fingers have started to shorten and the thumb is moving up to become a fifth clawed finger.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.8</minSeverity>
+				<partEfficiencyOffset>-0.5</partEfficiencyOffset>
+				<label>unfamiliar</label>
+				<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] will be useless at fine manipulation until [PAWN_pronoun] adapts to them, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.99</minSeverity>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<label>adapted</label>
+				<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] has gotten used to having five fingers and no thumb, but the huge size still makes them more clumsy than someone with smaller paws.  At least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<labelOverride>huge handpaw</labelOverride>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<description>A massive, hand-like paw with deadly claws has replaced [PAWN_nameDef]'s hand.  Further adaption has resulted in the thumb returning to its usual place, giving [PAWN_objective] better manipulation than your average bear.  The size still makes it slightly more awkward to use than a regular hand, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<!-- paragon  -->
+				<!-- only pawns with the Paragon aspect can get this stage -->
+				<labelOverride>bear hand</labelOverride>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<description>A massive hand-like paw with deadly claws has replaced [PAWN_nameDef]'s hand.  Even further adaption has given the handpaw remarkable dexterity for its size without making it any less deadly.  [PAWN_pronoun] can easily swap from gently holding something to ripping it apart with [PAWN_possessive] bear hands.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tip</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Hand</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
+		<defName>PM_BearTorso</defName>
+		<classInfluence>Ursine</classInfluence>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<healthOffset>8</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>20</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>paragon</label>
+				<minSeverity>2</minSeverity>
+				<healthOffset>20</healthOffset>
+				<statOffsets>
+					<CarryingCapacity>25</CarryingCapacity>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

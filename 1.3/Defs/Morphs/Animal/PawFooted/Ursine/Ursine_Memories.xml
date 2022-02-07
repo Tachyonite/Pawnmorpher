@@ -76,6 +76,7 @@
             </li>
         </stages>
     </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherBearEar</defName>
@@ -100,6 +101,7 @@
             </li>
         </stages>
     </ThoughtDef>
+	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
         <defName>EtherBearTail</defName>
@@ -124,6 +126,7 @@
             </li>
         </stages>
     </ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherBearPawHand</defName>

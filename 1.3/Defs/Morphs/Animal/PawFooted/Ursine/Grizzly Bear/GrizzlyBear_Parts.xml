@@ -1,0 +1,22 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineJawPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearMuzzle</defName>
+		<label>grizzly muzzle</label>
+		<description>The ferocious muzzle of a grizzly bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineEarPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearEar</defName>
+		<label>grizzly ear</label>
+		<description>The rounded ear of a bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineTailPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearTail</defName>
+		<label>grizzly tail</label>
+		<description>The short tail of a bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,0 +1,27 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineJawPart">
+		<classInfluence>PolarBearMorph</classInfluence>
+		<defName>EtherPolarBearMuzzle</defName>
+		<label>polar muzzle</label>
+		<description>The ferocious muzzle of a polar bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineEarPart">
+		<classInfluence>PolarBearMorph</classInfluence>
+		<defName>EtherPolarBearEar</defName>
+		<label>polar ear</label>
+		<description>The rounded ear of a bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineTailPart">
+		<classInfluence>PolarBearMorph</classInfluence>
+		<defName>EtherPolarBearTail</defName>
+		<label>polar tail</label>
+		<description>The short tail of a bear.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
+		<defName>EtherPolarBearFur</defName>
+		<classInfluence>PolarBearMorph</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
