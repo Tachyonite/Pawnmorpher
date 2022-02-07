@@ -1,5 +1,41 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="RodentJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a rodent, complete with oversized front teeth; speaking is difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a rodent, complete with oversized front teeth; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a rodent, complete with oversized front teeth.</description>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RodentEarPart" ParentName="PawFootedEarPart" Abstract="true">
