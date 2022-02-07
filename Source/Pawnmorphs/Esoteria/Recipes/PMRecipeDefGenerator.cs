@@ -63,11 +63,9 @@ namespace Pawnmorph.Recipes
             List<ThingDef> items = new List<ThingDef>(); 
 
             items.AddRange(MorphDef.AllDefs.Select(m => m.injectorDef).Where(m => m != null && !m.IsDrug));
-            if(!PMThingDefOf.MechaniteSlurry.IsDrug)
-                items.Add(PMThingDefOf.MechaniteSlurry);
 
             //really hacky way of getting the serums but can't think of a better way 
-            var serums = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsDrug && td.ingestible?.outcomeDoers?.Any(o => o is IngestionOutcomeDoer_AddMorphTf || o is AddMorphCategoryTfHediff) == true);
+            var serums = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsDrug && td.ingestible?.outcomeDoers?.Any(o => o is IngestionOutcomeDoer_AddMorphTf || o is AddMorphCategoryTfHediff || o is IngestionOutcomeDoer_GiveHediff) == true);
 
             foreach (ThingDef thingDef in serums)
             {
@@ -93,7 +91,7 @@ namespace Pawnmorph.Recipes
                 anesthetize = false,
                 surgerySuccessChanceFactor = 99999f,
                 modContentPack = item.modContentPack,
-                workAmount = item.ingestible.baseIngestTicks,
+                workAmount = item.ingestible.baseIngestTicks,   
                 dontShowIfAnyIngredientMissing = true,
                 recipeUsers = new List<ThingDef>()
             };
