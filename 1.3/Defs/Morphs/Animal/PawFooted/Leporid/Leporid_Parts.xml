@@ -86,7 +86,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedTailPart">
 		<defName>EtherHareTail</defName>
 		<classInfluence>Leporid</classInfluence>
-		<label>hare tail</label>
+		<label>cotton tail</label>
 		<description>The small and very fluffy tail of a hare.</description>
 		<mutationMemory>EtherHareTail</mutationMemory>
 		<graphics>

@@ -1,102 +1,89 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="RaccoonPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsJawPart">
 		<classInfluence>RaccoonMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
 		<description>A snout with a nose always in a rubbish bin.</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.05</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. Eating is easier, but speaking is harder.</description>
+					<graphics>
+						<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.20</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. Adaptation has removed all of the difficulty with speaking.</description>
+					<graphics>
+						<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
-				<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. Adaptation has removed all of the difficulty with speaking.</description>
-				<minSeverity>1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A short, pointed, bandit-masked impressive muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away.</description>
+					<graphics>
+						<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10</power>
-						<cooldownTime>2</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsEarPart">
+		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonEar</defName>
-		<label>procyonine ear</label>
-		<description>A short and fuzzy round ear has replaced [PAWN_nameDef]'s normal ear.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<label>raccoon ear</label>
+		<description>A short and fuzzy round ears of a raccoon.</description>
+		<graphics>
+			<LeftEar>Parts/Raccoon/Raccoon_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Raccoon/Raccoon_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Raccoon/Raccoon_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Raccoon/Raccoon_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short and fuzzy round ear has replaced [PAWN_nameDef]'s normal ear.</description>
+					<graphics>
+						<LeftEar>Parts/Raccoon/Raccoon_Ear_Left</LeftEar>
+						<LeftEarBehind>Parts/Raccoon/Raccoon_Ear_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Raccoon/Raccoon_Ear_Right</RightEar>
+						<RightEarBehindHead>Parts/Raccoon/Raccoon_Ear_Right_Behind</RightEarBehindHead>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		</stagePatches>
+		
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="RaccoonPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsTailPart">
+		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonTail</defName>
-		<label>ringtail</label>
-		<description>The ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine. It twitches when it senses rubbish.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<label>ring tail</label>
+		<graphics>
+			<Tail>Parts/Raccoon/Raccoon_Tail</Tail>
+		</graphics>
+		<description>The ringtail of a raccoon.</description>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine. It twitches when it senses rubbish.</description>
+					<graphics>
+						<Tail>Parts/Raccoon/Raccoon_Tail</Tail>
+					</graphics>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
