@@ -93,6 +93,9 @@
       <DeteriorationRate>2.0</DeteriorationRate>
       <Flammability>0.2</Flammability>
     </statBases>
+    <thingCategories>
+      <li>Drugs</li>
+    </thingCategories>
     <techLevel>Ultra</techLevel>
     <tradeTags>
       <li>ExoticMisc</li>
