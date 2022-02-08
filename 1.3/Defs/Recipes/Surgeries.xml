@@ -8,6 +8,7 @@
         <workAmount>1000</workAmount>
         <anesthetize>false</anesthetize>
         <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+        <dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
         <ingredients>
             <li>
                 <filter>
@@ -33,6 +34,7 @@
         <workAmount>1300</workAmount>
         <anesthetize>false</anesthetize>
         <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+        <dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
         <ingredients>
             <li>
                 <filter>
@@ -44,9 +46,9 @@
             </li>
         </ingredients>
         <fixedIngredientFilter>
-            <thingDefs>
-                <li>PM_AdaptionCream</li>
-            </thingDefs>
+			<thingDefs>
+				<li>PM_AdaptionCream</li>
+			</thingDefs>
         </fixedIngredientFilter>
     </RecipeDef>
 </Defs>
