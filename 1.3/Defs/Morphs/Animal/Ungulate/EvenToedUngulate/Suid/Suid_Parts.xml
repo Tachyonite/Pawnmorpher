@@ -8,4 +8,128 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="SuidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherTrotterFoot</defName>
+		<label>trotter</label>
+		<description>A trooter hoof.</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<classInfluence>Suid</classInfluence>
+		<mutationTale>FootBecomesTrotter</mutationTale>
+		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>toe-nails</labelOverride>
+				<description>[PAWN_nameDef]'s toenails have darkened and grown around [PAWN_possessive] toes. While not uncomfortable, it is somewhat concerning.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>hooflike</labelOverride>
+				<description>[PAWN_nameDef]'s toes are nothing more than black toenail-encrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
+				<stopChance>0.3</stopChance>
+				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>hoof-foot</labelOverride>
+				<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherTrotterHand</defName>
+		<label>trotter</label>
+		<description>[PAWN_nameDef]'s hands resemble trotters more than anything else, leaving them with little in the way of grasping ability.</description>
+		<classInfluence>Suid</classInfluence>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-1</minSeverity>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+				<labelOverride>mishappen hoof</labelOverride>
+				<description>This entire hand has melded together in a grotesque fashion, causing it to look like a malformed hoof.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>-0.5</minSeverity>
+				<partEfficiencyOffset>-0.2</partEfficiencyOffset>
+				<labelOverride>clumsy nails</labelOverride>
+				<description>The fingernails on this hand have broadened and thickened to a point where they're much harder to use, and they get in the way contstantly.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>thick nails</labelOverride>
+				<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<partEfficiencyOffset>-.1</partEfficiencyOffset>
+				<labelOverride>hoof-fingers</labelOverride>
+				<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				<stopChance>0.3</stopChance>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.6</minSeverity>
+				<partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				<description>This hand, or trotter, is quickly becoming less flexible and more like a regular trotter. Its usability may be hampered soon.</description>
+				<labelOverride>inflexible handtrotter</labelOverride>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.8</minSeverity>
+				<partEfficiencyOffset>-0.6</partEfficiencyOffset>
+				<label>unfamiliar</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.99</minSeverity>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
+				<label>adapted</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<labelOverride>handtrotter</labelOverride>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<description>Further adaptation has resulted in the trotter growing out into two hoof-tipped fingers and a thumb.  They look strange, but they give [PAWN_nameDef] better manipulation than a regular trotter would.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<!-- only pawns with the Paragon aspect can get this stage -->
+				<labelOverride>dextrous handtrotter</labelOverride>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Even further adaptation to this handtrotter has increased the flexability of the hoof-fingers to the point where they function about as well as an ordinary hand.</description>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+		<categories>
+			<li>Extreme</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
