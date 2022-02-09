@@ -177,6 +177,9 @@
 			</li>
 		</lifeStages>
 		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AnimalSelectorOverrides">
+				<label>?????</label>
+			</li>
 			<li Class="Pawnmorph.Chambers.AnimalTfControllers.ChaoThrumbo"/>
 			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
 				<backstory>FormerHumanChaomorph</backstory>
