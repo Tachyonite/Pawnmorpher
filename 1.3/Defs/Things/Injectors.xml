@@ -66,6 +66,7 @@
             <li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps">
                 <consumedOnUse>false</consumedOnUse>
                 <animal>PM_Chaothrumbo</animal>
+                <scanFailReason>This data is too corrupted to even attempt to scan.</scanFailReason>
             </li>
         </comps>
     </ThingDef>

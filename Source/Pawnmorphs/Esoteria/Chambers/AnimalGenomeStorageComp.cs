@@ -51,6 +51,14 @@ namespace Pawnmorph.Chambers
         {
             JobFailReason.Clear();
 
+            string scanFailReason = (props as AnimalGenomeStorageCompProps).scanFailReason;
+            if (string.IsNullOrWhiteSpace(scanFailReason) == false)
+            {
+                yield return new
+                    FloatMenuOption("CannotGenericWorkCustom".Translate(WORK_APPLY_GENOME.Translate(parent.Label)) + ": " + scanFailReason.CapitalizeFirst(), null);
+                yield break;
+            }
+
             var wComp = Find.World.GetComponent<ChamberDatabase>();
 
             if (selPawn.WorkTypeIsDisabled(WorkTypeDefOf.Research) || selPawn.WorkTagIsDisabled(WorkTags.Intellectual))
@@ -126,7 +134,12 @@ namespace Pawnmorph.Chambers
         /// <summary>
         /// if this thing is consumed on use
         /// </summary>
-        public bool consumedOnUse = true; 
+        public bool consumedOnUse = true;
+
+        /// <summary>
+        /// Special reason that block scanning if set.
+        /// </summary>
+        public string scanFailReason = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AnimalGenomeStorageCompProps"/> class.
