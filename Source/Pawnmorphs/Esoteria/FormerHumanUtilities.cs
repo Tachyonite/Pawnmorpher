@@ -42,7 +42,7 @@ namespace Pawnmorph
 
         private const float
             FORMER_HUMAN_FILTH_ADJ =
-                0.75f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
+                0.33f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
 
         private const float ANIMALISTIC_FILTH_AMOUNT = 2; //animalistic humanoids make the same amount of filth as dogs 
         private const float MAX_SAPIENCE_REDUCE_AMOUNT = 0.2f;
@@ -919,16 +919,19 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Determines whether the given pawn is a former human.
+        /// Determines whether the given pawn is a former human.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
+        /// <param name="countPermanentlyFeral">if set to <c>true</c> permanently feral pawns count as former humans.</param>
         /// <returns>
-        ///     <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
+        ///   <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsFormerHuman([NotNull] this Pawn pawn)
+        public static bool IsFormerHuman([NotNull] this Pawn pawn, bool countPermanentlyFeral= true)
         {
-            return pawn.GetSapienceState()?.IsFormerHuman == true;
+            SapienceState sState = pawn.GetSapienceState();
+            return (sState?.IsFormerHuman == true )&& (countPermanentlyFeral || sState.Tracker?.IsPermanentlyFeral == false);
         }
+
 
         /// <summary>
         ///     Determines whether this instance is humanlike.
@@ -1193,6 +1196,7 @@ namespace Pawnmorph
                                                   h => h.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn)
                                                     == true);
             PawnTransferUtilities.TransferThoughts(original, transformedPawn);
+            PawnTransferUtilities.TransferInteractions(original, transformedPawn);
 
             PawnTransferUtilities.TransferQuestRelations(original, transformedPawn);
 

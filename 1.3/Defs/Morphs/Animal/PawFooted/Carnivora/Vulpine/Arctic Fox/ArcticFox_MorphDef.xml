@@ -1,7 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="FoxMorphBase">
 		<defName>ArcticFoxMorph</defName>
-		<label>foxmorph</label>
+		<label>arcticfoxmorph</label>
 		<race>Fox_Arctic</race>
 		<categories>
 			<li>Cold</li>

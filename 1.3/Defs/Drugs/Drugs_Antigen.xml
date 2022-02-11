@@ -107,6 +107,7 @@ Halting cream is often used by industrial nations that lack the technology to pr
 			<workAmount>400</workAmount>
 			<recipeUsers>
 				<li>DrugLab</li>
+				<li>MutagenLab</li>
 			</recipeUsers>
 			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
 		</recipeMaker>

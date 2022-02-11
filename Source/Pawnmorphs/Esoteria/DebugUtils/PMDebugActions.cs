@@ -36,6 +36,19 @@ namespace Pawnmorph.DebugUtils
         {
             var cd = Find.World.GetComponent<ChamberDatabase>();
 
+            var mutations = DefDatabase<MutationDef>.AllDefs.Distinct();
+            foreach (MutationDef mutationDef in mutations)
+            {
+                if (cd.StoredMutations.Contains(mutationDef)) continue;
+                cd.AddToDatabase(mutationDef);
+            }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllGenomeMutations()
+        {
+            var cd = Find.World.GetComponent<ChamberDatabase>();
+
             var mutations = DefDatabase<MutationCategoryDef>.AllDefs.Where(d => d.genomeProvider)
                                                             .SelectMany(d => d.AllMutations)
                                                             .Distinct();
@@ -44,7 +57,6 @@ namespace Pawnmorph.DebugUtils
                 if (cd.StoredMutations.Contains(mutationDef)) continue;
                 cd.AddToDatabase(mutationDef);
             }
-
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
@@ -564,18 +576,45 @@ namespace Pawnmorph.DebugUtils
         [DebugAction("Pawnmorpher", "Force full transformation", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void ForceTransformation(Pawn pawn)
         {
-            var allHediffs = pawn.health.hediffSet.hediffs;
-            if (allHediffs == null) return;
+            if (pawn == null)
+                return;
 
+            var allHediffs = pawn.health.hediffSet.hediffs;
+            if (allHediffs == null) 
+                return;
+
+            MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanTransform(pawn))
+                return;
+
+            Hediff_MutagenicBase transformHediff = null;
+            HediffStage_Transformation transformStage = null;
             foreach (Hediff hediff in allHediffs)
             {
-                var transformer = hediff.def.GetAllTransformers().FirstOrDefault();
-                if (transformer != null)
+                if (hediff is Hediff_MutagenicBase mutagenic)
                 {
-                    transformer.TransformPawn(pawn, hediff);
-                    return;
+                    transformStage = mutagenic.def.stages.FirstOrDefault(x => x is HediffStage_Transformation) as HediffStage_Transformation;
+
+                    if (transformStage != null)
+                    {
+                        transformHediff = mutagenic;
+                        break;
+                    }
                 }
             }
+
+            if (transformHediff == null)
+                return;
+
+            PawnKindDef pawnDef = transformStage.tfTypes.GetTF(transformHediff);
+            
+            var newRequest = new TransformationRequest(pawnDef, pawn, SapienceLevel.Sapient);
+            var tfPawn = mutagen.MutagenCached.Transform(newRequest);
+            if (tfPawn == null)
+                return;
+
+            var wComp = Find.World.GetComponent<PawnmorphGameComp>();
+            wComp.AddTransformedPawn(tfPawn);
         }
 
         [DebugAction("Pawnmorpher", "Get initial graphics", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]

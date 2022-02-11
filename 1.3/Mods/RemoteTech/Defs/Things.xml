@@ -1,0 +1,106 @@
+<Defs>
+    <ThingDef Name="pawnmorphermutagass">
+        <defName>pawnmutategas</defName>
+        <label>mutagen gas cloud</label>
+        <description>Mutates living beings when exposed to them.
+    Rapidly dissipates when under an open sky.</description>
+        <thingClass>RemoteTech.GasCloud_HediffGiver</thingClass>
+        <category>Ethereal</category>
+        <drawerType>RealtimeOnly</drawerType>
+        <graphicData>
+            <texPath>rxGasCloud</texPath>
+            <graphicClass>RemoteTech.Graphic_GasCloud</graphicClass>
+            <shaderType>Mote</shaderType>
+            <drawSize>(1.3,1.3)</drawSize>
+            <color>(50,205,50)</color>
+        </graphicData>
+        <altitudeLayer>MoteOverhead</altitudeLayer>
+        <mote Class="RemoteTech.MoteProperties_GasEffect">
+            <!-- game ticks between gas ticks -->
+            <GastickInterval>30</GastickInterval>
+            <!-- gas will attempt to multiply every x gas ticks -->
+            <SpreadInterval>2</SpreadInterval>
+            <!-- how much concentration a cloud passes to its neighbours. A value of 1 will equalize concentrations with adjacent clouds on each gas tick -->
+            <SpreadAmountMultiplier>1</SpreadAmountMultiplier>
+            <!-- when concentration is below this threshold, gas will not attempt to multiply -->
+            <SpreadMinConcentration>200</SpreadMinConcentration>
+            <!-- concentrations below this will make the sprite progressively transparent -->
+            <FullAlphaConcentration>1000</FullAlphaConcentration>
+            <!-- the amount to concentration lost on each gas tick when on a tile with a roof -->
+            <RoofedDissipation>1</RoofedDissipation>
+            <!-- the amount to concentration lost under the open sky -->
+            <UnroofedDissipation>25</UnroofedDissipation>
+            <!-- how much the sprite will deviate from its base position and scale while animating -->
+            <AnimationAmplitude>.225</AnimationAmplitude>
+            <!-- duration of an animation cycle in seconds -->
+            <AnimationPeriod>
+                <min>4</min>
+                <max>6</max>
+            </AnimationPeriod>
+
+            <affectsFleshy>true</affectsFleshy>
+            <toxicSensitivityStatPower>.5</toxicSensitivityStatPower>
+            <hediffDef>MutagenicBuildup</hediffDef>
+            <hediffSeverityPerGastick>
+                <min>0.0050</min>
+                <max>0.0267</max>
+            </hediffSeverityPerGastick>
+            <immunizingApparelDefs>
+                <li>rxApparel_GasMask</li>
+                <li>Apparel_PowerArmorHelmet</li>
+            </immunizingApparelDefs>
+        </mote>
+        <isSaveable>true</isSaveable>
+        <tickerType>Never</tickerType>
+        <selectable>false</selectable>
+        <useHitPoints>false</useHitPoints>
+        <rotatable>false</rotatable>
+    </ThingDef>
+
+    <ThingDef ParentName="rxRemoteExplosiveBase">
+        <defName>pawnmorphMutagasPlaced</defName>
+        <label>mutagen gas can</label>
+        <thingClass>RemoteTech.Building_RemoteExplosive</thingClass>
+        <graphicData Class="RemoteTech.GraphicData_Blinker">
+            <texPath>Things/Building/tfIED</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <blinkerOffset>(0, 0, 0)</blinkerOffset>
+            <shadowData>
+                <volume>(.75, 0.15, .75)</volume>
+            </shadowData>
+        </graphicData>
+        <description>A remotely triggered canister filled with mutagen gas. 
+        Arm, then detonate from the Remote Explosives Console.</description>
+        <researchPrerequisites>
+            <li>rxRemoteDetonator</li>
+            <li>MutagenExtraction</li>
+        </researchPrerequisites>
+        <costList>
+            <Steel>60</Steel>
+            <Chemfuel>1</Chemfuel>
+            <MechaniteSlurry>2</MechaniteSlurry>
+        </costList>
+        <comps>
+            <li Class="RemoteTech.CompProperties_ChannelSelector" />
+            <li Class="RemoteTech.CompProperties_ChemicalExplosive">
+                <compClass>RemoteTech.CompChemicalExplosive</compClass>
+                <wickTicks>
+                    <min>50</min>
+                    <max>50</max>
+                </wickTicks>
+                <explosiveRadius>0</explosiveRadius>
+                <startWickHitPointsPercent>.2</startWickHitPointsPercent>
+                <breakSound>rxGlassBreak</breakSound>
+                <spawnThingDef>pawnmutategas</spawnThingDef>
+                <gasConcentration>80000</gasConcentration>
+            </li>
+            <li Class="RemoteTech.CompProperties_WiredDetonationReceiver" />
+            <li Class="RemoteTech.CompProperties_AutoReplaceable" />
+        </comps>
+        <building Class="RemoteTech.BuildingProperties_RemoteExplosive">
+            <isTrap>true</isTrap>
+            <explosiveType>Utility</explosiveType>
+            <expandHomeArea>false</expandHomeArea>
+        </building>
+    </ThingDef>
+</Defs>

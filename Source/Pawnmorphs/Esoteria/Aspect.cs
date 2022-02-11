@@ -277,6 +277,7 @@ namespace Pawnmorph
         /// <summary> Called after this instance is added to the pawn. </summary>
         protected virtual void PostAdd()
         {
+            CalculateSkillChanges();
         }
 
 

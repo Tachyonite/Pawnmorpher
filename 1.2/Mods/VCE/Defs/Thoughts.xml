@@ -1,0 +1,31 @@
+<Defs>
+
+
+
+    <ThoughtDef>
+        <defName>VCE_PM_AteCowmorphCheese</defName>
+        <thoughtClass>VanillaCookingExpanded.Thought_Hediff</thoughtClass>
+        <hediff>PawnmorphCowTF</hediff>
+        <validWhileDespawned>true</validWhileDespawned>
+        <stages>
+            <li>
+                <label>ate cowmorph cheese</label>
+                <description>That... was... huh... My whoooole body feels hooooot...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef>
+        <thoughtClass>VanillaCookingExpanded.Thought_Hediff</thoughtClass>
+        <defName>PM_ConsumedDigestibleFullRandomTF</defName>
+        <hediff>FullRandomTF</hediff>
+        <durationDays>0.5</durationDays>
+        <stages>
+            <li>
+                <label>strange salt</label>
+                <description>I'm not sure the salt on that meal was really salt...</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

@@ -266,7 +266,7 @@ namespace Pawnmorph
         IEnumerable<MutationDef> GetAllAssociatedMutations()
         {
             var restrictionSet = new HashSet<MutationDef>(); 
-
+            
             var set = new HashSet<(BodyPartDef bodyPart, MutationLayer layer)>();
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
@@ -279,16 +279,21 @@ namespace Pawnmorph
                 foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
                 {
                     if(restrictionSet.Contains(mutation)) continue;
-                    if (curNode != this && mutation.IsRestricted && !allowAllRestrictedParts)
+                    if (curNode != this && mutation.IsRestricted)
                     {
-                        continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
-                    }
-                    
-                    if (mutation.classInfluence == curNode)
-                    {
-                        tmpList.Add(mutation);
+                        List<MutationCategoryDef> rCategories = mutation
+                                                               .categories?.Where(c => c.restrictionLevel
+                                                                                    >= RestrictionLevel.CategoryOnly)
+                                                               .ToList();
+
+                        bool allowed = rCategories?.All(cat => categories?.Any(c => c.associatedMutationCategory == cat) == true)
+                                    == true; //make sure all restricted mutation categories are from one of the associated morph categories this morph is a part of 
+
+                        if (!allowed || !allowAllRestrictedParts)
+                            continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
                     }
 
+                    if (mutation.classInfluence == curNode) tmpList.Add(mutation);
                 }
 
                 foreach (MutationDef mutationDef in tmpList)

@@ -86,6 +86,8 @@ namespace Pawnmorph.Buildings
 
         private float _storedSlurry;
 
+        private Command_Toggle _highYieldCommand;
+
         /// <summary>
         ///     Gets or sets the current mode.
         /// </summary>
@@ -163,16 +165,20 @@ namespace Pawnmorph.Buildings
 
             if (Faction == Faction.OfPlayer)
             {
-                var command_Toggle = new Command_Toggle
+                if (_highYieldCommand == null)
                 {
-                    hotKey = KeyBindingDefOf.Command_TogglePower,
-                    defaultLabel = MUTANITE_CENTRIFUGE_MODE_LABEL.Translate(),
-                    defaultDesc = MUTANITE_CENTRIFUGE_MODE_DESCRIPTION.Translate(),
-                    isActive = () => CurrentMode == RunningMode.HighYield,
-                    toggleAction = ToggleRunMode
-                };
-
-                yield return command_Toggle;
+                    _highYieldCommand = new Command_Toggle
+                    {
+                        hotKey = KeyBindingDefOf.Command_TogglePower,
+                        defaultLabel = MUTANITE_CENTRIFUGE_MODE_LABEL.Translate(),
+                        defaultDesc = MUTANITE_CENTRIFUGE_MODE_DESCRIPTION.Translate(),
+                        isActive = () => CurrentMode == RunningMode.HighYield,
+                        toggleAction = ToggleRunMode,
+                        icon = PMTextures.MutagenicHazardHigh,
+                    };
+                }
+                
+                yield return _highYieldCommand;
             }
         }
 

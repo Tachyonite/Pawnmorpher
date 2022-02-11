@@ -173,12 +173,19 @@ namespace Pawnmorph.TfSys
             PawnRelationDef mergeMateEx = DefDatabase<PawnRelationDef>.GetNamed("ExMerged"); //TODO put these in a DefOf 
 
 
+
+            foreach (Pawn originalPawn in transformedPawn.originals)
+            {
+                float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.meld, originalPawn.RaceProps);
+                float originalAge = originalPawn.ageTracker.AgeBiologicalYearsFloat;
+
+                long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
+                originalPawn.ageTracker.AgeBiologicalTicks += agedTicksDelta;
+            }
+
+
             var firstO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[0], meld.PositionHeld, meld.MapHeld);
             var secondO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[1], meld.PositionHeld, meld.MapHeld);
-
-            var thoughtDef = AddRandomThought(firstO, formerHumanHediff.CurStageIndex);
-
-            AddRandomThought(secondO, formerHumanHediff.CurStageIndex); 
 
             for (var i = 0; i < 10; i++)
             {
@@ -186,11 +193,21 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(meld.Position.ToVector3(), meld.MapHeld);
             }
 
+            var traits = firstO.story.traits;
+            bool relationIsMergeMate = false;
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            {
+                relationIsMergeMate = true;
+            }
+            else if (traits.HasTrait(TraitDefOf.BodyPurist))
+            {
+                relationIsMergeMate = false;
+            }
+            else
+                relationIsMergeMate = Rand.Value < 0.5;
 
-            PawnRelationDef addDef;
 
-            bool relationIsMergeMate = thoughtDef == def.revertedThoughtGood;
-            addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
+            PawnRelationDef addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
 
             firstO.relations.AddDirectRelation(addDef, secondO);
 

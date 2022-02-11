@@ -264,7 +264,6 @@ namespace Pawnmorph
             //incidents 
             PatchIncidents(methodsToPatch);
 
-
             //interaction patch 
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
@@ -277,6 +276,12 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("Tick_CheckStartMarriageCeremony", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("CheckAppendBondedAnimalDiedInfo", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.Notify_RescuedBy), INSTANCE_FLAGS));
+
+            // Social tab
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("DrawMyOpinion", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("DrawHisOpinion", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("Recache", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("GetPawnRowTooltip", STATIC_FLAGS));
 
             AddJobGiverMethods(methodsToPatch);
 
@@ -292,10 +297,10 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[] { typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool) }));
 
             //roamer patches 
-            methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow),
-                                                                           staticFlags));
-
-
+            methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
+            methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
+            methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
+            
             //now patch them 
             foreach (var methodInfo in methodsToPatch)
             {

@@ -25,6 +25,9 @@
         <blockWind>true</blockWind>
         <fillPercent>0.5</fillPercent>
         <canOverlapZones>false</canOverlapZones>
+		<inspectorTabs>
+		  <li>ITab_ContentsCasket</li>
+		</inspectorTabs>
         <thingCategories>
             <li>BuildingsProduction</li>
         </thingCategories>
@@ -74,12 +77,13 @@
                     <li>Chaoboom</li>
                     <li>Chaoboar</li>
                     <li>Chaodino</li>
+                    <li>PM_Chaothrumbo</li>
                 </alwaysAvailable>
             </li>
             <li Class="Pawnmorph.ThingComps.FillableBarDrawerProps">
                 <barSize>(2.3, 2.3)</barSize>
                 <period>10.0</period>
-                <barOffset>(0,-0.5,0)</barOffset>
+                <barOffset>(0,-0.5,0.2)</barOffset>
                 <barColor>50,200,50,70</barColor>
             </li>
             <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
