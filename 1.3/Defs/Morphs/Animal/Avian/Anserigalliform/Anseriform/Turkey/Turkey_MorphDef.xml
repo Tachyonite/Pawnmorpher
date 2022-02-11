@@ -1,16 +1,13 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="AnseriformMorph">
 		<defName>TurkeyMorph</defName>
 		<label>turkeymorph</label>
 		<description>A human who now shares many features with turkeys due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. For odd reasons, both genders can fan their tailfeathers.</description>
 		<race>Turkey</race>
-		<classification>Galliform</classification>
 		<categories>
 			<li>Farm</li>
 			<li>Social</li>
-			<li>Avian</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphTurkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphTurkeyTFPartial</partialTransformation>
 		<raceSettings>

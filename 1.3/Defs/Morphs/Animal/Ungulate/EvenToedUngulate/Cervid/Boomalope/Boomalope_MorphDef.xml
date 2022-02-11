@@ -1,18 +1,15 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="HerdMorph">
+	<Pawnmorph.MorphDef ParentName="CervidMorph">
 		<defName>BoomalopeMorph</defName>
 		<label>boomamorph</label>
 		<description>A humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel.</description>
 		<race>Boomalope</race>
-		<classification>Cervid</classification>
 		<categories>
 			<li>Arid</li>
 			<li>Temperate</li>
 			<li>Tropical</li>
 			<li>Production</li>
-			<li>Cervid</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphBoomalopeTF</fullTransformation>
 		<partialTransformation>PawnmorphBoomalopeTFPartial</partialTransformation>
 		<raceSettings>

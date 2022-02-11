@@ -1,15 +1,12 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="CervidMorph">
 		<defName>CaribouMorph</defName>
 		<label>cariboumorph</label>
 		<description>Cariboumorphs are usually peaceful and imposing herbivorous humanoids who can live under harsh winters. However, if you bother them, their big antlers may hurt you pretty badly...</description>
 		<race>Caribou</race>
-		<classification>Cervid</classification>
 		<categories>
 			<li>Cold</li>
-			<li>Cervid</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphCaribouTF</fullTransformation>
 		<partialTransformation>PawnmorphCaribouTFPartial</partialTransformation>
 		<raceSettings>

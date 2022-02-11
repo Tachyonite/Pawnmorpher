@@ -2,5 +2,8 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="AnimalMorph" Name="ReptileMorph">
 		<classification>Reptile</classification>
 		<injectorProperties></injectorProperties>
+		<categories>
+			<li>Reptile</li>
+		</categories>
 	</Pawnmorph.MorphDef>
 </Defs>

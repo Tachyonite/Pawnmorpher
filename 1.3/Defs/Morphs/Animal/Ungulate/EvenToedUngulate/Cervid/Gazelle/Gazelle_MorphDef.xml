@@ -1,16 +1,13 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="CervidMorph">
 		<defName>GazelleMorph</defName>
 		<label>gazellemorph</label>
 		<description>Gazellemorphs are fast and graceful but skittish and generally prefers flight over confrontation</description>
 		<race>Gazelle</race>
-		<classification>Bovid</classification>
 		<categories>
 			<li>Arid</li>
 			<li>Temperate</li>
-			<li>Bovid</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphGazelleTF</fullTransformation>
 		<partialTransformation>PawnmorphGazelleTFPartial</partialTransformation>
 		<raceSettings>

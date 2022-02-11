@@ -1,16 +1,14 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="SimianMorph">
 		<defName>MonkeyMorph</defName>
 		<label>monkeymorph</label>
 		<description>A fun-loving morph type, Monkeymorphs tend to like playing pranks on their friends.</description>
 		<race>Monkey</race>
-		<classification>Animal</classification>
 		<categories>
 			<li>Tropical</li>
 			<li>Social</li>
 			<li>Crafter</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphMonkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphMonkeyTFPartial</partialTransformation>
 		<raceSettings>

@@ -11,10 +11,6 @@
 		</raceSettings>
 	</Pawnmorph.MorphDef>
 
-	<Pawnmorph.MorphDef Abstract="true" Name="HerdMorph" ParentName="SensitiveFoodMorph">
-		<group>HerbivoreHerding</group>
-	</Pawnmorph.MorphDef>
-
 	<Pawnmorph.MorphDef Abstract="true" Name="ChimeraMorph" ParentName="SensitiveFoodMorph">
 		<categories>
 			<li>Chimera</li>

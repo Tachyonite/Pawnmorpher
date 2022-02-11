@@ -1,19 +1,14 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="HerdMorph">
+	<Pawnmorph.MorphDef ParentName="CapridMorph">
 		<defName>IbexMorph</defName>
 		<label>ibexmorph</label>
 		<description>Ibexmorphs are similar but wilder relatives of goatmorphs. Their headbutts can be pretty effective at combat.</description>
 		<race>Ibex</race>
-		<classification>Caprid</classification>
 		<categories>
 			<li>Cold</li>
 			<li>Temperate</li>
-			<li>Bovid</li>
 		</categories>
 		<injectorProperties></injectorProperties>
-		<associatedAnimals>
-			<li>Ibex</li>
-		</associatedAnimals>
 		<fullTransformation>PawnmorphIbexTF</fullTransformation>
 		<partialTransformation>PawnmorphIbexTFPartial</partialTransformation>
 		<raceSettings>

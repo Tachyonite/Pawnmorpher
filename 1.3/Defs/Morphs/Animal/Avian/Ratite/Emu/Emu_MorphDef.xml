@@ -1,15 +1,12 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="SensitiveFoodMorph">
+	<Pawnmorph.MorphDef ParentName="RatiteMorph">
 		<defName>EmuMorph</defName>
 		<label>emumorph</label>
 		<description>A human who now shares many features with emus due to exposure to mechanite mutagens. Usually found covered in feathers, and stubby arms more resembling wings. They are great runners.</description>
 		<race>Emu</race>
-		<classification>Ratite</classification>
 		<categories>
 			<li>Arid</li>
-			<li>Avian</li>
 		</categories>
-		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphEmuTF</fullTransformation>
 		<partialTransformation>PawnmorphEmuTFPartial</partialTransformation>
 		<raceSettings>
