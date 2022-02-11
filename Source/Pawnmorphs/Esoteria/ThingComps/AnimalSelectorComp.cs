@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -143,6 +144,12 @@ namespace Pawnmorph.ThingComps
             }
         }
 
+        public void ResetSelection()
+        {
+            _cachedGizmo.defaultLabel = "none";
+            _cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
+        }
+
         private void GizmoAction()
         {
             OnClick?.Invoke(this);
@@ -158,7 +165,14 @@ namespace Pawnmorph.ThingComps
                 foreach (PawnKindDef kind in AllAnimalsSelectable)
                 {
                     var tk = kind;
-                    yield return new FloatMenuOption(tk.LabelCap, () => ChoseAnimal(tk));
+                    string label;
+                    AnimalSelectorOverrides overrides = kind.GetModExtension<AnimalSelectorOverrides>();
+                    if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
+                        label = overrides.label;
+                    else
+                        label = tk.LabelCap;
+
+                    yield return new FloatMenuOption(label, () => ChoseAnimal(tk));
                 }
             }
         }

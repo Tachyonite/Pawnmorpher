@@ -962,6 +962,7 @@ namespace Pawnmorph.Chambers
         {
             FillableDrawer?.Clear();
             SelectorComp.Enabled = false;
+            SelectorComp.ResetSelection();
             _innerState = ChamberState.WaitingForPawn;
             _currentUse = ChamberUse.Tf;
             _addedMutationData = null;

@@ -652,6 +652,7 @@
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="DefExtensions\AnimalSelectorOverrides.cs" />
     <Compile Include="ThingComps\DatabaseStorage.cs" />
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
