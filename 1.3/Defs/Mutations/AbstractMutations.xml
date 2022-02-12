@@ -45,45 +45,44 @@
 
     <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="PM_Earhole" Abstract="true">
         <label>Ear hole</label>
-        <description>[PAWN_nameDef]'s chest has bulked up significantly, making it not only stronger but more resistant to damage</description>
+        <description>TODO</description>
+		<graphics>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/None/None</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<LeftEar>Parts/None/None</LeftEar>
+		</graphics>
         <stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>initial</label>
+				<key>initial</key>
+				<description>[PAWN_nameDef]'s ears feel itchy, but nothing suspicious for now.</description>
+			</li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
-                <labelOverride>growing</labelOverride>
+                <label>shrinking</label>
+				<key>initial</key>
                 <painOffset>0.1</painOffset>
+                <description>[PAWN_nameDef]'s ears are shrinking.</description>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
-                <labelOverride>growing</labelOverride>
-                <painOffset>0.1</painOffset>
-                <minSeverity>0.1</minSeverity>
-                <healthOffset>1</healthOffset>
-                <statOffsets>
-                    <CarryingCapacity>5</CarryingCapacity>
-                </statOffsets>
-            </li>
-            <li Class="Pawnmorph.Hediffs.MutationStage">
-                <labelOverride>growing</labelOverride>
-                <painOffset>0.05</painOffset>
+                <label>flat</label>
+				<key>flat</key>
                 <minSeverity>0.5</minSeverity>
-                <healthOffset>2</healthOffset>
-                <statOffsets>
-                    <CarryingCapacity>10</CarryingCapacity>
-                </statOffsets>
+                <description>[PAWN_nameDef] no longer has any visible ears.</description>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
                 <minSeverity>1</minSeverity>
-                <healthOffset>4</healthOffset>
-                <statOffsets>
-                    <CarryingCapacity>15</CarryingCapacity>
-                </statOffsets>
+                <description>[PAWN_nameDef] now has ear holes.</description>
             </li>
         </stages>
-        <parts>
-            <li>Torso</li>
-        </parts>
-        <comps>
-            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-                <severityPerDay>0.15</severityPerDay>
-            </li>
-        </comps>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Ear</li>
+		</parts>
     </Pawnmorph.Hediffs.MutationDef>
 </Defs>

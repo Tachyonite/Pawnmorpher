@@ -1,10 +1,19 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<categories>
+			<li>Avian</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="AnimalEarPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="PM_Earhole" Abstract="true">
+		<categories>
+			<li>Avian</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<categories>
+			<li>Avian</li>
+		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

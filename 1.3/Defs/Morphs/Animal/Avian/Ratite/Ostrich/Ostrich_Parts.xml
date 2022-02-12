@@ -11,9 +11,6 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<!-- <graphics>
-						<Muzzle>Parts/Ostrich/Ostrich_Jaw</Muzzle>
-					</graphics> -->
 					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich.</description>
 					<capMods>
 						<li>
@@ -30,9 +27,6 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<!-- <graphics>
-						<Muzzle>Parts/Ostrich/Ostrich_Jaw</Muzzle>
-					</graphics> -->
 					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. Adaptation has made it less frustrating to talk and eat.</description>
 					<label>adapted</label>
 					<capMods>

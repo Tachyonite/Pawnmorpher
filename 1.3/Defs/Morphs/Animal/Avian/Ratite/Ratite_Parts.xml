@@ -8,6 +8,15 @@
 				<stageKey>pressing</stageKey>
 				<values>
 					<graphics>
+						<Muzzle>Parts/None/None</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialBeak</Muzzle>
 					</graphics>
 					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
@@ -59,7 +68,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<!-- Moved from inside cassowary to here. -->
-	<Pawnmorph.Hediffs.MutationDef Name ="RatiteFootPart" ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef Name ="RatiteFootPart" ParentName="PawnmorphPart" abstract="true">
 		<defName>EtherRatiteFoot</defName>
 		<description>A deadly bird foot.</description>
 		<label>clawed ratite</label>

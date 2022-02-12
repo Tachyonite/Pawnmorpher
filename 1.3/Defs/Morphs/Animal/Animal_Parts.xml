@@ -13,15 +13,13 @@
 				<graphics>
 					<Muzzle>Parts/None/None</Muzzle>
 				</graphics>
+				<minSeverity>0</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<label>pressing out</label>
 				<key>pressing</key>
 				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
-				</graphics>
-					<capMods>
+				<capMods>
 					<li>
 						<capacity>Talking</capacity>
 						<offset>-0.05</offset>
@@ -37,9 +35,6 @@
 				<label>growing</label>
 				<key>growing</key>
 				<description>[PAWN_nameDef]'s face continue to change, looking closer and closer to an animal.</description>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
-				</graphics>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>
