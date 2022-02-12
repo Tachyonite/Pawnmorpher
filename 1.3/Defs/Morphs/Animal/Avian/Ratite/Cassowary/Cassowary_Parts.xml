@@ -13,36 +13,12 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A beak graces [PAWN_nameDef]'s face, like that of a cassowary. A large ornament extends from the top of their beak to their head.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Sight</capacity>
-							<offset>-0.20</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A beak graces [PAWN_nameDef]'s face, like that of a cassowary. A large ornament extends from the top of their beak to their head. [PAWN_nameDef] adapted to move their head around like a bird so the ornament doesn't block their vision.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-						<ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

@@ -12,29 +12,12 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.50</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>-0.10</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. Adaptation has made it less frustrating to talk and eat.</description>
-					<label>adapted</label>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>
