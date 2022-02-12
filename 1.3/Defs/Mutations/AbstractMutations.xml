@@ -57,23 +57,24 @@
 				<label>initial</label>
 				<key>initial</key>
 				<description>[PAWN_nameDef]'s ears feel itchy, but nothing suspicious for now.</description>
+                <minSeverity>0</minSeverity>
 			</li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <label>shrinking</label>
 				<key>initial</key>
-                <painOffset>0.1</painOffset>
                 <description>[PAWN_nameDef]'s ears are shrinking.</description>
+                <minSeverity>0.1</minSeverity>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <label>flat</label>
 				<key>flat</key>
-                <minSeverity>0.5</minSeverity>
                 <description>[PAWN_nameDef] no longer has any visible ears.</description>
+                <minSeverity>0.5</minSeverity>
             </li>
             <li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>adapting</key>
-                <minSeverity>1</minSeverity>
                 <description>[PAWN_nameDef] now has ear holes.</description>
+                <minSeverity>1</minSeverity>
             </li>
         </stages>
 		<comps>
