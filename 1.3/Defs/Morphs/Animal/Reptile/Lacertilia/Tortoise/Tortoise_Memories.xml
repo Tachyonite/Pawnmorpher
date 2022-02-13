@@ -78,31 +78,6 @@
 	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherTortoiseEar</defName>
-		<stages>
-			<li>
-				<label>Ear holes</label>
-				<description>What the, where are my ears?</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Ear holes</label>
-				<description>I suppose they're more streamlined now?</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Ear holes</label>
-				<description>Hello?! I can't hear you! Speak up, I don't have proper ears now!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
 		<defName>EtherTortoiseTail</defName>
 		<stages>
 			<li>

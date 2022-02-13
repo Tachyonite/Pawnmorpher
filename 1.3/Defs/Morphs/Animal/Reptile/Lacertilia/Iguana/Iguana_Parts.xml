@@ -1,94 +1,68 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="IguanaPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaJawPart">
 		<classInfluence>IguanaMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
 		<defName>EtherIguanaSnout</defName>
 		<label>iguana snout</label>
-		<description>The lower part of [PAWN_nameDef]'s face has reformed into a leathery beak.</description>
-		<initialSeverity>0</initialSeverity>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>new</label>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.30</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.10</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/iguanaface/iguanaface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a turtoise; speaking is difficult, but eating is easier.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.06</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.10</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a turtoise; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10</power>
-						<cooldownTime>2.6</cooldownTime>
-						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-						<chanceFactor>0.7</chanceFactor>
-					</li>
-				</tools>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a turtoise.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaEarPart">
+		<classInfluence>IguanaMorph</classInfluence>
+		<defName>EtherIguanaEar</defName>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaEarPart">
+		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
 		<label>spines</label>
 		<parts>
 			<li>Skull</li>
 		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<!--Needs Stats-->
-			</li>
-		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaTailPart">
+		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaTail</defName>
 		<label>iguana tail</label>
-		<description>A spiney green tail.</description>
 		<graphics>
+			<Tail>Parts/None/None</Tail>
 			<BodyExtendingTail>Parts/iguanaface/iguanatail</BodyExtendingTail>
 		</graphics>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<!--Needs Stats-->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaHand</defName>
 		<label>dextrous claws</label>
 		<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
@@ -135,7 +109,9 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="IguanaPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaFoot</defName>
 		<label>reptilian foot</label>
 		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>

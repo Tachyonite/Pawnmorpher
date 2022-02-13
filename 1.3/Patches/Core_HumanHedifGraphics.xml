@@ -101,7 +101,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherGooseBeak>
-					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherDonkeySnout>
 						<path>Parts/Donkey/Donkey_Jaw</path>
 						<severity>
@@ -165,7 +164,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherHorseSnout>
-					<EtherIguanaSnout>Parts/iguanaface/iguanaface</EtherIguanaSnout>
 					<EtherPigSnout>
 						<path>Parts/pigface/pigface</path>
 						<severity>
@@ -202,7 +200,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherIbexSnout>
-					<EtherTortoiseJaw>Parts/Tortoise/Tortoise_Jaw</EtherTortoiseJaw>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -439,7 +436,6 @@
 					<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					<EtherGoatTail>Parts/Goat/Goat_Tail</EtherGoatTail>
 					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
-					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
 				</hediffGraphics>
