@@ -3,19 +3,19 @@
 	<Pawnmorph.Social.PMInteractionWeightsDef>
 		<defName>PMInteractionWeights_Chook</defName>
 		<requiredMutationsAny>
-			<li>EtherBeak</li>
+			<li>EtherChickenBeak</li>
 		</requiredMutationsAny>
 		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
 		<mutationWeights>
 			<!-- Muzzles -->
 			<li>
-				<key>EtherBeak</key>
+				<key>EtherChickenBeak</key>
 				<value>0.5</value>
 			</li>
 			
 			<!-- Tails -->
 			<li>
-				<key>EtherTailfeathers</key>
+				<key>EtherChickenTailfeathers</key>
 				<value>0.25</value>
 			</li>
 

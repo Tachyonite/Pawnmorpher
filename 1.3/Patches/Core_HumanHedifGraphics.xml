@@ -69,22 +69,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherBoomalopeSnout>
-					<EtherBeak>
-						<path>Parts/chickenface/chickenface</path>
-						<severity>
-							<a0.5>Parts/chickenface/chickenface</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherBeak>
-					<EtherTurkeyBeak>
-						<path>Parts/Turkey/Turkey_Jaw</path>
-						<severity>
-							<a0.5>Parts/Turkey/Turkey_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherTurkeyBeak>
 					<EtherSnakeJaw>Parts/Cobra/Cobra_Jaw</EtherSnakeJaw>
 					<EtherDonkeySnout>
 						<path>Parts/Donkey/Donkey_Jaw</path>
@@ -413,8 +397,6 @@
 				<hediffGraphics>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
-					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
-					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail</EtherTurkeyTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherYakTail>Parts/Yak/Yak_Tail</EtherYakTail>
 					<EtherBisonTail>Parts/Bison/Bison_Tail</EtherBisonTail>				  
@@ -470,9 +452,6 @@
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail_Behind</EtherTurkeyTailfeathers>
-				</hediffGraphics>
 				<offsets>
 					<south>
 						<bodyTypes>
