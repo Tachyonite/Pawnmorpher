@@ -72,6 +72,7 @@
 		<defName>EtherRatiteFoot</defName>
 		<description>A deadly bird foot.</description>
 		<label>clawed ratite</label>
+		<classInfluence>Ratite</classInfluence>
 		<parts>
 			<li>Foot</li>
 		</parts>
