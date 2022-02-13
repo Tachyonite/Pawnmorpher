@@ -68,7 +68,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaEarPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeEar</defName>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -93,7 +93,6 @@
 		<defName>EtherSnakeTail</defName>
 		<label>snake tail</label>
 		<graphics>
-			<Tail>Parts/None/None</Tail>
 			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
 		</graphics>
 		<stagePatches>

@@ -69,38 +69,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherBoomalopeSnout>
-					<EtherBeak>
-						<path>Parts/chickenface/chickenface</path>
-						<severity>
-							<a0.5>Parts/chickenface/chickenface</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherBeak>
-					<EtherTurkeyBeak>
-						<path>Parts/Turkey/Turkey_Jaw</path>
-						<severity>
-							<a0.5>Parts/Turkey/Turkey_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherTurkeyBeak>
-					<EtherDuckBeak>
-						<path>Parts/Duck/Duck_Jaw</path>
-						<severity>
-							<a0.5>Parts/Duck/Duck_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherDuckBeak>
-					<EtherGooseBeak>
-						<path>Parts/Goose/Goose_Jaw</path>
-						<severity>
-							<a0.5>Parts/Goose/Goose_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherGooseBeak>
 					<EtherDonkeySnout>
 						<path>Parts/Donkey/Donkey_Jaw</path>
 						<severity>
@@ -422,10 +390,6 @@
 				<hediffGraphics>
 					<EtherAlpacaTail>Parts/Alpaca/Alpaca_Tail</EtherAlpacaTail>
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
-					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
-					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail</EtherTurkeyTailfeathers>
-					<EtherGooseTailfeathers>Parts/Goose/Goose_Tail</EtherGooseTailfeathers>
-					<EtherDuckTailfeathers>Parts/Duck/Duck_Tail</EtherDuckTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
 					<EtherYakTail>Parts/Yak/Yak_Tail</EtherYakTail>
 					<EtherBisonTail>Parts/Bison/Bison_Tail</EtherBisonTail>				  
@@ -479,9 +443,6 @@
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail_Behind</EtherTurkeyTailfeathers>
-				</hediffGraphics>
 				<offsets>
 					<south>
 						<bodyTypes>

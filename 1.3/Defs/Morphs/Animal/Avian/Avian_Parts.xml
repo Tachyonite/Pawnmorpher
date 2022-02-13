@@ -1,5 +1,27 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<description>A beak</description>
+		<mutationMemory>EtherBeak</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/None/None</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialBeak</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="PM_Earhole" Abstract="true">
