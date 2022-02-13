@@ -4,7 +4,6 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
 					</graphics>
@@ -13,7 +12,6 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
 					</graphics>
