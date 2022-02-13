@@ -1,10 +1,134 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="RatiteJawPart" ParentName="AvianJawPart" Abstract="true">
+		<defName>EtherRatiteBeak</defName>
+		<description>A beak</description>
+		<mutationMemory>EtherBeak</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/None/None</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialBeak</Muzzle>
+					</graphics>
+					<description>[PAWN_nameDef]'s teeth are merging into a keratinous beak, the nose and jaw pressing out and looking decidedly more avian.</description>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RatiteEarPart" ParentName="AvianEarPart" Abstract="true">
+		<!-- TODO -->
+		<defName>EtherRatiteEar</defName>
+		<description>An ear hole.</description>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RatiteTailPart" ParentName="AvianTailPart" Abstract="true">
+		<defName>EtherRatiteTailfeathers</defName>
+		<description>A plume of coarse feathers sprout from a bird tail above [PAWN_nameDef]'s butt.</description>
+		<label>Tailfeathers</label>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-2</ComfyTemperatureMin>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Moved from inside cassowary to here. -->
+	<Pawnmorph.Hediffs.MutationDef Name ="RatiteFootPart" ParentName="PawnmorphPart" abstract="true">
+		<defName>EtherRatiteFoot</defName>
+		<description>A deadly bird foot.</description>
+		<label>clawed ratite</label>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<mutationTale>FeetBecomeTalons</mutationTale>
+		<mutationMemory>AvianFootMemory</mutationMemory>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<labelOverride>scaly</labelOverride>
+				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				<stopChance>0.3</stopChance>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.5</minSeverity>
+				<labelOverride>toe-foot</labelOverride>
+				<description>[PAWN_nameDef]'s toes have become long, thick and scaly.</description>
+				<stopChance>0.3</stopChance>
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.0</minSeverity>
+				<description>[PAWN_nameDef]'s toes stretch out into long sharp talons that wouldn't be out of place on a dinosaur.</description>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<statOffsets>
+					<MeleeDodgeChance>5</MeleeDodgeChance>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>paragon</label>
+				<description>[PAWN_nameDef]'s toes stretch out into long sharp talons that wouldn't be out of place on a dinosaur. The large talons somehow don't get in the way of movement.</description>
+				<statOffsets>
+					<MeleeDodgeChance>5</MeleeDodgeChance>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>talons</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

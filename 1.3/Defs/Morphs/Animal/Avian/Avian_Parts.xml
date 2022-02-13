@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianJawPart" ParentName="AnimalJawPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="AnimalEarPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="PM_Earhole" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">

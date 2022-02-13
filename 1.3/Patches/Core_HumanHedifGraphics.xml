@@ -85,30 +85,6 @@
 							<a0.0>Parts/None/None</a0.0>
 						</severity>
 					</EtherTurkeyBeak>
-					<EtherEmuBeak>
-						<path>Parts/Emu/Emu_Jaw</path>
-						<severity>
-							<a0.5>Parts/Emu/Emu_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherEmuBeak>
-					<EtherOstrichBeak>
-						<path>Parts/Ostrich/Ostrich_Jaw</path>
-						<severity>
-							<a0.5>Parts/Ostrich/Ostrich_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherOstrichBeak>
-					<EtherCassowaryBeak>
-						<path>Parts/Cassowary/Cassowary_Jaw</path>
-						<severity>
-							<a0.5>Parts/Cassowary/Cassowary_Jaw</a0.5>
-							<a0.1>Parts/Partials/PartialMuzzle/PartialBeak</a0.1>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherCassowaryBeak>
 					<EtherDuckBeak>
 						<path>Parts/Duck/Duck_Jaw</path>
 						<severity>
@@ -243,13 +219,6 @@
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
 				<hediffGraphics>
-					<EtherCassowaryBeak>
-						<path>Parts/Cassowary/Cassowary_Ornament</path>
-						<severity>
-							<a0.5>Parts/Cassowary/Cassowary_Ornament</a0.5>
-							<a0.0>Parts/None/None</a0.0>
-						</severity>
-					</EtherCassowaryBeak>
 					<EtherMuffaloSnout>
 						<path>Parts/Muffalo/Muffalo_Headfloof_B</path>
 						<severity>
@@ -462,9 +431,6 @@
 					<EtherRoughCurlyTail>Parts/Boar/Boar_Tail</EtherRoughCurlyTail>
 					<EtherTailfeathers>Parts/chickenface/chickentail</EtherTailfeathers>
 					<EtherTurkeyTailfeathers>Parts/Turkey/Turkey_Tail</EtherTurkeyTailfeathers>
-					<EtherEmuTailfeathers>Parts/Emu/Emu_Tail</EtherEmuTailfeathers>
-					<EtherOstrichTailfeathers>Parts/Ostrich/Ostrich_Tail</EtherOstrichTailfeathers>
-					<EtherCassowaryTailfeathers>Parts/Cassowary/Cassowary_Tail</EtherCassowaryTailfeathers>
 					<EtherGooseTailfeathers>Parts/Goose/Goose_Tail</EtherGooseTailfeathers>
 					<EtherDuckTailfeathers>Parts/Duck/Duck_Tail</EtherDuckTailfeathers>
 					<EtherCowTail>Parts/cowface/cowtail</EtherCowTail>
