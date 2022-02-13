@@ -1,91 +1,73 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="MonkeyPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SimianJawPart">
 		<classInfluence>MonkeyMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
 		<defName>EtherMonkeyJaw</defName>
 		<label>monkey snout</label>
-		<description>[PAWN_nameDef]'s face has elongated into a monkey-like visage, making them look less evolved.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.35</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/monkeyface/monkeyface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a monkey; speaking is difficult, but eating is easier.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.20</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a monkey; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>4</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					</li>
-				</tools>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a monkey.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SimianEarPart">
+		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyEar</defName>
 		<label>simian</label>
-		<description>Though somewhat engorged, these ears look somewhat like [PAWN_nameDef]'s own ears.</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.2</partEfficiencyOffset>
+		<graphics>
+			<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
+			<LeftEar>Parts/Monkey/Monkey_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/Monkey/Monkey_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Though somewhat engorged, these ears look somewhat like [PAWN_nameDef]'s own ears.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SimianTailPart">
+		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyTail</defName>
 		<label>monkey tail</label>
-		<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Tail>Parts/monkeyface/monkeytail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyHand</defName>
 		<label>dextrous hand</label>
 		<description>[PAWN_nameDef]'s fingers have elongated into the semblence of a monkey's hand.</description>
@@ -117,7 +99,9 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeyPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyFoot</defName>
 		<label>dextrous toes</label>
 		<description>[PAWN_nameDef]'s feet have reshaped themselves into what look to be hands. This make finding shoes somewhat difficult.</description>
