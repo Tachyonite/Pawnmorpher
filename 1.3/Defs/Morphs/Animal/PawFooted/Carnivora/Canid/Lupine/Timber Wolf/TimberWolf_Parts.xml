@@ -2,22 +2,67 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfJawBase">
 		<classInfluence>WolfMorph</classInfluence>
 		<defName>EtherWolfMuzzle</defName>
-		<label>wolf muzzle</label>
-		<description>The wolf-like muzzle of an wolf.</description>
+		<label>timber wolf muzzle</label>
+		<graphics>
+			<Muzzle>Parts/wolfface/wolfface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a timber wolf. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a timber wolf. [PAWN_possessive] teeth are pointed to suit; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a timber wolf. [PAWN_possessive] teeth are pointed to suit, so eating is easier. Animals seem to find [PAWN_possessive] intimidating and are less likely to disobey [PAWN_possessive].</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfEarPart">
 		<classInfluence>WolfMorph</classInfluence>
 		<defName>EtherWolfEar</defName>
-		<label>wolf ear</label>
-		<description>The fuzzy pointy ear of an wolf.</description>
+		<label>timber wolf ear</label>
+		<graphics>
+			<LeftEar>Parts/Wolf/Wolf_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Wolf/Wolf_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Wolf/Wolf_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Wolf/Wolf_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Two pointed and furred ears crown [PAWN_nameDef]'s head, as they flick left and right, listening for the sounds of prey.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="WolfTailPart">
 		<classInfluence>WolfMorph</classInfluence>
 		<defName>EtherWolfTail</defName>
-		<label>wolf tail</label>
-		<description>The wolf-like tail of an wolf.</description>
+		<label>timber wolf tail</label>
+		<graphics>
+			<Tail>Parts/wolfface/wolftail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

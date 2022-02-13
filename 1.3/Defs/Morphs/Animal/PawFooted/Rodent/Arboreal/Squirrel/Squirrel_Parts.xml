@@ -3,17 +3,35 @@
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelJaw</defName>
 		<label>sciurine muzzle</label>
-		<description>The chittery, chewing mouth of a squirrel.</description>
 		<graphics>
 			<Muzzle>Parts/Squirrel/Squirrel_Jaw</Muzzle>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a squirrel, complete with oversized front teeth; speaking is difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a squirrel, complete with oversized front teeth; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a squirrel, complete with oversized front teeth.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelEar</defName>
-		<description>The small ears of a squirrel.</description>
-		<label>sciurine ear</label>
+		<label>squirrel ear</label>
 		<graphics>
 			<LeftEar>Parts/Squirrel/Squirrel_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Squirrel/Squirrel_Ear_Left_Behind</LeftEarBehind>
@@ -34,7 +52,6 @@
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelTail</defName>
 		<label>sciurine tail</label>
-		<description>The fluffy tail of a squirrel.</description>
 		<graphics>
 			<Tail>Parts/Squirrel/Squirrel_Tail</Tail>
 		</graphics>

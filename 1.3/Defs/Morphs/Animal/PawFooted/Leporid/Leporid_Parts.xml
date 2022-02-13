@@ -1,9 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedJawPart">
-		<defName>EtherHareMuzzle</defName>
-		<classInfluence>Leporid</classInfluence>
-		<label>hare muzzle</label>
-		<description>The fluffy muzzle of a hare.</description>
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidJawPart" ParentName="PawFootedJawPart" Abstract="true">
 		<mutationMemory>EtherHareJaw</mutationMemory>
 		<graphics>
 			<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
@@ -46,11 +42,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedEarPart">
-		<defName>EtherHareEar</defName>
-		<classInfluence>Leporid</classInfluence>
-		<label>hare ear</label>
-		<description>The fluffy ear of a hare.</description>
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidEarPart" ParentName="PawFootedEarPart" Abstract="true">
 		<graphics>
 			<LeftEar>Parts/Hare/Hare_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Hare/Hare_Ear_Left_Behind</LeftEarBehind>
@@ -68,11 +60,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawFootedTailPart">
-		<defName>EtherHareTail</defName>
-		<classInfluence>Leporid</classInfluence>
-		<label>cotton tail</label>
-		<description>The small and very fluffy tail of a hare.</description>
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidTailPart" ParentName="PawFootedTailPart" Abstract="true">
 		<mutationMemory>EtherHareTail</mutationMemory>
 		<graphics>
 			<Tail>Parts/Hare/Hare_Tail</Tail>

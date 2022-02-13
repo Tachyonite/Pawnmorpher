@@ -1,4 +1,22 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="LeporidJawPart">
+		<defName>EtherSnowHareMuzzle</defName>
+		<classInfluence>SnowhareMorph</classInfluence>
+		<label>snow hare muzzle</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LeporidEarPart">
+		<defName>EtherSnowHareEar</defName>
+		<classInfluence>SnowhareMorph</classInfluence>
+		<label>snow hare ear</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LeporidTailPart">
+		<defName>EtherSnowHareTail</defName>
+		<classInfluence>SnowhareMorph</classInfluence>
+		<label>snow hare tail</label>
+	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
 		<defName>EtherSnowhareFur</defName>
 		<classInfluence>SnowhareMorph</classInfluence>

@@ -3,7 +3,6 @@
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherTrunk</defName>
 		<label>elephant trunk</label>
-		<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
 		<graphics>
 			<Muzzle>Parts/elephantface/elephantface</Muzzle>
 		</graphics>
@@ -12,27 +11,18 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of an elephant. Speaking is difficult, but eating is easier.</description>
-					<graphics>
-						<Muzzle>Parts/elephantface/elephantface</Muzzle>
-					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of an elephant. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
-					<graphics>
-						<Muzzle>Parts/elephantface/elephantface</Muzzle>
-					</graphics>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of an elephant.</description>
-					<graphics>
-						<Muzzle>Parts/elephantface/elephantface</Muzzle>
-					</graphics>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -67,8 +57,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantEar</defName>
-		<label>elephantine ears</label>
-		<description>The ears of an elephant.</description>
+		<label>elephant ears</label>
 		<graphics>
 			<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
@@ -80,12 +69,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>Wow, those are big ears, [PAWN_nameDef]. [PAWN_pronoun] looks like a dumbo, doesn't [PAWN_pronoun].</description>
-					<graphics>
-						<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Elephant/Elephant_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Elephant/Elephant_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>
@@ -95,7 +78,6 @@
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantTail</defName>
 		<label>elephant tail</label>
-		<description>A tail of an elephant.</description>
 		<graphics>
 			<Tail>Parts/elephantface/elephanttail</Tail>
 		</graphics>
@@ -104,9 +86,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A long tail that swishes gently at flies that gather.</description>
-					<graphics>
-						<Tail>Parts/elephantface/elephanttail</Tail>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>

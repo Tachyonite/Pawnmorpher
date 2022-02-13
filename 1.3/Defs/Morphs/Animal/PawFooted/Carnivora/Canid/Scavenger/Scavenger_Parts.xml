@@ -1,46 +1,26 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerJawPart" ParentName="CanidJawPart" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a big dog. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
-				</values>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
 			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a big dog. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a big dog. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
-				</values>
-			</li>
-		</stagePatches>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerEarPart" ParentName="CanidEarPart" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>Thick-skinned ears have grown from [PAWN_nameDef]'s head. They scan the horizon independently for prey.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerTailPart" ParentName="CanidTailPart" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>A canid tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

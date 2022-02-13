@@ -3,17 +3,35 @@
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaSnout</defName>
 		<label>chinchilla snout</label>
-		<description>A cute chinchilla snout</description>
 		<graphics>
 			<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth; speaking is difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaEar</defName>
 		<label>chinchilla ear</label>
-		<description>The large and smooth ears of a chinchilla.</description>
 		<graphics>
 			<LeftEar>Parts/Chinchilla/Chinchilla_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</LeftEarBehind>
@@ -34,7 +52,6 @@
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaTail</defName>
 		<label>chinchilla tail</label>
-		<description>The smooth and fluffy tail of a chinchilla.</description>
 		<graphics>
 			<Tail>Parts/Chinchilla/Chinchilla_Tail</Tail>
 		</graphics>

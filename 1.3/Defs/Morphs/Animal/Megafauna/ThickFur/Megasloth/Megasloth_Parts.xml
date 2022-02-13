@@ -1,10 +1,8 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
-		<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves.</description>
 		<graphics>
 			<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
 		</graphics>
@@ -13,27 +11,18 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier.</description>
-					<graphics>
-						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
-					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
-					<graphics>
-						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
-					</graphics>
+					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An impressive snout graces [PAWN_nameDef]'s face, like that of a sloth. Speaking is difficult, but eating is easier.</description>
-					<graphics>
-						<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
-					</graphics>
+					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -59,7 +48,6 @@
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
-		<description>The tail of a megasloth.</description>
 		<graphics>
 			<Tail>Parts/megaslothface/megaslothtail</Tail>
 		</graphics>
@@ -68,9 +56,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
-					<graphics>
-						<Tail>Parts/megaslothface/megaslothtail</Tail>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>

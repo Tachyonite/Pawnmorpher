@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef]'s face has pushed out into a muzzle like that on an animal</description>
+		<description>A morph muzzle.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<graphics>
 			<Muzzle>Parts/None/None</Muzzle>
@@ -106,7 +106,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef]'s ears have grown into animal ears</description>
+		<description>A morph ear.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<graphics>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
@@ -171,7 +171,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef] has an animal tail</description>
+		<description>A morph tail.</description>
 		<mutationTale>GrewTail</mutationTale>
 		<graphics>
 			<Tail>Parts/None/None</Tail>

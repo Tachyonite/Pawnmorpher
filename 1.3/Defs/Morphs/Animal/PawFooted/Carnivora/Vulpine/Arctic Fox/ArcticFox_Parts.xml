@@ -3,7 +3,6 @@
 		<defName>EtherArcticFoxMuzzle</defName>
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox muzzle</label>
-		<description>The vulpine muzzle of an arctic fox.</description>
 		<graphics>
 			<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
 		</graphics>
@@ -13,7 +12,6 @@
 		<defName>EtherArcticFoxEar</defName>
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox ear</label>
-		<description>The vulpine ear of an arctic fox.</description>
 		<graphics>
 			<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</LeftEarBehind>
@@ -26,7 +24,6 @@
 		<defName>EtherArcticFluffyTail</defName>
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox tail</label>
-		<description>The vulpine tail of an arctic fox.</description>
 		<graphics>
 			<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
 		</graphics>

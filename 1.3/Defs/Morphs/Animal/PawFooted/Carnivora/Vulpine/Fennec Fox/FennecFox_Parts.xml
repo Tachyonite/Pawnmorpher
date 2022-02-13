@@ -3,7 +3,6 @@
 		<defName>EtherFennecFoxMuzzle</defName>
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox muzzle</label>
-		<description>The vulpine muzzle of an fennec fox.</description>
 		<graphics>
 			<Muzzle>Parts/FoxFennec/FennecFox_Jaw</Muzzle>
 		</graphics>
@@ -13,7 +12,6 @@
 		<defName>EtherFennecFoxEar</defName>
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox ear</label>
-		<description>The vulpine ear of an fennec fox.</description>
 		<graphics>
 			<LeftEar>Parts/FoxFennec/FennecFox_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/FoxFennec/FennecFox_Ear_Left_Behind</LeftEarBehind>
@@ -26,7 +24,6 @@
 		<defName>EtherFennecFluffyTail</defName>
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox tail</label>
-		<description>The vulpine tail of an fennec fox.</description>
 		<graphics>
 			<Tail>Parts/FoxFennec/FennecFox_Tail</Tail>
 		</graphics>

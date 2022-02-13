@@ -3,48 +3,65 @@
 		<classInfluence>PantherMorph</classInfluence>
 		<defName>EtherPantherJaw</defName>
 		<label>pantherine muzzle</label>
-		<description>The sleek feline muzzle of a panther.</description>
 		<graphics>
 			<Muzzle>Parts/Panther/Panther_Jaw</Muzzle>
 		</graphics>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating, though they may hiss and meow more than talk.</description>
+				</values>
 			</li>
-		</comps>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineEarPart">
 		<classInfluence>PantherMorph</classInfluence>
 		<defName>EtherPantherEar</defName>
-		<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
-		<label>pantherine ear</label>
+		<label>panther ear</label>
 		<graphics>
 			<LeftEar>Parts/Panther/Panther_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Panther/Panther_Ear_Left_Behind</LeftEarBehind>
 			<RightEar>Parts/Panther/Panther_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Panther/Panther_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
 		<classInfluence>PantherMorph</classInfluence>
 		<defName>EtherPantherTail</defName>
 		<label>pantherine tail</label>
-		<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
 		<graphics>
 			<Tail>Parts/Panther/Panther_Tail</Tail>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

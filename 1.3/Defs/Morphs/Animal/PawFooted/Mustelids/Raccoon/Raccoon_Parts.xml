@@ -3,7 +3,6 @@
 		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
-		<description>A snout with a nose always in a rubbish bin.</description>
 		<graphics>
 			<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
 		</graphics>
@@ -49,7 +48,6 @@
 		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonEar</defName>
 		<label>raccoon ear</label>
-		<description>A short and fuzzy round ears of a raccoon.</description>
 		<graphics>
 			<LeftEar>Parts/Raccoon/Raccoon_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Raccoon/Raccoon_Ear_Left_Behind</LeftEarBehind>
@@ -73,7 +71,6 @@
 		<graphics>
 			<Tail>Parts/Raccoon/Raccoon_Tail</Tail>
 		</graphics>
-		<description>The ringtail of a raccoon.</description>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

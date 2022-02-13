@@ -3,7 +3,6 @@
 		<classInfluence>TerrierMorph</classInfluence>
 		<defName>EtherTerrierMuzzle</defName>
 		<label>terrier muzzle</label>
-		<description>The dog-like muzzle of a yorkshire terrier.</description>
 		<graphics>
 			<Muzzle>Parts/Terrier/Terrier_Jaw</Muzzle>
 		</graphics>
@@ -11,25 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Terrier/Terrier_Jaw</Muzzle>
-					</graphics>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a yorkshire terrier. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Terrier/Terrier_Jaw</Muzzle>
-					</graphics>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a yorkshire terrier. [PAWN_possessive] teeth are pointed to suit, making eating easier. Adaptation has removed some of the difficulty with speaking.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Terrier/Terrier_Jaw</Muzzle>
-					</graphics>
+					<description>A cute snout graces [PAWN_nameDef]'s face, like that of a yorkshire terrier. [PAWN_possessive] teeth are pointed to suit, making eating easier. Oddly, this doesn't seem to impact [PAWN_possessive] abilty to speak.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -39,7 +32,6 @@
 		<classInfluence>TerrierMorph</classInfluence>
 		<defName>EtherTerrierEar</defName>
 		<label>terrier ear</label>
-		<description>Fluffy, soft dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
 		<graphics>
 			<LeftEar>Parts/Terrier/Terrier_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
@@ -50,12 +42,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<LeftEar>Parts/Terrier/Terrier_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/None/None</LeftEarBehind>
-						<RightEar>Parts/Terrier/Terrier_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-					</graphics>
+					<description>Fluffy, soft dog ears flick around at the sides of [PAWN_nameDef]'s head. They are incredibly cute.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -65,7 +52,6 @@
 		<classInfluence>TerrierMorph</classInfluence>
 		<defName>EtherTerrierTail</defName>
 		<label>terrier tail</label>
-		<description>A fluffy terrier tail points out from [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 		<graphics>
 			<Tail>Parts/Terrier/Terrier_Tail</Tail>
 		</graphics>
@@ -73,9 +59,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<Tail>Parts/Terrier/Terrier_Tail</Tail>
-					</graphics>
+					<description>A fluffy terrier tail points out from [PAWN_nameDef]'s back. Was that a small wag just then?</description>
 				</values>
 			</li>
 		</stagePatches>

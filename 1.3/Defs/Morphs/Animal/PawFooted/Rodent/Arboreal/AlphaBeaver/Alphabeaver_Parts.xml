@@ -2,18 +2,36 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
 		<classInfluence>AlphabeaverMorph</classInfluence>
 		<defName>EtherAlphabeaverJaw</defName>
-		<label>beaver snout</label>
-		<description>This jaw is the furred face of an alphabeaver, equipped with large rodentlike teeth. Perfect for chewing through wood.</description>
+		<label>alphabeaver snout</label>
 		<graphics>
 			<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a alphabeaver, complete with oversized front teeth; speaking is difficult, but eating is easier.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a alphabeaver, complete with oversized front teeth; speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of a alphabeaver, complete with oversized front teeth.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
 		<classInfluence>AlphabeaverMorph</classInfluence>
 		<defName>EtherAlphabeaverEar</defName>
-		<label>beaver ear</label>
-		<description>The fuzzy, waterproof ear of a beaver.</description>
+		<label>alphabeaver ear</label>
 		<graphics>
 			<LeftEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</LeftEarBehind>
@@ -33,8 +51,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
 		<classInfluence>AlphabeaverMorph</classInfluence>
 		<defName>EtherAlphabeaverTail</defName>
-		<label>beaver tail</label>
-		<description>The specialised tail of a beaver.</description>
+		<label>alphabeaver tail</label>
 		<graphics>
 			<Tail>Parts/Alphabeaver/Alphabeaver_Tail</Tail>
 		</graphics>

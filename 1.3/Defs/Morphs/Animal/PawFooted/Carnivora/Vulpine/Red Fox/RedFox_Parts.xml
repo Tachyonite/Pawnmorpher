@@ -3,7 +3,6 @@
 		<defName>EtherFoxMuzzle</defName>
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox muzzle</label>
-		<description>The vulpine muzzle of an red fox.</description>
 		<graphics>
 			<Muzzle>Parts/FoxUpdated/RedFox_Jaw</Muzzle>
 		</graphics>
@@ -13,7 +12,6 @@
 		<defName>EtherFoxEar</defName>
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox ear</label>
-		<description>The vulpine ear of a red fox.</description>
 		<graphics>
 			<LeftEar>Parts/FoxUpdated/RedFox_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/FoxUpdated/RedFox_Ear_Left_Behind</LeftEarBehind>
@@ -26,7 +24,6 @@
 		<defName>EtherFluffyTail</defName>
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox tail</label>
-		<description>The vulpine tail of an red fox.</description>
 		<graphics>
 			<Tail>Parts/FoxUpdated/RedFox_Tail</Tail>
 		</graphics>
