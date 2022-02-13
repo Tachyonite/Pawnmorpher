@@ -279,7 +279,6 @@
 					</EtherDromedaryEar>
 					
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left</EtherHorseEar>
-					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Left</EtherMonkeyEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left</EtherPigEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Left</EtherGoatEar>
@@ -322,7 +321,6 @@
 						</severity>
 					</EtherDromedaryEar>
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Left_Behind</EtherHorseEar>
-					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPigEar>Parts/Pig/Pig_Ear_Left_Behind</EtherPigEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Left_Behind</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Left_Behind</EtherGoatEar>
@@ -365,7 +363,6 @@
 					</EtherDromedaryEar>
 
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right</EtherHorseEar>
-					<EtherMonkeyEar>Parts/Monkey/Monkey_Ear_Right</EtherMonkeyEar>
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right</EtherPigEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Right</EtherGoatEar>
@@ -408,7 +405,6 @@
 					</EtherDromedaryEar>
 
 					<EtherHorseEar>Parts/Horse/Horse_Ear_Right_Behind</EtherHorseEar>
-					<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 					<EtherPigEar>Parts/Pig/Pig_Ear_Right_Behind</EtherPigEar>
 					<EtherSheepEar>Parts/Sheep/Sheep_Ear_Right_Behind</EtherSheepEar>
 					<EtherGoatEar>Parts/Goat/Goat_Ear_Right_Behind</EtherGoatEar>
@@ -443,7 +439,6 @@
 					<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
 					<EtherGoatTail>Parts/Goat/Goat_Tail</EtherGoatTail>
 					<EtherIbexTail>Parts/Ibex/Ibex_Tail</EtherIbexTail>
-					<EtherMonkeyTail>Parts/monkeyface/monkeytail</EtherMonkeyTail>
 					<EtherTortoiseTail>Parts/Tortoise/Tortoise_Tail</EtherTortoiseTail>
 					<EtherCaribouTail>Parts/Caribou/Caribou_Tail</EtherCaribouTail>
 					<EtherDromedaryTail>Parts/Dromedary/Dromedary_Tail</EtherDromedaryTail>
