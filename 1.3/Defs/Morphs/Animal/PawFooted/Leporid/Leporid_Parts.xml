@@ -12,27 +12,18 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
-					</graphics>
 					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
-					</graphics>
 					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. Adaptation has removed some of the difficulty with speaking.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
-					</graphics>
 					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
 				</values>
 			</li>
@@ -71,12 +62,6 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<LeftEar>Parts/Hare/Hare_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Hare/Hare_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Hare/Hare_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Hare/Hare_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
 					<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
 				</values>
 			</li>
@@ -96,9 +81,6 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<Tail>Parts/Hare/Hare_Tail</Tail>
-					</graphics>
 					<description>A small puff of fluff peaks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
 				</values>
 			</li>

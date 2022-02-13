@@ -7,32 +7,6 @@
 		<graphics>
 			<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
@@ -46,19 +20,6 @@
 			<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
@@ -69,16 +30,6 @@
 		<graphics>
 			<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">

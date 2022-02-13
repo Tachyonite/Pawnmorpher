@@ -7,32 +7,6 @@
 		<graphics>
 			<Muzzle>Parts/wargface/wargface</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/wargface/wargface</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/wargface/wargface</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/wargface/wargface</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -62,19 +36,6 @@
 			<RightEar>Parts/Warg/Warg_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Warg/Warg_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<LeftEar>Parts/Warg/Warg_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Warg/Warg_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Warg/Warg_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Warg/Warg_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerTailPart">
@@ -85,16 +46,6 @@
 		<graphics>
 			<Tail>Parts/wargface/wargtail</Tail>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<Tail>Parts/wargface/wargtail</Tail>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">

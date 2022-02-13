@@ -8,27 +8,18 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
-					</graphics>
 					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
-					</graphics>
 					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<graphics>
-						<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
-					</graphics>
 					<description>An impressive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
 				</values>
 			</li>
@@ -63,12 +54,6 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
 					<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
 				</values>
 			</li>
@@ -84,9 +69,6 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<graphics>
-						<Tail>Parts/bearface/beartail</Tail>
-					</graphics>
 					<description>A short tail, like that of a bear. Not much of a tail, really.</description>
 				</values>
 			</li>

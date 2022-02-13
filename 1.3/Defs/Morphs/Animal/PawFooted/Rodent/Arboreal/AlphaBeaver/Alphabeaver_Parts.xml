@@ -7,32 +7,6 @@
 		<graphics>
 			<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
@@ -51,12 +25,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>Fuzzy and waterproof ear has replaced [PAWN_nameDef]'s normal ear.</description>
-					<graphics>
-						<LeftEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>
@@ -75,9 +43,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A perfect rudder in most scenarios, this tail can be used to speed up construction by inventive means known only to the user of one. Also really useful for smoothing floors.</description>
-					<graphics>
-						<Tail>Parts/Alphabeaver/Alphabeaver_Tail</Tail>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>

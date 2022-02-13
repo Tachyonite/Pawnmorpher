@@ -11,32 +11,6 @@
 		<graphics>
 			<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -70,19 +44,6 @@
 			<RightEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<LeftEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerTailPart">
@@ -97,16 +58,6 @@
 		<graphics>
 			<Tail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</Tail>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<Tail>Parts/COMBINATIONS/Hellhound/Hellhound_Tail</Tail>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">

@@ -7,32 +7,6 @@
 		<graphics>
 			<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
@@ -51,12 +25,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>Large ears clad in silky smooth fur has grown from [PAWN_nameDef]'s head, giving them an irresistably cute appearance.</description>
-					<graphics>
-						<LeftEar>Parts/Chinchilla/Chinchilla_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>
@@ -75,9 +43,6 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A soft, fluffy tail with luxuriously smooth fur has grown from the base of [PAWN_nameDef]'s spine, charming and tempting everyone to touch it.</description>
-					<graphics>
-						<Tail>Parts/Chinchilla/Chinchilla_Tail</Tail>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>

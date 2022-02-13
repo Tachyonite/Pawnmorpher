@@ -7,32 +7,6 @@
 		<graphics>
 			<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<graphics>
-						<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -62,19 +36,6 @@
 			<RightEar>Parts/Lynx/Lynx_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Lynx/Lynx_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<LeftEar>Parts/Lynx/Lynx_Ear_Left</LeftEar>
-						<LeftEarBehind>Parts/Lynx/Lynx_Ear_Left_Behind</LeftEarBehind>
-						<RightEar>Parts/Lynx/Lynx_Ear_Right</RightEar>
-						<RightEarBehindHead>Parts/Lynx/Lynx_Ear_Right_Behind</RightEarBehindHead>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
@@ -85,15 +46,5 @@
 		<graphics>
 			<Tail>Parts/Lynx/Lynx_Tail</Tail>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<graphics>
-						<Tail>Parts/Lynx/Lynx_Tail</Tail>
-					</graphics>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
