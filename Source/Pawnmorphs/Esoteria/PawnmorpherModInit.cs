@@ -341,6 +341,13 @@ namespace Pawnmorph
 
             foreach (AlienPartGenerator.BodyAddon bodyAddon in allAddons) 
             {
+                if (bodyAddon is TaggedBodyAddon tagged)
+                {
+                    // Skip if anchor already exists.
+                    if (partGen.bodyAddons.Any(x => (x as TaggedBodyAddon)?.anchorID == tagged.anchorID))
+                        continue;
+                }
+
                 var cpy = CloneAddon(bodyAddon);
                 partGen.bodyAddons.Add(cpy); 
             }
