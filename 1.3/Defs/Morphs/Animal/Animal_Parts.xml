@@ -1,226 +1,188 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef]'s face has pushed out into a muzzle like that on an animal</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphJawPart" Abstract="true">
 		<graphics>
 			<Muzzle>Parts/None/None</Muzzle>
 		</graphics>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>initial</label>
-				<key>initial</key>
-				<description>[PAWN_nameDef]'s face is itching a bit, but nothing strange has happened yet.</description>
-				<graphics>
-					<Muzzle>Parts/None/None</Muzzle>
-				</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face is itching a bit, but nothing strange has happened yet.</description>
+					<graphics>
+						<Muzzle>Parts/None/None</Muzzle>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>pressing out</label>
-				<key>pressing</key>
-				<description>[PAWN_nameDef]'s face seems to be swelling. The nose and jaw are pressing out and looking decidedly more like an animal's.</description>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
-				</graphics>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
 					<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.05</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
-				<minSeverity>0.1</minSeverity>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.05</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>growing</label>
-				<key>growing</key>
-				<description>[PAWN_nameDef]'s face continue to change, looking more and more like an animal.</description>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
-				</graphics>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.3</offset>
-					</li>
-				</capMods>
-				<minSeverity>0.3</minSeverity>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change, looking more and more like an animal's.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapting</label>
-				<key>adapting</key>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.2</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.5</offset>
-					</li>
-				</capMods>
-				<minSeverity>0.5</minSeverity>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.5</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>adapted</label>
-				<key>adapted</key>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.5</offset>
-					</li>
-				</capMods>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.5</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>paragon</label>
-				<key>paragon</key>
-				<description>An imposing snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.50</offset>
-					</li>
-				</capMods>
-				<minSeverity>1.5</minSeverity>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.50</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<categories>
-			<li>Major</li>
-		</categories>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef]'s ears have grown into animal ears</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphEarPart" Abstract="true">
 		<graphics>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/None/None</RightEar>
 			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
 			<LeftEar>Parts/None/None</LeftEar>
 		</graphics>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>initial</label>
-				<key>initial</key>
-				<description>[PAWN_nameDef] has been scratching [PAWN_possesive] ears a lot recently.</description>
-				<graphics>
-					<LeftEarBehind>Parts/None/None</LeftEarBehind>
-					<RightEar>Parts/None/None</RightEar>
-					<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-					<LeftEar>Parts/None/None</LeftEar>
-				</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has been scratching [PAWN_possesive] ears a lot recently.</description>
+					<graphics>
+						<LeftEarBehind>Parts/None/None</LeftEarBehind>
+						<RightEar>Parts/None/None</RightEar>
+						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+						<LeftEar>Parts/None/None</LeftEar>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>pressing out</label>
-				<key>pressing</key>
-				<description>[PAWN_nameDef]'s ear is growing.</description>
-				<graphics>
-					<LeftEarBehind>Parts/Partials/Todo/Todo</LeftEarBehind>
-					<RightEar>Parts/Partials/Todo/Todo</RightEar>
-					<RightEarBehindHead>Parts/Partials/Todo/Todo</RightEarBehindHead>
-					<LeftEar>Parts/Partials/Todo/Todo</LeftEar>
-				</graphics>
-				<minSeverity>0.1</minSeverity>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing.</description>
+					<graphics>
+						<LeftEarBehind>Parts/Partials/Todo/Todo</LeftEarBehind>
+						<RightEar>Parts/Partials/Todo/Todo</RightEar>
+						<RightEarBehindHead>Parts/Partials/Todo/Todo</RightEarBehindHead>
+						<LeftEar>Parts/Partials/Todo/Todo</LeftEar>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>growing</label>
-				<key>growing</key>
-				<description>[PAWN_nameDef]'s ear looks more and more animal.</description>
-				<graphics>
-					<LeftEarBehind>Parts/Partials/PointyEar/PointyEar_Left_Behind</LeftEarBehind>
-					<RightEar>Parts/Partials/PointyEar/PointyEar_Right</RightEar>
-					<RightEarBehindHead>Parts/Partials/PointyEar/PointyEar_Right_Behind</RightEarBehindHead>
-					<LeftEar>Parts/Partials/PointyEar/PointyEar_Left</LeftEar>
-				</graphics>
-				<minSeverity>0.5</minSeverity>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear looks more and more animal.</description>
+					<graphics>
+						<LeftEarBehind>Parts/Partials/PointyEar/PointyEar_Left_Behind</LeftEarBehind>
+						<RightEar>Parts/Partials/PointyEar/PointyEar_Right</RightEar>
+						<RightEarBehindHead>Parts/Partials/PointyEar/PointyEar_Right_Behind</RightEarBehindHead>
+						<LeftEar>Parts/Partials/PointyEar/PointyEar_Left</LeftEar>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>grown</label>
-				<key>grown</key>
-				<description>[PAWN_nameDef]'s ear is like an animal's.</description>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is like an animal's.</description>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.8</severityPerDay>
-			</li>
-		</comps>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<categories>
-			<li>Major</li>
-		</categories>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphPart" Abstract="true">
-		<description>[PAWN_nameDef] has an animal tail</description>
-		<mutationTale>GrewTail</mutationTale>
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphTailPart" Abstract="true">
 		<graphics>
 			<Tail>Parts/None/None</Tail>
 		</graphics>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>initial</label>
-				<key>initial</key>
-				<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
-				<graphics>
-					<Tail>Parts/None/None</Tail>
-				</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
+					<graphics>
+						<Tail>Parts/None/None</Tail>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>pressing out</label>
-				<key>pressing</key>
-				<description>A tail is growing behind [PAWN_nameDef].</description>
-				<graphics>
-					<Tail>Parts/Partials/Todo/Todo</Tail>
-				</graphics>
-				<minSeverity>0.1</minSeverity>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>A tail is growing behind [PAWN_nameDef].</description>
+					<graphics>
+						<Tail>Parts/Partials/Todo/Todo</Tail>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>growing</label>
-				<key>growing</key>
-				<description>[PAWN_nameDef]'s tail is getting longer and longer.</description>
-				<graphics>
-					<Tail>Parts/Partials/Todo/Todo</Tail>
-				</graphics>
-				<minSeverity>0.5</minSeverity>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s tail is getting longer and longer.</description>
+					<graphics>
+						<Tail>Parts/Partials/Todo/Todo</Tail>
+					</graphics>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>grown</label>
-				<key>grown</key>
-				<description>[PAWN_nameDef] has an animal tail.</description>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has an animal tail.</description>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<categories>
-			<li>Major</li>
-		</categories>
+		</stagePatches>	
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
