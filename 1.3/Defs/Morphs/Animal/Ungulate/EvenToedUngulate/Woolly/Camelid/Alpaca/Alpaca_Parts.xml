@@ -1,85 +1,36 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="AlpacaPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidJawPart">
 		<classInfluence>AlpacaMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherAlpacaSnout</defName>
-		<label>woolly snout</label>
-		<description>The soft and fuzzy snout of an alpaca.</description>
+		<label>alpaca snout</label>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<mutationMemory>EtherAlpacaSnout</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Alpaca/Alpaca_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adaptation has removed some of the difficulty with talking.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-						<!-- I'm using 20% of the base reduction for the adapted across the board, might need balancing though-->
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<label>adapted</label>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
+				</values>
 			</li>
-			
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<label>paragon</label>
-				<description>Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
 					<li>
 						<label>spit</label>
 						<capacities>
@@ -100,45 +51,48 @@
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-				<!-- takes 4 days to progress -->
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
+		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaEar</defName>
-		<label>woolen</label>
-		<description>Wooly ears twitch at the wind, idly.</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
+		<label>alpaca ear</label>
 		<mutationMemory>EtherAlpacaEar</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+		<graphics>
+			<LeftEar>Parts/Alpaca/Alpaca_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Alpaca/Alpaca_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Alpaca/Alpaca_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Alpaca/Alpaca_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wooly ear twitches idly at the wind.</description>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Ear</li>
-		</parts>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidTailPart">
+		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaTail</defName>
-		<label>woolly tail</label>
-		<description>A woolly tail, it feels like a cloud.</description>
-		<mutationTale>GrewTail</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
-		</stages>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		<label>alpaca tail</label>
 		<mutationMemory>EtherAlpacaTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Alpaca/Alpaca_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A alpaca's curly tail, it twitches when food is near.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="AlpacaPart">
 		<defName>EtherWooly</defName>
 		<label>thick wool</label>

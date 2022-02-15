@@ -1,95 +1,19 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="GazellePart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidJawPart">
 		<classInfluence>GazelleMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
-		<defName>EtherGazelleJaw</defName>
+		<defName>EtherGazelleSnout</defName>
 		<label>gazelle snout</label>
-		<description>[PAWN_nameDef]'s face has pushed out into a muzzle like that on a gazelle</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<graphics>
 			<Muzzle>Parts/Gazelle/Gazelle_Jaw</Muzzle>
 		</graphics>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.10</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<graphics>
-					<Muzzle>Parts/None/None</Muzzle>
-				</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.20</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
-				</graphics>
-				<minSeverity>0.1</minSeverity>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<graphics>
-					<Muzzle>Parts/Partials/PartialMuzzle/PartialSnoutOvine</Muzzle>
-				</graphics>
-				<minSeverity>0.3</minSeverity>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.30</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-				<graphics>
-					<Muzzle>Parts/Gazelle/Gazelle_Jaw</Muzzle>
-				</graphics>
-				<minSeverity>0.5</minSeverity>
-			</li>
-			<li>
-				<label>adapted</label>
-				<minSeverity>1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -99,88 +23,56 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10</power>
-						<cooldownTime>2</cooldownTime>
+						<power>5.0</power>
+						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidEarPart">
+		<classInfluence>GazelleMorph</classInfluence>
 		<defName>EtherGazelleEar</defName>
 		<label>gazelle ear</label>
-		<description>[PAWN_nameDef]'s ears have grown into long, pointed, gazelle ears</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
 		<graphics>
+			<LeftEar>Parts/Gazelle/Gazelle_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Gazelle/Gazelle_Ear_Left_Behind</LeftEarBehind>
 			<RightEar>Parts/Gazelle/Gazelle_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Gazelle/Gazelle_Ear_Right_Behind</RightEarBehindHead>
-			<LeftEar>Parts/Gazelle/Gazelle_Ear_Left</LeftEar>
 		</graphics>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pointed</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>[PAWN_nameDef]'s ears are growing longer</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<graphics>
-					<LeftEarBehind>Parts/Partials/PointyEar/PointyEar_Left_Behind</LeftEarBehind>
-					<RightEar>Parts/Partials/PointyEar/PointyEar_Right</RightEar>
-					<RightEarBehindHead>Parts/Partials/PointyEar/PointyEar_Right_Behind</RightEarBehindHead>
-					<LeftEar>Parts/Partials/PointyEar/PointyEar_Left</LeftEar>
-				</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing longer.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<partEfficiencyOffset>0.3</partEfficiencyOffset>
-				<graphics>
-					<LeftEarBehind>Parts/Gazelle/Gazelle_Ear_Left_Behind</LeftEarBehind>
-					<RightEar>Parts/Gazelle/Gazelle_Ear_Right</RightEar>
-					<RightEarBehindHead>Parts/Gazelle/Gazelle_Ear_Right_Behind</RightEarBehindHead>
-					<LeftEar>Parts/Gazelle/Gazelle_Ear_Left</LeftEar>
-				</graphics>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a long, pointed, gazelle ear.</description>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.8</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidTailPart">
+		<classInfluence>GazelleMorph</classInfluence>
 		<defName>EtherGazelleTail</defName>
 		<label>gazelle tail</label>
-		<description>[PAWN_nameDef] has a small gazelle tail</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
 		<graphics>
 			<Tail>Parts/Gazelle/Gazelle_Tail</Tail>
 		</graphics>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.01</offset>
-					</li>
-				</capMods>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a small gazelle tail.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
