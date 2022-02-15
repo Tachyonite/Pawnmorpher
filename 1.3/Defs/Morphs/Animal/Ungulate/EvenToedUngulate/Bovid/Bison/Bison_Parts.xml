@@ -1,104 +1,70 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="BisonPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BovidJawPart">
 		<classInfluence>BisonMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
 		<defName>EtherBisonSnout</defName>
 		<label>bison snout</label>
-		<description>The large bovine snout of a bison.</description>
-		<parts>
-			<li>Jaw</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pressing out</labelOverride>
-				<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.1</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Bison/Bison_jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A bisonlike snout graces [PAWN_nameDef]'s face.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>A bisonlike snout graces [PAWN_nameDef]'s face.</description>
-				<minSeverity>0.5</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.30</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A bisonlike snout graces [PAWN_nameDef]'s face. Adaptation has removed some of the difficulty with talking.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<description>A bisonlike snout graces [PAWN_nameDef]'s face. Adaptation has removed some of the difficulty with talking.</description>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.30</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A bisonlike snout graces [PAWN_nameDef]'s face. Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<label>paragon</label>
-				<description>Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
-				<capMods>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.30</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BovidEarPart">
+		<classInfluence>BisonMorph</classInfluence>
 		<defName>EtherBisonEar</defName>
-		<label>bison</label>
-		<description>They flick idly, large tan ears that belong to a bison.</description>
-		<parts>
-			<li>Ear</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+		<label>bison ear</label>
+		<graphics>
+			<LeftEar>Parts/Bison/Bison_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bison/Bison_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bison/Bison_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bison/Bison_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large tan ear that belongs to a bison. It flicks idly.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BovidTailPart">
+		<classInfluence>BisonMorph</classInfluence>
+		<defName>EtherBisonTail</defName>
+		<label>bison tail</label>
+		<graphics>
+			<Tail>Parts/Bison/Bison_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A bisonlike tail. A tuft of fur puffs out at the end.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
 		<defName>EtherBisonWooly</defName>
 		<label>thick fur</label>
@@ -171,25 +137,7 @@
 			<li>Torso</li>
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
-		<defName>EtherBisonTail</defName>
-		<label>bison tail</label>
-		<description>A bisonlike tail. A tuft of fur puffs out at the end.</description>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.01</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
 		<defName>EtherBisonHorns</defName>
 		<label>horns</label>

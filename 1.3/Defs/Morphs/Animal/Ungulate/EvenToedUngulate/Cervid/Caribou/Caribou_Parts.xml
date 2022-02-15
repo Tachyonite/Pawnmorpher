@@ -1,41 +1,19 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name="CaribouPart" ParentName="PawnmorphPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidJawPart">
 		<classInfluence>CaribouMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
-		<defName>EtherCaribouJaw</defName>
+		<defName>EtherCaribouSnout</defName>
 		<label>caribou snout</label>
-		<description>[PAWN_nameDef]'s face has pushed out into a long caribou muzzle</description>
-		<mutationTale>GrewMuzzleMisc</mutationTale>
-		<stages>
-			<li>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.40</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Muzzle>Parts/Caribou/Caribou_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long caribou muzzle.</description>
+				</values>
 			</li>
-			<li>
-				<label>adapted</label>
-				<minSeverity>1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Talking</capacity>
-						<offset>-0.08</offset>
-					</li>
-					<li>
-						<capacity>Eating</capacity>
-						<offset>0.40</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -45,71 +23,58 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10</power>
-						<cooldownTime>2</cooldownTime>
+						<power>10.0</power>
+						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
 		</comps>
-		<parts>
-			<li>Jaw</li>
-		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidEarPart">
+		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouEar</defName>
 		<label>caribou ear</label>
-		<description>[PAWN_nameDef]'s ears have grown into large caribou ears</description>
-		<mutationTale>EarsChangedMisc</mutationTale>
-		<parts>
-			<li>Ear</li>
-		</parts>
 		<mutationMemory>EtherCaribouEar</mutationMemory>
-
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>pointed</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>[PAWN_nameDef]'s ears are growing longer</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-
+		<graphics>
+			<LeftEar>Parts/Caribou/Caribou_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Caribou/Caribou_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Caribou/Caribou_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Caribou/Caribou_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing longer.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a large caribou ear.</description>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.8</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidTailPart">
+		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouTail</defName>
-		<label>caribou tail</label>
-		<description>[PAWN_nameDef] has a small caribou tail</description>
-		<mutationTale>GrewTail</mutationTale>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
+		<label>ibex tail</label>
 		<mutationMemory>EtherCaribouTail</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.01</offset>
-					</li>
-				</capMods>
+		<graphics>
+			<Tail>Parts/Caribou/Caribou_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a small caribou tail.</description>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
