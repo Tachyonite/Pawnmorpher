@@ -2,10 +2,12 @@
 	<Pawnmorph.Hediffs.MutationDef Name="MuffaloPart" ParentName="PawnmorphPart" Abstract="true">
 		<classInfluence>MuffaloMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="WoollyLimb">
 		<defName>EtherMuffaloFur</defName>
 		<classInfluence>MuffaloMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MuffaloPart">
 		<defName>EtherMuffaloSnout</defName>
 		<label>muffalo snout</label>

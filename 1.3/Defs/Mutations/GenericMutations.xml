@@ -368,32 +368,8 @@
 
 	<!-- Skin -->
 	
-	<!--This one is temporary-->
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layer>Skin</layer>
-			</li>
-			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-				<mtb>2</mtb>
-				<maxTreeSearchDepth>1</maxTreeSearchDepth>
-			</li>
-		</comps>
-		<parts>
-			<li>Torso</li>
-			<li>Head</li>
-			<li>Ear</li>
-			<li>Arm</li>
-			<li>Hand</li>
-			<li>Leg</li>
-			<li>Foot</li>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
-	
 	<!--This one is the definitive one, remove Tmp when hierarchy done-->
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPartTmp" Abstract="true" ParentName="PawnmorphPartNoRmComp">
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<description>A covered limb.</description>
 		<initialSeverity>0</initialSeverity>
 		<maxSeverity>1</maxSeverity>
@@ -423,27 +399,22 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>light</key>
-				<label>light</label>
 				<minSeverity>0</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>dusting</key>
-				<label>dusting</label>
 				<minSeverity>0.2</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>thin</key>
-				<label>thin</label>
 				<minSeverity>0.4</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>patches</key>
-				<label>patches</label>
 				<minSeverity>0.6</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>full</key>
-				<label>full</label>
 				<minSeverity>0.8</minSeverity>
 			</li>
 		</stages>

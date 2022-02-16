@@ -1,10 +1,9 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurLimb">
-		<defName>ThrumboFur</defName>
+		<defName>EtherThrumboThickFur</defName>
+		<label>thumbo thick fur</label>
 		<classInfluence>ThrumboMorph</classInfluence>
-		<categories>
-			<li>Powerful</li>
-		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">

@@ -28,4 +28,10 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">
 		<description>A plume of feathers sprouts out of the back of [PAWN_nameDef].</description>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FeatheredLimb">
+		<defName>EtherAvianFeatheredLimb</defName>
+		<label>feathers</label>
+		<classInfluence>Avian</classInfluence>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

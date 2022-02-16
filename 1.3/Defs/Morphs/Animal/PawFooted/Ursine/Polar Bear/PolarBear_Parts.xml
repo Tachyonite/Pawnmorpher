@@ -31,6 +31,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
 		<defName>EtherPolarBearFur</defName>
+		<label>polar bear fur</label>
 		<classInfluence>PolarBearMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
