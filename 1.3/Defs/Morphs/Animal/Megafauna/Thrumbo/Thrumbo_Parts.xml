@@ -19,19 +19,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adaptation has removed most of the difficulty with speaking.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An impressive snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Further adaptation has brought out the wise thrumbo inside.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -56,7 +56,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaEarPart">
 		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboEar</defName>
-		<label>thrumbic ear</label>
+		<label>thrumbo ear</label>
 		<graphics>
 			<LeftEar>Parts/Thrumbo/Thrumbo_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</LeftEarBehind>
@@ -67,7 +67,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>I didn't know thrumbos had ears, but [PAWN_nameDef] has put that question to rest. Yes, they do — white-furred, rounded and beautiful.</description>
+					<description>A white-furred, rounded and beautiful thrumbo ear.</description>
 				</values>
 			</li>
 		</stagePatches>
