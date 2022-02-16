@@ -2,9 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformJawPart">
 		<defName>EtherChickenBeak</defName>
 		<classInfluence>ChookMorph</classInfluence>
-		<mutationTale>GrewBeak</mutationTale>
-		<label>beak</label>
-		<description>The pointy beak of a chicken.</description>
+		<label>chicken beak</label>
 		<graphics>
 			<Muzzle>Parts/chickenface/chickenface</Muzzle>
 		</graphics>
@@ -12,13 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things. Eating is a little tricky when you have to peck.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of a chicken. They may bok and squawk about birdlike things. Adaptation has made it less frustrating to talk and eat.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -27,8 +31,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformTailPart">
 		<defName>EtherChickenTailfeathers</defName>
 		<classInfluence>ChookMorph</classInfluence>
-		<description>A plume of feathers sprout from a dimpled chicken tail above [PAWN_nameDef]'s butt.</description>
-		<label>tailfeathers</label>
+		<label>chicken tailfeathers</label>
 		<graphics>
 			<Tail>Parts/chickenface/chickentail</Tail>
 		</graphics>
@@ -37,6 +40,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEarPart">
 		<defName>EtherChickenEar</defName>
 		<classInfluence>ChookMorph</classInfluence>
+		<label>chicken earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">

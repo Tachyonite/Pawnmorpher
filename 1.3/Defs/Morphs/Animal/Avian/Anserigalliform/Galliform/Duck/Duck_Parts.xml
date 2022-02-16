@@ -3,7 +3,6 @@
 		<defName>EtherDuckBeak</defName>
 		<classInfluence>DuckMorph</classInfluence>
 		<label>duck beak</label>
-		<description>The flat beak of a duck.</description>
 		<mutationTale>GrewDuckBeak</mutationTale>
 		<graphics>
 			<Muzzle>Parts/Duck/Duck_Jaw</Muzzle>
@@ -12,19 +11,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A flat beak has grown out of [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. Eating is a little tricky when you have to peck.</description>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A flat beak has grown out of [PAWN_nameDef]'s face, like that of a duck.</description>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A flat beak has grown out of [PAWN_nameDef]'s face, like that of a duck. Somehow, this doesn't affect their speech.</description>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -49,7 +48,6 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformTailPart">
 		<defName>EtherDuckTailfeathers</defName>
 		<classInfluence>DuckMorph</classInfluence>
-		<description>A smooth plume of tailfeathers extends out of the back of [PAWN_nameDef]. Light reflects off them with subtle patterns.</description>
 		<label>duck tailfeathers</label>
 		<graphics>
 			<Tail>Parts/Duck/Duck_Tail</Tail>
@@ -59,6 +57,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEarPart">
 		<defName>EtherDuckEar</defName>
 		<classInfluence>DuckMorph</classInfluence>
+		<label>duck earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

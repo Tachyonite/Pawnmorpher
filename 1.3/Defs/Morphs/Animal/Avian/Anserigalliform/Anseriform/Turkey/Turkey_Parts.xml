@@ -2,8 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformJawPart">
 		<defName>EtherTurkeyBeak</defName>
 		<classInfluence>TurkeyMorph</classInfluence>
-		<label>snooded beak</label>
-		<description>The beak of a turkey, complete with a snood.</description>
+		<label>turkey beak</label>
 		<graphics>
 			<Muzzle>Parts/Turkey/Turkey_Jaw</Muzzle>
 		</graphics>
@@ -11,13 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down and it makes eating much more difficult.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A long snood is attached to it and it makes eating difficult. Somehow their speech isn't affected by it.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -26,8 +31,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformTailPart">
 		<defName>EtherTurkeyTailfeathers</defName>
 		<classInfluence>TurkeyMorph</classInfluence>
-		<description>A fanned out plume of feathers sprouted from [PAWN_nameDef]'s butt.</description>
-		<label>fanned tailfeathers</label>
+		<label>turkey tailfeathers</label>
 		<graphics>
 			<Tail>Parts/Turkey/Turkey_Tail</Tail>
 			<BehindBodyTail>Parts/Turkey/Turkey_Tail_Behind</BehindBodyTail>
@@ -37,5 +41,6 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEarPart">
 		<defName>EtherTurkeyEar</defName>
 		<classInfluence>TurkeyMorph</classInfluence>
+		<label>turkey earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
