@@ -1,26 +1,23 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="LeporidJawPart" ParentName="PawFootedJawPart" Abstract="true">
 		<mutationMemory>EtherHareJaw</mutationMemory>
-		<graphics>
-			<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose.</description>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, complete with twitchy pink button nose. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -43,18 +40,12 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LeporidEarPart" ParentName="PawFootedEarPart" Abstract="true">
-		<graphics>
-			<LeftEar>Parts/Hare/Hare_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Hare/Hare_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Hare/Hare_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Hare/Hare_Ear_Right_Behind</RightEarBehindHead>
-		</graphics>
 		<mutationMemory>EtherHareEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>Long furry ears sit atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound they sense. They're suprisingly flexible.</description>
+					<description>A long, furry ear sits atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses. It is suprisingly flexible.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -62,9 +53,6 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LeporidTailPart" ParentName="PawFootedTailPart" Abstract="true">
 		<mutationMemory>EtherHareTail</mutationMemory>
-		<graphics>
-			<Tail>Parts/Hare/Hare_Tail</Tail>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

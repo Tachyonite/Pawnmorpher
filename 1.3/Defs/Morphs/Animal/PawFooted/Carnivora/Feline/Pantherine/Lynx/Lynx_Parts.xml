@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into into a lynx shape, which is useful for eating, though they may hiss and meow more than talk.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a lynx shape. They may hiss and meow more than talk. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a lynx shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a lynx shape. They may hiss and meow more than talk. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a lynx shape, which is useful for eating.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a lynx shape. They may hiss and meow more than talk. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>

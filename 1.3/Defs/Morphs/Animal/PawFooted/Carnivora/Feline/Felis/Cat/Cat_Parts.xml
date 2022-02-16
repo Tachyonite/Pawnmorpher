@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/catface/catface</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cat shape, which is useful for eating, though they may hiss and meow more than talk.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cat shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cat shape, which is useful for eating.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="FelisEarPart">
@@ -38,14 +18,6 @@
 			<RightEar>Parts/Cat/Cat_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Cat/Cat_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="FelisTailPart">
@@ -55,13 +27,5 @@
 		<graphics>
 			<Tail>Parts/catface/cattail</Tail>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>A long, catlike tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

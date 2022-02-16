@@ -2,19 +2,31 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineJawPart">
 		<classInfluence>PolarBearMorph</classInfluence>
 		<defName>EtherPolarBearMuzzle</defName>
-		<label>polar muzzle</label>
+		<label>polar bear muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineEarPart">
 		<classInfluence>PolarBearMorph</classInfluence>
 		<defName>EtherPolarBearEar</defName>
-		<label>polar ear</label>
+		<label>polar bear ear</label>
+		<graphics>
+			<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineTailPart">
 		<classInfluence>PolarBearMorph</classInfluence>
 		<defName>EtherPolarBearTail</defName>
-		<label>polar tail</label>
+		<label>polar bear tail</label>
+		<graphics>
+			<Tail>Parts/bearface/beartail</Tail>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">

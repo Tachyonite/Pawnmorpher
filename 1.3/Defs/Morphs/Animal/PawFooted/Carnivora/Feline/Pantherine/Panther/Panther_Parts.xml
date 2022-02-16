@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineJawPart">
 		<classInfluence>PantherMorph</classInfluence>
 		<defName>EtherPantherJaw</defName>
-		<label>pantherine muzzle</label>
+		<label>panther muzzle</label>
 		<graphics>
 			<Muzzle>Parts/Panther/Panther_Jaw</Muzzle>
 		</graphics>
@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating, though they may hiss and meow more than talk.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape. They may hiss and meow more than talk. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating, though they may hiss and meow more than talk. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape. They may hiss and meow more than talk. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a panther shape, which is useful for eating.</description>
+					<description>[PAWN_nameDef]'s face has pressed out into a panther shape. They may hiss and meow more than talk. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -42,7 +42,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>Triangular fuzzy ears grace [PAWN_nameDef]'s head. They coil back when [PAWN_pronoun] is getting ready to pounce.</description>
+					<description>A triangular, fuzzy ear graces [PAWN_nameDef]'s head. It coils back when [PAWN_pronoun] is getting ready to pounce.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -51,7 +51,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
 		<classInfluence>PantherMorph</classInfluence>
 		<defName>EtherPantherTail</defName>
-		<label>pantherine tail</label>
+		<label>panther tail</label>
 		<graphics>
 			<Tail>Parts/Panther/Panther_Tail</Tail>
 		</graphics>
