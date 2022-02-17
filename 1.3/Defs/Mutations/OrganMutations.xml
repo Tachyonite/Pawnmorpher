@@ -1,0 +1,75 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+
+	<!-- Strong Heart -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphStrongHeart" ParentName ="PawnmorphMiscPart" Abstract="true">
+		<description>This heart is built for a larger body, and pumps a lot of blood. It also tires people out.</description>
+		<parts>
+			<li>Heart</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Strong pulses are going through [PAWN_nameDef]'s chest. They are getting worse and worse.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>A painful spasm of a growing heart is burning in [PAWN_nameDef]'s chest.</description>
+					<painOffset>0.5</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s heart has grown in size and the surrounding chest cavity has expanded to make room. [PAWN_pronoun] will need to rest more often, however.</description>
+					<restFallFactorOffset>0.3</restFallFactorOffset>
+					<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Bellowing Lung -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphStrongLung" ParentName ="PawnmorphMiscPart" Abstract="true">
+		<description>A large, powerful lung for intensive breathing.</description>
+		<parts>
+			<li>Lung</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Breathing is becoming more and more difficult for [PAWN_nameDef] as [PAWN_pronoun]'s lung has started to expand.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>A painful spasm of a growing lung is burning in [PAWN_nameDef]'s chest.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s lung has grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness.</description>
+					<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -368,7 +368,6 @@
 
 	<!-- Skin -->
 	
-	<!--This one is the definitive one, remove Tmp when hierarchy done-->
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<description>A covered limb.</description>
 		<initialSeverity>0</initialSeverity>
@@ -423,4 +422,28 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<!-- Misc - Suggestion: only the last stage has values -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphMiscPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph body part.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>1</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
