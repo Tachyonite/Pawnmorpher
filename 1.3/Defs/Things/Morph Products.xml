@@ -58,12 +58,12 @@
 		</ingestible>
 	</ThingDef>
 
-	<!-- ========== ChookMorph Eggs ========== -->
+	<!-- ========== mutagenic Eggs ========== -->
 
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFEgg</defName>
-		<label>chookmorph egg</label>
-		<description>A strange egg usually laid by a chookmorph. It's basically a normal egg, but saturated with mutagenic mechanites. Eating them will transfer chicken-based mutations to the imbiber.</description>
+		<label>mutagenic egg</label>
+		<description>A strange egg usually laid by some avian morphs. It's basically a normal egg, but saturated with enough mutagenic mechanites that the original species can no longer be determined. Eating it can cause unpredictable avian-based mutations unless properly cooked into a meal.</description>
 		<graphicData>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<texPath>Things/Item/Resource/TFEgg</texPath>
@@ -79,9 +79,15 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphChickenTFPartial</li>
+						<li>PawnmorphDuckTFPartial</li>
+						<li>PawnmorphGooseTFPartial</li>
+						<li>PawnmorphTurkeyTFPartial</li>
 					</hediffDefs>
 					<hediffDefsComplete>
 						<li>PawnmorphChickenTF</li>
+						<li>PawnmorphDuckTF</li>
+						<li>PawnmorphGooseTF</li>
+						<li>PawnmorphTurkeyTF</li>
 					</hediffDefsComplete>
 					<severity>1</severity>
 				</li>
