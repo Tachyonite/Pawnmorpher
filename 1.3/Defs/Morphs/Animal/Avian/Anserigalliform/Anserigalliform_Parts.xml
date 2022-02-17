@@ -7,4 +7,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnserigalliformTailPart" ParentName="AvianTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnserigalliformEggLayer" ParentName="EtherEggLayer" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
