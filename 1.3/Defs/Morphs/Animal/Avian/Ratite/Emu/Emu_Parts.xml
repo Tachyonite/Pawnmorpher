@@ -3,7 +3,6 @@
 		<defName>EtherEmuBeak</defName>
 		<classInfluence>EmuMorph</classInfluence>
 		<label>emu beak</label>
-		<description>The pointy beak of an emu.</description>
 		<graphics>
 			<Muzzle>Parts/Emu/Emu_Jaw</Muzzle>
 		</graphics>
@@ -11,13 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. Adaptation has made it less frustrating to talk and eat.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -26,7 +31,6 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteTailPart">
 		<defName>EtherEmuTailfeathers</defName>
 		<classInfluence>EmuMorph</classInfluence>
-		<description>A plume of coarse feathers sprout from a bird tail above [PAWN_nameDef]'s butt.</description>
 		<label>emu tailfeathers</label>
 		<graphics>
 			<Tail>Parts/Emu/Emu_Tail</Tail>
@@ -36,6 +40,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteEarPart">
 		<defName>EtherEmuEar</defName>
 		<classInfluence>EmuMorph</classInfluence>
+		<label>emu earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">

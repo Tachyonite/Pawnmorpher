@@ -2,18 +2,30 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineJawPart">
 		<classInfluence>BearMorph</classInfluence>
 		<defName>EtherGrizzlyBearMuzzle</defName>
-		<label>grizzly muzzle</label>
+		<label>grizzly bear muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineEarPart">
 		<classInfluence>BearMorph</classInfluence>
 		<defName>EtherGrizzlyBearEar</defName>
-		<label>grizzly ear</label>
+		<label>grizzly bear ear</label>
+		<graphics>
+			<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineTailPart">
 		<classInfluence>BearMorph</classInfluence>
 		<defName>EtherGrizzlyBearTail</defName>
-		<label>grizzly tail</label>
+		<label>grizzly bear tail</label>
+		<graphics>
+			<Tail>Parts/bearface/beartail</Tail>
+		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

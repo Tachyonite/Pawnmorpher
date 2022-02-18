@@ -14,19 +14,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a hellhound. [PAWN_possessive] teeth are pointed to suit; speaking is difficult outside of barks and whines, but eating is easier.</description>
+					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed</description>
+					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed</description>
+					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -50,7 +50,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears have become long and pointed, like that of a great canine</description>
+					<description>[PAWN_nameDef]'s ear has become long and pointed, like that of a great canine.</description>
 				</values>
 			</li>
 		</stagePatches>

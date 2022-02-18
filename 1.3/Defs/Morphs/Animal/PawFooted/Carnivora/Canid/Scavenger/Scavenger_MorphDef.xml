@@ -5,6 +5,12 @@
 			<li>Canid</li>
 			<li>Combat</li>
 		</categories>
+		<addedAspects>
+			<li>
+				<def>MeatLover</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+		</addedAspects>
 		<raceSettings>
 			<thoughtSettings>
 				<replacerList>

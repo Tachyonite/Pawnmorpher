@@ -10,11 +10,7 @@
 		<stages>
 			<li>
 				<label>meat lover</label>
-				<description>[PAWN_nameDef] has developed a taste for raw meat, and is less likely to get sick from it.</description>
-				<statOffsets>
-					<!-- 50% chance to not get sick from dangerous foods  -->
-					<DangerousFoodSensitivity>-0.5</DangerousFoodSensitivity>
-				</statOffsets>
+				<description>[PAWN_nameDef] has developed a taste for raw meat.</description>
 			</li>
 		</stages>
 	</Pawnmorph.AspectDef>

@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of an elephant. Speaking is difficult, but eating is easier.</description>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory.</description>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -57,7 +57,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantEar</defName>
-		<label>elephant ears</label>
+		<label>elephant ear</label>
 		<graphics>
 			<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
@@ -68,7 +68,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>Wow, those are big ears, [PAWN_nameDef]. [PAWN_pronoun] looks like a dumbo, doesn't [PAWN_pronoun].</description>
+					<description>Wow, with such a big ear, [PAWN_nameDef] looks like a dumbo, doesn't [PAWN_pronoun].</description>
 				</values>
 			</li>
 		</stagePatches>

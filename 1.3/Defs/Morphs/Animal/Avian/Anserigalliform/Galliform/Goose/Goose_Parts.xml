@@ -3,7 +3,6 @@
 		<defName>EtherGooseBeak</defName>
 		<classInfluence>GooseMorph</classInfluence>
 		<label>goose beak</label>
-		<description>The large beak of a goose.</description>
 		<mutationTale>GrewGooseBeak</mutationTale>
 		<graphics>
 			<Muzzle>Parts/Goose/Goose_Jaw</Muzzle>
@@ -12,13 +11,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A large beak has grown out of [PAWN_nameDef]'s face, like that of a goose. They may shout and honk about. Eating is a little tricky when you have to peck.</description>
+					<description>A large beak graces [PAWN_nameDef]'s face, like that of a goose. They may shout and honk about. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A large beak has grown out of [PAWN_nameDef]'s face, like that of a Goose.</description>
+					<description>A large beak graces [PAWN_nameDef]'s face, like that of a goose. They may shout and honk about. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A large beak graces [PAWN_nameDef]'s face, like that of a goose. They may shout and honk about. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -43,7 +48,6 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformTailPart">
 		<defName>EtherGooseTailfeathers</defName>
 		<classInfluence>GooseMorph</classInfluence>
-		<description>A smooth plume of monochrome feathers sprouts out of the back of [PAWN_nameDef].</description>
 		<label>goose tailfeathers</label>
 		<graphics>
 			<Tail>Parts/Goose/Goose_Tail</Tail>
@@ -53,6 +57,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEarPart">
 		<defName>EtherGooseEar</defName>
 		<classInfluence>GooseMorph</classInfluence>
+		<label>goose earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

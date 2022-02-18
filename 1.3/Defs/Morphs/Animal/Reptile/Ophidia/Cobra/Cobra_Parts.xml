@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite. Speaking is difficult, but eating is easier.</description>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite. Adaptation has removed some of the difficulty with talking.</description>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite.</description>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -71,6 +71,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaEarPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeEar</defName>
+		<label>cobra earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">

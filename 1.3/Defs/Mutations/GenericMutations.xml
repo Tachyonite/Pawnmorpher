@@ -5,6 +5,9 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphJawPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph muzzle.</description>
 		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.5</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -55,6 +58,8 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEarPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph ear.</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -95,6 +100,8 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphTailPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph tail.</description>
 		<mutationTale>GrewTail</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -135,6 +142,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEyePart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph eye.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -174,6 +183,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphArmPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph arm.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -213,6 +224,8 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHandPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph hand.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -252,6 +265,8 @@
 	
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphLegPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph leg.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -291,6 +306,8 @@
 	
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphFootPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph foot.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -331,6 +348,8 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHornPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph horn.</description>
 		<mutationTale>GrewAntlers</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -368,33 +387,9 @@
 
 	<!-- Skin -->
 	
-	<!--This one is temporary-->
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
-		<comps>
-			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
-				<layer>Skin</layer>
-			</li>
-			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
-				<mtb>2</mtb>
-				<maxTreeSearchDepth>1</maxTreeSearchDepth>
-			</li>
-		</comps>
-		<parts>
-			<li>Torso</li>
-			<li>Head</li>
-			<li>Ear</li>
-			<li>Arm</li>
-			<li>Hand</li>
-			<li>Leg</li>
-			<li>Foot</li>
-			<li>Tail</li>
-			<li>MorphTail</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<!--This one is the definitive one, remove Tmp when hierarchy done-->
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPartTmp" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<description>A covered limb.</description>
+		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
 		<maxSeverity>1</maxSeverity>
 		<parts>
@@ -423,27 +418,22 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>light</key>
-				<label>light</label>
 				<minSeverity>0</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>dusting</key>
-				<label>dusting</label>
 				<minSeverity>0.2</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>thin</key>
-				<label>thin</label>
 				<minSeverity>0.4</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>patches</key>
-				<label>patches</label>
 				<minSeverity>0.6</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>full</key>
-				<label>full</label>
 				<minSeverity>0.8</minSeverity>
 			</li>
 		</stages>
@@ -452,4 +442,30 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<!-- Misc - Suggestion: only the last stage has values -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphMiscPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph body part.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>1</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

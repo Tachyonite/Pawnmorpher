@@ -44,7 +44,7 @@
     </Pawnmorph.Hediffs.MutationDef>
 
     <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole" Abstract="true">
-		<label>Ear hole</label>
+		<label>ear hole</label>
 		<description>TODO</description>
 		<graphics>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
@@ -56,7 +56,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears are shrinking.</description>
+					<description>[PAWN_nameDef]'s ear is shrinking.</description>
 					<graphics>
 						<LeftEarBehind>Parts/None/None</LeftEarBehind>
 						<RightEar>Parts/None/None</RightEar>
@@ -68,7 +68,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>[PAWN_nameDef] no longer has any visible ears.</description>
+					<description>[PAWN_nameDef] no longer has a visible ear.</description>
 					<graphics>
 						<LeftEarBehind>Parts/None/None</LeftEarBehind>
 						<RightEar>Parts/None/None</RightEar>
@@ -80,7 +80,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears look more and more animal.</description>
+					<description>[PAWN_nameDef]'s ear looks more and more like an animal ear hole.</description>
 					<graphics>
 						<LeftEarBehind>Parts/None/None</LeftEarBehind>
 						<RightEar>Parts/None/None</RightEar>
@@ -92,7 +92,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef] now has ear holes.</description>
+					<description>[PAWN_nameDef] now has a ear hole.</description>
 				</values>
 			</li>
 		</stagePatches>

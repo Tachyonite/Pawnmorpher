@@ -1,0 +1,205 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+
+	<!-- Strong Heart -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>This heart is built for a larger body, and pumps a lot of blood. It also tires people out.</description>
+		<defName>EtherStrongHeart</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>strong heart</label>
+		<parts>
+			<li>Heart</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Strong pulses are going through [PAWN_nameDef]'s chest. They are getting worse and worse.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>A painful spasm of a growing heart is burning in [PAWN_nameDef]'s chest.</description>
+					<painOffset>0.5</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s heart has grown in size and the surrounding chest cavity has expanded to make room. [PAWN_pronoun] will need to rest more often, however.</description>
+					<restFallFactorOffset>0.3</restFallFactorOffset>
+					<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Bellowing Lung -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>A large, powerful lung for intensive breathing.</description>
+		<defName>EtherBellowingLung</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>bellowing lung</label>
+		<parts>
+			<li>Lung</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Breathing is becoming more and more difficult for [PAWN_nameDef] as [PAWN_pronoun]'s lung has started to expand.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>A painful spasm of a growing lung is burning in [PAWN_nameDef]'s chest.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s lung has grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness.</description>
+					<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Expanded Cerabellum -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>An expanded frontal lobe for bright morphs.</description>
+		<defName>EtherExpandedCerabellum</defName>
+		<classInfluence>Cerebral</classInfluence>
+		<label>expanded frontal lobe</label>
+		<parts>
+			<li>Brain</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] is recently having more headaches than usual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>[PAWN_nameDef]'s having a painful, constant migraine. It feels like [PAWN_nameDef]'s brain is expandiing.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s frontal lobe has expanded. With these new connections, many problems are now trivial for [PAWN_nameDef].</description>
+					<statOffsets>
+						<HackingSpeed>0.75</HackingSpeed>
+						<ResearchSpeed>0.20</ResearchSpeed>
+					</statOffsets>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Overactive adrenal gland -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>The adrenal gland of the kidney is producing more adrenaline than normal.</description>
+		<defName>EtherAdrenalGlands</defName>
+		<classInfluence>Mustelids</classInfluence>
+		<label>overactive adrenal gland</label>
+		<parts>
+			<li>Kidney</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] feels a bit on the alert these days.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>[PAWN_nameDef]'s adrenal gland is producing more and more adrenaline. The sudden change of balance is quite hurtful.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s adrenal gland is now able to produce a lot of adrenaline, making [PAWN_nameDef] more resistant to pain and less sleepy.</description>
+					<restFallFactorOffset>-0.15</restFallFactorOffset>
+					<statOffsets>
+						<PainShockThreshold>0.075</PainShockThreshold>
+					</statOffsets>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Iron Stomach -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>A stomach which is resilient to most germs.</description>
+		<defName>EtherIronStomach</defName>
+		<classInfluence>Scavenger</classInfluence>
+		<label>iron stomach</label>
+		<parts>
+			<li>Stomach</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s stomach is sometimes hurting a bit after eating. Nothing too worrying though.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef] seems to have painful disgestion troubles, like if their gut was evolving.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s gut is now resilient to dangerous and rotten food, and [PAWN_nameDef] could eat almost everything.</description>
+					<statOffsets>
+						<DangerousFoodSensitivity>-1</DangerousFoodSensitivity>
+						<RottenFoodSensitivity>-1</RottenFoodSensitivity>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

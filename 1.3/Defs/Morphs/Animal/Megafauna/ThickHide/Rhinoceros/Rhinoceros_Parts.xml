@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A oversized rhino jaw, complete with horn perfect for goring your foes.</description>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An impressive oversized rhino jaw, complete with horn perfect for goring your foes.</description>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -78,7 +78,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>The large and curved ears of a rhinoceros.</description>
+					<description>The large and curved ear of a rhinoceros.</description>
 				</values>
 			</li>
 		</stagePatches>

@@ -1,26 +1,23 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineJawPart" ParentName="PawFootedJawPart" Abstract="true">
 		<mutationMemory>EtherBearMuzzle</mutationMemory>
-		<graphics>
-			<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier.</description>
+					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with talking.</description>
+					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An impressive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit, making eating easier.</description>
+					<description>A massive snout graces [PAWN_nameDef]'s face, like that of a bear. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -44,17 +41,11 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineEarPart" ParentName="PawFootedEarPart" Abstract="true">
 		<mutationMemory>EtherBearEar</mutationMemory>
-		<graphics>
-			<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>Rounded, fuzzy ears sit atop [PAWN_nameDef]'s head. They're very slightly better at hearing than a human's ears.</description>
+					<description>A rounded, fuzzy ear, sits atop [PAWN_nameDef]'s head. It looks rather cute.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -62,9 +53,6 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="UrsineTailPart" ParentName="PawFootedTailPart" Abstract="true">
 		<mutationMemory>EtherBearTail</mutationMemory>
-		<graphics>
-			<Tail>Parts/bearface/beartail</Tail>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
