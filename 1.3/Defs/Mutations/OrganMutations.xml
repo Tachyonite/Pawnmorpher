@@ -119,6 +119,46 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
+	
+	<!-- Overactive adrenal gland -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>The adrenal gland of the kidney is producing more adrenaline than normal.</description>
+		<defName>EtherAdrenalGlands</defName>
+		<classInfluence>Mustelids</classInfluence>
+		<label>overactive adrenal gland</label>
+		<parts>
+			<li>Kidney</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] feels a bit on the alert these days.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>[PAWN_nameDef]'s adrenal gland is producing more and more adrenaline. The sudden change of balance is quite hurtful.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s adrenal gland is now able to produce a lot of adrenaline, making [PAWN_nameDef] more resistant to pain and less sleepy.</description>
+					<restFallFactorOffset>-0.15</restFallFactorOffset>
+					<statOffsets>
+						<PainShockThreshold>0.075</PainShockThreshold>
+					</statOffsets>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>
