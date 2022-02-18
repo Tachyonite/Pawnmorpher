@@ -65,7 +65,7 @@ namespace Pawnmorph.Hediffs
         {
             foreach (var blackMorph in blackListCategories.MakeSafe().SelectMany(c => c.AllMorphsInCategories))
             {
-                if (arg.classInfluence == blackMorph) return false;
+                if (arg.ClassInfluences.Any(x => x.Contains(blackMorph))) return false;
             }
 
             if (arg.IsRestricted && !allowRestricted) return false; 
