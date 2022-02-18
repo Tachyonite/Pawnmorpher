@@ -59,7 +59,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGoatEye</defName>
 		<label>goat eye</label>
 		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
@@ -80,7 +80,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="GoatPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGoatHorns</defName>
 		<label>goat horns</label>
 		<description>The curved horns of a goat. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>

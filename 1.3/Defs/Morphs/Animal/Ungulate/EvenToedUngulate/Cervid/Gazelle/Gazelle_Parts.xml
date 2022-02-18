@@ -75,7 +75,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="GazellePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGazelleAntlers</defName>
 		<label>gazelle antlers</label>
 		<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>

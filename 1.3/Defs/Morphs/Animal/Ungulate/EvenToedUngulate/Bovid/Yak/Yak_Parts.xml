@@ -70,7 +70,7 @@
 		<classInfluence>YakMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="YakPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherYakHorns</defName>
 		<label>horns</label>
 		<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>

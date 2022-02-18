@@ -77,7 +77,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="CaribouPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherCaribouAntlers</defName>
 		<label>caribou antlers</label>
 		<description>[PAWN_nameDef] has large caribou antlers</description>

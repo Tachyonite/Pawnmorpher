@@ -65,7 +65,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherHorns</defName>
 		<label>horns</label>
 		<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
@@ -93,7 +93,7 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="CowPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherUdder</defName>
 		<label>udder</label>
 		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>

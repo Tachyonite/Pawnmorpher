@@ -82,7 +82,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="DeerPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherAntlers</defName>
 		<label>antlers</label>
 		<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>

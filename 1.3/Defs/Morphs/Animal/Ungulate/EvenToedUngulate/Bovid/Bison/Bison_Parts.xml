@@ -65,7 +65,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherBisonWooly</defName>
 		<label>thick fur</label>
 		<description>Thick fur grows over [PAWN_nameDef]'s body constantly. Luckily, they can shave themselves to manage it.</description>
@@ -138,7 +138,7 @@
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="BisonPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherBisonHorns</defName>
 		<label>horns</label>
 		<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>

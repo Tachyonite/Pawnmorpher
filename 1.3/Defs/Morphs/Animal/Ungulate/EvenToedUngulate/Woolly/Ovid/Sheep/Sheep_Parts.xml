@@ -81,7 +81,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherSheepEye</defName>
 		<label>sheep eye</label>
 		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
@@ -102,7 +102,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherSheepHorns</defName>
 		<label>ram horns</label>
 		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
@@ -147,7 +147,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="SheepPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherWoolySheep</defName>
 		<label>thick wool</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly, different from the comparatively lighter wool that grows elsewhere. They can shave themselves, because they're a strong independent sheepmorph that don't need no ram.</description>
