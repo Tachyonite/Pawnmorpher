@@ -161,4 +161,45 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<!-- Overactive adrenal gland -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>A stomach which is resilient to most germs.</description>
+		<defName>EtherScavengerStomach</defName>
+		<classInfluence>Scavenger</classInfluence>
+		<label>scavenger gut</label>
+		<parts>
+			<li>Stomach</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s stomach is sometimes hurting a bit after eating. Nothing too worrying though.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef] seems to have painful disgestion troubles, like if their gut was evolving.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s gut is now resilient to dangerous and rotten food, like a scavenger.</description>
+					<statOffsets>
+						<DangerousFoodSensitivity>-1</DangerousFoodSensitivity>
+						<RottenFoodSensitivity>-1</RottenFoodSensitivity>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
 </Defs>
