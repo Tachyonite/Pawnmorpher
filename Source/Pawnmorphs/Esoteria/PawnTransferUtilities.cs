@@ -402,25 +402,32 @@ namespace Pawnmorph
         public static void TransferRelations([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
                                              Predicate<PawnRelationDef> predicate = null)
         {
-            if (pawn1.relations == null) return;
+            if (pawn1.relations == null) 
+                return;
+
             List<DirectPawnRelation> enumerator = pawn1.relations.DirectRelations.MakeSafe().ToList();
             predicate = predicate ?? (r => true); //if no filter is set, have it pass everything 
+
             foreach (DirectPawnRelation directPawnRelation in enumerator.Where(d => predicate(d.def)))
             {
-                if (directPawnRelation.def.implied) continue;
-                pawn1.relations?.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
+                if (directPawnRelation.def == null || directPawnRelation.def.implied) 
+                    continue;
+
+                pawn1.relations.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
                 pawn2.relations?.AddDirectRelation(directPawnRelation.def,
                                                    directPawnRelation.otherPawn); //TODO restrict these to special relationships? 
             }
 
-            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.ToList()
-            ) //make copies so we don't  invalidate the enumerator mid way through 
-            foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
-            {
-                if (pawnRelationDef.implied) continue;
-                pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
-                pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
-            }
+            //make copies so we don't  invalidate the enumerator mid way through 
+            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.MakeSafe().ToList())
+                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
+                {
+                    if (pawnRelationDef.implied) 
+                        continue;
+                    
+                    pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
+                    pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
+                }
         }
 
         /// <summary>
@@ -602,12 +609,41 @@ namespace Pawnmorph
                 }
 
 
-                if (memory.otherPawn == null)
-                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
+                thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
 
                 newMemory.age = memory.age;
                 newMemory.moodPowerFactor = memory.moodPowerFactor;
             }
+
+            // For each pawn with an opinion of the original, update their memories to point at the transformed pawn.
+            IEnumerable<Pawn> distinctOtherPawns = thoughtHandler1.memories.Memories.Where(x => x.otherPawn != null).Select(x => x.otherPawn).Distinct();
+            foreach (Pawn otherPawn in distinctOtherPawns)
+            {
+                TransferRemoteSocialThoughts(pawn1, pawn2, otherPawn);
+            }
+
+        }
+
+
+        private static void TransferRemoteSocialThoughts(Pawn original, Pawn transformed, Pawn otherPawn)
+        {
+            if (original == null)
+                throw new ArgumentNullException(nameof(original));
+            if (transformed == null)
+                throw new ArgumentNullException(nameof(transformed));
+            if (otherPawn == null)
+                throw new ArgumentNullException(nameof(otherPawn));
+
+
+            ThoughtHandler otherPawnThoughts = otherPawn.needs?.mood?.thoughts;
+            if (otherPawnThoughts == null)
+                return;
+
+
+            List<ISocialThought> outThoughts = new List<ISocialThought>();
+            otherPawnThoughts.GetSocialThoughts(original, outThoughts);
+            foreach (Thought_MemorySocial item in outThoughts.OfType<Thought_MemorySocial>())
+                item.otherPawn = transformed;
         }
 
         /// <summary>
@@ -659,6 +695,34 @@ namespace Pawnmorph
                     return skillRecord;
 
             return null;
+        }
+
+        internal static void TransferInteractions(Pawn originalPawn, Pawn transformedPawn)
+        {
+            if (originalPawn == null)
+                throw new ArgumentNullException(nameof(originalPawn));
+
+            if (transformedPawn == null)
+                throw new ArgumentNullException(nameof(transformedPawn));
+
+
+
+            FieldInfo initiatorField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "initiator");
+            FieldInfo recipientField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "recipient");
+            foreach (PlayLogEntry_Interaction item in Find.PlayLog.AllEntries.OfType<PlayLogEntry_Interaction>())
+            {
+                if (item.Concerns(originalPawn))
+                {
+
+                    Pawn initiator = initiatorField.GetValue(item) as Pawn;
+                    if (initiator == originalPawn)
+                        initiatorField.SetValue(item, transformedPawn);
+
+                    Pawn recipient = recipientField.GetValue(item) as Pawn;
+                    if (recipient == originalPawn)
+                        recipientField.SetValue(item, transformedPawn);
+                }
+            }
         }
     }
 }

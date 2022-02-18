@@ -14,6 +14,11 @@
 			<ArmorRating_Heat>0.50</ArmorRating_Heat>
 		</statBases>
 		<uiIconScale>1.75</uiIconScale>
+		<comps>
+			<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman">
+				<always>true</always>
+			</li>
+		</comps>
 		<tools>
 			<li>
 				<label>horn</label>
@@ -177,6 +182,9 @@
 			</li>
 		</lifeStages>
 		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AnimalSelectorOverrides">
+				<label>?????</label>
+			</li>
 			<li Class="Pawnmorph.Chambers.AnimalTfControllers.ChaoThrumbo"/>
 			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
 				<backstory>FormerHumanChaomorph</backstory>

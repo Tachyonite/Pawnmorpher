@@ -13,10 +13,8 @@ Because reverter relies on the data stored within the mutagenic mechanites to re
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffAll">
-					<hediffDefs>
-						<li>StabiliserHigh</li>
-					</hediffDefs>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserHigh</hediffDef>
 					<severity>1.00</severity>
 				</li>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_EsotericRevert"></li>

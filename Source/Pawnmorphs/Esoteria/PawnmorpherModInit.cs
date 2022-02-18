@@ -277,6 +277,7 @@ namespace Pawnmorph
                 try
                 {
                     AddAddonsToRace(aRace, allAddons);
+                    CheckDefaultOffsets(aRace, (ThingDef_AlienRace) ThingDefOf.Human); 
                 }
                 catch (Exception e)
                 {
@@ -286,6 +287,29 @@ namespace Pawnmorph
             }
 
 
+
+        }
+
+
+        //make sure the implicit race has all default offset listed 
+        private static void CheckDefaultOffsets([NotNull] ThingDef_AlienRace aRace, [NotNull] ThingDef_AlienRace human)
+        {
+            var aSettings = aRace.alienRace.generalSettings.alienPartGenerator;
+            var hSettings = human.alienRace.generalSettings.alienPartGenerator;
+            if (hSettings?.offsetDefaults == null) return; 
+            if (aSettings.offsetDefaults == null)
+            {
+                aSettings.offsetDefaults = hSettings.offsetDefaults;
+                return;
+            }
+
+            foreach (AlienPartGenerator.OffsetNamed hDefaultOffset in hSettings.offsetDefaults)
+            {
+                if (aSettings.offsetDefaults.All(a => a.name != hDefaultOffset.name))
+                {
+                    aSettings.offsetDefaults.Add(hDefaultOffset); 
+                }
+            }
 
         }
 
@@ -341,6 +365,13 @@ namespace Pawnmorph
 
             foreach (AlienPartGenerator.BodyAddon bodyAddon in allAddons) 
             {
+                if (bodyAddon is TaggedBodyAddon tagged)
+                {
+                    // Skip if anchor already exists.
+                    if (partGen.bodyAddons.Any(x => (x as TaggedBodyAddon)?.anchorID == tagged.anchorID))
+                        continue;
+                }
+
                 var cpy = CloneAddon(bodyAddon);
                 partGen.bodyAddons.Add(cpy); 
             }
@@ -354,8 +385,10 @@ namespace Pawnmorph
             var shaderField = pType.GetField("shaderType", BindingFlags.Instance | BindingFlags.NonPublic);
             var prioritizationField = pType.GetField("prioritization", BindingFlags.Instance | BindingFlags.NonPublic);
             var colorChannelField = pType.GetField("colorChannel", BindingFlags.Instance | BindingFlags.NonPublic);
-            var copy = new AlienPartGenerator.BodyAddon()
+            string aID = (addon as TaggedBodyAddon)?.anchorID; 
+            var copy = new TaggedBodyAddon()
             { 
+                anchorID = aID,
                 angle = addon.angle,
                 backstoryGraphics =  addon.backstoryGraphics.MakeSafe().ToList(),
                 backstoryRequirement = addon.backstoryRequirement,
@@ -368,7 +401,7 @@ namespace Pawnmorph
                 drawSize = addon.drawSize,
                 hiddenUnderApparelFor = addon.hiddenUnderApparelFor.MakeSafe().ToList(),
                 path = addon.path,
-                offsets = addon.offsets,
+                offsets = addon.offsets ?? new AlienPartGenerator.BodyAddonOffsets(),
                 linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
                 inFrontOfBody = addon.inFrontOfBody,
                 layerInvert = addon.layerInvert,
@@ -376,6 +409,10 @@ namespace Pawnmorph
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
                 
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
+                defaultOffsets = addon.defaultOffsets,
+                defaultOffset = addon.defaultOffset,
+                drawSizePortrait = addon.drawSizePortrait,
+                
             };
 
             shaderField.SetValue(copy, addon.ShaderType);

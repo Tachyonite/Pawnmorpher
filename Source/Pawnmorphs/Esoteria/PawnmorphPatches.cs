@@ -277,6 +277,12 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod("CheckAppendBondedAnimalDiedInfo", INSTANCE_FLAGS));
             methodsToPatch.Add(typeof(Pawn_RelationsTracker).GetMethod(nameof(Pawn_RelationsTracker.Notify_RescuedBy), INSTANCE_FLAGS));
 
+            // Social tab
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("DrawMyOpinion", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("DrawHisOpinion", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("Recache", STATIC_FLAGS));
+            methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("GetPawnRowTooltip", STATIC_FLAGS));
+
             AddJobGiverMethods(methodsToPatch);
 
 

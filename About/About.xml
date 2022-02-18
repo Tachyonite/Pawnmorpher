@@ -85,5 +85,11 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
 		<li>erdelf.HumanoidAlienRaces</li>
 		<li>PeteTimesSix.CompactHediffs</li>
 		<li>UnlimitedHugs.HugsLib</li>
+		<li>Ludeon.RimWorld.Ideology</li>	
+		<li>RaZim.ZGFMartens</li>
+		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+		<li>VanillaExpanded.VCookE</li>
+		<li>crustypeanut.rc2.core</li>
+		<li>UnlimitedHugs.RemoteTech</li>
 	</loadAfter>
 </ModMetaData>

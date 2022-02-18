@@ -462,6 +462,7 @@
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\AutoSlaughterPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
@@ -651,6 +652,7 @@
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="DefExtensions\AnimalSelectorOverrides.cs" />
     <Compile Include="ThingComps\DatabaseStorage.cs" />
     <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
     <Compile Include="ThingComps\DrawStoredPawnComp.cs" />

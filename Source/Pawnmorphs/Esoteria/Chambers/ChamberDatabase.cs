@@ -74,7 +74,7 @@ namespace Pawnmorph.Chambers
             get
             {
                 if (Settings.chamberDatabaseIgnoreStorageLimit) return int.MaxValue;
-                return TotalStorage - UsedStorage;
+                return TotalStorage - UsedStorage - _inactiveAmount;
             }
         }
 
@@ -139,7 +139,7 @@ namespace Pawnmorph.Chambers
         /// <value>
         ///     <c>true</c> if this instance can tag; otherwise, <c>false</c>.
         /// </value>
-        public bool CanTag => FreeStorage - _inactiveAmount > 0;
+        public bool CanTag => FreeStorage > 0;
 
 
         private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();

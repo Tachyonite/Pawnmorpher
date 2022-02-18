@@ -40,6 +40,28 @@ namespace Pawnmorph
         /// <value>
         /// The merging icon.
         /// </value>
-        public static Texture2D MergingIcon { get; } = ContentFinder<Texture2D>.Get("UI/Commands/Merge"); 
+        public static Texture2D MergingIcon { get; } = ContentFinder<Texture2D>.Get("UI/Commands/Merge");
+
+
+
+        /// <summary>
+        /// Gets a purple mutagenic hazard logo.
+        /// </summary>
+        public static Texture2D MutagenicHazardEther { get; } = ContentFinder<Texture2D>.Get("UI/MutagenicHazardEther");
+
+        /// <summary>
+        /// Gets a red mutagenic hazard logo.
+        /// </summary>
+        public static Texture2D MutagenicHazardHigh { get; } = ContentFinder<Texture2D>.Get("UI/MutagenicHazardHigh");
+
+        /// <summary>
+        /// Gets a yellow mutagenic hazard logo.
+        /// </summary>
+        public static Texture2D MutagenicHazardMid { get; } = ContentFinder<Texture2D>.Get("UI/MutagenicHazardMid");
+
+        /// <summary>
+        /// Gets a green mutagenic hazard logo.
+        /// </summary>
+        public static Texture2D MutagenicHazardLow { get; } = ContentFinder<Texture2D>.Get("UI/MutagenicHazardLow");
     }
 }

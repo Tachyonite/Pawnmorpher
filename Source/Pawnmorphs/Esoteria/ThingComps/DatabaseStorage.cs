@@ -16,26 +16,24 @@ namespace Pawnmorph.ThingComps
     public class DatabaseStorage : ThingComp
     {
         private bool _added;
+        private bool _powered;
         private DatabaseStorageProperties Props => (DatabaseStorageProperties) props;
 
         private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
-        /// <summary>
-        /// Notifies the signal received.
-        /// </summary>
-        /// <param name="signal">The signal.</param>
-        public override void Notify_SignalReceived(Signal signal)
+        public override void ReceiveCompSignal(string signal)
         {
-            if (signal.tag == CompPowerTrader.PowerTurnedOnSignal)
+            if (signal == CompPowerTrader.PowerTurnedOnSignal && _powered == false)
             {
-                Database.NotifyPowerOn(Props.storageAmount); 
-            }else if (signal.tag == CompPowerTrader.PowerTurnedOffSignal)
-            {
-                Database.NotifyLostPower(Props.storageAmount); 
+                _powered = true;
+                Database.NotifyPowerOn(Props.storageAmount);
             }
-
-
-            base.Notify_SignalReceived(signal);
+            else if (signal == CompPowerTrader.PowerTurnedOffSignal && _powered)
+            {
+                _powered = false;
+                Database.NotifyLostPower(Props.storageAmount);
+            }
+            base.ReceiveCompSignal(signal);
         }
 
         /// <summary>
@@ -50,6 +48,10 @@ namespace Pawnmorph.ThingComps
             {
                 var database = Find.World.GetComponent<ChamberDatabase>();
                 database.TotalStorage -= Props.storageAmount;
+
+                // Clear inactive storage.
+                if (_powered == false)
+                    Database.NotifyPowerOn(Props.storageAmount);
             }
         }
 
@@ -77,6 +79,7 @@ namespace Pawnmorph.ThingComps
         {
             base.PostExposeData();
             Scribe_Values.Look(ref _added, "added");
+            Scribe_Values.Look(ref _powered, "powered");
         }
 
 
@@ -96,6 +99,8 @@ namespace Pawnmorph.ThingComps
                 _added = true;
                 var database = Find.World.GetComponent<ChamberDatabase>();
                 database.TotalStorage += Props.storageAmount;
+                Database.NotifyLostPower(Props.storageAmount);
+                // Buildings are initially unpowered once constructed.
             }
         }
     }

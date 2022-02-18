@@ -247,7 +247,10 @@ namespace Pawnmorph.GraphicSys
             if (styleTracker != null) _styleInfo.Restore(styleTracker);
         }
 
-        private void ScanGraphics()
+        /// <summary>
+        /// Scans the graphics settings of the attached pawn and saves it so it can be reverted later.
+        /// </summary>
+        public void ScanGraphics()
         {
             _scanned = true;
             var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
