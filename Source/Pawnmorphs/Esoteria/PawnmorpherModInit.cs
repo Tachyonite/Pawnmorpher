@@ -283,6 +283,7 @@ namespace Pawnmorph
                 try
                 {
                     AddAddonsToRace(aRace, allAddons);
+                    CheckDefaultOffsets(aRace, (ThingDef_AlienRace) ThingDefOf.Human); 
                 }
                 catch (Exception e)
                 {
@@ -292,6 +293,29 @@ namespace Pawnmorph
             }
 
 
+
+        }
+
+
+        //make sure the implicit race has all default offset listed 
+        private static void CheckDefaultOffsets([NotNull] ThingDef_AlienRace aRace, [NotNull] ThingDef_AlienRace human)
+        {
+            var aSettings = aRace.alienRace.generalSettings.alienPartGenerator;
+            var hSettings = human.alienRace.generalSettings.alienPartGenerator;
+            if (hSettings?.offsetDefaults == null) return; 
+            if (aSettings.offsetDefaults == null)
+            {
+                aSettings.offsetDefaults = hSettings.offsetDefaults;
+                return;
+            }
+
+            foreach (AlienPartGenerator.OffsetNamed hDefaultOffset in hSettings.offsetDefaults)
+            {
+                if (aSettings.offsetDefaults.All(a => a.name != hDefaultOffset.name))
+                {
+                    aSettings.offsetDefaults.Add(hDefaultOffset); 
+                }
+            }
 
         }
 
@@ -347,6 +371,13 @@ namespace Pawnmorph
 
             foreach (AlienPartGenerator.BodyAddon bodyAddon in allAddons) 
             {
+                if (bodyAddon is TaggedBodyAddon tagged)
+                {
+                    // Skip if anchor already exists.
+                    if (partGen.bodyAddons.Any(x => (x as TaggedBodyAddon)?.anchorID == tagged.anchorID))
+                        continue;
+                }
+
                 var cpy = CloneAddon(bodyAddon);
                 partGen.bodyAddons.Add(cpy); 
             }
