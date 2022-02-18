@@ -92,7 +92,6 @@
 		<maxSeverity>1</maxSeverity>
 		<categories>
 			<li>Major</li>
-			<li>Powerful</li>
 		</categories>
 		<stagePatches>
 			<li function="modify">
