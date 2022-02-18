@@ -491,7 +491,7 @@ namespace Pawnmorph.User_Interface
                 foreach (MutationLayer layer in cachedMutationLayersByPartDef[parts.FirstOrDefault().def])
                 {
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == layer).ToList();
-                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
+                    buttonLabel = $"{layer.ToString().Translate()}: {(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({String.Join(", ", m.Def.ClassInfluences.Select(x => x.label.CapitalizeFirst()))})").Distinct()))}";
                     DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
                 }
             }
@@ -508,7 +508,7 @@ namespace Pawnmorph.User_Interface
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
                     layer = MutationLayer.Core;
                 }
-                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({String.Join(", ", m.Def.ClassInfluences.Select(x => x.label.CapitalizeFirst()))})").Distinct()))}";
                 DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
@@ -557,7 +557,7 @@ namespace Pawnmorph.User_Interface
                         recachePreview = true;
                         RecachePawnMutations();
                     }
-                    options.Add(new FloatMenuOption($"{mutationDef.LabelCap} ({mutationDef.classInfluence.label.CapitalizeFirst()})", addMutation));
+                    options.Add(new FloatMenuOption($"{mutationDef.LabelCap} ({String.Join(", ", mutationDef.ClassInfluences.Select(x => x.label.CapitalizeFirst()))})", addMutation));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }

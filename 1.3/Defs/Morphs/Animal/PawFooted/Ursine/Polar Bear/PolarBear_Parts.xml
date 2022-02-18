@@ -28,10 +28,10 @@
 			<Tail>Parts/bearface/beartail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+<!-- 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
 		<defName>EtherPolarBearFur</defName>
 		<label>polar bear fur</label>
 		<classInfluence>PolarBearMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>

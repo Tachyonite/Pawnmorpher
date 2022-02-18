@@ -61,7 +61,15 @@
 
 	<!-- Arctic fur -->
 	
-	<Pawnmorph.Hediffs.MutationDef Name="PM_ArcticFurBase" ParentName="FurredLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name="PM_ArcticFur" ParentName="FurredLimb">
+		<defName>ArcticWolfFur</defName>
+		<label>arctic fur</label>
+		<classInfluences>
+			<li>ArcticWolfMorph</li>
+			<li>ArcticFoxMorph</li>
+			<li>SnowhareMorph</li>
+			<li>PolarBearMorph</li>
+		</classInfluences>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>light</stageKey>

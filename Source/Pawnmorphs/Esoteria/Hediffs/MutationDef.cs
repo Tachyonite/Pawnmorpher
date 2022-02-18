@@ -22,8 +22,8 @@ namespace Pawnmorph.Hediffs
     public class MutationDef : HediffDef, IDebugString
     {
         [Unsaved()]
-        private MutationStage[] _cachedMutationStages; 
-        
+        private MutationStage[] _cachedMutationStages;
+
         /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
@@ -78,12 +78,12 @@ namespace Pawnmorph.Hediffs
         /// The graphics for this mutation 
         /// </summary>
         [CanBeNull]
-        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>(); 
+        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>();
 
         /// <summary>
         /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
         /// </summary>
-        public int value; 
+        public int value;
 
         /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation
@@ -97,14 +97,18 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// if this mutation should be removed instantly by a reverter
         /// </summary>
-        public bool removeInstantly; 
-        
+        public bool removeInstantly;
+
         /// <summary>
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
         [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public AnimalClassBase classInfluence;
+
+        [NotNull]
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public List<AnimalClassBase> classInfluences;
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -193,6 +197,18 @@ namespace Pawnmorph.Hediffs
             get { return RestrictionLevel > RestrictionLevel.UnRestricted; }
         }
 
+
+        public List<AnimalClassBase> ClassInfluences 
+        { 
+            get
+            {
+                if (classInfluences == null)
+                    classInfluences = new List<AnimalClassBase>() { classInfluence ?? AnimalClassDefOf.Animal };
+                
+                return classInfluences;
+            }
+        }
+
         /// <summary>
         /// Gets the restriction level of this mutation
         /// </summary>
@@ -268,8 +284,8 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] AnimalClassDef classDef)
         {
             if (classDef == null) throw new ArgumentNullException(nameof(classDef));
-            if (classInfluence == null) return false;
-            return classDef.Contains(classInfluence);
+            if (ClassInfluences == null) return false;
+            return ClassInfluences.Any(x => classDef.Contains(x));
         }
 
         /// <summary>
@@ -281,8 +297,8 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            if (classInfluence == null) return false;
-            return classInfluence.Contains(morph);
+            if (ClassInfluences == null) return false;
+            return ClassInfluences.Any(x => x.Contains(morph));
         }
 
         /// <summary>
@@ -291,7 +307,6 @@ namespace Pawnmorph.Hediffs
         public override void ResolveReferences()
         {
             base.ResolveReferences();
-            classInfluence = classInfluence ?? AnimalClassDefOf.Animal;
 
             if (mutationMemory == null)
             {
