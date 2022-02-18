@@ -81,13 +81,11 @@
 						<li>PawnmorphChickenTFPartial</li>
 						<li>PawnmorphDuckTFPartial</li>
 						<li>PawnmorphGooseTFPartial</li>
-						<li>PawnmorphTurkeyTFPartial</li>
 					</hediffDefs>
 					<hediffDefsComplete>
 						<li>PawnmorphChickenTF</li>
 						<li>PawnmorphDuckTF</li>
 						<li>PawnmorphGooseTF</li>
-						<li>PawnmorphTurkeyTF</li>
 					</hediffDefsComplete>
 					<severity>1</severity>
 				</li>
