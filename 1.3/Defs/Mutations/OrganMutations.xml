@@ -161,13 +161,13 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Overactive adrenal gland -->
+	<!-- Iron Stomach -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
 		<description>A stomach which is resilient to most germs.</description>
-		<defName>EtherScavengerStomach</defName>
+		<defName>EtherIronStomach</defName>
 		<classInfluence>Scavenger</classInfluence>
-		<label>scavenger gut</label>
+		<label>iron stomach</label>
 		<parts>
 			<li>Stomach</li>
 		</parts>
@@ -192,7 +192,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s gut is now resilient to dangerous and rotten food, like a scavenger.</description>
+					<description>[PAWN_nameDef]'s gut is now resilient to dangerous and rotten food, and [PAWN_nameDef] could eat almost everything.</description>
 					<statOffsets>
 						<DangerousFoodSensitivity>-1</DangerousFoodSensitivity>
 						<RottenFoodSensitivity>-1</RottenFoodSensitivity>
