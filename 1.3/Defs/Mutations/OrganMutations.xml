@@ -2,8 +2,11 @@
 
 	<!-- Strong Heart -->
 	
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphStrongHeart" ParentName ="PawnmorphMiscPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
 		<description>This heart is built for a larger body, and pumps a lot of blood. It also tires people out.</description>
+		<defName>EtherStrongHeart</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>strong heart</label>
 		<parts>
 			<li>Heart</li>
 		</parts>
@@ -39,8 +42,11 @@
 	
 	<!-- Bellowing Lung -->
 	
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphStrongLung" ParentName ="PawnmorphMiscPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
 		<description>A large, powerful lung for intensive breathing.</description>
+		<defName>EtherBellowingLung</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>bellowing lung</label>
 		<parts>
 			<li>Lung</li>
 		</parts>
@@ -72,4 +78,48 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Expanded Cerabellum -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
+		<description>An expanded frontal lobe for bright morphs.</description>
+		<defName>EtherExpandedCerabellum</defName>
+		<classInfluence>Cerebral</classInfluence>
+		<label>expanded frontal lobe</label>
+		<parts>
+			<li>Brain</li>
+		</parts>
+		<maxSeverity>1</maxSeverity>
+		<categories>
+			<li>Major</li>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] is recently having more headaches than usual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+				<description>[PAWN_nameDef]'s having a painful, constant migraine. It feels like [PAWN_nameDef]'s brain is expandiing.</description>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s frontal lobe has expanded. With these new connections, many problems are now trivial for [PAWN_nameDef].</description>
+					<statOffsets>
+						<HackingSpeed>0.75</HackingSpeed>
+						<ResearchSpeed>0.20</ResearchSpeed>
+					</statOffsets>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
 </Defs>

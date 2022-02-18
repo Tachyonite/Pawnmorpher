@@ -16,17 +16,4 @@
 			<li>Powerful</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphStrongHeart">
-		<defName>EtherMegafaunaHeart</defName>
-		<classInfluence>Powerful</classInfluence>
-		<label>strong heart</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphStrongLung">
-		<defName>EtherMegafaunaLung</defName>
-		<classInfluence>Powerful</classInfluence>
-		<label>bellowing lung</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 </Defs>
