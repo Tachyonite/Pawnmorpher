@@ -54,7 +54,7 @@
 		<defName>EtherMuffaloTail</defName>
 		<label>muffalo tail</label>
 		<graphics>
-			<Tail>Parts/muffaloface/muffalotail</Tail>
+			<Tail>Parts/Yak/Yak_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
