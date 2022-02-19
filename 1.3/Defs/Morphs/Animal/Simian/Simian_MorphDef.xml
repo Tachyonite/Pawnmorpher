@@ -3,6 +3,7 @@
 		<classification>Simian</classification>
 		<injectorProperties></injectorProperties>
 		<categories>
+			<li>Simian</li>
 			<li>Social</li>
 		</categories>
 	</Pawnmorph.MorphDef>

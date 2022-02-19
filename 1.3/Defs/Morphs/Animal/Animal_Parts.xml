@@ -7,7 +7,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face is a bit itching, but nothing strange yet.</description>
+					<description>[PAWN_nameDef]'s face is itching a bit, but nothing strange has happened yet.</description>
 					<graphics>
 						<Muzzle>Parts/None/None</Muzzle>
 					</graphics>
@@ -32,7 +32,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face continue to change, looking closer and closer to an animal.</description>
+					<description>[PAWN_nameDef]'s face continues to change, looking more and more like an animal's.</description>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -103,7 +103,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears feel itchy, but nothing suspicious for now.</description>
+					<description>[PAWN_nameDef] has been scratching this ear a lot recently.</description>
 					<graphics>
 						<LeftEarBehind>Parts/None/None</LeftEarBehind>
 						<RightEar>Parts/None/None</RightEar>
@@ -115,7 +115,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears are growing.</description>
+					<description>[PAWN_nameDef]'s ear is growing.</description>
 					<graphics>
 						<LeftEarBehind>Parts/Partials/Todo/Todo</LeftEarBehind>
 						<RightEar>Parts/Partials/Todo/Todo</RightEar>
@@ -127,7 +127,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears look more and more animal.</description>
+					<description>[PAWN_nameDef]'s ear looks more and more animal.</description>
 					<graphics>
 						<LeftEarBehind>Parts/Partials/PointyEar/PointyEar_Left_Behind</LeftEarBehind>
 						<RightEar>Parts/Partials/PointyEar/PointyEar_Right</RightEar>
@@ -139,7 +139,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ears are like ones of an animal</description>
+					<description>[PAWN_nameDef]'s ear is like an animal's.</description>
 				</values>
 			</li>
 		</stagePatches>
