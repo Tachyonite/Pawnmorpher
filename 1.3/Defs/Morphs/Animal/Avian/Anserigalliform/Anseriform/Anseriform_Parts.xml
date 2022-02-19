@@ -23,4 +23,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnseriformTailPart" ParentName="AnserigalliformTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnseriformEggLayerPart" ParentName="AnserigalliformEggLayer" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -60,4 +60,44 @@
 		<label>goose earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEggLayerPart">
+		<defName>EtherGooseEggLayer</defName>
+		<classInfluence>GooseMorph</classInfluence>
+		<label>goose egglayer</label>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production" Name="EggLayerProductionComp">
+				<thought>LaidEgg</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_LayEgg</jobGiver>
+				<genderAversion>Male</genderAversion>
+				<wrongGenderThought>LaidEggMale</wrongGenderThought>
+				<etherBondThought>LaidEggBond</etherBondThought>
+				<etherBrokenThought>LaidEggBroken</etherBrokenThought>
+				<resource>EggGooseUnfertilized</resource>
+				<rareResource>TFEgg</rareResource>
+				<stages>
+					<li>
+						<daysToProduce>1</daysToProduce>
+						<amount>1</amount>
+						<chance>50</chance>
+					</li>
+					<li>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>1</amount>
+						<chance>70</chance>
+					</li>
+					<li>
+						<daysToProduce>0.2</daysToProduce>
+						<amount>1</amount>
+						<chance>90</chance>
+					</li>
+					<li>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>1</amount>
+						<chance>99</chance>
+						<thought>ProductiveBliss</thought>
+					</li>
+				</stages>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
