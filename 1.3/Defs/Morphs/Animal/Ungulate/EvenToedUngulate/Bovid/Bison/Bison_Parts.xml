@@ -5,6 +5,7 @@
 		<label>bison snout</label>
 		<graphics>
 			<Muzzle>Parts/Bison/Bison_jaw</Muzzle>
+			<BirdJawOrnament>Parts/Bison/Bison_Foreheadhair</BirdJawOrnament>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

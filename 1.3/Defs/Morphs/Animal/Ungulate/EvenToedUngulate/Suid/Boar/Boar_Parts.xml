@@ -26,22 +26,6 @@
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>tusks</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Stab</li>
-						</capacities>
-						<power>15.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="SuidEarPart">

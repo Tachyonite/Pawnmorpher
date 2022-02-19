@@ -70,7 +70,7 @@
 		<defName>EtherDeerTail</defName>
 		<label>deer tail</label>
 		<graphics>
-			<Tail>Parts/Deer/Deer_Tail</Tail>
+			<Tail>Parts/deerface/deertail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

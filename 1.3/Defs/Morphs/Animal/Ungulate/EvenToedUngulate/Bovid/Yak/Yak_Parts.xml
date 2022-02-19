@@ -5,6 +5,7 @@
 		<label>yak snout</label>
 		<graphics>
 			<Muzzle>Parts/Yak/Yak_Jaw</Muzzle>
+			<BirdJawOrnament>Parts/Yak/Yak_Headfluff</BirdJawOrnament>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

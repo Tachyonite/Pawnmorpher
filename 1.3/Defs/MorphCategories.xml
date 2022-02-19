@@ -73,6 +73,10 @@
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
+		<defName>Equine</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
 		<defName>Feline</defName>
 	</Pawnmorph.MorphCategoryDef>
 
@@ -89,6 +93,10 @@
 		<defName>Reptile</defName>
 	</Pawnmorph.MorphCategoryDef>
 
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Simian</defName>
+	</Pawnmorph.MorphCategoryDef>
+	
 	<!-- special -->
 	<Pawnmorph.MorphCategoryDef Abstract="true" Name="MorphRestrictedCategory">
 		<restricted>true</restricted>

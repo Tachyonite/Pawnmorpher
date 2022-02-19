@@ -5,6 +5,7 @@
 		<label>muffalo snout</label>
 		<graphics>
 			<Muzzle>Parts/Muffalo/Muffalo_Jaw</Muzzle>
+			<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_B</BirdJawOrnament>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -63,11 +64,6 @@
 				</values>
 			</li>
 		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherMuffaloFur</defName>
-		<classInfluence>MuffaloMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">

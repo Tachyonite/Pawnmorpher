@@ -103,7 +103,7 @@
 	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherShortTail</defName>
+		<defName>EtherDeerTail</defName>
 		<stages>
 			<li>
 				<label>Short tail</label>

@@ -1,7 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="CervidJawPart">
 		<classInfluence>CaribouMorph</classInfluence>
-		<defName>EtherCaribouSnout</defName>
+		<defName>EtherCaribouJaw</defName>
 		<label>caribou snout</label>
 		<graphics>
 			<Muzzle>Parts/Caribou/Caribou_Jaw</Muzzle>
