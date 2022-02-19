@@ -11,38 +11,22 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. Unfortunately, talking is difficult.</description>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose, picking up scents of predators. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, deerlike with a wide nose that picks up the scents of predators. [PAWN_possessive] nose is adept at finding the best fruits and veggies, improving [PAWN_possessive] foraging.</description>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>5.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CervidEarPart">

@@ -4,7 +4,6 @@
 		<defName>EtherAlpacaSnout</defName>
 		<label>alpaca snout</label>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
-		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<graphics>
 			<Muzzle>Parts/Alpaca/Alpaca_Jaw</Muzzle>
 		</graphics>
@@ -12,19 +11,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adaptation has removed some of the difficulty with talking.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -58,7 +57,6 @@
 		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaEar</defName>
 		<label>alpaca ear</label>
-		<mutationMemory>EtherAlpacaEar</mutationMemory>
 		<graphics>
 			<LeftEar>Parts/Alpaca/Alpaca_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Alpaca/Alpaca_Ear_Left_Behind</LeftEarBehind>
@@ -79,7 +77,6 @@
 		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaTail</defName>
 		<label>alpaca tail</label>
-		<mutationMemory>EtherAlpacaTail</mutationMemory>
 		<graphics>
 			<Tail>Parts/Alpaca/Alpaca_Tail</Tail>
 		</graphics>

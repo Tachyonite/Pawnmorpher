@@ -10,13 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a goat. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. The urge to bleat is extraordinarily powerful.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an ibex. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a goat. [PAWN_possessive] teeth are squared off; speaking is more difficult, but eating is easier. Adaptation has removed some of the difficulty with speaking.</description>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an ibex. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of an ibex. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>

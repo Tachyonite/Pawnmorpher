@@ -11,19 +11,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face.</description>
+					<description>A muffalolike snout graces [PAWN_nameDef]'s face. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face. Adaptation has removed some of the difficulty with talking.</description>
+					<description>A muffalolike snout graces [PAWN_nameDef]'s face. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face. Further adaptation to this snout has allowed [PAWN_nameDef] to speak normally.</description>
+					<description>A muffalolike snout graces [PAWN_nameDef]'s face. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -64,6 +64,11 @@
 				</values>
 			</li>
 		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="WoollyLimb">
+		<defName>EtherMuffaloFur</defName>
+		<classInfluence>MuffaloMorph</classInfluence>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">

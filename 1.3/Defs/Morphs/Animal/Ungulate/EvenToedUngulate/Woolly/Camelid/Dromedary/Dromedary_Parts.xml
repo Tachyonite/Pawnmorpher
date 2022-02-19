@@ -10,13 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. Adaptation has removed some of the difficulty with talking.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -42,7 +48,6 @@
 		<classInfluence>DromedaryMorph</classInfluence>
 		<defName>EtherDromedaryEar</defName>
 		<label>dromedary ear</label>
-		<mutationMemory>EtherDromedaryEar</mutationMemory>
 		<graphics>
 			<LeftEar>Parts/Dromedary/Dromedary_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/Dromedary/Dromedary_Ear_Left_Behind</LeftEarBehind>
@@ -69,7 +74,6 @@
 		<classInfluence>DromedaryMorph</classInfluence>
 		<defName>EtherDromedaryTail</defName>
 		<label>dromedary tail</label>
-		<mutationMemory>EtherDromedaryTail</mutationMemory>
 		<graphics>
 			<Tail>Parts/Dromedary/Dromedary_Tail</Tail>
 		</graphics>
