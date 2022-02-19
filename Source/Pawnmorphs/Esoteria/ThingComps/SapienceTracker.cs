@@ -205,6 +205,10 @@ namespace Pawnmorph.ThingComps
                 var fhState = (FormerHuman) _sapienceState;
                 fhState.MakePermanentlyFeral();
                 SapienceLevel = SapienceLevel.PermanentlyFeral;
+
+                _sapienceState.Exit();
+                _sapienceState = null;
+                PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
             }
             catch (InvalidCastException e)
             {
