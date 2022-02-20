@@ -307,13 +307,17 @@ namespace Pawnmorph
             if (outDict == null) throw new ArgumentNullException(nameof(outDict));
 
             outDict.Clear();
+
             //initialize the returning dictionary with the direct influences 
             foreach (Hediff_AddedMutation mutation in mutations.OrderBy(x => x.Influence.Count))
             {
                 AnimalClassBase animalClass = null;
+
+                // If more than one influence, then find the highest of those influences already on pawn.
                 if (mutation.Influence.Count > 1)
                     animalClass = mutation.Influence.Where(x => outDict.ContainsKey(x)).OrderByDescending(x => outDict[x]).FirstOrDefault();
 
+                // If no existing matching influence was found or is only single-influence, then take the first.
                 if (animalClass == null)
                     animalClass = mutation.Influence[0];
 
