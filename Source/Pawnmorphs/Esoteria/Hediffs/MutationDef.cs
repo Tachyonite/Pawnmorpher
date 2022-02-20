@@ -106,6 +106,9 @@ namespace Pawnmorph.Hediffs
         [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public AnimalClassBase classInfluence;
 
+        /// <summary>
+        /// The class influences if multiple.
+        /// </summary>
         [NotNull]
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public List<AnimalClassBase> classInfluences;
@@ -197,7 +200,9 @@ namespace Pawnmorph.Hediffs
             get { return RestrictionLevel > RestrictionLevel.UnRestricted; }
         }
 
-
+        /// <summary>
+        /// Gets the finalized collection of class influences regardless of how it was defined in the XML.
+        /// </summary>
         public List<AnimalClassBase> ClassInfluences 
         { 
             get
