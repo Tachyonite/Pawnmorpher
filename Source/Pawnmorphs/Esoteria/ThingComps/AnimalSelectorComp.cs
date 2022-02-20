@@ -19,8 +19,6 @@ namespace Pawnmorph.ThingComps
         private PawnKindDef _chosenKind;
 
 
-        
-
         /// <summary>
         /// delegate for the Animal Chosen event 
         /// </summary>
@@ -110,6 +108,19 @@ namespace Pawnmorph.ThingComps
 
         private Gizmo[] _cachedGizmoArr;
 
+
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+
+            _cachedGizmo = new Command_Action()
+            {
+                action = GizmoAction,
+                defaultLabel = "none",
+                icon = PMTextures.AnimalSelectorIcon
+            };
+        }
+
         /// <summary>
         /// Comps the get gizmos extra.
         /// </summary>
@@ -126,23 +137,7 @@ namespace Pawnmorph.ThingComps
                 yield return Gizmo; 
         }
 
-        Command_Action Gizmo
-        {
-            get
-            {
-                if (_cachedGizmo == null)
-                {
-                    _cachedGizmo = new Command_Action()
-                    {
-                        action = GizmoAction,
-                        defaultLabel = "none",
-                        icon = PMTextures.AnimalSelectorIcon
-                    };
-                }
-
-                return _cachedGizmo; 
-            }
-        }
+        Command_Action Gizmo => _cachedGizmo;
 
         public void ResetSelection()
         {
@@ -177,6 +172,7 @@ namespace Pawnmorph.ThingComps
             }
         }
 
+
         /// <summary>
         ///     Posts the expose data.
         /// </summary>
@@ -184,7 +180,7 @@ namespace Pawnmorph.ThingComps
         {
             base.PostExposeData();
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
-            Scribe_Values.Look(ref _enabled, nameof(Enabled), true); 
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
         }
 
 
