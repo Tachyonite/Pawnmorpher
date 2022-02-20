@@ -689,7 +689,10 @@ namespace Pawnmorph.Chambers
 
         private void UpdatePawnVisuals([NotNull] Pawn pawn)
         {
-            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            var comp = pawn.TryGetComp<GraphicSys.GraphicsUpdaterComp>();
+            if (comp == null)
+                return;
+
             comp.IsDirty = true;
             comp.CompTick();
         }
