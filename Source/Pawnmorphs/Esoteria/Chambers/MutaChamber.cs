@@ -689,7 +689,10 @@ namespace Pawnmorph.Chambers
 
         private void UpdatePawnVisuals([NotNull] Pawn pawn)
         {
-            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            var comp = pawn.TryGetComp<GraphicSys.GraphicsUpdaterComp>();
+            if (comp == null)
+                return;
+
             comp.IsDirty = true;
             comp.CompTick();
         }
@@ -771,7 +774,7 @@ namespace Pawnmorph.Chambers
             {
                 case ChamberUse.Mutation:
                     tfRequest = null;
-                    FinalizeMutations();
+                    FinalizeMutations(pawn);
                     break;
                 case ChamberUse.Merge:
 
@@ -856,11 +859,9 @@ namespace Pawnmorph.Chambers
             SelectorComp.Enabled = false;
         }
 
-        private void FinalizeMutations()
+        private void FinalizeMutations([NotNull] Pawn pawn)
         {
             if (_addedMutationData == null) return;
-            var pawn = innerContainer?.FirstOrDefault() as Pawn;
-            if (pawn == null) return;
 
             for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
             {

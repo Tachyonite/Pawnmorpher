@@ -133,6 +133,10 @@ namespace Pawnmorph.TfSys
         {
             Pawn original = request.originals[0];
 
+            // Drop the pawn if being carried to allow correctly despawning.
+            if (original.CarriedBy != null)
+                original.CarriedBy.carryTracker.TryDropCarriedThing(original.CarriedBy.Position, ThingPlaceMode.Direct, out _);
+
             if (request.addMutationToOriginal)
                 TryAddMutationsToPawn(original, request.cause, request.outputDef);
 
