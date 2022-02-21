@@ -52,7 +52,7 @@
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
-	
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
 		<defName>EtherClovenHoofFoot</defName>
 		<label>cloven hoof</label>
@@ -118,7 +118,7 @@
 				<description>[PAWN_nameDef]'s foot has reshaped into a singular hoof.</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>paragon</key>
 				<minSeverity>1.5</minSeverity>
 				<label>paragon</label>
@@ -127,17 +127,17 @@
 				<statOffsets>
 					<ArmorRating_Blunt>0.05</ArmorRating_Blunt>
 				</statOffsets>
-			</li>
+			</li> -->
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="EtherUnclovenHoofFoot">
-		<defName>EtherGiganticHoofFoot</defName>
-		<label>gigantic hoof</label>
-		<description>A gigantic uncloven hoof.</description>
-		<classInfluence>Thrumbomorph</classInfluence>
+		<defName>EtherMassiveHoofFoot</defName>
+		<label>massive hoof</label>
+		<description>A massive uncloven hoof.</description>
+		<classInfluence>ThrumboMorph</classInfluence>
 		<categories>
 			<li>Powerful</li>
 		</categories>
@@ -169,19 +169,21 @@
 			<li function="modify">
 				<stageKey>hoof</stageKey>
 				<values>
-					<!-- <statOffsets>
-						<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
-					</statOffsets> -->
+					<statOffsets>
+						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
 				</values>
 			</li>
-			<li function="modify">
+			<!-- <li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<!-- <statOffsets>
-						<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
-					</statOffsets> -->
+					<statOffsets>
+						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
 				</values>
-			</li>
+			</li> -->
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
