@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
 		<defName>EtherCassowaryBeak</defName>
 		<classInfluence>CassowaryMorph</classInfluence>
@@ -44,9 +44,9 @@
 		<label>cassowary earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
 		<defName>EtherCassowaryFoot</defName>
 		<classInfluence>CassowaryMorph</classInfluence>
 		<description>A scary cassowary foot.</description>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>

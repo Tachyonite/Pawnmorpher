@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
 		<defName>EtherOstrichBeak</defName>
 		<classInfluence>OstrichMorph</classInfluence>
@@ -42,10 +42,10 @@
 		<classInfluence>OstrichMorph</classInfluence>
 		<label>ostrich earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
-
+<!-- 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
 		<defName>EtherOstrichFoot</defName>
 		<classInfluence>OstrichMorph</classInfluence>
 		<description>A scary ostrich foot.</description>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>

@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
 		<defName>EtherEmuBeak</defName>
 		<classInfluence>EmuMorph</classInfluence>
@@ -43,9 +43,9 @@
 		<label>emu earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
 		<defName>EtherEmuFoot</defName>
 		<classInfluence>EmuMorph</classInfluence>
 		<description>A scary emu foot.</description>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>
