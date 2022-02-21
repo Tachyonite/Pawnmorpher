@@ -137,7 +137,7 @@ Chaobulb plants are delicate, and the bulbs are prone to rupturing if harvested 
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
+        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
 
 Antigen plants are delicate and sensitive to temperature. They take a long time to sow and harvest compared to other plants, and they will only grow in moderately cold temperatures. However, mutation has rendered them capable of growing without light, and so they are commonly grown within refridgerated darkhouses or caves.</description>
         <statBases>
@@ -207,7 +207,7 @@ Antigen plants are delicate and sensitive to temperature. They take a long time 
     <ThingDef ParentName="GlowVineBase">
         <defName>Plant_Glowvine_Domestic</defName>
         <label>glowvine</label>
-        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
+        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
 
 Antigen plants are delicate and sensitive to temperature. They take a long time to sow and harvest compared to other plants, and they will only grow in moderately cold temperatures. However, mutation has rendered them capable of growing without light, and so they are commonly grown within refridgerated darkhouses or caves.</description>
         <statBases>
