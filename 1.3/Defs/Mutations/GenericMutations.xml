@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	
 	<!-- Muzzle -->
 	
@@ -308,6 +308,7 @@
 		<description>A morph foot.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>

@@ -16,6 +16,7 @@
             <xs:element name="label" type="xs:string" minOccurs="0" />
             <xs:element name="description" type="xs:string" minOccurs="0" />
             <xs:element name="maxSeverity" type="xs:float" minOccurs="0" />
+            <xs:element name="minSeverity" type="xs:float" minOccurs="0" />
             <xs:element name="initialSeverity" type="xs:float" minOccurs="0" />
             <xs:element name="hediffClass" type="xs:string" minOccurs="0" />
             <xs:element name="defaultAddChance" type="xs:float" minOccurs="0"/>
