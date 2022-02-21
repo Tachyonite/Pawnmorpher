@@ -228,31 +228,33 @@
 		<mutationMemory>AvianFootMemory</mutationMemory>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
 				<labelOverride>scaly</labelOverride>
 				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
-				<stopChance>0.3</stopChance>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
 				<minSeverity>0.5</minSeverity>
 				<labelOverride>toe-foot</labelOverride>
 				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
-				<stopChance>0.3</stopChance>
 				<partEfficiencyOffset>0.04</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.0</minSeverity>
+				<key>adapting</key>
+				<minSeverity>0.7</minSeverity>
 				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<key>adapted</key>
+				<minSeverity>1.0</minSeverity>
 				<labelOverride>manipulative avian</labelOverride>
 				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<capMods>
 					<li>
 						<capacity>Manipulation</capacity>
-						<offset>0.1</offset>
+						<offset>0.4</offset>
 					</li>
 				</capMods>
 			</li>
