@@ -3,7 +3,6 @@
 		<classInfluence>WargMorph</classInfluence>
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
-		<description>The fearsome, toothy muzzle of a warg.</description>
 		<graphics>
 			<Muzzle>Parts/wargface/wargface</Muzzle>
 		</graphics>
