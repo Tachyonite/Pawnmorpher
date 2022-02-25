@@ -719,7 +719,7 @@ namespace Pawnmorph.Chambers
         {
             if (AnimalMutations.Count == 0) return;
 
-            int mx = AnimalMutations.Count;
+            int mx = AnimalMutations.Count - 1;
             int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
             if (idx != _curMutationIndex)
             {
@@ -1008,9 +1008,14 @@ namespace Pawnmorph.Chambers
                 count += GetMutasilkAmountFrom(app);
             }
 
-            Thing silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
-            silk.stackCount = count;
-            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            // Don't try to spawn anything if count is 0.
+            if (count > 0)
+            {
+                Thing silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
+                silk.stackCount = count;
+                GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            }
+
             apparel.DestroyAll();
         }
 
