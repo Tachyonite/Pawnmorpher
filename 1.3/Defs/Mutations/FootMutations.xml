@@ -28,7 +28,7 @@
 	-->
 
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="EtherFoot" Abstract="true">
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="EtherFoot" Abstract="true">
 		<defName>EtherFoot</defName>
 		<label>foot</label>
 		<description>A foot.</description>
@@ -43,7 +43,7 @@
 				<severityPerDay>0.15</severityPerDay>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherPawFoot</defName>
@@ -116,6 +116,9 @@
 							<offset>-0.10</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -131,6 +134,9 @@
 							<offset>-0.15</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -143,6 +149,9 @@
 							<offset>-0.05</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -155,6 +164,9 @@
 							<offset>0.05</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
@@ -180,6 +192,9 @@
 							<offset>-0.10</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -195,6 +210,9 @@
 							<offset>-0.15</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -207,6 +225,9 @@
 							<offset>-0.05</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -219,6 +240,9 @@
 							<offset>0.05</offset>
 						</li>
 					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
@@ -327,6 +351,7 @@
 							<capacity>Moving</capacity>
 							<offset>-0.1</offset>
 						</li>
+						<!-- Missing body-size stat -->
 					</capMods>
 				</values>
 			</li>
@@ -340,6 +365,7 @@
 							<capacity>Moving</capacity>
 							<offset>-0.025</offset>
 						</li>
+						<!-- Missing body-size stat -->
 					</capMods>
 				</values>
 			</li>
