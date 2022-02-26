@@ -414,6 +414,15 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s foot has been replaced with a padded avian claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MeleeHitChance>10</MeleeHitChance>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -449,31 +458,52 @@
 		<label>feline paw</label>
 		<description>A paw with retractable claws.</description>
 		<classInfluence>Feline</classInfluence>
-		<mutationTale></mutationTale>
-		<mutationMemory></mutationMemory>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
+					<description>TODO</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
+					<description>TODO</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>0.05</HuntingStealth>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<HuntingStealth>0.10</HuntingStealth>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
@@ -481,34 +511,54 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
 		<defName>EtherReptillianClawFoot</defName>
-		<label>reptillian clawed foot</label>
-		<description>A reptillian foot with sharp claws.</description>
+		<label>reptilian foot</label>
+		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
 		<classInfluence>Reptile</classInfluence>
-		<mutationTale></mutationTale>
-		<mutationMemory></mutationMemory>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-
+					<description>TODO</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-
+					<description>TODO</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MeleeDodgeChance>-0.03</MeleeDodgeChance>
+						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.025</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MeleeDodgeChance>-0.03</MeleeDodgeChance>
+						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
