@@ -1,3 +1,32 @@
+	<!-- 
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	-->
+
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="EtherFoot" Abstract="true">
 		<defName>EtherFoot</defName>
@@ -263,7 +292,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantFoot</defName>
 		<label>stump foot</label>
@@ -334,41 +363,71 @@
 		</comps> -->
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
 		<description>A trooter hoof.</description>
 		<classInfluence>Suid</classInfluence>
 		<mutationTale>FootBecomesTrotter</mutationTale>
 		<mutationMemory>EtherClovenHoofFoot</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>toe-nails</labelOverride>
-				<description>[PAWN_nameDef]'s toenails have darkened and grown around [PAWN_possessive] toes. While not uncomfortable, it is somewhat concerning.</description>
-				<stopChance>0.3</stopChance>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>toe-nails</labelOverride>
+					<description>[PAWN_nameDef]'s toenails have darkened and grown around [PAWN_possessive] toes. While not uncomfortable, it is somewhat concerning.</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<labelOverride>hooflike</labelOverride>
-				<description>[PAWN_nameDef]'s toes are nothing more than black toenail-encrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
-				<stopChance>0.3</stopChance>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>hooflike</labelOverride>
+					<description>[PAWN_nameDef]'s toes are nothing more than black toenail-encrusted bones, and [PAWN_possessive] index and pinky toes are pointing back at their heel.</description>
+
+					<statOffsets>
+						<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<labelOverride>hoof-foot</labelOverride>
-				<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
-				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has become a full-fledged pig-like trotter. It gives [PAWN_objective] the appearence of wearing high-heels at all times.</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
 			</li>
-		</stages>
+			<!-- <li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<labelOverride>hoof-foot</labelOverride>
+					<description>While still resembling a pig-like trotter, certain humanoid elements have returned to this foot, giving them better balance and dexterity compared to a normal pig's foot.</description>
+					
+				</values>
+			</li> -->
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
 		<description>An avian foot.</description>
@@ -436,41 +495,44 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherLargeAvianFoot</defName>
 		<label>clawed ratite</label>
 		<description>A large and deadly avian foot.</description>
 		<classInfluence>Ratite</classInfluence>
 		<mutationTale>FeetBecomeTalons</mutationTale>
 		<mutationMemory>AvianFootMemory</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>scaly</labelOverride>
-				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
-				<stopChance>0.3</stopChance>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>scaly</labelOverride>
+					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<labelOverride>toe-foot</labelOverride>
-				<description>[PAWN_nameDef]'s toes have become long, thick and scaly.</description>
-				<stopChance>0.3</stopChance>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>toe-foot</labelOverride>
+					<description>[PAWN_nameDef]'s toes have become long, thick and scaly.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with a padded avian claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
-				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has been replaced with a padded avian claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<label>paragon</label>
-				<description>[PAWN_nameDef]'s toes stretch out into large birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<statOffsets>
-					<MeleeDodgeChance>5</MeleeDodgeChance>
-				</statOffsets>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s toes stretch out into large birdlike claws. The talons are sharp and can be quite dangerous in a fight.</description>
+					<statOffsets>
+						<MeleeHitChance>10</MeleeHitChance>
+					</statOffsets>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -489,35 +551,45 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
 		<defName>EtherWebbedAvianFoot</defName>
 		<label>webbed avian</label>
 		<description>A webbed avian foot.</description>
 		<classInfluence>Anseriform</classInfluence>
 		<mutationTale>FeetBecomeTalons</mutationTale>
 		<mutationMemory>AvianFootMemory</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>scaly</labelOverride>
-				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
-				<stopChance>0.3</stopChance>
+
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>scaly</labelOverride>
+					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.5</minSeverity>
-				<labelOverride>toe-foot</labelOverride>
-				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
-				<stopChance>0.3</stopChance>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>toe-foot</labelOverride>
+					<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
+
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.0</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian foot. The shape makes it harder to walk, so [PAWN_pronoun] has started waddling. The foot makes audible slapping noises when it hits the ground.</description>
-				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian foot. The shape makes it harder to walk, so [PAWN_pronoun] has started waddling. The foot makes audible slapping noises when it hits the ground.</description>
+				
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<label>paragon</label>
-				<description>[PAWN_nameDef]'s webbed foot's shape has altered slightly, allowing them to walk normally again.</description>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s webbed foot's shape has altered slightly, allowing them to walk normally again.</description>
+					
+				</values>
 			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>
