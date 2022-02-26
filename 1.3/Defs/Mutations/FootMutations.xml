@@ -1,4 +1,11 @@
-	<!-- 
+<!-- FOOT TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+		<defName>EtherFoot</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
@@ -25,7 +32,8 @@
 				</values>
 			</li>
 		</stagePatches>
-	-->
+	</Pawnmorph.Hediffs.MutationDef> 
+-->
 
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="EtherFoot" Abstract="true">
@@ -248,147 +256,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
-		<defName>EtherMassiveHoof</defName>
-		<label>massive hoof</label>
-		<description>A massive hoof.</description>
-		<classInfluence>ThrumboMorph</classInfluence>
-		<categories>
-			<li>Powerful</li>
-		</categories>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<labelOverride>hard nails</labelOverride>
-					<label></label>
-					<description>[PAWN_nameDef]'s toenails have become noticably darker and broadened out, all but eclipsing [PAWN_possessive] toes.</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.10</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<labelOverride>hooflike</labelOverride>
-					<label></label>
-					<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching painfully to match.</description>
-					<painOffset>0.1</painOffset>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.15</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s foot has reshaped into a singular massive hoof providing firm footing in combat. It will take a while to get used to moving around on hooves though.</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.15</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
-						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s foot has reshaped into a singular massive hoof providing firm footing in combat.</description>
-					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
-						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
-		<classInfluence>ElephantMorph</classInfluence>
-		<defName>EtherElephantFoot</defName>
-		<label>stump foot</label>
-		<description>An stump-like elphant foot.</description>
-		<mutationTale>GrewElephantFoot</mutationTale>
-		<mutationMemory>EtherElephantFoot</mutationMemory>
-
-		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<label></label>
-					<labelOverride>stump-toed</labelOverride>
-					<description>[PAWN_nameDef]'s toes have shrunk back into [PAWN_possessive] foot, the leftover toenails dappling the foot serving as the only reminder they were ever there.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<label></label>
-					<labelOverride>swollen</labelOverride>
-					<description>[PAWN_nameDef]'s foot has grown to be stubby and somewhat swollen-looking, with [PAWN_possessive] toes all but replaced by thick ivory-colored nails.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<labelOverride>elephant</labelOverride>
-					<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<!-- Missing body-size stat -->
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<labelOverride>elephant</labelOverride>
-					<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.025</offset>
-						</li>
-						<!-- Missing body-size stat -->
-					</capMods>
-				</values>
-			</li>
-		</stagePatches>
-		
-		<!-- <comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>stomp</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>16.9</power>
-						<cooldownTime>2</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps> -->
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherTrotterFoot</defName>
 		<label>trotter</label>
@@ -577,45 +444,286 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
-		<defName>EtherWebbedAvianFoot</defName>
-		<label>webbed avian</label>
-		<description>A webbed avian foot.</description>
-		<classInfluence>Anseriform</classInfluence>
-		<mutationTale>FeetBecomeTalons</mutationTale>
-		<mutationMemory>AvianFootMemory</mutationMemory>
-
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+		<defName>EtherRetractableClawsFoot</defName>
+		<label>feline paw</label>
+		<description>A paw with retractable claws.</description>
+		<classInfluence>Feline</classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<labelOverride>scaly</labelOverride>
-					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<labelOverride>toe-foot</labelOverride>
-					<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s foot has been replaced with a webbed avian foot. The shape makes it harder to walk, so [PAWN_pronoun] has started waddling. The foot makes audible slapping noises when it hits the ground.</description>
-				
+
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s webbed foot's shape has altered slightly, allowing them to walk normally again.</description>
 					
 				</values>
 			</li>
 		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef> -->
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+		<defName>EtherReptillianClawFoot</defName>
+		<label>reptillian clawed foot</label>
+		<description>A reptillian foot with sharp claws.</description>
+		<classInfluence>Reptile</classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+		<defName>EtherMassiveHoof</defName>
+		<label>massive hoof</label>
+		<description>A massive hoof.</description>
+		<classInfluence>ThrumboMorph</classInfluence>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>hard nails</labelOverride>
+					<label></label>
+					<description>[PAWN_nameDef]'s toenails have become noticably darker and broadened out, all but eclipsing [PAWN_possessive] toes.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>hooflike</labelOverride>
+					<label></label>
+					<description>[PAWN_nameDef]'s foot resembles more of a hoof than anything human, and the heel is stretching painfully to match.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has reshaped into a singular massive hoof providing firm footing in combat. It will take a while to get used to moving around on hooves though.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.15</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has reshaped into a singular massive hoof providing firm footing in combat.</description>
+					<statOffsets>
+						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+		<classInfluence>ThickHide</classInfluence>
+		<defName>EtherElephantFoot</defName>
+		<label>stump foot</label>
+		<description>An stump-like elphantine foot.</description>
+		<mutationTale>GrewElephantFoot</mutationTale>
+		<mutationMemory>EtherElephantFoot</mutationMemory>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<label></label>
+					<labelOverride>stump-toed</labelOverride>
+					<description>[PAWN_nameDef]'s toes have shrunk back into [PAWN_possessive] foot, the leftover toenails dappling the foot serving as the only reminder they were ever there.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<label></label>
+					<labelOverride>swollen</labelOverride>
+					<description>[PAWN_nameDef]'s foot has grown to be stubby and somewhat swollen-looking, with [PAWN_possessive] toes all but replaced by thick ivory-colored nails.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<labelOverride>elephantine</labelOverride>
+					<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<!-- Missing body-size stat -->
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<labelOverride>elephantine</labelOverride>
+					<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.025</offset>
+						</li>
+						<!-- Missing body-size stat -->
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>stomp</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>16.9</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+		<defName>EtherMassiveFootClaw</defName>
+		<label>clawed foot</label>
+		<description>A foot with massive claws.</description>
+		<classInfluence>ThickFur</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of [PAWN_possessive] feet.</description>
+					<statOffsets>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s feet have grown long, curved claws that protrude in such a way that [PAWN_pronoun] now has to walk on the sides of [PAWN_possessive] feet. Time has allowed [PAWN_pronoun] to adapt making it less inhibiting.</description>
+					<statOffsets>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.025</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tip</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>15.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
