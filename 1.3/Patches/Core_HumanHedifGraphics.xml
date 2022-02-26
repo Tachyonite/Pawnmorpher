@@ -27,6 +27,36 @@
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Muzzles -->
+				<debug>false</debug>
+				<anchorID>MuzzleMale</anchorID>
+				<path>Parts/None/None</path>
+				<bodyPart>Jaw</bodyPart>
+				<alignWithHead>true</alignWithHead>
+				<inFrontOfBody>true</inFrontOfBody>
+				<shaderType>CutoutSkin</shaderType>
+				<drawForMale>true</drawForMale>
+				<drawForFemale>false</drawForFemale>
+				<hiddenUnderApparelFor>
+					<li>FullHead</li>
+				</hiddenUnderApparelFor>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Female Muzzles -->
+				<debug>false</debug>
+				<anchorID>MuzzleFemale</anchorID>
+				<path>Parts/None/None</path>
+				<bodyPart>Jaw</bodyPart>
+				<alignWithHead>true</alignWithHead>
+				<inFrontOfBody>true</inFrontOfBody>
+				<shaderType>CutoutSkin</shaderType>
+				<drawForMale>false</drawForMale>
+				<drawForFemale>true</drawForFemale>
+				<hiddenUnderApparelFor>
+					<li>FullHead</li>
+				</hiddenUnderApparelFor>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Bird jaw ornament -->
 				<debug>false</debug>
 				<anchorID>BirdJawOrnament</anchorID>
