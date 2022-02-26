@@ -70,7 +70,7 @@ namespace Pawnmorph
             if (settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON)
             {
                 listingStandard
-                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.friendlyManhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
                 settings.friendlyManhunterTfChance = listingStandard.Slider(settings.friendlyManhunterTfChance, 0, 1f);
 
             }

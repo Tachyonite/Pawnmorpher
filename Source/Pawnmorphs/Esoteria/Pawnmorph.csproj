@@ -471,6 +471,7 @@
     <Compile Include="HPatches\DrupPolicyPatches.cs" />
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\SelectorPatch.cs" />
     <Compile Include="HPatches\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HediffDefPatches.cs" />
     <Compile Include="HPatches\HediffPatches.cs" />
