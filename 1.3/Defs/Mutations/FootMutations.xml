@@ -368,46 +368,56 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherAvianFoot</defName>
 		<label>avian</label>
 		<description>An avian foot.</description>
 		<classInfluence>Avian</classInfluence>
 		<mutationTale>FeetBecomeTalons</mutationTale>
 		<mutationMemory>AvianFootMemory</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>initial</key>
-				<labelOverride>scaly</labelOverride>
-				<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<label></label>
+					<labelOverride>scaly</labelOverride>
+					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>growing</key>
-				<minSeverity>0.5</minSeverity>
-				<labelOverride>toe-foot</labelOverride>
-				<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
-				<partEfficiencyOffset>0.04</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<label></label>
+					<labelOverride>toe-foot</labelOverride>
+					<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>adapting</key>
-				<minSeverity>0.7</minSeverity>
-				<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s foot has been replaced with an avian-looking claw. Despite its appearance, it proves quite useful for normal ambulatory function as well as for combative purposes.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>adapted</key>
-				<minSeverity>1.0</minSeverity>
-				<labelOverride>manipulative avian</labelOverride>
-				<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
-				<partEfficiencyOffset>0.1</partEfficiencyOffset>
-				<capMods>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>0.4</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<labelOverride>manipulative avian</labelOverride>
+					<description>[PAWN_nameDef]'s toes stretch out into long birdlike claws, perfect for grasping things or scratching at people's faces.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.4</offset>
+						</li>
+					</capMods>
+				</values>
 			</li>
-		</stages>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
