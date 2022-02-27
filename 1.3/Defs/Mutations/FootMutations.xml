@@ -1,5 +1,5 @@
 <!-- FOOT TEMPLATE
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherFoot</defName>
 		<label></label>
 		<description></description>
@@ -453,7 +453,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherRetractableClawsFoot</defName>
 		<label>feline paw</label>
 		<description>A paw with retractable claws.</description>
@@ -509,7 +509,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherReptillianClawFoot</defName>
 		<label>reptilian foot</label>
 		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
@@ -705,7 +705,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherFoot">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherMassiveFootClaw</defName>
 		<label>clawed foot</label>
 		<description>A foot with massive claws.</description>
