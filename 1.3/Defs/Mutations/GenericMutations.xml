@@ -7,7 +7,7 @@
 		<mutationTale>GrewMuzzleMisc</mutationTale>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
-		<maxSeverity>1.5</maxSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -60,6 +60,7 @@
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -102,6 +103,7 @@
 		<mutationTale>GrewTail</mutationTale>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -144,6 +146,7 @@
 		<description>A morph eye.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -185,6 +188,7 @@
 		<description>A morph arm.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -226,6 +230,7 @@
 		<description>A morph hand.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -267,6 +272,7 @@
 		<description>A morph leg.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>readjusting</key>
@@ -351,6 +357,7 @@
 		<mutationTale>GrewAntlers</mutationTale>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
@@ -449,6 +456,7 @@
 		<description>A morph body part.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
