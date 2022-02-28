@@ -98,15 +98,14 @@ namespace Pawnmorph.Hediffs
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
-        [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [CanBeNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public AnimalClassBase classInfluence;
 
         /// <summary>
         /// The class influences if multiple.
         /// </summary>
-        [NotNull]
-        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public List<AnimalClassBase> classInfluences;
+        [CanBeNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public List<AnimalClassBase> classInfluences = new List<AnimalClassBase>();
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -272,6 +271,11 @@ namespace Pawnmorph.Hediffs
             foreach (BlockEntry entry in blockList.MakeSafe())
                 if (entry.mutation == null)
                     yield return "block entry has missing mutation def!";
+            if (classInfluence != null && (classInfluences != null && classInfluences.Count > 0))
+            {
+                yield return "both classInfluence and classInfluences are set. only 1 should be set in any mutation";
+            }
+
         }
 
 
@@ -341,6 +345,8 @@ namespace Pawnmorph.Hediffs
                     _cachedMutationStages[i] = stages[i] as MutationStage; 
                 }
             }
+
+           
         }
 
         [NotNull]
