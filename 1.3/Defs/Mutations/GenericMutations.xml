@@ -275,13 +275,13 @@
 		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>readjusting</key>
-				<label>readjusting</label>
+				<key>initial</key>
+				<label>initial</label>
 				<minSeverity>0</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>unfamiliar</key>
-				<label>unfamiliar</label>
+				<key>readjusting</key>
+				<label>readjusting</label>
 				<minSeverity>0.3</minSeverity>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
