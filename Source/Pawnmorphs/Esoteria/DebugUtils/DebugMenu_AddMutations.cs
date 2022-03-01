@@ -24,7 +24,7 @@ namespace Pawnmorph.DebugUtils
 
         protected override void DoListingItems()
         {
-            var grouping = MutationDef.AllMutations.GroupBy(m => m.classInfluence);
+            var grouping = MutationDef.AllMutations.SelectMany(x => x.ClassInfluences.Select(y => (x, y))).GroupBy(m => m.y, m => m.x);
 
             foreach (IGrouping<AnimalClassBase, MutationDef> group in grouping)
             {

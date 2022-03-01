@@ -51,7 +51,7 @@ namespace Pawnmorph
                     if(associatedMutationCategory == null) continue;
                     foreach (MutationDef mutation in MutationDef.AllMutations)
                     {
-                        if (mutation.classInfluence == morph)
+                        if (mutation.ClassInfluences.Contains(morph))
                         {
                             mutation.categories = mutation.categories ?? new List<MutationCategoryDef>(); 
                             if(!mutation.categories.Contains(associatedMutationCategory))

@@ -82,7 +82,7 @@ namespace Pawnmorph
             //check for parts with 'Animal' influence, these might be because of a mistake 
 
             var mutationDefs =
-                MutationDef.AllMutations.Where(m => m.classInfluence == null || m.classInfluence == AnimalClassDefOf.Animal)
+                MutationDef.AllMutations.Where(m => m.ClassInfluences == null || m.ClassInfluences.Contains(AnimalClassDefOf.Animal))
                            .ToList();
             if (mutationDefs.Count > 0)
             {
@@ -201,7 +201,7 @@ namespace Pawnmorph
             if (!dict.TryGetValue(mutation, out bool val))
             {
                 val = ideo.VeneratedAnimals.MakeSafe()
-                          .Any(a => a.TryGetBestMorphOfAnimal() == mutation.classInfluence);
+                          .Any(a => mutation.ClassInfluences.Contains(a.TryGetBestMorphOfAnimal()));
                 dict[mutation] = val;
             }
 
