@@ -105,7 +105,7 @@ namespace Pawnmorph.Hediffs
         /// The class influences if multiple.
         /// </summary>
         [CanBeNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public List<AnimalClassBase> classInfluences = new List<AnimalClassBase>();
+        public List<AnimalClassBase> classInfluences;
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -119,10 +119,10 @@ namespace Pawnmorph.Hediffs
 
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
-
         [Unsaved] private List<ThingDef> _associatedAnimals;
+        [Unsaved] private List<AnimalClassBase> _classInfluencesCache;
 
-        
+
         /// <summary>
         ///     Gets the animals associated with this mutation animals.
         /// </summary>
@@ -198,14 +198,14 @@ namespace Pawnmorph.Hediffs
         /// Gets the finalized collection of class influences regardless of how it was defined in the XML.
         /// </summary>
         [NotNull]
-        public List<AnimalClassBase> ClassInfluences 
-        { 
+        public List<AnimalClassBase> ClassInfluences
+        {
             get
             {
-                if (classInfluences == null)
-                    classInfluences = new List<AnimalClassBase>() { classInfluence ?? AnimalClassDefOf.Animal };
-                
-                return classInfluences;
+                if (_classInfluencesCache == null)
+                    _classInfluencesCache = classInfluences ?? new List<AnimalClassBase>() { classInfluence ?? AnimalClassDefOf.Animal };
+
+                return _classInfluencesCache;
             }
         }
 
@@ -224,10 +224,10 @@ namespace Pawnmorph.Hediffs
                     _restrictionLevel = RestrictionLevel.UnRestricted;
                     foreach (MutationCategoryDef cat in categories.MakeSafe())
                     {
-                       if(_restrictionLevel == RestrictionLevel.Always)break;
-                       if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel; 
+                        if (_restrictionLevel == RestrictionLevel.Always) break;
+                        if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel;
                     }
-                    
+
                 }
 
                 return _restrictionLevel.Value;
@@ -246,7 +246,7 @@ namespace Pawnmorph.Hediffs
         public bool BlocksMutation([NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord thisPart,
                                    [CanBeNull] BodyPartRecord addPart)
         {
-            if (blockSites?.Contains(addPart?.def) == true) return true; 
+            if (blockSites?.Contains(addPart?.def) == true) return true;
             BlockEntry entry = blockList?.FirstOrDefault(e => e.mutation == otherMutation);
             if (entry == null) return false;
             return thisPart == addPart || entry.blockOnAnyPart;
@@ -272,11 +272,12 @@ namespace Pawnmorph.Hediffs
             foreach (BlockEntry entry in blockList.MakeSafe())
                 if (entry.mutation == null)
                     yield return "block entry has missing mutation def!";
+
+
             if (classInfluence != null && (classInfluences != null && classInfluences.Count > 0))
             {
                 yield return "both classInfluence and classInfluences are set. only 1 should be set in any mutation";
             }
-
         }
 
 
