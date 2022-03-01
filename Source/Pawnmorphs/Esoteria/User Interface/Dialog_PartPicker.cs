@@ -11,6 +11,7 @@ using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
+using Pawnmorph.GraphicSys;
 
 namespace Pawnmorph.User_Interface
 {
@@ -57,7 +58,8 @@ namespace Pawnmorph.User_Interface
         private const float BUTTON_HORIZONTAL_PADDING = 6f;
         private const float MENU_SECTION_CONSTRICTION_SIZE = 4f;
         private const float SLIDER_HEIGHT = 13f;
-        private static Vector2 PREVIEW_SIZE = new Vector2(200, 280);
+        private static int PREVIEW_POSITION_X = -10; // Render pawn away from the map to avoid capturing parts of the map.
+        private static Vector2Int PREVIEW_SIZE = new Vector2Int(200, 280);
         private static Vector2 TOGGLE_CLOTHES_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CW_BUTTON_SIZE = new Vector2(30, 30);
         private static Vector2 ROTATE_CCW_BUTTON_SIZE = new Vector2(30, 30);
@@ -117,6 +119,9 @@ namespace Pawnmorph.User_Interface
         private static string initialCrownType;
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
         private static float editButtonWidth = Text.CalcSize(editButtonText).x + 2 * BUTTON_HORIZONTAL_PADDING;
+
+        private ValueTuple<Color, Color> initialPawnColors;
+
 
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
@@ -245,6 +250,8 @@ namespace Pawnmorph.User_Interface
             // Settting flags for this window. 
             forcePause = true;
 
+            var initialSkin = pawn.GetComp<AlienPartGenerator.AlienComp>().GetChannel("skin");
+            initialPawnColors = new ValueTuple<Color,Color>(initialSkin.first, initialSkin.second);
          
             SetCaches();
         
@@ -271,6 +278,10 @@ namespace Pawnmorph.User_Interface
                 SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
             }
 
+            var comp = pawn.GetComp<GraphicsUpdaterComp>();
+            comp.IsDirty = true;
+            comp.CompTick();
+            PortraitsCache.SetDirty(pawn);
             base.Close(doCloseSound);
 
             WindowClosed?.Invoke(this, addedMutations);
@@ -508,7 +519,7 @@ namespace Pawnmorph.User_Interface
                     mutations = pawnCurrentMutations.Where(m => parts.Contains(m.Part) && m.Def.RemoveComp.layer == MutationLayer.Core).ToList();
                     layer = MutationLayer.Core;
                 }
-                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap} ({m.Def.classInfluence.label.CapitalizeFirst()})").Distinct()))}";
+                buttonLabel = $"{(mutations.NullOrEmpty() ? NO_MUTATIONS_LOC_STRING.Translate().ToString() : string.Join(", ", mutations.Select(m => $"{m.Def.LabelCap}").Distinct()))}";
                 DrawPartButtons(ref curY, partListViewRect, mutations, parts, layer, buttonLabel);
             }
         }
@@ -516,8 +527,12 @@ namespace Pawnmorph.User_Interface
 
         private void DrawPartButtons(ref float curY, Rect partListViewRect, List<Hediff_AddedMutation> mutations, List<BodyPartRecord> parts, MutationLayer layer, string label)
         {
-            // Draw the main mutation selection button. It should take up the whole width if there are no mutations, otherwise it will leave a space for the edit button.
-            float partButtonWidth = partListViewRect.width - (mutations.NullOrEmpty() ? 0 : editButtonWidth);
+            bool hasDetails = false;
+            if (mutations.Count > 0 && mutations.Any(x => x.SeverityAdjust != null))
+                hasDetails = true;
+
+            // Draw the main mutation selection button. It should take up the whole width if there are no details, otherwise it will leave a space for the edit button.
+            float partButtonWidth = partListViewRect.width - (hasDetails == false ? 0 : editButtonWidth);
             Rect partButtonRect = new Rect(partListViewRect.x, curY, partButtonWidth, Text.CalcHeight(label, partButtonWidth - BUTTON_HORIZONTAL_PADDING));
             if (Widgets.ButtonText(partButtonRect, label))
             {
@@ -564,7 +579,7 @@ namespace Pawnmorph.User_Interface
             curY += partButtonRect.height;
 
             // If there are actually mutations, draw the edit button.
-            if (!mutations.NullOrEmpty())
+            if (hasDetails)
             {
                 Rect editButtonRect = new Rect(partButtonWidth, partButtonRect.y, editButtonWidth, partButtonRect.height);
                 if (Widgets.ButtonText(editButtonRect, editButtonText))
@@ -574,7 +589,7 @@ namespace Pawnmorph.User_Interface
             }
 
             // If the currently selected part and layer match up with the part to give details for, draw the edit area below the buttons.
-            if (detailPart.Item1 == parts.FirstOrDefault() && detailPart.Item2 == layer)
+            if (hasDetails && detailPart.Item1 == parts.FirstOrDefault() && detailPart.Item2 == layer)
             {
                 foreach (MutationDef mutationDef in mutations.Select(m => m.Def).Distinct())
                 {
@@ -645,6 +660,8 @@ namespace Pawnmorph.User_Interface
         private void DrawSeverityBar(ref float curY, ref Rect partListViewRect, MutationLayer layer, MutationDef mutationDef, List<Hediff_AddedMutation> mutationsOfDef)
         {
             // Draw the various labels for the severity bar (need to refine this later).
+            // Update current mutation stage.
+            mutationsOfDef.FirstOrDefault().Tick();
             string stageLabelText = $"Stage {mutationsOfDef.FirstOrDefault().CurStageIndex}: {mutationsOfDef.FirstOrDefault().LabelCap}";
             Rect severityLabelsRect = new Rect(partListViewRect.x, curY, partListViewRect.width, Text.CalcHeight(stageLabelText, partListViewRect.width));
             Text.Anchor = TextAnchor.MiddleLeft;
@@ -769,17 +786,15 @@ namespace Pawnmorph.User_Interface
             if (pawn != null)
             {
                 recachePreview = false;
-                pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-                PortraitsCache.SetDirty(pawn);
+
                 RenderPawn();
-                InitCamera();
+
+                if (camera == null)
+                    InitCamera();
+
                 camera.gameObject.SetActive(true);
-                camera.transform.position = new Vector3(0f, pawn.Position.y + 1f, 0f);
-                camera.forceIntoRenderTexture = true;
-                camera.targetTexture = previewImage;
+                camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
                 camera.Render();
-                camera.targetTexture = null;
-                camera.forceIntoRenderTexture = false;
                 camera.gameObject.SetActive(false);
             }
             else
@@ -788,14 +803,59 @@ namespace Pawnmorph.User_Interface
             }
         }
 
+
+        private Color? CalculatePawnSkin()
+        {
+            // Get all current and new mutations.
+            List<MutationDef> currentMutations = pawnCurrentMutations.Select(x => x.Def).ToList();
+            currentMutations.AddRange(addedMutations.mutationData.Select(x => x.mutation));
+
+            // Exclude all mutations being removed.
+            IQueryable<MutationDef> removedMutations = addedMutations.mutationData.Where(x => x.removing).Select(x => x.mutation).AsQueryable();
+            currentMutations = currentMutations.Where(x => removedMutations.Contains(x) == false).Distinct().ToList();
+
+
+
+            List<Tuple<int, ThingDef>> animals = currentMutations.SelectMany(x => x.AssociatedAnimals.Distinct())
+                                                                 .GroupBy(x => x)
+                                                                 .Select(x => Tuple.Create<int, ThingDef>(x.Count(), x.First()))
+                                                                 .ToList();
+
+            if (animals.Count == 0)
+                return null;
+
+            Log.Message(String.Join(", ", animals.OrderByDescending(x => x.Item1).Select(x => x.Item2.defName + ": " + x.Item1)));
+
+            // Select the morph kind of which most added mutations are associated with.
+            ThingDef highestInfluence = animals.OrderByDescending(x => x.Item1).First().Item2;
+            MorphDef morph = highestInfluence.TryGetBestMorphOfAnimal();
+            return morph?.GetSkinColorOverride(pawn);
+        }
+
         // Taken from RenderingTool.RenderPawnInternal in CharacterEditor
         private void RenderPawn()
         {
-            PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
-            Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
+            Color? hybridColor = CalculatePawnSkin();
 
+            var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+
+            if (hybridColor.HasValue)
+                comp.ColorChannels["skin"].first = hybridColor.Value;
+            else
+            {
+                comp.ColorChannels["skin"].first = initialPawnColors.Item1;
+                comp.ColorChannels["skin"].second = initialPawnColors.Item2;
+            }
+            comp.CompTick();
+
+            PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
+            graphics.ResolveAllGraphics();
+
+            Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
+            
             Mesh bodyMesh = pawn.RaceProps.Humanlike ? MeshPool.humanlikeBodySet.MeshAt(previewRot) : graphics.nakedGraphic.MeshAt(previewRot);
-            Vector3 bodyOffset = new Vector3 (0f, pawn.Position.y + 0.007575758f, 0f);
+            Vector3 bodyOffset = new Vector3 (PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
+
             foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
             {
                 Material damagedMat = graphics.flasher.GetDamagedMat(mat);
@@ -806,17 +866,18 @@ namespace Pawnmorph.User_Interface
                     break;
                 }
             }
-            Vector3 vector3 = new Vector3(0f, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
-            Vector3 vector4 = new Vector3(0f, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
+            Vector3 vector3 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
+            Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
             if (graphics.headGraphic != null)
             {
                 Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
                 Material material = graphics.HeadMatAt(previewRot);
+
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
                 Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
-                Vector3 hairOffset = new Vector3(headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
+                Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
                 bool isWearingHat = false;
                 if (toggleClothesEnabled)
                 {
@@ -833,7 +894,7 @@ namespace Pawnmorph.User_Interface
                             }
                             else
                             {
-                                Vector3 hatOffset = new Vector3(headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
+                                Vector3 hatOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
                                 GenDraw.DrawMeshNowOrLater(hairMesh, hatOffset, quaternion, hatMat, false);
                             }
                         }
@@ -841,8 +902,12 @@ namespace Pawnmorph.User_Interface
                 }
                 if (!isWearingHat)
                 {
-                    Material hairMat = graphics.HairMatAt(previewRot);
-                    GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
+                    if (addedMutations.Parts.Any(x => x.IsInGroup(BodyPartGroupDefOf.UpperHead)) == false)
+                    {
+                        // Draw hair
+                        Material hairMat = graphics.HairMatAt(previewRot);
+                        GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
+                    }
                 }
             }
             if (toggleClothesEnabled)
@@ -856,10 +921,9 @@ namespace Pawnmorph.User_Interface
                     }
                 }
             }
-            ThingDef_AlienRace def = pawn.def as ThingDef_AlienRace;
-            Vector2 hOffset = def != null ? def.alienRace.graphicPaths.GetCurrentGraphicPath(pawn.ageTracker.CurLifeStage).headOffset : Vector2.zero;
 
-            HarmonyPatches.DrawAddons( PawnRenderFlags.Clothes,  vector3, hOffset, pawn, quaternion, previewRot);
+            Vector3 hOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
+            HarmonyPatches.DrawAddons(PawnRenderFlags.Clothes, vector3, hOffset, pawn, quaternion, previewRot);
             if (toggleClothesEnabled)
             {
                 if (pawn.apparel != null)
@@ -894,9 +958,9 @@ namespace Pawnmorph.User_Interface
                 camera.renderingPath = RenderingPath.Forward;
                 camera.nearClipPlane = Current.Camera.nearClipPlane;
                 camera.farClipPlane = Current.Camera.farClipPlane;
-                camera.targetTexture = null;
                 camera.forceIntoRenderTexture = false;
-                previewImage = new RenderTexture((int)PREVIEW_SIZE.x, (int)PREVIEW_SIZE.y, 24);
+
+                previewImage = new RenderTexture(PREVIEW_SIZE.x, PREVIEW_SIZE.y, 24);
                 camera.targetTexture = previewImage;
             }
         }
