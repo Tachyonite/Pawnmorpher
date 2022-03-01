@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -153,7 +154,7 @@ namespace Pawnmorph
             //no get mutation that give this influence 
             foreach (MutationDef mutationDef in DefDatabase<MutationDef>.AllDefsListForReading)
             {
-                if (mutationDef.classInfluence == this)
+                if (mutationDef.ClassInfluences.Contains(this))
                 {
                     _mutations.Add(mutationDef); 
                 }
