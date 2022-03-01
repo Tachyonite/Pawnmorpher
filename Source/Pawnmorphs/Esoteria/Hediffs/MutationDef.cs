@@ -278,6 +278,11 @@ namespace Pawnmorph.Hediffs
             {
                 yield return "both classInfluence and classInfluences are set. only 1 should be set in any mutation";
             }
+
+            if (classInfluence == null && (classInfluences == null || classInfluences.Count > 0))
+            {
+                yield return "No classInfluence has been assigned.";
+            }
         }
 
 
