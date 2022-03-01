@@ -147,7 +147,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -159,7 +159,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -181,7 +181,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -196,7 +196,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
 					<statOffsets>
 						<CarryingCapacity>20</CarryingCapacity>
 					</statOffsets>
@@ -215,7 +215,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -227,7 +227,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -239,20 +239,84 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherLeg">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
 		<defName>EtherRatiteLeg</defName>
 		<label>strong avian</label>
 		<classInfluence>Ratite</classInfluence>
-		<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.50</offset>
-					</li>
-				</capMods>
+		<description>A ratite leg.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+				</values>
 			</li>
-		</stages>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.50</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<defName>EtherHareLeg</defName>
+		<label>spring-loaded leg</label>
+		<classInfluence>Leporid</classInfluence>
+		<description>A leporid spring-loaded leg.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.50</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

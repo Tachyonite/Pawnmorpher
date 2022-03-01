@@ -62,29 +62,4 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>Leporid</classInfluence>
-		<defName>EtherHareLeg</defName>
-		<label>spring-loaded leg</label>
-		<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.50</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<parts>
-			<li>Leg</li>
-		</parts>
-		<countToAffect>2</countToAffect>
-		<categories>
-			<li>Minor</li>
-		</categories>
-	</Pawnmorph.Hediffs.MutationDef>
-	
 </Defs>

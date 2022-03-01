@@ -273,6 +273,7 @@
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
 		<maxSeverity>1.0</maxSeverity>
+		<countToAffect>2</countToAffect>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>initial</key>
