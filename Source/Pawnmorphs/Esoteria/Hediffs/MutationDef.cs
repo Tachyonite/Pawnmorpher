@@ -197,6 +197,7 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// Gets the finalized collection of class influences regardless of how it was defined in the XML.
         /// </summary>
+        [NotNull]
         public List<AnimalClassBase> ClassInfluences 
         { 
             get
