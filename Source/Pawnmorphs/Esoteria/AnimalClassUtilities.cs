@@ -227,7 +227,7 @@ namespace Pawnmorph
         public static string GenerateDebugInfo([NotNull] IEnumerable<Hediff_AddedMutation> mutations)
         {
             if (mutations == null) throw new ArgumentNullException(nameof(mutations));
-            var mutationList = mutations.ToList();
+            var mutationList = mutations.OrderBy(x => x.Influence.Count).ToList();
             Dictionary<AnimalClassBase, float> endDict = new Dictionary<AnimalClassBase, float>();
             StringBuilder builder = new StringBuilder(); 
 
@@ -238,12 +238,18 @@ namespace Pawnmorph
 
             foreach (Hediff_AddedMutation mutation in mutationList)
             {
-                AnimalClassBase inf = mutation.Influence;
-                builder.AppendLine($"|\t{mutation.def.defName}:{inf.defName }");
-                var i = endDict.TryGetValue(inf);
-                i += 1;
-                endDict[inf] = i; 
+                builder.AppendLine($"|\t{mutation.def.defName}:{String.Join(", ", mutation.Influence.Select(x => x.defName))}");
 
+                AnimalClassBase animalClass = null;
+                if (mutation.Influence.Count > 1)
+                    animalClass = mutation.Influence.Where(x => endDict.ContainsKey(x)).OrderByDescending(x => endDict[x]).FirstOrDefault();
+
+                if (animalClass == null)
+                    animalClass = mutation.Influence[0];
+
+                var i = endDict.TryGetValue(animalClass);
+                i += 1;
+                endDict[animalClass] = i;
             }
 
             builder.AppendLine("Initial Influences:");
@@ -301,13 +307,26 @@ namespace Pawnmorph
             if (outDict == null) throw new ArgumentNullException(nameof(outDict));
 
             outDict.Clear();
+
             //initialize the returning dictionary with the direct influences 
-            foreach (Hediff_AddedMutation mutation in mutations)
+            foreach (Hediff_AddedMutation mutation in mutations.OrderBy(x => x.Influence.Count))
             {
-                float i = outDict.TryGetValue(mutation.Influence);
-                i++;
-                outDict[mutation.Influence] = i;
+                AnimalClassBase animalClass = null;
+
+                // If more than one influence, then find the highest of those influences already on pawn.
+                if (mutation.Influence.Count > 1)
+                    animalClass = mutation.Influence.Where(x => outDict.ContainsKey(x)).OrderByDescending(x => outDict[x]).FirstOrDefault();
+
+                // If no existing matching influence was found or is only single-influence, then take the first.
+                if (animalClass == null)
+                    animalClass = mutation.Influence[0];
+
+                var i = outDict.TryGetValue(animalClass);
+                i += 1;
+                outDict[animalClass] = i;
             }
+
+
 
             CalculateAccumulatedInfluence(outDict);
             CalculateTrickledInfluence(outDict); //now all caches are set 

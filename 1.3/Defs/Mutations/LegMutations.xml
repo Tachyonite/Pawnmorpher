@@ -1,8 +1,43 @@
+<!-- FOOT TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<defName>EtherLeg</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> 
+-->
+
+
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
-
-
-	<Pawnmorph.Hediffs.MutationDef Name="EtherLeg" ParentName="PawnmorphPart" Abstract="True">
+	<Pawnmorph.Hediffs.MutationDef Name="EtherLeg" ParentName="PawnmorphPart" Abstract="true">
 		<defName>EtherLeg</defName>
 		<classInfluence>Animal</classInfluence>
 		<label>cervine</label>
@@ -21,90 +56,76 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name="EtherDigitgradeLeg" ParentName="EtherLeg">
-		<defName>EtherDigitgradeLeg</defName>
-		<classInfluence>Carnivora</classInfluence>
-		<label>digitgrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does, however, put a spring in their step.</description>
-		<mutationTale>LegBecameDigitgrade</mutationTale>
-		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>crooked</key>
-				<minSeverity>-1</minSeverity>
-				<label>crooked</label>
-				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.4</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>readjusting</key>
-				<minSeverity>0</minSeverity>
-				<label>readjusting</label>
-				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.3</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>unfamiliar</key>
-				<minSeverity>0.3</minSeverity>
-				<label>unfamiliar</label>
-				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<key>adapted</key>
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name="EtherUnguligradeLeg" ParentName="EtherDigitgradeLeg">
-		<defName>EtherUnguligradeLeg</defName>
-		<label>unguligrade</label>
-		<classInfluence>Ungulate</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherUnguligradeLeg">
-		<defName>EtherCervineLeg</defName>
-		<label>cervine</label>
-		<classInfluence>Cervid</classInfluence>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<classInfluence>ThickHide</classInfluence>
+		<defName>EtherThickHideLeg</defName>
+		<label>thick leg</label>
+		<description>An elephantine leg.</description>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stagePatches>
-			<!-- <li function="modify">
-				<stageKey>crooked</stageKey>
+			<li function="modify">
+				<stageKey>initial</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.4</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide. Getting used to it will take [PAWN_pronoun] some time</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<!-- TODO Bodysize stat -->
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.025</offset>
+						</li>
+					</capMods>
+					<!-- TODO Bodysize stat -->
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherAnimalLeg" ParentName="PawnmorphLegPart" Abstract="true">
+		<defName>EtherAnimalLeg</defName>
+		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious.</description>
+					<painOffset>0.02</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -113,9 +134,20 @@
 					</capMods>
 				</values>
 			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherDigitgradeLeg" ParentName="EtherAnimalLeg">
+		<defName>EtherDigitgradeLeg</defName>
+		<classInfluence>Carnivora</classInfluence>
+		<label>digitgrade</label>
+		<description>A digitgrade leg.</description>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
+		<stagePatches>
 			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
+				<stageKey>adapting</stageKey>
 				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -123,10 +155,79 @@
 						</li>
 					</capMods>
 				</values>
-			</li> -->
+			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.075</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherUnguligradeLeg" ParentName="EtherAnimalLeg">
+		<defName>EtherUnguligradeLeg</defName>
+		<label>unguligrade</label>
+		<classInfluence>Ungulate</classInfluence>
+		<description>An unguligrade leg.</description>
+		<mutationTale>LegBecameUnguligrade</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<CarryingCapacity>20</CarryingCapacity>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
+					<statOffsets>
+						<CarryingCapacity>20</CarryingCapacity>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherAnimalLeg">
+		<defName>EtherCervineLeg</defName>
+		<label>cervine</label>
+		<classInfluence>Cervid</classInfluence>
+		<description>An unguligrade leg.</description>
+		<mutationTale>LegBecameUnguligrade</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_pronoun] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>

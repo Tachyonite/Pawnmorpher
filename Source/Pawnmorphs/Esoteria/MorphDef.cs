@@ -293,7 +293,7 @@ namespace Pawnmorph
                             continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
                     }
 
-                    if (mutation.classInfluence == curNode) tmpList.Add(mutation);
+                    if (mutation.ClassInfluences.Contains(curNode)) tmpList.Add(mutation);
                 }
 
                 foreach (MutationDef mutationDef in tmpList)

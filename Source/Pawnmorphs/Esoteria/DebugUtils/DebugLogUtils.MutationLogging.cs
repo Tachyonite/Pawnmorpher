@@ -223,7 +223,7 @@ namespace Pawnmorph.DebugUtils
             var mClassRoot = new MClassificationInfo(root);
             foreach (MutationDef mut in MutationDef.AllMutations)
             {
-                if (mut.classInfluence == root) mClassRoot.mutations.Add(mut); 
+                if (mut.ClassInfluences.Contains(root)) mClassRoot.mutations.Add(mut); 
 
             }
 
@@ -252,7 +252,7 @@ namespace Pawnmorph.DebugUtils
 
             foreach (MutationDef allMutation in MutationDef.AllMutations)
             {
-                if (allMutation.classInfluence == cBase)
+                if (allMutation.ClassInfluences.Contains(cBase))
                 {
                     retVal.mutations.Add(allMutation);
                 }
