@@ -69,11 +69,14 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<description>TODO</description>
+					
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
+					<description>TODO</description>
 
 				</values>
 			</li>
@@ -117,7 +120,7 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<label>itching</label>
-					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious.</description>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
 					<painOffset>0.02</painOffset>
 				</values>
 			</li>
@@ -250,17 +253,34 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
+					<painOffset>0.02</painOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
 
 				</values>
 			</li>
@@ -271,7 +291,7 @@
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
-							<offset>0.50</offset>
+							<offset>0.30</offset>
 						</li>
 					</capMods>
 				</values>
@@ -291,18 +311,34 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
+					<painOffset>0.02</painOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-
+					<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -312,7 +348,7 @@
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
-							<offset>0.50</offset>
+							<offset>0.25</offset>
 						</li>
 					</capMods>
 				</values>
