@@ -178,7 +178,7 @@
             <xs:element name="label" type="xs:string" minOccurs="1">
                 <xs:annotation>
                     <xs:documentation>
-                        Label used to identify the verb to modify.
+                        Text matching the label of the verb to be modified.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
