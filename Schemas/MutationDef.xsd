@@ -109,6 +109,18 @@
             <xs:element name="hungerRateFactor" minOccurs="0" type="xs:float" />
             <xs:element name="stopChance" minOccurs="0" type="xs:float" />
             <xs:element name="memory" minOccurs="0" type="xs:string" />
+            <xs:element name="verbOverrides" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Allows setting values of a verb on the mutations when stage is entered.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="VerbOverride" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="capMods" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -159,6 +171,19 @@
         <xs:all>
             <xs:element name="mutation" type="xs:string" minOccurs="1" />
             <xs:element name="blockOnAnyPart" type="xs:boolean" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="VerbOverride">
+        <xs:all>
+            <xs:element name="label" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Label used to identify the verb to modify.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="power" type="xs:float" minOccurs="0" />
+            <xs:element name="cooldownTime" type="xs:float" minOccurs="0" />
         </xs:all>
     </xs:complexType>
 </xs:schema>

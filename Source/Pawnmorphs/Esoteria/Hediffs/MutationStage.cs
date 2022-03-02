@@ -135,24 +135,6 @@ namespace Pawnmorph.Hediffs
             /// Value to set verb cooldown time to.
             /// </summary>
             public float? cooldownTime;
-
-
-            /// <summary>
-            /// Loads the data from XML.
-            /// </summary>
-            /// <param name="xmlNode">The XML node.</param>
-            [UsedImplicitly]
-            public void LoadDataFromXmlCustom(System.Xml.XmlNode xmlNode)
-            {
-                label = xmlNode.Name;
-
-                float value;
-                if (float.TryParse(xmlNode[nameof(power)]?.InnerText, out value))
-                    power = value;
-
-                if (float.TryParse(xmlNode[nameof(cooldownTime)]?.InnerText, out value))
-                    cooldownTime = value;
-            }
         }
 
 
