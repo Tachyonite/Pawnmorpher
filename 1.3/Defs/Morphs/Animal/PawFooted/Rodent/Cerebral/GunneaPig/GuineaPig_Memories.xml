@@ -1,53 +1,53 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>GuineaPigTransformationMemory</defName>
-        <stages>
-            <li>
-                <label>Became guinea pig morph</label>
-                <description>I'm literally being used as a guinea pig!</description>
-                <visible>true</visible>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Became guinea pig morph</label>
-                <description>This is so cool, I might break into squeak!</description>
-                <visible>true</visible>
-                <baseMoodEffect>3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Became guinea pig morph</label>
-                <description>I don't want to be used for any more experiments!</description>
-                <visible>true</visible>
-                <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
+				<stages>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>I'm literally being used as a guinea pig!</description>
+								<visible>true</visible>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>This is so cool, I might break into squeak!</description>
+								<visible>true</visible>
+								<baseMoodEffect>3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>I don't want to be used for any more experiments!</description>
+								<visible>true</visible>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>GuineaPigRevertedMemory</defName>
 		<stages>
-            <li>
-                <label>Reverted</label>
-                <description>Back to normal. I have my face back!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>No one calls me cute anymore.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>Finally! It was so humiliating!</description>
-                <baseMoodEffect>+10</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>But I liked being cute and fluffy!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
+						<li>
+								<label>Reverted</label>
+								<description>Back to normal. I have my face back!</description>
+								<baseMoodEffect>+3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>No one calls me cute anymore.</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>Finally! It was so humiliating!</description>
+								<baseMoodEffect>+10</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>But I liked being cute and fluffy!</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
@@ -55,7 +55,7 @@
 		<stages>
 			<li>
 				<label>Guinea pig face</label>
-				<description>It's too sensitive. I'm almost overwhelmed with strong smells.</description>
+				<description>I don't like these chubby cheeks.</description>
 				<visible>true</visible>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
@@ -67,7 +67,7 @@
 			</li>
 			<li>
 				<label>Guinea pig face</label>
-				<description>I don't want to look like a squeaking PEST!</description>
+				<description>How am I supposed to eat with only four teeth?!</description>
 				<visible>true</visible>
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
