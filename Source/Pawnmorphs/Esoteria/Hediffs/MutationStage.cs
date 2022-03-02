@@ -67,7 +67,13 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The graphic for this stage 
         /// </summary>
-        public List<MutationGraphicsData> graphics; 
+        public List<MutationGraphicsData> graphics;
+
+        /// <summary>
+        /// Overrides to allow changing values of mutation verbs.
+        /// </summary>
+        [CanBeNull]
+        public List<VerbToolOverride> verbOverrides;
 
         /// <summary>
         /// Gets the skip aspects.
@@ -96,9 +102,53 @@ namespace Pawnmorph.Hediffs
 
             if (memory != null)
             {
-                hediff.pawn.TryAddMutationThought(memory); 
+                hediff.pawn.TryAddMutationThought(memory);
+            }
+
+            var verbGiver = hediff.TryGetComp<HediffComp_VerbGiver>();
+            if (verbGiver != null && verbOverrides != null)
+            {
+                foreach (Tool tool in verbGiver.Tools)
+                {
+                    foreach (VerbToolOverride toolOverride in verbOverrides)
+                    {
+                        if (tool.label == toolOverride.label)
+                        {
+                            if (toolOverride.power.HasValue)
+                                tool.power = toolOverride.power.Value;
+
+                            if (toolOverride.cooldownTime.HasValue)
+                                tool.cooldownTime = toolOverride.cooldownTime.Value;
+
+                            break;
+                        }
+                    }
+                }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public class VerbToolOverride
+        {
+            /// <summary>
+            /// The label of the verb to override.
+            /// </summary>
+            public string label;
+
+            /// <summary>
+            /// Value to set verb power to.
+            /// </summary>
+            public float? power;
+
+            /// <summary>
+            /// Value to set verb cooldown time to.
+            /// </summary>
+            public float? cooldownTime;
+        }
+
+
 
         /// <summary>
         /// 
