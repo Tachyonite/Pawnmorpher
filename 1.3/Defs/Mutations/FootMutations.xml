@@ -320,11 +320,9 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
-		<defName>EtherAvianFoot</defName>
-		<label>avian</label>
-		<description>An avian foot.</description>
-		<classInfluence>Avian</classInfluence>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherAvianFootBase" ParentName="PawnmorphFootPart" Abstract="true">
+		<defName>EtherAvianFootBase</defName>
 		<mutationTale>FeetBecomeTalons</mutationTale>
 		<mutationMemory>AvianFootMemory</mutationMemory>
 		<stagePatches>
@@ -334,6 +332,12 @@
 					<label></label>
 					<labelOverride>scaly</labelOverride>
 					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -342,8 +346,40 @@
 					<label></label>
 					<labelOverride>toe-foot</labelOverride>
 					<description>[PAWN_nameDef]'s toes have become long, thin and scaly. Most of the main meat of [PAWN_possessive] foot has disappeared as well, leaving it looking more avian than human.</description>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>3</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>avian claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherAvianFootBase">
+		<defName>EtherAvianFoot</defName>
+		<label>avian</label>
+		<description>An avian foot.</description>
+		<classInfluence>Avian</classInfluence>
+		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
@@ -354,6 +390,12 @@
 							<offset>-0.1</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>4.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -367,49 +409,23 @@
 							<offset>0.4</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>5.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>avian claws</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>5.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherAvianFootBase">
 		<defName>EtherLargeAvianFoot</defName>
 		<label>clawed ratite</label>
 		<description>A large and deadly avian foot.</description>
 		<classInfluence>Ratite</classInfluence>
-		<mutationTale>FeetBecomeTalons</mutationTale>
-		<mutationMemory>AvianFootMemory</mutationMemory>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<labelOverride>scaly</labelOverride>
-					<description>[PAWN_nameDef]'s foot appears to have broken out into hives, but doesn't seem to itch.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<labelOverride>toe-foot</labelOverride>
-					<description>[PAWN_nameDef]'s toes have become long, thick and scaly.</description>
-				</values>
-			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
@@ -423,6 +439,12 @@
 					<statOffsets>
 						<MeleeHitChance>10</MeleeHitChance>
 					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>5.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -432,25 +454,15 @@
 					<statOffsets>
 						<MeleeHitChance>10</MeleeHitChance>
 					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>avian claws</label>
+							<power>8.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>avian claws</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>8.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
