@@ -1,55 +1,55 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElkTransformationMemory</defName>
-        <stages>
-            <li>
-                <label>Became elk morph</label>
-                <description>Great, now I look like a big, shaggy lump.</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Became elk morph</label>
-                <description>I feel so majestic, so imposing. This is awesome!</description>
-                <baseMoodEffect>+3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Became elk morph</label>
-                <description>An elk? Isn't that just a big deer? Oh I don't care! Just make it stop!</description>
-                <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-            <li>
-                <label>Became elk morph</label>
-                <description>A good start, how far can I go?</description>
-                <baseMoodEffect>+1</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
+				<stages>
+						<li>
+								<label>Became elk morph</label>
+								<description>Great, now I look like a big, shaggy lump.</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>I feel so majestic, so imposing. This is awesome!</description>
+								<baseMoodEffect>+3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>An elk? Isn't that just a big deer? Oh I don't care! Just make it stop!</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>A good start, how far can I go?</description>
+								<baseMoodEffect>+1</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
 	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElkRevertedMemory</defName>
-        <stages>
-            <li>
-                <label>Reverted</label>
-                <description>It's me, I'm back!</description>
-                <baseMoodEffect>3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>No! My magesty!</description>
-                <baseMoodEffect>-3</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>Oh the humanity! MY humanity! Yay!</description>
-                <baseMoodEffect>10</baseMoodEffect>
-            </li>
-            <li>
-                <label>Reverted</label>
-                <description>But I was so close to perfection...</description>
-                <baseMoodEffect>-5</baseMoodEffect>
-            </li>
-        </stages>
-    </ThoughtDef>
+				<stages>
+						<li>
+								<label>Reverted</label>
+								<description>It's me, I'm back!</description>
+								<baseMoodEffect>3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>No! My magesty!</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>Oh the humanity! MY humanity! Yay!</description>
+								<baseMoodEffect>10</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>But I was so close to perfection...</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 			<durationDays>1</durationDays>
