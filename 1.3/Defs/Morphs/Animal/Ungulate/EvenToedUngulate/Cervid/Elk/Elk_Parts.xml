@@ -1,0 +1,103 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+		<Pawnmorph.Hediffs.MutationDef ParentName="CervidJawPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkJaw</defName>
+		<label>elk snout</label>
+		<mutationMemory>EtherElkJaw</mutationMemory>
+		<graphics>
+			<Muzzle>Parts/Elk/Elk_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidEarPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkEar</defName>
+		<label>elk ear</label>
+		<mutationMemory>EtherElkEar</mutationMemory>
+		<graphics>
+			<LeftEar>Parts/Elk/Elk_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Elk/Elk_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Elk/Elk_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Elk/Elk_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A broad elk ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidTailPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkTail</defName>
+		<label>elk tail</label>
+		<mutationMemory>EtherElkTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Elk/Elk_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short wooly tail hangs down from [PAWN_nameDef]'s spine.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+		<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkAntlers</defName>
+		<label>elk antlers</label>
+		<mutationMemory>EtherElkAntlers</mutationMemory>
+		<mutationTale>GrewAntlers</mutationTale>
+		<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
+		<!--Stages Go here
+		<graphics>
+			<Tail>Parts/Elk/Elk_Horns_A</Tail>
+		</graphics>
+		<graphics>
+			<Tail>Parts/Elk/Elk_Horns_B</Tail>
+		</graphics>
+		-->
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

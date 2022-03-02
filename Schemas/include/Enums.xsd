@@ -141,6 +141,7 @@
             <xs:enumeration value="Fox_Arctic"/>
             <xs:enumeration value="Fox_Fennec"/>
             <xs:enumeration value="Gazelle"/>
+            <xs:enumeration value="GuineaPig"/>
             <xs:enumeration value="Hare"/>
             <xs:enumeration value="Husky"/>
             <xs:enumeration value="Ibex"/>
