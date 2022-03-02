@@ -660,6 +660,12 @@
 					<label></label>
 					<labelOverride>stump-toed</labelOverride>
 					<description>[PAWN_nameDef]'s toes have shrunk back into [PAWN_possessive] foot, the leftover toenails dappling the foot serving as the only reminder they were ever there.</description>
+					<verbOverrides>
+						<li>
+							<label>stomp</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -668,6 +674,12 @@
 					<label></label>
 					<labelOverride>swollen</labelOverride>
 					<description>[PAWN_nameDef]'s foot has grown to be stubby and somewhat swollen-looking, with [PAWN_possessive] toes all but replaced by thick ivory-colored nails.</description>
+					<verbOverrides>
+						<li>
+							<label>stomp</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -679,9 +691,15 @@
 						<li>
 							<capacity>Moving</capacity>
 							<offset>-0.1</offset>
+							<!-- Missing body-size stat -->
 						</li>
-						<!-- Missing body-size stat -->
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>stomp</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -696,6 +714,12 @@
 						</li>
 						<!-- Missing body-size stat -->
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>stomp</label>
+							<power>16.9</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
@@ -708,7 +732,7 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>16.9</power>
+						<power>0</power>
 						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -732,12 +756,24 @@
 				<stageKey>readjusting</stageKey>
 				<values>
 					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>tip</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
 					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>tip</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -753,6 +789,12 @@
 							<offset>-0.1</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tip</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -768,6 +810,12 @@
 							<offset>-0.025</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tip</label>
+							<power>15</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
@@ -780,7 +828,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>15.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
