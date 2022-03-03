@@ -474,7 +474,7 @@ namespace Pawnmorph.DebugUtils
             // Build a dictionary of all defs, sorted by influence.
             Dictionary<AnimalClassBase, IEnumerable<MutationDef>> mutationDefsByInfluence = 
                 DefDatabase<AnimalClassBase>.AllDefs
-                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.classInfluence == k) })
+                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.ClassInfluences.Contains(k)) })
                 .ToDictionary(x => x.k, x => x.v);
             foreach (KeyValuePair<AnimalClassBase, IEnumerable<MutationDef>> entry in mutationDefsByInfluence)
             {

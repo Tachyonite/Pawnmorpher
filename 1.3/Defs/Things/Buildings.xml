@@ -35,6 +35,16 @@
                 <scanFindGuaranteedDays>6</scanFindGuaranteedDays>
                 <soundWorking>ScannerGroundPenetrating_Ambience</soundWorking>
             </li>
+            <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
+                <requiresTag>true</requiresTag>
+                <labelKey>PMAnimalPickerGizmo_Mutagun</labelKey>
+                <descriptionKey>PMAnimalPickerGizmoDescription_Mutagun</descriptionKey>
+                <raceFilter>
+                  <filterList>
+                    <li>PM_Chaothrumbo</li>
+                  </filterList>
+                </raceFilter>
+              </li>
         </comps>
         <altitudeLayer>Building</altitudeLayer>
         <canBeUsedUnderRoof>true</canBeUsedUnderRoof>

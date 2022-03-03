@@ -89,15 +89,15 @@ namespace Pawnmorph
         ///     The influence.
         /// </value>
         [NotNull]
-        public AnimalClassBase Influence
+        public List<AnimalClassBase> Influence
         {
             get
             {
                 if (def is MutationDef mDef)
-                    return mDef.classInfluence;
-                Log.Warning($"{def.defName} is a mutation but does not use {nameof(MutationDef)}! this will cause problems!");
+                    return mDef.ClassInfluences;
 
-                return AnimalClassDefOf.Animal;
+                Log.Warning($"{def.defName} is a mutation but does not use {nameof(MutationDef)}! this will cause problems!");
+                return new List<AnimalClassBase>() { AnimalClassDefOf.Animal };
             }
         }
 

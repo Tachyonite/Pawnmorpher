@@ -696,7 +696,10 @@ namespace Pawnmorph.Chambers
 
         private void UpdatePawnVisuals([NotNull] Pawn pawn)
         {
-            var comp = pawn.GetComp<GraphicSys.GraphicsUpdaterComp>();
+            var comp = pawn.TryGetComp<GraphicSys.GraphicsUpdaterComp>();
+            if (comp == null)
+                return;
+
             comp.IsDirty = true;
             comp.CompTick();
         }
@@ -723,7 +726,7 @@ namespace Pawnmorph.Chambers
         {
             if (AnimalMutations.Count == 0) return;
 
-            int mx = AnimalMutations.Count;
+            int mx = AnimalMutations.Count - 1;
             int idx = Mathf.FloorToInt(Mathf.Clamp(PercentDone * mx, 0, mx));
             if (idx != _curMutationIndex)
             {
@@ -778,7 +781,7 @@ namespace Pawnmorph.Chambers
             {
                 case ChamberUse.Mutation:
                     tfRequest = null;
-                    FinalizeMutations();
+                    FinalizeMutations(pawn);
                     break;
                 case ChamberUse.Merge:
 
@@ -863,11 +866,9 @@ namespace Pawnmorph.Chambers
             SelectorComp.Enabled = false;
         }
 
-        private void FinalizeMutations()
+        private void FinalizeMutations([NotNull] Pawn pawn)
         {
             if (_addedMutationData == null) return;
-            var pawn = innerContainer?.FirstOrDefault() as Pawn;
-            if (pawn == null) return;
 
             for (int i = _curMutationIndex + 1; i < _addedMutationData.Count; i++)
             {
@@ -1014,9 +1015,14 @@ namespace Pawnmorph.Chambers
                 count += GetMutasilkAmountFrom(app);
             }
 
-            Thing silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
-            silk.stackCount = count;
-            GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            // Don't try to spawn anything if count is 0.
+            if (count > 0)
+            {
+                Thing silk = ThingMaker.MakeThing(PMThingDefOf.Morphsilk);
+                silk.stackCount = count;
+                GenPlace.TryPlaceThing(silk, Position, Map, ThingPlaceMode.Near);
+            }
+
             apparel.DestroyAll();
         }
 
