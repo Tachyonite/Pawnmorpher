@@ -71,6 +71,8 @@
             </li>
             <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
                 <requiresTag>true</requiresTag>
+                <labelKey>PMAnimalPickerGizmo_Chamber</labelKey>
+                <descriptionKey>PMAnimalPickerGizmoDescription_Chamber</descriptionKey>
                 <alwaysAvailable>
                     <li>Chaocow</li>
                     <li>Chaofox</li>

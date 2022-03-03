@@ -40,9 +40,6 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public event OnClickHandler OnClick;
 
-        private string _customLabelKey;
-        private string _customDescriptionKey;
-
         private bool _enabled = true;
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="AnimalSelectorComp"/> is enabled.
@@ -117,21 +114,9 @@ namespace Pawnmorph.ThingComps
             {
                 action = GizmoAction,
                 icon = PMTextures.AnimalSelectorIcon,
-                defaultLabel = "none",
-                defaultDesc = "Select Animal"
+                defaultLabel = Props.labelKey.Translate(),
+                defaultDesc = Props.descriptionKey.Translate()
             };
-        }
-
-        public void SetCommandLabels(string labelKey, string descriptionKey)
-        {
-            _customLabelKey = labelKey;
-            _customDescriptionKey = descriptionKey;
-
-            if (_cachedGizmo != null)
-            {
-                _cachedGizmo.defaultLabel = _customLabelKey.Translate();
-                _cachedGizmo.defaultDesc = _customDescriptionKey.Translate();
-            }
         }
 
         /// <summary>
@@ -159,7 +144,7 @@ namespace Pawnmorph.ThingComps
                     _cachedGizmo = new Command_Action()
                     {
                         action = GizmoAction,
-                        defaultLabel = "none",
+                        defaultLabel = Props.labelKey.Translate(),
                         icon = PMTextures.AnimalSelectorIcon
                     };
                 }
@@ -170,8 +155,8 @@ namespace Pawnmorph.ThingComps
 
         public void ResetSelection()
         {
-            _cachedGizmo.defaultLabel = _customLabelKey.Translate();
-            _cachedGizmo.defaultDesc = _customDescriptionKey.Translate();
+            _cachedGizmo.defaultLabel = Props.labelKey.Translate();
+            _cachedGizmo.defaultDesc = Props.descriptionKey.Translate();
             _cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
         }
 
@@ -249,6 +234,17 @@ namespace Pawnmorph.ThingComps
         ///     if an animal must be tagged by the tagging rifle
         /// </summary>
         public bool requiresTag;
+
+        /// <summary>
+        ///     Label of selector button gizmo. Localised key.
+        /// </summary>
+        public string labelKey;
+
+        /// <summary>
+        ///     Tooltip of selector button gizmo. Localised key.
+        /// </summary>
+        public string descriptionKey;
+
 
         /// <summary>
         /// list of animals always available for selection 

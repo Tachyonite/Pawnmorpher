@@ -30,8 +30,6 @@ namespace Pawnmorph.Chambers
         private const string PART_PICKER_GIZMO_DESC = "PMPartPickerGizmoDescription";
         private const string MERGING_GIZMO_LABEL = "PMMergeGizmo";
         private const string MERGING_GIZMO_DESC = "PMMergeGizmoDescription";
-        private const string ANIMAL_PICKER_GIZMO_LABEL = "PMAnimalPickerGizmo";
-        private const string ANIMAL_PICKER_GIZMO_DESC = "PMAnimalPickerGizmoDescription";
         private const string DEBUG_FORCE_COMPLETION_GIZMO = "PMDebugForceChamberCompletion"; 
 
 
@@ -255,7 +253,6 @@ namespace Pawnmorph.Chambers
                 if (_aSelector == null)
                 {
                     _aSelector = GetComp<AnimalSelectorComp>();
-                    _aSelector.SetCommandLabels(ANIMAL_PICKER_GIZMO_LABEL, ANIMAL_PICKER_GIZMO_DESC);
                 }
                 if (_aSelector == null) Log.ErrorOnce("unable to find animal selector on mutachamber!", thingIDNumber);
 

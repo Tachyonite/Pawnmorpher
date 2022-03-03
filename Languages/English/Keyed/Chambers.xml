@@ -13,10 +13,10 @@
     <PMWaitingForSpecialThing>Waiting for {0}</PMWaitingForSpecialThing>
     <PMChamberMissingSpecialThing>{0} is required.</PMChamberMissingSpecialThing>
 		<!-- Buttons -->
+		<PMAnimalPickerGizmo_Chamber>Animal Picker</PMAnimalPickerGizmo_Chamber>
+		<PMAnimalPickerGizmoDescription_Chamber>Start a mutagenic transformation into the selected animal.</PMAnimalPickerGizmoDescription_Chamber>
 		<PMPartPickerGizmo>Mutation Picker</PMPartPickerGizmo>
-		<PMPartPickerGizmoDescription>Precisely control mechanite configuration to select mutations for specific parts.</PMPartPickerGizmoDescription>
-    <PMMergeGizmo>Merge</PMMergeGizmo>
+		<PMPartPickerGizmoDescription>Precisely control mechanite configuration to select mutations for specific body parts.</PMPartPickerGizmoDescription>
+		<PMMergeGizmo>Merge</PMMergeGizmo>
 		<PMMergeGizmoDescription>Merge two unfortunate pawns into one chaotic abomination.</PMMergeGizmoDescription>
-		<PMAnimalPickerGizmo>Animal Picker</PMAnimalPickerGizmo>
-		<PMAnimalPickerGizmoDescription>Select an animal for complete mutagenic transformation.</PMAnimalPickerGizmoDescription>
 </LanguageData>
