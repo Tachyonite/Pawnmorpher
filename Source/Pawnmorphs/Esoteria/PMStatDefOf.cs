@@ -98,6 +98,11 @@ namespace Pawnmorph
         /// </summary>
         [NotNull] [UsedImplicitly] public static StatDef PM_MutagenPainSensitivity; 
 
+        /// <summary>
+        ///     Multiplier on the total pawn body size.
+        /// </summary>
+        public static StatDef PM_BodySize;
+        
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()
