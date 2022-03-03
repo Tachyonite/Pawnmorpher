@@ -250,10 +250,7 @@ namespace Pawnmorph.Chambers
         {
             get
             {
-                if (_aSelector == null)
-                {
-                    _aSelector = GetComp<AnimalSelectorComp>();
-                }
+                if (_aSelector == null) _aSelector = GetComp<AnimalSelectorComp>();
                 if (_aSelector == null) Log.ErrorOnce("unable to find animal selector on mutachamber!", thingIDNumber);
 
                 return _aSelector;
