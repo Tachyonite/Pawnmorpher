@@ -27,7 +27,11 @@ namespace Pawnmorph.Chambers
         private const float TF_ANIMAL_DURATION = 1.5f; //units are in days 
         private const float MIN_TRANSFORMATION_TIME = 0.5f * 60000; //minimum transformation time in ticks
         private const string PART_PICKER_GIZMO_LABEL = "PMPartPickerGizmo";
+        private const string PART_PICKER_GIZMO_DESC = "PMPartPickerGizmoDescription";
         private const string MERGING_GIZMO_LABEL = "PMMergeGizmo";
+        private const string MERGING_GIZMO_DESC = "PMMergeGizmoDescription";
+        private const string ANIMAL_PICKER_GIZMO_LABEL = "PMAnimalPickerGizmo";
+        private const string ANIMAL_PICKER_GIZMO_DESC = "PMAnimalPickerGizmoDescription";
         private const string DEBUG_FORCE_COMPLETION_GIZMO = "PMDebugForceChamberCompletion"; 
 
 
@@ -203,7 +207,8 @@ namespace Pawnmorph.Chambers
                     {
                         action = OpenPartPicker,
                         icon = PMTextures.PartPickerIcon,
-                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate()
+                        defaultLabel = PART_PICKER_GIZMO_LABEL.Translate(),
+                        defaultDesc = PART_PICKER_GIZMO_DESC.Translate()
                     };
 
                 return _ppGizmo;
@@ -219,7 +224,8 @@ namespace Pawnmorph.Chambers
                     {
                         icon = PMTextures.MergingIcon,
                         action = EnterMergingIdle,
-                        defaultLabel = MERGING_GIZMO_LABEL.Translate()
+                        defaultLabel = MERGING_GIZMO_LABEL.Translate(),
+                        defaultDesc = MERGING_GIZMO_DESC.Translate()
                     };
 
                 return _mergingGizmo;
@@ -246,7 +252,11 @@ namespace Pawnmorph.Chambers
         {
             get
             {
-                if (_aSelector == null) _aSelector = GetComp<AnimalSelectorComp>();
+                if (_aSelector == null)
+                {
+                    _aSelector = GetComp<AnimalSelectorComp>();
+                    _aSelector.SetCommandLabels(ANIMAL_PICKER_GIZMO_LABEL, ANIMAL_PICKER_GIZMO_DESC);
+                }
                 if (_aSelector == null) Log.ErrorOnce("unable to find animal selector on mutachamber!", thingIDNumber);
 
                 return _aSelector;

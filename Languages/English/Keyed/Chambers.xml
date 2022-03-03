@@ -5,7 +5,6 @@
     <PMAnimalGenomeDescription>Stores the genetic information of {ANIMAL}.</PMAnimalGenomeDescription>
     <PMChamberAddingMutations>Adding mutations</PMChamberAddingMutations>
     <PMChamberTransforming> - Transforming {0} into {1}</PMChamberTransforming>
-    <PMMergeGizmo>Merge</PMMergeGizmo>
     <PMCannotTransformPrisoner>Cannot transform {0}.</PMCannotTransformPrisoner>
     <PMWaitingForPawn>Waiting for pawn.</PMWaitingForPawn>
     <PMWaitingForPawnMerging>Waiting for pawn.</PMWaitingForPawnMerging>
@@ -13,4 +12,11 @@
     <PMActive>Active.</PMActive>
     <PMWaitingForSpecialThing>Waiting for {0}</PMWaitingForSpecialThing>
     <PMChamberMissingSpecialThing>{0} is required.</PMChamberMissingSpecialThing>
+		<!-- Buttons -->
+		<PMPartPickerGizmo>Mutation Picker</PMPartPickerGizmo>
+		<PMPartPickerGizmoDescription>Precisely control mechanite configuration to select mutations for specific parts.</PMPartPickerGizmoDescription>
+    <PMMergeGizmo>Merge</PMMergeGizmo>
+		<PMMergeGizmoDescription>Merge two unfortunate pawns into one chaotic abomination.</PMMergeGizmoDescription>
+		<PMAnimalPickerGizmo>Animal Picker</PMAnimalPickerGizmo>
+		<PMAnimalPickerGizmoDescription>Select an animal for complete mutagenic transformation.</PMAnimalPickerGizmoDescription>
 </LanguageData>

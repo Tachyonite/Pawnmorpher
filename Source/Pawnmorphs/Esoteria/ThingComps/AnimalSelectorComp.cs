@@ -18,9 +18,6 @@ namespace Pawnmorph.ThingComps
     {
         private PawnKindDef _chosenKind;
 
-
-        
-
         /// <summary>
         /// delegate for the Animal Chosen event 
         /// </summary>
@@ -43,6 +40,8 @@ namespace Pawnmorph.ThingComps
         /// </summary>
         public event OnClickHandler OnClick;
 
+        private string _customLabelKey;
+        private string _customDescriptionKey;
 
         private bool _enabled = true;
         /// <summary>
@@ -110,6 +109,31 @@ namespace Pawnmorph.ThingComps
 
         private Gizmo[] _cachedGizmoArr;
 
+        public override void Initialize(CompProperties props)
+        {
+            base.Initialize(props);
+
+            _cachedGizmo = new Command_Action()
+            {
+                action = GizmoAction,
+                icon = PMTextures.AnimalSelectorIcon,
+                defaultLabel = "none",
+                defaultDesc = "Select Animal"
+            };
+        }
+
+        public void SetCommandLabels(string labelKey, string descriptionKey)
+        {
+            _customLabelKey = labelKey;
+            _customDescriptionKey = descriptionKey;
+
+            if (_cachedGizmo != null)
+            {
+                _cachedGizmo.defaultLabel = _customLabelKey.Translate();
+                _cachedGizmo.defaultDesc = _customDescriptionKey.Translate();
+            }
+        }
+
         /// <summary>
         /// Comps the get gizmos extra.
         /// </summary>
@@ -146,7 +170,8 @@ namespace Pawnmorph.ThingComps
 
         public void ResetSelection()
         {
-            _cachedGizmo.defaultLabel = "none";
+            _cachedGizmo.defaultLabel = _customLabelKey.Translate();
+            _cachedGizmo.defaultDesc = _customDescriptionKey.Translate();
             _cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
         }
 
