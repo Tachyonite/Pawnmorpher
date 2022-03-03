@@ -173,7 +173,7 @@ namespace Pawnmorph
                     continue;
 
                 if (mStage.globalHealthMultiplier != 0)
-                    offset = maxPartHealth * mStage.globalHealthMultiplier;
+                    offset += maxPartHealth * mStage.globalHealthMultiplier;
 
                 if (mutation.Part != record) 
                     continue;
