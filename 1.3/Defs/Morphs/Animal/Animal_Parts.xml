@@ -185,11 +185,5 @@
 			</li>
 		</stagePatches>	
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="FurredLimb">
-		<defName>EtherAnimalFur</defName>
-		<label>fur</label>
-		<classInfluence>Animal</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

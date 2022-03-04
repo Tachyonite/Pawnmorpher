@@ -26,9 +26,4 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="ReptileTailPart" ParentName="AnimalTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ScaledLimb">
-		<defName>EtherReptileScaledLimb</defName>
-		<label>scales</label>
-		<classInfluence>Reptile</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

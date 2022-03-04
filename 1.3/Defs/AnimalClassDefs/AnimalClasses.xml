@@ -24,6 +24,12 @@
 		<label>galliform</label>
 		<parent>Avian</parent>
 	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Penguin</defName>
+		<label>penguin</label>
+		<parent>Avian</parent>
+	</Pawnmorph.AnimalClassDef>
 	
 	<Pawnmorph.AnimalClassDef>
 		<defName>Ratite</defName>
@@ -193,6 +199,14 @@
 		<defName>Ursine</defName>
 		<label>ursine</label>
 		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Pinniped -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Pinniped</defName>
+		<label>pinniped</label>
+		<parent>Animal</parent>
 	</Pawnmorph.AnimalClassDef>
 
 	<!-- Reptile -->

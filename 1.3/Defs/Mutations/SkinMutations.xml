@@ -1,8 +1,8 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
-	<!-- Fur -->
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="FurredLimb" Abstract="true">
+	<!-- Fur (abstract) -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractFurredLimb" Abstract="true">
 		<mutationTale>LimbGrowsFur</mutationTale>
 		<mutationMemory>EtherFurredLimb</mutationMemory>
 		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
@@ -12,9 +12,6 @@
 				<values>
 					<label>light</label>
 					<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -22,9 +19,6 @@
 				<values>
 					<label>dusting</label>
 					<description>Very fine fur — too dense to be hair — is sprouting over [PAWN_nameDef]'s limb.</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -32,9 +26,6 @@
 				<values>
 					<label>thin</label>
 					<description>The fur on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -42,17 +33,104 @@
 				<values>
 					<label>patches</label>
 					<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
 					<description>Fur has covered the entirety of [PAWN_nameDef]'s limb, giving it a soft fine coat that helps retaining warmth.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Light fur -->
+
+	<Pawnmorph.Hediffs.MutationDef Name="LightFurredLimb" ParentName="AbstractFurredLimb">
+		<defName>EtherLightFurredLimb</defName>
+		<label>light fur</label>
+		<classInfluence>Simian</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+						<ComfyTemperatureMin>+0.1875</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.075</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.375</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.15</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.5625</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.225</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.75</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.3</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Normal fur -->
+
+	<Pawnmorph.Hediffs.MutationDef Name="FurredLimb" ParentName="AbstractFurredLimb">
+		<defName>EtherFurredLimb</defName>
+		<label>fur</label>
+		<classInfluence>Animal</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.1125</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-1</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.225</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-1.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.3375</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-2</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.45</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>
@@ -61,22 +139,22 @@
 
 	<!-- Arctic fur -->
 	
-	<Pawnmorph.Hediffs.MutationDef Name="PM_ArcticFurBase" ParentName="FurredLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name="ArcticFurredLimb" ParentName="AbstractFurredLimb">
+		<defName>EtherArcticFurredLimb</defName>
+		<label>arctic fur</label>
+		<classInfluences>
+			<li>PolarBearMorph</li>
+			<li>SnowhareMorph</li>
+			<li>ArcticFoxMorph</li>
+			<li>ArcticWolfMorph</li>
+		</classInfluences>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.02</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-1.75</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.375</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>
@@ -84,8 +162,8 @@
 				<stageKey>thin</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.03</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-3.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.75</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>
@@ -93,41 +171,40 @@
 				<stageKey>patches</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.06</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-5.25</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.125</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
+					<description>TODO</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.4</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.12</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-7</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.5</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Thick Fur -->
+	<!-- Dense Fur -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="FurredLimb" Name="ThickFurLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name="DenseFurredLimb" ParentName="AbstractFurredLimb">
+		<defName>EtherDenseFurredLimb</defName>
+		<label>dense fur</label>
+		<classInfluence>ThickFur</classInfluence>
 		<mutationMemory>EtherThickFurLimb</mutationMemory>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-0.8375</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.325</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.0008</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.01375</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
 			</li>
@@ -135,7 +212,10 @@
 				<stageKey>thin</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-1.675</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.65</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.016</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.0275</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
 			</li>
@@ -143,17 +223,85 @@
 				<stageKey>patches</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-2.5125</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.975</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.024</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.04125</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>The fur drapes [PAWN_nameDef]'s limb entirely. It's quite heavy and rather warm.</description>
+					<description>TODO</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.3</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.1</ComfyTemperatureMax>
+						<ComfyTemperatureMin>-3.35</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+1.3</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.032</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.055</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Thrumbo Fur -->
+
+	<Pawnmorph.Hediffs.MutationDef Name="ThrumboFurredLimb" ParentName="AbstractFurredLimb">
+		<defName>EtherThrumboFurredLimb</defName>
+		<label>thumbo fur</label>
+		<classInfluence>ThrumboMorph</classInfluence>
+		<mutationMemory>EtherThickFurLimb</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.8375</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.325</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.0175</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.005</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-1.675</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.65</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.035</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.01</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-2.5125</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.975</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.0525</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.015</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-3.35</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+1.3</ComfyTemperatureMax>
+						<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.07</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.02</ArmorRating_Heat>
 					</statOffsets>
 				</values>
 			</li>
@@ -163,9 +311,498 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 	
+	<!-- Hide (abstract) -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractHideLimb" Abstract="true">
+		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>light</stageKey>
+				<values>
+					<label>thick skin</label>
+					<description>The skin on this limb seems to be slightly more tough than the average human.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<label>hard skin</label>
+					<description>The skin on this limb seems to be quite a bit tougher than the average human.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<label>bristly skin</label>
+					<description>Rough, thick bristles have sprouted from this limb as the skin grows thicker.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<label>leathery skin</label>
+					<description>The skin on this limb is greatly thicker than an average human, and is covered in thick bristles.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>A leathery hide has formed over this limb, adding some natural defense.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Normal Hide -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractHideLimb" Name="HideLimb">
+		<defName>EtherHideLimb</defName>
+		<label>hide</label>
+		<classInfluence>Ungulate</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>0.0025</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>0.005</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>0.0075</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Thick Hide -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractHideLimb" Name="ThickHideLimb">
+		<defName>EtherThickHideLimb</defName>
+		<label>thick hide</label>
+		<classInfluence>ThickHide</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Blunt>0.015</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.025</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Blunt>0.045</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.075</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
+					<statOffsets>
+						<ArmorRating_Blunt>0.06</ArmorRating_Blunt>
+						<ArmorRating_Sharp>0.1</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Scales (abstract) -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractScaledLimb" Abstract="true">
+		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>light</stageKey>
+				<values>
+					<label>tight skin</label>
+					<description>The skin on this limb is somewhat thicker and rather tight.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<label>scattered scales</label>
+					<description>The skin is peppered with small scales that overlap and interlock.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<label>patches</label>
+					<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<label>clusters</label>
+					<description>Large portions of this limb are covered with a tight-knit pattern of scales, almost entirely covering the skin.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Reptile scales -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractScaledLimb" Name="ReptileScaledLimb">
+		<defName>EtherReptileScaledLimb</defName>
+		<label>scales</label>
+		<classInfluence>Reptile</classInfluence>
+		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.2</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.875</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.0025</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.01</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.4</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.175</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.005</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.02</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.6</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.2625</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.0075</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.03</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.8</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+3.5</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.04</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+		
+	<!-- Crocodilia scales -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractScaledLimb" Name="CrocodiliaScaledLimb">
+		<defName>EtherCrocodiliaScaledLimb</defName>
+		<label>crocodilia scales</label>
+		<classInfluence>Crocodilia</classInfluence>
+		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.3</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.875</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.008</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.01</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.6</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.175</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.016</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.02</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>+0.9</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.2625</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.024</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.03</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>+1.2</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+3.5</ComfyTemperatureMax>
+						<ArmorRating_Sharp>0.032</ArmorRating_Sharp>
+						<ArmorRating_Heat>0.04</ArmorRating_Heat>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Feathers (abstract) -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractFeatheredLimb" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>light</stageKey>
+				<values>
+					<label>isolated</label>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<label>bristles</label>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<label>patches</label>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<label>swathes</label>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Normal Feathers -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractFeatheredLimb" Name="FeatheredLimb">
+		<defName>EtherFeatheredLimb</defName>
+		<label>feathers</label>
+		<classInfluence>Avian</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.125</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.125</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.25</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.25</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.375</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.375</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-0.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>+0.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Insulating Feathers -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AbstractFeatheredLimb" Name="InsulatingFeatheredLimb">
+		<defName>EtherInsulatingFeatheredLimb</defName>
+		<label>insulating feathers</label>
+		<classInfluence>Penguin</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-1.75</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.375</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-3.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.75</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMin>-5.25</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.125</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-7</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>	
+	
+	<!-- Insulating blubber -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="BlubberLimb">
+		<defName>EtherBlubberLimb</defName>
+		<label>blubber</label>
+		<classInfluence>Pinniped</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>light</stageKey>
+				<values>
+					<label>TODO</label>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>dusting</stageKey>
+				<values>
+					<label>TODO</label>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-1.75</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.375</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>thin</stageKey>
+				<values>
+					<label>curly fur</label>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-3.5</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-0.75</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>patches</stageKey>
+				<values>
+					<label>TODO</label>
+					<description>TODO</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-5.25</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.125</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>full</stageKey>
+				<values>
+					<label>TODO</label>
+					<description>TODO.</description>
+					<statOffsets>
+						<ComfyTemperatureMin>-7</ComfyTemperatureMin>
+						<ComfyTemperatureMax>-1.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
 	<!-- Wool -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="WoollyLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="WoollyLimb">
+		<defName>EtherWoollyLimb</defName>
+		<label>wool</label>
+		<classInfluences>
+			<li>MuffaloMorph</li>
+			<li>YakMorph</li>
+			<li>WoollyUngulate</li>
+		</classInfluences>
 		<mutationMemory>EtherWooly</mutationMemory>
 		<stagePatches>
 			<li function="modify">
@@ -173,9 +810,6 @@
 				<values>
 					<label>thin hair</label>
 					<description>[PAWN_nameDef]'s skin seems to be slightly hairier than it was before.</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -184,7 +818,7 @@
 					<label>curly hair</label>
 					<description>The hair on the skin here is quickly thickening as it spreads over [PAWN_nameDef]'s limb.</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-0.75</ComfyTemperatureMin>
 					</statOffsets>
 				</values>
 			</li>
@@ -194,7 +828,7 @@
 					<label>curly fur</label>
 					<description>There is not much bare skin left on [PAWN_nameDef]'s limb, much of it has been covered by patches of fur.</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.1</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-1.5</ComfyTemperatureMin>
 					</statOffsets>
 				</values>
 			</li>
@@ -204,7 +838,7 @@
 					<label>short</label>
 					<description>The fur has become denser on [PAWN_nameDef]'s limb, making the skin underneath hard to see...and it seems more like wool.</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.2</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-2.25</ComfyTemperatureMin>
 					</statOffsets>
 				</values>
 			</li>
@@ -213,242 +847,7 @@
 				<values>
 					<description>The wool covers [PAWN_nameDef]'s limb entirely. It's rather warm.</description>
 					<statOffsets>
-						<ComfyTemperatureMin>-0.3</ComfyTemperatureMin>
-						<ComfyTemperatureMax>-0.1</ComfyTemperatureMax>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<!-- Scales -->
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="ScaledLimb" Abstract="true">
-		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<label>tight skin</label>
-					<description>The skin on this limb is somewhat thicker and rather tight.</description>
-					<statOffsets>
-						<ComfyTemperatureMax>0.02</ComfyTemperatureMax>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>dusting</stageKey>
-				<values>
-					<label>scattered scales</label>
-					<description>The skin is peppered with small scales that overlap and interlock.</description>
-					<statOffsets>
-						<ComfyTemperatureMax>0.05</ComfyTemperatureMax>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>thin</stageKey>
-				<values>
-					<label>patches</label>
-					<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
-					<statOffsets>
-						<ComfyTemperatureMax>0.08</ComfyTemperatureMax>
-						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>patches</stageKey>
-				<values>
-					<label>clusters</label>
-					<description>Large portions of this limb are covered with a tight-knit pattern of scales, almost entirely covering the skin.</description>
-					<statOffsets>
-						<ComfyTemperatureMax>0.1</ComfyTemperatureMax>
-						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>full</stageKey>
-				<values>
-					<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
-					<statOffsets>
-						<ComfyTemperatureMax>0.2</ComfyTemperatureMax>
-						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<!-- Hide -->
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="HideLimb" Abstract="true">
-		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<label>thick skin</label>
-					<description>The skin on this limb seems to be slightly more tough than the average human.</description>
-					<statOffsets>
-						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>dusting</stageKey>
-				<values>
-					<label>hard skin</label>
-					<description>The skin on this limb seems to be quite a bit tougher than the average human.</description>
-					<statOffsets>
-						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.01</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>thin</stageKey>
-				<values>
-					<label>bristly skin</label>
-					<description>Rough, thick bristles have sprouted from this limb as the skin grows thicker.</description>
-					<statOffsets>
-						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>patches</stageKey>
-				<values>
-					<label>leathery skin</label>
-					<description>The skin on this limb is greatly thicker than an average human, and is covered in thick bristles.</description>
-					<statOffsets>
-						<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>full</stageKey>
-				<values>
-					<description>A leathery hide has formed over this limb, adding some natural defense.</description>
-					<statOffsets>
-						<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<!-- Thick Hide -->
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="HideLimb" Name="ThickHideLimb" Abstract ="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<statOffsets>
-						<ArmorRating_Sharp>0.02</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>dusting</stageKey>
-				<values>
-					<statOffsets>
-						<ArmorRating_Blunt>0.01</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.03</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>thin</stageKey>
-				<values>
-					<statOffsets>
-						<ArmorRating_Blunt>0.02</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.04</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>patches</stageKey>
-				<values>
-					<statOffsets>
-						<ArmorRating_Blunt>0.03</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>full</stageKey>
-				<values>
-					<description>A very thick, rough and leathery skin now covers this limb, adding a substantial natural defense.</description>
-					<statOffsets>
-						<ArmorRating_Blunt>0.04</ArmorRating_Blunt>
-						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-		<categories>
-			<li>Powerful</li>
-		</categories>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<!-- Feathers -->
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="FeatheredLimb" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>light</stageKey>
-				<values>
-					<label>isolated</label>
-					<description>TODO</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.02</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>dusting</stageKey>
-				<values>
-					<label>bristles</label>
-					<description>TODO</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.04</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>thin</stageKey>
-				<values>
-					<label>patches</label>
-					<description>TODO</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.08</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>patches</stageKey>
-				<values>
-					<label>swathes</label>
-					<description>TODO</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-0.16</ComfyTemperatureMin>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>full</stageKey>
-				<values>
-					<description>TODO</description>
-					<statOffsets>
-						<ComfyTemperatureMin>-.36</ComfyTemperatureMin>
+						<ComfyTemperatureMin>-3</ComfyTemperatureMin>
 					</statOffsets>
 				</values>
 			</li>

@@ -66,11 +66,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="WoollyLimb">
-		<defName>EtherMuffaloFur</defName>
-		<classInfluence>MuffaloMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherMuffaloWooly</defName>
 		<label>thick fur</label>

@@ -28,11 +28,5 @@
 			<Tail>Parts/wolfface/wolftail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PM_ArcticFurBase">
-		<defName>EtherArcticWolfFur</defName>
-		<label>arctic wolf fur</label>
-		<classInfluence>ArcticWolfMorph</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

@@ -394,7 +394,7 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Skin -->
+	<!-- Skin - Suggestion: 0% - 25% - 50% - 75% - 100% -->
 	
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<description>A covered limb.</description>

@@ -7,10 +7,5 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="UngulateTailPart" ParentName="AnimalTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="HideLimb">
-		<defName>EtherUngulateHideLimb</defName>
-		<label>hide</label>
-		<classInfluence>Ungulate</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
+	
 </Defs>

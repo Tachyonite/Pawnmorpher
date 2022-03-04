@@ -8,10 +8,4 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideTailPart" ParentName="MegafaunaTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideLimb">
-		<defName>EtherThickHideLimb</defName>
-		<label>thick hide</label>
-		<classInfluence>ThickHide</classInfluence>
-	</Pawnmorph.Hediffs.MutationDef>
-
 </Defs>
