@@ -18,7 +18,6 @@ namespace Pawnmorph.ThingComps
     {
         private PawnKindDef _chosenKind;
 
-
         /// <summary>
         /// delegate for the Animal Chosen event 
         /// </summary>
@@ -40,7 +39,6 @@ namespace Pawnmorph.ThingComps
         /// Triggers when selector action is clicked but before anything else.
         /// </summary>
         public event OnClickHandler OnClick;
-
 
         private bool _enabled = true;
         /// <summary>
@@ -108,7 +106,6 @@ namespace Pawnmorph.ThingComps
 
         private Gizmo[] _cachedGizmoArr;
 
-
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -116,8 +113,9 @@ namespace Pawnmorph.ThingComps
             _cachedGizmo = new Command_Action()
             {
                 action = GizmoAction,
-                defaultLabel = "none",
-                icon = PMTextures.AnimalSelectorIcon
+                icon = PMTextures.AnimalSelectorIcon,
+                defaultLabel = Props.labelKey.Translate(),
+                defaultDesc = Props.descriptionKey.Translate()
             };
         }
 
@@ -141,7 +139,8 @@ namespace Pawnmorph.ThingComps
 
         public void ResetSelection()
         {
-            _cachedGizmo.defaultLabel = "none";
+            _cachedGizmo.defaultLabel = Props.labelKey.Translate();
+            _cachedGizmo.defaultDesc = Props.descriptionKey.Translate();
             _cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
         }
 
@@ -220,6 +219,17 @@ namespace Pawnmorph.ThingComps
         ///     if an animal must be tagged by the tagging rifle
         /// </summary>
         public bool requiresTag;
+
+        /// <summary>
+        ///     Label of selector button gizmo. Localised key.
+        /// </summary>
+        public string labelKey;
+
+        /// <summary>
+        ///     Tooltip of selector button gizmo. Localised key.
+        /// </summary>
+        public string descriptionKey;
+
 
         /// <summary>
         /// list of animals always available for selection 

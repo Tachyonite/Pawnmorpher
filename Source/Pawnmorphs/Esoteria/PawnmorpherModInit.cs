@@ -27,8 +27,19 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public static class PawnmorpherModInit
     {
+#if DEBUG
+        private const string MOD_BUILD_TYPE = "DEBUG";
+#else
+        private const string MOD_BUILD_TYPE = "RELEASE";
+#endif
+
         static PawnmorpherModInit() // The one true constructor.
         {
+            
+            Log.Message($"initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
+
+
+
             try
             {
                 GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
