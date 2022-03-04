@@ -37,26 +37,6 @@
 
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
-	<Pawnmorph.Hediffs.MutationDef Name="EtherLeg" ParentName="PawnmorphPart" Abstract="true">
-		<defName>EtherLeg</defName>
-		<classInfluence>Animal</classInfluence>
-		<label>cervine</label>
-		<description>a mutated leg.</description>
-		<parts>
-			<li>Leg</li>
-		</parts>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-		<countToAffect>2</countToAffect>
-		<categories>
-			<li>Minor</li>
-		</categories>
-	</Pawnmorph.Hediffs.MutationDef>
-
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
 		<classInfluence>ThickHide</classInfluence>
 		<defName>EtherThickHideLeg</defName>
