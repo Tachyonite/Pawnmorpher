@@ -36,23 +36,6 @@
 -->
 
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart" Name="EtherFoot" Abstract="true">
-		<defName>EtherFoot</defName>
-		<label>foot</label>
-		<description>A foot.</description>
-		<parts>
-			<li>Foot</li>
-		</parts>
-		<categories>
-			<li>Major</li>
-		</categories>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.15</severityPerDay>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef> -->
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherPawFoot</defName>
 		<label>paw</label>
@@ -691,9 +674,11 @@
 						<li>
 							<capacity>Moving</capacity>
 							<offset>-0.1</offset>
-							<!-- Missing body-size stat -->
 						</li>
 					</capMods>
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
 					<verbOverrides>
 						<li>
 							<label>stomp</label>
@@ -712,8 +697,10 @@
 							<capacity>Moving</capacity>
 							<offset>-0.025</offset>
 						</li>
-						<!-- Missing body-size stat -->
 					</capMods>
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
 					<verbOverrides>
 						<li>
 							<label>stomp</label>

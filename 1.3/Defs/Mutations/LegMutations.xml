@@ -70,7 +70,9 @@
 							<offset>-0.1</offset>
 						</li>
 					</capMods>
-					<!-- TODO Bodysize stat -->
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -83,7 +85,9 @@
 							<offset>-0.025</offset>
 						</li>
 					</capMods>
-					<!-- TODO Bodysize stat -->
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
