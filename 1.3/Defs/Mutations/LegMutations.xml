@@ -339,4 +339,125 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherSnakeTail" ParentName="OphidiaTailPart">
+		<defName>EtherSnakeTail</defName>
+		<label>snake tail</label>
+		<classInfluence>SnakeMorph</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
+					<statOffsets>
+						<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+						<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+<!-- 
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherSnakeTail">
+		<defName>EtherPythonTail</defName>
+		<classInfluence>SnakeMorph</classInfluence>
+		<label>snake tail</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a constrictor python.</description>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>constrict</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef> -->
+
+
 </Defs>

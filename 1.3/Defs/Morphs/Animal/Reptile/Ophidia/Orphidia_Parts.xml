@@ -6,5 +6,8 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaTailPart" ParentName="ReptileTailPart" Abstract="true">
+		<parts>
+			<li>TailLeg</li>
+		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
