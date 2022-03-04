@@ -823,4 +823,125 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+<!-- 	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+		<defName>EtherWebbedAvianFeet</defName>
+		<label>webbed avian foot</label>
+		<description>TODO</description>
+		<classInfluence>TODO</classInfluence>
+		<mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>  
+-->
+
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+		<defName>EtherInsulatedAvianFoot</defName>
+		<label>insulated avian foot</label>
+		<description>TODO</description>
+		<classInfluence>TODO</classInfluence>
+		<mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>  -->
+
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
+		<defName>EtherFlipperFoot</defName>
+		<label>flipper foot</label>
+		<description>TODO</description>
+		<classInfluence>TODO</classInfluence>
+		<mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ShootingAccuracyPawn>0.05</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>  -->
 </Defs>
