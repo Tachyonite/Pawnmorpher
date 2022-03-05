@@ -16,6 +16,8 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class AnimalSelectorComp : ThingComp, IEquipmentGizmo
     {
+        private const string ANIMAL_PICKER_NOCHOICES = "PMAnimalPickerGizmoNoChoices";
+
         private PawnKindDef _chosenKind;
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Pawnmorph.ThingComps
         [CanBeNull] public PawnKindDef ChosenKind => _chosenKind;
 
         /// <summary>
-        /// Gets all animals selectable.
+        /// Gets all animals selectable according to the selection mode.
         /// </summary>
         /// <value>
         /// All animals selectable.
@@ -87,20 +89,38 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
-                if (Props.requiresTag)
-                {
-                    var comp = PMComp;
+                IEnumerable<PawnKindDef> animals = Props.AllAnimals;
 
-                    // include if tagged or always available and filter returns true if any.
-                    return Props.AllAnimals.Where(t => (comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true) && (SpeciesFilter == null || SpeciesFilter(t)));
+                // Handle different modes
+                if (Props.selectionMode == "Tagged")
+                {
+                    // All tagged animals
+                    animals = animals.Where(x => Database.TaggedAnimals.Contains(x));
+                
+                }
+                else if (Props.selectionMode == "NotSequenced")
+                {
+                    // Find all animals where at least one mutation is not in the database
+                    animals = Database.TaggedAnimals.Where(x => x.GetAllMutationsFrom().Any(m => !Database.StoredMutations.Contains(m)));
                 }
 
-                return Props.AllAnimals;
+                // Filter out excluded animals
+                if (SpeciesFilter != null)
+                {
+                    animals = animals.Where(x => SpeciesFilter(x));
+                }
+
+                // Add always available animals
+                if (Props.alwaysAvailable != null)
+                {
+                    animals = animals.Concat(Props.AllAnimals.Where(x => Props.alwaysAvailable.Contains(x)));
+                }
+
+                return animals;
             }
         }
 
-        private ChamberDatabase PMComp => Find.World.GetComponent<ChamberDatabase>();
-
+        private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
         private Command_Action _cachedGizmo;
 
@@ -148,7 +168,12 @@ namespace Pawnmorph.ThingComps
         {
             OnClick?.Invoke(this);
             var options = GetOptions.ToList();
-            if (options.Count == 0) return; 
+            if (options.Count == 0)
+            {
+                var emptyOption = new FloatMenuOption(ANIMAL_PICKER_NOCHOICES.Translate(), null);
+                emptyOption.Disabled = true;
+                options.Add(emptyOption);
+            }
             Find.WindowStack.Add(new FloatMenu(options)); 
         }
 
@@ -181,7 +206,6 @@ namespace Pawnmorph.ThingComps
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
             Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
         }
-
 
         private void ChoseAnimal(PawnKindDef chosenKind)
         {
@@ -216,9 +240,16 @@ namespace Pawnmorph.ThingComps
     public class AnimalSelectorCompProperties : CompProperties
     {
         /// <summary>
-        ///     if an animal must be tagged by the tagging rifle
+        ///     Mode used to find animals available for selection.
         /// </summary>
-        public bool requiresTag;
+        /// 
+        /// Possible Modes:
+        ///     Tagged - Select animals which have been tagged in the database
+        ///     NotSequenced - Select animals which have parts that are not in the database
+        ///     
+        ///     Default (No option) - Select all animals
+        ///     
+        public string selectionMode;
 
         /// <summary>
         ///     Label of selector button gizmo. Localised key.
@@ -232,12 +263,12 @@ namespace Pawnmorph.ThingComps
 
 
         /// <summary>
-        /// list of animals always available for selection 
+        ///     List of animals which will always be available for selection 
         /// </summary>
         public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
-        ///     The race filter
+        ///     List of animals that will be excluded from the selection
         /// </summary>
         public Filter<PawnKindDef> raceFilter;
 

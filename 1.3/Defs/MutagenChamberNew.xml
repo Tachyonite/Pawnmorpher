@@ -70,7 +70,7 @@
                 <glowColor>(0, 255, 0,0)</glowColor>
             </li>
             <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
-                <requiresTag>true</requiresTag>
+                <selectionMode>Tagged</selectionMode>
                 <labelKey>PMAnimalPickerGizmo_Chamber</labelKey>
                 <descriptionKey>PMAnimalPickerGizmoDescription_Chamber</descriptionKey>
                 <alwaysAvailable>

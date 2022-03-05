@@ -19,9 +19,7 @@ namespace Pawnmorph.ThingComps
 
         [NotNull] private readonly List<MutationDef> _scratchList = new List<MutationDef>();
 
-        private Command_Action _cachedGizmo;
-
-        [CanBeNull] private PawnKindDef _chosenAnimalToScan;
+        private AnimalSelectorComp _animalSelector;
 
         private ChamberDatabase _db;
 
@@ -44,8 +42,6 @@ namespace Pawnmorph.ThingComps
             this.DoFind(worker);
             this.daysWorkingSinceLastFinding = 0.0f;
         }
-
-
 
         /// <summary>
         ///     Gets a value indicating whether this instance can use now.
@@ -70,50 +66,20 @@ namespace Pawnmorph.ThingComps
                 {
                     return false;
                 }
-                return parent.Faction == Faction.OfPlayer && _chosenAnimalToScan != null && DB.CanTag;
+                return parent.Faction == Faction.OfPlayer && AnimalSelector.ChosenKind != null && DB.CanTag;
             }
         }
 
         private MutationSequencerProps SequencerProps => (MutationSequencerProps) props;
 
-        private IEnumerable<FloatMenuOption> GetOptions
-        {
-            get
-            {
-                foreach (PawnKindDef kind in AllAnimalsSelectable)
-                {
-                    PawnKindDef tk = kind;
-                    yield return new FloatMenuOption(tk.label, () => ChoseAnimal(tk));
-                }
-            }
-        }
-
         [NotNull]
-        private Command_Action Gizmo
+        private AnimalSelectorComp AnimalSelector
         {
             get
             {
-                if (_cachedGizmo == null)
-                    _cachedGizmo = new Command_Action
-                    {
-                        action = GizmoAction,
-                        defaultLabel = _chosenAnimalToScan?.label ?? "none",
-                        icon = PMTextures.AnimalSelectorIcon
-                    };
+                if (_animalSelector == null) _animalSelector = parent.GetComp<AnimalSelectorComp>();
 
-                return _cachedGizmo;
-            }
-        }
-
-        [NotNull]
-        private IEnumerable<PawnKindDef> AllAnimalsSelectable
-        {
-            get
-            {
-                var db = Find.World.GetComponent<ChamberDatabase>();
-                foreach (PawnKindDef taggedAnimal in db.TaggedAnimals)
-                    if (taggedAnimal.GetAllMutationsFrom().Any(m => !db.StoredMutations.Contains(m)))
-                        yield return taggedAnimal;
+                return _animalSelector;
             }
         }
 
@@ -128,7 +94,6 @@ namespace Pawnmorph.ThingComps
             }
         }
 
-
         /// <summary>
         ///     Comps the get gizmos extra.
         /// </summary>
@@ -136,9 +101,6 @@ namespace Pawnmorph.ThingComps
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             foreach (Gizmo gizmo in base.CompGetGizmosExtra()) yield return gizmo;
-
-
-            yield return Gizmo;
         }
 
         /// <summary>
@@ -147,7 +109,8 @@ namespace Pawnmorph.ThingComps
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Defs.Look(ref _chosenAnimalToScan, "chosenAnimal");
+            PawnKindDef chosenKind = AnimalSelector.ChosenKind;
+            Scribe_Defs.Look(ref chosenKind, "chosenAnimal");
         }
 
         /// <summary>
@@ -157,19 +120,20 @@ namespace Pawnmorph.ThingComps
         /// <exception cref="System.NotImplementedException"></exception>
         protected override void DoFind(Pawn worker)
         {
-            if (_chosenAnimalToScan == null)
+            PawnKindDef chosenKind = AnimalSelector.ChosenKind;
+            if (chosenKind == null)
             {
                 Log.Error($"calling DoFind on {parent.ThingID} which does not have a chosen animal!");
                 return;
             }
 
             _scratchList.Clear();
-            _scratchList.AddRange(_chosenAnimalToScan.GetAllMutationsFrom().Where(m => !DB.StoredMutations.Contains(m)));
+            _scratchList.AddRange(chosenKind.GetAllMutationsFrom().Where(m => !DB.StoredMutations.Contains(m)));
 
             if (_scratchList.Count == 0)
             {
                 Log.Warning("unable to find mutation to give!");
-                _chosenAnimalToScan = null;
+                AnimalSelector.ResetSelection();
                 return;
             }
 
@@ -178,28 +142,11 @@ namespace Pawnmorph.ThingComps
             DB.AddToDatabase(mutation); 
 
             TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
-                                                                 _chosenAnimalToScan.Named("animal")
+                                                                 chosenKind.Named("animal")
                                                                 );
             Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
             if(_scratchList.Count - 1 == 0)
-                _chosenAnimalToScan = null;
-        }
-
-        private void ChoseAnimal(PawnKindDef tk)
-        {
-            _chosenAnimalToScan = tk;
-            if (_chosenAnimalToScan?.race?.uiIcon == null)
-                Gizmo.icon = _chosenAnimalToScan?.race?.uiIcon;
-            else
-                Gizmo.icon = PMTextures.AnimalSelectorIcon;
-            Gizmo.defaultLabel = _chosenAnimalToScan?.label ?? "none";
-        }
-
-        private void GizmoAction()
-        {
-            List<FloatMenuOption> options = GetOptions.ToList();
-            if (options.Count == 0) return;
-            Find.WindowStack.Add(new FloatMenu(options));
+                AnimalSelector.ResetSelection();
         }
     }
 }
