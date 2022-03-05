@@ -107,11 +107,10 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart" Name="EtherHoofHand" Abstract="true">
 		<defName>EtherHoofHand</defName>
 		<label>hoof</label>
 		<description>A hoof-hand?</description>
-		<classInfluence>Ungulate</classInfluence>
 		<mutationMemory>EtherHoofHand</mutationMemory>
 		<mutationTale>HandsBecomeHooves</mutationTale>
 		<stagePatches>
@@ -165,6 +164,51 @@
 		-->
 	</Pawnmorph.Hediffs.MutationDef>
 
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherHoofHand">
+		<defName>EtherUnclovenHoofHand</defName>
+		<label>hoof</label>
+		<description>A hoof-hand?</description>
+		<classInfluence>OddToedUngulate</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherHoofHand">
+		<defName>EtherClovenHoofHand</defName>
+		<label>hoof</label>
+		<description>A hoof-hand?</description>
+		<classInfluence>EvenToedUngulate</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<defName>EtherTrotterHand</defName>
 		<label>trotter</label>
@@ -199,7 +243,11 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
-					
+					<statOffsets>
+						<CookingSpeed>0.1</CookingSpeed>
+						<DrugCookingSpeed>0.1</DrugCookingSpeed>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>
@@ -255,7 +303,16 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s hands have reshaped to become like paws, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
-				
+					
+					<statOffsets>
+						<MeleeWeapon_CooldownMultiplier>0.75</MeleeWeapon_CooldownMultiplier>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>11.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
@@ -281,7 +338,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>11.0</power>
+						<power>0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 						<surpriseAttack>
@@ -301,33 +358,50 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<defName>EtherWingTip</defName>
 		<label>wingtip</label>
-		<description>[PAWN_nameDef]'s fingers have mostly disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
 		<classInfluence>Avian</classInfluence>
+		<description>A wing tip.</description>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<label>changing</label>
-					<description>[PAWN_nameDef]'s fingers have shrunken down significantly, making manipulating things much harder.</description>
+					<description>[PAWN_nameDef]'s fingers feel weird.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s fingers have started shrinking alarmingly.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<label>changing</label>
+					<description>[PAWN_nameDef]'s fingers have shrunken down significantly, making manipulating things much harder.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.25</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
-					
+					<description>[PAWN_nameDef]'s fingers have mostly disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.5</offset>
+						</li>
+					</capMods>
 					<!-- almost useless nub -->
 				</values>
 			</li>
