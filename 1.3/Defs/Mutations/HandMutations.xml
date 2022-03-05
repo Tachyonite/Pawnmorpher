@@ -108,7 +108,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart" Name="EtherHoofHand" Abstract="true">
-		<defName>EtherHoofHand</defName>
+		<defName>AbstractEtherHoofHand</defName>
 		<label>hoof</label>
 		<description>A hoof-hand?</description>
 		<mutationMemory>EtherHoofHand</mutationMemory>
@@ -164,9 +164,9 @@
 		-->
 	</Pawnmorph.Hediffs.MutationDef>
 
-	
+	<!-- EtherUnclovenHoofHand -->
 	<Pawnmorph.Hediffs.MutationDef ParentName="EtherHoofHand">
-		<defName>EtherUnclovenHoofHand</defName>
+		<defName>EtherHoofHand</defName>
 		<label>hoof</label>
 		<description>A hoof-hand?</description>
 		<classInfluence>OddToedUngulate</classInfluence>
