@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	
-	<!-- Muzzle -->
+	<!-- Muzzle - Suggestion: 50% of stats for adapting -->
 	
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphJawPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph muzzle.</description>
@@ -53,7 +53,7 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Ear -->
+	<!-- Ear - Suggestion: 50% of stats for adapting -->
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEarPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph ear.</description>
@@ -96,7 +96,7 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<!-- Tail -->
+	<!-- Tail - Suggestion: 50% of stats for adapting -->
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphTailPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph tail.</description>
