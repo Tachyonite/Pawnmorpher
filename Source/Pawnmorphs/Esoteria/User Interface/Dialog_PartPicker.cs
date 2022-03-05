@@ -825,8 +825,6 @@ namespace Pawnmorph.User_Interface
             if (animals.Count == 0)
                 return null;
 
-            Log.Message(String.Join(", ", animals.OrderByDescending(x => x.Item1).Select(x => x.Item2.defName + ": " + x.Item1)));
-
             // Select the morph kind of which most added mutations are associated with.
             ThingDef highestInfluence = animals.OrderByDescending(x => x.Item1).First().Item2;
             MorphDef morph = highestInfluence.TryGetBestMorphOfAnimal();

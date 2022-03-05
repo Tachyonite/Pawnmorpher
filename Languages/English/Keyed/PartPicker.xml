@@ -2,7 +2,7 @@
 	<PartPickerMenuTitle>Mutation Configuration Menu</PartPickerMenuTitle>
 	<NoMutationsOnPart>None</NoMutationsOnPart>
 	<EditParams>Details...</EditParams>
-	<IsPaused>Progresion paused?</IsPaused>
+	<IsPaused>Progression paused?</IsPaused>
 	<ToggleClothes>Toggle clothes visibility</ToggleClothes>
 	<RotCW>Rotate clockwise</RotCW>
 	<RotCCW>Rotate counter clockwise</RotCCW>
