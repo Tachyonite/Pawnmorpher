@@ -1,0 +1,168 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+
+	<!-- Eye (abstract) -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEyePart" Name="PawnmorphAbstractEyePart" Abstract ="True">
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
+					<painOffset>0.05</painOffset>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Avian Eye -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+		<defName>EtherAvianEye</defName>
+		<label>avian eye</label>
+		<classInfluence>Avian</classInfluence>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+					<statOffsets>
+						<ShootingAccuracyPawn>0.0375</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>0.05</partEfficiencyOffset>
+					<statOffsets>
+						<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Caprid Eye -->
+			
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+		<defName>EtherCapridEye</defName>
+		<label>caprid eye</label>
+		<classInfluence>Caprid</classInfluence>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+					<statOffsets>
+						<AnimalGatherYield>0.15</AnimalGatherYield>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. TODO</description>
+					<statOffsets>
+						<AnimalGatherYield>0.15</AnimalGatherYield>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Feline Eye -->
+			
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+		<defName>EtherFelineEye</defName>
+		<label>feline eye</label>
+		<classInfluence>Feline</classInfluence>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>Slitted, yellow eyes are now [PAWN_nameDef]'s to keep. TODO</description>
+					<partEfficiencyOffset>0.1</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Reptile Eye -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+		<defName>EtherReptileEye</defName>
+		<label>reptile eye</label>
+		<classInfluence>Reptile</classInfluence>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small, vertical slits. TODO</description>
+					<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+		
+	<!-- Vulpine Eye -->
+			
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+		<defName>EtherVulpineEye</defName>
+		<label>vulpine eye</label>
+		<classInfluence>Fox</classInfluence>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+					<statOffsets>
+						<NegotiationAbility>0.05</NegotiationAbility>
+						<TradePriceImprovement>0.05</TradePriceImprovement>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has bright, foxy eyes. [PAWN_pronoun] will see better, and charm people with their exotic appearance. TODO</description>
+					<statOffsets>
+						<NegotiationAbility>0.1</NegotiationAbility>
+						<TradePriceImprovement>0.1</TradePriceImprovement>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

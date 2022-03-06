@@ -799,9 +799,10 @@
 		<defName>EtherWoollyLimb</defName>
 		<label>wool</label>
 		<classInfluences>
+			<li>Camelid</li>
 			<li>MuffaloMorph</li>
 			<li>YakMorph</li>
-			<li>WoollyUngulate</li>
+			<li>SheepMorph</li>
 		</classInfluences>
 		<mutationMemory>EtherWooly</mutationMemory>
 		<stagePatches>

@@ -64,28 +64,7 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherGoatEye</defName>
-		<label>goat eye</label>
-		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
-		<parts>
-			<li>Eye</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Sight</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
-				<statOffsets>
-					<AimingDelayFactor>0.1</AimingDelayFactor>
-				</statOffsets>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGoatHorns</defName>
 		<label>goat horns</label>

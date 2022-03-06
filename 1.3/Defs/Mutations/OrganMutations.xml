@@ -166,7 +166,10 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphMiscPart">
 		<description>A stomach which is resilient to most germs.</description>
 		<defName>EtherIronStomach</defName>
-		<classInfluence>Scavenger</classInfluence>
+		<classInfluences>
+			<li>Scavenger</li>
+			<li>Suid</li>
+		</classInfluences>
 		<label>iron stomach</label>
 		<parts>
 			<li>Stomach</li>

@@ -244,7 +244,7 @@
 				<values>
 					<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
 					<statOffsets>
-						<CookingSpeed>0.1</CookingSpeed>
+						<CookSpeed>0.1</CookSpeed>
 						<DrugCookingSpeed>0.1</DrugCookingSpeed>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>

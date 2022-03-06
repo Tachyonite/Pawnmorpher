@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="OvidJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridJawPart">
 		<classInfluence>SheepMorph</classInfluence>
 		<defName>EtherSheepSnout</defName>
 		<label>sheep snout</label>
@@ -44,7 +44,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="OvidEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
 		<classInfluence>SheepMorph</classInfluence>
 		<defName>EtherSheepEar</defName>
 		<label>sheep ear</label>
@@ -70,7 +70,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="OvidTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridTailPart">
 		<classInfluence>SheepMorph</classInfluence>
 		<defName>EtherSheepTail</defName>
 		<label>sheep tail</label>
@@ -87,27 +87,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherSheepEye</defName>
-		<label>sheep eye</label>
-		<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. This gives better peripepheral vision, but does make it slightly harder to aim.</description>
-		<parts>
-			<li>Eye</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Sight</capacity>
-						<offset>0.2</offset>
-					</li>
-				</capMods>
-				<statOffsets>
-					<AimingDelayFactor>0.1</AimingDelayFactor>
-				</statOffsets>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherSheepHorns</defName>
 		<label>ram horns</label>
