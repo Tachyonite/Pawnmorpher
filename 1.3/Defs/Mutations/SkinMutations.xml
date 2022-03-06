@@ -566,7 +566,7 @@
 				<values>
 					<statOffsets>
 						<ComfyTemperatureMin>+0.6</ComfyTemperatureMin>
-						<ComfyTemperatureMax>+0.175</ComfyTemperatureMax>
+						<ComfyTemperatureMax>+1.175</ComfyTemperatureMax>
 						<ArmorRating_Sharp>0.016</ArmorRating_Sharp>
 						<ArmorRating_Heat>0.02</ArmorRating_Heat>
 					</statOffsets>
@@ -577,7 +577,7 @@
 				<values>
 					<statOffsets>
 						<ComfyTemperatureMin>+0.9</ComfyTemperatureMin>
-						<ComfyTemperatureMax>+0.2625</ComfyTemperatureMax>
+						<ComfyTemperatureMax>+2.2625</ComfyTemperatureMax>
 						<ArmorRating_Sharp>0.024</ArmorRating_Sharp>
 						<ArmorRating_Heat>0.03</ArmorRating_Heat>
 					</statOffsets>
