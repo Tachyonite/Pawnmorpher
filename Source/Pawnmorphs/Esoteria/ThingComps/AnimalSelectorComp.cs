@@ -16,6 +16,8 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class AnimalSelectorComp : ThingComp, IEquipmentGizmo
     {
+        private const string ANIMAL_PICKER_NOCHOICES = "PMAnimalPickerGizmoNoChoices";
+
         private PawnKindDef _chosenKind;
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Pawnmorph.ThingComps
         [CanBeNull] public PawnKindDef ChosenKind => _chosenKind;
 
         /// <summary>
-        /// Gets all animals selectable.
+        /// Gets all animals selectable according to the selection mode.
         /// </summary>
         /// <value>
         /// All animals selectable.
@@ -87,20 +89,31 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
-                if (Props.requiresTag)
-                {
-                    var comp = PMComp;
+                IEnumerable<PawnKindDef> animals = Props.requiresTag ? Database.TaggedAnimals : Props.AllAnimals;
 
-                    // include if tagged or always available and filter returns true if any.
-                    return Props.AllAnimals.Where(t => (comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true) && (SpeciesFilter == null || SpeciesFilter(t)));
+                // Filter out excluded animals
+                if (Props.raceFilter != null)
+                {
+                    animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
                 }
 
-                return Props.AllAnimals;
+                // Apply special filtering
+                if (SpeciesFilter != null)
+                {
+                    animals = animals.Where(x => SpeciesFilter(x));
+                }
+
+                // Add always available animals
+                if (Props.alwaysAvailable != null)
+                {
+                    animals = animals.Union(Props.alwaysAvailable);
+                }
+
+                return animals;
             }
         }
 
-        private ChamberDatabase PMComp => Find.World.GetComponent<ChamberDatabase>();
-
+        private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
         private Command_Action _cachedGizmo;
 
@@ -148,7 +161,12 @@ namespace Pawnmorph.ThingComps
         {
             OnClick?.Invoke(this);
             var options = GetOptions.ToList();
-            if (options.Count == 0) return; 
+            if (options.Count == 0)
+            {
+                var emptyOption = new FloatMenuOption(ANIMAL_PICKER_NOCHOICES.Translate(), null);
+                emptyOption.Disabled = true;
+                options.Add(emptyOption);
+            }
             Find.WindowStack.Add(new FloatMenu(options)); 
         }
 
@@ -181,7 +199,6 @@ namespace Pawnmorph.ThingComps
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
             Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
         }
-
 
         private void ChoseAnimal(PawnKindDef chosenKind)
         {
@@ -216,7 +233,7 @@ namespace Pawnmorph.ThingComps
     public class AnimalSelectorCompProperties : CompProperties
     {
         /// <summary>
-        ///     if an animal must be tagged by the tagging rifle
+        ///     Only allow selection of animals which have been tagged in the database
         /// </summary>
         public bool requiresTag;
 
@@ -232,12 +249,12 @@ namespace Pawnmorph.ThingComps
 
 
         /// <summary>
-        /// list of animals always available for selection 
+        ///     List of animals which will always be available for selection 
         /// </summary>
         public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
-        ///     The race filter
+        ///     List of animals that will be excluded from the selection
         /// </summary>
         public Filter<PawnKindDef> raceFilter;
 
@@ -264,7 +281,7 @@ namespace Pawnmorph.ThingComps
                 if (_allAnimals == null)
                     _allAnimals = DefDatabase<PawnKindDef>
                                  .AllDefsListForReading
-                                 .Where(t => t.race.race?.Animal == true && raceFilter?.PassesFilter(t) != false)
+                                 .Where(t => t.race.race?.Animal == true)
                                  .ToList();
 
                 return _allAnimals;
