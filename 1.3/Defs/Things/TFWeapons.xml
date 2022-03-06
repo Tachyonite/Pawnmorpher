@@ -266,7 +266,7 @@
 		</tools>
 		<comps>
 			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
-				<selectionMode>Tagged</selectionMode>
+				<requiresTag>true</requiresTag>
 				<labelKey>PMAnimalPickerGizmo_Mutagun</labelKey>
 				<descriptionKey>PMAnimalPickerGizmoDescription_Mutagun</descriptionKey>
 				<raceFilter>

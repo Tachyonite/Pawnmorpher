@@ -70,14 +70,16 @@ namespace Pawnmorph.ThingComps
             }
         }
 
-        private MutationSequencerProps SequencerProps => (MutationSequencerProps) props;
-
         [NotNull]
         private AnimalSelectorComp AnimalSelector
         {
             get
             {
-                if (_animalSelector == null) _animalSelector = parent.GetComp<AnimalSelectorComp>();
+                if (_animalSelector == null)
+                {
+                    _animalSelector = parent.GetComp<AnimalSelectorComp>();
+                    _animalSelector.SpeciesFilter = (x) => x.GetAllMutationsFrom().Any(m => !DB.StoredMutations.Contains(m));
+                }
 
                 return _animalSelector;
             }

@@ -36,7 +36,7 @@
                 <soundWorking>ScannerGroundPenetrating_Ambience</soundWorking>
             </li>
             <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
-                <selectionMode>NotSequenced</selectionMode>
+                <requiresTag>true</requiresTag>
                 <labelKey>PMAnimalPickerGizmo_Scanner</labelKey>
                 <descriptionKey>PMAnimalPickerGizmoDescription_Scanner</descriptionKey>
                 <raceFilter>

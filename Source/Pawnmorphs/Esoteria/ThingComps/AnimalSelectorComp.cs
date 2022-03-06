@@ -89,25 +89,7 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
-                bool all = false;
-                IEnumerable<PawnKindDef> animals;
-
-                if (Props.selectionMode == "Tagged")
-                {
-                    // Get all tagged animals
-                    animals = Database.TaggedAnimals;
-                
-                }
-                else if (Props.selectionMode == "NotSequenced")
-                {
-                    // Get all animals where at least one mutation is not in the database
-                    animals = Database.TaggedAnimals.Where(x => x.GetAllMutationsFrom().Any(m => !Database.StoredMutations.Contains(m)));
-                }
-                else
-                {
-                    all = true;
-                    animals = Props.AllAnimals;
-                }
+                IEnumerable<PawnKindDef> animals = Props.requiresTag ? Database.TaggedAnimals : Props.AllAnimals;
 
                 // Filter out excluded animals
                 if (Props.raceFilter != null)
@@ -115,16 +97,16 @@ namespace Pawnmorph.ThingComps
                     animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
                 }
 
-                // Apply special handling
+                // Apply special filtering
                 if (SpeciesFilter != null)
                 {
                     animals = animals.Where(x => SpeciesFilter(x));
                 }
 
                 // Add always available animals
-                if (!all && Props.alwaysAvailable != null)
+                if (Props.alwaysAvailable != null)
                 {
-                    animals = animals.Concat(Props.AllAnimals.Where(x => Props.alwaysAvailable.Contains(x)));
+                    animals = animals.Union(Props.alwaysAvailable);
                 }
 
                 return animals;
@@ -251,16 +233,9 @@ namespace Pawnmorph.ThingComps
     public class AnimalSelectorCompProperties : CompProperties
     {
         /// <summary>
-        ///     Mode used to find animals available for selection.
+        ///     Only allow selection of animals which have been tagged in the database
         /// </summary>
-        /// 
-        /// Possible Modes:
-        ///     Tagged - Select animals which have been tagged in the database
-        ///     NotSequenced - Select animals which have parts that are not in the database
-        ///     
-        ///     Default (No option) - Select all animals
-        ///     
-        public string selectionMode;
+        public bool requiresTag;
 
         /// <summary>
         ///     Label of selector button gizmo. Localised key.
