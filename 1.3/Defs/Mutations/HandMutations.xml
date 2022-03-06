@@ -282,6 +282,12 @@
 				<values>
 					<label>clawed</label>
 					<description>[PAWN_nameDef]'s fingernails have become long, curved and pointed, like that of a feline.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>3.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -289,6 +295,13 @@
 				<values>
 					<label>padded</label>
 					<description>Fleshy pads have appeared on [PAWN_nameDef]'s palm and fingers, giving the clawed hand a more catlike appearance. [PAWN_objective] thumb has grown weaker as well, making grasping things much more difficult.</description>
+				
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>6.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -297,6 +310,12 @@
 					<description>The mechanites have finished their work on [PAWN_nameDef]'s new cat-like paws, yet they still remain foreign and unfamiliar to [PAWN_objective] and will take some to get used to.</description>
 					
 
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>8.0</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
