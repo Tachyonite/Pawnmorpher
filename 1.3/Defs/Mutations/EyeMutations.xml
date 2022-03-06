@@ -2,7 +2,7 @@
 
 	<!-- Eye (abstract) -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEyePart" Name="PawnmorphAbstractEyePart" Abstract ="True">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEyePart" Name="PawnmorphGenericEyePart" Abstract ="True">
 		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
@@ -24,7 +24,7 @@
 	
 	<!-- Avian Eye -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphGenericEyePart">
 		<defName>EtherAvianEye</defName>
 		<label>avian eye</label>
 		<classInfluence>Avian</classInfluence>
@@ -55,7 +55,7 @@
 	
 	<!-- Caprid Eye -->
 			
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphGenericEyePart">
 		<defName>EtherCapridEye</defName>
 		<label>caprid eye</label>
 		<classInfluence>Caprid</classInfluence>
@@ -85,7 +85,7 @@
 	
 	<!-- Feline Eye -->
 			
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphGenericEyePart">
 		<defName>EtherFelineEye</defName>
 		<label>feline eye</label>
 		<classInfluence>Feline</classInfluence>
@@ -110,7 +110,7 @@
 	
 	<!-- Reptile Eye -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphGenericEyePart">
 		<defName>EtherReptileEye</defName>
 		<label>reptile eye</label>
 		<classInfluence>Reptile</classInfluence>
@@ -135,7 +135,7 @@
 		
 	<!-- Vulpine Eye -->
 			
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphAbstractEyePart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphGenericEyePart">
 		<defName>EtherVulpineEye</defName>
 		<label>vulpine eye</label>
 		<classInfluence>Fox</classInfluence>

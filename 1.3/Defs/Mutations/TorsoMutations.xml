@@ -1,0 +1,63 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	
+	<!-- Torso (abstract) -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphGenericTorsoPart" ParentName ="PawnmorphTorsoPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+		
+	<!-- Hypermyofibrilization -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>TODO</description>
+		<defName>EtherHypermyofibrilization</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>hypermyofibrilization</label>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.15</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HungerRateMultiplier>2</HungerRateMultiplier>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+						<PM_BodySize>1</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

@@ -207,25 +207,4 @@
 		</parts>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PM_StrongTorsoBase">
-		<defName>PM_BearTorso</defName>
-		<classInfluence>Ursine</classInfluence>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<healthOffset>8</healthOffset>
-				<statOffsets>
-					<CarryingCapacity>20</CarryingCapacity>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>paragon</label>
-				<minSeverity>2</minSeverity>
-				<healthOffset>20</healthOffset>
-				<statOffsets>
-					<CarryingCapacity>25</CarryingCapacity>
-				</statOffsets>
-			</li>
-		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

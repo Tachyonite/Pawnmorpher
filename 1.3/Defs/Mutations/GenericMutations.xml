@@ -395,6 +395,27 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<!-- Torso - Suggestion: only the last stage has values, pain in growing -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphTorsoPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph torso.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+            <li>Torso</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	
 	<!-- Skin - Suggestion: 0% - 25% - 50% - 75% - 100% -->
 	
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
@@ -479,4 +500,5 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+
 </Defs>
