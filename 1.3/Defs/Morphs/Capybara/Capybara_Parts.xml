@@ -64,7 +64,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapybaraPart">
 		<defName>EtherCapybaraEar</defName>
 		<label>capybara ear</label>
-		<description>[PWAN_nameDef]'s ears have turned into small round capybara ears</description>
+		<description>[PAWN_nameDef]'s ears have turned into small round capybara ears</description>
 		<mutationTale>EarsChangedMisc</mutationTale>
 		<parts>
 			<li>Ear</li>
