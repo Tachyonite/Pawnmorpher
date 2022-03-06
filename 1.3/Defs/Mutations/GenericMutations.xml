@@ -401,8 +401,21 @@
 		<description>A morph torso.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<maxSeverity>1.0</maxSeverity>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
 				<severityPerDay>0.15</severityPerDay>
