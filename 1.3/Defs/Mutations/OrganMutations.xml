@@ -188,7 +188,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef] seems to have painful disgestion troubles, like if [PAWN_possesive] gut was evolving.</description>
+					<description>[PAWN_nameDef] seems to have painful disgestion troubles, like if [PAWN_possessive] gut was evolving.</description>
 					<painOffset>0.2</painOffset>
 				</values>
 			</li>

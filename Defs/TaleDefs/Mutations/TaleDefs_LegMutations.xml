@@ -5,7 +5,7 @@
 			<rulesStrings>
 				<li>tale_noun->[PAWN_nameDef]'s legs became that of an animal</li>
 				<li>image->[PAWN_nameFull]'s legs begin to change structure [circumstance_group]</li>
-				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possesive] new legs.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possessive] new legs.</li>
 				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs.</li>
 			</rulesStrings>
 		</rulePack>

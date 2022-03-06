@@ -63,7 +63,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide. Getting used to it will take [PAWN_pronoun] some time</description>
+					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide. Getting used to it will take [PAWN_pronoun] some time.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -362,7 +362,7 @@
 				<values>
 					<description>TODO</description>
 					<statOffsets>
-						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
 			</li>

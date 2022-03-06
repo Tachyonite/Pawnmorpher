@@ -171,7 +171,7 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<label>changing</label>
-					<description>[PAWN_nameDef] has difficulties controlling [PAWN_possesive] balance. It hurts whenever [PAWN_pronoun] is moving.</description>
+					<description>[PAWN_nameDef] has difficulties controlling [PAWN_possessive] balance. It hurts whenever [PAWN_pronoun] is moving.</description>
 					<painOffset>0.2</painOffset>
 				</values>
 			</li>
@@ -213,7 +213,7 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<label>changing</label>
-					<description>[PAWN_nameDef]'s back is very painful, like if [PAWN_possesive]'s spine was rearranging.</description>
+					<description>[PAWN_nameDef]'s back is very painful, like if [PAWN_possessive]'s spine was rearranging.</description>
 					<painOffset>0.2</painOffset>
 				</values>
 			</li>
