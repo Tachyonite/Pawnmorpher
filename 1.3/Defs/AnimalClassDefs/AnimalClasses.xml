@@ -265,6 +265,14 @@
 		<parent>EvenToedUngulate</parent>
 	</Pawnmorph.AnimalClassDef>
 
+	<!-- Sub - Camelid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Camelid</defName>
+		<label>camelid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
 	<!-- Sub - Caprid -->
 
 	<Pawnmorph.AnimalClassDef>
@@ -287,26 +295,6 @@
 		<defName>Suid</defName>
 		<label>suid</label>
 		<parent>EvenToedUngulate</parent>
-	</Pawnmorph.AnimalClassDef>
-
-	<!-- Sub - Wooly -->
-	
-	<Pawnmorph.AnimalClassDef>
-		<defName>WoollyUngulate</defName>
-		<label>woolly even-toed ungulate</label>
-		<parent>EvenToedUngulate</parent>
-	</Pawnmorph.AnimalClassDef>
-
-	<Pawnmorph.AnimalClassDef>
-		<defName>Ovid</defName>
-		<label>ovid</label>
-		<parent>WoollyUngulate</parent>
-	</Pawnmorph.AnimalClassDef>
-
-	<Pawnmorph.AnimalClassDef>
-		<defName>Camelid</defName>
-		<label>camelid</label>
-		<parent>WoollyUngulate</parent>
 	</Pawnmorph.AnimalClassDef>
 	
     <Pawnmorph.AnimalClassDef>

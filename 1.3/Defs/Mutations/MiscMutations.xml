@@ -182,7 +182,7 @@
 					<partEfficiencyOffset>0.15</partEfficiencyOffset>
 					<statOffsets>
 						<MeleeDodgeChance>0.15</MeleeDodgeChance>
-				</statOffsets>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

@@ -140,7 +140,7 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Eyes -->
+	<!-- Eyes  - Suggestion: 0% - 0% - 50% - 100%, pain and lose of part effenciency before adapted -->
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEyePart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph eye.</description>
@@ -452,7 +452,7 @@
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<!-- Misc - Suggestion: only the last stage has values -->
+	<!-- Misc - Suggestion: only the last stage has values, pain in growing -->
 	
 	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphMiscPart" ParentName="PawnmorphPart" Abstract="true">
 		<description>A morph body part.</description>
