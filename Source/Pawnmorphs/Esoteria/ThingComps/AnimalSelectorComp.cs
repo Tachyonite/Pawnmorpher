@@ -89,29 +89,40 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
-                IEnumerable<PawnKindDef> animals = Props.AllAnimals;
+                bool all = false;
+                IEnumerable<PawnKindDef> animals;
 
-                // Handle different modes
                 if (Props.selectionMode == "Tagged")
                 {
-                    // All tagged animals
-                    animals = animals.Where(x => Database.TaggedAnimals.Contains(x));
+                    // Get all tagged animals
+                    animals = Database.TaggedAnimals;
                 
                 }
                 else if (Props.selectionMode == "NotSequenced")
                 {
-                    // Find all animals where at least one mutation is not in the database
+                    // Get all animals where at least one mutation is not in the database
                     animals = Database.TaggedAnimals.Where(x => x.GetAllMutationsFrom().Any(m => !Database.StoredMutations.Contains(m)));
+                }
+                else
+                {
+                    all = true;
+                    animals = Props.AllAnimals;
                 }
 
                 // Filter out excluded animals
+                if (Props.raceFilter != null)
+                {
+                    animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
+                }
+
+                // Apply special handling
                 if (SpeciesFilter != null)
                 {
                     animals = animals.Where(x => SpeciesFilter(x));
                 }
 
                 // Add always available animals
-                if (Props.alwaysAvailable != null)
+                if (!all && Props.alwaysAvailable != null)
                 {
                     animals = animals.Concat(Props.AllAnimals.Where(x => Props.alwaysAvailable.Contains(x)));
                 }
@@ -295,7 +306,7 @@ namespace Pawnmorph.ThingComps
                 if (_allAnimals == null)
                     _allAnimals = DefDatabase<PawnKindDef>
                                  .AllDefsListForReading
-                                 .Where(t => t.race.race?.Animal == true && raceFilter?.PassesFilter(t) != false)
+                                 .Where(t => t.race.race?.Animal == true)
                                  .ToList();
 
                 return _allAnimals;
