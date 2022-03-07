@@ -55,4 +55,19 @@
     <defName>FormerHumanAteCorpse</defName>
     <label>ate corpse</label>
   </HistoryEventDef>
+  <HistoryEventDef>
+    <defName>ApplyMutagenicsOn</defName>
+    <label>apply mutagenics on</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>SowMutagenicPlants</defName>
+    <label>Sow Mutagenic Plants</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>CreateMutagenicWeapon</defName>
+    <label>Create Mutagenic Weapon</label>
+  </HistoryEventDef>
+
 </Defs>
