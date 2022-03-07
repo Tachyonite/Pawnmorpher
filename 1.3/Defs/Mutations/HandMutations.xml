@@ -778,4 +778,95 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegaslothHand</defName>
+		<description>Large sloth paws.</description>
+		<label>clawed hand</label>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>15</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
+					<statOffsets>
+						<MeleeHitChance>0.025</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>25</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
