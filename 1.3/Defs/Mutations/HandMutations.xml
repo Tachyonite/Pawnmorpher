@@ -50,6 +50,12 @@
 				<values>
 					<labelOverride>clawed</labelOverride>
 					<description>Each finger on this hand is tipped with a sharp claw.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>1</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -57,7 +63,12 @@
 				<values>
 					<labelOverride>padded</labelOverride>
 					<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
-
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>3</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -65,12 +76,30 @@
 				<values>
 					<labelOverride>inflexible handpaw</labelOverride>
 					<description>This hand looks more like a paw than a hand, but isn't completely useless.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has largely adapted to having paws, and is trying to recover flexibility in the digits.</description>
+					<description>[PAWN_nameDef] has largely adapted to having paws, recovered some flexibility in the digits.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
@@ -172,6 +201,28 @@
 		<classInfluence>OddToedUngulate</classInfluence>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.25</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<capMods>
@@ -191,6 +242,31 @@
 		<description>A hoof-hand?</description>
 		<classInfluence>EvenToedUngulate</classInfluence>
 		<stagePatches>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
@@ -228,15 +304,17 @@
 				<values>
 					<labelOverride>hoof-fingers</labelOverride>
 					<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
-
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>This hand, or trotter, is quickly becoming less flexible and more like a regular trotter. Its usability may be hampered soon.</description>
-					<labelOverride>inflexible handtrotter</labelOverride>
-
+					<statOffsets>
+						<CookSpeed>0.05</CookSpeed>
+						<DrugCookingSpeed>0.05</DrugCookingSpeed>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -308,8 +386,6 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>The mechanites have finished their work on [PAWN_nameDef]'s new cat-like paws, yet they still remain foreign and unfamiliar to [PAWN_objective] and will take some to get used to.</description>
-					
-
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -322,7 +398,6 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s hands have reshaped to become like paws, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
-					
 					<statOffsets>
 						<MeleeWeapon_CooldownMultiplier>0.75</MeleeWeapon_CooldownMultiplier>
 					</statOffsets>
