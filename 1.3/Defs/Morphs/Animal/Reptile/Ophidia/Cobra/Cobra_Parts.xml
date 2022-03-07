@@ -89,28 +89,6 @@
 		<!--Needs Stats-->
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaTailPart">
-		<classInfluence>SnakeMorph</classInfluence>
-		<defName>EtherSnakeTail</defName>
-		<label>snake tail</label>
-		<graphics>
-			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
-		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
-				</values>
-			</li>
-		</stagePatches>
-		<parts>
-			<li>Tail</li>
-			<li>MorphTail</li>
-			<li>TailLeg</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeHand</defName>
