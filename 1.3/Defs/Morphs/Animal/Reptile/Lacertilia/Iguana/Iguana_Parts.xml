@@ -64,55 +64,6 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>IguanaMorph</classInfluence>
-		<defName>EtherIguanaHand</defName>
-		<label>dextrous claws</label>
-		<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
-		<parts>
-			<li>Hand</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>unfamiliar</label>
-				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.99</minSeverity>
-				<label>adapted</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity> <!-- Adaption cream -->
-				<label>flexible</label>
-				<partEfficiencyOffset>+0.1</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity> <!-- Paragon -->
-				<label>paragon</label>
-				<partEfficiencyOffset>+0.2</partEfficiencyOffset>
-			</li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>claws</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>8</power>
-						<cooldownTime>2</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaFoot</defName>
 		<label>reptilian foot</label>
 		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
