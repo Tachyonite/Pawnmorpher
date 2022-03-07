@@ -68,40 +68,6 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>MonkeyMorph</classInfluence>
-		<defName>EtherMonkeyHand</defName>
-		<label>dextrous hand</label>
-		<description>[PAWN_nameDef]'s fingers have elongated into the semblence of a monkey's hand.</description>
-		<parts>
-			<li>Hand</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			    <label>unfamiliar</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.99</minSeverity>
-				<partEfficiencyOffset>+0.1</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity> <!-- Adaption cream -->
-			    <label>deft</label>
-				<partEfficiencyOffset>+0.2</partEfficiencyOffset>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity> <!-- Paragon -->
-			    <label>paragon</label>
-				<partEfficiencyOffset>+0.3</partEfficiencyOffset>
-			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyFoot</defName>
 		<label>dextrous toes</label>
 		<description>[PAWN_nameDef]'s feet have reshaped themselves into what look to be hands. This make finding shoes somewhat difficult.</description>

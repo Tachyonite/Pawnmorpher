@@ -978,13 +978,13 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<classInfluence>Reptile</classInfluence>
 		<defName>EtherReptileHandclaws</defName>
 		<label>reptile claws</label>
 		<description>reptile claws.</description>
-		<mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
@@ -1064,5 +1064,54 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>MonkeyMorph</classInfluence>
+		<defName>EtherMonkeyHand</defName>
+		<label>dextrous hand</label>
+		<description>A monkey's paw</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have elongated into the semblence of a monkey's hand.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+
+
+
 
 </Defs>
