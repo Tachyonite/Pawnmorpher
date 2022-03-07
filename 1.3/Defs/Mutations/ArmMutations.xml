@@ -68,4 +68,65 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>PM_BearArms</defName>
+		<label>ursine</label>
+		<description>[PAWN_nameDef]'s arms have grown significant muscle mass</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.2</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.15</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.05</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.4</minSeverity>
+				<labelOverride>growing</labelOverride>
+				<description>[PAWN_nameDef]'s arms is growing more muscle tissue</description>
+				<painOffset>0.1</painOffset>
+				<statOffsets>
+					<CarryingCapacity>0.1</CarryingCapacity>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<labelOverride>ursine</labelOverride>
+				<statOffsets>
+					<CarryingCapacity>0.15</CarryingCapacity>
+					<MeleeArmorPenetration>0.2</MeleeArmorPenetration>
+					<PM_NaturalMeleeEffectiveness>0.1</PM_NaturalMeleeEffectiveness>
+
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2</minSeverity>
+				<label>paragon</label>
+				<statOffsets>
+					<CarryingCapacity>0.25</CarryingCapacity>
+					<PM_NaturalMeleeEffectiveness>0.2</PM_NaturalMeleeEffectiveness>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Arm</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
