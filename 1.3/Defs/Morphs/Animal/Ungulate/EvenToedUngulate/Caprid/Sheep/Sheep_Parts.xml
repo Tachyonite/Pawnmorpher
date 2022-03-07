@@ -89,6 +89,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherSheepHorns</defName>
+		<classInfluence>SheepMorph</classInfluence>
 		<label>ram horns</label>
 		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
 		<initialSeverity>0</initialSeverity>
@@ -134,6 +135,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherWoolySheep</defName>
+		<classInfluence>SheepMorph</classInfluence>
 		<label>thick wool</label>
 		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly, different from the comparatively lighter wool that grows elsewhere. They can shave themselves, because they're a strong independent sheepmorph that don't need no ram.</description>
 		<maxSeverity>1</maxSeverity>

@@ -73,6 +73,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherGazelleAntlers</defName>
+		<classInfluence>GazelleMorph</classInfluence>
 		<label>gazelle antlers</label>
 		<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
 		<parts>

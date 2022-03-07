@@ -67,6 +67,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherIbexHorns</defName>
+		<classInfluence>IbexMorph</classInfluence>
 		<label>ibex horns</label>
 		<description>The curved horns of an ibex. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
 		<initialSeverity>0</initialSeverity>

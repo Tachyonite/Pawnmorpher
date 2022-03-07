@@ -68,6 +68,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherMuffaloWooly</defName>
+		<classInfluence>MuffaloMorph</classInfluence>
 		<label>thick fur</label>
 		<description>Thick fur grows over [PAWN_nameDef]'s body constantly. They can shave themselves, but keeping it short is a futile effort.</description>
 		<initialSeverity>0.01</initialSeverity>

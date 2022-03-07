@@ -73,6 +73,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>PM_BearArms</defName>
+		<classInfluence>Ursine</classInfluence>
 		<label>ursine</label>
 		<description>[PAWN_nameDef]'s arms have grown significant muscle mass</description>
 		<stages>

@@ -68,6 +68,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherAntlers</defName>
+		<classInfluence>DeerMorph</classInfluence>
 		<label>antlers</label>
 		<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
 		<parts>

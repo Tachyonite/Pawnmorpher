@@ -50,6 +50,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherChemfuelUdder</defName>
+		<classInfluence>BoomalopeMorph</classInfluence>
 		<label>chemical cyst</label>
 		<description>A large cyst filled with chemfuel now covers [PAWN_nameDef]'s waist. They can drain it to produce chemfuel.</description>
 		<initialSeverity>0.01</initialSeverity>

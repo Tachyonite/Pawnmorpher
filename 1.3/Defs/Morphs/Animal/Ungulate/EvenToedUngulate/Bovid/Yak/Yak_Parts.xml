@@ -68,6 +68,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherYakHorns</defName>
+		<classInfluence>YakMorph</classInfluence>
 		<label>horns</label>
 		<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>
 		<stages>

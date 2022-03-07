@@ -67,6 +67,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherHorns</defName>
+		<classInfluence>CowMorph</classInfluence>
 		<label>horns</label>
 		<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
 		<stages>
@@ -95,6 +96,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherUdder</defName>
+		<classInfluence>CowMorph</classInfluence>
 		<label>udder</label>
 		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
 		<initialSeverity>0.01</initialSeverity>
