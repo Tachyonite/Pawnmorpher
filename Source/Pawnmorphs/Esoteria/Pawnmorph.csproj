@@ -462,6 +462,7 @@
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\AutoSlaughterPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\BillPatches.cs" />
     <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
@@ -594,6 +595,7 @@
     <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
+    <Compile Include="PMHistoryEventUtilities.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
     <Compile Include="PMImplicitDefGenerator.cs" />
     <Compile Include="PMInteractionDefOf.cs" />
