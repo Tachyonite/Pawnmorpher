@@ -296,7 +296,6 @@
 				<values>
 					<labelOverride>thick nails</labelOverride>
 					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
-
 				</values>
 			</li>
 			<li function="modify">
@@ -309,7 +308,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>This hand, or trotter, is quickly becoming less flexible and more like a regular trotter. Its usability may be hampered soon.</description>
+					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition. The changes may take time to get used to</description>
 					<statOffsets>
 						<CookSpeed>0.05</CookSpeed>
 						<DrugCookingSpeed>0.05</DrugCookingSpeed>
@@ -320,7 +319,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has adapted to using trotters, and will have slightly less trouble with working with them.</description>
+					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition, making quantifying mixtures much easier. Adaption has helped offset the difficulties [PAWN_nameDef] has in using them.</description>
 					<statOffsets>
 						<CookSpeed>0.1</CookSpeed>
 						<DrugCookingSpeed>0.1</DrugCookingSpeed>
