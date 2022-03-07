@@ -1110,6 +1110,47 @@
 
 
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherDiggingClaws</defName>
+		<label>digging claws</label>
+		<description>Claws good for digging.</description>
+		<classInfluence>Leporid</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>TODO</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>TODO</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>TODO</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>TODO</description>
+					<statOffsets>
+						<MiningSpeed>0.125</MiningSpeed>
+						<DeepDrillingSpeed>0.15</DeepDrillingSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 
 
 
