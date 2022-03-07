@@ -521,7 +521,7 @@
 
 
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<classInfluence>Ursine</classInfluence>
 		<defName>EtherBearPawHand</defName>
 		<label>huge paw</label>
@@ -559,6 +559,10 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] will be useless at fine manipulation until [PAWN_pronoun] adapts to them, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
+					<statOffsets>
+						<AimingDelayFactor>0.1</AimingDelayFactor>
+						<MeleeHitChance>0.05</MeleeHitChance>
+					</statOffsets>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
