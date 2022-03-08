@@ -16,10 +16,18 @@ namespace Pawnmorph
 {
 
     /// <summary>
-    /// static class for various mutagenic buildup related utilities 
+    /// static class for various mutagenic buildup, mutagenic weapons and mutagen drug related utilities 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class MutagenicBuildupUtilities
     {
+        static MutagenicBuildupUtilities()
+        {
+            _mutagenCategories = new[] //should figure out a better way to get mutagenic drugs, but this will do for now 
+                {PMThingCategoryDefOf.Injector, PMThingCategoryDefOf.RawMutagen, PMThingCategoryDefOf.Serum}; 
+        }
+
+
         /// <summary>
         /// Gets the net mutagenic buildup multiplier for this pawn.
         /// </summary>
@@ -82,6 +90,35 @@ namespace Pawnmorph
 
             var expComp = weaponDef.GetCompProperties<CompProperties_Explosive>();
             return expComp?.explosiveDamageType?.HasModExtension<MutagenicDamageExtension>() == true; 
+        }
+
+        [NotNull]
+        private static readonly ThingCategoryDef[] _mutagenCategories;
+
+        /// <summary>
+        /// Determines whether this thing def is a mutagenic drug or not.
+        /// </summary>
+        /// <param name="tDef">The t definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this thing is a mutagenic drug or not; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">tDef</exception>
+        public static bool IsMutagenOrMutagenicDrug([NotNull] this ThingDef tDef)
+        {
+            if (tDef == null) throw new ArgumentNullException(nameof(tDef));
+
+            if (tDef.ingestible == null || tDef.thingCategories == null) return false;
+
+            foreach (ThingCategoryDef tDefCat in tDef.thingCategories)
+            {
+                foreach (ThingCategoryDef mutagenCategory in _mutagenCategories)
+                {
+                    if (mutagenCategory == tDefCat) return true; 
+                }
+            }
+
+            return false; 
+
         }
 
 

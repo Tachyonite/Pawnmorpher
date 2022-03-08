@@ -70,7 +70,10 @@
   </HistoryEventDef>
 
   <!-- needs to be recorded when a pawn sows a mutganic plant 
-      needs to be checked when a pawn tries to plant a mutagenic plant-->
+      needs to be checked when a pawn tries to plant a mutagenic plant
+      Doer(pawn) 
+      SUBJECT(plant)
+    -->
   <HistoryEventDef>
     <defName>SowMutagenicPlants</defName>
     <label>Sow Mutagenic Plants</label>
