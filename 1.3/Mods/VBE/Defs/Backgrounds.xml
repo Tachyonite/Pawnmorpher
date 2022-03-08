@@ -1,0 +1,9 @@
+<Defs>
+	<VBE.BackgroundImageDef>
+		<defName>EtherMutalabBackground</defName>
+		<label>mutagenic lab</label>
+		<description>Yap notice me!</description>
+		<path>Backgrounds/Mutalab</path>
+		<iconPath>UI/MutagenicHazard</iconPath>
+	</VBE.BackgroundImageDef>
+</Defs>

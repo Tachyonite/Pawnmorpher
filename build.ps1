@@ -78,7 +78,7 @@ if (Test-Path "$buildDir/Tmp/Source/Pawnmorphs/packages") {
     Remove-Item "$buildDir/Tmp/Source/Pawnmorphs/packages" -Force -Recurse
 }
 
-Compress-Archive -Path  "$buildDir/Tmp/*" -CompressionLevel Optimal -Force -DestinationPath "$buildDir/$buildName-$OutVersion $(get-date -f MM-dd).zip"
+Compress-Archive -Path  "$buildDir/Tmp/*" -CompressionLevel Optimal -Force -DestinationPath "$buildDir/$buildName-$buildType $(get-date -f MM-dd).zip"
 
 if (!$?) {
     Write-Error "unable to create archive"
