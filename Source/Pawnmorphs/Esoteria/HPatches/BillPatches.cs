@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Pawnmorph.HPatches
 {
     [HarmonyPatch(typeof(Bill))]
     internal static class BillPatches
     {
+        
 
         [HarmonyPatch(nameof(Bill.PawnAllowedToStartAnew))]
         [HarmonyPostfix]
@@ -18,8 +20,11 @@ namespace Pawnmorph.HPatches
         {
             if (!__result || p == null || __instance.recipe.ProducedThingDef?.IsMutagenicWeapon() != true) return;
 
-            __result = PMHistoryEventDefOf.CreateMutagenicWeapon.DoerWillingToDo(p); 
-
+            __result = PMHistoryEventDefOf.CreateMutagenicWeapon.DoerWillingToDo(p);
+            if (!__result)
+            {
+                JobFailReason.Is("IdeoligionForbids".Translate());
+            }
         }
 
         [HarmonyPatch(nameof(Bill.Notify_IterationCompleted))]
@@ -34,6 +39,9 @@ namespace Pawnmorph.HPatches
                 var hEvent = new HistoryEvent(PMHistoryEventDefOf.CreateMutagenicWeapon,
                                               billDoer.Named(HistoryEventArgsNames.Doer),
                                               prod.Named(HistoryEventArgsNames.Subject));
+
+                Find.HistoryEventsManager.RecordEvent(hEvent);
+
             }
 
         }
