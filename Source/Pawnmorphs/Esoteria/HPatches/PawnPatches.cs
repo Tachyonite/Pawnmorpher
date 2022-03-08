@@ -218,8 +218,11 @@ namespace Pawnmorph.HPatches
             Cached<float> bodySizeModifier = null;
             if (!_pawnBodySizeStatCache.ContainsKey(__instance))
             {
-                bodySizeModifier = new Cached<float>(() => __instance.GetStatValueForPawn(PMStatDefOf.PM_BodySize, __instance));
-                _pawnBodySizeStatCache[__instance] = bodySizeModifier; 
+                if (__instance.Spawned)
+                {
+                    bodySizeModifier = new Cached<float>(() => __instance.GetStatValueForPawn(PMStatDefOf.PM_BodySize, __instance));
+                    _pawnBodySizeStatCache[__instance] = bodySizeModifier;
+                }
             }
             else
             {
