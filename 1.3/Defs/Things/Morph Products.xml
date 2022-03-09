@@ -33,8 +33,8 @@
 
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFMilk</defName>
-		<label>cowmorph milk</label>
-		<description>Milk from a cowmorph. Smells odd, but not off. Saturated with mutagenic mechanites. Drinking this will confer bovine mutations.</description>
+		<label>mutagenic milk</label>
+		<description>This milk smells odd, but not off. Saturated with mutagenic mechanites that the original species can no longer be determined. Drinking this will probably cause unpredictable though milk-related mutations.</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/Milk</texPath>
 		</graphicData>
@@ -48,9 +48,13 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphCowTFPartial</li>
+						<li>PawnmorphGoatTFPartial</li>
+						<li>PawnmorphYakTFPartial</li>
 					</hediffDefs>
 					<hediffDefsComplete>
 						<li>PawnmorphCowTF</li>
+						<li>PawnmorphGoatTF</li>
+						<li>PawnmorphYakTF</li>
 					</hediffDefsComplete>
 					<severity>1</severity>
 				</li>
