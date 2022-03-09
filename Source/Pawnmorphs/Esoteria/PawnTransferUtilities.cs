@@ -108,15 +108,23 @@ namespace Pawnmorph
         {
             if (originals == null) throw new ArgumentNullException(nameof(originals));
             if (meld == null) throw new ArgumentNullException(nameof(meld));
+
             Pawn_SkillTracker mSkills = meld.skills;
-            if (mSkills == null) return;
+            if (mSkills == null)
+            {
+                Log.Warning($"sapient animal meld does not have a skill tracker");
+                return;
+            }
+
             var tmpDict = new Dictionary<SkillDef, int>();
             var passionDict = new Dictionary<SkillDef, int>();
             var count = 0;
             foreach (Pawn original in originals)
             {
                 Pawn_SkillTracker skills = original.skills;
-                if (skills == null) continue;
+                if (skills == null) 
+                    continue;
+
                 foreach (SkillRecord skill in skills.skills)
                 {
                     tmpDict[skill.def] = tmpDict.TryGetValue(skill.def) + skill.Level;
@@ -133,7 +141,7 @@ namespace Pawnmorph
             {
                 int skVal = Mathf.Min(10, Mathf.RoundToInt(keyValuePair.Value * scaleVal));
                 var passion = (Passion) Mathf.Min(passionDict.TryGetValue(keyValuePair.Key) / count, 2);
-                SkillRecord sk = mSkills.GetSkill(keyValuePair.Key);
+                SkillRecord sk = TryGetSkill(mSkills, keyValuePair.Key);
                 sk.Level = skVal;
                 sk.passion = passion;
             }
