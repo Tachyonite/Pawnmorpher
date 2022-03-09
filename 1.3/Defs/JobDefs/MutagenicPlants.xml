@@ -1,0 +1,8 @@
+<Defs>
+    <JobDef>
+        <defName>PM_PlantMutagenicPlant</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_SowMutagenicPlant</driverClass>
+        <reportString>planting TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>

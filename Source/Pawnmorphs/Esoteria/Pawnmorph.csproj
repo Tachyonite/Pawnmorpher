@@ -538,6 +538,7 @@
     <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_SowMutagenicPlant.cs" />
     <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
