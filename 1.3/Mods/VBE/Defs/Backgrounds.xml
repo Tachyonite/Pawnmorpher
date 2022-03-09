@@ -2,7 +2,7 @@
 	<VBE.BackgroundImageDef>
 		<defName>EtherMutalabBackground</defName>
 		<label>mutagenic lab</label>
-		<description>Yap notice me!</description>
+		<description>MutaCorp Datalog FH-27b: We made something we couldn't control. No way we're keeping our funding after this.</description>
 		<path>Backgrounds/Mutalab</path>
 		<iconPath>UI/MutagenicHazard</iconPath>
 	</VBE.BackgroundImageDef>
