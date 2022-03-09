@@ -347,7 +347,11 @@ namespace Pawnmorph.TfSys
 
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
             DoPostReversionEffects(spawned, animal);
+            if (animal.IsWorldPawn())
+            {
+                Find.World.worldPawns.RemovePawn(animal);
 
+            }
             animal.Destroy();
             return true;
         }

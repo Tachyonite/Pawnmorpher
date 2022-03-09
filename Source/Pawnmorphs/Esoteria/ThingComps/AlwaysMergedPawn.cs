@@ -73,10 +73,7 @@ namespace Pawnmorph.ThingComps
 
             (Pawn p1, Pawn p2) = FormerHumanPawnGenerator.GenerateRandomUnmergedHumans(sTracker.Pawn);
 
-            CleanupPawn(p1);
-            CleanupPawn(p2);
             Pawn[] tmpArr = {p1, p2};
-            MergedPawnUtilities.TransferToMergedPawn(tmpArr, sTracker.Pawn);  
 
             var tfPawn = new MergedPawns()
             {
@@ -90,6 +87,9 @@ namespace Pawnmorph.ThingComps
             //TODO figure out how relationships work for merged pawns 
 
             sTracker.EnterState(SapienceStateDefOf.MergedPawn, Rand.Range(0.2f, 1));
+
+            FormerHumanUtilities.TryAssignBackstoryToTransformedPawn(sTracker.Pawn, tmpArr[0]);
+            MergedPawnUtilities.TransferToMergedPawn(tmpArr, sTracker.Pawn);
 
             var mentalDef = sTracker.Pawn.MentalStateDef;
             if (mentalDef == MentalStateDefOf.Manhunter || mentalDef == MentalStateDefOf.ManhunterPermanent)
