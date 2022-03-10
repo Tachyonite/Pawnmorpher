@@ -65,6 +65,7 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(typeof(WorkGiver_PlantSeed))]
         static class WorkGiverPlantSeedPatches
         {
+            [HarmonyPatch(nameof(WorkGiver_GrowerSow.JobOnThing))]
             [HarmonyPostfix]
             static void SubstituteJob([NotNull] Pawn pawn, Thing t, bool forced, ref Job __result)
             {

@@ -59,15 +59,15 @@ namespace Pawnmorph.HPatches
 
         [HarmonyPatch(nameof(Bill.PawnAllowedToStartAnew))]
         [HarmonyPostfix]
-        private static void PawnAllowedToStartBillPatch(Pawn p, Bill_Medical __instance, ref bool __result)
+        private static void PawnAllowedToStartBillPatch(Pawn pawn, Bill_Medical __instance, ref bool __result)
         {
-            if (!__result || p == null) return;
+            if (!__result || pawn == null) return;
 
             if (!(__instance.recipe.Worker is Recipe_AdministerIngestible)) return;
 
 
             if (__instance.recipe?.ingredients?[0]?.filter?.BestThingRequest.singleDef?.IsMutagenOrMutagenicDrug() == true)
-                __result = new HistoryEvent(PMHistoryEventDefOf.ApplyMutagenicsOn, p.Named(HistoryEventArgsNames.Doer))
+                __result = new HistoryEvent(PMHistoryEventDefOf.ApplyMutagenicsOn, pawn.Named(HistoryEventArgsNames.Doer))
                    .Notify_PawnAboutToDo();
         }
     }
