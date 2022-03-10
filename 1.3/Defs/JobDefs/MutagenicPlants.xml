@@ -5,4 +5,11 @@
         <reportString>planting TargetA.</reportString>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
+    <JobDef>
+        <defName>PM_MutagenicSow</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_MutagenicSow</driverClass>
+        <reportString>sowing TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
 </Defs>
