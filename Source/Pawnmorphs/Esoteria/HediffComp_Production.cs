@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AlienRace;
+using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -19,40 +20,115 @@ namespace Pawnmorph
         private const float SEVERITY_LERP = 0.1f;
         private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
         private const int TICKS_PER_DAY = 60000;
+
+
         /// <summary>The hatching ticker</summary>
         public float HatchingTicker = 0;
         /// <summary>The total amount produced by this pawn</summary>
         public int totalProduced = 0;
 
-        private float brokenChance = 0f;
-        private float bondChance = 0f;
+        private float _brokenChance = 0f;
+        private float _bondChance = 0f;
         private float _severityTarget;
+        private float _severity;
+        private bool _canProduceNow;
+        private Cached<bool> _canProduce;
+        private HediffComp_Staged _currentStage;
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can produce.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can produce; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanProduce => _canProduce.Value;
+
+        /// <summary>
+        /// if this instance can produce a product now 
+        /// </summary>
+        public bool CanProduceNow => _canProduceNow;
 
         /// <summary>Gets the properties of this comp</summary>
         /// <value>The props.</value>
         public HediffCompProperties_Production Props => (HediffCompProperties_Production)props;
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HediffComp_Production"/> class.
+        /// </summary>
+        public HediffComp_Production()
+        {
+            _canProduce = new Cached<bool>(GetCanProduce);
+        }
+
+        private bool GetCanProduce()
+        {
+            var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+            return mInfused?.StageIndex != 2; //dry is the third stage 
+                                                //TODO make this a stat? 
+        }
+
+
+        /// <summary>
+        /// Recalculates current stage.
+        /// </summary>
+        private void UpdateCurrentStage()
+        {
+            _currentStage = null;
+            if (Props.stages != null && Props.stages.Count > 0)
+            {
+                HediffComp_Staged stage;
+                for (int i = 0; i < Props.stages.Count; i++)
+                {
+                    stage = Props.stages[i];
+                    if (stage.minSeverity > _severity)
+                        break;
+
+                    _currentStage = stage;
+                }
+            }
+        }
 
         /// <summary>called every tick after it's parent is updated</summary>
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
             TryProduce();
+            TickHediffGivers();
         }
+
+        private void TickHediffGivers()
+        {
+            if (_currentStage == null)
+                return;
+
+            if (_currentStage.hediffGivers != null && parent.pawn.IsHashIntervalTick(60))
+            {
+                for (int j = 0; j < _currentStage.hediffGivers.Count; j++)
+                {
+                    _currentStage.hediffGivers[j].OnIntervalPassed(Pawn, parent);
+                }
+            }
+        }
+
+
         /// <summary>exposes the data of this comp. Called after it's parent ExposeData is called</summary>
         public override void CompExposeData()
         {
             Scribe_Values.Look(ref HatchingTicker, "hatchingTicker");
-            Scribe_Values.Look(ref brokenChance, "brokenChance");
-            Scribe_Values.Look(ref bondChance, "bondChance");
+            Scribe_Values.Look(ref _brokenChance, "brokenChance");
+            Scribe_Values.Look(ref _bondChance, "bondChance");
             Scribe_Values.Look(ref totalProduced, "totalProduced");
-            Scribe_Values.Look(ref _canProduceNow, nameof(CanProduceNow)); 
+            Scribe_Values.Look(ref _canProduceNow, nameof(CanProduceNow));
+            Scribe_Values.Look(ref _severity, "severity");
             base.CompExposeData();
+
+            UpdateCurrentStage();
         }
 
         void TryProduce()
         {
-            var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
-            float daysToProduce = curStage?.daysToProduce ?? Props.daysToProduce;
+            float daysToProduce = _currentStage?.daysToProduce ?? Props.daysToProduce;
             if (HatchingTicker < daysToProduce * TICKS_PER_DAY)
             {
                 HatchingTicker++;
@@ -60,13 +136,25 @@ namespace Pawnmorph
                 if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
                 {
                     _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
-                    var severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
-                    parent.Severity = severity;
+
+                    float oldSeverity = _severity;
+                    _severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
+                    
+                    // Recalculate current stage if severity is different.
+                    if (oldSeverity != _severity)
+                        UpdateCurrentStage();
+
+                    _canProduce.Recalculate();
                 }
             }
-            else if (Pawn.Map != null)
+            else if (Pawn.Spawned) //(Pawn.Map != null)
             {
-                if (!CanProduce) return;//it's here so we don't check for the aspect every tick 
+                if (!CanProduce)
+                {
+                    HatchingTicker = 0;
+                    return;//it's here so we don't check for the aspect every tick 
+                }
+
                 _canProduceNow = true; 
                 if (Props.JobGiver != null && !Pawn.Downed)
                 {
@@ -78,28 +166,6 @@ namespace Pawnmorph
                 }
             }
         }
-        /// <summary>
-        /// Gets a value indicating whether this instance can produce.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance can produce; otherwise, <c>false</c>.
-        /// </value>
-        public bool CanProduce
-        {
-            get
-            {
-                var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
-                return mInfused?.StageIndex != 2; //dry is the third stage 
-                                                //TODO make this a stat? 
-            }
-        }
-
-        private bool _canProduceNow;
-
-        /// <summary>
-        /// if this instance can produce a product now 
-        /// </summary>
-        public bool CanProduceNow => _canProduceNow;
 
         private void GiveJob()
         {
@@ -119,12 +185,11 @@ namespace Pawnmorph
         /// <summary> Spawns in the products at the parent's current location. </summary>
         public void Produce()
         {
-            var curStage = Props.stages?.ElementAt(parent.CurStageIndex);
-            int amount = curStage?.amount ?? Props.amount;
-            float chance = curStage?.chance ?? Props.chance;
-            ThingDef resource = curStage?.Resource ?? Props.Resource;
-            ThingDef rareResource = curStage?.RareResource ?? Props.RareResource;
-            ThoughtDef thought = curStage?.thought;
+            int amount = _currentStage?.amount ?? Props.amount;
+            float chance = _currentStage?.chance ?? Props.chance;
+            ThingDef resource = _currentStage?.Resource ?? Props.Resource;
+            ThingDef rareResource = _currentStage?.RareResource ?? Props.RareResource;
+            ThoughtDef thought = _currentStage?.thought;
             _canProduceNow = false; 
             Produce(amount, chance, resource, rareResource, thought);
         }
@@ -190,7 +255,7 @@ namespace Pawnmorph
 
             if (etherState == EtherState.None)
             {
-                if (Rand.RangeInclusive(0, 100) <= bondChance)
+                if (Rand.RangeInclusive(0, 100) <= _bondChance)
                 {
                     GiveEtherState(EtherState.Bond);
                     etherState = EtherState.Bond;
@@ -199,7 +264,7 @@ namespace Pawnmorph
                                                    "LetterHediffFromEtherBond".Translate(Pawn).CapitalizeFirst(),
                                                    LetterDefOf.NeutralEvent, Pawn);
                 }
-                else if (Rand.RangeInclusive(0, 100) <= brokenChance)
+                else if (Rand.RangeInclusive(0, 100) <= _brokenChance)
                 {
                     GiveEtherState(EtherState.Broken);
                     etherState = EtherState.Broken;
@@ -231,8 +296,8 @@ namespace Pawnmorph
 
             if (etherState == EtherState.None)
             {
-                brokenChance += 0.5f;
-                bondChance += 0.2f;
+                _brokenChance += 0.5f;
+                _bondChance += 0.2f;
             }
             totalProduced += rareThingCount + thingCount;
         }

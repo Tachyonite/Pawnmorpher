@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
@@ -21,6 +22,9 @@ namespace Pawnmorph
         public string rareResource;
         /// <summary>The thought to add when the resource is produced</summary>
         public ThoughtDef thought = null;
+
+        public List<HediffGiver> hediffGivers;
+        public float minSeverity;
 
         /// <summary>Gets the resource.</summary>
         /// <value>The resource.</value>
