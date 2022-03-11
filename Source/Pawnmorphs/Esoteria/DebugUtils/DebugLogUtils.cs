@@ -61,6 +61,15 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetAllDistinctPMTraderTags()
+        {
+            var tTags = DefDatabase<ThingDef>.AllDefs.SelectMany(td => td.tradeTags.MakeSafe()).Distinct();
+            Log.Message(string.Join(",", tTags)); 
+
+
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void LogStorageSpaceRequirementRange()
         {
             StringBuilder builder = new StringBuilder();
