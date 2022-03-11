@@ -51,29 +51,4 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>TortoiseMorph</classInfluence>
-		<defName>EtherTortoiseShell</defName>
-		<label>shell</label>
-		<description>An inbuilt suit of armour.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
-				<healthOffset>12</healthOffset>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.05</offset>
-					</li>
-				</capMods>
-				<statOffsets>
-					<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
-					<ArmorRating_Blunt>0.40</ArmorRating_Blunt>
-				</statOffsets>
-			</li>
-		</stages>
-		<parts>
-			<li>Torso</li>
-		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
