@@ -43,7 +43,6 @@ namespace Pawnmorph.Jobs
         /// <returns></returns>
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            Log.Message("using sow mutagenic plants");
             
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.Touch)
                                    .FailOn(() => PlantUtility.AdjacentSowBlocker(job.plantDefToSow, TargetA.Cell, Map) != null)
