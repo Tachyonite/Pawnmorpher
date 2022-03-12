@@ -447,7 +447,6 @@
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
-    <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="Hediffs\SyringeRifleTf.cs" />
     <Compile Include="Hediffs\SyringeTfStage.cs" />
     <Compile Include="Hediffs\TaggingInjector.cs" />

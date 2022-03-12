@@ -419,7 +419,7 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
         <defName>SapiencePillSapienceIncrease</defName>
         <label>humanizing</label>
         <description>This pawn's sapience is slowly increasing to a human level, thanks to the administration of intelliboost pills.</description>
-        <hediffClass>Pawnmorph.Hediffs.SimpleDescriptiveHediff</hediffClass>
+        <hediffClass>Pawnmorph.Hediffs.Hediff_Descriptive</hediffClass>
         <minSeverity>0</minSeverity>
         <initialSeverity>1</initialSeverity>
         <stages>
