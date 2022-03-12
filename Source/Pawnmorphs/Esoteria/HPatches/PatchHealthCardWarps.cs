@@ -15,11 +15,10 @@ namespace Pawnmorph
     public static class PatchHealthCardUtilityDrawHediffRow
     {
         private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
-
         [HarmonyAfter("PeteTimesSix.CompactHediffs")]
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            var dLst = diffs.MakeSafe().ToList(); 
+            var dLst = diffs.MakeSafe().ToList();
             if (dLst.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
 
             float firstRowWidth = rect.width * 0.275f;
@@ -27,18 +26,21 @@ namespace Pawnmorph
             var toolTipRect = rect;
             toolTipRect.x = rectIcon.x;
             toolTipRect.y = rectIcon.y;
-            toolTipRect.height = rectIcon.height * dLst.Count; 
-            
+            toolTipRect.height = rectIcon.height * dLst.Count;
+
             //GUI.DrawTexture(rectIcon, icon);
-            TooltipHandler.TipRegion(toolTipRect, () => Tooltip(dLst), (int) curY + 117857);
+            TooltipHandler.TipRegion(toolTipRect, () => Tooltip(dLst), (int)curY + 117857);
         }
 
         static string Tooltip(IEnumerable<Hediff> diffs)
         {
             StringBuilder tooltip = new StringBuilder();
-            foreach (IDescriptiveHediff mutation in diffs.OfType<IDescriptiveHediff>())
+            foreach (var mutation in diffs.OfType<IDescriptiveHediff>())
             {
-                tooltip.AppendLine(mutation.Description);
+                var desc = mutation.Description;
+                if (desc == null) continue;
+
+                tooltip.AppendLine(desc);
             }
 
             return tooltip.ToString();
