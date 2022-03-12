@@ -251,6 +251,9 @@ namespace Pawnmorph
             foreach (Hediff prodMutation in PawnToShowMutationsFor.GetProductionMutations().OrderBy(x => x.def.label))
             {
                 HediffComp_Production prodcomp = prodMutation.TryGetComp<HediffComp_Production>();
+                if (prodcomp.CanProduce == false)
+                    continue;
+
 
                 // Figure out what stage the hedif is in.
                 HediffComp_Staged stage = prodcomp.CurStage;
@@ -264,15 +267,15 @@ namespace Pawnmorph
 
                 string text;
                 string mutLabel = prodMutation.def.LabelCap;
-                if (prodcomp.CanProduce)
+                if (prodcomp.IsDry) //display something special if it's dry 
+                {
+                    GUI.color = Color.red;
+                    text = $"{mutLabel} (dry)";
+                }
+                else
                 {
                     float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
                     text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
-                }
-                else //display something special if it's dry 
-                {
-                    GUI.color = Color.red;
-                    text = $"{mutLabel} (dry)"; 
                 }
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);

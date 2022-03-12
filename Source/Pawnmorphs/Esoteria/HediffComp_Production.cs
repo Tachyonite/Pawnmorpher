@@ -35,6 +35,7 @@ namespace Pawnmorph
         private float _productionBoostTarget;
         private float _productionBoost;
         private bool _canProduceNow;
+        private Cached<bool> _isDry;
         private Cached<bool> _canProduce;
         private HediffComp_Staged _currentStage;
 
@@ -44,6 +45,8 @@ namespace Pawnmorph
         /// <value>
         ///   <c>true</c> if this instance can produce; otherwise, <c>false</c>.
         /// </value>
+        public bool IsDry => _isDry.Value;
+
         public bool CanProduce => _canProduce.Value;
 
         /// <summary>
@@ -72,7 +75,15 @@ namespace Pawnmorph
         /// </summary>
         public HediffComp_Production()
         {
+            _isDry = new Cached<bool>(GetIsDry);
             _canProduce = new Cached<bool>(GetCanProduce);
+        }
+
+        private bool GetIsDry()
+        {
+            var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
+            return mInfused?.StageIndex == 2; //dry is the third stage 
+                                                //TODO make this a stat? 
         }
 
         private bool GetCanProduce()
@@ -81,11 +92,8 @@ namespace Pawnmorph
             if (amount == 0)
                 return false;
 
-            var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
-            return mInfused?.StageIndex != 2; //dry is the third stage 
-                                                //TODO make this a stat? 
+            return true;
         }
-
 
         /// <summary>
         /// Recalculates current stage.
@@ -115,16 +123,37 @@ namespace Pawnmorph
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
         {
-            TryProduce();
-            TickHediffGivers();
+            if (!IsDry && CanProduce)
+            {
+                TickProduce();
+            }
+
+            if (Pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
+                UpdateProductionComp();
+
+            if (Pawn.IsHashIntervalTick(HEDIFF_GIVER_UPDATE_INTERVAL))
+                TickHediffGivers();
         }
+
+        private void UpdateProductionComp()
+        {
+            _productionBoostTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
+
+            float oldProductionBoost = _productionBoost;
+            _productionBoost = Mathf.Lerp(oldProductionBoost, _productionBoostTarget, SEVERITY_LERP); // Have the severity increase gradually.
+
+            // Recalculate current stage if severity is different.
+            if (oldProductionBoost != _productionBoost)
+                UpdateCurrentStage();
+
+            _isDry.Recalculate();
+            _canProduce.Recalculate();
+        }
+
 
         private void TickHediffGivers()
         {
-            if (_currentStage == null)
-                return;
-
-            if (_currentStage.hediffGivers != null && parent.pawn.IsHashIntervalTick(HEDIFF_GIVER_UPDATE_INTERVAL))
+            if (_currentStage?.hediffGivers != null)
             {
                 for (int j = 0; j < _currentStage.hediffGivers.Count; j++)
                 {
@@ -133,6 +162,27 @@ namespace Pawnmorph
             }
         }
 
+        private void TickProduce()
+        {
+            HatchingTicker++;
+
+            float daysToProduce = _currentStage?.daysToProduce ?? Props.daysToProduce;
+            if (HatchingTicker > daysToProduce * TICKS_PER_DAY)
+            {
+                if (Pawn.Spawned)
+                {
+                    _canProduceNow = true;
+                    if (Props.JobGiver != null && !Pawn.Downed)
+                    {
+                        GiveJob();
+                    }
+                    else
+                    {
+                        Produce();
+                    }
+                }
+            }
+        }
 
         /// <summary>exposes the data of this comp. Called after it's parent ExposeData is called</summary>
         public override void CompExposeData()
@@ -148,46 +198,6 @@ namespace Pawnmorph
             UpdateCurrentStage();
         }
 
-        void TryProduce()
-        {
-            float daysToProduce = _currentStage?.daysToProduce ?? Props.daysToProduce;
-            if (HatchingTicker < daysToProduce * TICKS_PER_DAY)
-            {
-                HatchingTicker++;
-
-                if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
-                {
-                    _productionBoostTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
-
-                    float oldProductionBoost = _productionBoost;
-                    _productionBoost = Mathf.Lerp(oldProductionBoost, _productionBoostTarget, SEVERITY_LERP); // Have the severity increase gradually.
-                    
-                    // Recalculate current stage if severity is different.
-                    if (oldProductionBoost != _productionBoost)
-                        UpdateCurrentStage();
-
-                    _canProduce.Recalculate();
-                }
-            }
-            else if (Pawn.Spawned)
-            {
-                if (!CanProduce)
-                {
-                    HatchingTicker = 0;
-                    return;//it's here so we don't check for the aspect every tick 
-                }
-
-                _canProduceNow = true; 
-                if (Props.JobGiver != null && !Pawn.Downed)
-                {
-                    GiveJob();
-                }
-                else
-                {
-                    Produce();
-                }
-            }
-        }
 
         private void GiveJob()
         {
