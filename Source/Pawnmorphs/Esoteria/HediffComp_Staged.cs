@@ -45,7 +45,11 @@ namespace Pawnmorph
         /// <value>The resource.</value>
         public ThingDef Resource
         {
-            get { return ThingDef.Named(resource); }
+            get
+            {
+                if (string.IsNullOrEmpty(resource)) return null;
+                return ThingDef.Named(resource);
+            }
         }
 
         /// <summary>Gets the rare resource.</summary>
