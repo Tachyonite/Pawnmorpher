@@ -145,7 +145,6 @@
 						<hediffGivers>
 							<li Class="HediffGiver_RandomDrugEffect">
 								<hediff>CatatonicBreakdown</hediff>
-								<minSeverity>0.50</minSeverity>
 								<baseMtbDays>2</baseMtbDays>
 								<partsToAffect>
 									<li>Brain</li>
