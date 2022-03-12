@@ -24,7 +24,16 @@ namespace Pawnmorph
         public ThoughtDef thought = null;
 
         public List<HediffGiver> hediffGivers;
-        public float minSeverity;
+
+        /// <summary>
+        /// The minimum production boost needed to trigger this stage. Provided by Production Aspect.
+        /// </summary>
+        public float minProductionBoost;
+
+        /// <summary>
+        /// The minimum mutation severity needed to trigger this stage if any.
+        /// </summary>
+        public float? minSeverity;
 
 
         /// <summary>

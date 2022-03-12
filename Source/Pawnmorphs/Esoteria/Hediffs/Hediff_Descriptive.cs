@@ -51,7 +51,6 @@ namespace Pawnmorph.Hediffs
                 HediffComp_Production productionComp = this.TryGetComp<HediffComp_Production>();
                 if (productionComp != null && productionComp.CurStage != null)
                 {
-                    _descriptionBuilder.AppendLine();
                     _descriptionBuilder.AppendLine(productionComp.GetDescription());
                 }
 

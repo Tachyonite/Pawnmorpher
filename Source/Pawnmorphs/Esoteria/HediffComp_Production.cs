@@ -31,8 +31,8 @@ namespace Pawnmorph
 
         private float _brokenChance = 0f;
         private float _bondChance = 0f;
-        private float _severityTarget;
-        private float _severity;
+        private float _productionBoostTarget;
+        private float _productionBoost;
         private bool _canProduceNow;
         private Cached<bool> _canProduce;
         private HediffComp_Staged _currentStage;
@@ -54,6 +54,10 @@ namespace Pawnmorph
         /// Gets the current stage.
         /// </summary>
         public HediffComp_Staged CurStage => _currentStage;
+
+        /// <summary>
+        /// Gets the current stage index.
+        /// </summary>
         public int Stage { get; private set; }
 
 
@@ -72,6 +76,10 @@ namespace Pawnmorph
 
         private bool GetCanProduce()
         {
+            int amount = _currentStage?.amount ?? Props.amount;
+            if (amount == 0)
+                return false;
+
             var mInfused = Pawn.GetAspectTracker()?.GetAspect(AspectDefOf.MutagenInfused);
             return mInfused?.StageIndex != 2; //dry is the third stage 
                                                 //TODO make this a stat? 
@@ -90,7 +98,10 @@ namespace Pawnmorph
                 for (int i = 0; i < Props.stages.Count; i++)
                 {
                     stage = Props.stages[i];
-                    if (stage.minSeverity > _severity)
+                    if (stage.minProductionBoost > _productionBoost)
+                        break;
+
+                    if (stage.minSeverity != null && stage.minSeverity > parent.Severity)
                         break;
 
                     _currentStage = stage;
@@ -130,7 +141,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref _bondChance, "bondChance");
             Scribe_Values.Look(ref totalProduced, "totalProduced");
             Scribe_Values.Look(ref _canProduceNow, nameof(CanProduceNow));
-            Scribe_Values.Look(ref _severity, "severity");
+            Scribe_Values.Look(ref _productionBoost, "productionBoost");
             base.CompExposeData();
 
             UpdateCurrentStage();
@@ -145,13 +156,13 @@ namespace Pawnmorph
 
                 if (parent.pawn.IsHashIntervalTick(PRODUCTION_MULT_UPDATE_PERIOD))
                 {
-                    _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
+                    _productionBoostTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
 
-                    float oldSeverity = _severity;
-                    _severity = Mathf.Lerp(oldSeverity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
+                    float oldProductionBoost = _productionBoost;
+                    _productionBoost = Mathf.Lerp(oldProductionBoost, _productionBoostTarget, SEVERITY_LERP); // Have the severity increase gradually.
                     
                     // Recalculate current stage if severity is different.
-                    if (oldSeverity != _severity)
+                    if (oldProductionBoost != _productionBoost)
                         UpdateCurrentStage();
 
                     _canProduce.Recalculate();
@@ -366,8 +377,8 @@ namespace Pawnmorph
         public string ToStringFull()
         {
             StringBuilder debugString = new StringBuilder();
-            debugString.AppendLine("Severity: " + _severity);
-            debugString.AppendLine("Target severity: " + _severityTarget);
+            debugString.AppendLine("Severity: " + _productionBoost);
+            debugString.AppendLine("Target severity: " + _productionBoostTarget);
             debugString.AppendLine("Can produce: " + CanProduce);
             debugString.AppendLine("Broken chance: " + _brokenChance);
             debugString.AppendLine("Bond chance: " + _bondChance);
