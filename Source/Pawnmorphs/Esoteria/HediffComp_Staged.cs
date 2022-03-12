@@ -26,6 +26,12 @@ namespace Pawnmorph
         public List<HediffGiver> hediffGivers;
         public float minSeverity;
 
+
+        /// <summary>
+        /// all stat offsets that will be active during this stage 
+        /// </summary>
+        [CanBeNull] public List<StatModifier> statOffsets;
+
         /// <summary>Gets the resource.</summary>
         /// <value>The resource.</value>
         public ThingDef Resource

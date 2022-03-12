@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -15,7 +17,7 @@ namespace Pawnmorph
     /// hediff comp for producing resources over time 
     /// </summary>
     /// <seealso cref="Verse.HediffComp" />
-    public class HediffComp_Production : HediffComp
+    public class HediffComp_Production : HediffComp, IDebugString
     {
         private const float SEVERITY_LERP = 0.1f;
         private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
@@ -47,6 +49,13 @@ namespace Pawnmorph
         /// if this instance can produce a product now 
         /// </summary>
         public bool CanProduceNow => _canProduceNow;
+
+        /// <summary>
+        /// Gets the current stage.
+        /// </summary>
+        public HediffComp_Staged CurStage => _currentStage;
+        public int Stage { get; private set; }
+
 
         /// <summary>Gets the properties of this comp</summary>
         /// <value>The props.</value>
@@ -85,6 +94,7 @@ namespace Pawnmorph
                         break;
 
                     _currentStage = stage;
+                    Stage = Props.stages.IndexOf(stage);
                 }
             }
         }
@@ -138,7 +148,7 @@ namespace Pawnmorph
                     _severityTarget = (Pawn.GetAspectTracker() ?? Enumerable.Empty<Aspect>()).GetProductionBoost(parent.def); // Update the production multiplier only occasionally for performance reasons. 
 
                     float oldSeverity = _severity;
-                    _severity = Mathf.Lerp(parent.Severity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
+                    _severity = Mathf.Lerp(oldSeverity, _severityTarget, SEVERITY_LERP); // Have the severity increase gradually.
                     
                     // Recalculate current stage if severity is different.
                     if (oldSeverity != _severity)
@@ -325,6 +335,44 @@ namespace Pawnmorph
                 aspectTracker.Add(AspectDefOf.EtherState, stageNum);
             }
            
+        }
+
+        public string GetDescription()
+        {
+            string description = "";
+
+            var currentStage = CurStage;
+            if (currentStage.statOffsets != null)
+            {
+                for (int i = 0; i < currentStage.statOffsets.Count; i++)
+                {
+                    StatModifier statModifier = currentStage.statOffsets[i];
+                    string valueToStringAsOffset = statModifier.ValueToStringAsOffset;
+                    string value2 = "    " + statModifier.stat.LabelCap + " " + valueToStringAsOffset;
+                    if (i < currentStage.statOffsets.Count - 1)
+                    {
+                        description += value2;
+                        description += Environment.NewLine;
+                    }
+                    else
+                    {
+                        description += value2;
+                    }
+                }
+            }
+            return description;
+        }
+
+        public string ToStringFull()
+        {
+            StringBuilder debugString = new StringBuilder();
+            debugString.AppendLine("Severity: " + _severity);
+            debugString.AppendLine("Target severity: " + _severityTarget);
+            debugString.AppendLine("Can produce: " + CanProduce);
+            debugString.AppendLine("Broken chance: " + _brokenChance);
+            debugString.AppendLine("Bond chance: " + _bondChance);
+
+            return debugString.ToString();
         }
     }
 }

@@ -120,6 +120,21 @@ namespace Pawnmorph
             }
         }
 
+        public override string DebugString()
+        {
+            string debugString = base.DebugString();
+
+            HediffComp_Production productionComp = this.TryGetComp<HediffComp_Production>();
+            if (productionComp != null)
+            {
+                debugString += Environment.NewLine;
+                debugString += "Production Component: " + Environment.NewLine;
+                debugString += productionComp.ToStringFull();
+            }
+
+            return debugString;
+        }
+
         /// <summary>
         ///     Gets the causes of this mutation
         /// </summary>

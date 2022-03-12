@@ -15,6 +15,7 @@ namespace Pawnmorph
     public static class PatchHealthCardUtilityDrawHediffRow
     {
         private static readonly Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/Info", true);
+
         [HarmonyAfter("PeteTimesSix.CompactHediffs")]
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
@@ -35,12 +36,14 @@ namespace Pawnmorph
         static string Tooltip(IEnumerable<Hediff> diffs)
         {
             StringBuilder tooltip = new StringBuilder();
-            foreach (var mutation in diffs.OfType<IDescriptiveHediff>())
+            foreach (var mutation in diffs)
             {
-                var desc = mutation.Description;
-                if (desc == null) continue;
+                if (mutation is IDescriptiveHediff descriptive)
+                    tooltip.AppendLine(descriptive.Description);
 
-                tooltip.AppendLine(desc);
+#if DEBUG
+                tooltip.AppendLine(mutation.DebugString());
+#endif
             }
 
             return tooltip.ToString();

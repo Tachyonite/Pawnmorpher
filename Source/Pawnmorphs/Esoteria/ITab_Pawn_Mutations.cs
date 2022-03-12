@@ -253,11 +253,12 @@ namespace Pawnmorph
                 HediffComp_Production prodcomp = prodMutation.TryGetComp<HediffComp_Production>();
 
                 // Figure out what stage the hedif is in.
-                string stageString = "";
-                if (prodMutation.CurStageIndex > 0)
-                    stageString = " " + new string('+', prodMutation.CurStageIndex) + "";
-                HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
+                HediffComp_Staged stage = prodcomp.CurStage;
 
+                string stageString = "";
+                if (prodcomp.Stage > 0)
+                    stageString = " " + new string('+', prodcomp.Stage) + "";
+                
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
 
                 string text;

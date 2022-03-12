@@ -1,4 +1,6 @@
-﻿using Verse;
+﻿using RimWorld;
+using System;
+using Verse;
 
 namespace Pawnmorph.Hediffs
 {
@@ -19,10 +21,22 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
-                if (CurStage is IDescriptiveStage dStage && !dStage.DescriptionOverride.NullOrEmpty())
-                    return dStage.DescriptionOverride;
+                string description;
 
-                return def.description;
+                if (CurStage is IDescriptiveStage dStage && !dStage.DescriptionOverride.NullOrEmpty())
+                    description = dStage.DescriptionOverride;
+                else
+                    description = def.description;
+
+                HediffComp_Production productionComp = this.TryGetComp<HediffComp_Production>();
+                if (productionComp != null && productionComp.CurStage != null)
+                {
+                    description += Environment.NewLine;
+                    description += Environment.NewLine;
+                    description += productionComp.GetDescription();
+                }
+
+                return description;
             }
         }
 
