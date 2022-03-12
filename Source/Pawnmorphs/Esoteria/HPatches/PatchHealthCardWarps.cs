@@ -36,14 +36,9 @@ namespace Pawnmorph
         static string Tooltip(IEnumerable<Hediff> diffs)
         {
             StringBuilder tooltip = new StringBuilder();
-            foreach (var mutation in diffs)
+            foreach (IDescriptiveHediff mutation in diffs.OfType<IDescriptiveHediff>())
             {
-                if (mutation is IDescriptiveHediff descriptive)
-                    tooltip.AppendLine(descriptive.Description);
-
-#if DEBUG
-                tooltip.AppendLine(mutation.DebugString());
-#endif
+                tooltip.AppendLine(mutation.Description);
             }
 
             return tooltip.ToString();

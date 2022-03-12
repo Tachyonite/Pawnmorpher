@@ -258,8 +258,9 @@ namespace Pawnmorph
                 string stageString = "";
                 if (prodcomp.Stage > 0)
                     stageString = " " + new string('+', prodcomp.Stage) + "";
-                
+
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
+                //float startPosition = curPos.y;
 
                 string text;
                 string mutLabel = prodMutation.def.LabelCap;
@@ -293,6 +294,16 @@ namespace Pawnmorph
 
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;
+
+
+                //Rect fullRect = new Rect(curPos.x, startPosition, width, curPos.y - startPosition);
+                //if (Mouse.IsOver(fullRect))
+                //{
+                //    Widgets.DrawHighlight(fullRect);
+                //}
+                
+                //TipSignal tip = new TipSignal(() => prodcomp.GetDescription(), (int)curPos.y * 37);
+                //TooltipHandler.TipRegion(fullRect, tip);
             }
         }
 
