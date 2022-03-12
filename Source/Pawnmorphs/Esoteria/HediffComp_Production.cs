@@ -21,6 +21,7 @@ namespace Pawnmorph
     {
         private const float SEVERITY_LERP = 0.1f;
         private const int PRODUCTION_MULT_UPDATE_PERIOD = 60;
+        private const int HEDIFF_GIVER_UPDATE_INTERVAL = 60;
         private const int TICKS_PER_DAY = 60000;
 
 
@@ -123,7 +124,7 @@ namespace Pawnmorph
             if (_currentStage == null)
                 return;
 
-            if (_currentStage.hediffGivers != null && parent.pawn.IsHashIntervalTick(60))
+            if (_currentStage.hediffGivers != null && parent.pawn.IsHashIntervalTick(HEDIFF_GIVER_UPDATE_INTERVAL))
             {
                 for (int j = 0; j < _currentStage.hediffGivers.Count; j++)
                 {
@@ -168,7 +169,7 @@ namespace Pawnmorph
                     _canProduce.Recalculate();
                 }
             }
-            else if (Pawn.Spawned) //(Pawn.Map != null)
+            else if (Pawn.Spawned)
             {
                 if (!CanProduce)
                 {
@@ -348,6 +349,9 @@ namespace Pawnmorph
            
         }
 
+        /// <summary>
+        /// Gets the description of stat offsets.
+        /// </summary>
         public string GetDescription()
         {
             string description = "";
