@@ -28,8 +28,6 @@ namespace Pawnmorph
         /// </summary>
         protected bool shouldRemove;
 
-        [NotNull] private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
-
         private MutationDef _mDef;
 
         [NotNull] private MutationCauses _causes = new MutationCauses();
@@ -141,23 +139,6 @@ namespace Pawnmorph
         /// <value>
         ///     The causes.
         /// </value>
-        public override string Description // TODO - the extra features here might be better off in Hediff_Descriptive
-        {
-            get
-            {
-                string desc;
-                if (!_descCache.TryGetValue(CurStageIndex, out desc))
-                {
-                    StringBuilder builder = new StringBuilder();
-                    CreateDescription(builder);
-                    desc = builder.ToString();
-                    _descCache[CurStageIndex] = desc;
-                }
-
-                return desc;
-            }
-        }
-
         [NotNull]
         public MutationCauses Causes => _causes;
 
@@ -254,21 +235,6 @@ namespace Pawnmorph
             if (otherMutation == null) throw new ArgumentNullException(nameof(otherMutation));
             var mDef = def as MutationDef;
             return mDef?.BlocksMutation(otherMutation, Part, addPart) == true;
-        }
-
-        /// <summary>Creates the description.</summary>
-        /// <param name="builder">The builder.</param>
-        public virtual void CreateDescription(StringBuilder builder)
-        {
-            string rawDescription = GetRawDescription();
-            if (rawDescription == null)
-            {
-                builder.AppendLine("PawnmorphTooltipNoDescription".Translate());
-                return;
-            }
-
-            string res = rawDescription.AdjustedFor(pawn);
-            builder.AppendLine(res);
         }
 
         /// <summary>Exposes the data.</summary>
@@ -380,12 +346,6 @@ namespace Pawnmorph
 
 
             if (CurStage is IExecutableStage exeStage) exeStage.EnteredStage(this);
-        }
-
-        private string GetRawDescription()
-        {
-            string descOverride = (CurStage as IDescriptiveStage)?.DescriptionOverride;
-            return string.IsNullOrEmpty(descOverride) ? def.description : descOverride;
         }
 
         private void SkipStage()

@@ -1,5 +1,8 @@
-﻿using RimWorld;
+﻿using JetBrains.Annotations;
+using RimWorld;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -11,6 +14,9 @@ namespace Pawnmorph.Hediffs
     /// </summary>
     public class Hediff_Descriptive : HediffWithComps, IDescriptiveHediff
     {
+        [NotNull] private StringBuilder _descriptionBuilder = new StringBuilder();
+        [NotNull] private readonly Dictionary<int, string> _descCache = new Dictionary<int, string>();
+
         /// <summary>
         /// Controls the description tooltip rendered by Pawnmorpher.
         /// </summary>
@@ -21,24 +27,39 @@ namespace Pawnmorph.Hediffs
         {
             get
             {
+                _descriptionBuilder.Clear();
+
                 string description;
+                if (!_descCache.TryGetValue(CurStageIndex, out description))
+                {
+                    if (CurStage is IDescriptiveStage dStage && !dStage.DescriptionOverride.NullOrEmpty())
+                        description = dStage.DescriptionOverride;
+                    else
+                        description = def.description;
 
-                if (CurStage is IDescriptiveStage dStage && !dStage.DescriptionOverride.NullOrEmpty())
-                    description = dStage.DescriptionOverride;
+                    if (String.IsNullOrEmpty(description))
+                        _descriptionBuilder.AppendLine("PawnmorphTooltipNoDescription".Translate());
+                    else
+                        _descriptionBuilder.AppendLine(description.AdjustedFor(pawn));
+
+                    _descCache[CurStageIndex] = _descriptionBuilder.ToString();
+                }
                 else
-                    description = def.description;
+                    _descriptionBuilder.AppendLine(description);
 
+                // Append component description
                 HediffComp_Production productionComp = this.TryGetComp<HediffComp_Production>();
                 if (productionComp != null && productionComp.CurStage != null)
                 {
-                    description += Environment.NewLine;
-                    description += Environment.NewLine;
-                    description += productionComp.GetDescription();
+                    _descriptionBuilder.AppendLine();
+                    _descriptionBuilder.AppendLine();
+                    _descriptionBuilder.AppendLine(productionComp.GetDescription());
                 }
 
-                return description;
+                return _descriptionBuilder.ToString();
             }
         }
+
 
         /// <summary>
         /// Controls the base portion of the label (the part not in parentheses)
