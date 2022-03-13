@@ -1,8 +1,8 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
 	<!-- Eye (abstract) -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEyePart" Name="PawnmorphGenericEyePart" Abstract ="True">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEyePart" Name="PawnmorphGenericEyePart" Abstract ="true">
 		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
@@ -89,7 +89,7 @@
 		<defName>EtherFelineEye</defName>
 		<label>feline eye</label>
 		<classInfluence>Feline</classInfluence>
-		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<mutationMemory>EtherCatEye</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -139,7 +139,7 @@
 		<defName>EtherVulpineEye</defName>
 		<label>vulpine eye</label>
 		<classInfluence>Fox</classInfluence>
-		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<mutationMemory>EtherFoxEye</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
