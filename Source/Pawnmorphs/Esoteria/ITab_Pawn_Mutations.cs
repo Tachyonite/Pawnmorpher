@@ -251,26 +251,31 @@ namespace Pawnmorph
             foreach (Hediff prodMutation in PawnToShowMutationsFor.GetProductionMutations().OrderBy(x => x.def.label))
             {
                 HediffComp_Production prodcomp = prodMutation.TryGetComp<HediffComp_Production>();
+                if (prodcomp.CanProduce == false)
+                    continue;
+
 
                 // Figure out what stage the hedif is in.
+                HediffComp_Staged stage = prodcomp.CurStage;
+
                 string stageString = "";
-                if (prodMutation.CurStageIndex > 0)
-                    stageString = " " + new string('+', prodMutation.CurStageIndex) + "";
-                HediffComp_Staged stage = prodcomp.Props.stages.ElementAt(prodMutation.CurStageIndex);
+                if (prodcomp.Stage > 0)
+                    stageString = " " + new string('+', prodcomp.Stage) + "";
 
                 // Draw the main text (the mutation's label, current stage and a percentage to completion).
+                float startPosition = curPos.y;
 
                 string text;
                 string mutLabel = prodMutation.def.LabelCap;
-                if (prodcomp.CanProduce)
+                if (prodcomp.IsDry) //display something special if it's dry 
+                {
+                    GUI.color = Color.red;
+                    text = $"{mutLabel} (dry)";
+                }
+                else
                 {
                     float curPercent = prodcomp.HatchingTicker / (stage.daysToProduce * 60000);
                     text = $"{mutLabel}{stageString} ({curPercent.ToStringPercent()}) ";
-                }
-                else //display something special if it's dry 
-                {
-                    GUI.color = Color.red;
-                    text = $"{mutLabel} (dry)"; 
                 }
                 float rectHeight = Text.CalcHeight(text, width);
                 Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
@@ -292,6 +297,18 @@ namespace Pawnmorph
 
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;
+
+                if (prodMutation is IDescriptiveHediff descriptive)
+                {
+                    Rect fullRect = new Rect(curPos.x, startPosition, width, curPos.y - startPosition);
+                    if (Mouse.IsOver(fullRect))
+                    {
+                        Widgets.DrawHighlight(fullRect);
+                    }
+
+                    TipSignal tip = new TipSignal(() => descriptive.Description, (int)curPos.y * 37);
+                    TooltipHandler.TipRegion(fullRect, tip);
+                }
             }
         }
 

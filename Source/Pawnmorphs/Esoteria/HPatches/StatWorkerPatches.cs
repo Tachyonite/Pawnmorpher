@@ -35,7 +35,21 @@ namespace Pawnmorph.HPatches
                         }
                     }
 
+                    if (pawn.health?.hediffSet != null)
+                    {
+                        foreach (var hediffComps in pawn.health.hediffSet.GetHediffs<HediffWithComps>())
+                        {
+                            HediffComp_Production productionComp = hediffComps.TryGetComp<HediffComp_Production>();
+                            if (productionComp?.CurStage?.statOffsets == null)
+                                continue;
 
+                            foreach (StatModifier statOffset in productionComp.CurStage.statOffsets)
+                            {
+                                if (statOffset.stat != ___stat) continue;
+                                __result += statOffset.value;
+                            }
+                        }
+                    }
 
                 }
 
