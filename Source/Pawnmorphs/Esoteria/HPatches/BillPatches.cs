@@ -67,7 +67,7 @@ namespace Pawnmorph.HPatches
 
 
             if (__instance.recipe?.ingredients?[0]?.filter?.BestThingRequest.singleDef?.IsMutagenOrMutagenicDrug() == true)
-                __result = new HistoryEvent(PMHistoryEventDefOf.ApplyMutagenicsOn, pawn.Named(HistoryEventArgsNames.Doer))
+                __result = new HistoryEvent(PMHistoryEventDefOf.ApplyMutagenicsOn, pawn.Named(HistoryEventArgsNames.Doer), __instance.GiverPawn.Named(HistoryEventArgsNames.Victim))
                    .Notify_PawnAboutToDo();
         }
     }
