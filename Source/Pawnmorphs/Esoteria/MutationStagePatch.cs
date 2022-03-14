@@ -111,8 +111,7 @@ namespace Pawnmorph.Hediffs
                         // get default value
                         object defaultValue = member.GetValue(defaultValues);
 
-                        var collection = newValue as ICollection;
-                        if (collection != null && collection.Count < 1)
+                        if (newValue is ICollection collection && collection.Count == 0)
                             continue;
                         else if (newValue.Equals(defaultValue))
                             continue;
