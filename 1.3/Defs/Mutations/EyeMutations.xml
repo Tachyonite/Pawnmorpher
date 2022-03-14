@@ -67,7 +67,7 @@
 					<description>TODO</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 					<statOffsets>
-						<AnimalGatherYield>0.15</AnimalGatherYield>
+						<AnimalGatherYield>0.075</AnimalGatherYield>
 					</statOffsets>
 				</values>
 			</li>
