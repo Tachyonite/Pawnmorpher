@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -110,7 +111,10 @@ namespace Pawnmorph.Hediffs
                         // get default value
                         object defaultValue = member.GetValue(defaultValues);
 
-                        if (newValue.Equals(defaultValue))
+                        var collection = newValue as ICollection;
+                        if (collection != null && collection.Count < 1)
+                            continue;
+                        else if (newValue.Equals(defaultValue))
                             continue;
 
                         member.SetValue(stage, newValue);
