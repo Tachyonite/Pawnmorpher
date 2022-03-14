@@ -1,5 +1,5 @@
 <!-- FOOT TEMPLATE
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
 		<defName>EtherLeg</defName>
 		<label></label>
 		<description></description>
@@ -39,7 +39,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
 		<defName>EtherThickArm</defName>
 		<label>thick arm</label>
 		<description>a very thick arm.</description>
