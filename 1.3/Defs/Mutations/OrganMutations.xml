@@ -248,7 +248,6 @@
 		<parts>
 			<li>Spine</li>
 		</parts>
-		<maxSeverity>1</maxSeverity>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -271,6 +270,42 @@
 					<statOffsets>
 						<CaravanRidingSpeedFactor>0.75</CaravanRidingSpeedFactor>
 						<CarryingCapacity>125</CarryingCapacity>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Camelid back hump -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>A back hump.</description>
+		<defName>EtherCamelidHump</defName>
+		<classInfluence>Camelid</classInfluence>
+		<label>camelid back hump</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back hurts a bit. Nothing too bad.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<label>changing</label>
+					<description>[PAWN_nameDef]'s back feels very heavy, as a big hump is growing on it. It is painful to stand.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back is now extended with a big, fatty, hump. [PAWN_pronoun] is now ready to endure very hot habitats!</description>
+					<statOffsets>
+						<ComfyTemperatureMax>+30</ComfyTemperatureMax>
 					</statOffsets>
 				</values>
 			</li>

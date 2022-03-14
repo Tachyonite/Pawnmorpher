@@ -78,25 +78,47 @@
 				<rareResource>TFEgg</rareResource>
 				<stages>
 					<li>
+						<minProductionBoost>0</minProductionBoost>
 						<daysToProduce>1</daysToProduce>
 						<amount>1</amount>
 						<chance>50</chance>
 					</li>
 					<li>
+						<minProductionBoost>0.3</minProductionBoost>
 						<daysToProduce>0.5</daysToProduce>
 						<amount>1</amount>
 						<chance>70</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.6</minProductionBoost>
 						<daysToProduce>0.2</daysToProduce>
 						<amount>1</amount>
 						<chance>90</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.9</minProductionBoost>
 						<daysToProduce>0.1</daysToProduce>
 						<amount>1</amount>
 						<chance>99</chance>
 						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
 					</li>
 				</stages>
 			</li>

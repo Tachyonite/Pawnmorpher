@@ -453,7 +453,6 @@
     <Compile Include="Hediffs\ObsoletePart.cs" />
     <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
     <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
-    <Compile Include="Hediffs\SimpleDescriptiveHediff.cs" />
     <Compile Include="Hediffs\SyringeRifleTf.cs" />
     <Compile Include="Hediffs\SyringeTfStage.cs" />
     <Compile Include="Hediffs\TaggingInjector.cs" />
@@ -468,6 +467,7 @@
     <Compile Include="HPatches\ApparelUtilityPatches.cs" />
     <Compile Include="HPatches\AutoSlaughterPatches.cs" />
     <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\BillPatches.cs" />
     <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
@@ -542,7 +542,9 @@
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_MutagenicSow.cs" />
     <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_SowMutagenicPlant.cs" />
     <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
@@ -601,6 +603,7 @@
     <Compile Include="PMGrammarUtilities.cs" />
     <Compile Include="PMHistoryEventArgsNames.cs" />
     <Compile Include="PMHistoryEventDef.cs" />
+    <Compile Include="PMHistoryEventUtilities.cs" />
     <Compile Include="PMIdeoUtilities.cs" />
     <Compile Include="PMImplicitDefGenerator.cs" />
     <Compile Include="PMInteractionDefOf.cs" />

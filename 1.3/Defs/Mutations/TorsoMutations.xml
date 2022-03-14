@@ -40,6 +40,7 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>TODO</description>
+					<globalHealthMultiplier>4</globalHealthMultiplier>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -54,6 +55,203 @@
 						<HungerRateMultiplier>2</HungerRateMultiplier>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>1</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Tough Torso -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>TODO</description>
+		<defName>EtherToughTorso</defName>
+		<classInfluences>
+			<li>WargMorph</li> <!--To complete-->
+		</classInfluences>
+		<label>tough torso</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<globalHealthMultiplier>1.5</globalHealthMultiplier>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<PM_BodySize>0.5</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Diminuative Torso -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>TODO</description>
+		<defName>EtherDiminuativeTorso</defName>
+		<label>diminuative torso</label>
+		<classInfluences>
+			<li>Leporid</li>
+			<li>Rodent</li>
+		</classInfluences>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<globalHealthMultiplier>0.7</globalHealthMultiplier>
+					<statOffsets>
+						<PM_BodySize>-0.5</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Tortoise Shell -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>An inbuilt suit of armour.</description>
+		<defName>EtherTortoiseShell</defName>
+		<classInfluences>
+			<li>TortoiseMorph</li>
+		</classInfluences>
+		<label>turtoise shell</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+					<graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
+					<graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Pneumatized skeleton -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>TODO</description>
+		<defName>EtherPneumatizedSkeleton</defName>
+		<classInfluence>Anserigalliform</classInfluence>
+		<label>pneumatizedSkeleton</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<globalHealthMultiplier>0.6</globalHealthMultiplier>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Quills (TODO) -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>TODO</description>
+		<defName>EtherQuills</defName>
+		<classInfluence>Quilled</classInfluence>
+		<label>quills</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MedicalSurgerySuccessChance>0.1</MedicalSurgerySuccessChance>
 					</statOffsets>
 				</values>
 			</li>

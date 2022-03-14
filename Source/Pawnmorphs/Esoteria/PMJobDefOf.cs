@@ -23,6 +23,9 @@ namespace Pawnmorph
         public static JobDef PMResurrect;
         public static JobDef PM_OperateSequencer;
 
+        public static JobDef PM_MutagenicSow;
+        public static JobDef PM_PlantMutagenicPlant; 
+
         public static JobDef PM_CarrySpecialToMutagenChamber; 
 
         [NotNull] public static JobDef RecruitSapientFormerHuman;

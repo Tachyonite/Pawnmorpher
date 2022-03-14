@@ -111,7 +111,34 @@ namespace Pawnmorph
         /// </summary>
         /// args:
         /// Doer(pawn) 
-        public static HistoryEventDef FormerHumanAteCorpse; 
+        public static HistoryEventDef FormerHumanAteCorpse;
+
+
+        /// <summary>
+        /// history event for when a pawn applies mutagenics on another pawn
+        /// </summary>
+        /// args:
+        /// Doer(pawn): the pawn applying the mutagenics 
+        /// Victim(pawn): the pawn they are being applied on 
+        [NotNull]
+        public static HistoryEventDef ApplyMutagenicsOn;
+
+
+        /// <summary>
+        /// event for when a pawn sows mutagenic plants
+        /// </summary>
+        /// args:
+        /// Doer(pawn): the pawn sowing
+        /// SUBJECT (thingDef): the plant def being sowed 
+        [NotNull] public static HistoryEventDef SowMutagenicPlants;
+
+        /// <summary>
+        /// event for when a pawn creates 
+        /// </summary>
+        /// args:
+        /// Doer: the pawn making the weapon
+        /// SUBJECT (thingDef): the weapon def being made 
+        [NotNull] public static HistoryEventDef CreateMutagenicWeapon; 
 
 
 

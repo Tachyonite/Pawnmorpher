@@ -2,9 +2,12 @@
 // last updated 03/25/2020  7:20 PM
 
 using System;
+using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Damage;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -13,10 +16,18 @@ namespace Pawnmorph
 {
 
     /// <summary>
-    /// static class for various mutagenic buildup related utilities 
+    /// static class for various mutagenic buildup, mutagenic weapons and mutagen drug related utilities 
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class MutagenicBuildupUtilities
     {
+        static MutagenicBuildupUtilities()
+        {
+            _mutagenCategories = new[] //should figure out a better way to get mutagenic drugs, but this will do for now 
+                {PMThingCategoryDefOf.Injector, PMThingCategoryDefOf.RawMutagen, PMThingCategoryDefOf.Serum}; 
+        }
+
+
         /// <summary>
         /// Gets the net mutagenic buildup multiplier for this pawn.
         /// </summary>
@@ -30,6 +41,93 @@ namespace Pawnmorph
             return (pawn.GetStatValue(StatDefOf.ToxicSensitivity)*pawn.GetStatValue(PMStatDefOf.MutagenSensitivity)); 
         }
 
+
+        /// <summary>
+        /// Determines whether this thing is a mutagenic weapon.
+        /// </summary>
+        /// <param name="thing">The thing.</param>
+        /// <returns>
+        ///   <c>true</c> if this thing is a mutagenic weapon; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">thing</exception>
+        public static bool IsMutagenicWeapon([NotNull] this Thing thing)
+        {
+            if (thing == null) throw new ArgumentNullException(nameof(thing));
+            return thing.def.IsMutagenicWeapon();
+        }
+
+        /// <summary>
+        /// Determines whether this weapon is a mutagenic weapon.
+        /// </summary>
+        /// <param name="weaponDef">The weapon definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this weapon is a mutagenic weapon; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">weaponDef</exception>
+        public static bool IsMutagenicWeapon([NotNull] this ThingDef weaponDef)
+        {
+            if (weaponDef == null) throw new ArgumentNullException(nameof(weaponDef));
+            if (!weaponDef.IsWeapon) return false;
+
+            if (weaponDef.Verbs != null)
+            {
+                foreach (VerbProperties verbProps in weaponDef.Verbs)
+                {
+                    if (IsMutagenicVerb(verbProps)) return true; 
+                }
+            }
+
+            if (weaponDef.tools != null)
+            {
+                foreach (Tool wTool in weaponDef.tools)
+                {
+                    foreach (VerbProperties wtVerb in wTool.VerbsProperties.MakeSafe())
+                    {
+                        if (IsMutagenicVerb(wtVerb)) return true; 
+                    }
+                }
+            }
+
+            var expComp = weaponDef.GetCompProperties<CompProperties_Explosive>();
+            return expComp?.explosiveDamageType?.HasModExtension<MutagenicDamageExtension>() == true; 
+        }
+
+        [NotNull]
+        private static readonly ThingCategoryDef[] _mutagenCategories;
+
+        /// <summary>
+        /// Determines whether this thing def is a mutagenic drug or not.
+        /// </summary>
+        /// <param name="tDef">The t definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this thing is a mutagenic drug or not; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">tDef</exception>
+        public static bool IsMutagenOrMutagenicDrug([NotNull] this ThingDef tDef)
+        {
+            if (tDef == null) throw new ArgumentNullException(nameof(tDef));
+
+            if (tDef.ingestible == null || tDef.thingCategories == null) return false;
+
+            foreach (ThingCategoryDef tDefCat in tDef.thingCategories)
+            {
+                foreach (ThingCategoryDef mutagenCategory in _mutagenCategories)
+                {
+                    if (mutagenCategory == tDefCat) return true; 
+                }
+            }
+
+            return false; 
+
+        }
+
+
+        static bool IsMutagenicVerb([NotNull] VerbProperties vProps)
+        {
+            if (vProps.meleeDamageDef?.HasModExtension<MutagenicDamageExtension>() == true) return true;
+            if (vProps.defaultProjectile?.projectile?.damageDef?.HasModExtension<MutagenicDamageExtension>() == true) return true;
+            return false; 
+        }
 
         /// <summary>
         /// Adjusts the mutagenic buildup for the given pawn using the given source

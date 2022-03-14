@@ -1067,7 +1067,7 @@
 
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
-		<classInfluence>MonkeyMorph</classInfluence>
+		<classInfluence>Simian</classInfluence>
 		<defName>EtherMonkeyHand</defName>
 		<label>dextrous hand</label>
 		<description>A monkey's paw</description>
@@ -1155,7 +1155,7 @@
 		<defName>EtherDelicatePaw</defName>
 		<label>delicate paw</label>
 		<description>a small delicate paw.</description>
-		<classInfluence></classInfluence>
+		<classInfluence>Quilled</classInfluence>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>

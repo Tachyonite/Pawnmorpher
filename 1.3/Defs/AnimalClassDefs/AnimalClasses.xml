@@ -14,15 +14,21 @@
 	</Pawnmorph.AnimalClassDef>
 
 	<Pawnmorph.AnimalClassDef>
+		<defName>Anserigalliform</defName>
+		<label>anserigalliform</label>
+		<parent>Avian</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
 		<defName>Anseriform</defName>
 		<label>anseriform</label>
-		<parent>Avian</parent>
+		<parent>Anserigalliform</parent>
 	</Pawnmorph.AnimalClassDef>
 
 	<Pawnmorph.AnimalClassDef>
 		<defName>Galliform</defName>
 		<label>galliform</label>
-		<parent>Avian</parent>
+		<parent>Anserigalliform</parent>
 	</Pawnmorph.AnimalClassDef>
 
 	<Pawnmorph.AnimalClassDef>

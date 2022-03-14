@@ -62,7 +62,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name="EtherEggLayer" ParentName="PawnmorphPart" Abstract="true">
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>
-		<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
+		<description>An egglayer</description>
 		<parts>
 			<li>Pelvis</li>
 		</parts>
@@ -70,32 +70,7 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
-				<hungerRateFactor>1.0</hungerRateFactor>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.3</minSeverity>
-				<hungerRateFactor>1.3</hungerRateFactor>
-				<label>productive</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.6</minSeverity>
-				<hungerRateFactor>1.6</hungerRateFactor>
-				<label>very productive</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.9</minSeverity>
-				<hungerRateFactor>2.0</hungerRateFactor>
-				<label>productive bliss</label>
-				<hediffGivers>
-					<li Class="HediffGiver_RandomDrugEffect">
-						<hediff>CatatonicBreakdown</hediff>
-						<minSeverity>0.50</minSeverity>
-						<baseMtbDays>2</baseMtbDays>
-						<partsToAffect>
-							<li>Brain</li>
-						</partsToAffect>
-					</li>
-				</hediffGivers>
+				<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -109,7 +84,7 @@
 			<li>YakMorph</li>
 		</classInfluences>
 		<label>udder</label>
-		<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
+		<description>An udder.</description>
 		<initialSeverity>0.01</initialSeverity>
 		<parts>
 			<li>Waist</li>
@@ -122,35 +97,51 @@
 				<wrongGenderThought>MilkedMyselfMale</wrongGenderThought>
 				<etherBondThought>MilkedMyselfBond</etherBondThought>
 				<etherBrokenThought>MilkedMyselfBroken</etherBrokenThought>
+				<resource>Milk</resource>
+				<rareResource>TFMilk</rareResource>
 				<stages>
 					<li>
+						<minProductionBoost>0</minProductionBoost>
 						<daysToProduce>2</daysToProduce>
 						<amount>10</amount>
-						<resource>Milk</resource>
-						<rareResource>TFMilk</rareResource>
 						<chance>40</chance>
 					</li>
 					<li>
+						<minProductionBoost>0.3</minProductionBoost>
 						<daysToProduce>1</daysToProduce>
 						<amount>8</amount>
-						<resource>Milk</resource>
-						<rareResource>TFMilk</rareResource>
 						<chance>30</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.6</minProductionBoost>
 						<daysToProduce>0.5</daysToProduce>
 						<amount>6</amount>
-						<resource>Milk</resource>
-						<rareResource>TFMilk</rareResource>
 						<chance>15</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.9</minProductionBoost>
 						<daysToProduce>0.1</daysToProduce>
 						<amount>4</amount>
-						<resource>Milk</resource>
-						<rareResource>TFMilk</rareResource>
 						<chance>5</chance>
 						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
 					</li>
 				</stages>
 			</li>
@@ -158,56 +149,13 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
-				<hungerRateFactor>1.0</hungerRateFactor>
+				<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
 				<capMods>
 					<li>
 						<capacity>Moving</capacity>
 						<offset>-0.10</offset>
 					</li>
 				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.3</minSeverity>
-				<hungerRateFactor>1.3</hungerRateFactor>
-				<label>productive</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.10</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.6</minSeverity>
-				<hungerRateFactor>1.6</hungerRateFactor>
-				<label>very productive</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.10</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.9</minSeverity>
-				<hungerRateFactor>2.0</hungerRateFactor>
-				<label>productive bliss</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.10</offset>
-					</li>
-				</capMods>
-				<hediffGivers>
-					<li Class="HediffGiver_RandomDrugEffect">
-						<hediff>CatatonicBreakdown</hediff>
-						<minSeverity>0.50</minSeverity>
-						<baseMtbDays>2</baseMtbDays>
-						<partsToAffect>
-							<li>Brain</li>
-						</partsToAffect>
-					</li>
-				</hediffGivers>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
