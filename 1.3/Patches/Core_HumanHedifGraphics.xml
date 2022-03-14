@@ -430,9 +430,6 @@
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
-				<hediffGraphics>
-					<EtherTortoiseShell>Parts/Tortoise/Tortoise_Shell</EtherTortoiseShell>
-				</hediffGraphics>
 				<offsets>
 					<south/>
 					<north>
@@ -457,9 +454,6 @@
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
-				<hediffGraphics>
-					<EtherTortoiseShell>Parts/Tortoise/Tortoise_Shell_Behind</EtherTortoiseShell>
-				</hediffGraphics>
 				<offsets>
 					<south>
 						<bodyTypes>

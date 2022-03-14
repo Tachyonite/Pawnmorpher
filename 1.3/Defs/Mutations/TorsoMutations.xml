@@ -162,12 +162,20 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<description>TODO</description>
+					<graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
+					<graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
