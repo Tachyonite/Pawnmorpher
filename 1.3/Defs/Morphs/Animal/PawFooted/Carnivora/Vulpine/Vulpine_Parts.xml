@@ -39,9 +39,22 @@
 		<mutationMemory>EtherFluffyTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<TradePriceImprovement>+0.05</TradePriceImprovement>
+						<NegotiationAbility>+0.025</NegotiationAbility>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A wonderfully fluffy fox tail drapes from [PAWN_nameDef]'s spine. Was that a small wag just then?</description>
+					<statOffsets>
+						<TradePriceImprovement>+0.1</TradePriceImprovement>
+						<NegotiationAbility>+0.05</NegotiationAbility>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

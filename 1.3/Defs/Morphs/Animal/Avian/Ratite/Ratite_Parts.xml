@@ -31,10 +31,18 @@
 		<label>Tailfeathers</label>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MeleeDodgeChance>+0.025</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<statOffsets>
-						<ComfyTemperatureMin>-2</ComfyTemperatureMin>
+						<MeleeDodgeChance>+0.05</MeleeDodgeChance>
 					</statOffsets>
 				</values>
 			</li>
