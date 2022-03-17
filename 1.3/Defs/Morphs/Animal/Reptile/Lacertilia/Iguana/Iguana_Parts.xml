@@ -51,6 +51,16 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaEarPart">
+		<classInfluence>IguanaMorph</classInfluence>
+		<defName>EtherIguanaHorns</defName>
+		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
+		<label>spines</label>
+		<parts>
+			<li>Skull</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>IguanaMorph</classInfluence>
