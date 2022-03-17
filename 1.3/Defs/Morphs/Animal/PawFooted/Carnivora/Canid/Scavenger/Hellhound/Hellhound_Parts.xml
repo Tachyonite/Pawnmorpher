@@ -97,41 +97,6 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>PM_HellhoundMorph</classInfluence>
-		<defName>PM_HellhoundHorns</defName>
-		<label>hellhound horns</label>
-		<description>[PAWN_nameDef] has grown a pair of large horns from their skull</description>
-		<graphics>
-			<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
-		</graphics>
-		<categories>
-			<li>Major</li>
-			<li>Combo</li>
-		</categories>
-		<parts>
-			<li>Skull</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
-		</stages>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>hellhound horns</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>9.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>

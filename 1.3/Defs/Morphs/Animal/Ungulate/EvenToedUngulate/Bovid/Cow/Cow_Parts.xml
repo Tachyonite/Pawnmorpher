@@ -65,33 +65,4 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherHorns</defName>
-		<classInfluence>CowMorph</classInfluence>
-		<label>horns</label>
-		<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>20.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

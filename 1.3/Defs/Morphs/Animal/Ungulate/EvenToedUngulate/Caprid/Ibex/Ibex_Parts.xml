@@ -65,49 +65,4 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherIbexHorns</defName>
-		<classInfluence>IbexMorph</classInfluence>
-		<label>ibex horns</label>
-		<description>The curved horns of an ibex. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
-		<initialSeverity>0</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>horn nubs</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>short horns</labelOverride>
-				<minSeverity>0.5</minSeverity>
-				<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
-				<minSeverity>1</minSeverity>
-			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>butted</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>10.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.05</severityPerDay>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
