@@ -37,14 +37,14 @@
 
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
-		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboHorn</defName>
 		<label>thrumbohorn</label>
-		<!-- <description>A razor-sharp thrumbo horn decorates [PAWN_nameDef]'s head.</description> -->
-        <description>A razor-sharp thrumbo horn.</description>
+		<classInfluence>ThrumboMorph</classInfluence>
+		<description>A razor-sharp thrumbo horn.</description>
 		<mutationTale>GrewThrumboHorn</mutationTale>
-		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<value>30</value>
+		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
 		<categories>
 			<li>Powerful</li>
 		</categories>
@@ -147,34 +147,82 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
     
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<classInfluence>PM_HellhoundMorph</classInfluence>
 		<defName>PM_HellhoundHorns</defName>
 		<label>hellhound horns</label>
-		<description>[PAWN_nameDef] has grown a pair of large horns from their skull</description>
+		<description>Horns of a hellhound.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
 		<graphics>
 			<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
 		</graphics>
 		<categories>
-			<li>Major</li>
 			<li>Combo</li>
 		</categories>
-		<parts>
-			<li>Skull</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage"></li>
-		</stages>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+                    <description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of nubs on their skull</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>2.0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of short horns from their skull</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>4.0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of large horns from their skull</description>
+					
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>9.0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>hellhound horns</label>
+						<label>horns</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>9.0</power>
+						<power>0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -183,18 +231,64 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherBisonHorns</defName>
 		<classInfluence>BisonMorph</classInfluence>
 		<label>horns</label>
-		<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<description>A pair of bison horns.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>9.0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
+		
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -204,7 +298,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>20.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -214,18 +308,62 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherHorns</defName>
 		<classInfluence>CowMorph</classInfluence>
 		<label>horns</label>
-		<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<description>A pair of cow horns.</description>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
+					
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -235,7 +373,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>20.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -245,18 +383,64 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherYakHorns</defName>
 		<classInfluence>YakMorph</classInfluence>
 		<label>horns</label>
-		<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
+		<description>A pair of yak horns.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>
+					
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -266,7 +450,7 @@
 						<capacities>
 							<li>Scratch</li>
 						</capacities>
-						<power>20.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -275,31 +459,66 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherGoatHorns</defName>
 		<classInfluence>GoatMorph</classInfluence>
 		<label>goat horns</label>
 		<description>The curved horns of a goat. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
-		<initialSeverity>0</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>horn nubs</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>short horns</labelOverride>
-				<minSeverity>0.5</minSeverity>
-				<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+			
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+			
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
+				
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -309,43 +528,74 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>10.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.05</severityPerDay>
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherIbexHorns</defName>
 		<classInfluence>IbexMorph</classInfluence>
 		<label>ibex horns</label>
 		<description>The curved horns of an ibex. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
-		<initialSeverity>0</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>horn nubs</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>short horns</labelOverride>
-				<minSeverity>0.5</minSeverity>
-				<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+			
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
+				
+					<verbOverrides>
+						<li>
+							<label>butted</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -355,43 +605,77 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>10.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.05</severityPerDay>
-			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherSheepHorns</defName>
 		<classInfluence>SheepMorph</classInfluence>
 		<label>ram horns</label>
 		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
-		<initialSeverity>0</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>small horns</labelOverride>
-				<minSeverity>0</minSeverity>
-				<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>rammed</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>curled horns</labelOverride>
-				<minSeverity>0.5</minSeverity>
-				<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<labelOverride>small horns</labelOverride>
+					<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+			
+					<verbOverrides>
+						<li>
+							<label>rammed</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
-				<minSeverity>1</minSeverity>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<labelOverride>curled horns</labelOverride>
+					<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
+			
+					<verbOverrides>
+						<li>
+							<label>rammed</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Skull</li>
-		</parts>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+				
+					<verbOverrides>
+						<li>
+							<label>rammed</label>
+							<power>15</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -401,14 +685,11 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>15.0</power>
+						<power>0</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.025</severityPerDay>
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
