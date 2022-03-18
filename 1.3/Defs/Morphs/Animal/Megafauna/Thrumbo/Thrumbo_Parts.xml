@@ -10,21 +10,96 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>The changes to [PAWN_nameDef]'s face continue. Broad tree munching teeth have started to form in a powerful new snout.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. The strange shape makes speaking very difficult.</description>
+					<statOffsets>
+						<BodySize>0.50</BodySize>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>8</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<BodySize>0.50</BodySize>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<BodySize>0.50</BodySize>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>

@@ -8,9 +8,65 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possesive] face. [PAWN_possesive] nose is starting to droop, growing longer... and wriggly.</description>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>13</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>4</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">

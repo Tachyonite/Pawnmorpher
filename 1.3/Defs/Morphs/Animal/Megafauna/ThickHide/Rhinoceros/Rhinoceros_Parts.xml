@@ -8,9 +8,65 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>horn</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>horn</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possesive] face. And a thick bone has begun to force its way out from the tip of [PAWN_possesive] new snout.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>horn</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>10</power>
+						</li>
+						<li>
+							<label>horn</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
