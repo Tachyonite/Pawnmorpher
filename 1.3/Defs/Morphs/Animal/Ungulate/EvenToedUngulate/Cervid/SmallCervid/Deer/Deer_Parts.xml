@@ -1,0 +1,121 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerSnout</defName>
+		<label>deer snout</label>
+		<mutationTale>GrewDeerMuzzle</mutationTale>
+		<graphics>
+			<Muzzle>Parts/deerface/deerface</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerEar</defName>
+		<label>deer ear</label>
+		<graphics>
+			<LeftEar>Parts/Deer/Deer_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Deer/Deer_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Deer/Deer_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Deer/Deer_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, smooth ear of a deer sits atop [PAWN_nameDef]'s head, listening out for predators.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerTail</defName>
+		<label>deer tail</label>
+		<graphics>
+			<Tail>Parts/deerface/deertail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short tail juts out from [PAWN_nameDef]'s spine, flaring up whenever danger is sensed.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherAntlers</defName>
+		<classInfluence>DeerMorph</classInfluence>
+		<label>antlers</label>
+		<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<mutationTale>GrewAntlers</mutationTale>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.05</severityPerDay>
+			</li>
+		</comps>
+		<initialSeverity>0.1</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>fawn</label>
+				<statOffsets>
+					<SocialImpact>+0.02</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.3</minSeverity>
+				<label>buck</label>
+				<statOffsets>
+					<SocialImpact>+0.07</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.7</minSeverity>
+				<label>stag</label>
+				<statOffsets>
+					<SocialImpact>+0.15</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

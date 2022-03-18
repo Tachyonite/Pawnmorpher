@@ -1,0 +1,103 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeJawPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosJaw</defName>
+		<label>ceratorhine muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A oversized rhino jaw, complete with horn perfect for goring your foes. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>19</power>
+						<cooldownTime>2.6</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>horn</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>19</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>horn</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>19</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeEarPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosEar</defName>
+		<label>rhinoceros ear</label>
+		<graphics>
+			<LeftEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The large and curved ear of a rhinoceros.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeTailPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosTail</defName>
+		<label>rhinoceros tail</label>
+		<graphics>
+			<Tail>Parts/Rhinoceros/Rhinoceros_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short, leathery rhinoceros tail, complete with tuft.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
