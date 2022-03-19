@@ -52,10 +52,6 @@
 
 	<!-- ======= Genus ======= -->
 
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Canid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
 		<defName>Chimera</defName>
 	</Pawnmorph.MorphCategoryDef>
@@ -63,10 +59,6 @@
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
 		<defName>Powerful</defName>
 		<associatedMutationCategory>Powerful</associatedMutationCategory>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Reptile</defName>
 	</Pawnmorph.MorphCategoryDef>
 	
 	<!-- special -->
