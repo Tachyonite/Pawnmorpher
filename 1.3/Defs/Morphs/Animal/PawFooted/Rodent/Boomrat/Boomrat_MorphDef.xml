@@ -8,7 +8,6 @@
 			<li>Arid</li>
 			<li>Temperate</li>
 			<li>Production</li>
-			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphBoomratTF</fullTransformation>
 		<partialTransformation>PawnmorphBoomratTFPartial</partialTransformation>

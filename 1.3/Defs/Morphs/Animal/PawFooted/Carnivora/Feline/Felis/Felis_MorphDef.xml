@@ -5,7 +5,6 @@
 		<categories>
 			<li>Pet</li>
 			<li>Combat</li>
-			<li>Feline</li>
 		</categories>
 		<transformSettings>
 			<transformationMemory>CatTransformationMemory</transformationMemory>

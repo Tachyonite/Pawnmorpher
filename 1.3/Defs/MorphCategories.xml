@@ -53,31 +53,11 @@
 	<!-- ======= Genus ======= -->
 
 	<Pawnmorph.MorphCategoryDef>
-		<defName>Avian</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Bovid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
 		<defName>Canid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Cervid</defName>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
 		<defName>Chimera</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Equine</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Feline</defName>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
@@ -86,15 +66,7 @@
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef>
-		<defName>Rodent</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
 		<defName>Reptile</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Simian</defName>
 	</Pawnmorph.MorphCategoryDef>
 	
 	<!-- special -->

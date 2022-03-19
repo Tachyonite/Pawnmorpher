@@ -8,7 +8,6 @@
 			<li>Arid</li>
 			<li>Temperate</li>
 			<li>Tropical</li>
-			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphGuineaPigTF</fullTransformation>
 		<partialTransformation>PawnmorphGuineaPigTFPartial</partialTransformation>
