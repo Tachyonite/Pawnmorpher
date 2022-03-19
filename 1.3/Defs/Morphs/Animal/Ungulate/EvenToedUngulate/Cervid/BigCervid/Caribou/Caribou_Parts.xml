@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidJawPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouJaw</defName>
 		<label>caribou snout</label>
@@ -28,7 +28,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidEarPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouEar</defName>
 		<label>caribou ear</label>
@@ -54,7 +54,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidTailPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouTail</defName>
 		<label>ibex tail</label>
