@@ -16,4 +16,10 @@
 			<li>Powerful</li>
 		</categories>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaHornPart" ParentName="AnimalHornPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

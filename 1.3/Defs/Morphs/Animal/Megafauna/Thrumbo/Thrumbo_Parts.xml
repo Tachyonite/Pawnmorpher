@@ -45,6 +45,114 @@
 			</li>
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaHornPart">
+		<defName>EtherThrumboHorn</defName>
+		<label>thrumbohorn</label>
+		<classInfluence>ThrumboMorph</classInfluence>
+		<description>A razor-sharp thrumbo horn.</description>
+		<mutationTale>GrewThrumboHorn</mutationTale>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<value>30</value>
+		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+                    <description>TODO</description>
+					<verbOverrides>
+                        <li>
+                            <label>point</label>
+                            <power>0</power>
+                        </li>
+                        <li>
+                            <label>base</label>
+                            <power>0</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+                    <label>nub</label>
+                    <description>[PAWN_nameDef] has grown a small hard nub on [PAWN_possessive] forhead. Maybe good for a headbutt but not much else.</description>
+					<verbOverrides>
+                        <li>
+                            <label>point</label>
+                            <power>0</power>
+                        </li>
+                        <li>
+                            <label>base</label>
+                            <power>3</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+                    <description>[PAWN_nameDef] has grown what looks like a small version of a thrumbo's horn. Not quite as sharp or powerful as a fully grown thrumbo horn, but can still inflict some damage.</description>
+                    <statOffsets>
+                        <MeleeArmorPenetration>0.1</MeleeArmorPenetration>
+                    </statOffsets>
+					<verbOverrides>
+                        <li>
+                            <label>point</label>
+                            <power>14</power>
+                        </li>
+                        <li>
+                            <label>base</label>
+                            <power>6</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+                    <label></label>
+                    <description>A large and majestic horn near identical to what you find on a thrumbo adorns [PAWN_nameDef]'s head. It is a very powerful and sharp horn.</description>
+                    <statOffsets>
+                        <MeleeArmorPenetration>0.3</MeleeArmorPenetration>
+                    </statOffsets>
+					<verbOverrides>
+                        <li>
+                            <label>point</label>
+                            <power>28</power>
+                        </li>
+                        <li>
+                            <label>base</label>
+                            <power>9</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>point</label>
+						<capacities>
+							<li>Scratch</li>
+							<li>Stab</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>2.6</cooldownTime>
+					</li>
+					<li>
+						<label>base</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>2</cooldownTime>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaEarPart">
 		<classInfluence>ThrumboMorph</classInfluence>

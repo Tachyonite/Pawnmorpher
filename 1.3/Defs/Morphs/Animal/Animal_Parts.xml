@@ -159,5 +159,8 @@
 			</li>
 		</stagePatches>	
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalHornPart" ParentName="PawnmorphHornPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>
