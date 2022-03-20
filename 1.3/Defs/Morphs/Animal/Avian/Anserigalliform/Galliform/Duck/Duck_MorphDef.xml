@@ -5,8 +5,7 @@
 		<description>A human who now shares many features with ducks due to exposure to mechanite mutagens. Usually found covered in feathers and with a duck beak.</description>
 		<race>Duck</race>
 		<categories>
-			<li>Farm</li>
-			<li>Social</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphDuckTF</fullTransformation>
 		<partialTransformation>PawnmorphDuckTFPartial</partialTransformation>

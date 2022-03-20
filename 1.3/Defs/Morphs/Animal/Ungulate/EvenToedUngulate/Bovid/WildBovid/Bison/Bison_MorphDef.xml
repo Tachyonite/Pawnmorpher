@@ -6,7 +6,6 @@
 		<race>Bison</race>
 		<categories>
 			<li>Temperate</li>
-			<li>Arid</li>
 		</categories>
 		<fullTransformation>PawnmorphBisonTF</fullTransformation>
 		<partialTransformation>PawnmorphBisonTFPartial</partialTransformation>

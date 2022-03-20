@@ -7,7 +7,7 @@
 		<categories>
 			<li>Temperate</li>
 			<li>Cold</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphMuffaloTF</fullTransformation>
 		<partialTransformation>PawnmorphMuffaloTFPartial</partialTransformation>

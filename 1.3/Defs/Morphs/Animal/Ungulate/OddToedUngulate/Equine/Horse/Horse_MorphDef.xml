@@ -5,10 +5,8 @@
 		<description>Horsemorphs are strong pack morphs that often have hoofed feet and a broad snout that snorts when they get upset. They are quite fast, and useful for hauling.</description>
 		<race>Horse</race>
 		<categories>
-			<li>Arid</li>
 			<li>Temperate</li>
-			<li>Tropical</li>
-			<li>Farm</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphHorseTF</fullTransformation>
 		<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>

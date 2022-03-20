@@ -7,6 +7,7 @@
 		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
 		<categories>
 			<li>Cold</li>
+			<li>Temperate</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

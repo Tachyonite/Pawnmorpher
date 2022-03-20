@@ -6,7 +6,6 @@
 		<race>Deer</race>
 		<categories>
 			<li>Temperate</li>
-			<li>Combat</li>
 		</categories>
 		<fullTransformation>PawnmorphDeerTF</fullTransformation>
 		<partialTransformation>PawnmorphDeerTFPartial</partialTransformation>

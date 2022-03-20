@@ -6,7 +6,7 @@
 		<categories>
 			<li>Arid</li>
 			<li>Temperate</li>
-			<li>Farm</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphHareTF</fullTransformation>
 		<partialTransformation>PawnmorphHareTFPartial</partialTransformation>

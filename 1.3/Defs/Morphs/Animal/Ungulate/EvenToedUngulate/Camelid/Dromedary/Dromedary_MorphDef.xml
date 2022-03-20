@@ -6,6 +6,7 @@
 		<race>Dromedary</race>
 		<categories>
 			<li>Arid</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphDromedaryTF</fullTransformation>
 		<partialTransformation>PawnmorphDromedaryTFPartial</partialTransformation>

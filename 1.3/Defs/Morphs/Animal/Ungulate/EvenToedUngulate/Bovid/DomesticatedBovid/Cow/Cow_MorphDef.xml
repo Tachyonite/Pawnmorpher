@@ -5,8 +5,7 @@
 		<description>A bovine humanoid resulting when a human is exposed to cow specific mutagens. Usually capable of producing milk.</description>
 		<race>Cow</race>
 		<categories>
-			<li>Farm</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphCowTF</fullTransformation>
 		<partialTransformation>PawnmorphCowTFPartial</partialTransformation>

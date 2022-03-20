@@ -6,6 +6,7 @@
 		<!--explicitHybridRace>WolfMorphRace_Explicit</explicitHybridRace-->
 		<categories>
 			<li>Temperate</li>
+			<li>Cold</li>
 		</categories>
 		<fullTransformation>PawnmorphWolfTF</fullTransformation>
 		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>

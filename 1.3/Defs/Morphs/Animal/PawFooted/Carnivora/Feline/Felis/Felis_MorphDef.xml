@@ -3,8 +3,8 @@
 		<description>A human variant with many cat features. Uusually defined by a short whiskered muzzle, a long, thin tail and sharp clawed hands. They are faster and more dextrous than regular humans, and they have an advantage in melee.</description>
 		<classification>Felis</classification>
 		<categories>
-			<li>Pet</li>
-			<li>Combat</li>
+			<li>Social</li>
+			<li>Domestic</li>
 		</categories>
 		<transformSettings>
 			<transformationMemory>CatTransformationMemory</transformationMemory>

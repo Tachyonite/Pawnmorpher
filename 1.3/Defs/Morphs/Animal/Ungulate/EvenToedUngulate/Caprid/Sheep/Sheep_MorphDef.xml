@@ -5,8 +5,7 @@
 		<description>With cute, fluffy wool and cuboid pupils, sheepmorphs are a 'farm'-type morph who can be shorn for wool. They often have hooves and are covered in wool that makes them useful in cold biomes.</description>
 		<race>Sheep</race>
 		<categories>
-			<li>Farm</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphSheepTF</fullTransformation>
 		<partialTransformation>PawnmorphSheepTFPartial</partialTransformation>

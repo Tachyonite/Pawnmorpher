@@ -7,8 +7,7 @@
 		<categories>
 			<li>Temperate</li>
 			<li>Tropical</li>
-			<li>Combat</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<injectorProperties></injectorProperties>
 		<fullTransformation>PawnmorphBoarTF</fullTransformation>

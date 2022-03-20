@@ -2,5 +2,9 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="AnimalMorph" Name="PinnipedMorph">
 		<classification>Pinniped</classification>
 		<injectorProperties></injectorProperties>
+		<categories>
+			<li>Exotic</li>
+			<li>Combat</li>
+		</categories>
 	</Pawnmorph.MorphDef>
 </Defs>
