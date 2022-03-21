@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
 		<classInfluence>GazelleMorph</classInfluence>
 		<defName>EtherGazelleJaw</defName>
@@ -71,55 +71,31 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidHornPart">
 		<defName>EtherGazelleAntlers</defName>
-		<classInfluence>GazelleMorph</classInfluence>
 		<label>gazelle antlers</label>
-		<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
-		<parts>
-			<li>Skull</li>
-		</parts>
+		<description>Large, graceful, gazelle horns</description>
+		<classInfluence>GazelleMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<graphics>
 			<Horns>Parts/Gazelle/Gazelle_Antlers</Horns>
 		</graphics>
-		<mutationTale>GrewAntlers</mutationTale>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>20.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.05</severityPerDay>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
+					
+				</values>
 			</li>
-		</comps>
-		<initialSeverity>0.1</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>small nubs</label>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.3</minSeverity>
-				<label>small horns</label>
-				<statOffsets>
-					<SocialImpact>+0.07</SocialImpact>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.7</minSeverity>
-				<statOffsets>
-					<SocialImpact>+0.15</SocialImpact>
-				</statOffsets>
-			</li>
-		</stages>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

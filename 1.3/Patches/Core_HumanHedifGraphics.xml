@@ -263,7 +263,6 @@
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
 					<!-- REGULAR PAWN PIECES -->				 
-					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">

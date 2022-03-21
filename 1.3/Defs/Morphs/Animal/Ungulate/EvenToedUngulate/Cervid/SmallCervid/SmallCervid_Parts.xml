@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidJawPart" ParentName="CervidJawPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -8,4 +8,78 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidTailPart" ParentName="CervidTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidHornPart" ParentName="CervidHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>short antlers</label>
+					<statOffsets>
+						<Beauty>+0.5</Beauty>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>7.0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<label></label>
+					<statOffsets>
+						<Beauty>+1.0</Beauty>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>14.0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
