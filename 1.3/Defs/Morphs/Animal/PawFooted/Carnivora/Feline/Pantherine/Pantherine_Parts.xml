@@ -6,5 +6,35 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="PantherineTailPart" ParentName="FelineTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.025</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.1</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.2</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

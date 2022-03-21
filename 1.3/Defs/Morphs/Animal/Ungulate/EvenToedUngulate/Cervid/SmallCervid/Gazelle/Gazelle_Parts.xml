@@ -1,0 +1,125 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleJaw</defName>
+		<label>gazelle snout</label>
+		<graphics>
+			<Muzzle>Parts/Gazelle/Gazelle_Jaw</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleEar</defName>
+		<label>gazelle ear</label>
+		<graphics>
+			<LeftEar>Parts/Gazelle/Gazelle_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Gazelle/Gazelle_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Gazelle/Gazelle_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Gazelle/Gazelle_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a long, pointed, gazelle ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleTail</defName>
+		<label>gazelle tail</label>
+		<graphics>
+			<Tail>Parts/Gazelle/Gazelle_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a small gazelle tail.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherGazelleAntlers</defName>
+		<classInfluence>GazelleMorph</classInfluence>
+		<label>gazelle antlers</label>
+		<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<graphics>
+			<Horns>Parts/Gazelle/Gazelle_Antlers</Horns>
+		</graphics>
+		<mutationTale>GrewAntlers</mutationTale>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>20.0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.05</severityPerDay>
+			</li>
+		</comps>
+		<initialSeverity>0.1</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<label>small nubs</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.3</minSeverity>
+				<label>small horns</label>
+				<statOffsets>
+					<SocialImpact>+0.07</SocialImpact>
+				</statOffsets>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0.7</minSeverity>
+				<statOffsets>
+					<SocialImpact>+0.15</SocialImpact>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

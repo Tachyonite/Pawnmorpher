@@ -99,5 +99,28 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerTailPart" ParentName="CanidTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MentalBreakThreshold>-0.0175</MentalBreakThreshold>
+						<ButcheryFleshEfficiency>+0.1</ButcheryFleshEfficiency>
+						<ButcheryMechanoidEfficiency>+0.1</ButcheryMechanoidEfficiency>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.035</MentalBreakThreshold>
+						<ButcheryFleshEfficiency>+0.2</ButcheryFleshEfficiency>
+						<ButcheryMechanoidEfficiency>+0.2</ButcheryMechanoidEfficiency>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

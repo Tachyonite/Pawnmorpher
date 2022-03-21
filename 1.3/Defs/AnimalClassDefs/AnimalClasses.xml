@@ -83,6 +83,18 @@
 		<parent>Powerful</parent>
 	</Pawnmorph.AnimalClassDef>
 
+	<Pawnmorph.AnimalClassDef>
+		<defName>Elephantidea</defName>
+		<label>elephantidea</label>
+		<parent>ThickHide</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Rhinocerotidae</defName>
+		<label>rhinocerotidae</label>
+		<parent>ThickHide</parent>
+	</Pawnmorph.AnimalClassDef>
+
 	<!-- PawFooted -->
 
 	<Pawnmorph.AnimalClassDef>
@@ -127,6 +139,12 @@
 		<defName>Feline</defName>
 		<label>feline</label>
 		<parent>Carnivora</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>BigFelis</defName>
+		<label>big felis</label>
+		<parent>Feline</parent>
 	</Pawnmorph.AnimalClassDef>
 
 	<Pawnmorph.AnimalClassDef>
@@ -241,12 +259,30 @@
 		<parent>Reptile</parent>
 	</Pawnmorph.AnimalClassDef>
 
+	<Pawnmorph.AnimalClassDef>
+		<defName>Testudinidae</defName>
+		<label>testudinidae</label>
+		<parent>Reptile</parent>
+	</Pawnmorph.AnimalClassDef>
+
 	<!-- Simian -->
 
 	<Pawnmorph.AnimalClassDef>
 		<defName>Simian</defName>
 		<label>simian</label>
 		<parent>Animal</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Ape</defName>
+		<label>ape</label>
+		<parent>Simian</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Monkeys</defName>
+		<label>monkeys</label>
+		<parent>Simian</parent>
 	</Pawnmorph.AnimalClassDef>
 
 	<!-- Ungulate -->
@@ -271,6 +307,18 @@
 		<parent>EvenToedUngulate</parent>
 	</Pawnmorph.AnimalClassDef>
 
+	<Pawnmorph.AnimalClassDef>
+		<defName>DomesticatedBovid</defName>
+		<label>domesticated bovid</label>
+		<parent>Bovid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>WildBovid</defName>
+		<label>wild bovid</label>
+		<parent>Bovid</parent>
+	</Pawnmorph.AnimalClassDef>
+
 	<!-- Sub - Camelid -->
 
 	<Pawnmorph.AnimalClassDef>
@@ -293,6 +341,18 @@
 		<defName>Cervid</defName>
 		<label>cervid</label>
 		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>BigCervid</defName>
+		<label>big cervid</label>
+		<parent>Cervid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>SmallCervid</defName>
+		<label>small cervid</label>
+		<parent>Cervid</parent>
 	</Pawnmorph.AnimalClassDef>
 	
 	<!-- Sub - Suid -->

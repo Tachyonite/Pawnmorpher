@@ -1,0 +1,350 @@
+<!-- FOOT TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherFoot</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> 
+-->
+
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+	
+    
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<classInfluence>PM_HellhoundMorph</classInfluence>
+		<defName>PM_HellhoundHorns</defName>
+		<label>hellhound horns</label>
+		<description>Horns of a hellhound.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
+		</graphics>
+		<categories>
+			<li>Combo</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+                    <description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of nubs on their skull.</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>2.0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of short horns from their skull.</description>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>4.0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a pair of large horns from their skull.</description>
+					
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<power>9.0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>horns</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherBisonHorns</defName>
+		<classInfluence>BisonMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of bison horns.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
+		
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherHorns</defName>
+		<classInfluence>CowMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of cow horns.</description>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherYakHorns</defName>
+		<classInfluence>YakMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of yak horns.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>gored</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

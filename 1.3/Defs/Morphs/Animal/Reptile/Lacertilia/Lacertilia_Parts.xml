@@ -22,5 +22,25 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaTailPart" ParentName="ReptileTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.025</ArmorRating_Sharp>
+						<ShootingAccuracyPawn>+0.075</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.05</ArmorRating_Sharp>
+						<ShootingAccuracyPawn>+0.15</ShootingAccuracyPawn>
+				</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

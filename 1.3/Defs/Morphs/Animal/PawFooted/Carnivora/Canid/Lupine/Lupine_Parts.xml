@@ -83,9 +83,22 @@
 		<mutationMemory>EtherWolfTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MentalBreakThreshold>-0.0375</MentalBreakThreshold>
+						<HuntingStealth>+0.05</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
+						<HuntingStealth>+0.1</HuntingStealth>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

@@ -1,5 +1,5 @@
 ﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
-	<Pawnmorph.MorphDef ParentName="MustelidsMorph">
+	<Pawnmorph.MorphDef ParentName="ExoticMorph">
 		<defName>RaccoonMorph</defName>
 		<label>raccoonmorph</label>
 		<description>A shorter humanoid that looks very similar to a raccoon due to exposure to mutagens. They usually have a mask of black fur around their eyes and a striped tail. Although they would prefer digging through trash, they make excellent crafters.</description>

@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticJawPart">
 		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
@@ -83,7 +83,7 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticEarPart">
 		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonEar</defName>
 		<label>raccoon ear</label>
@@ -103,7 +103,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MustelidsTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticTailPart">
 		<classInfluence>RaccoonMorph</classInfluence>
 		<defName>EtherRaccoonTail</defName>
 		<label>raccoon tail</label>

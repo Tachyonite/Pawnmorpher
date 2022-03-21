@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideJawPart" ParentName="MegafaunaJawPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantideaJawPart" ParentName="ThickHideJawPart" Abstract="true">
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

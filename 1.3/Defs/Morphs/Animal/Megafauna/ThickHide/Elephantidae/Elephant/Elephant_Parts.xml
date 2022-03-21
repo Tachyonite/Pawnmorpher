@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantideaJawPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherTrunk</defName>
 		<label>elephant trunk</label>
@@ -7,8 +7,8 @@
 			<Muzzle>Parts/elephantface/elephantface</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantideaEarPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantEar</defName>
 		<label>elephant ear</label>
@@ -28,7 +28,8 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideTailPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantideaTailPart">
 		<classInfluence>ElephantMorph</classInfluence>
 		<defName>EtherElephantTail</defName>
 		<label>elephant tail</label>
