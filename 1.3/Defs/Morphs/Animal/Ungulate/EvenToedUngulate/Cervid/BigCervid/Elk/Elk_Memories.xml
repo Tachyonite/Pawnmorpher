@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElkTransformationMemory</defName>
 				<stages>
@@ -58,19 +58,19 @@
 					<li>
 							<label>Elk face</label>
 							<description>I can barely talk with this thing...</description>
-							<visible>True</visible>
+							<visible>true</visible>
 							<baseMoodEffect>-1</baseMoodEffect>
 					</li>
 					<li>
 							<label>Elk face</label>
 							<description>...This is kinda cool, I guess?</description>
-							<visible>True</visible>
+							<visible>true</visible>
 							<baseMoodEffect>2</baseMoodEffect>
 					</li>
 					<li>
 							<label>Elk face</label>
 							<description>What happened to my face?!?</description>
-							<visible>True</visible>
+							<visible>true</visible>
 							<baseMoodEffect>-3</baseMoodEffect>
 					</li>
 			</stages>

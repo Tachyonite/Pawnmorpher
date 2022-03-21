@@ -24,4 +24,7 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="CervidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef Name ="CervidHornPart" ParentName="EvenToedUngulateHornPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
 </Defs>

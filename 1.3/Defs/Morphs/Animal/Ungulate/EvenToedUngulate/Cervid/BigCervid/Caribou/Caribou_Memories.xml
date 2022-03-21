@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
     <ThoughtDef ParentName="OutlookMemoryBase">
         <defName>CaribouTransformationMemory</defName>
         <stages>
@@ -73,19 +73,19 @@
             <li>
                 <label>Reindeer ears</label>
                 <description>At least they keep the flies off themselves...?</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Reindeer ears</label>
                 <description>I can hear everything!</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Reindeer ears</label>
                 <description>These things are so twitchy, get them off me!</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
@@ -99,19 +99,19 @@
             <li>
                 <label>Short tail</label>
                 <description>Is this thing... a tail?</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
                 <description>It's so fluffy!</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
                 <description>Just big enough to be hard to hide... great...</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>
@@ -124,19 +124,19 @@
             <li>
                 <label>Short tail</label>
                 <description>Is this thing... a tail?</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
                 <description>It's so fluffy!</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
                 <label>Short tail</label>
                 <description>Just big enough to be hard to hide... great...</description>
-                <visible>True</visible>
+                <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>
         </stages>

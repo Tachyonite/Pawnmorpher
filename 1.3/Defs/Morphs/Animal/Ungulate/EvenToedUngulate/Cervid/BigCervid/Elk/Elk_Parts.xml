@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 		<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidJawPart">
 		<classInfluence>ElkMorph</classInfluence>
 		<defName>EtherElkJaw</defName>
@@ -68,36 +68,32 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-		<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>ElkMorph</classInfluence>
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherElkAntlers</defName>
 		<label>elk antlers</label>
-		<mutationMemory>EtherElkAntlers</mutationMemory>
-		<mutationTale>GrewAntlers</mutationTale>
 		<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
-		<!--Stages Go here
-		<graphics>
-			<Tail>Parts/Elk/Elk_Horns_A</Tail>
-		</graphics>
-		<graphics>
-			<Tail>Parts/Elk/Elk_Horns_B</Tail>
-		</graphics>
-		-->
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>20.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
+		<classInfluence>ElkMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<mutationMemory>EtherElkAntlers</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Elk/Elk_Horns_A</Horns>
+					</graphics>
+
+				</values>
 			</li>
-		</comps>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Elk/Elk_Horns_B</Horns>
+					</graphics>
+					
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
