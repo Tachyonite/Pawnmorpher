@@ -262,22 +262,7 @@
 				<hediffGraphics>
 					<!-- SPECIAL COMBINATION PIECES -->
 					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
-					<!-- REGULAR PAWN PIECES -->
-					<EtherHorns>Parts/cowface/cowhorns</EtherHorns>
-					<EtherBisonHorns>
-						<path>Parts/Bison/Bison_Horn_B</path>
-						<severity>
-							<a0.5>Parts/Bison/Bison_Horn_B</a0.5>
-							<a0.0>Parts/Bison/Bison_Horn_A</a0.0>
-						</severity>
-					</EtherBisonHorns>
-					<EtherYakHorns>
-						<path>Parts/Yak/Yak_Horns_B</path>
-						<severity>
-							<a0.5>Parts/Yak/Yak_Horns_B</a0.5>
-							<a0.0>Parts/Yak/Yak_Horns_A</a0.0>
-						</severity>
-					</EtherYakHorns>							 
+					<!-- REGULAR PAWN PIECES -->				 
 					<EtherAntlers>Parts/deerface/deerantlers</EtherAntlers>
 				</hediffGraphics>
 			</li>

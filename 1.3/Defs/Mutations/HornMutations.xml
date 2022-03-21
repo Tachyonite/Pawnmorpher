@@ -127,6 +127,9 @@
 		<classInfluence>BisonMorph</classInfluence>
 		<label>horns</label>
 		<description>A pair of bison horns.</description>
+		<graphics>
+			<horns>Parts/Bison/Bison_Horn_B</horns>
+		</graphics>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
@@ -158,6 +161,9 @@
 				<stageKey>short</stageKey>
 				<values>
 					<description>TODO</description>
+					<graphics>
+						<horns>Parts/Bison/Bison_Horn_A</horns>
+					</graphics>
 					<verbOverrides>
 						<li>
 							<label>gored</label>
@@ -170,7 +176,6 @@
 				<stageKey>horns</stageKey>
 				<values>
 					<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
-		
 					<verbOverrides>
 						<li>
 							<label>gored</label>
@@ -204,6 +209,9 @@
 		<classInfluence>CowMorph</classInfluence>
 		<label>horns</label>
 		<description>A pair of cow horns.</description>
+		<graphics>
+			<horns>Parts/cowface/cowhorns</horns>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -280,6 +288,9 @@
 		<description>A pair of yak horns.</description>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<horns>Parts/Yak/Yak_Horns_B</horns>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -309,6 +320,9 @@
 				<stageKey>short</stageKey>
 				<values>
 					<description>TODO</description>
+					<graphics>
+						<horns>Parts/Yak/Yak_Horns_A</horns>
+					</graphics>
 					<verbOverrides>
 						<li>
 							<label>gored</label>
