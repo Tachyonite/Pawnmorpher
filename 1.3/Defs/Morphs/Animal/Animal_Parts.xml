@@ -5,7 +5,7 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<painOffset>0.01</painOffset>
-					<description>[PAWN_nameDef]'s face is itching a bit, but nothing strange has happened yet.</description>
+					<description>[PAWN_nameDef]'s nose has been feeling stuffy lately and [PAWN_pronoun] has been seen vigourously scratching [PAWN_possesive] face. It's probably nothing to worry about. Right?</description>
 					<graphics>
 						<Muzzle>Parts/None/None</Muzzle>
 					</graphics>
@@ -14,23 +14,8 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.05</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>growing</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face continues to change, looking more and more like an animal's.</description>
+					<description>The bones of [PAWN_nameDef]'s jaw and chin are started growing outwards, painfully pressing out into an inhuman shape.</description>
+					<painOffset>0.1</painOffset>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -38,7 +23,24 @@
 						</li>
 						<li>
 							<capacity>Eating</capacity>
-							<offset>0.3</offset>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change, with nose, jaw, chin, and all looking more and more like an animal's snout.</description>
+					<painOffset>0.2</painOffset>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>-0.1</offset>
 						</li>
 					</capMods>
 				</values>
@@ -51,10 +53,6 @@
 						<li>
 							<capacity>Talking</capacity>
 							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.5</offset>
 						</li>
 					</capMods>
 				</values>
@@ -70,7 +68,7 @@
 						</li>
 						<li>
 							<capacity>Eating</capacity>
-							<offset>0.5</offset>
+							<offset>0.1</offset>
 						</li>
 					</capMods>
 				</values>
@@ -82,7 +80,7 @@
 					<capMods>
 						<li>
 							<capacity>Eating</capacity>
-							<offset>0.50</offset>
+							<offset>0.2</offset>
 						</li>
 					</capMods>
 				</values>

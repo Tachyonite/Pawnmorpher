@@ -22,9 +22,6 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<description>The skin on [PAWN_nameDef]'s lips has begun to harden and crack. What's happening here?</description>
-					<graphics>
-						<Muzzle>Parts/None/None</Muzzle>
-					</graphics>
 					<verbOverrides>
 						<li>
 							<label>beak</label>
@@ -46,7 +43,7 @@
 							<power>0</power>
 						</li>
 					</verbOverrides>
-					<painOffset>0.1</painOffset>
+					<painOffset>0.05</painOffset>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -72,7 +69,7 @@
 							<power>0</power>
 						</li>
 					</verbOverrides>
-					<painOffset>0.2</painOffset>
+					<painOffset>0.1</painOffset>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>

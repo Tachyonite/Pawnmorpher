@@ -14,19 +14,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw has become a long canine snout, with large fangs visible even when their mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
