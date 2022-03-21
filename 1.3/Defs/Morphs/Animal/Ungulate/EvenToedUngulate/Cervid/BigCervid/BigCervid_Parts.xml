@@ -13,6 +13,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>gored</label>
@@ -24,6 +25,7 @@
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
+					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>gored</label>

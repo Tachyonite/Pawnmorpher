@@ -74,7 +74,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
 		<defName>EtherCaribouAntlers</defName>
 		<label>caribou antlers</label>
-		<description>[PAWN_nameDef] has large caribou antlers</description>
+		<description>large caribou antlers.</description>
 		<classInfluence>CaribouMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
 		<mutationMemory>EtherAntlers</mutationMemory>
@@ -82,6 +82,7 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
+					<description>TODO</description>
 					<!-- 
 					<graphics>
 						<Horns></Horns>
@@ -92,6 +93,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
+					<description>[PAWN_nameDef] has large caribou antlers.</description>
 					<graphics>
 						<Horns>Parts/Caribou/Caribou_Antlers</Horns>
 					</graphics>

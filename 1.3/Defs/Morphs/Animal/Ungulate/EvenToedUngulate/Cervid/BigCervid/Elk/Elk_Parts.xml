@@ -71,7 +71,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
 		<defName>EtherElkAntlers</defName>
 		<label>elk antlers</label>
-		<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
+		<description>Wide, imposing antlers.</description>
 		<classInfluence>ElkMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
 		<mutationMemory>EtherElkAntlers</mutationMemory>
@@ -79,6 +79,7 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
+					<description>TODO</description>
 					<graphics>
 						<Horns>Parts/Elk/Elk_Horns_A</Horns>
 					</graphics>
@@ -88,6 +89,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
+					<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
 					<graphics>
 						<Horns>Parts/Elk/Elk_Horns_B</Horns>
 					</graphics>
