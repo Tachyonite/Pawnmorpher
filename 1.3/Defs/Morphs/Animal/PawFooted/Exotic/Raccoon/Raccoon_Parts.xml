@@ -8,9 +8,48 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
