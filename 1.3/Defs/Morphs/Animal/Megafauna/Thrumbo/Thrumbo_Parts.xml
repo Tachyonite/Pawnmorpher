@@ -93,6 +93,9 @@
 				<stageKey>short</stageKey>
 				<values>
                     <description>[PAWN_nameDef] has grown what looks like a small version of a thrumbo's horn. Not quite as sharp or powerful as a fully grown thrumbo horn, but can still inflict some damage.</description>
+					<!-- <graphics>
+						<horns>TODO</horns>
+					</graphics> -->
                     <statOffsets>
                         <MeleeArmorPenetration>0.1</MeleeArmorPenetration>
                     </statOffsets>
@@ -113,6 +116,9 @@
 				<values>
                     <label></label>
                     <description>A large and majestic horn near identical to what you find on a thrumbo adorns [PAWN_nameDef]'s head. It is a very powerful and sharp horn.</description>
+					<graphics>
+						<horns>Parts/thrumboface/thrumbohorn</horns>
+					</graphics>
                     <statOffsets>
                         <MeleeArmorPenetration>0.3</MeleeArmorPenetration>
                     </statOffsets>

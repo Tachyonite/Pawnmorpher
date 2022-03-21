@@ -163,6 +163,9 @@
 				<values>
 					<labelOverride>small horns</labelOverride>
 					<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<graphics>
+						<horns>Parts/sheepface/sheephorns_a</horns>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
@@ -170,12 +173,18 @@
 				<values>
 					<labelOverride>curled horns</labelOverride>
 					<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
+					<graphics>
+						<horns>Parts/sheepface/sheephorns_b</horns>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
 					<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+					<graphics>
+						<horns>Parts/sheepface/sheephorns_c</horns>
+					</graphics>
 				</values>
 			</li>
 		</stagePatches>
