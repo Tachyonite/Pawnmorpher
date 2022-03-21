@@ -64,5 +64,29 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherHorns</defName>
+		<classInfluence>CowMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of cow horns.</description>
+		<graphics>
+			<horns>Parts/cowface/cowhorns</horns>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

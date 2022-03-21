@@ -8,4 +8,52 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidTailPart" ParentName="BovidTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidHornPart" ParentName="BovidHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>gored</label>
+							<power>20</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
