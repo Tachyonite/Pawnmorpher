@@ -71,7 +71,7 @@
 		<label>horns</label>
 		<description>A pair of cow horns.</description>
 		<graphics>
-			<horns>Parts/cowface/cowhorns</horns>
+			<Horns>Parts/cowface/cowhorns</Horns>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

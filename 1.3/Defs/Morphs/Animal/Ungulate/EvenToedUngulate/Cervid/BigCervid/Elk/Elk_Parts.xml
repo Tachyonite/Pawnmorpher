@@ -68,13 +68,16 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
 		<defName>EtherElkAntlers</defName>
 		<label>elk antlers</label>
 		<description>Wide, imposing antlers.</description>
 		<classInfluence>ElkMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
 		<mutationMemory>EtherElkAntlers</mutationMemory>
+		<graphics>
+			<Horns>Parts/Elk/Elk_Horns_B</Horns>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>short</stageKey>
@@ -90,10 +93,6 @@
 				<stageKey>horns</stageKey>
 				<values>
 					<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
-					<graphics>
-						<Horns>Parts/Elk/Elk_Horns_B</Horns>
-					</graphics>
-					
 				</values>
 			</li>
 		</stagePatches>

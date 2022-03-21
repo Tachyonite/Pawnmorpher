@@ -77,7 +77,7 @@
 				<stageKey>nubs</stageKey>
 				<values>
 					<graphics>
-						<horns>Parts/Goat/GoatHorns_a</horns>
+						<Horns>Parts/Goat/GoatHorns_a</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -86,7 +86,7 @@
 				<values>
 					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
 					<graphics>
-						<horns>Parts/Goat/GoatHorns_b</horns>
+						<Horns>Parts/Goat/GoatHorns_b</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -95,7 +95,7 @@
 				<values>
 					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
 					<graphics>
-						<horns>Parts/Goat/GoatHorns_c</horns>
+						<Horns>Parts/Goat/GoatHorns_c</Horns>
 					</graphics>
 				</values>
 			</li>

@@ -166,7 +166,7 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<graphics>
-						<horns>Parts/None/None</horns>
+						<Horns>Parts/None/None</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -175,7 +175,7 @@
 				<values>
 					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
 					<graphics>
-						<horns>Parts/None/None</horns>
+						<Horns>Parts/None/None</Horns>
 					</graphics>
 				</values>
 			</li>

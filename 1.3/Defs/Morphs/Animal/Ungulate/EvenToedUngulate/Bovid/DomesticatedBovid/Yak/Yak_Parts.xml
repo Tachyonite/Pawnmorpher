@@ -75,7 +75,7 @@
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<graphics>
-			<horns>Parts/Yak/Yak_Horns_B</horns>
+			<Horns>Parts/Yak/Yak_Horns_B</Horns>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -83,7 +83,7 @@
 				<values>
 					<description>TODO</description>
 					<graphics>
-						<horns>Parts/Yak/Yak_Horns_A</horns>
+						<Horns>Parts/Yak/Yak_Horns_A</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -95,36 +95,4 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
-		<defName>EtherBisonHorns</defName>
-		<classInfluence>BisonMorph</classInfluence>
-		<label>horns</label>
-		<description>A pair of bison horns.</description>
-		<graphics>
-			<horns>Parts/Bison/Bison_Horn_B</horns>
-		</graphics>
-		<!-- <mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory> -->
-		<stagePatches>
-			<li function="modify">
-				<stageKey>short</stageKey>
-				<values>
-					<description>TODO</description>
-					<graphics>
-						<horns>Parts/Bison/Bison_Horn_A</horns>
-					</graphics>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>horns</stageKey>
-				<values>
-					<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-
 </Defs>
