@@ -278,7 +278,7 @@ namespace Pawnmorph.ThingComps
             }
         }
 
-        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel sapiencelevel)
+        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
             if (pawn.Faction != Faction.OfPlayer) return;
 
