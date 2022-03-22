@@ -205,7 +205,10 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
 		<description>A very flexible spine.</description>
 		<defName>EtherFlexibleSpine</defName>
-		<classInfluence>Feline</classInfluence>
+		<classInfluences>
+			<li>Feline</li>
+			<li>Monkeys</li>
+		</classInfluences>
 		<label>flexible spine</label>
 		<parts>
 			<li>Spine</li>
