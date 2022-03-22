@@ -77,13 +77,14 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>TODO</description>
+					<label>curved horns</label>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>Burly horns decorate [PAWN_nameDef]'s head.</description>
+					<description>Burly horns decorate [PAWN_nameDef]'s head. It'd be unfortunate to get too close when [PAWN_nameDef] is in a bad mood.</description>
 				</values>
 			</li>
 		</stagePatches>

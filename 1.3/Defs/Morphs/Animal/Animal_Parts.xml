@@ -165,6 +165,8 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<label>protrusions</label>
+					<description>Protrusions of bone are growing from [PAWN_nameDef]'s scalp. They're short and blunt for the moment, but seem to be growing longer all the time.</description>
 					<graphics>
 						<Horns>Parts/None/None</Horns>
 					</graphics>

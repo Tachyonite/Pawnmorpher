@@ -81,7 +81,8 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>TODO</description>
+					<label>curved horns</label>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
 					<graphics>
 						<Horns>Parts/Yak/Yak_Horns_A</Horns>
 					</graphics>
@@ -90,7 +91,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head.</description>
+					<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
 				</values>
 			</li>
 		</stagePatches>
