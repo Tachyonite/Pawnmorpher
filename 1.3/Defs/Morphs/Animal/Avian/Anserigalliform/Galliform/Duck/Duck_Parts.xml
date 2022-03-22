@@ -54,12 +54,6 @@
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEarPart">
-		<defName>EtherDuckEar</defName>
-		<classInfluence>DuckMorph</classInfluence>
-		<label>duck earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEggLayerPart">
 		<defName>EtherDuckEggLayer</defName>
 		<classInfluence>DuckMorph</classInfluence>

@@ -28,12 +28,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="TestudinidaeEarPart">
-		<classInfluence>TortoiseMorph</classInfluence>
-		<defName>EtherTortoiseEar</defName>
-		<label>tortoise earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="TestudinidaeTailPart">
 		<classInfluence>TortoiseMorph</classInfluence>
 		<defName>EtherTortoiseTail</defName>

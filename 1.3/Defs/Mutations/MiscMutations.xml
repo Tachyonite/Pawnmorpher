@@ -2,9 +2,14 @@
 
 	<!-- Ear hole -->
 	
-    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole" Abstract="true">
+    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole">
 		<label>ear hole</label>
 		<description>TODO</description>
+		<classInfluences>
+			<li>Avian</li>
+			<li>Pinniped</li>
+			<li>Reptile</li>
+		</classInfluences>
 		<graphics>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/None/None</RightEar>

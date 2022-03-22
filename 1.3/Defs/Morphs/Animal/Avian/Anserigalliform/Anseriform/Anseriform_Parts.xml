@@ -18,9 +18,6 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AnseriformEarPart" ParentName="AnserigalliformEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="AnseriformTailPart" ParentName="AnserigalliformTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 

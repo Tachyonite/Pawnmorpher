@@ -68,12 +68,6 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaEarPart">
-		<classInfluence>SnakeMorph</classInfluence>
-		<defName>EtherSnakeEar</defName>
-		<label>cobra earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeHood</defName>

@@ -36,12 +36,6 @@
 			<Tail>Parts/Ostrich/Ostrich_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteEarPart">
-		<defName>EtherOstrichEar</defName>
-		<classInfluence>OstrichMorph</classInfluence>
-		<label>ostrich earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
 <!-- 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
 		<defName>EtherOstrichFoot</defName>

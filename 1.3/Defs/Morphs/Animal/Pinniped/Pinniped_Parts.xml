@@ -2,9 +2,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="PinnipedJawPart" ParentName="AnimalJawPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="PinnipedEarPart" ParentName="AnimalEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="PinnipedTailPart" ParentName="AnimalTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

@@ -18,9 +18,6 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaEarPart" ParentName="ReptileEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaTailPart" ParentName="ReptileTailPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">

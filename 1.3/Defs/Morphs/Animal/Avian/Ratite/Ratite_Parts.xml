@@ -19,12 +19,6 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="RatiteEarPart" ParentName="AvianEarPart" Abstract="true">
-		<!-- TODO -->
-		<defName>EtherRatiteEar</defName>
-		<description>An ear hole.</description>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="RatiteTailPart" ParentName="AvianTailPart" Abstract="true">
 		<defName>EtherRatiteTailfeathers</defName>
 		<description>A plume of coarse feathers sprout from a bird tail above [PAWN_nameDef]'s butt.</description>
