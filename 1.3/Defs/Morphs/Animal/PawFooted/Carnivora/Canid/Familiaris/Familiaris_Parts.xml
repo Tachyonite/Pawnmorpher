@@ -27,9 +27,26 @@
 		<mutationMemory>EtherFamiliarisEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A fluffy dog ear flicks around at the sides of [PAWN_nameDef]'s head. It is incredibly cute.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
