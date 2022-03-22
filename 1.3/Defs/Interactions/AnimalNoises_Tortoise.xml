@@ -14,12 +14,6 @@
 				<value>0.25</value>
 			</li>
 
-			<!-- Ears -->
-			<li>
-				<key>EtherTortoiseEar</key>
-				<value>0.125</value>
-			</li>
-
 			<!-- Hood -->
 			<li>
 				<key>EtherTortoiseShell</key>

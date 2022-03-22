@@ -37,12 +37,6 @@
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEarPart">
-		<defName>EtherChickenEar</defName>
-		<classInfluence>ChookMorph</classInfluence>
-		<label>chicken earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEggLayerPart">
 		<defName>EtherEggLayer</defName>
 		<classInfluence>ChookMorph</classInfluence>
