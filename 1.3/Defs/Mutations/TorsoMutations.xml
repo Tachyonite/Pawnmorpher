@@ -67,7 +67,13 @@
 		<description>TODO</description>
 		<defName>EtherToughTorso</defName>
 		<classInfluences>
-			<li>WargMorph</li> <!--To complete-->
+			<li>Scavenger</li>
+			<li>Pantherine</li>
+			<li>Ursine</li>
+			<li>Crocodilia</li>
+			<li>Equine</li>
+			<li>WildBovid</li>
+			<li>BigCervid</li>
 		</classInfluences>
 		<label>tough torso</label>
 		<stagePatches>
