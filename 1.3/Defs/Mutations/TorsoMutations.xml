@@ -118,6 +118,7 @@
 		<classInfluences>
 			<li>Leporid</li>
 			<li>Rodent</li>
+			<li>Monkeys</li>
 		</classInfluences>
 		<stagePatches>
 			<li function="modify">
