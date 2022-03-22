@@ -799,7 +799,6 @@
 		<defName>EtherWoollyLimb</defName>
 		<label>wool</label>
 		<classInfluences>
-			<li>Camelid</li>
 			<li>MuffaloMorph</li>
 			<li>YakMorph</li>
 			<li>SheepMorph</li>
