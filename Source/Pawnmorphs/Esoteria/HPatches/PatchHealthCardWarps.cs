@@ -18,7 +18,7 @@ namespace Pawnmorph
         [HarmonyAfter("PeteTimesSix.CompactHediffs")]
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            var dLst = diffs.MakeSafe().ToList(); 
+            var dLst = diffs.MakeSafe().ToList();
             if (dLst.OfType<IDescriptiveHediff>().FirstOrDefault(x => x.Description != null) == null) return;
 
             float firstRowWidth = rect.width * 0.275f;
@@ -26,10 +26,10 @@ namespace Pawnmorph
             var toolTipRect = rect;
             toolTipRect.x = rectIcon.x;
             toolTipRect.y = rectIcon.y;
-            toolTipRect.height = rectIcon.height * dLst.Count; 
-            
+            toolTipRect.height = rectIcon.height * dLst.Count;
+
             //GUI.DrawTexture(rectIcon, icon);
-            TooltipHandler.TipRegion(toolTipRect, () => Tooltip(dLst), (int) curY + 117857);
+            TooltipHandler.TipRegion(toolTipRect, () => Tooltip(dLst), (int)curY + 117857);
         }
 
         static string Tooltip(IEnumerable<Hediff> diffs)

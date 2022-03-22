@@ -8,4 +8,16 @@
         <displayPriorityInCategory>95</displayPriorityInCategory>
         <forInformationOnly>true</forInformationOnly>
     </StatDef>
+
+    
+    <StatDef ParentName="BaseMutagenic">
+        <defName>PM_BodySize</defName>
+        <label>altered body size</label>
+        <description>Mutations have caused this pawn to change size.</description>
+        <defaultBaseValue>1.0</defaultBaseValue>
+        <hideAtValue>1.0</hideAtValue>
+        <minValue>0.5</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
 </Defs>

@@ -55,4 +55,37 @@
     <defName>FormerHumanAteCorpse</defName>
     <label>ate corpse</label>
   </HistoryEventDef>
+
+  <!-- 
+    needs to be recorded when a pawn applies a mutagen on themselves or others 
+    needs to be checked when giving an order to apply a mutagen on themselves or others 
+  
+    Args: 
+      Doer - pawn applying the mutagen 
+      Victim - pawn receiving the mutagen 
+  -->
+  <HistoryEventDef>
+    <defName>ApplyMutagenicsOn</defName>
+    <label>apply mutagenics on</label>
+  </HistoryEventDef>
+
+  <!-- needs to be recorded when a pawn sows a mutganic plant 
+      needs to be checked when a pawn tries to plant a mutagenic plant
+      Doer(pawn) 
+      SUBJECT(plant)
+    -->
+  <HistoryEventDef>
+    <defName>SowMutagenicPlants</defName>
+    <label>Sow Mutagenic Plants</label>
+  </HistoryEventDef>
+
+  <!-- 
+    needs to be recorded when a pawn finishes a bill on a mutagenic weapon 
+    checked before a pawn starts working on a bill for a mutagenic weapon 
+  -->
+  <HistoryEventDef>
+    <defName>CreateMutagenicWeapon</defName>
+    <label>Create Mutagenic Weapon</label>
+  </HistoryEventDef>
+
 </Defs>

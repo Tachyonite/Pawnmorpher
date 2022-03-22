@@ -9,7 +9,7 @@
                 <ThingDef ParentName="BedWithQualityBase">
                     <defName>MutaniteBed</defName>
                     <label>mutanite bed</label>
-                    <description>A cozy mattress and sheets on a frame for resting.</description>
+                    <description>A bed where the frame and fabric are infused with powdered mutanite. The warm glow makes it more comfortable to lay in, but doing so might have some interesting side effects.</description>
                     <graphicData>
                         <texPath>Things/Building/Furniture/Bed/Bed</texPath>
                         <graphicClass>Graphic_Multi</graphicClass>
@@ -37,7 +37,7 @@
                         <WorkToBuild>1100</WorkToBuild>
                         <Mass>50</Mass>
                         <BedRestEffectiveness>1.5</BedRestEffectiveness>
-                        <Comfort>0.85</Comfort>
+                        <Comfort>0.90</Comfort>
                         <ImmunityGainSpeedFactor>1.27</ImmunityGainSpeedFactor>
                         <SurgerySuccessChanceFactor>1.1</SurgerySuccessChanceFactor>
                     </statBases>

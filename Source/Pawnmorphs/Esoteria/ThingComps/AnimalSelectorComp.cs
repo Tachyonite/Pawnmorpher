@@ -16,8 +16,9 @@ namespace Pawnmorph.ThingComps
     /// <seealso cref="Verse.ThingComp" />
     public class AnimalSelectorComp : ThingComp, IEquipmentGizmo
     {
-        private PawnKindDef _chosenKind;
+        private const string ANIMAL_PICKER_NOCHOICES = "PMAnimalPickerGizmoNoChoices";
 
+        private PawnKindDef _chosenKind;
 
         /// <summary>
         /// delegate for the Animal Chosen event 
@@ -40,7 +41,6 @@ namespace Pawnmorph.ThingComps
         /// Triggers when selector action is clicked but before anything else.
         /// </summary>
         public event OnClickHandler OnClick;
-
 
         private bool _enabled = true;
         /// <summary>
@@ -80,7 +80,7 @@ namespace Pawnmorph.ThingComps
         [CanBeNull] public PawnKindDef ChosenKind => _chosenKind;
 
         /// <summary>
-        /// Gets all animals selectable.
+        /// Gets all animals selectable according to the selection mode.
         /// </summary>
         /// <value>
         /// All animals selectable.
@@ -89,25 +89,35 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
-                if (Props.requiresTag)
-                {
-                    var comp = PMComp;
+                IEnumerable<PawnKindDef> animals = Props.requiresTag ? Database.TaggedAnimals : Props.AllAnimals;
 
-                    // include if tagged or always available and filter returns true if any.
-                    return Props.AllAnimals.Where(t => (comp.TaggedAnimals.Contains(t) || Props.alwaysAvailable?.Contains(t) == true) && (SpeciesFilter == null || SpeciesFilter(t)));
+                // Filter out excluded animals
+                if (Props.raceFilter != null)
+                {
+                    animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
                 }
 
-                return Props.AllAnimals;
+                // Apply special filtering
+                if (SpeciesFilter != null)
+                {
+                    animals = animals.Where(x => SpeciesFilter(x));
+                }
+
+                // Add always available animals
+                if (Props.alwaysAvailable != null)
+                {
+                    animals = animals.Union(Props.alwaysAvailable);
+                }
+
+                return animals;
             }
         }
 
-        private ChamberDatabase PMComp => Find.World.GetComponent<ChamberDatabase>();
-
+        private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
         private Command_Action _cachedGizmo;
 
         private Gizmo[] _cachedGizmoArr;
-
 
         public override void Initialize(CompProperties props)
         {
@@ -116,8 +126,9 @@ namespace Pawnmorph.ThingComps
             _cachedGizmo = new Command_Action()
             {
                 action = GizmoAction,
-                defaultLabel = "none",
-                icon = PMTextures.AnimalSelectorIcon
+                icon = PMTextures.AnimalSelectorIcon,
+                defaultLabel = Props.labelKey.Translate(),
+                defaultDesc = Props.descriptionKey.Translate()
             };
         }
 
@@ -141,7 +152,8 @@ namespace Pawnmorph.ThingComps
 
         public void ResetSelection()
         {
-            _cachedGizmo.defaultLabel = "none";
+            _cachedGizmo.defaultLabel = Props.labelKey.Translate();
+            _cachedGizmo.defaultDesc = Props.descriptionKey.Translate();
             _cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
         }
 
@@ -149,7 +161,12 @@ namespace Pawnmorph.ThingComps
         {
             OnClick?.Invoke(this);
             var options = GetOptions.ToList();
-            if (options.Count == 0) return; 
+            if (options.Count == 0)
+            {
+                var emptyOption = new FloatMenuOption(ANIMAL_PICKER_NOCHOICES.Translate(), null);
+                emptyOption.Disabled = true;
+                options.Add(emptyOption);
+            }
             Find.WindowStack.Add(new FloatMenu(options)); 
         }
 
@@ -182,7 +199,6 @@ namespace Pawnmorph.ThingComps
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
             Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
         }
-
 
         private void ChoseAnimal(PawnKindDef chosenKind)
         {
@@ -217,17 +233,28 @@ namespace Pawnmorph.ThingComps
     public class AnimalSelectorCompProperties : CompProperties
     {
         /// <summary>
-        ///     if an animal must be tagged by the tagging rifle
+        ///     Only allow selection of animals which have been tagged in the database
         /// </summary>
         public bool requiresTag;
 
         /// <summary>
-        /// list of animals always available for selection 
+        ///     Label of selector button gizmo. Localised key.
+        /// </summary>
+        public string labelKey;
+
+        /// <summary>
+        ///     Tooltip of selector button gizmo. Localised key.
+        /// </summary>
+        public string descriptionKey;
+
+
+        /// <summary>
+        ///     List of animals which will always be available for selection 
         /// </summary>
         public List<PawnKindDef> alwaysAvailable;
 
         /// <summary>
-        ///     The race filter
+        ///     List of animals that will be excluded from the selection
         /// </summary>
         public Filter<PawnKindDef> raceFilter;
 
@@ -254,7 +281,7 @@ namespace Pawnmorph.ThingComps
                 if (_allAnimals == null)
                     _allAnimals = DefDatabase<PawnKindDef>
                                  .AllDefsListForReading
-                                 .Where(t => t.race.race?.Animal == true && raceFilter?.PassesFilter(t) != false)
+                                 .Where(t => t.race.race?.Animal == true)
                                  .ToList();
 
                 return _allAnimals;

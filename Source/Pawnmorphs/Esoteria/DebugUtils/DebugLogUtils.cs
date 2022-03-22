@@ -61,6 +61,15 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void GetAllDistinctPMTraderTags()
+        {
+            var tTags = DefDatabase<ThingDef>.AllDefs.SelectMany(td => td.tradeTags.MakeSafe()).Distinct();
+            Log.Message(string.Join(",", tTags)); 
+
+
+        }
+
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
         public static void LogStorageSpaceRequirementRange()
         {
             StringBuilder builder = new StringBuilder();
@@ -474,7 +483,7 @@ namespace Pawnmorph.DebugUtils
             // Build a dictionary of all defs, sorted by influence.
             Dictionary<AnimalClassBase, IEnumerable<MutationDef>> mutationDefsByInfluence = 
                 DefDatabase<AnimalClassBase>.AllDefs
-                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.classInfluence == k) })
+                .Select(k => new { k, v = DefDatabase<MutationDef>.AllDefs.Where(m => m.ClassInfluences.Contains(k)) })
                 .ToDictionary(x => x.k, x => x.v);
             foreach (KeyValuePair<AnimalClassBase, IEnumerable<MutationDef>> entry in mutationDefsByInfluence)
             {

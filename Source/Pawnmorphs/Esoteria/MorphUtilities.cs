@@ -399,11 +399,15 @@ namespace Pawnmorph
 
             foreach (MutationDef mutationDef in enumerable)
             {
-                if (mutationDef.classInfluence is MorphDef morph)
+                foreach (AnimalClassBase animalClass in mutationDef.ClassInfluences)
                 {
-                    if (!lst.Contains(morph))
+                    if (animalClass is MorphDef morph)
                     {
-                        lst.Add(morph);
+                        if (!lst.Contains(morph))
+                        {
+                            lst.Add(morph);
+                            break;
+                        }
                     }
                 }
             }

@@ -14,7 +14,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>-0.5</minSeverity>
 				<label>bestial</label>
-				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit; speaking is nearly impossible for [Pawn_objective] outside of growls and barks, but eating is easier.</description>
+				<description>A snout graces [PAWN_nameDef]'s face, like that of a canine. [PAWN_possessive] teeth are pointed to suit; speaking is nearly impossible for [PAWN_objective] outside of growls and barks, but eating is easier.</description>
 				<capMods>
 					<li>
 						<capacity>Talking</capacity>

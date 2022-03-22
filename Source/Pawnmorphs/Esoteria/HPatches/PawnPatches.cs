@@ -206,5 +206,37 @@ namespace Pawnmorph.HPatches
             }
         }
 
+
+        private const int BODYSIZE_STAT_TICK_PERIOD = 200; 
+
+        [NotNull]
+        static readonly Dictionary<Pawn, Cached<float>> _pawnBodySizeStatCache = new Dictionary<Pawn, Cached<float>>();
+
+        [HarmonyPatch(nameof(Pawn.BodySize), MethodType.Getter), HarmonyPostfix]
+        static float GetBodySizePatch(float __result, [NotNull] Pawn __instance)
+        {
+            Cached<float> bodySizeModifier = null;
+            if (!_pawnBodySizeStatCache.ContainsKey(__instance))
+            {
+                if (__instance.Spawned)
+                {
+                    bodySizeModifier = new Cached<float>(() => __instance.GetStatValueForPawn(PMStatDefOf.PM_BodySize, __instance));
+                    _pawnBodySizeStatCache[__instance] = bodySizeModifier;
+                }
+            }
+            else
+            {
+                if (__instance.IsHashIntervalTick(BODYSIZE_STAT_TICK_PERIOD))
+                {
+                    bodySizeModifier = _pawnBodySizeStatCache[__instance];
+                    bodySizeModifier.Recalculate();
+                }
+            }
+
+            if (bodySizeModifier != null)
+                return __result * bodySizeModifier.Value;
+
+            return __result;
+        }
     }
 }
