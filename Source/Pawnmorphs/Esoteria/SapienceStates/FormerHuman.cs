@@ -293,21 +293,22 @@ namespace Pawnmorph.SapienceStates
 
         private bool _countdownStarted; 
 
-        private void OnSapienceLevelChanged(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel)
+        private void OnSapienceLevelChanged(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
-            if (sapienceLevel == SapienceLevel.Feral)
+            if (currentLevel == SapienceLevel.Feral)
             {
                 _countdownStarted = true; 
             }
 
             if(PawnUtility.ShouldSendNotificationAbout(pawn))
-                SendFHLetter(pawn, sapienceLevel);
+                SendFHLetter(pawn, oldLevel, currentLevel);
         }
 
-        private static void SendFHLetter(Pawn pawn, SapienceLevel sapienceLevel)
+        private static void SendFHLetter(Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
-            // the translation keys should be $SapienceLevel_TransitionLabel and $SapienceLevel_TransitionContent
-            string translationLabel = "FormerHuman" + sapienceLevel + "_Transition";
+            // The translation keys should be $SapienceLevel_IncreaseTransitionLabel and $SapienceLevel_IncreaseTransitionContent (or Decrease).
+            string transition = oldLevel > currentLevel ? "Increase" : "Decrease"; //Enum: sapient is 0, feral is 4. So increase if the oldlevel is higher.
+            string translationLabel = "FormerHuman" + currentLevel + "_" + transition + "Transition";
             string letterLabelKey = translationLabel + "Label";
             string letterContentKey = translationLabel + "Content";
             TaggedString letterContent, letterLabel;

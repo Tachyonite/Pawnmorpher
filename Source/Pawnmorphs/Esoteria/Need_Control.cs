@@ -27,8 +27,9 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="pawn"></param>
-        /// <param name="sapienceLevel"></param>
-        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
+        /// <param name="oldLevel"></param>
+        /// <param name="currentLevel"></param>
+        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel);
 
         private static HashSet<ThingDef> _enabledRaces;
 
@@ -373,7 +374,7 @@ namespace Pawnmorph
 
             if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
 
-            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
+            SapienceLevelChanged?.Invoke(this, pawn, oldLevel, newLevel);
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Doer), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
             if (_currentLevel == SapienceLevel.PermanentlyFeral)
             {

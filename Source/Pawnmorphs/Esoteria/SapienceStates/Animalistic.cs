@@ -199,9 +199,9 @@ namespace Pawnmorph.SapienceStates
 
         private bool _waiting;
         private const float MTB = 1.5f;
-        private void SapienceLevelChanged(Need_Control sender, Pawn pawn, SapienceLevel sapiencelevel)
+        private void SapienceLevelChanged(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
-            if (sapiencelevel == SapienceLevel.Sapient)
+            if (currentLevel == SapienceLevel.Sapient)
             {
                 _waiting = true; 
             }
