@@ -253,7 +253,7 @@
 				</values>
 			</li>
 		</stagePatches>
-		<!-- <comps>
+		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
 				<mutationDependency>
 					<hediff>EtherWingTip</hediff>
@@ -267,6 +267,6 @@
 					<tale>HandsBecomeWingTips</tale>
 				</mutationDependency>
 			</li>
-		</comps> -->
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
