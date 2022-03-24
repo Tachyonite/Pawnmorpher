@@ -3,21 +3,57 @@
 		<mutationMemory>EtherFoxMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change, with nose, jaw, and chin, still growing outwards. It's starting to take shape as a sleek and graceful muzzle.</description>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. The strange shape has made it difficult to talk, but despite this [PAWN_nameDef] has a way of getting what [PAWN_pronoun] wants.</description>
+					<statOffsets>
+						<NegotiationAbility>0.05</NegotiationAbility>
+						<ArrestSuccessChance>0.05</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. Adaptation, and practice, has made for quite an elegant manner of speech.</description>
+					<statOffsets>
+						<NegotiationAbility>0.1</NegotiationAbility>
+						<ArrestSuccessChance>0.15</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>0.4</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a fox. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. With further adaptation, [PAWN_nameDef] has become a true master of persuasion.</description>
+					<statOffsets>
+						<NegotiationAbility>0.15</NegotiationAbility>
+						<ArrestSuccessChance>0.15</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>0.5</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
