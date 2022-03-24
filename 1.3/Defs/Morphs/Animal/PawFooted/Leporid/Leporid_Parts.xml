@@ -43,7 +43,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>Shifting, twisting, pulsing. The painful transformation of [PAWN_nameDef]'s poor face continues. [PAWN_possesive] front teeth have grown longer and [PAWN_possesive] jaws have elongated into a snout.</description>
+					<description>Shifting, twisting, pulsing. The painful transformation of [PAWN_nameDef]'s poor face continues. [PAWN_possesive] jaws have elongated into a snout and [PAWN_possesive] front teeth have grown longer.</description>
 					<verbOverrides>
 						<li>
 							<label>teeth</label>

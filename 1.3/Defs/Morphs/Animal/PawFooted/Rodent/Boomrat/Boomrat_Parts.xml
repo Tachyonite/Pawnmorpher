@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="RodentJawPart">
 		<classInfluence>BoomratMorph</classInfluence>
 		<defName>EtherBoomratJaw</defName>
@@ -12,19 +12,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has grown into a rat like snout. Several small chemfuel boils push out, surrounded by scarred and blistering skin. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possesive] face. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has grown into a rat like snout. Several small chemfuel boils push out, surrounded by scarred and blistering skin. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possesive] face. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has grown into a rat like snout. Several small chemfuel boils push out, surrounded by scarred and blistering skin. With further adaptation, [PAWN_nameDef] has learned to speak normally, if anything about this could be called normal.</description>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possesive] face. With further adaptation, [PAWN_nameDef] has learned to speak normally. That is, if anything about this could be called normal.</description>
 				</values>
 			</li>
 		</stagePatches>
