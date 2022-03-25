@@ -14,7 +14,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>The bones of [PAWN_nameDef]'s jaw and chin are started growing outwards, painfully pressing out into an inhuman shape.</description>
+					<description>The bones of [PAWN_nameDef]'s jaw and chin have started growing outwards, painfully pressing out into an inhuman shape.</description>
 					<painOffset>0.1</painOffset>
 					<capMods>
 						<li>
