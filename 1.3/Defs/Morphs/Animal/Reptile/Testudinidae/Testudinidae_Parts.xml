@@ -4,7 +4,7 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>teeth</label>
+						<label>beak</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Bite</li>
@@ -16,6 +16,108 @@
 				</tools>
 			</li>
 		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. It's pretty difficult to talk without any lips.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+					<statOffsets>
+						<AimingDelayFactor>-0.2</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.15</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.15</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.10</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="TestudinidaeEarPart" ParentName="ReptileEarPart" Abstract="true">
