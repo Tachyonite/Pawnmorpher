@@ -1,14 +1,11 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="PenguinJawPart" Abstract="true">
+	<!-->Pawnmorph.Hediffs.MutationDef ParentName="PenguinJawPart" Abstract="true">
 		<defName>EtherPenguinBeak</defName>
 		<classInfluence>PenguinMorph</classInfluence>
 		<label>penguin beak</label>
-		<!--mutationTale>GrewPenguinBeak</mutationTale-->
 		<graphics>
-			<!--TODO: Graphics-->
 			<Muzzle>Parts/None/None</Muzzle>
 		</graphics>
-		<!--TODO: Descriptions-->
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -41,5 +38,5 @@
 		<defName>EtherPenguinTail</defName>
 		<classInfluence>PenguinMorph</classInfluence>
 		<label>penguin tailfeathers</label>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef-->
 </Defs>
