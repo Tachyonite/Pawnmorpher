@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 <Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
 		<classInfluence>DeerMorph</classInfluence>
 		<defName>EtherDeerSnout</defName>
@@ -11,19 +11,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has become deerlike snout with a wide nose that picks up the scents of predators. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>

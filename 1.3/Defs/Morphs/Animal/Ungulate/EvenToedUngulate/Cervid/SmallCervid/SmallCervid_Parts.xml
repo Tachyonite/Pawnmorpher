@@ -1,5 +1,57 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidJawPart" ParentName="CervidJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<statOffsets>
+						<Beauty>1</Beauty>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<statOffsets>
+						<Beauty>1</Beauty>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<statOffsets>
+						<Beauty>1.2</Beauty>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidEarPart" ParentName="CervidEarPart" Abstract="true">
