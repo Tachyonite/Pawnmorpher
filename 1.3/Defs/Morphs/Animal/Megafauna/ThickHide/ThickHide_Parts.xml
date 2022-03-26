@@ -1,33 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideJawPart" ParentName="MegafaunaJawPart" Abstract="true">
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<statOffsets>
-						<BodySize>0.50</BodySize>
-					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.05</offset>
-						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.05</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideEarPart" ParentName="MegafaunaEarPart" Abstract="true">

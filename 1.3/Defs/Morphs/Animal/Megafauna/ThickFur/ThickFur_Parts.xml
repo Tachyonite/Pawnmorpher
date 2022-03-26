@@ -5,7 +5,7 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<statOffsets>
-						<BodySize>+0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -23,7 +23,7 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<statOffsets>
-						<BodySize>+0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -41,7 +41,7 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<statOffsets>
-						<BodySize>+0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>

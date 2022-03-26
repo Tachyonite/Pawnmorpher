@@ -48,7 +48,7 @@
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. The strange shape makes speaking very difficult.</description>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -73,7 +73,7 @@
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -92,7 +92,7 @@
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>

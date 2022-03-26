@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SuidJawPart">
 		<classInfluence>BoarMorph</classInfluence>
 		<defName>EtherBoarSnout</defName>
-		<label>tusked boar snout</label>
+		<label>boar snout</label>
 		<graphics>
 			<Muzzle>Parts/Boar/Boar_Jaw</Muzzle>
 		</graphics>

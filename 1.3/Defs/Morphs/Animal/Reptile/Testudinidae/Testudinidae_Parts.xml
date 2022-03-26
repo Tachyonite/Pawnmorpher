@@ -78,7 +78,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. Adaptation has made speaking less frustrating.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>

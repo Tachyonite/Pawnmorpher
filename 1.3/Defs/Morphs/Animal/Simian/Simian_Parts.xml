@@ -1,21 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="SimianJawPart" ParentName="AnimalJawPart" Abstract="true">
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>4</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					</li>
-				</tools>
-			</li>
-		</comps>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>pressing</stageKey>
@@ -46,12 +30,6 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>

@@ -115,7 +115,7 @@
 						</li>
 					</verbOverrides>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -138,7 +138,7 @@
 				<values>
 					<description>A oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
@@ -163,7 +163,7 @@
 				<values>
 					<description>A oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
-						<BodySize>0.50</BodySize>
+						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
