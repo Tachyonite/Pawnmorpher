@@ -53,9 +53,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AnserigalliformEarPart" ParentName="AvianEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="AnserigalliformTailPart" ParentName="AvianTailPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">

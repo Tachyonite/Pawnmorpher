@@ -96,9 +96,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="AvianEarPart" ParentName="PM_Earhole" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">
 		<description>A plume of feathers sprouts out of the back of [PAWN_nameDef].</description>
 	</Pawnmorph.Hediffs.MutationDef>

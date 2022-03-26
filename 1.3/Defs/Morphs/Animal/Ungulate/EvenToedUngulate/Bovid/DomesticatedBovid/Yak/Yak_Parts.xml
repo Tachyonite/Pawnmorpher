@@ -45,5 +45,35 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
 	
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidHornPart">
+		<defName>EtherYakHorns</defName>
+		<classInfluence>YakMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of yak horns.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<Horns>Parts/Yak/Yak_Horns_B</Horns>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>curved horns</label>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
+					<graphics>
+						<Horns>Parts/Yak/Yak_Horns_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two slender horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

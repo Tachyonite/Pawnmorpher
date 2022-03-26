@@ -21,9 +21,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="ReptileEarPart" ParentName="PM_Earhole" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="ReptileTailPart" ParentName="AnimalTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 

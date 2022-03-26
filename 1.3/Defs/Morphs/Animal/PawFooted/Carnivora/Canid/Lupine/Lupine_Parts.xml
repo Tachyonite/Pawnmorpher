@@ -71,9 +71,32 @@
 		<mutationMemory>EtherWolfEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.0375</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A pointed and furred ear crown [PAWN_nameDef]'s head, flicking left and right, listening for the sounds of preys.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.075</HuntingStealth>
+					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

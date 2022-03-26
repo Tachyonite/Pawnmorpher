@@ -38,13 +38,16 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
-		<classInfluence>ThickHide</classInfluence>
 		<defName>EtherThickHideLeg</defName>
 		<label>thick leg</label>
-		<description>An elephantine leg.</description>
+		<description>A very strong leg.</description>
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<classInfluences>
+			<li>ThickHide</li>
+			<li>BigCervid</li>
+		</classInfluences>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>

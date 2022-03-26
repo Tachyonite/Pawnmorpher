@@ -183,6 +183,27 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalHornPart" ParentName="PawnmorphHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>protrusions</label>
+					<description>Protrusions of bone are growing from [PAWN_nameDef]'s scalp. They're short and blunt for the moment, but seem to be growing longer all the time.</description>
+					<graphics>
+						<Horns>Parts/None/None</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<graphics>
+						<Horns>Parts/None/None</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

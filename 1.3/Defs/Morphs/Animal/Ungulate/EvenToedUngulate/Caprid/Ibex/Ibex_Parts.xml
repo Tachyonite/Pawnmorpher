@@ -55,15 +55,29 @@
 		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
 			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horn_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
 					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horn_B</Horns>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
 					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horn_C</Horns>
+					</graphics>
 				</values>
 			</li>
 		</stagePatches>

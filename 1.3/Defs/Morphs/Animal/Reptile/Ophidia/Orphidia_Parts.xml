@@ -160,9 +160,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaEarPart" ParentName="ReptileEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaTailPart" ParentName="ReptileTailPart" Abstract="true">
 		<parts>
 			<li>TailLeg</li>

@@ -119,10 +119,7 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef Name ="CrocodiliaEarPart" ParentName="ReptileEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
+	
 	<Pawnmorph.Hediffs.MutationDef Name ="CrocodiliaTailPart" ParentName="ReptileTailPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">

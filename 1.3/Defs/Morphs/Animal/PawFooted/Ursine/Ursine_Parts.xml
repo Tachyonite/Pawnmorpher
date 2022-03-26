@@ -83,9 +83,26 @@
 		<mutationMemory>EtherBearEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A rounded, fuzzy ear, sits atop [PAWN_nameDef]'s head. It looks rather cute.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>

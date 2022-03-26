@@ -8,12 +8,6 @@
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaEarPart">
-		<classInfluence>IguanaMorph</classInfluence>
-		<defName>EtherIguanaEar</defName>
-		<label>iguana earhole</label>
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaTailPart">
 		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaTail</defName>

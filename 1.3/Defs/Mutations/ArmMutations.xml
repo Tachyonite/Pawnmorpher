@@ -43,22 +43,25 @@
 		<defName>EtherThickArm</defName>
 		<label>thick arm</label>
 		<description>a very thick arm.</description>
-		<classInfluence>ThickHide</classInfluence>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
+		<classInfluences>
+			<li>ThickHide</li>
+			<li>Ape</li>
+		</classInfluences>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This arm's muscles are growing thicker and stronger.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This arm is a little clumsier, and a lot bigger.</description>
 					<statOffsets>
-						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
 						<PM_BodySize>0.05</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -66,9 +69,9 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s arm has grown a lot larger, making most tasks more difficult.</description>
 					<statOffsets>
-						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -76,9 +79,10 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s arm has grown a lot larger, and most tasks are a little more difficult - though the impact of this has been lessened with adaptation.</description>
 					<statOffsets>
-						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+						<MeleeHitChance>0.075</MeleeHitChance>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -249,7 +253,7 @@
 				</values>
 			</li>
 		</stagePatches>
-		<!-- <comps>
+		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
 				<mutationDependency>
 					<hediff>EtherWingTip</hediff>
@@ -263,6 +267,6 @@
 					<tale>HandsBecomeWingTips</tale>
 				</mutationDependency>
 			</li>
-		</comps> -->
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

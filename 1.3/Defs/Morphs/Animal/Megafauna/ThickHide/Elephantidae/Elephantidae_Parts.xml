@@ -147,7 +147,25 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideEarPart" ParentName="MegafaunaEarPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantideaEarPart" ParentName="ThickHideEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>+8.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>+8.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideTailPart" ParentName="MegafaunaTailPart" Abstract="true">

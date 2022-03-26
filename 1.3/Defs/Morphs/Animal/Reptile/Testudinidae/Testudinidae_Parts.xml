@@ -120,9 +120,6 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="TestudinidaeEarPart" ParentName="ReptileEarPart" Abstract="true">
-	</Pawnmorph.Hediffs.MutationDef>
-
 	<Pawnmorph.Hediffs.MutationDef Name ="TestudinidaeTailPart" ParentName="ReptileTailPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">

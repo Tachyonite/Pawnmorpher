@@ -68,36 +68,33 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-		<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>ElkMorph</classInfluence>
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
 		<defName>EtherElkAntlers</defName>
 		<label>elk antlers</label>
-		<mutationMemory>EtherElkAntlers</mutationMemory>
+		<description>Wide, imposing antlers.</description>
+		<classInfluence>ElkMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
-		<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
-		<!--Stages Go here
+		<mutationMemory>EtherElkAntlers</mutationMemory>
 		<graphics>
-			<Tail>Parts/Elk/Elk_Horns_A</Tail>
+			<Horns>Parts/Elk/Elk_Horns_B</Horns>
 		</graphics>
-		<graphics>
-			<Tail>Parts/Elk/Elk_Horns_B</Tail>
-		</graphics>
-		-->
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>20.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<graphics>
+						<Horns>Parts/Elk/Elk_Horns_A</Horns>
+					</graphics>
+
+				</values>
 			</li>
-		</comps>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

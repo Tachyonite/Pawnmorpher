@@ -81,6 +81,24 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CapridEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.075</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.15</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CapridTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">

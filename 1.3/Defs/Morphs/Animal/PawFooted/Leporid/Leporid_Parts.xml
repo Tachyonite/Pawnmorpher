@@ -117,9 +117,26 @@
 		<mutationMemory>EtherHareEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A long, furry ear sits atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses. It is suprisingly flexible.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
