@@ -7,11 +7,82 @@
 		<graphics>
 			<Muzzle>Parts/Alpaca/Alpaca_Jaw</Muzzle>
 		</graphics>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>spit</label>
+						<capacities>
+							<li>SpitInEyes</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTFPartial</hediff>
+						<cooldownTime>0.8</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>gob</label>
+						<capacities>
+							<li>SpitInMouth</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTF</hediff>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
 		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+						</li>
+						<li>
+							<label>gob</label>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+						</li>
+						<li>
+							<label>gob</label>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+						</li>
+						<li>
+							<label>gob</label>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+						</li>
+						<li>
+							<label>gob</label>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -27,30 +98,6 @@
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>spit</label>
-						<capacities>
-							<li>SpitInEyes</li>
-						</capacities>
-						<hediff>PawnmorphAlpacaTFPartial</hediff>
-						<cooldownTime>0.8</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-					<li>
-						<label>spit</label>
-						<capacities>
-							<li>SpitInMouth</li>
-						</capacities>
-						<hediff>PawnmorphAlpacaTF</hediff>
-						<cooldownTime>2</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
