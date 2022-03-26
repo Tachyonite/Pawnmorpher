@@ -27,54 +27,6 @@
 					</capMods>
 				</values>
 			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<statOffsets>
-						<BodySize>0.50</BodySize>
-						<MeleeHitChance>0.05</MeleeHitChance>
-						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
-					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.05</offset>
-						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.15</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<statOffsets>
-						<BodySize>0.50</BodySize>
-						<MeleeHitChance>0.05</MeleeHitChance>
-						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
-					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.15</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
