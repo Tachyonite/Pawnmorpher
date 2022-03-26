@@ -53,7 +53,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possesive] neck. The strange shape makes speaking very difficult.</description>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. The strange shape makes speaking very difficult.</description>
 					<verbOverrides>
 						<li>
 							<label>bite</label>
@@ -78,7 +78,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possesive] neck. Adapting to it has made speaking less frustrating.</description>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>
@@ -101,7 +101,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possesive] neck. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.10</AimingDelayFactor>
 					</statOffsets>

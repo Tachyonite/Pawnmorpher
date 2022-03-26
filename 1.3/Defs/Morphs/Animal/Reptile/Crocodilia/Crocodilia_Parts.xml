@@ -53,7 +53,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possesive] mouth is closed. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possessive] mouth is closed. The strange shape makes speaking very difficult.</description>
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
@@ -78,7 +78,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possesive] mouth is closed. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possessive] mouth is closed. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>
@@ -101,7 +101,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possesive] mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s jaws have grown into an extremely long, flat, and scaly snout. An array of sharp jagged teeth jut out, even when [PAWN_possessive] mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.10</AimingDelayFactor>
 					</statOffsets>

@@ -11,7 +11,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. The strange shape has made it difficult to talk, but despite this [PAWN_nameDef] has a way of getting what [PAWN_pronoun] wants.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. The strange shape has made it difficult to talk, but despite this [PAWN_nameDef] has a way of getting what [PAWN_pronoun] wants.</description>
 					<statOffsets>
 						<NegotiationAbility>0.05</NegotiationAbility>
 						<ArrestSuccessChance>0.05</ArrestSuccessChance>
@@ -27,7 +27,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. Adaptation, and practice, has made for quite an elegant manner of speech.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. Adaptation, and practice, has made for quite an elegant manner of speech.</description>
 					<statOffsets>
 						<NegotiationAbility>0.1</NegotiationAbility>
 						<ArrestSuccessChance>0.15</ArrestSuccessChance>
@@ -43,7 +43,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A slender muzzle graces [PAWN_nameDef]'s face, complete with a cunning smile and a silver tongue. With further adaptation, [PAWN_nameDef] has become a true master of persuasion.</description>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. With further adaptation, [PAWN_nameDef] has become a true master of persuasion.</description>
 					<statOffsets>
 						<NegotiationAbility>0.15</NegotiationAbility>
 						<ArrestSuccessChance>0.15</ArrestSuccessChance>

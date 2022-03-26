@@ -20,7 +20,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>[PAWN_nameDef] jaws are shifting, sticking out further than normal. Other more sublte changes have also begun on [PAWN_possesive] face, but it's hard to say what they are.</description>
+					<description>[PAWN_nameDef] jaws are shifting, sticking out further than normal. Other more sublte changes have also begun on [PAWN_possessive] face, but it's hard to say what they are.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
 					</graphics>
@@ -45,7 +45,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possesive] DNA.</description>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
@@ -67,7 +67,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possesive] DNA.</description>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
 					<capMods>
 						<li>
 							<capacity>Eating</capacity>
@@ -79,7 +79,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possesive] DNA.</description>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
 					<capMods>
 						<li>
 							<capacity>Eating</capacity>

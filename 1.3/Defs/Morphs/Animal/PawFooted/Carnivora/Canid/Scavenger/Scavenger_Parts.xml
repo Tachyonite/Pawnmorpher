@@ -5,7 +5,7 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<painOffset>0.15</painOffset>
-					<description>[PAWN_nameDef]'s new snout doesn't seem to have grown big enough to fit all of [PAWN_possesive] new teeth. One thing is for sure, it makes for a meanacing smile.</description>
+					<description>[PAWN_nameDef]'s new snout doesn't seem to have grown big enough to fit all of [PAWN_possessive] new teeth. One thing is for sure, it makes for a meanacing smile.</description>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>

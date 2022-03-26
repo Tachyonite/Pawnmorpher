@@ -79,7 +79,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possesive] face. And a thick bone has begun to force its way out from the tip of [PAWN_possesive] new snout.</description>
+					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possessive] face. And a thick bone has begun to force its way out from the tip of [PAWN_possessive] new snout.</description>
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
@@ -127,10 +127,6 @@
 							<offset>-0.2</offset>
 						</li>
 						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.05</offset>
-						</li>
-						<li>
 							<capacity>Eating</capacity>
 							<offset>0.1</offset>
 						</li>
@@ -156,10 +152,6 @@
 							<offset>-0.2</offset>
 						</li>
 						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.15</offset>
-						</li>
-						<li>
 							<capacity>Eating</capacity>
 							<offset>0.2</offset>
 						</li>
@@ -176,10 +168,6 @@
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
 					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.15</offset>
-						</li>
 						<li>
 							<capacity>Eating</capacity>
 							<offset>0.3</offset>

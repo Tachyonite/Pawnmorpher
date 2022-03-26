@@ -5,7 +5,7 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<painOffset>0.01</painOffset>
-					<description>[PAWN_nameDef]'s nose has been feeling stuffy lately and [PAWN_pronoun] has been seen vigourously scratching [PAWN_possesive] face. It's probably nothing to worry about. Right?</description>
+					<description>[PAWN_nameDef]'s nose has been feeling stuffy lately and [PAWN_pronoun] has been seen vigourously scratching [PAWN_possessive] face. It's probably nothing to worry about. Right?</description>
 					<graphics>
 						<Muzzle>Parts/None/None</Muzzle>
 					</graphics>

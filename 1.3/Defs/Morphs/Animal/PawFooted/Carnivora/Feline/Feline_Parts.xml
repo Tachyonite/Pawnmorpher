@@ -4,7 +4,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly feline apperance. A dense pack of whiskers has sprouted out from the top of [PAWN_possesive] fluffy lips.</description>
+					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly feline apperance. A dense pack of whiskers has sprouted out from the top of [PAWN_possessive] fluffy lips.</description>
 				</values>
 			</li>
 		</stagePatches>

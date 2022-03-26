@@ -12,7 +12,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s jaw and chin continue to press outwards. Sections of [PAWN_possesive] skin are peeling off to reveal freshly formed scales.</description>
+					<description>[PAWN_nameDef]'s jaw and chin continue to press outwards. Sections of [PAWN_possessive] skin are peeling off to reveal freshly formed scales.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
 					</graphics>
