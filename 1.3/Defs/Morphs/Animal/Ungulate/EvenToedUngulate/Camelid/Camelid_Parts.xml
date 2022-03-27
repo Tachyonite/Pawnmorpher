@@ -1,8 +1,26 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidJawPart" ParentName="EvenToedUngulateJawPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.075</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.15</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">

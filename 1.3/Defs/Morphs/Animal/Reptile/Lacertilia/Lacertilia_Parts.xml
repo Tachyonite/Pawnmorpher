@@ -4,7 +4,7 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>teeth</label>
+						<label>bite</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Bite</li>
@@ -16,9 +16,108 @@
 				</tools>
 			</li>
 		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaEarPart" ParentName="ReptileEarPart" Abstract="true">
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>bite</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>bite</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>bite</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>bite</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+					<statOffsets>
+						<AimingDelayFactor>-0.2</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.15</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.15</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.10</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaTailPart" ParentName="ReptileTailPart" Abstract="true">

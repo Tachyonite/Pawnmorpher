@@ -1,5 +1,5 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidJawPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouJaw</defName>
 		<label>caribou snout</label>
@@ -28,7 +28,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidEarPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouEar</defName>
 		<label>caribou ear</label>
@@ -54,7 +54,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidTailPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouTail</defName>
 		<label>ibex tail</label>
@@ -71,56 +71,34 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
 		<defName>EtherCaribouAntlers</defName>
-		<classInfluence>CaribouMorph</classInfluence>
 		<label>caribou antlers</label>
-		<description>[PAWN_nameDef] has large caribou antlers</description>
-		<parts>
-			<li>Skull</li>
-		</parts>
+		<description>large caribou antlers.</description>
+		<classInfluence>CaribouMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>20.0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.05</severityPerDay>
-			</li>
-		</comps>
-		<initialSeverity>0.1</initialSeverity>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>small nubs</label>
-				<statOffsets>
-					<SocialImpact>+0.02</SocialImpact>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.3</minSeverity>
-				<label>short antlers</label>
-				<statOffsets>
-					<SocialImpact>+0.07</SocialImpact>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>0.7</minSeverity>
-				<statOffsets>
-					<SocialImpact>+0.15</SocialImpact>
-				</statOffsets>
-			</li>
-		</stages>
 		<mutationMemory>EtherAntlers</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<!-- 
+					<graphics>
+						<Horns></Horns>
+					</graphics> 
+					-->
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has large caribou antlers.</description>
+					<graphics>
+						<Horns>Parts/Caribou/Caribou_Antlers</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

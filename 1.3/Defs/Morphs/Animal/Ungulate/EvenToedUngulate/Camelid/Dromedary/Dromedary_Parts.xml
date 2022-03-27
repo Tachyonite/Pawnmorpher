@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidJawPart">
 		<classInfluence>DromedaryMorph</classInfluence>
 		<defName>EtherDromedarySnout</defName>
@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/Dromedary/Dromedary_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -42,6 +22,65 @@
 				</tools>
 			</li>
 		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">

@@ -2,30 +2,10 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="SuidJawPart">
 		<classInfluence>BoarMorph</classInfluence>
 		<defName>EtherBoarSnout</defName>
-		<label>tusked boar snout</label>
+		<label>boar snout</label>
 		<graphics>
 			<Muzzle>Parts/Boar/Boar_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A flat nosed snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A flat nosed snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A flat nosed snout graces [PAWN_nameDef]'s face, along with two pointy tusks perfect for rooting up vegetables. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="SuidEarPart">

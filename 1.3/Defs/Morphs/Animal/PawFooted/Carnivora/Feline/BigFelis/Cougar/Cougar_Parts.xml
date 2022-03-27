@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cougar shape. They may hiss and meow more than talk. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cougar shape. They may hiss and meow more than talk. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pressed out into a cougar shape. They may hiss and meow more than talk. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="BigFelisEarPart">

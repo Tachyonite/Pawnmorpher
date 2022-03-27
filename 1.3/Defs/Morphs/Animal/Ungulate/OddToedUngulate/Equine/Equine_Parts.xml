@@ -16,9 +16,118 @@
 				</tools>
 			</li>
 		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>3</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.30</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="EquineEarPart" ParentName="OddToedUngulateEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="EquineTailPart" ParentName="OddToedUngulateTailPart" Abstract="true">

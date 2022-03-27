@@ -883,12 +883,10 @@
 				<values>
 					<labelOverride>thick nails</labelOverride>
 					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
+					
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -896,13 +894,8 @@
 				<values>
 					<labelOverride>handstump</labelOverride>
 					<description>Some of the fingers on this hand have disappeared entirely, while the rest are growing fatter and more inflexible. [PAWN_nameDef]'s hand isn't going to be of much use soon.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
 					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>0.05</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -911,14 +904,9 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>Thick, leathery elephant stumps have replaced [PAWN_nameDef]' hand. [PAWN_pronoun] will find any any kind of fine manipulation exceedingly challenging until he gets used to them.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.2</offset>
-						</li>
-					</capMods>
 					<statOffsets>
-						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -927,19 +915,9 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef] has adapted to having stumps for hands, and will have slightly less trouble with working with them.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.025</offset>
-						</li>
-					</capMods>
 					<statOffsets>
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
-						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -1077,25 +1055,31 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef] is flexing their hands repetitively.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s hands are growing short thick hairs over the top, and their fingers seem a little longer.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The topside of [PAWN_nameDef]'s hands are covered in short, thick hairs, and the fingers are elongated, like a monkey's.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s fingers have elongated into the semblence of a monkey's hand.</description>
+					<description>[PAWN_nameDef]'s fingers have elongated into something resembling a monkey's hand. They're a little more suited to peeling bananas.</description>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -1150,66 +1134,5 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
-		<defName>EtherDelicatePaw</defName>
-		<label>delicate paw</label>
-		<description>a small delicate paw.</description>
-		<classInfluence>Quilled</classInfluence>
-		<!-- <mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory> -->
-		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<description>TODO</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.025</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>TODO</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.05</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<MedicalTendQuality>0.025</MedicalTendQuality>
-					</statOffsets>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>TODO</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>0.05</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<MedicalTendQuality>0.05</MedicalTendQuality>
-						<MedicalTendSpeed>0.1</MedicalTendSpeed>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
 
 </Defs>

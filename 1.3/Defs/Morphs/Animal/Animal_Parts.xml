@@ -1,13 +1,11 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphJawPart" Abstract="true">
-		<graphics>
-			<Muzzle>Parts/None/None</Muzzle>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face is itching a bit, but nothing strange has happened yet.</description>
+					<painOffset>0.01</painOffset>
+					<description>[PAWN_nameDef]'s nose has been feeling stuffy lately and [PAWN_pronoun] has been seen vigourously scratching [PAWN_possessive] face. It's probably nothing to worry about. Right?</description>
 					<graphics>
 						<Muzzle>Parts/None/None</Muzzle>
 					</graphics>
@@ -16,23 +14,8 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face seems to be swelling, the nose and jaw pressing out and looking decidedly more like an animal's.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.05</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
-					</capMods>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>growing</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face continues to change, looking more and more like an animal's.</description>
+					<description>The bones of [PAWN_nameDef]'s jaw and chin have started growing outwards, painfully pressing out into an inhuman shape.</description>
+					<painOffset>0.1</painOffset>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -40,7 +23,24 @@
 						</li>
 						<li>
 							<capacity>Eating</capacity>
-							<offset>0.3</offset>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change, with nose, jaw, chin, and all looking more and more like an animal's snout.</description>
+					<painOffset>0.2</painOffset>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>-0.1</offset>
 						</li>
 					</capMods>
 				</values>
@@ -48,19 +48,41 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier.</description>
+					<description>An animalistic snout graces [PAWN_nameDef]'s face. [PAWN_pronoun] struggles to speak through these features and often resorts to whining and grunting.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of an animal. Speaking is difficult, but eating is easier. Adaptation has removed some of the difficulty with talking</description>
+					<description>An animalistic snout graces [PAWN_nameDef]'s face. Adaptation has removed some of the difficulty [PAWN_pronoun] had with talking.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An imposing snout graces [PAWN_nameDef]'s face, like that of an animal.</description>
+					<description>An imposing animalistic snout graces [PAWN_nameDef]'s face, perfectly adapted for human speech. </description>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
@@ -158,6 +180,30 @@
 				</values>
 			</li>
 		</stagePatches>	
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AnimalHornPart" ParentName="PawnmorphHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>protrusions</label>
+					<description>Protrusions of bone are growing from [PAWN_nameDef]'s scalp. They're short and blunt for the moment, but seem to be growing longer all the time.</description>
+					<graphics>
+						<Horns>Parts/None/None</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<graphics>
+						<Horns>Parts/None/None</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/Goat/Goat_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a goat. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a goat. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a goat. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
@@ -65,4 +45,40 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridHornPart">
+		<defName>EtherGoatHorns</defName>
+		<classInfluence>GoatMorph</classInfluence>
+		<label>goat horns</label>
+		<description>The curved horns of a goat. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_a</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_b</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_c</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

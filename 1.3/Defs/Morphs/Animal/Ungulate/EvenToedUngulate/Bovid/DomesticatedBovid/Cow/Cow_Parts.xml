@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidJawPart">
 		<classInfluence>CowMorph</classInfluence>
 		<defName>EtherCowSnout</defName>
@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/cowface/cowface</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A cowlike snout graces [PAWN_nameDef]'s face. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A cowlike snout graces [PAWN_nameDef]'s face. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A cowlike snout graces [PAWN_nameDef]'s face. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidEarPart">
@@ -60,6 +40,31 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A cowlike tail. It swats at flies and hangs low at their legs.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+		<defName>EtherHorns</defName>
+		<classInfluence>CowMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of cow horns.</description>
+		<graphics>
+			<Horns>Parts/cowface/cowhorns</Horns>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>curved horns</label>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly horns decorate [PAWN_nameDef]'s head. It'd be unfortunate to get too close when [PAWN_nameDef] is in a bad mood.</description>
 				</values>
 			</li>
 		</stagePatches>

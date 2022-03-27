@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeysJawPart">
 		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyJaw</defName>
@@ -64,29 +64,5 @@
 				</values>
 			</li>
 		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>MonkeyMorph</classInfluence>
-		<defName>EtherMonkeyFoot</defName>
-		<label>dextrous toes</label>
-		<description>[PAWN_nameDef]'s feet have reshaped themselves into what look to be hands. This make finding shoes somewhat difficult.</description>
-		<parts>
-			<li>Foot</li>
-		</parts>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.05</offset>
-					</li>
-					<li>
-						<capacity>Manipulation</capacity>
-						<offset>0.05</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

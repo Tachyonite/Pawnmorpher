@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidJawPart">
 		<classInfluence>BisonMorph</classInfluence>
 		<defName>EtherBisonSnout</defName>
@@ -7,26 +7,6 @@
 			<Muzzle>Parts/Bison/Bison_jaw</Muzzle>
 			<BirdJawOrnament>Parts/Bison/Bison_Foreheadhair</BirdJawOrnament>
 		</graphics>
-				<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A bisonlike snout graces [PAWN_nameDef]'s face. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A bisonlike snout graces [PAWN_nameDef]'s face. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A bisonlike snout graces [PAWN_nameDef]'s face. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidEarPart">
@@ -126,6 +106,36 @@
 		<parts>
 			<li>Torso</li>
 		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidHornPart">
+		<defName>EtherBisonHorns</defName>
+		<classInfluence>BisonMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of bison horns.</description>
+		<graphics>
+			<Horns>Parts/Bison/Bison_Horn_B</Horns>
+		</graphics>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>TODO</description>
+					<graphics>
+						<Horns>Parts/Bison/Bison_Horn_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two horns grow from the sides of [PAWN_nameDef]'s head.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

@@ -3,6 +3,56 @@
 		<categories>
 			<li>Powerful</li>
 		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<painOffset>0.1</painOffset>
+					<description>[PAWN_nameDef] has been rubbing his jaw and grunting in discomfort. Maybe [PAWN_pronoun] has a tooth ache?</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<statOffsets>
+						<PM_BodySize>0.10</PM_BodySize>
+					</statOffsets>
+					<description>[PAWN_nameDef]'s jaw, face, head, it's all growing! Flesh and bone twisting and pushing into something... big.</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+					<painOffset>0.2</painOffset>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<PM_BodySize>0.30</PM_BodySize>
+					</statOffsets>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+					<painOffset>0.25</painOffset>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaEarPart" ParentName="AnimalEarPart" Abstract="true">
@@ -12,6 +62,12 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaHornPart" ParentName="AnimalHornPart" Abstract="true">
 		<categories>
 			<li>Powerful</li>
 		</categories>

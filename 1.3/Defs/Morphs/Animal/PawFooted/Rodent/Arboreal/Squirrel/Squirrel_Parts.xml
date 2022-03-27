@@ -6,26 +6,7 @@
 		<graphics>
 			<Muzzle>Parts/Squirrel/Squirrel_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a squirrel, complete with oversized front teeth. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a squirrel. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a squirrel. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
+
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">

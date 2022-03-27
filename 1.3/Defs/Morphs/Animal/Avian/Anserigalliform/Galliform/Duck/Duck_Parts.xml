@@ -12,37 +12,39 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>2</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. Adapting to it has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>beak</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>5.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformTailPart">
@@ -52,12 +54,6 @@
 		<graphics>
 			<Tail>Parts/Duck/Duck_Tail</Tail>
 		</graphics>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEarPart">
-		<defName>EtherDuckEar</defName>
-		<classInfluence>DuckMorph</classInfluence>
-		<label>duck earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEggLayerPart">

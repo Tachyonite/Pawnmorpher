@@ -67,7 +67,12 @@
 		<description>TODO</description>
 		<defName>EtherToughTorso</defName>
 		<classInfluences>
-			<li>WargMorph</li> <!--To complete-->
+			<li>Scavenger</li>
+			<li>Pantherine</li>
+			<li>Ursine</li>
+			<li>Equine</li>
+			<li>WildBovid</li>
+			<li>BigCervid</li>
 		</classInfluences>
 		<label>tough torso</label>
 		<stagePatches>
@@ -112,6 +117,7 @@
 		<classInfluences>
 			<li>Leporid</li>
 			<li>Rodent</li>
+			<li>Monkeys</li>
 		</classInfluences>
 		<stagePatches>
 			<li function="modify">
@@ -215,44 +221,6 @@
 				<values>
 					<description>TODO</description>
 					<globalHealthMultiplier>0.6</globalHealthMultiplier>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<!-- Quills (TODO) -->
-
-	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>TODO</description>
-		<defName>EtherQuills</defName>
-		<classInfluence>Quilled</classInfluence>
-		<label>quills</label>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>growing</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>TODO</description>
-					<capMods>
-						<li>
-							<capacity>Moving</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<MedicalSurgerySuccessChance>0.1</MedicalSurgerySuccessChance>
-					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

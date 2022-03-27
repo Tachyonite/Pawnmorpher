@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidJawPart">
 		<classInfluence>MuffaloMorph</classInfluence>
 		<defName>EtherMuffaloSnout</defName>
@@ -7,26 +7,6 @@
 			<Muzzle>Parts/Muffalo/Muffalo_Jaw</Muzzle>
 			<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_B</BirdJawOrnament>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A muffalolike snout graces [PAWN_nameDef]'s face. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidEarPart">
@@ -35,9 +15,9 @@
 		<label>muffalo ear</label>
 		<graphics>
 			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Muffalo/Muffalo_Ear_Left_Behind</LeftEarBehind>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Muffalo/Muffalo_Ear_Right_Behind</RightEarBehindHead>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

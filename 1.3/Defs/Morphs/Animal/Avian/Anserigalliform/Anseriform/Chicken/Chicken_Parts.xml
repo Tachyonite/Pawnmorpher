@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. The strange shape makes speaking very difficult.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. Adapting to it has made speaking less frustrating.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. They may bok and squawk about birdlike things. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -35,12 +35,6 @@
 		<graphics>
 			<Tail>Parts/chickenface/chickentail</Tail>
 		</graphics>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEarPart">
-		<defName>EtherChickenEar</defName>
-		<classInfluence>ChookMorph</classInfluence>
-		<label>chicken earhole</label>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEggLayerPart">

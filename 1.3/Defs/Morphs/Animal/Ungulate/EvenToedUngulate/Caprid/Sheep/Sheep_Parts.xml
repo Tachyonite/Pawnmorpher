@@ -10,38 +10,22 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off. The strange shape makes speaking very difficult.</description>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off. Adapting to it has made speaking less frustrating.</description>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, like that of a sheep. [PAWN_possessive] teeth are squared off. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>8.0</power>
-						<cooldownTime>2</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
@@ -147,5 +131,46 @@
 				</stages>
 			</li>
 		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridHornPart">
+		<defName>EtherSheepHorns</defName>
+		<classInfluence>SheepMorph</classInfluence>
+		<label>ram horns</label>
+		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<labelOverride>small horns</labelOverride>
+					<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<graphics>
+						<Horns>Parts/sheepface/sheephorns_a</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<labelOverride>curled horns</labelOverride>
+					<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
+					<graphics>
+						<Horns>Parts/sheepface/sheephorns_b</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+					<graphics>
+						<Horns>Parts/sheepface/sheephorns_c</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

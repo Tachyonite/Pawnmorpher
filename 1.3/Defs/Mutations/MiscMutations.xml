@@ -2,9 +2,14 @@
 
 	<!-- Ear hole -->
 	
-    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole" Abstract="true">
+    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole">
+		<defName>EtherEarHole</defName>
 		<label>ear hole</label>
 		<description>TODO</description>
+		<classInfluences>
+			<li>Avian</li>
+			<li>Reptile</li>
+		</classInfluences>
 		<graphics>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/None/None</RightEar>
@@ -158,88 +163,6 @@
 				</capMods>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<!-- Nose (abstract) -->
-
-	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphGenericNosePart" ParentName ="PawnmorphMiscPart" Abstract="true">
-		<!-- <mutationMemory>TODO</mutationMemory> -->
-		<description>A morph nose.</description>
-		<categories>
-			<li>Major</li>
-		</categories>
-		<parts>
-			<li>Nose</li>
-		</parts>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>growing</stageKey>
-				<values>
-					<description>TODO</description>
-					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<!-- Canine Nose -->
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericNosePart">
-		<!-- <mutationMemory>TODO</mutationMemory> -->
-		<defName>EtherCanineNose</defName>
-		<classInfluence>Canid</classInfluence>
-		<label>canine nose</label>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>TODO</description>
-					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
-					<capMods>
-						<li>
-							<capacity>Sight</capacity>
-							<offset>+0.05</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<!-- Lupine Nose -->
-
-	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericNosePart">
-		<!-- <mutationMemory>TODO</mutationMemory> -->
-		<defName>EtherLupineNose</defName>
-		<classInfluence>Wolf</classInfluence>
-		<label>lupine nose</label>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>TODO</description>
-					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
-					<capMods>
-						<li>
-							<capacity>Sight</capacity>
-							<offset>+0.05</offset>
-						</li>
-					</capMods>
-					<statOffsets>
-						<HuntingStealth>+0.1</HuntingStealth>
-					</statOffsets>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>
