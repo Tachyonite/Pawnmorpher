@@ -1,5 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurJawPart">
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
@@ -44,7 +44,27 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurEarPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegaslothEar</defName>
+		<label>megasloth ear</label>
+		<graphics>
+			<LeftEar>Parts/None/None</LeftEar>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/None/None</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurTailPart">
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
