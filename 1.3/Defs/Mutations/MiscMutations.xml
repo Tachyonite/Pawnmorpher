@@ -3,6 +3,7 @@
 	<!-- Ear hole -->
 	
     <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole">
+		<defName>EtherEarHoles</defName>
 		<label>ear hole</label>
 		<description>TODO</description>
 		<classInfluences>
