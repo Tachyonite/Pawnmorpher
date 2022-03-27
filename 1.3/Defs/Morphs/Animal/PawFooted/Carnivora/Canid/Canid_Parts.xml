@@ -1,6 +1,14 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="CanidJawPart" ParentName="CarnivoraJawPart" Abstract="true">
 		<mutationTale>GrewCanidMuzzle</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly canine apperance. In place at its tip is now a cold, wet nose.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CanidEarPart" ParentName="CarnivoraEarPart" Abstract="true">

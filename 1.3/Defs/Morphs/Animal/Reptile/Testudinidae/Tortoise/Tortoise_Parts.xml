@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/Tortoise/Tortoise_Jaw</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly beak, like a tortoise beak. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly beak, like a tortoise beak. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly beak, like a tortoise beak. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="TestudinidaeTailPart">

@@ -4,6 +4,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
+					<description>[PAWN_nameDef] jaws are shifting, sticking out further than normal. Other more sublte changes have also begun on [PAWN_possessive] face, but it's hard to say what they are.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
 					</graphics>
@@ -12,28 +13,60 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
+					<description>An uncanny feeling of familiarity comes when looking at [PAWN_nameDef]'s face. Even as the changes continue something of the old [PAWN_nameDef] can still be seen.</description>
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
 					</graphics>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>4</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="SimianEarPart" ParentName="AnimalEarPart" Abstract="true">

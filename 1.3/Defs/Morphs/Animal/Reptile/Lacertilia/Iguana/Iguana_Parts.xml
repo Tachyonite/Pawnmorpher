@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/iguanaface/iguanaface</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, like a iguana snout. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, like a iguana snout. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, like a iguana snout. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaTailPart">

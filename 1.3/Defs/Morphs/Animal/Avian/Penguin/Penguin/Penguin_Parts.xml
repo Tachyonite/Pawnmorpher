@@ -1,0 +1,42 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<!-->Pawnmorph.Hediffs.MutationDef ParentName="PenguinJawPart" Abstract="true">
+		<defName>EtherPenguinBeak</defName>
+		<classInfluence>PenguinMorph</classInfluence>
+		<label>penguin beak</label>
+		<graphics>
+			<Muzzle>Parts/None/None</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A penguin beak. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A penguin beak. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A penguin beak. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PenguinEarPart" Abstract="true">
+		<defName>EtherPenguinEar</defName>
+		<classInfluence>PenguinMorph</classInfluence>
+		<label>penguin earhole</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PenguinTailPart" Abstract="true">
+		<defName>EtherPenguinTail</defName>
+		<classInfluence>PenguinMorph</classInfluence>
+		<label>penguin tailfeathers</label>
+	</Pawnmorph.Hediffs.MutationDef-->
+</Defs>

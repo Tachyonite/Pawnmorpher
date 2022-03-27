@@ -10,19 +10,19 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a snout like that on a gazelle. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>

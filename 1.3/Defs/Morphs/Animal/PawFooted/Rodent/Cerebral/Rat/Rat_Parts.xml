@@ -2,7 +2,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralJawPart">
 		<classInfluence>RatMorph</classInfluence>
 		<defName>EtherRatSnout</defName>
-		<label>rodent snout</label>
+		<label>rat snout</label>
 		<graphics>
 			<Muzzle>Parts/ratface/ratface</Muzzle>
 		</graphics>

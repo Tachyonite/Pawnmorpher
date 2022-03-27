@@ -1,5 +1,13 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="FelineJawPart" ParentName="CarnivoraJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly feline apperance. A dense pack of whiskers has sprouted out from the top of [PAWN_possessive] fluffy lips.</description>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="FelineEarPart" ParentName="CarnivoraEarPart" Abstract="true">

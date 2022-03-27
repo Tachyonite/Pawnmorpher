@@ -1,5 +1,163 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaJawPart" ParentName="ReptileJawPart" Abstract="true">
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>venom-fangs</label>
+						<capacities>
+							<li>ToxicBite</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+					<li>
+						<label>muta-fangs</label>
+						<capacities>
+							<li>MutagenicStab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>venom-fangs</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>muta-fangs</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>venom-fangs</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>muta-fangs</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>venom-fangs</label>
+							<power>0</power>
+						</li>
+						<li>
+							<label>muta-fangs</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>venom-fangs</label>
+							<power>4</power>
+						</li>
+						<li>
+							<label>muta-fangs</label>
+							<power>4</power>
+						</li>
+					</verbOverrides>
+					<statOffsets>
+						<AimingDelayFactor>-0.4</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.15</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. Adaptation has made speaking less frustrating.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.3</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.25</AimingDelayFactor>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaTailPart" ParentName="ReptileTailPart" Abstract="true">

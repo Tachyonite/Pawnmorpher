@@ -1,0 +1,42 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<!--Pawnmorph.Hediffs.MutationDef ParentName="PenguinJawPart" Abstract="true">
+		<defName>EtherRockhopperBeak</defName>
+		<classInfluence>RockhopperMorph</classInfluence>
+		<label>rockhopper beak</label>
+		<graphics>
+			<Muzzle>Parts/None/None</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A rockhopper beak. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A rockhopper beak. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A rockhopper beak. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PenguinEarPart" Abstract="true">
+		<defName>EtherRockhopperEar</defName>
+		<classInfluence>RockhopperMorph</classInfluence>
+		<label>rockhopper earhole</label>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PenguinTailPart" Abstract="true">
+		<defName>EtherRockhopperTail</defName>
+		<classInfluence>RockhopperMorph</classInfluence>
+		<label>rockhopper tailfeathers</label>
+	</Pawnmorph.Hediffs.MutationDef-->
+</Defs>
