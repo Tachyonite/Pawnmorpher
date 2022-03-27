@@ -47,7 +47,6 @@
 		<mutationMemory>TODO</mutationMemory> -->
 		<classInfluences>
 			<li>ThickHide</li>
-			<li>Ape</li>
 		</classInfluences>
 		<stagePatches>
 			<li function="modify">
@@ -218,55 +217,4 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
-		<defName>EtherFlipperWing</defName>
-		<label>flipper</label>
-		<description>A flipper.</description>
-		<classInfluence>Penguin</classInfluence>
-		<!-- <mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory> -->
-		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly longer then before.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
-				
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
-					
-				</values>
-			</li>
-		</stagePatches>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
-				<mutationDependency>
-					<hediff>EtherWingTip</hediff>
-					<mtbDays>3</mtbDays>
-					<chance>5</chance>
-					<partsToAffect>
-						<li>Hand</li>
-					</partsToAffect>
-					<countToAffect>2</countToAffect>
-					<memory>WingTipMemory</memory>
-					<tale>HandsBecomeWingTips</tale>
-				</mutationDependency>
-			</li>
-		</comps>
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

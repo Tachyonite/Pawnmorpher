@@ -168,7 +168,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name ="ThickHideTailPart" ParentName="MegafaunaTailPart" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantideaTailPart" ParentName="MegafaunaTailPart" Abstract="true">
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>
