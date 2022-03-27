@@ -2,7 +2,6 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="CanidMorph" Name="ScavengerMorph">
 		<classification>Scavenger</classification>
 		<categories>
-			<li>Canid</li>
 			<li>Combat</li>
 		</categories>
 		<addedAspects>

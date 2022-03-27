@@ -6,7 +6,7 @@
 		<fullTransformation>PawnmorphPolarBearTF</fullTransformation>
 		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
 		<categories>
-			<li>Temperate</li>
+			<li>Cold</li>
 		</categories>
 		<raceSettings>
 			<graphicsSettings>

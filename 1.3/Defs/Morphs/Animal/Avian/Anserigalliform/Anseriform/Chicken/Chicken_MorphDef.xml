@@ -5,8 +5,7 @@
 		<description>A human who now shares many features with chickens due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. For odd reasons, both genders are capable of producing eggs.</description>
 		<race>Chicken</race>
 		<categories>
-			<li>Farm</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphChickenTF</fullTransformation>
 		<partialTransformation>PawnmorphChickenTFPartial</partialTransformation>

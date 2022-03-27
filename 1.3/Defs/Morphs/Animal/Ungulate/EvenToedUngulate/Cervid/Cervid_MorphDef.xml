@@ -2,8 +2,5 @@
 	<Pawnmorph.MorphDef Abstract="true" ParentName="EvenToedUngulateMorph" Name="CervidMorph">
 		<classification>Cervid</classification>
 		<group>HerbivoreHerding</group>
-		<categories>
-			<li>Cervid</li>
-		</categories>
 	</Pawnmorph.MorphDef>
 </Defs>

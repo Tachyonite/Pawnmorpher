@@ -5,6 +5,7 @@
 		<description>A human variant with feline-like features. They have a similar appearance to cats, but usually have tufted ears and a stubby tail. They are faster and more dexterous than regular humans, and they have an advantage in melee.</description>
 		<race>Lynx</race>
 		<categories>
+			<li>Cold</li>
 			<li>Temperate</li>
 		</categories>
 		<fullTransformation>PawnmorphLynxTF</fullTransformation>

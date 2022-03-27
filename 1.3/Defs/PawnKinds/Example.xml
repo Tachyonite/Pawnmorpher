@@ -6,7 +6,7 @@
         <modExtensions>
             <li Class="Pawnmorph.MorphPawnKindExtension">
                 <morphCategories>
-                    <li>Canid</li> <!-- pick mutations from canids  -->
+                    <li>Temperate</li> <!-- pick mutations from temperate  -->
                 </morphCategories>
                 <mutationCategories>
                     <!-- pick combat mutations -->

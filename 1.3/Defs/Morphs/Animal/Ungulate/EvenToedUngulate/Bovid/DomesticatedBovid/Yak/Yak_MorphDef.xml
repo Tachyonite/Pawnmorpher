@@ -6,7 +6,7 @@
 		<race>Yak</race>
 		<categories>
 			<li>Temperate</li>
-			<li>Cold</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphYakTF</fullTransformation>
 		<partialTransformation>PawnmorphYakTFPartial</partialTransformation>

@@ -5,8 +5,8 @@
 		<description>A human who now shares many features with turkeys due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. For odd reasons, both genders can fan their tailfeathers.</description>
 		<race>Turkey</race>
 		<categories>
-			<li>Farm</li>
-			<li>Social</li>
+			<li>Domestic</li>
+			<li>Temperate</li>
 		</categories>
 		<fullTransformation>PawnmorphTurkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphTurkeyTFPartial</partialTransformation>

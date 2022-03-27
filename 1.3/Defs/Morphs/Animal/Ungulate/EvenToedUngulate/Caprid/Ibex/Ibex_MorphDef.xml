@@ -5,6 +5,7 @@
 		<description>Ibexmorphs are similar but wilder relatives of goatmorphs. Their headbutts can be pretty effective at combat.</description>
 		<race>Ibex</race>
 		<categories>
+			<li>Domestic</li>
 			<li>Cold</li>
 			<li>Temperate</li>
 		</categories>

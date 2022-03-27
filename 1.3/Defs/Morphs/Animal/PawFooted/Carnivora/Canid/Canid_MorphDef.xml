@@ -9,8 +9,5 @@
 				<!-- if true the pawn will keep the affinity even if they stop being this morph -->
 			</li>
 		</addedAspects>
-		<categories>
-			<li>Canid</li>
-		</categories>
 	</Pawnmorph.MorphDef>
 </Defs>

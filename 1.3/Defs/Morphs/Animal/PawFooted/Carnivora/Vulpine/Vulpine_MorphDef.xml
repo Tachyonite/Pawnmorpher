@@ -3,9 +3,7 @@
 		<description>A somewhat smaller fox-like humanoid, often the result of exposure to the associated mutagens. In addition to physical changes, these humanoids now share many traits with their feral counterparts like their keen hunting instincts, especially towards chickens.</description>
 		<classification>Fox</classification>
 		<categories>
-			<li>Combat</li>
 			<li>Social</li>
-			<li>Canid</li>
 		</categories>
 		<transformSettings>
 			<transformationMemory>FoxTransformationMemory</transformationMemory>

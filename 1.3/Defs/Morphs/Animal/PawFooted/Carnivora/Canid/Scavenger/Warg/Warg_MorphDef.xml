@@ -6,6 +6,10 @@
 		<race>Warg</race>
 		<fullTransformation>PawnmorphWargTF</fullTransformation>
 		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
+		<categories>
+			<li>Temperate</li>
+			<li>Cold</li>
+		</categories>
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(123,104,89)</skinColorOverride>

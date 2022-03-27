@@ -6,7 +6,6 @@
 		<race>Elk</race>
 		<categories>
 			<li>Cold</li>
-			<li>Cervid</li>
 		</categories>
 		<fullTransformation>PawnmorphElkTF</fullTransformation>
 		<partialTransformation>PawnmorphElkTFPartial</partialTransformation>

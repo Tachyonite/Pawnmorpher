@@ -6,8 +6,6 @@
 		<race>Monkey</race>
 		<categories>
 			<li>Tropical</li>
-			<li>Social</li>
-			<li>Crafter</li>
 		</categories>
 		<fullTransformation>PawnmorphMonkeyTF</fullTransformation>
 		<partialTransformation>PawnmorphMonkeyTFPartial</partialTransformation>

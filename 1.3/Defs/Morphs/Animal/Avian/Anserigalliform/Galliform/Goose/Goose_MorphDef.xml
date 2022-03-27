@@ -5,7 +5,7 @@
 		<description>A human who now shares many features with geese due to exposure to mechanite mutagens. They are usually coated in white feathers and have large goose beaks. They can be very loud.</description>
 		<race>Goose</race>
 		<categories>
-			<li>Farm</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphGooseTF</fullTransformation>
 		<partialTransformation>PawnmorphGooseTFPartial</partialTransformation>

@@ -5,10 +5,8 @@
 		<description>A rat like humanoid covered with chemfuel boils as a result of exposure to boomrat specific mutagens. Keep them away from fire!</description>
 		<race>Boomrat</race>
 		<categories>
-			<li>Arid</li>
 			<li>Temperate</li>
 			<li>Production</li>
-			<li>Rodent</li>
 		</categories>
 		<fullTransformation>PawnmorphBoomratTF</fullTransformation>
 		<partialTransformation>PawnmorphBoomratTFPartial</partialTransformation>

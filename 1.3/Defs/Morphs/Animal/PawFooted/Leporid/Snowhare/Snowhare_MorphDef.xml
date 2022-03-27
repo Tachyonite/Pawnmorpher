@@ -5,7 +5,7 @@
 		<race>Snowhare</race>
 		<categories>
 			<li>Cold</li>
-			<li>Farm</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphSnowhareTF</fullTransformation>
 		<partialTransformation>PawnmorphSnowhareTFPartial</partialTransformation>

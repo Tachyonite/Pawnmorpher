@@ -7,9 +7,8 @@
 			<revertedMemory>FamiliarisRevertedMemory</revertedMemory>
 		</transformSettings>
 		<categories>
-			<li>Pet</li>
-			<li>Combat</li>
-			<li>Canid</li>
+			<li>Social</li>
+			<li>Domestic</li>
 		</categories>
 	</Pawnmorph.MorphDef>
 </Defs>

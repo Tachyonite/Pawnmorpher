@@ -8,8 +8,7 @@
 		<categories>
 			<li>Temperate</li>
 			<li>Tropical</li>
-			<li>Farm</li>
-			<li>Production</li>
+			<li>Domestic</li>
 		</categories>
 		<fullTransformation>PawnmorphAlpacaTF</fullTransformation>
 		<partialTransformation>PawnmorphAlpacaTFPartial</partialTransformation>

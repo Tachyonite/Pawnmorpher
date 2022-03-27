@@ -5,8 +5,7 @@
 		<description>A human who now shares many features with cassowaries due to exposure to mechanite mutagens. They usually have sharp talons and large beaks. Their glare can frighten even the best melee fighters.</description>
 		<race>Cassowary</race>
 		<categories>
-			<li>Arid</li>
-			<li>Combat</li>
+			<li>Tropical</li>
 		</categories>
 		<fullTransformation>PawnmorphCassowaryTF</fullTransformation>
 		<partialTransformation>PawnmorphCassowaryTFPartial</partialTransformation>
