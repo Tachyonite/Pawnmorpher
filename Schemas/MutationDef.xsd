@@ -183,6 +183,14 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="chanceFactor" type="xs:float" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Verb chance is multiplied by this value.
+                        Default is 1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="power" type="xs:float" minOccurs="0" />
             <xs:element name="cooldownTime" type="xs:float" minOccurs="0" />
         </xs:all>
