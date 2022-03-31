@@ -21,6 +21,7 @@
             <xs:element name="labelColor" type="Color" minOccurs="0" maxOccurs="1" />
             <xs:element name="removedByReverter" type="xs:boolean" minOccurs="0" maxOccurs="1" />
             <xs:element name="transferToAnimal" type="xs:boolean" minOccurs="0" />
+            <xs:element name="scenarioCanAdd" type="xs:boolean" minOccurs="0" />
             <xs:element name="stages" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:sequence>
@@ -36,7 +37,6 @@
         <xs:attribute name="ParentName" type="xs:string" use="optional" />
         <xs:attribute name="Abstract" type="xs:boolean" use="optional" />
         <xs:attribute name="Name" type="xs:string" use="optional" />
-
     </xs:complexType>
 
     <xs:complexType name="AspectStage">
