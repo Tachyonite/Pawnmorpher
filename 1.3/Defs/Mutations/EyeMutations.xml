@@ -8,13 +8,15 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<label>discoloured eye</label>
+					<description>[PAWN_nameDef]'s eye is losing its natural colour, and sometimes produce dizziness.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<label>shifting vision</label>
+					<description>[PAWN_nameDef]'s eye aches as their vision is briefly tinted green and blurry with mutagen pulsing through it.</description>
 					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
 					<painOffset>0.05</painOffset>
 				</values>
@@ -33,7 +35,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s eyes have become sharper at range, to about 20/10 vision - though they haven't quite got entirely used to the new visual acuity.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 					<statOffsets>
 						<ShootingAccuracyPawn>0.0375</ShootingAccuracyPawn>
@@ -43,7 +45,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s eyes have become sharper at range, to about 20/4 vision, and can see detail at range that normal humans can only recognise simple shapes.</description>
 					<partEfficiencyOffset>0.05</partEfficiencyOffset>
 					<statOffsets>
 						<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
@@ -64,7 +66,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef] has a rectangular pupil set in a yellow eye that is pressed slightly further to the side of the head. It allows for a wider peripheral field of view, and herd animals seem a little calmer from the familiar appearance, however [PAWN_pronoun] hasn't fully adapted to the oddities of the new eye placement.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 					<statOffsets>
 						<AnimalGatherYield>0.075</AnimalGatherYield>
@@ -74,7 +76,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has rectangular pupils set in yellow eyes that are pressed slightly further to the side of the head. TODO</description>
+					<description>[PAWN_nameDef] has a rectangular pupil set in a yellow eye that is pressed slightly further to the side of the head. It allows for a wider peripheral field of view, and herd animals seem calmed by the familiar appearance.</description>
 					<statOffsets>
 						<AnimalGatherYield>0.15</AnimalGatherYield>
 					</statOffsets>
@@ -94,14 +96,14 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s eye has grown yellow, with narrow, slitted pupil in place of the previous circle. It hasn't quite adjusted to see as well as before.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>Slitted, yellow eyes are now [PAWN_nameDef]'s to keep. TODO</description>
+					<description>[PAWN_nameDef]'s eye has turned a bright, feline yellow, and its pupil has become small, vertical slit. [PAWN_pronoun] can control how much the pupil can expand, allowing to see in the darkness.</description>
 					<partEfficiencyOffset>0.1</partEfficiencyOffset>
 			</values>
 			</li>
@@ -119,14 +121,14 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s eye has turned a glaring yellow, and its pupil has become small, vertical slit. The receptors in the eye now catch infrared frequencies, but willl need time to distinguish between colours and volume perfectly.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s eyes have turned a glaring yellow, and their pupils have become small, vertical slits. TODO</description>
+					<description>[PAWN_nameDef]'s eye has turned a glaring yellow, and its pupil has become small, vertical slit. [PAWN_pronoun] can change between infrared and visible light receptors at will, losing all weakness of both receptors.</description>
 					<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				</values>
 			</li>
@@ -144,7 +146,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s eye has grown yellow, with a narrow, slitted pupil in place of the previous circle. It hasn't quite adjusted to see as well as before.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 					<statOffsets>
 						<NegotiationAbility>0.05</NegotiationAbility>
@@ -155,7 +157,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has bright, foxy eyes. [PAWN_pronoun] will see better, and charm people with their exotic appearance. TODO</description>
+					<description>[PAWN_nameDef] has a bright, foxy eye. [PAWN_pronoun] will see better, and charm people with their exotic appearance.</description>
 					<statOffsets>
 						<NegotiationAbility>0.1</NegotiationAbility>
 						<TradePriceImprovement>0.1</TradePriceImprovement>
