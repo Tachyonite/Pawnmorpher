@@ -16,7 +16,7 @@
 	<!-- Hypermyofibrilization -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>TODO</description>
+		<description>A torso with extremely dense muscles, which is able to lift heavier objects with ease.</description>
 		<defName>EtherHypermyofibrilization</defName>
 		<classInfluence>Powerful</classInfluence>
 		<label>hypermyofibrilization</label>
@@ -27,19 +27,19 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s muscles are growing thicker by the second.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s muscles are much thicker and bulkier. They're dense with veins and raw power. Such an impressive growth is very painful.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef] is a veritable wall of raw power and strength, owing to the powerful mutagen coursing through [PAWN_possessive] veins.</description>
 					<globalHealthMultiplier>4</globalHealthMultiplier>
 					<capMods>
 						<li>
@@ -64,7 +64,7 @@
 	<!-- Tough Torso -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>TODO</description>
+		<description>A tough torso, capable of resisting a lot more force than the average torso.</description>
 		<defName>EtherToughTorso</defName>
 		<classInfluences>
 			<li>Scavenger</li>
@@ -79,19 +79,19 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s torso seems to be a little bulkier than before.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s torso is tougher and could shrug off a firm hit easily. However, the quick muscle growth is too painful for [PAWN_nameDef] to be useful yet.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef']'s torso is practically made of metal with how tough it is. [PAWN_pronoun] is a brick wall of muscle.</description>
 					<globalHealthMultiplier>1.5</globalHealthMultiplier>
 					<capMods>
 						<li>
@@ -111,7 +111,7 @@
 	<!-- Diminuative Torso -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>TODO</description>
+		<description>A slim and quite frail torso.</description>
 		<defName>EtherDiminuativeTorso</defName>
 		<label>diminuative torso</label>
 		<classInfluences>
@@ -123,19 +123,19 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s torso is beginning to slim and shed excess weight. Eating more doesn't seem to have any effect.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s torso is becoming slimmer than before, making them easy to pick up. The weight draining is quite hurtful.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s body is quite a bit slimmer than before. They'd be easy to push over in a fight, and don't stand as much of a chance in combat as before.</description>
 					<globalHealthMultiplier>0.7</globalHealthMultiplier>
 					<statOffsets>
 						<PM_BodySize>-0.5</PM_BodySize>
@@ -148,7 +148,7 @@
 	<!-- Tortoise Shell -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>An inbuilt suit of armour.</description>
+		<description>A thick and scaled shell. The ultimate cumbersome defense on the Rimworld!</description>
 		<defName>EtherTortoiseShell</defName>
 		<classInfluences>
 			<li>TortoiseMorph</li>
@@ -161,13 +161,13 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Thick plates of bone are beginning to grow out from [PAWN_nameDef]'s chest and back.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The two halves of the bone plates have formed a precursor shell around [PAWN_nameDef]'s body. It's still fragile at the moment, but thickening constantly.</description>
 					<graphics>
 						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
 						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
@@ -177,7 +177,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s spine has externalized and widened into a hardened shell. While great for shielding [PAWN_objective]self from stray bullets, it's fuzed nature does limit mobility somewhat.</description>
+					<description>A thick and scaled shell for unmatched protection against predators encases [PAWN_nameDef]'s body. [PAWN_pronoun] has a strange urge to live in a sewer.</description>
 					<graphics>
 						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
 						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
@@ -199,7 +199,7 @@
 	<!-- Pneumatized skeleton -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
-		<description>TODO</description>
+		<description>Light and maneuverable bones.</description>
 		<defName>EtherPneumatizedSkeleton</defName>
 		<classInfluence>Anserigalliform</classInfluence>
 		<label>pneumatizedSkeleton</label>
@@ -207,20 +207,26 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s bones ache slightly. They seem to be getting somewhat lighter.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s bones are feeling lighter with every passing hour. They're slightly more fragile and are causing pain to [PAWN_nameDef].</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>TODO</description>
-					<globalHealthMultiplier>0.6</globalHealthMultiplier>
+					<description>[PAWN_nameDef]'s bones are light and maneuverable. They're denser than human bones, but contain air pockets to reduce the overall weight.</description>
+					<globalHealthMultiplier>0.8</globalHealthMultiplier>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>
