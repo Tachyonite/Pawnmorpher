@@ -81,7 +81,7 @@
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This limb has been entirely covered by a coat of light fur.</description>
 					<statOffsets>
 						<ComfyTemperatureMin>+0.75</ComfyTemperatureMin>
 						<ComfyTemperatureMax>+0.3</ComfyTemperatureMax>
@@ -179,7 +179,7 @@
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This limb has been entirely covered by a thick coat of arctic-proof fur.</description>
 					<statOffsets>
 						<ComfyTemperatureMin>-7</ComfyTemperatureMin>
 						<ComfyTemperatureMax>-1.5</ComfyTemperatureMax>
@@ -233,7 +233,7 @@
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>A thick and dense coat of fur covers this limb. It'll need a lot of brushing to keep it neat and tidy.</description>
 					<statOffsets>
 						<ComfyTemperatureMin>-3.35</ComfyTemperatureMin>
 						<ComfyTemperatureMax>+1.3</ComfyTemperatureMax>
@@ -295,7 +295,7 @@
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Beautiful white fur coats this limb, thick and long. It could even be braided, if [PAWN_pronoun] was willing.</description>
 					<statOffsets>
 						<ComfyTemperatureMin>-3.35</ComfyTemperatureMin>
 						<ComfyTemperatureMax>+1.3</ComfyTemperatureMax>
@@ -454,34 +454,34 @@
 				<stageKey>light</stageKey>
 				<values>
 					<label>tight skin</label>
-					<description>The skin on this limb is somewhat thicker and rather tight.</description>
+					<description>All of [PAWN_nameDef]'s hair on this part has started to fall out, and [PAWN_pronoun]'s skin itches severely.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
 				<values>
 					<label>scattered scales</label>
-					<description>The skin is peppered with small scales that overlap and interlock.</description>
+					<description>[PAWN_nameDef]'s skin in this limb has become drier, and is fragmenting into sprouts of scales.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>thin</stageKey>
 				<values>
 					<label>patches</label>
-					<description>Small portions of this limb are covered with a tight-knit pattern of scales.</description>
+					<description>The sprouts in this limb have grown into hard clusters of rough scales, allowing [PAWN_nameDef] to disperse heat from the body.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>patches</stageKey>
 				<values>
 					<label>clusters</label>
-					<description>Large portions of this limb are covered with a tight-knit pattern of scales, almost entirely covering the skin.</description>
+					<description>The clusters are spreading even more through the skin, almost covering all the [PAWN_nameDef]'s limb</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>Smooth, glossy scales now cover this limb, adding some natural defense and dissipating heat.</description>
+					<description>[PAWN_nameDef]'s skin in this limb has turned into a layer of scales</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -550,34 +550,34 @@
 				<stageKey>light</stageKey>
 				<values>
 					<label>isolated</label>
-					<description>TODO</description>
+					<description>This limb appears to be covered in gooseumps as prickles of feathery quills are poking through the skin in places.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
 				<values>
 					<label>bristles</label>
-					<description>TODO</description>
+					<description>Quills have begun to develop feathers in patches over the skin here.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>thin</stageKey>
 				<values>
 					<label>patches</label>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s skin looks like a moulting chicken, with patchy sections of feathers contrasting with [PAWN_possessive] skin.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>patches</stageKey>
 				<values>
 					<label>swathes</label>
-					<description>TODO</description>
+					<description>Much of the skin here is covered in feathers, needing to be preened and attended to with the occassional dust bath.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>full</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The skin here is entirely covered in feathers, needing to be preened and attended to with the occassional dust bath.</description>
 				</values>
 			</li>
 		</stagePatches>
