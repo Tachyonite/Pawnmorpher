@@ -209,7 +209,7 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(nameof(Pawn.BodySize), MethodType.Getter), HarmonyPostfix]
         static float GetBodySizePatch(float __result, [NotNull] Pawn __instance)
         {
-            float? bodySizeModifier = StatsCache.Instance.GetStat(__instance, PMStatDefOf.PM_BodySize);
+            float? bodySizeModifier = StatsUtility.GetStat(__instance, PMStatDefOf.PM_BodySize, 300);
             if (bodySizeModifier.HasValue)
                 return __result * bodySizeModifier.Value;
 
