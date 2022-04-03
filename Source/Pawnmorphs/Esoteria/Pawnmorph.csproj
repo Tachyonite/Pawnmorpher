@@ -320,6 +320,7 @@
     <Compile Include="Aspects\RandomGiver.cs" />
     <Compile Include="Aspects\SapienceHit.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
+    <Compile Include="Aspects\Prideful.cs" />
     <Compile Include="Aspects\SplitMind.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
