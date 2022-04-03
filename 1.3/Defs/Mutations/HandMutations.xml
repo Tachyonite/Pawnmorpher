@@ -697,7 +697,10 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="RodentHandPaw">
 		<defName>EtherDextrousPawHand</defName>
 		<label>dextrous handpaw</label>
-		<classInfluence>Rodent</classInfluence>
+		<classInfluences>
+			<li>Rodent</li>
+			<li>RaccoonMorph</li>
+		</classInfluences>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<stagePatches>
