@@ -78,24 +78,16 @@ namespace Pawnmorph
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
 
-
-            //check for parts with 'Animal' influence, these might be because of a mistake 
-
+            //Check for parts with null influence.
             var mutationDefs =
-                MutationDef.AllMutations.Where(m => m.ClassInfluences == null || m.ClassInfluences.Contains(AnimalClassDefOf.Animal))
-                           .ToList();
+                MutationDef.AllMutations.Where(m => m.ClassInfluences == null).ToList();
             if (mutationDefs.Count > 0)
             {
                 warningBuilder.Clear();
-
-                warningBuilder.AppendLine($"found {mutationDefs.Count} mutations with null or animal influence");
+                warningBuilder.AppendLine($"found {mutationDefs.Count} mutations with null influence");
                 warningBuilder.AppendLine(mutationDefs.Join(d => d.defName, "\n"));
                 Log.Warning(warningBuilder.ToString()); 
-            } 
-
-            
-
-
+            }
         }
 
         [NotNull]

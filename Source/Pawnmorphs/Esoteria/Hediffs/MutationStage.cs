@@ -120,6 +120,9 @@ namespace Pawnmorph.Hediffs
                             if (toolOverride.cooldownTime.HasValue)
                                 tool.cooldownTime = toolOverride.cooldownTime.Value;
 
+                            if (toolOverride.chanceFactor.HasValue)
+                                tool.chanceFactor = toolOverride.chanceFactor.Value;
+
                             break;
                         }
                     }
@@ -146,6 +149,11 @@ namespace Pawnmorph.Hediffs
             /// Value to set verb cooldown time to.
             /// </summary>
             public float? cooldownTime;
+
+            /// <summary>
+            /// Value to set verb chance factor to. Verb chance is multiplied by this value. Default is 1.
+            /// </summary>
+            public float? chanceFactor;
         }
 
 
