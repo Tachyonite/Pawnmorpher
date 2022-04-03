@@ -71,6 +71,10 @@
 							<capacity>Metabolism</capacity>
 							<offset>-0.1</offset>
 						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.2</offset>
+						</li>
 					</capMods>
 				</values>
 			</li>
@@ -83,6 +87,10 @@
 							<capacity>Metabolism</capacity>
 							<offset>-0.1</offset>
 						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.35</offset>
+						</li>
 					</capMods>
 				</values>
 			</li>
@@ -94,6 +102,10 @@
 						<li>
 							<capacity>Metabolism</capacity>
 							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.5</offset>
 						</li>
 					</capMods>
 				</values>
