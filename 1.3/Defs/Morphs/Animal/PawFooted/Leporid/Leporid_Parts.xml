@@ -67,14 +67,6 @@
 							<capacity>Consciousness</capacity>
 							<offset>0.1</offset>
 						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
 					</capMods>
 				</values>
 			</li>
@@ -87,14 +79,6 @@
 							<capacity>Consciousness</capacity>
 							<offset>0.15</offset>
 						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
 					</capMods>
 				</values>
 			</li>
@@ -104,8 +88,8 @@
 					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, with a twitchy pink button nose and long buck teeth. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<capMods>
 						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
+							<capacity>Consciousness</capacity>
+							<offset>0.15</offset>
 						</li>
 					</capMods>
 				</values>

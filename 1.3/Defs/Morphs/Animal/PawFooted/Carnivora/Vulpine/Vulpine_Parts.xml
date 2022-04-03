@@ -16,12 +16,6 @@
 						<NegotiationAbility>0.05</NegotiationAbility>
 						<ArrestSuccessChance>0.05</ArrestSuccessChance>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -32,12 +26,6 @@
 						<NegotiationAbility>0.1</NegotiationAbility>
 						<ArrestSuccessChance>0.15</ArrestSuccessChance>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>0.4</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -48,12 +36,6 @@
 						<NegotiationAbility>0.15</NegotiationAbility>
 						<ArrestSuccessChance>0.15</ArrestSuccessChance>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>0.5</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

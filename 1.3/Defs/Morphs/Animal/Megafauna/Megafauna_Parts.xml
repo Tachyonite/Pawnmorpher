@@ -7,7 +7,6 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<painOffset>0.1</painOffset>
 					<description>[PAWN_nameDef] has been rubbing his jaw and grunting in discomfort. Maybe [PAWN_pronoun] has a tooth ache?</description>
 				</values>
 			</li>
@@ -21,17 +20,6 @@
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
 					</graphics>
-					<painOffset>0.2</painOffset>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -43,13 +31,6 @@
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
 					</graphics>
-					<painOffset>0.25</painOffset>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

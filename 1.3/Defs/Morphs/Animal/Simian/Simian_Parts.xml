@@ -17,53 +17,24 @@
 					<graphics>
 						<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
 					</graphics>
-					<painOffset>0.1</painOffset>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
-					<capMods>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face looks vaguely human at a glance, but with a protruding jaw, a flattened nose, and a raised forhead ridge it's clear something has been monkeying around with [PAWN_possessive] DNA.</description>
-					<capMods>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

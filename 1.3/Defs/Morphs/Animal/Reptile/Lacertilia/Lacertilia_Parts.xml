@@ -63,16 +63,6 @@
 					<statOffsets>
 						<AimingDelayFactor>-0.2</AimingDelayFactor>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Metabolism</capacity>
-							<offset>0.15</offset>
-						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -82,20 +72,6 @@
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Metabolism</capacity>
-							<offset>0.35</offset>
-						</li>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -105,16 +81,6 @@
 					<statOffsets>
 						<AimingDelayFactor>-0.10</AimingDelayFactor>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Metabolism</capacity>
-							<offset>0.35</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

@@ -10,16 +10,6 @@
 						<HungerRateMultiplier>0.05</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.15</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -31,16 +21,6 @@
 						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
 						<HuntingStealth>0.05</HuntingStealth>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -52,16 +32,6 @@
 						<MentalBreakThreshold>-0.06</MentalBreakThreshold>
 						<HuntingStealth>0.1</HuntingStealth>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.4</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

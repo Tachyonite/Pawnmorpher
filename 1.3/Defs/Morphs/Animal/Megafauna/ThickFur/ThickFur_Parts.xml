@@ -7,16 +7,6 @@
 					<statOffsets>
 						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.1</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -25,16 +15,6 @@
 					<statOffsets>
 						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -43,12 +23,6 @@
 					<statOffsets>
 						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

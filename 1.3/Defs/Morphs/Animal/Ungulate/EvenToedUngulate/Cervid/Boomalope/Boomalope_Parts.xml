@@ -11,44 +11,18 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. The strange shape makes speaking very difficult.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. Adapting to it has made speaking less frustrating.</description>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.35</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-					<capMods>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.40</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

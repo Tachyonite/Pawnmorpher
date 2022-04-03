@@ -8,12 +8,6 @@
 					<statOffsets>
 						<PlantHarvestYield>0.2</PlantHarvestYield>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -23,16 +17,6 @@
 					<statOffsets>
 						<PlantHarvestYield>0.4</PlantHarvestYield>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Talking</capacity>
-							<offset>-0.1</offset>
-						</li>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.2</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -42,12 +26,6 @@
 					<statOffsets>
 						<PlantHarvestYield>0.5</PlantHarvestYield>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Eating</capacity>
-							<offset>0.3</offset>
-						</li>
-					</capMods>
 				</values>
 			</li>
 		</stagePatches>

@@ -18,6 +18,39 @@
 					</graphics>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 

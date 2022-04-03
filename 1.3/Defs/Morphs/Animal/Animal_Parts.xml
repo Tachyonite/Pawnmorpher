@@ -48,7 +48,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>An animalistic snout graces [PAWN_nameDef]'s face. [PAWN_pronoun] struggles to speak through these features and often resorts to whining and grunting.</description>
+					<description>An animalistic snout graces [PAWN_nameDef]'s face. The strange shape makes speaking very difficult.</description>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -60,7 +60,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>An animalistic snout graces [PAWN_nameDef]'s face. Adaptation has removed some of the difficulty [PAWN_pronoun] had with talking.</description>
+					<description>An animalistic snout graces [PAWN_nameDef]'s face. Adapting to it has made speaking less frustrating.</description>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -76,7 +76,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>An imposing animalistic snout graces [PAWN_nameDef]'s face, perfectly adapted for human speech. </description>
+					<description>An imposing animalistic snout graces [PAWN_nameDef]'s face, perfectly adapted for human speech. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<capMods>
 						<li>
 							<capacity>Eating</capacity>
