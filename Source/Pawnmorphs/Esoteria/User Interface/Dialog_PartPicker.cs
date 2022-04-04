@@ -279,11 +279,15 @@ namespace Pawnmorph.User_Interface
             }
 
             var comp = pawn.GetComp<GraphicsUpdaterComp>();
-            comp.IsDirty = true;
-            comp.CompTick();
-            PortraitsCache.SetDirty(pawn);
-            base.Close(doCloseSound);
+            if (comp != null)
+            {
+                // If pawn has visible graphics, then refresh.
+                comp.IsDirty = true;
+                comp.CompTick();
+                PortraitsCache.SetDirty(pawn);
+            }
 
+            base.Close(doCloseSound);
             WindowClosed?.Invoke(this, addedMutations);
         }
 
