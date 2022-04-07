@@ -4,7 +4,7 @@
 		<defName>EtherLabradorRetrieverJaw</defName>
 		<label>labrador snout</label>
 		<graphics>
-			<Muzzle>Parts/LabradorRetriever/LabradorRetriever_Jaw</Muzzle>
+			<Muzzle>Parts/LabradorRetriever/LabradorRetriever_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

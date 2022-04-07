@@ -4,7 +4,7 @@
 		<defName>EtherDromedarySnout</defName>
 		<label>dromedary snout</label>
 		<graphics>
-			<Muzzle>Parts/Dromedary/Dromedary_Jaw</Muzzle>
+			<Muzzle>Parts/Dromedary/Dromedary_Muzzle</Muzzle>
 		</graphics>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

@@ -4,7 +4,7 @@
 		<defName>EtherDonkeySnout</defName>
 		<label>donkey snout</label>
 		<graphics>
-			<Muzzle>Parts/Donkey/Donkey_Jaw</Muzzle>
+			<Muzzle>Parts/Donkey/Donkey_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

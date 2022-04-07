@@ -4,7 +4,7 @@
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox muzzle</label>
 		<graphics>
-			<Muzzle>Parts/FoxFennec/FennecFox_Jaw</Muzzle>
+			<Muzzle>Parts/FoxFennec/FennecFox_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

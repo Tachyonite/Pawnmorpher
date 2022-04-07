@@ -4,7 +4,7 @@
 		<defName>EtherBoarSnout</defName>
 		<label>boar snout</label>
 		<graphics>
-			<Muzzle>Parts/Boar/Boar_Jaw</Muzzle>
+			<Muzzle>Parts/Boar/Boar_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	

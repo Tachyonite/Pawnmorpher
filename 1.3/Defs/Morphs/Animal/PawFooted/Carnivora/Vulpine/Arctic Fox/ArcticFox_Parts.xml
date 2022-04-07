@@ -4,7 +4,7 @@
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox muzzle</label>
 		<graphics>
-			<Muzzle>Parts/FoxArctic/ArcticFox_Jaw</Muzzle>
+			<Muzzle>Parts/FoxArctic/ArcticFox_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	

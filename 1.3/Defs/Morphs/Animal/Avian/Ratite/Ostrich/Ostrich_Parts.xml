@@ -4,7 +4,7 @@
 		<classInfluence>OstrichMorph</classInfluence>
 		<label>ostrich beak</label>
 		<graphics>
-			<Muzzle>Parts/Ostrich/Ostrich_Jaw</Muzzle>
+			<Muzzle>Parts/Ostrich/Ostrich_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

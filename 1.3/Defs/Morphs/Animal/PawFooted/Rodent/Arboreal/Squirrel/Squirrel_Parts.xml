@@ -4,7 +4,7 @@
 		<defName>EtherSquirrelJaw</defName>
 		<label>squirrel snout</label>
 		<graphics>
-			<Muzzle>Parts/Squirrel/Squirrel_Jaw</Muzzle>
+			<Muzzle>Parts/Squirrel/Squirrel_Muzzle</Muzzle>
 		</graphics>
 
 	</Pawnmorph.Hediffs.MutationDef>

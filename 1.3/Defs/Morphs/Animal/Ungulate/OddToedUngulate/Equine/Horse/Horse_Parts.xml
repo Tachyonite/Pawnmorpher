@@ -4,7 +4,7 @@
 		<defName>EtherHorseSnout</defName>
 		<label>horse snout</label>
 		<graphics>
-			<Muzzle>Parts/horseface/horseface</Muzzle>
+			<Muzzle>Parts/Horse/Horse_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -33,7 +33,7 @@
 		<defName>EtherHorseTail</defName>
 		<label>horse tail</label>
 		<graphics>
-			<Tail>Parts/horseface/horsetail</Tail>
+			<Tail>Parts/Horse/Horse_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

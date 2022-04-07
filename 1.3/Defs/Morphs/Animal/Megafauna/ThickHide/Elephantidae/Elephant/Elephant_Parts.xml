@@ -4,7 +4,7 @@
 		<defName>EtherTrunk</defName>
 		<label>elephant trunk</label>
 		<graphics>
-			<Muzzle>Parts/elephantface/elephantface</Muzzle>
+			<Muzzle>Parts/Elephant/Elephant_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -34,7 +34,7 @@
 		<defName>EtherElephantTail</defName>
 		<label>elephant tail</label>
 		<graphics>
-			<Tail>Parts/elephantface/elephanttail</Tail>
+			<Tail>Parts/Elephant/Elephant_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

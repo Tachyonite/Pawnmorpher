@@ -201,8 +201,6 @@
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
 				<anchorID>BodyExtendingTail</anchorID>
-				<hediffGraphics>
-				</hediffGraphics>
 				<offsets>
 					<south></south>
 					<north>
@@ -246,9 +244,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<EtherIguanaHorns>Parts/Iguana/Iguana_Spines</EtherIguanaHorns>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Horns -->
@@ -279,9 +274,6 @@
 					<li>UpperHead</li>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
-				<hediffGraphics>
-					<EtherSnakeHood>Parts/Cobra/Cobra_Hood</EtherSnakeHood>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Background) -->
@@ -292,9 +284,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<EtherSnakeHood>Parts/Cobra/Cobra_Hood_Behind</EtherSnakeHood>
-				</hediffGraphics>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
 					<li>FullHead</li>
@@ -309,10 +298,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics>
-					<EtherChemfuelUdder>Parts/boomalopeface/boomalopeudder</EtherChemfuelUdder>
-					<EtherUdder>Parts/cowface/cowudder</EtherUdder>
-				</hediffGraphics>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -340,9 +325,6 @@
 				<anchorID>Wings</anchorID>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
-				<hediffGraphics>
-					<EtherWing>Parts/chickenface/chickenwings</EtherWing>
-				</hediffGraphics>
 				<offsets>
 					<north/>
 					<south/>
@@ -475,7 +457,6 @@
 				</offsets>
 
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics></hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Left Arm (Behind Body) -->
@@ -521,7 +502,6 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hediffGraphics></hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm -->
@@ -571,7 +551,6 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics></hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm (Behind Body) -->
@@ -617,7 +596,6 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hediffGraphics></hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Eye -->
@@ -627,7 +605,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics></hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Eye -->
@@ -637,7 +614,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
-				<hediffGraphics></hediffGraphics>
 			</li>
 		</value>
 	</Operation>

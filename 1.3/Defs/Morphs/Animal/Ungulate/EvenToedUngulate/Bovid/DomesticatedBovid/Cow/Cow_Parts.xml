@@ -4,7 +4,7 @@
 		<defName>EtherCowSnout</defName>
 		<label>cow snout</label>
 		<graphics>
-			<Muzzle>Parts/cowface/cowface</Muzzle>
+			<Muzzle>Parts/Cow/Cow_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
@@ -33,7 +33,7 @@
 		<defName>EtherCowTail</defName>
 		<label>cow tail</label>
 		<graphics>
-			<Tail>Parts/cowface/cowtail</Tail>
+			<Tail>Parts/Cow/Cow_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -51,7 +51,7 @@
 		<label>horns</label>
 		<description>A pair of cow horns.</description>
 		<graphics>
-			<Horns>Parts/cowface/cowhorns</Horns>
+			<Horns>Parts/Cow/Cow_Horns</Horns>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

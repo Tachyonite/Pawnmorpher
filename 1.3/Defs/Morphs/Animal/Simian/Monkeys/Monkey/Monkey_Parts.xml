@@ -4,7 +4,7 @@
 		<defName>EtherMonkeyJaw</defName>
 		<label>monkey snout</label>
 		<graphics>
-			<Muzzle>Parts/monkeyface/monkeyface</Muzzle>
+			<Muzzle>Parts/Monkey/Monkey_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -54,7 +54,7 @@
 		<defName>EtherMonkeyTail</defName>
 		<label>monkey tail</label>
 		<graphics>
-			<Tail>Parts/monkeyface/monkeytail</Tail>
+			<Tail>Parts/Monkey/Monkey_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

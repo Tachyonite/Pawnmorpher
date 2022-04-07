@@ -6,7 +6,7 @@
 		<mutationMemory>EtherGuineaPigJaw</mutationMemory>
 		<mutationTale>GrewGuineaPigMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/GuineaPig/GuineaPig_Jaw</Muzzle>
+			<Muzzle>Parts/GuineaPig/GuineaPig_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

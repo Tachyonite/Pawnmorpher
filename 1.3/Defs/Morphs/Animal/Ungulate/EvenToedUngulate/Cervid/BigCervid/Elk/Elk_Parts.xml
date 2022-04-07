@@ -5,7 +5,7 @@
 		<label>elk snout</label>
 		<mutationMemory>EtherElkJaw</mutationMemory>
 		<graphics>
-			<Muzzle>Parts/Elk/Elk_Jaw</Muzzle>
+			<Muzzle>Parts/Elk/Elk_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

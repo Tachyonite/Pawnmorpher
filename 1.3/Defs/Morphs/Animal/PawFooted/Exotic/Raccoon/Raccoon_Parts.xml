@@ -4,7 +4,7 @@
 		<defName>EtherRaccoonJaw</defName>
 		<label>raccoon snout</label>
 		<graphics>
-			<Muzzle>Parts/Raccoon/Raccoon_Jaw</Muzzle>
+			<Muzzle>Parts/Raccoon/Raccoon_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

@@ -4,7 +4,7 @@
 		<defName>EtherChinchillaSnout</defName>
 		<label>chinchilla snout</label>
 		<graphics>
-			<Muzzle>Parts/Chinchilla/Chinchilla_Jaw</Muzzle>
+			<Muzzle>Parts/Chinchilla/Chinchilla_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

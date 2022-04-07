@@ -4,7 +4,7 @@
 		<defName>EtherIguanaSnout</defName>
 		<label>iguana snout</label>
 		<graphics>
-			<Muzzle>Parts/iguanaface/iguanaface</Muzzle>
+			<Muzzle>Parts/Iguana/Iguana_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -14,7 +14,7 @@
 		<label>iguana tail</label>
 		<graphics>
 			<Tail>Parts/None/None</Tail>
-			<BodyExtendingTail>Parts/iguanaface/iguanatail</BodyExtendingTail>
+			<BodyExtendingTail>Parts/Iguana/Iguana_Tail</BodyExtendingTail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -31,6 +31,9 @@
 		<defName>EtherIguanaHorns</defName>
 		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
 		<label>spines</label>
+		<graphics>
+			<Skullspike>Parts/Iguana/Iguana_Spines</Skullspike>
+		</graphics>
 		<parts>
 			<li>Skull</li>
 		</parts>

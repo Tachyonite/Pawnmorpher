@@ -4,7 +4,7 @@
 		<defName>EtherSheepSnout</defName>
 		<label>sheep snout</label>
 		<graphics>
-			<Muzzle>Parts/sheepface/sheepface</Muzzle>
+			<Muzzle>Parts/Sheep/Sheep_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -59,7 +59,7 @@
 		<defName>EtherSheepTail</defName>
 		<label>sheep tail</label>
 		<graphics>
-			<Tail>Parts/sheepface/sheeptail</Tail>
+			<Tail>Parts/Sheep/Sheep_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -148,7 +148,7 @@
 					<labelOverride>small horns</labelOverride>
 					<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
 					<graphics>
-						<Horns>Parts/sheepface/sheephorns_a</Horns>
+						<Horns>Parts/Sheep/Sheep_Horns_A</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -158,7 +158,7 @@
 					<labelOverride>curled horns</labelOverride>
 					<description>Curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have grown larger, but still have plenty of growing to do.</description>
 					<graphics>
-						<Horns>Parts/sheepface/sheephorns_b</Horns>
+						<Horns>Parts/Sheep/Sheep_Horns_B</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -167,7 +167,7 @@
 				<values>
 					<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
 					<graphics>
-						<Horns>Parts/sheepface/sheephorns_c</Horns>
+						<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
 					</graphics>
 				</values>
 			</li>

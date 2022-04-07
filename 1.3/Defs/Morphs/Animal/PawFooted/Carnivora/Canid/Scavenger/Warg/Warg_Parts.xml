@@ -4,7 +4,7 @@
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
 		<graphics>
-			<Muzzle>Parts/wargface/wargface</Muzzle>
+			<Muzzle>Parts/Warg/Warg_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -53,7 +53,7 @@
 		<defName>EtherWargTail</defName>
 		<label>tufted tail</label>
 		<graphics>
-			<Tail>Parts/wargface/wargtail</Tail>
+			<Tail>Parts/Warg/Warg_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

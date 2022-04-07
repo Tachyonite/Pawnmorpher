@@ -91,6 +91,9 @@
 		<label>udder</label>
 		<description>An udder.</description>
 		<initialSeverity>0.01</initialSeverity>
+		<graphics>
+			<Udders>Parts/Cow/Cow_Udder</Udders>
+		</graphics>
 		<parts>
 			<li>Waist</li>
 		</parts>

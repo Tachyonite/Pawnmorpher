@@ -4,7 +4,7 @@
 		<defName>EtherWolfMuzzle</defName>
 		<label>timber wolf muzzle</label>
 		<graphics>
-			<Muzzle>Parts/wolfface/wolfface</Muzzle>
+			<Muzzle>Parts/Wolf/Wolf_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -25,7 +25,7 @@
 		<defName>EtherWolfTail</defName>
 		<label>timber wolf tail</label>
 		<graphics>
-			<Tail>Parts/wolfface/wolftail</Tail>
+			<Tail>Parts/Wolf/Wolf_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

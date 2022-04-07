@@ -4,7 +4,7 @@
 		<defName>EtherPigSnout</defName>
 		<label>pig snout</label>
 		<graphics>
-			<Muzzle>Parts/pigface/pigface</Muzzle>
+			<Muzzle>Parts/Pig/Pig_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
@@ -33,7 +33,7 @@
 		<defName>EtherPigTail</defName>
 		<label>curly tail</label>
 		<graphics>
-			<Tail>Parts/pigface/pigtail</Tail>
+			<Tail>Parts/Pig/Pig_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

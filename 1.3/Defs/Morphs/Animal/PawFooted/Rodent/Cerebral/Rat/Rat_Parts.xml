@@ -4,7 +4,7 @@
 		<defName>EtherRatSnout</defName>
 		<label>rat snout</label>
 		<graphics>
-			<Muzzle>Parts/ratface/ratface</Muzzle>
+			<Muzzle>Parts/Rat/Rat_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -53,7 +53,7 @@
 		<defName>EtherRatTail</defName>
 		<label>rat tail</label>
 		<graphics>
-			<Tail>Parts/ratface/rattail</Tail>
+			<Tail>Parts/Rat/Rat_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

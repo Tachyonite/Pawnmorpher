@@ -4,7 +4,7 @@
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox muzzle</label>
 		<graphics>
-			<Muzzle>Parts/FoxUpdated/RedFox_Jaw</Muzzle>
+			<Muzzle>Parts/FoxRed/RedFox_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -13,10 +13,10 @@
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox ear</label>
 		<graphics>
-			<LeftEar>Parts/FoxUpdated/RedFox_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/FoxUpdated/RedFox_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/FoxUpdated/RedFox_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/FoxUpdated/RedFox_Ear_Right_Behind</RightEarBehindHead>
+			<LeftEar>Parts/FoxRed/RedFox_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/FoxRed/RedFox_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/FoxRed/RedFox_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/FoxRed/RedFox_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -25,7 +25,7 @@
 		<classInfluence>FoxMorph</classInfluence>
 		<label>red fox tail</label>
 		<graphics>
-			<Tail>Parts/FoxUpdated/RedFox_Tail</Tail>
+			<Tail>Parts/FoxRed/RedFox_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

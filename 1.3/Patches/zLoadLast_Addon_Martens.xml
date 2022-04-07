@@ -9,7 +9,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenJaw>Parts/Marten/Marten_Jaw</EtherMartenJaw>
+						<EtherMartenJaw>Parts/Marten/Marten_Muzzle</EtherMartenJaw>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">

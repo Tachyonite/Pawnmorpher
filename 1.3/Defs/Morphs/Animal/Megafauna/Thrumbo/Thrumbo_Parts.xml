@@ -6,7 +6,7 @@
 		<label>thrumbo snout</label>
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/wargface/wargface</Muzzle>
+			<Muzzle>Parts/Thrumbo/Thrumbo_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -166,7 +166,7 @@
                     <label></label>
                     <description>A large and majestic horn near identical to what you find on a thrumbo adorns [PAWN_nameDef]'s head. It is a very powerful and sharp horn.</description>
 					<graphics>
-						<Horns>Parts/thrumboface/thrumbohorn</Horns>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn</Horns>
 					</graphics>
                     <statOffsets>
                         <MeleeArmorPenetration>0.3</MeleeArmorPenetration>
@@ -234,7 +234,7 @@
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
 		<graphics>
-			<Tail>Parts/thrumboface/thrumbotail</Tail>
+			<Tail>Parts/Thrumbo/Thrumbo_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

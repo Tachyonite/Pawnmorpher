@@ -4,7 +4,7 @@
 		<classInfluence>HareMorph</classInfluence>
 		<label>hare muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Hare/Hare_Jaw</Muzzle>
+			<Muzzle>Parts/Hare/Hare_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

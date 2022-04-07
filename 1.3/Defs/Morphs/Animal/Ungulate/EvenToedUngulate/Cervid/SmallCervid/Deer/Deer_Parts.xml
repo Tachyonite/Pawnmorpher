@@ -5,7 +5,7 @@
 		<label>deer snout</label>
 		<mutationTale>GrewDeerMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/deerface/deerface</Muzzle>
+			<Muzzle>Parts/Deer/Deer_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -54,7 +54,7 @@
 		<defName>EtherDeerTail</defName>
 		<label>deer tail</label>
 		<graphics>
-			<Tail>Parts/deerface/deertail</Tail>
+			<Tail>Parts/Deer/Deer_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -74,7 +74,7 @@
 		<mutationTale>GrewAntlers</mutationTale>
 		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<graphics>
-			<Horns>Parts/deerface/deerantlers</Horns>
+			<Horns>Parts/Deer/Deer_Horns</Horns>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

@@ -4,7 +4,7 @@
 		<defName>EtherBisonSnout</defName>
 		<label>bison snout</label>
 		<graphics>
-			<Muzzle>Parts/Bison/Bison_jaw</Muzzle>
+			<Muzzle>Parts/Bison/Bison_Muzzle</Muzzle>
 			<BirdJawOrnament>Parts/Bison/Bison_Foreheadhair</BirdJawOrnament>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
@@ -115,7 +115,7 @@
 		<label>horns</label>
 		<description>A pair of bison horns.</description>
 		<graphics>
-			<Horns>Parts/Bison/Bison_Horn_B</Horns>
+			<Horns>Parts/Bison/Bison_Horns_B</Horns>
 		</graphics>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
@@ -125,7 +125,7 @@
 				<values>
 					<description>TODO</description>
 					<graphics>
-						<Horns>Parts/Bison/Bison_Horn_A</Horns>
+						<Horns>Parts/Bison/Bison_Horns_A</Horns>
 					</graphics>
 				</values>
 			</li>

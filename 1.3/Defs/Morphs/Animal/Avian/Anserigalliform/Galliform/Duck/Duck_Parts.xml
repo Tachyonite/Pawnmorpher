@@ -5,7 +5,7 @@
 		<label>duck beak</label>
 		<mutationTale>GrewDuckBeak</mutationTale>
 		<graphics>
-			<Muzzle>Parts/Duck/Duck_Jaw</Muzzle>
+			<Muzzle>Parts/Duck/Duck_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
