@@ -927,7 +927,7 @@
 	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherInsulatedAvianFoot</defName>
 		<label>insulated avian foot</label>
-		<description>TODO</description>
+		<description>An insulated avian foot.</description>
 		<classInfluence>TODO</classInfluence>
 		<mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory>
@@ -968,7 +968,7 @@
 	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherFlipperFoot</defName>
 		<label>flipper foot</label>
-		<description>TODO</description>
+		<description>An avian flipper.</description>
 		<classInfluence>TODO</classInfluence>
 		<mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory>

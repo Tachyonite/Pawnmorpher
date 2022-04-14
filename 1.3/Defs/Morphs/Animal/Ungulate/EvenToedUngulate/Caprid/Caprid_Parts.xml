@@ -127,7 +127,6 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -139,7 +138,6 @@
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
-					<description>Small horn nubs top [PAWN_nameDef]'s head, which add a heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
