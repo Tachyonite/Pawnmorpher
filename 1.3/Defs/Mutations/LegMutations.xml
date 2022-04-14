@@ -52,21 +52,21 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The muscles in [PAWN_nameDef]'s legs are swelling in size and tightening.</description>
 					
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Burly muscles have developed along this leg, and are still growing.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide. Getting used to it will take [PAWN_pronoun] some time.</description>
+					<description>[PAWN_nameDef]'s leg is thick with heavy, powerful muscle. Getting used to it will take [PAWN_pronoun] some time.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -81,7 +81,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s leg is thick and covered in a solid grey hide.</description>
+					<description>[PAWN_nameDef]'s leg is as thick and strong as a treetrunk, greatly adding to their overall size.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -356,14 +356,14 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>A tail is growing behind [PAWN_nameDef].</description>
 					<statOffsets>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
@@ -372,7 +372,7 @@
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s tail is getting longer and longer. in the same time [PAWN_nameDef]'s legs feel shorter and weaker than before</description>
 					<statOffsets>
 						<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
 					</statOffsets>
