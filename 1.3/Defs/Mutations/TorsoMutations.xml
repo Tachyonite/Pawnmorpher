@@ -113,7 +113,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
 		<description>A slim and quite frail torso.</description>
 		<defName>EtherDiminuativeTorso</defName>
-		<label>diminuative torso</label>
+		<label>Diminutive torso</label>
 		<classInfluences>
 			<li>Leporid</li>
 			<li>Rodent</li>
