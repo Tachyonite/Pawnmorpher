@@ -314,6 +314,12 @@
 						<DrugCookingSpeed>0.05</DrugCookingSpeed>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -629,8 +635,6 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
-
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -642,7 +646,6 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -654,7 +657,6 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -666,7 +668,6 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -707,17 +708,21 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
+					<labelOverride>Small claws</labelOverride>
+					<description>Fine claws are developing from the nailbed here, and small callouses are growing on the fingerprintsand palm.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-
+					<labelOverride>Slim fingers</labelOverride>
+					<description>The fingers have slimmed and lengthed, splaying out a little with delicate claws and small pawpads growing in.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
+					<description>Slim fingers are tipped with delicate claws, assisting with fine motor controls.</description>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -729,6 +734,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
+					<description>Slim fingers are tipped with delicate claws, assisting with much finer motor controls due to further adaptation.</description>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -750,11 +756,13 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
+					<description>Slight callouses are forming over the palm and fingerprints of this hand.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
+					<description>The palm of this hand is calloused and should be able to pull at plants a little easier.</description>
 					<statOffsets>
 						<DrugHarvestYield>0.05</DrugHarvestYield>
 					</statOffsets>
@@ -763,6 +771,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
+					<description>This hand is clawed and padded, making it a little easier to work with in the field with plants.</description>
 					<statOffsets>
 						<PlantWorkSpeed>0.025</PlantWorkSpeed>
 						<DrugHarvestYield>0.1</DrugHarvestYield>
@@ -772,6 +781,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
+					<description>[PAWN_nameDef] has a 'green paw', that enables them to work a bit faster with plants in all respects. Claws are suited for digging in dirt, and pawpads are ideal for pulling at fruit.</description>
 					<statOffsets>
 						<PlantWorkSpeed>0.075</PlantWorkSpeed>
 						<DrugHarvestYield>0.1</DrugHarvestYield>
@@ -797,7 +807,7 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Three inch-long claws have grown out from [PAWN_nameDef]'s fingers, and still seem to be growing.</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -809,7 +819,7 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The claws are growing more, replacing the fingers themselves. They're about four inches long, and are growing from the second knuckle.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
 					</statOffsets>
@@ -824,7 +834,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Most of [PAWN_nameDef]'s finger real-estate has been entirely replaced by large megasloth claws. They're very sharp and get in the way for most tasks, but are rather dangerous in combat.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 					</statOffsets>
@@ -969,7 +979,7 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s fingernails are a little sharper.</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -981,7 +991,7 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Sharp claws have grown from [PAWN_nameDef]'s fingers, and scales are growing to cover the knuckles.</description>
 					<verbOverrides>
 						<li>
 							<label>claws</label>
@@ -993,7 +1003,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws. They're clumsy at the moment, but may improve with further adaptation.</description>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -1107,28 +1117,28 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Thick claws are pressing out from the nailbed.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The claws are elongating, with fingers growing bulkier. They're somewhat blunt and don't appear too useful in combat.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Each finger on this hand has the top portion replaced by a thick claw. It might take some time and further adaptation to determine how this could be used.</description>
 
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Each finger on this hand has the top portion replaced by a thick and dense claw. It's ideal for digging away at rock and dirt.</description>
 					<statOffsets>
 						<MiningSpeed>0.125</MiningSpeed>
 						<DeepDrillingSpeed>0.15</DeepDrillingSpeed>
