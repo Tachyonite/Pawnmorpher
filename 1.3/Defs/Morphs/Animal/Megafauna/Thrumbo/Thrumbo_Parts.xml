@@ -108,7 +108,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-                    <description>TODO</description>
+                    <description>Something is pressing out from below [PAWN_nameDef]'s scalp, in the middle of the forehead.</description>
 					<verbOverrides>
                         <li>
                             <label>point</label>
@@ -125,7 +125,7 @@
 				<stageKey>nubs</stageKey>
 				<values>
                     <label>nub</label>
-                    <description>[PAWN_nameDef] has grown a small hard nub on [PAWN_possessive] forhead. Maybe good for a headbutt but not much else.</description>
+                    <description>[PAWN_nameDef] has grown a small hard nub on [PAWN_possessive] forehead. Maybe good for a headbutt but not much else.</description>
 					<verbOverrides>
                         <li>
                             <label>point</label>
