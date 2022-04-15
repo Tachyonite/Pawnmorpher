@@ -240,7 +240,12 @@ namespace Pawnmorph
             // Patch doors expanded mod if present.
             if (LoadedModManager.RunningMods.Any(x => x.PackageId == "jecrell.doorsexpanded"))
             {
-                methodsToPatch.Add(AccessTools.Method("DoorsExpanded.Building_DoorExpanded:PawnCanOpen"));
+                MethodInfo doorsExpandedMethod = AccessTools.Method("DoorsExpanded.Building_DoorExpanded:PawnCanOpen");
+
+                if (doorsExpandedMethod != null)
+                    methodsToPatch.Add(doorsExpandedMethod);
+                else
+                    Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
             }
 
 
