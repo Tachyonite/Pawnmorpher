@@ -237,6 +237,13 @@ namespace Pawnmorph
 
             List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
 
+            // Patch doors expanded mod if present.
+            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "jecrell.doorsexpanded"))
+            {
+                methodsToPatch.Add(AccessTools.Method("DoorsExpanded.Building_DoorExpanded:PawnCanOpen"));
+            }
+
+
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
