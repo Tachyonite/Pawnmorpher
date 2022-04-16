@@ -182,9 +182,8 @@ namespace Pawnmorph
                 offset += mStage.healthOffset;
             }
 
-            return
-                (offset * p.HealthScale
-              + maxPartHealth) * multiplier; //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
+            return Mathf.Ceil((offset * p.HealthScale
+              + maxPartHealth) * (multiplier > 0 ? multiplier : 1)); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
         }
 
 
