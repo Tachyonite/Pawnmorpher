@@ -91,7 +91,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef']'s torso is practically made of metal with how tough it is. [PAWN_pronoun] is a brick wall of muscle.</description>
+					<description>[PAWN_nameDef]'s torso is practically made of metal given how tough it is. [PAWN_pronoun] is a brick wall of muscle.</description>
 					<globalHealthMultiplier>1.5</globalHealthMultiplier>
 					<capMods>
 						<li>
