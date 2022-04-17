@@ -1,0 +1,28 @@
+<Defs>
+    <Pawnmorph.SapienceStateDef Name="FormerHumanSapienceBase" Abstract="true">
+        <canGoPermanentlyFeral>true</canGoPermanentlyFeral>
+        <forcedHediff>TransformedHuman</forcedHediff>
+        <label>former huamn</label>
+        
+    </Pawnmorph.SapienceStateDef>
+    
+    
+    <Pawnmorph.SapienceStateDef ParentName="FormerHumanSapienceBase">
+        <defName>FormerHuman</defName>
+        <stateType>Pawnmorph.SapienceStates.FormerHuman</stateType>
+        <forcedHediff>TransformedHuman</forcedHediff>
+    </Pawnmorph.SapienceStateDef>
+
+    <Pawnmorph.SapienceStateDef ParentName="FormerHumanSapienceBase">
+        <defName>MergedPawn</defName>
+        <stateType>Pawnmorph.SapienceStates.MergedPawn</stateType>
+        <forcedHediff>2xMergedHuman</forcedHediff>
+    </Pawnmorph.SapienceStateDef>
+    
+    <Pawnmorph.SapienceStateDef>
+        <defName>Animalistic</defName>
+        <label>animalistic</label>
+        <forcedHediff>Animalistic</forcedHediff>
+        <stateType>Pawnmorph.SapienceStates.Animalistic</stateType>
+    </Pawnmorph.SapienceStateDef>
+</Defs>

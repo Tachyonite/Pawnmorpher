@@ -1,0 +1,69 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef Abstract="true"  Name="RevertedThoughtBase">
+		<durationDays>4</durationDays>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasAnimal</defName>
+		<stages>
+			<li>
+				<label>permanently feral</label>
+				<description>AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH I'M A DOG FOREVER (also you should never see this thought)</description>
+				<baseMoodEffect>-100</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a wild animal</label>
+				<description>I was trapped as a beast, mindless and feral! I'm human again, but I don't think I'll get over this for a long time.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a sapient animal</label>
+				<description>I'm glad to be human again. I didn't know what to do as a beast...and I can still feel the instincts tugging at my mind.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a mad animal</label>
+				<description>I'm sorry...I couldn't control myself from the blind rage! You'd feel it too if you went through what I did.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasAnimalPrimalWish</defName>
+		<stages>
+			<li>
+				<label>no longer an animal</label> <!-- reversion thought for pawns with the primal wish aspect -->
+				<description>I'm human again? But c'mon, that wa awesome! Put me back in, coach!</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasAnimalRelieved</defName>
+		<stages>
+			<li>
+				<label>permanently feral</label>
+				<description>I shouldn't have this thought, but it was exhilarating to know I'd never turn back.</description>
+				<baseMoodEffect>100</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a wild animal</label>
+				<description>I was trapped as a beast, mindless and feral! I'm human again, but the experience was...not as bad as I thought?</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a sapient animal</label>
+				<description>I'm glad to be human again. I didn't know what to do as a beast, but it did give me some valuable perspective.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a mad animal</label>
+				<description>Wow, it felt great to let out all my anger like that!</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

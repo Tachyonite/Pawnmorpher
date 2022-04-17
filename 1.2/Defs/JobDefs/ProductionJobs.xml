@@ -1,0 +1,50 @@
+<Defs>
+    <JobDef>
+        <defName>PMLayEgg</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_LayEgg</driverClass>
+        <reportString>laying egg.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMMilkSelf</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_MilkSelf</driverClass>
+        <reportString>milking myself.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMDrainChemcyst</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_DrainChemcyst</driverClass>
+        <reportString>draining my chemcyst.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMShaveSelf</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_ShaveSelf</driverClass>
+        <reportString>shaving myself.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PMMegaShaveSelf</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_MegaShaveSelf</driverClass>
+        <reportString>shaving myself.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+    
+  <JobDef>
+    <defName>PMHuntingForMushrooms</defName>
+    <driverClass>Pawnmorph.Jobs.Driver_TerrainProduction</driverClass>
+    <reportString>foraging for mushrooms.</reportString>
+    <joyDuration>8000</joyDuration>
+    <joyKind>Meditative</joyKind>
+  </JobDef>
+</Defs>

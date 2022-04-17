@@ -1,0 +1,122 @@
+<Defs>
+	<!-- Depricated Drugs and related Hediffs -->
+	<HediffDef>
+		<defName>ProductionPillUdderEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>depricated</label>
+		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherUdder</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li></li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>ProductionPillChemfuelUdderEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>depricated</label>
+		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherChemfuelUdder</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li></li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>ProductionPillEggEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>depricated</label>
+		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherEggLayer</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li></li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>ProductionPillWoolEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>depricated</label>
+		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherWooly</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li></li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>ProductionPillMegawoolEffect</defName>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<label>depricated</label>
+		<description>You should not have this hediff, if you do, feel free to ignore it or remove it with dev mode.</description>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>6000</min>
+					<max>6000</max>
+				</disappearsAfterTicks>
+			</li>
+			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+				<hediff>EtherMegawoolly</hediff>
+				<severity>0.3</severity>
+				<mtbDays>0.2</mtbDays>
+			</li>
+		</comps>
+		<stages>
+			<li></li>
+		</stages>
+	</HediffDef>
+</Defs>

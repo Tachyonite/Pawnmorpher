@@ -1,0 +1,1567 @@
+<Defs>
+	<BodyPartDef>
+		<defName>PawnmorphWing</defName>
+		<label>wing</label>
+		<hitPoints>10</hitPoints>
+		<skinCovered>true</skinCovered>
+		<tags>
+			<li>MovingLimbCore</li>
+		</tags>
+	</BodyPartDef>
+
+	<BodyDef>
+		<defName>Chaoboom</defName>
+		<label>chaotic boomalope</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.32</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Hump</def>
+					<coverage>0.10</coverage>
+					<height>Top</height>
+				</li>
+				<li>
+					<def>PawnmorphWing</def>
+					<customLabel>left wing</customLabel>
+					<coverage>0.01</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PawnmorphWing</def>
+					<customLabel>right wing</customLabel>
+					<coverage>0.01</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>front left hoof</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontLeftLeg</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>front right hoof</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontRightLeg</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+
+	<BodyDef>
+		<defName>Chaocow</defName>
+		<label>chaotic cow</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.32</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+									<parts>
+										<li>
+											<def>Tusk</def>
+											<customLabel>left tusk</customLabel>
+											<coverage>0.4</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+										<li>
+											<def>Tusk</def>
+											<customLabel>right tusk</customLabel>
+											<coverage>0.4</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front left paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontLeftPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front right paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontRightPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+
+	<BodyDef>
+		<defName>Chaoboar</defName>
+		<label>chaotic boar</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.32</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+									<parts>
+										<li>
+											<def>Tusk</def>
+											<customLabel>left lower tusk</customLabel>
+											<coverage>0.2</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+										<li>
+											<def>Tusk</def>
+											<customLabel>right lower tusk</customLabel>
+											<coverage>0.2</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+										<li>
+											<def>Tusk</def>
+											<customLabel>left upper tusk</customLabel>
+											<coverage>0.2</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+										<li>
+											<def>Tusk</def>
+											<customLabel>right upper tusk</customLabel>
+											<coverage>0.2</coverage>
+											<groups>
+												<li>TuskAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Arm</def>
+					<customLabel>front left arm</customLabel>
+					<coverage>0.07</coverage>
+					<height>Top</height>
+					<parts>
+
+						<li>
+							<def>Hand</def>
+							<customLabel>left hand</customLabel>
+							<coverage>0.14</coverage>
+							<height>Bottom</height>
+							<groups>
+								<li>Hands</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Finger</def>
+									<customLabel>left ring hoofnail</customLabel>
+									<coverage>0.07</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>LeftHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>left middle hoofnail</customLabel>
+									<coverage>0.08</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>LeftHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>left index hoofnail</customLabel>
+									<coverage>0.07</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>LeftHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>left thumb</customLabel>
+									<coverage>0.08</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>LeftHand</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Arm</def>
+					<customLabel>front right arm</customLabel>
+					<coverage>0.07</coverage>
+					<height>Top</height>
+					<parts>
+
+						<li>
+							<def>Hand</def>
+							<customLabel>right hand</customLabel>
+							<coverage>0.14</coverage>
+							<height>Bottom</height>
+							<groups>
+								<li>Hands</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Finger</def>
+									<customLabel>right ring hoofnail</customLabel>
+									<coverage>0.07</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>RightHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>right middle hoofnail</customLabel>
+									<coverage>0.08</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>RightHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>right index hoofnail</customLabel>
+									<coverage>0.07</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>RightHand</li>
+									</groups>
+								</li>
+								<li>
+									<def>Finger</def>
+									<customLabel>right thumb</customLabel>
+									<coverage>0.08</coverage>
+									<groups>
+										<li>Hands</li>
+										<li>RightHand</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+
+	<BodyDef>
+		<defName>Chaomeld</defName>
+		<label>chaotic meld</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.16</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+
+				<li>
+					<def>Neck</def>
+					<coverage>0.16</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front left paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontLeftPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front right paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontRightPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+
+	<BodyDef>
+		<defName>Chaofusion</defName>
+		<label>chaotic fusion</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.16</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye (left head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye (left head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear (left head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear (left head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+
+				<li>
+					<def>Neck</def>
+					<coverage>0.16</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.80</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.15</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye (right head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye (right head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear (right head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear (right head)</customLabel>
+									<coverage>0.06</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.25</coverage>
+									<parts>
+										<li>
+											<def>Horn</def>
+											<coverage>0.85</coverage>
+											<groups>
+												<li>HornAttackTool</li>
+											</groups>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.18</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front left paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontLeftPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front right paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontRightPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left clawhoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.06</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right clawhoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+
+	<BodyDef>
+		<defName>Chaofox</defName>
+		<label>chaotic fox</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Spine</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.22</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.75</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.25</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.7</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.12</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.12</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>left ear</customLabel>
+									<coverage>0.08</coverage>
+								</li>
+								<li>
+									<def>Ear</def>
+									<customLabel>right ear</customLabel>
+									<coverage>0.08</coverage>
+								</li>
+								<li>
+									<def>Nose</def>
+									<coverage>0.1</coverage>
+								</li>
+								<li>
+									<def>AnimalJaw</def>
+									<coverage>0.1</coverage>
+									<groups>
+										<li>Teeth</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>PawnmorphWing</def>
+					<customLabel>left wing</customLabel>
+					<coverage>0.01</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>PawnmorphWing</def>
+					<customLabel>right wing</customLabel>
+					<coverage>0.01</coverage>
+					<height>Bottom</height>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<groups>
+						<li>FrontLeftPaw</li>
+					</groups>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front left paw</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>front right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<groups>
+						<li>FrontRightPaw</li>
+					</groups>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front right paw</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear left leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear left hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>rear right leg</customLabel>
+					<coverage>0.07</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Hoof</def>
+							<customLabel>rear right hoof</customLabel>
+							<coverage>0.15</coverage>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+
+	<BodyDef>
+		<defName>Chaodino</defName>
+		<label>chaotic chicken</label>
+		<corePart>
+			<def>Body</def>
+			<height>Middle</height>
+			<depth>Outside</depth>
+			<parts>
+				<li>
+					<def>Tail</def>
+					<coverage>0.15</coverage>
+				</li>
+				<li>
+					<def>Spine</def>
+					<coverage>0.05</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Stomach</def>
+					<coverage>0.04</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Heart</def>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>left lung</customLabel>
+					<coverage>0.04</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Lung</def>
+					<customLabel>right lung</customLabel>
+					<coverage>0.04</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>left kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Kidney</def>
+					<customLabel>right kidney</customLabel>
+					<coverage>0.03</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Liver</def>
+					<coverage>0.04</coverage>
+					<depth>Inside</depth>
+				</li>
+				<li>
+					<def>Neck</def>
+					<coverage>0.2</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Head</def>
+							<coverage>0.75</coverage>
+							<groups>
+								<li>HeadAttackTool</li>
+							</groups>
+							<parts>
+								<li>
+									<def>Skull</def>
+									<coverage>0.30</coverage>
+									<depth>Inside</depth>
+									<parts>
+										<li>
+											<def>Brain</def>
+											<coverage>0.60</coverage>
+											<depth>Inside</depth>
+										</li>
+									</parts>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>left eye</customLabel>
+									<coverage>0.12</coverage>
+								</li>
+								<li>
+									<def>Eye</def>
+									<customLabel>right eye</customLabel>
+									<coverage>0.12</coverage>
+								</li>
+								<li>
+									<def>Beak</def>
+									<coverage>0.25</coverage>
+									<groups>
+										<li>Beak</li>
+									</groups>
+								</li>
+							</parts>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>left leg</customLabel>
+					<coverage>0.10</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Foot</def>
+							<customLabel>left foot</customLabel>
+							<coverage>0.5</coverage>
+							<groups>
+								<li>Feet</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Leg</def>
+					<customLabel>right leg</customLabel>
+					<coverage>0.10</coverage>
+					<height>Bottom</height>
+					<parts>
+						<li>
+							<def>Foot</def>
+							<customLabel>right foot</customLabel>
+							<coverage>0.5</coverage>
+							<groups>
+								<li>Feet</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Arm</def>
+					<customLabel>front left arm</customLabel>
+					<coverage>0.07</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front left paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontLeftPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+				<li>
+					<def>Arm</def>
+					<customLabel>front right arm</customLabel>
+					<coverage>0.07</coverage>
+					<height>Top</height>
+					<parts>
+						<li>
+							<def>Paw</def>
+							<customLabel>front right paw</customLabel>
+							<coverage>0.15</coverage>
+							<groups>
+								<li>FrontRightPaw</li>
+							</groups>
+						</li>
+					</parts>
+				</li>
+			</parts>
+		</corePart>
+	</BodyDef>
+</Defs>
