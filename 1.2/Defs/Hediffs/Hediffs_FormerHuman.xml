@@ -1,0 +1,409 @@
+<Defs>
+	<HediffDef Name="FormerHumanHediffParent" Abstract="true">
+		<defaultLabelColor>(131, 65, 155)</defaultLabelColor>
+		<isBad>false</isBad>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>TransformedHuman</defName>
+		<label>former human</label>
+		<description>[PAWN_defName] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<stages>
+			<li>
+				<label>sapient</label>
+			</li>
+			<li>
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>Animalistic</defName>
+		<label>animalistic</label>
+		<description>Due to certain mutations or having spent time as an animal, this pawn is struggling to maintain their sapience</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<maxSeverity>2</maxSeverity>
+		<stages>
+			<li>
+				<label>sapient</label>
+			</li>
+			<li>
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+					<SapienceRecoverFactor>1</SapienceRecoverFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>2xMergedHuman</defName>
+		<label>2x merged morph</label>
+		<description>[PAWN_defName] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
+		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<stages>
+			<li>
+				<label>sapient</label>
+			</li>
+			<li>
+				<label>mostly sapient</label>
+				<minSeverity>0.4</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.05</TameAnimalChance>
+					<TrainAnimalChance>0.05</TrainAnimalChance>
+					<ResearchSpeed>-0.25</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>conflicted</label>
+				<minSeverity>0.6</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.1</TameAnimalChance>
+					<TrainAnimalChance>0.1</TrainAnimalChance>
+					<ResearchSpeed>-0.5</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li >
+				<label>mostly feral</label>
+				<minSeverity>0.8</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+			<li>
+				<label>mostly feral</label>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<TameAnimalChance>0.2</TameAnimalChance>
+					<TrainAnimalChance>0.2</TrainAnimalChance>
+					<ResearchSpeed>-1</ResearchSpeed>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef>
+		<defName>PermanentlyFeral</defName>
+		<label>permanently feral</label>
+		<description>[PAWN_defName] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form — [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>WasAnimal</defName>
+		<label>was animal</label>
+		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] is not too happy about it.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>90000</min>
+					<max>150000</max>
+				</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<label>permanent</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.01</minSeverity>
+				<label>feral</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.80</minSeverity>
+				<label>sapient</label>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>driven mad</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>WasMergedRelieved</defName>
+		<label>was melded</label>
+		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, but finds the insight valuable.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>90000</min>
+					<max>150000</max>
+				</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<label>permanent</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.01</minSeverity>
+				<label>feral</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>10</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.80</minSeverity>
+				<label>sapient</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.5</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>driven mad</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>WasMerged</defName>
+		<label>was melded</label>
+		<description>[PAWN_defName] was joined with another person in a chaotic mash of flesh and flesh, and is scarred from the experience.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>90000</min>
+					<max>150000</max>
+				</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<label>permanent</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.01</minSeverity>
+				<label>feral</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+				<mentalStateGivers>
+					<li>
+						<mentalState>WanderConfused</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+			</li>
+			<li>
+				<minSeverity>0.80</minSeverity>
+				<label>sapient</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.5</offset>
+					</li>
+				</capMods>
+
+			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>driven mad</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.1</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<HediffDef ParentName="FormerHumanHediffParent">
+		<defName>WasAnimalRelieved</defName>
+		<label>was animal</label>
+		<description>[PAWN_defName] was turned into an animal, but [PAWN_pronoun] got better. However, [PAWN_pronoun] takes it as a learning opportunity.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<disappearsAfterTicks>
+					<min>90000</min>
+					<max>150000</max>
+				</disappearsAfterTicks>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<minSeverity>0</minSeverity>
+				<label>permanent</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-1</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.01</minSeverity>
+				<label>feral</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>0.2</offset>
+					</li>
+				</capMods>
+			</li>
+			<li>
+				<minSeverity>0.80</minSeverity>
+				<label>sapient</label>
+			</li>
+			<li>
+				<minSeverity>0.99</minSeverity>
+				<label>driven mad</label>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.2</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

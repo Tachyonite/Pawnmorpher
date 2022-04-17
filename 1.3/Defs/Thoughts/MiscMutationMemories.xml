@@ -1,0 +1,219 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFurredLimb</defName>
+		<stages>
+			<li>
+				<label>Fur</label>
+				<description>People aren't supposed to have fur.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fur</label>
+				<description>So soft, so warm...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fur</label>
+				<description>I'm too hot like this, and I don't like how animal it makes me look!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherWingMemory</defName>
+		<stages>
+			<li>
+				<label>Wings</label>
+				<description>How am I supposed to use these things?</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wings</label>
+				<description>Okay sure, they might not be practical for lifting things, or flying, or really anything I guess; but they do allow me to do an even better imitation of a dodo!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wings</label>
+				<description>How am I supposed to do anything with wings? They don't even let me fly!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHoofHand</defName>
+		<stages>
+			<li>
+				<label>Hooves</label>
+				<description>Not hooves, what am I meant to do with these?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hooves</label>
+				<description>Hm. Well, I can't say it was unexpected...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hooves</label>
+				<description>MY HANDS! Please, no!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hooves</label>
+				<description>One step closer to all fours. This is great!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherDigitigradeLeg</defName>
+		<stages>
+			<li>
+				<label>Animal legs</label>
+				<description>Are they bent a different way, or is that my heel?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Animal legs</label>
+				<description>I can be so much faster like this! Once I get used to it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Animal legs</label>
+				<description>My knee's bending backwards now! What? That's my heel, not my knee? Even worse!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Animal legs</label>
+				<description>Just a bit further, and I won't be able to stand up! How about that?</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>PawFootMemory</defName>
+		<stages>
+			<li>
+				<label>Paws for feet</label>
+				<description>Well, at least I won't have a problem walking over gravel.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Paws for feet</label>
+				<description>Look at my cute little paws!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Paws for feet</label>
+				<description>Wait, whats happened to my feet? They look like a beasts!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>AvianFootMemory</defName>
+		<stages>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>It's a bit wierd walking around on chicken-feet.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>I am suprised just how nimble these avian claws are, I haven't missed a step!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Avian claw-feet</label>
+				<description>My feet look like a chickens. I wonder if I'm starting to taste like one too?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherClovenHoofFoot</defName>
+		<stages>
+			<li>
+				<label>Hooves</label>
+				<description>Well, at least I don't need shoes anymore.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hooves</label>
+				<description>No more shoes! Awesome!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Hooves</label>
+				<description>I can't even sneak away from the humiliation anymore... these things cause a racket wherever I go!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherWooly</defName>
+		<stages>
+			<li>
+				<label>Wool</label>
+				<description>Everything is so itchy!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wool</label>
+				<description>It's so soft and warm.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wool</label>
+				<description>I really need a shave.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherThickFurLimb</defName>
+		<stages>
+			<li>
+				<label>Heavy fur</label>
+				<description>It's pretty stuffy under here.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Heavy fur</label>
+				<description>A thick pelt, for soft hugs.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Heavy fur</label>
+				<description>It's unbearably hot under this hideous pelt!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

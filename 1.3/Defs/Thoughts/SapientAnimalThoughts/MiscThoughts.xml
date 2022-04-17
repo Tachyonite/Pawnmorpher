@@ -1,0 +1,50 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+   
+    <ThoughtDef>
+        <defName>SapientAnimalSleptOnGround</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>slept on ground</label>
+                <description>I don't even have a pillow anymore, I have to sleep on the ground!</description>
+                <baseMoodEffect>-4</baseMoodEffect> <!-- need to remember to set these >.> -->
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	
+    <ThoughtDef>
+        <defName>SapientAnimalMilked</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+	        <label>milked</label>	
+                <description>Get your hands off me you damn dirty ape!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction"> <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+	<ThoughtDef>
+        <defName>SapientAnimalGotSomeSnuggling</defName>
+        <thoughtClass>Thought_MemorySocial</thoughtClass>
+        <durationDays>3</durationDays>
+        <stackLimit>10</stackLimit>
+        <stackedEffectMultiplier>0.75</stackedEffectMultiplier>
+        <stages>
+          <li>
+            <label>got some snugglin’</label>
+            <description>There's nothing like a good snuggle to lift the mood.</description>
+            <baseMoodEffect>8</baseMoodEffect>
+            <baseOpinionOffset>6</baseOpinionOffset>
+          </li>
+        </stages>
+      </ThoughtDef>
+
+</Defs>
