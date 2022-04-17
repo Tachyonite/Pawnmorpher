@@ -161,7 +161,7 @@ namespace Pawnmorph
                     var jMethod = opJ.operand as MethodInfo;
                     bool patched;
                     //figure out which method, if any, we're going to be replacing 
-                    if (jMethod == PatchUtilities.RimworldGetAnimalMethod)
+                    if (jMethod == PatchUtilities.RimworldIsAnimalMethod)
                     {
                         patched = true;
                         opI.operand = _animalTabWorkerMethod;
@@ -324,6 +324,7 @@ namespace Pawnmorph
                 }
 
                 harmonyInstance.ILPatchCommonMethods(methodInfo.methodInfo, methodInfo.debug);
+                //Log.Message($"Finished Patching {methodInfo.methodInfo.Name}!");
             }
 
             StringBuilder builder = new StringBuilder();
@@ -406,12 +407,7 @@ namespace Pawnmorph
 
         private static void AddJobGiverMethods( [NotNull] List<MethodInfoSt> methodsToPatch)
         {
-
-            var method =
-                typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS);
-            methodsToPatch.Add(method); 
-
-            
+            methodsToPatch.Add(typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS));
         }
 
 
