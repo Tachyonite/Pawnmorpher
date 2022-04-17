@@ -16,7 +16,7 @@
 					</li>
 				</capMods>
 				<tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_Morph">
-					<morphDef>BoomratMorph</morphDef>
+					<morphDef>ElkMorph</morphDef>
 				</tfTypes>				
 				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting" />
 				<tfSettings>

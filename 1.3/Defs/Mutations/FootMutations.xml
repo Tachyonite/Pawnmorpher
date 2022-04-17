@@ -459,21 +459,21 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
-
+					<labelOverride>Padded foot</labelOverride>
+					<description>Thick callouses have developed, and retractable claws are beginning to grow from the nail bed.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
-
+					<labelOverride>Padded paw</labelOverride>
+					<description>Retractable claws and thick pawpads dominate the structure of this foot, and it's beginning to stretch longer from the heel.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This foot has reshaped and elongated into a feline foot, equipped with padded soles and retractable claws. They're unfamiliar to walk on, but a lot quieter when moving around.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -488,7 +488,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>This foot has reshaped and elongated into a feline foot, equipped with padded soles and retractable claws. The extra spring in the step makes [PAWN_nameDef] sprightly and a lot quieter when moving around.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -515,19 +515,19 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Claws are beginning to protrude from the nailbed, replacing the toenails.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Claws have fully grown, and the toes are splaying out in an odd fashion. Patches of scales are developing along the length.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Thick scales plate [nameDef]'s clumsy foot, and large claws get in the way of movement.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -543,7 +543,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Thick scales plate [nameDef]'s foot, and large claws get in the way of movement, but not as much as they used to.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -742,7 +742,7 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Curved claws are pressing out from the nails, but are too blunt to be of use at the moment.</description>
 					<verbOverrides>
 						<li>
 							<label>tip</label>
@@ -754,7 +754,7 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The claws have grown larger, and have sharpened enough to prove a threat.</description>
 					<verbOverrides>
 						<li>
 							<label>tip</label>
@@ -927,7 +927,7 @@
 	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherInsulatedAvianFoot</defName>
 		<label>insulated avian foot</label>
-		<description>TODO</description>
+		<description>An insulated avian foot.</description>
 		<classInfluence>TODO</classInfluence>
 		<mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory>
@@ -935,25 +935,25 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Claws are beginning to protrude from the nailbed, replacing the toenails.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Claws have fully grown, and the toes are splaying out in an odd fashion. Patches of avian scales are developing along the length.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Birdlike scales plate [nameDef]'s foot, and soft feathers coat above the heel.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Birdlike scales plate [nameDef]'s foot, and the added flexibility means it could also be used as a hand if needed.</description>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -968,7 +968,7 @@
 	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherFlipperFoot</defName>
 		<label>flipper foot</label>
-		<description>TODO</description>
+		<description>An avian flipper.</description>
 		<classInfluence>TODO</classInfluence>
 		<mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory>
@@ -976,25 +976,25 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Webbing has appeared beween [PAWN_nameDef]'s toes which has started to lengthen. So far the pain isn't too bad.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s foot is stretching out and becoming noticably thicker. It is very painful and the change makes it difficult to walk.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s foot has been replaced by a meaty flipper which would be useful for swimming. When walking on land it mostly gets in [PAWN_objective] way but its heft provides a solid support when shooting, reducing the effect of recoil.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s foot has been replaced by a meaty flipper which would be useful for swimming. When walking on land it mostly gets in [PAWN_objective] way, but adaption has helped reduce the difficulty. It still provides a solid support when shooting, reducing the effect of recoil.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>

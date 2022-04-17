@@ -223,7 +223,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-                    <description>TODO</description>
+                    <description>A small pair of horn tips have protruded through the scalp, and seem to be growing further.</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -235,7 +235,7 @@
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has grown a pair of nubs on their skull.</description>
+					<description>[PAWN_nameDef] has grown a pair of horn nubs on their skull. Short, but already sharp.</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -248,7 +248,7 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has grown a pair of short horns from their skull.</description>
+					<description>[PAWN_nameDef] has grown a pair of short and serrated horns from their skull.</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -261,7 +261,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has grown a pair of large horns from their skull.</description>
+					<description>[PAWN_nameDef] has grown a pair of large, serrated horns from their skull.</description>
 					
 					<verbOverrides>
 						<li>

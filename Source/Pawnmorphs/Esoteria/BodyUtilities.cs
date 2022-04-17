@@ -165,6 +165,7 @@ namespace Pawnmorph
 
             float offset = 0;
             float maxPartHealth = record.def.GetMaxHealth(p);
+            float multiplier = 0;
             foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
             {
                 MutationStage mStage = mutation.CurrentMutationStage;
@@ -173,7 +174,7 @@ namespace Pawnmorph
                     continue;
 
                 if (mStage.globalHealthMultiplier != 0)
-                    offset += maxPartHealth * mStage.globalHealthMultiplier;
+                    multiplier += mStage.globalHealthMultiplier;
 
                 if (mutation.Part != record) 
                     continue;
@@ -181,9 +182,8 @@ namespace Pawnmorph
                 offset += mStage.healthOffset;
             }
 
-            return
-                offset * p.HealthScale
-              + maxPartHealth; //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
+            return Mathf.Ceil((offset * p.HealthScale
+              + maxPartHealth) * (multiplier > 0 ? multiplier : 1)); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
         }
 
 
