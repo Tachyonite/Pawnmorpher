@@ -192,9 +192,9 @@
 						</severity>
 					</EtherComboWolfspike>
 					<PM_HellhoundSnout>
-						<path>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</path>
+						<path>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_</path>
 						<severity>
-							<a0.5>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</a0.5>
+							<a0.5>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_Muzzle</a0.5>
 							<a0.3>Legacy/Parts/Partials/PartialMuzzle/PartialMuzzle</a0.3>
 							<a0.1>Legacy/Parts/Partials/PartialMuzzle/TinyMuzzle</a0.1>
 						</severity>
@@ -902,9 +902,7 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForFemale>false</drawForFemale>
 				<hediffGraphics>
-					<!-- TODO 
 					<PM_HellhoundEar>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
-					-->
 					<EtherAlpacaEar>Legacy/Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherCougarEar>Legacy/Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherDonkeyEar>Legacy/Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
@@ -1189,9 +1187,7 @@
 				<layerOffset>-0.26</layerOffset>
 				<drawForMale>false</drawForMale>
 				<hediffGraphics>
-					<!--  TODO 
 					<PM_HellhoundEar>Legacy/Parts/COMBINATIONS/Hellhound/Hellhound_Ear_Right</PM_HellhoundEar>
-					-->
 					<EtherAlpacaEar>Legacy/Parts/Alpaca/Alpaca_Ear_Right</EtherAlpacaEar>
 					<EtherCougarEar>Legacy/Parts/Cougar/Cougar_Ear_Right</EtherCougarEar>
 					<EtherDonkeyEar>Legacy/Parts/Donkey/Donkey_Ear_Right</EtherDonkeyEar>
