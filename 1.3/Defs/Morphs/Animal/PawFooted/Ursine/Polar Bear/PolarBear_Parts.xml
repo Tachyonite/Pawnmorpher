@@ -4,7 +4,7 @@
 		<defName>EtherPolarBearMuzzle</defName>
 		<label>polar bear muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Bear/Bear_Jaw</Muzzle>
+			<Muzzle>Parts/Bear/Bear_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -25,7 +25,7 @@
 		<defName>EtherPolarBearTail</defName>
 		<label>polar bear tail</label>
 		<graphics>
-			<Tail>Parts/bearface/beartail</Tail>
+			<Tail>Parts/Bear/Bear_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

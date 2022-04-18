@@ -4,7 +4,7 @@
 		<defName>EtherCapybaraJaw</defName>
 		<label>capybara snout</label>
 		<graphics>
-			<Muzzle>Parts/Capybara/Capybara_Jaw</Muzzle>
+			<Muzzle>Parts/Capybara/Capybara_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

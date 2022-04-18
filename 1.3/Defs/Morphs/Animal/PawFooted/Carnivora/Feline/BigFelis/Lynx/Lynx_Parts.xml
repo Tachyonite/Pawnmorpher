@@ -4,7 +4,7 @@
 		<defName>EtherLynxJaw</defName>
 		<label>lynx snout</label>
 		<graphics>
-			<Muzzle>Parts/Lynx/Lynx_Jaw</Muzzle>
+			<Muzzle>Parts/Lynx/Lynx_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

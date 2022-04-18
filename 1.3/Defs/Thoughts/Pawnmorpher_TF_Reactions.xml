@@ -1,0 +1,174 @@
+﻿<Defs>
+	<ThoughtDef>
+		<defName>RivalTransformedThought</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<stages>
+			<li>
+				<label>transformed rival</label>
+				<description>My rival is on all fours. Serves them right! I think I like them better like this.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>FriendTransformedThought</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed friend</label>
+				<description>My friend turned into a dumb animal!</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>FatherTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed father</label>
+				<description>My dad is an animal...I don't know how to feel about this.</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MotherTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed mother</label>
+				<description>My poor mother is nothing but an animal now...</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>HusbandTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed husband</label>
+				<description>My husband was turned into an animal! He's not sleeping in my bed like that.</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>WifeTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed wife</label>
+				<description>My wife was turned into an animal! Guess I'll have to find somewhere else to sleep.</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>BrotherTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed brother</label>
+				<description>My brother was transformed into an animal! This is like that weird movie...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>SisterTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed sister</label>
+				<description>My sister was turned into an animal! It should have been me instead...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>SonTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed son</label>
+				<description>My son was turned into an animal! My poor boy...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>DaughterTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed daughter</label>
+				<description>My daughter was turned into an animal! My darling girl...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>FriendTransformed</defName>
+		<durationDays>10</durationDays>
+		<stackLimit>1</stackLimit>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>transformed friend</label>
+				<description>My friend turned into a dumb animal!</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

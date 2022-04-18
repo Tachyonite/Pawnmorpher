@@ -6,7 +6,7 @@
 		<mutationMemory>EtherBoomratJaw</mutationMemory>
 		<mutationTale>GrewRatMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/Boomrat/Boomrat_Jaw</Muzzle>
+			<Muzzle>Parts/Boomrat/Boomrat_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

@@ -4,7 +4,7 @@
 		<defName>EtherCougarJaw</defName>
 		<label>cougar snout</label>
 		<graphics>
-			<Muzzle>Parts/Cougar/Cougar_Jaw</Muzzle>
+			<Muzzle>Parts/Cougar/Cougar_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

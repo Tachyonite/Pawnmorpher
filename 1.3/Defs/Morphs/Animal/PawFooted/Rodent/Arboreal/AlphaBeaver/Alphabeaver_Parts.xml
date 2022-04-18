@@ -4,7 +4,7 @@
 		<defName>EtherAlphabeaverJaw</defName>
 		<label>alphabeaver snout</label>
 		<graphics>
-			<Muzzle>Parts/Alphabeaver/Alphabeaver_Jaw</Muzzle>
+			<Muzzle>Parts/Alphabeaver/Alphabeaver_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

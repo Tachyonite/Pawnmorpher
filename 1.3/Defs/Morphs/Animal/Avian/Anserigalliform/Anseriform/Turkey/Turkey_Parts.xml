@@ -4,7 +4,7 @@
 		<classInfluence>TurkeyMorph</classInfluence>
 		<label>turkey beak</label>
 		<graphics>
-			<Muzzle>Parts/Turkey/Turkey_Jaw</Muzzle>
+			<Muzzle>Parts/Turkey/Turkey_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

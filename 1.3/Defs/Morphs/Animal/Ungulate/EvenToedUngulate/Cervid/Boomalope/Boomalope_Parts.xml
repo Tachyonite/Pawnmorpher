@@ -4,7 +4,7 @@
 		<defName>EtherBoomalopeSnout</defName>
 		<label>boomasnout</label>
 		<graphics>
-			<Muzzle>Parts/boomalopeface/boomalopeface</Muzzle>
+			<Muzzle>Parts/Boomalope/Boomalope_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -54,6 +54,9 @@
 		<label>chemical cyst</label>
 		<description>A large cyst filled with chemfuel now covers [PAWN_nameDef]'s waist. They can drain it to produce chemfuel.</description>
 		<initialSeverity>0.01</initialSeverity>
+		<graphics>
+			<Udders>Parts/Boomalope/Boomalope_Udder</Udders>
+		</graphics>
 		<parts>
 			<li>Waist</li>
 		</parts>

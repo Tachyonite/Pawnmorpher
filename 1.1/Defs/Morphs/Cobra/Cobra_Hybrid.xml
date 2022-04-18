@@ -537,14 +537,14 @@
                     <bodyAddons>
                         <li>
                             <!-- Body Tails -->
-                            <path>Parts/None/None</path>
+                            <path>Legacy/Parts/None/None</path>
                             <bodyPart>TailLeg</bodyPart>
                             <inFrontOfBody>true</inFrontOfBody>
                             <layerInvert>false</layerInvert>
                             <drawnInBed>false</drawnInBed>
                             <hediffGraphics>
-                                <EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
-                                <EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
+                                <EtherSnakeTail>Legacy/Parts/Cobra/Cobra_Tail</EtherSnakeTail>
+                                <EtherIguanaTail>Legacy/Parts/iguanaface/iguanatail</EtherIguanaTail>
                             </hediffGraphics>
                             <layerOffset>-0.29</layerOffset>
                             <offsets>

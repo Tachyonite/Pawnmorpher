@@ -4,7 +4,7 @@
 		<classInfluence>ChookMorph</classInfluence>
 		<label>chicken beak</label>
 		<graphics>
-			<Muzzle>Parts/chickenface/chickenface</Muzzle>
+			<Muzzle>Parts/Chicken/Chicken_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -33,7 +33,7 @@
 		<classInfluence>ChookMorph</classInfluence>
 		<label>chicken tailfeathers</label>
 		<graphics>
-			<Tail>Parts/chickenface/chickentail</Tail>
+			<Tail>Parts/Chicken/Chicken_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

@@ -4,7 +4,7 @@
 		<defName>EtherPantherJaw</defName>
 		<label>panther muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Panther/Panther_Jaw</Muzzle>
+			<Muzzle>Parts/Panther/Panther_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

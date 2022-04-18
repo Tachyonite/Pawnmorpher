@@ -166,9 +166,6 @@ namespace Pawnmorph
                         }
                     }
                 }
-
-
-
             }
             catch (Exception e)
             {

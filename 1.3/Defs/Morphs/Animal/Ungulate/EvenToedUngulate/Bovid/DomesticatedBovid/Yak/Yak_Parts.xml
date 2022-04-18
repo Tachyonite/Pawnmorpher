@@ -4,7 +4,7 @@
 		<defName>EtherYakSnout</defName>
 		<label>yak snout</label>
 		<graphics>
-			<Muzzle>Parts/Yak/Yak_Jaw</Muzzle>
+			<Muzzle>Parts/Yak/Yak_Muzzle</Muzzle>
 			<BirdJawOrnament>Parts/Yak/Yak_Headfluff</BirdJawOrnament>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

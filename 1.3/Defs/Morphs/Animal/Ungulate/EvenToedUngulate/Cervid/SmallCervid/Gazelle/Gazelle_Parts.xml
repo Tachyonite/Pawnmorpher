@@ -4,7 +4,7 @@
 		<defName>EtherGazelleJaw</defName>
 		<label>gazelle snout</label>
 		<graphics>
-			<Muzzle>Parts/Gazelle/Gazelle_Jaw</Muzzle>
+			<Muzzle>Parts/Gazelle/Gazelle_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -79,7 +79,7 @@
 		<mutationTale>GrewAntlers</mutationTale>
 		<!-- <mutationMemory>TODO</mutationMemory> -->
 		<graphics>
-			<Horns>Parts/Gazelle/Gazelle_Antlers</Horns>
+			<Horns>Parts/Gazelle/Gazelle_Horns</Horns>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

@@ -7,7 +7,7 @@
 			<li>Combo</li>
 		</categories>
 		<graphics>
-			<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Jaw</Muzzle>
+			<Muzzle>Parts/COMBINATIONS/Hellhound/Hellhound_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

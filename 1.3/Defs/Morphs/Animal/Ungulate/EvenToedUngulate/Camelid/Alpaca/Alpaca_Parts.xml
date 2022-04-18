@@ -5,7 +5,7 @@
 		<label>alpaca snout</label>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/Alpaca/Alpaca_Jaw</Muzzle>
+			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
 		</graphics>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">

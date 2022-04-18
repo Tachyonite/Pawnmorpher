@@ -4,7 +4,7 @@
 		<classInfluence>CassowaryMorph</classInfluence>
 		<label>cassowary beak</label>
 		<graphics>
-			<Muzzle>Parts/Cassowary/Cassowary_Jaw</Muzzle>
+			<Muzzle>Parts/Cassowary/Cassowary_Muzzle</Muzzle>
 			<BirdJawOrnament>Parts/Cassowary/Cassowary_Ornament</BirdJawOrnament>
 		</graphics>
 		<stagePatches>

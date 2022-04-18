@@ -4,7 +4,7 @@
 		<defName>EtherTerrierMuzzle</defName>
 		<label>terrier muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Terrier/Terrier_Jaw</Muzzle>
+			<Muzzle>Parts/Terrier/Terrier_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	

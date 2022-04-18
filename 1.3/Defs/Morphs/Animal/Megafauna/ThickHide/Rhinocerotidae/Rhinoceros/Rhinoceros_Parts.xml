@@ -3,7 +3,7 @@
 		<classInfluence>RhinocerosMorph</classInfluence>
 		<defName>EtherRhinocerosJaw</defName>
 		<graphics>
-			<Muzzle>Parts/Rhinoceros/Rhinoceros_Jaw</Muzzle>
+			<Muzzle>Parts/Rhinoceros/Rhinoceros_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

@@ -10,8 +10,8 @@
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
-						<EtherSnowLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherSnowLeopardJaw>
+						<EtherLeopardJaw>Parts/Leopard/Leopard_Muzzle</EtherLeopardJaw>
+						<EtherSnowLeopardJaw>Parts/Leopard/Leopard_Muzzle</EtherSnowLeopardJaw>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">

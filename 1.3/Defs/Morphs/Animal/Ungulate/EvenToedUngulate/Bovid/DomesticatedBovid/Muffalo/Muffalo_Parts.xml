@@ -4,7 +4,7 @@
 		<defName>EtherMuffaloSnout</defName>
 		<label>muffalo snout</label>
 		<graphics>
-			<Muzzle>Parts/Muffalo/Muffalo_Jaw</Muzzle>
+			<Muzzle>Parts/Muffalo/Muffalo_Muzzle</Muzzle>
 			<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_B</BirdJawOrnament>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

@@ -4,7 +4,7 @@
 		<defName>EtherHuskyMuzzle</defName>
 		<label>husky muzzle</label>
 		<graphics>
-			<Muzzle>Parts/huskyface/huskyface</Muzzle>
+			<Muzzle>Parts/Husky/Husky_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -25,7 +25,7 @@
 		<defName>EtherHuskyTail</defName>
 		<label>husky tail</label>
 		<graphics>
-			<Tail>Parts/huskyface/huskytail</Tail>
+			<Tail>Parts/Husky/Husky_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>

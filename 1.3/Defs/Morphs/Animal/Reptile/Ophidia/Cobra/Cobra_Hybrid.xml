@@ -544,7 +544,6 @@
                             <drawnInBed>false</drawnInBed>
                             <hediffGraphics>
                                 <EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
-                                <EtherIguanaTail>Parts/iguanaface/iguanatail</EtherIguanaTail>
                             </hediffGraphics>
 							<offsets>
 								<south/>

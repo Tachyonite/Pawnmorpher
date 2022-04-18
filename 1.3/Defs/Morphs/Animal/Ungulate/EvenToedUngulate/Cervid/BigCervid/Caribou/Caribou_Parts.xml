@@ -4,7 +4,7 @@
 		<defName>EtherCaribouJaw</defName>
 		<label>caribou snout</label>
 		<graphics>
-			<Muzzle>Parts/Caribou/Caribou_Jaw</Muzzle>
+			<Muzzle>Parts/Caribou/Caribou_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -95,7 +95,7 @@
 				<values>
 					<description>[PAWN_nameDef] has large caribou antlers.</description>
 					<graphics>
-						<Horns>Parts/Caribou/Caribou_Antlers</Horns>
+						<Horns>Parts/Caribou/Caribou_Horns</Horns>
 					</graphics>
 				</values>
 			</li>

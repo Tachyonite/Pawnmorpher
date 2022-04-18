@@ -110,20 +110,27 @@
 				<stageKey>unfamiliar</stageKey>
 				<values>
 					<description>TODO</description>
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
-				
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
-					
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
 				</values>
 			</li>
 		</stagePatches>

@@ -4,7 +4,7 @@
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
 		<graphics>
-			<Muzzle>Parts/megaslothface/megaslothface</Muzzle>
+			<Muzzle>Parts/Megasloth/Megasloth_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -109,7 +109,7 @@
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
 		<graphics>
-			<Tail>Parts/megaslothface/megaslothtail</Tail>
+			<Tail>Parts/Megasloth/Megasloth_Tail</Tail>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

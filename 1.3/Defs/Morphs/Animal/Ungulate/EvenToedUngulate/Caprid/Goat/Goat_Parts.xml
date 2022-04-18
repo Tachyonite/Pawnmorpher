@@ -4,7 +4,7 @@
 		<defName>EtherGoatSnout</defName>
 		<label>goat snout</label>
 		<graphics>
-			<Muzzle>Parts/Goat/Goat_Jaw</Muzzle>
+			<Muzzle>Parts/Goat/Goat_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
@@ -57,7 +57,7 @@
 				<stageKey>nubs</stageKey>
 				<values>
 					<graphics>
-						<Horns>Parts/Goat/GoatHorns_a</Horns>
+						<Horns>Parts/Goat/GoatHorns_A</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -66,7 +66,7 @@
 				<values>
 					<description>Curved horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have grown larger, but still have a little more growing to do.</description>
 					<graphics>
-						<Horns>Parts/Goat/GoatHorns_b</Horns>
+						<Horns>Parts/Goat/GoatHorns_B</Horns>
 					</graphics>
 				</values>
 			</li>
@@ -75,7 +75,7 @@
 				<values>
 					<description>Caprine horns decorate [PAWN_nameDef]'s head, which add a heft to a headbutt. They have reached their full size.</description>
 					<graphics>
-						<Horns>Parts/Goat/GoatHorns_c</Horns>
+						<Horns>Parts/Goat/GoatHorns_C</Horns>
 					</graphics>
 				</values>
 			</li>

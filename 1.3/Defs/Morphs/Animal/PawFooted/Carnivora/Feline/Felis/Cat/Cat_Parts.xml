@@ -4,7 +4,7 @@
 		<defName>EtherCatMuzzle</defName>
 		<label>cat muzzle</label>
 		<graphics>
-			<Muzzle>Parts/catface/catface</Muzzle>
+			<Muzzle>Parts/Cat/Cat_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -25,7 +25,7 @@
 		<defName>EtherCatTail</defName>
 		<label>cat tail</label>
 		<graphics>
-			<Tail>Parts/catface/cattail</Tail>
+			<Tail>Parts/Cat/Cat_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
