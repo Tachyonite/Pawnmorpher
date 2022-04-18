@@ -5,7 +5,8 @@
 		<label>deer snout</label>
 		<mutationTale>GrewDeerMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/Deer/Deer_Muzzle</Muzzle>
+			<MuzzleMale>Parts/Deer/Deer_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Deer/Deer_Muzzle_Female</MuzzleFemale>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -35,9 +36,9 @@
 		<label>deer ear</label>
 		<graphics>
 			<LeftEar>Parts/Deer/Deer_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Deer/Deer_Ear_Left_Behind</LeftEarBehind>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/Deer/Deer_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Deer/Deer_Ear_Right_Behind</RightEarBehindHead>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -73,14 +74,14 @@
 		<classInfluence>DeerMorph</classInfluence>
 		<mutationTale>GrewAntlers</mutationTale>
 		<!-- <mutationMemory>TODO</mutationMemory> -->
-		<graphics>
-			<Horns>Parts/Deer/Deer_Horns</Horns>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
 					<label>fawn</label>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_A</Horns>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
@@ -88,6 +89,9 @@
 				<values>
 					<label>buck</label>
 					<description>TODO</description>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_B</Horns>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
@@ -95,6 +99,9 @@
 				<values>
 					<label>stag</label>
 					<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_C</Horns>
+					</graphics>
 				</values>
 			</li>
 		</stagePatches>
