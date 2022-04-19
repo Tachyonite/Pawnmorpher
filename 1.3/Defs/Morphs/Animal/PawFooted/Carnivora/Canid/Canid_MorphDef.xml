@@ -1,13 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef Abstract="true" ParentName="CarnivoraMorph" Name="CanidMorph">
-		<group>Canines</group>
 		<classification>Canid</classification>
-		<addedAspects>
-			<li>
-				<def>NaturalHunter</def>
-				<keepOnReversion>false</keepOnReversion>
-				<!-- if true the pawn will keep the affinity even if they stop being this morph -->
-			</li>
-		</addedAspects>
+		<group>Canines</group>
 	</Pawnmorph.MorphDef>
 </Defs>
