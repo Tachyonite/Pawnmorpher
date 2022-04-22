@@ -90,7 +90,7 @@
             <manhunterOnTameFailChance>0.05</manhunterOnTameFailChance>
             <manhunterOnDamageChance>0.25</manhunterOnDamageChance>
             <lifeExpectancy>18</lifeExpectancy>
-            <lifeStageAges>
+            <lifeStageAges Inherit="False">
                 <li>
                     <def>AnimalBabyTiny</def>
                     <minAge>0</minAge>
