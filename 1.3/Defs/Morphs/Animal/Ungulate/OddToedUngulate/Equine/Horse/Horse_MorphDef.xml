@@ -1,4 +1,4 @@
-﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
 	<Pawnmorph.MorphDef ParentName="EquineMorph">
 		<defName>HorseMorph</defName>
 		<label>horsemorph</label>
@@ -12,7 +12,7 @@
 		<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(122,78,52)</skinColorOverride>
+				<skinColorOverride>(160,100,60)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
