@@ -42,24 +42,6 @@ namespace Pawnmorph
         static MorphUtilities()
         {
             //check for mod incompatibilities here 
-
-
-            // Handle morph def config errors.
-            List<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.Where(x => x.ConfigErrors().Any() == false).ToList();
-            if (morphs.Count < DefDatabase<MorphDef>.DefCount)
-            {
-                // If error-free collection is smaller than total amount of defs, clear DefDatabase and only insert error-free defs.
-                // DefDatabase does not have a function to remove individual entries - probably due to internal caching and indexing
-                // So we have to completely clear and repopulate it.
-                // This is to ensure the rest of the mod relying on the DefDatabase directly keeps functioning.
-                Log.Warning($"{DefDatabase<MorphDef>.DefCount - morphs.Count} MorphDefs was removed due to config errors.");
-
-                DefDatabase<MorphDef>.Clear();
-                DefDatabase<MorphDef>.Add(morphs);
-            }
-
-
-
             if (ThingDefOf.Human.race.body != BodyDefOf.Human)
             {
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");

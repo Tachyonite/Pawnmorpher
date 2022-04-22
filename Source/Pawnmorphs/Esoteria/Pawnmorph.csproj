@@ -905,6 +905,7 @@
     <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Abillities\" />
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>
