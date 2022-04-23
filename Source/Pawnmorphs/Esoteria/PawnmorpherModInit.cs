@@ -44,6 +44,7 @@ namespace Pawnmorph
             {
                 GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
 
+                VerifyMorphDefDatabase();
 
                 InjectGraphics(); 
                 NotifySettingsChanged();
@@ -76,6 +77,23 @@ namespace Pawnmorph
             catch (Exception e)
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
+            }
+        }
+
+        private static void VerifyMorphDefDatabase()
+        {
+            // Handle morph def config errors.
+            List<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.Where(x => x.ConfigErrors().Any() == false).ToList();
+            if (morphs.Count < DefDatabase<MorphDef>.DefCount)
+            {
+                // If error-free collection is smaller than total amount of defs, clear DefDatabase and only insert error-free defs.
+                // DefDatabase does not have a function to remove individual entries - probably due to internal caching and indexing
+                // So we have to completely clear and repopulate it.
+                // This is to ensure the rest of the mod relying on the DefDatabase directly keeps functioning.
+                Log.Warning($"{DefDatabase<MorphDef>.DefCount - morphs.Count} MorphDefs was removed due to config errors.");
+
+                DefDatabase<MorphDef>.Clear();
+                DefDatabase<MorphDef>.Add(morphs);
             }
         }
 

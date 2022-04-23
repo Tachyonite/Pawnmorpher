@@ -95,6 +95,12 @@ namespace Pawnmorph
             return true;
         }
 
+        public override void CompPostPostAdd(DamageInfo? dinfo)
+        {
+            base.CompPostPostAdd(dinfo);
+            UpdateCurrentStage();
+        }
+
         /// <summary>
         /// Recalculates current stage.
         /// </summary>
