@@ -5,6 +5,12 @@
 		<categories>
 			<li>Combat</li>
 		</categories>
+		<addedAspects>
+			<li>
+				<def>MeatLover</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+		</addedAspects>
 		<transformSettings>
 			<transformationMemory>WolfTransformationMemory</transformationMemory>
 			<revertedMemory>WolfRevertedMemory</revertedMemory>
