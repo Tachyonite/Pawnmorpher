@@ -9,6 +9,10 @@
 				<def>PridefulAspect</def>
 				<keepOnReversion>false</keepOnReversion>
 			</li>
+			<li>
+				<def>MeatLover</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
 		</addedAspects>
 	</Pawnmorph.MorphDef>
 </Defs>
