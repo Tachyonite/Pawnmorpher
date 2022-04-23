@@ -32,6 +32,7 @@
 			<li function="modify">
 				<stageKey>pressing</stageKey>
 				<values>
+					<label>missing</label>
 					<description>[PAWN_nameDef] no longer has a visible ear.</description>
 					<graphics>
 						<LeftEarBehind>Parts/None/None</LeftEarBehind>
