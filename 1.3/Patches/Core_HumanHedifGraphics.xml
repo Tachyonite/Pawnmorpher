@@ -9,7 +9,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
-				<inFrontOfBody>true</inFrontOfBody>
+				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
@@ -25,6 +25,17 @@
 						</severity>
 					</EtherComboWolfSpike>
 				</hediffGraphics>
+				<offsets>
+					<south>
+						<layerOffset>-0.328</layerOffset>
+					</south>
+					<north>
+						<layerOffset>-0.01</layerOffset>
+					</north>
+					<east>
+						<layerOffset>-0.328</layerOffset>
+					</east>
+				</offsets>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Muzzles -->
@@ -33,13 +44,24 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
-				<inFrontOfBody>true</inFrontOfBody>
+				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<drawForMale>true</drawForMale>
 				<drawForFemale>false</drawForFemale>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<layerOffset>-0.328</layerOffset>
+					</south>
+					<north>
+						<layerOffset>-0.01</layerOffset>
+					</north>
+					<east>
+						<layerOffset>-0.328</layerOffset>
+					</east>
+				</offsets>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Female Muzzles -->
@@ -48,13 +70,24 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
-				<inFrontOfBody>true</inFrontOfBody>
+				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<drawForMale>false</drawForMale>
 				<drawForFemale>true</drawForFemale>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<layerOffset>-0.328</layerOffset>
+					</south>
+					<north>
+						<layerOffset>-0.01</layerOffset>
+					</north>
+					<east>
+						<layerOffset>-0.328</layerOffset>
+					</east>
+				</offsets>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Bird jaw ornament -->
