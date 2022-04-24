@@ -1,6 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="WolfJawBase" ParentName="CanidJawPart" Abstract="true">
-		<mutationMemory>EtherWolfMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -38,7 +37,6 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef Name ="WolfEarPart" ParentName="CanidEarPart" Abstract="true">
-		<mutationMemory>EtherWolfEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -73,7 +71,6 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="WolfTailPart" ParentName="CanidTailPart" Abstract="true">
-		<mutationMemory>EtherWolfTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>

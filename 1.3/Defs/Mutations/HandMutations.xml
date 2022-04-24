@@ -353,12 +353,12 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
-		<defName>EtherCatClaws</defName>
+		<defName>EtherFelineClaws</defName>
 		<label>feline</label>
 		<description>This hand has reshaped to become like a paw, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
 		<classInfluence>Feline</classInfluence>
 		<mutationTale>HandsBecomeCatPaws</mutationTale>
-		<mutationMemory>CanidPawHandMemory</mutationMemory>
+		<mutationMemory>EtherFelineClaws</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>

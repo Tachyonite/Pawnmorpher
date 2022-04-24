@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
+		<mutationMemory>EtherSquirrelJaw</mutationMemory>
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelJaw</defName>
 		<label>squirrel snout</label>
@@ -10,6 +11,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
+		<mutationMemory>EtherSquirrelEar</mutationMemory>
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelEar</defName>
 		<label>squirrel ear</label>
@@ -30,6 +32,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
+		<mutationMemory>EtherSquirrelTail</mutationMemory>
 		<classInfluence>SquirrelMorph</classInfluence>
 		<defName>EtherSquirrelTail</defName>
 		<label>squirrel tail</label>

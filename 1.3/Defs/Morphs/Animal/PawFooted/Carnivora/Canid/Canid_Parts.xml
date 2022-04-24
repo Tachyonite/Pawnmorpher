@@ -1,6 +1,7 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="CanidJawPart" ParentName="CarnivoraJawPart" Abstract="true">
 		<mutationTale>GrewCanidMuzzle</mutationTale>
+		<mutationMemory>EtherCanidMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -46,9 +47,11 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CanidEarPart" ParentName="CarnivoraEarPart" Abstract="true">
 		<mutationTale>EarsChangedCanid</mutationTale>
+		<mutationMemory>EtherCanidEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CanidTailPart" ParentName="CarnivoraTailPart" Abstract="true">
+		<mutationMemory>EtherCanidTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>
