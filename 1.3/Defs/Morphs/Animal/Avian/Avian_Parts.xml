@@ -76,6 +76,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">
 		<description>A plume of feathers sprouts out of the back of [PAWN_nameDef].</description>
+		<mutationMemory>EtherTailfeathers</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

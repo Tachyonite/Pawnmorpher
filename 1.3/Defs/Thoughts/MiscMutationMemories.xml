@@ -1,4 +1,5 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherFurredLimb</defName>
@@ -23,6 +24,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherWingMemory</defName>
@@ -44,6 +46,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherHoofHand</defName>
@@ -74,6 +77,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherDigitigradeLeg</defName>
@@ -104,6 +108,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="MutationMemoryBase">
 		<defName>PawFootMemory</defName>
 		<stages>
@@ -124,13 +129,14 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="MutationMemoryBase">
 		<defName>AvianFootMemory</defName>
 		<stages>
 			<li>
 				<label>Avian claw-feet</label>
 				<description>It's a bit wierd walking around on chicken-feet.</description>
-				<baseMoodEffect>1</baseMoodEffect>
+				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
 				<label>Avian claw-feet</label>
@@ -144,6 +150,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherClovenHoofFoot</defName>
@@ -168,6 +175,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherWooly</defName>
@@ -192,6 +200,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherThickFurLimb</defName>
@@ -216,4 +225,61 @@
 			</li>
 		</stages>
 	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherEarHole</defName>
+		<stages>
+			<li>
+				<label>Ear holes</label>
+				<description>What the, where are my ears?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ear holes</label>
+				<description>I suppose they're more streamlined now?</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ear holes</label>
+				<description>My ears?! This is a nightmare! I look like a monster!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherEggLayer</defName>
+		<stages>
+			<li>
+				<label>...eggs?!</label>
+				<description>How is this even possible? It feels so weird...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>...eggs?!</label>
+				<description>This is taking it too far. People weren't meant to lay eggs!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>...eggs?!</label>
+				<description>How!? Why!? What has become of me!?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>...eggs?!</label>
+				<description>I know I wanted this, but I'm not entirely sure now.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
 </Defs>

@@ -1,5 +1,6 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
-    <ThoughtDef ParentName="OutlookMemoryBase">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+    
+	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>DuckTransformationMemory</defName>
         <stages>
             <li>
@@ -50,4 +51,5 @@
             </li>
         </stages>
     </ThoughtDef>
+	
 </Defs>
