@@ -2,7 +2,7 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherBeak</defName>
+		<defName>EtherAvianJaw</defName>
 		<stages>
 			<li>
 				<label>Beak</label>
@@ -27,7 +27,7 @@
 	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherTailfeathers</defName>
+		<defName>EtherAvianTail</defName>
 		<stages>
 			<li>
 				<label>Tailfeathers</label>
