@@ -62,8 +62,7 @@ namespace Pawnmorph.Utilities
                 _statCache[pawn] = pawnCache;
             }
 
-            CachedStat stat = pawnCache.TryGetValue(statDef);
-            if (stat == null)
+            if (pawnCache.TryGetValue(statDef, out CachedStat stat) == false)
             {
                 if (pawn.Spawned == false)
                     return null;

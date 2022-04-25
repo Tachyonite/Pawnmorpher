@@ -16,6 +16,8 @@ namespace Pawnmorph
     /// </summary>
     public static class AspectUtils
     {
+        static readonly Dictionary<Pawn, AspectTracker> _aspectTracker = new Dictionary<Pawn, AspectTracker>();
+
         /// <summary>
         /// get the aspect tracker from this pawn 
         /// </summary>
@@ -24,9 +26,17 @@ namespace Pawnmorph
         [CanBeNull]
         public static AspectTracker GetAspectTracker([NotNull] this Pawn pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+            if (pawn == null) 
+                throw new ArgumentNullException(nameof(pawn));
 
-            return pawn.GetComp<AspectTracker>(); 
+            AspectTracker tracker;
+            if (_aspectTracker.TryGetValue(pawn, out tracker) == false)
+            {
+                tracker = pawn.GetComp<AspectTracker>();
+                _aspectTracker[pawn] = tracker;
+            }
+
+            return tracker;
         }
 
         /// <summary> Get the total production multiplier for the given mutation. </summary>
