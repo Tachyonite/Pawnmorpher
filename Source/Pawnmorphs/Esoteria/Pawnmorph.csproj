@@ -297,6 +297,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\MutationAbility.cs" />
+    <Compile Include="Abilities\Flight.cs" />
+    <Compile Include="Abilities\MutationAbilityDef.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />
@@ -905,7 +908,6 @@
     <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abillities\" />
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>

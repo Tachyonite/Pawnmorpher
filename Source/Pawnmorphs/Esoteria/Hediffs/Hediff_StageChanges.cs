@@ -18,6 +18,7 @@ namespace Pawnmorph.Hediffs
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
 
+        private List<Abilities.MutationAbility> abilities;
         private List<IStageChangeObserverComp> observerComps;
         private IEnumerable<IStageChangeObserverComp> ObserverComps
         {
@@ -72,12 +73,43 @@ namespace Pawnmorph.Hediffs
             {
                 var oldStage = cachedStage;
                 RecacheStage(stageIndex);
-
+                GenerateAbilities(cachedStage);
                 OnStageChanged(oldStage, cachedStage);
 
                 foreach (var comp in ObserverComps)
                     comp.OnStageChanged(oldStage, cachedStage);
             }
+
+            foreach (Abilities.MutationAbility ability in abilities)
+            {
+                ability.Tick();
+            }
+        }
+
+        private void GenerateAbilities(HediffStage stage)
+        {
+            if (stage is MutationStage mutationStage)
+            {
+                abilities.Clear();
+                Abilities.MutationAbility ability;
+                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.Abilities)
+                {
+                    if (abilityDef.abilityType.BaseType == typeof(Abilities.MutationAbility))
+                    {
+                        ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityType);
+                        ability.Initialize(pawn);
+                        abilities.Add(ability);
+                    }
+                }
+            }
+        }
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+
+            foreach (Abilities.MutationAbility item in abilities)
+                yield return item.Gizmo;
         }
 
         /// <summary>
