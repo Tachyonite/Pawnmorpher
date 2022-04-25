@@ -131,26 +131,25 @@ namespace Pawnmorph
         {
             try
             {
-                var human = (ThingDef_AlienRace) ThingDefOf.Human;
+                // Get all body-addons from all species to initialize any TaggedBodyAddon
+                IEnumerable<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>();
 
-                var bodyAddons = human
-                                .alienRace.generalSettings.alienPartGenerator
-                                .bodyAddons;
-
-                //make a dict while checking for duplicates 
-                Dictionary<string, TaggedBodyAddon> dict = new Dictionary<string, TaggedBodyAddon>();
-                foreach (TaggedBodyAddon tAddon in bodyAddons.OfType<TaggedBodyAddon>())
+                List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
+                foreach (ThingDef_AlienRace race in humanoidRaces)
                 {
-                    if (tAddon.anchorID == null)
+                    var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
+                    foreach (TaggedBodyAddon bodyAddon in taggedBodyAddons)
                     {
-                        Log.Error($"encountered tagged body addon with null anchorID!");
+                        if (bodyAddon.anchorID == null)
+                        {
+                            Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
+                        }
+                        else
+                            taggedAddons.Add(bodyAddon);
                     }
-                    else if (dict.ContainsKey(tAddon.anchorID))
-                    {
-                        Log.Error($"encountered duplicate tagged body addon with anchor id \"{dict}\"!");
-                    }
-                    else dict[tAddon.anchorID] = tAddon;
                 }
+
+                ILookup<string, TaggedBodyAddon> dict = taggedAddons.ToLookup(x => x.anchorID);
 
                 List<MutationStage> mutationStages = new List<MutationStage>();
                 List<string> anchors = new List<string>();
@@ -172,16 +171,20 @@ namespace Pawnmorph
                                                         .OfType<MutationStage>()
                                                         .Where(m => m.graphics.MakeSafe()
                                                                      .Any(s => s.anchorID == anchor)));
-
-                        if (!dict.TryGetValue(anchor, out TaggedBodyAddon addon))
+                        if (!dict.Contains(anchor))
                         {
                             Log.Error($"unable to find body addon on human with anchor id \"{anchor}\"!");
+                            continue;
                         }
-                        else
+
+                        HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
+                        if (hediffGraphic == null) 
+                            continue;
+
+                        foreach (TaggedBodyAddon addon in dict[anchor])
                         {
-                            HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
-                            if (hediffGraphic == null) continue;
-                            if (addon.hediffGraphics == null) addon.hediffGraphics = new List<HediffGraphic>();
+                            if (addon.hediffGraphics == null) 
+                                addon.hediffGraphics = new List<HediffGraphic>();
 
                             addon.hediffGraphics.Add(hediffGraphic);
                             AppendPools(hediffGraphic, addon); 
@@ -345,9 +348,7 @@ namespace Pawnmorph
         [NotNull]
         private static IEnumerable<AlienPartGenerator.BodyAddon> GetAllAddonsToAdd()
         {
-            var addons =
-                ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons.MakeSafe();
-
+            var addons = ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons.MakeSafe();
             foreach (AlienPartGenerator.BodyAddon bodyAddon in addons)
             {
                 if(bodyAddon.hediffGraphics == null || bodyAddon.hediffGraphics.Count == 0) continue;
@@ -365,7 +366,6 @@ namespace Pawnmorph
 
                 if (found) yield return bodyAddon; 
             }
-
         }
 
         private static void AddAddonsToRace([NotNull] ThingDef_AlienRace race, [NotNull] List<AlienPartGenerator.BodyAddon> allAddons)
@@ -436,7 +436,9 @@ namespace Pawnmorph
                 layerInvert = addon.layerInvert,
                 variantCount = addon.variantCount,
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
+                alignWithHead = addon.alignWithHead,
                 
+
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
                 defaultOffsets = addon.defaultOffsets,
                 defaultOffset = addon.defaultOffset,
@@ -446,7 +448,9 @@ namespace Pawnmorph
 
             shaderField.SetValue(copy, addon.ShaderType);
             prioritizationField.SetValue(copy, addon.Prioritization.ToList());
-            colorChannelField.SetValue(copy, addon.ColorChannel); 
+            colorChannelField.SetValue(copy, addon.ColorChannel);
+
+            
             return copy;
         }
 

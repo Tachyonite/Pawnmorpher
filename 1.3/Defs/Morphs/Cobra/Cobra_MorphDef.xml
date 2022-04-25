@@ -19,7 +19,7 @@
 				<hairColorOverride>(0,0,0,0)</hairColorOverride>
 			</graphicsSettings>
 			<explicitHybridRace>SnakeMorph</explicitHybridRace>
-			<transferHumanBodyAddons>true</transferHumanBodyAddons>
+			<transferHumanBodyAddons>false</transferHumanBodyAddons>
 			<requiredMutations>
 				<li>EtherSnakeTail</li>
 			</requiredMutations>
