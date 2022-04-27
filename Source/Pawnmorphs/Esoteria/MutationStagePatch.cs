@@ -111,8 +111,24 @@ namespace Pawnmorph.Hediffs
                         // get default value
                         object defaultValue = member.GetValue(defaultValues);
 
-                        if (newValue is ICollection collection && collection.Count == 0)
-                            continue;
+                        if (newValue is ICollection collection)
+                        {
+                            if (collection.Count == 0)
+                                continue;
+
+                            IList currentCollection = member.GetValue(stage) as IList;
+
+                            // If there is already a collection, then append new values otherwise simply assign the new one
+                            if (currentCollection != null)
+                            {
+                                foreach (object value in collection)
+                                    currentCollection.Add(value);
+                            }
+                            else
+                                currentCollection = (IList)collection;
+
+                            newValue = currentCollection;
+                        }
                         else if (newValue.Equals(defaultValue))
                             continue;
 
