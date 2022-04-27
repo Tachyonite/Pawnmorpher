@@ -15,29 +15,65 @@ namespace Pawnmorph.Abilities
     {
         private MutationAbilityDef _def;
 
-        public Gizmo Gizmo { get; private set; }
+        public Command Gizmo { get; private set; }
         public Pawn Pawn { get; private set; }
         public int Cooldown => _def.cooldown;
+        public MutationAbilityDef AbilityDef => _def;
         public int CurrentCooldown => currentCooldown;
 
         private int currentCooldown = 0;
         protected bool casting = false;
+        protected bool active = false;
 
 
+        abstract protected MutationAbilityType Type { get; }
+        virtual protected RimWorld.TargetingParameters TargetParameters { get; }
 
-        public MutationAbility()
+        public MutationAbility(MutationAbilityDef def)
         {
+            _def = def;
+
             Texture2D icon = null;
             if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
                 icon = ContentFinder<Texture2D>.Get(_def.iconPath);
 
-            Gizmo = new Command_Action()
+            switch (Type)
             {
-                action = OnClick,
-                defaultLabel = _def.label,
-                defaultDesc = _def.description,
-                icon = icon,
-            };
+                case MutationAbilityType.Toggle:
+                    Gizmo = new Command_Toggle()
+                    {
+                        isActive = () => active,
+                        toggleAction = () => TryCast(null),
+                    };
+                    break;
+
+                case MutationAbilityType.Target:
+                    Gizmo = new Command_Target()
+                    {
+                        action = (LocalTargetInfo target) => TryCast(target),
+                        targetingParams = TargetParameters ?? new RimWorld.TargetingParameters()
+                        {
+                            canTargetLocations = true,
+                        }
+                    };
+                    break;
+
+                case MutationAbilityType.Action:
+                    Gizmo = new Command_Action()
+                    {
+                        action = () => TryCast(null),
+                    };
+                    break;
+
+                default:
+                    Log.Error("Ability missing type.");
+                    Gizmo = new Command_Action();
+                    return;
+            }
+
+            Gizmo.defaultLabel = _def.label;
+            Gizmo.defaultDesc = _def.description;
+            Gizmo.icon = icon;
         }
 
         public void Initialize(Pawn pawn)
@@ -63,34 +99,13 @@ namespace Pawnmorph.Abilities
                 currentCooldown = 0;
             }
 
-            OnTick();
+            if (active || casting)
+                OnTick();
         }
 
-        private void OnClick()
+        private void TryCast(LocalTargetInfo? target)
         {
-            if (_def.targeted)
-            {
-                TryCast(null);
-                return;
-            }
-
-            if (Event.current.type == EventType.MouseDown)
-            {
-                if (Event.current.button == 0)
-                {
-                    TryCast(UI.MouseCell());
-                }
-                if (Event.current.button == 1)
-                {
-                    DebugTools.curTool = null;
-                }
-                Event.current.Use();
-            }
-        }
-
-        private void TryCast(IntVec3? target)
-        {
-            if (OnCast(target))
+            if (OnTryCast(target))
             {
                 casting = true;
                 Gizmo.Disable("Casting...");
@@ -102,10 +117,11 @@ namespace Pawnmorph.Abilities
             casting = false;
             currentCooldown = _def.cooldown;
             Gizmo.disabledReason = $"Cooling down: {currentCooldown / 60}s";
+            active = !active;
         }
 
         protected abstract void OnInitialize();
         protected abstract void OnTick();
-        protected abstract bool OnCast(IntVec3? target);
+        protected abstract bool OnTryCast(LocalTargetInfo? target);
     }
 }

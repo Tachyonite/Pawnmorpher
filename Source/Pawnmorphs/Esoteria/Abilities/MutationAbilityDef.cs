@@ -11,7 +11,7 @@ namespace Pawnmorph.Abilities
         /// <summary>
         /// The class that contains the logic for the ability. Must be a MutationAbility type.
         /// </summary>
-        public Type abilityType;
+        public Type abilityClass;
 
         /// <summary>
         /// The ability caption.
@@ -32,10 +32,5 @@ namespace Pawnmorph.Abilities
         /// The total cooldown in ticks.
         /// </summary>
         public int cooldown;
-
-        /// <summary>
-        /// Determines if the ability is targeted or not.
-        /// </summary>
-        public bool targeted = false;
     }
 }

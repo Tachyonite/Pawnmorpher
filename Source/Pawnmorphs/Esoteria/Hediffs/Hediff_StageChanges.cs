@@ -18,7 +18,7 @@ namespace Pawnmorph.Hediffs
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
 
-        private List<Abilities.MutationAbility> abilities;
+        private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
         private List<IStageChangeObserverComp> observerComps;
         private IEnumerable<IStageChangeObserverComp> ObserverComps
         {
@@ -73,7 +73,6 @@ namespace Pawnmorph.Hediffs
             {
                 var oldStage = cachedStage;
                 RecacheStage(stageIndex);
-                GenerateAbilities(cachedStage);
                 OnStageChanged(oldStage, cachedStage);
 
                 foreach (var comp in ObserverComps)
@@ -91,12 +90,20 @@ namespace Pawnmorph.Hediffs
             if (stage is MutationStage mutationStage)
             {
                 abilities.Clear();
+
+                if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
+                    return;
+
                 Abilities.MutationAbility ability;
-                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.Abilities)
+                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
                 {
-                    if (abilityDef.abilityType.BaseType == typeof(Abilities.MutationAbility))
+                    // Only add ability once.
+                    if (abilities.Any(x => x.AbilityDef == abilityDef))
+                        continue;
+
+                    if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
                     {
-                        ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityType);
+                        ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
                         ability.Initialize(pawn);
                         abilities.Add(ability);
                     }
@@ -120,6 +127,7 @@ namespace Pawnmorph.Hediffs
         {
             cachedStageIndex = stageIndex;
             cachedStage = def?.stages?[cachedStageIndex];
+            GenerateAbilities(cachedStage);
         }
 
         /// <summary>

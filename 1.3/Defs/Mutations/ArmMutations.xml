@@ -47,6 +47,15 @@
 				<minSeverity>2.5</minSeverity>
 				<labelOverride>reinforced wing</labelOverride>
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but further adaptions to the hollow bones have rendered it as strong as a human arm despite its reduced weight.</description>
+				<abilities>
+					<li>
+						<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
+						<label>Fly</label>
+						<description>Fly to somewhere on the map.</description>
+						<iconPath>Parts/chickenface/chickenwings</iconPath>
+						<cooldown>600</cooldown>
+					</li>
+				</abilities>
 			</li>
 		</stages>
 		<comps>

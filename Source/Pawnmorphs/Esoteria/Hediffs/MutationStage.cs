@@ -65,7 +65,7 @@ namespace Pawnmorph.Hediffs
         public List<VerbToolOverride> verbOverrides;
 
         [CanBeNull]
-        public List<Abilities.MutationAbilityDef> Abilities;
+        public List<Abilities.MutationAbilityDef> abilities;
 
         /// <summary>
         /// Gets the skip aspects.
