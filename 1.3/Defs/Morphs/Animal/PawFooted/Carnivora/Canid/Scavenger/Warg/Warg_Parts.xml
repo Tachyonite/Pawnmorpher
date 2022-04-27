@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerJawPart">
+		<mutationMemory>EtherWargMuzzle</mutationMemory>
 		<classInfluence>WargMorph</classInfluence>
 		<defName>EtherWargMuzzle</defName>
 		<label>warg muzzle</label>
@@ -29,6 +30,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerEarPart">
+		<mutationMemory>EtherWargEar</mutationMemory>
 		<classInfluence>WargMorph</classInfluence>
 		<defName>EtherWargEar</defName>
 		<label>warg ear</label>
@@ -49,6 +51,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerTailPart">
+		<mutationMemory>EtherWargTail</mutationMemory>
 		<classInfluence>WargMorph</classInfluence>
 		<defName>EtherWargTail</defName>
 		<label>tufted tail</label>

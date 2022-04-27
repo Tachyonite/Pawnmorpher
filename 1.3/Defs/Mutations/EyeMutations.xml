@@ -91,7 +91,7 @@
 		<defName>EtherFelineEye</defName>
 		<label>feline eye</label>
 		<classInfluence>Feline</classInfluence>
-		<mutationMemory>EtherCatEye</mutationMemory>
+		<mutationMemory>EtherFelineEye</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>

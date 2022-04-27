@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
     <ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>PantherTransformationMemory</defName>
         <stages>
@@ -50,30 +50,5 @@
             </li>
         </stages>
     </ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherPantherJaw</defName>
-		<stages>
-			<li>
-				<label>Panther face</label>
-				<description>It's hard to talk without purring.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Panther face</label>
-				<description>Mrrow!</description>
-				<visible>true</visible>
-				<baseMoodEffect>2</baseMoodEffect>
-			</li>
-			<li>
-				<label>Panther face</label>
-				<description>No! I don't want to purr!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
 	
 </Defs>

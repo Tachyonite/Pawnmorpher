@@ -1,5 +1,30 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
 
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFelineJaw</defName>
+		<stages>
+			<li>
+				<label>feline face</label>
+				<description>It's hard to talk without purring.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>feline face</label>
+				<description>Rrowwl!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>feline face</label>
+				<description>No! I don't want to purr!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherFelineEar</defName>
@@ -52,7 +77,7 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherCatEye</defName>
+		<defName>EtherFelineEye</defName>
 		<stages>
 			<li>
 				<label>feline eyes</label>
@@ -71,6 +96,31 @@
 				<description>These slit pupils make me look unnatural.</description>
 				<visible>true</visible>
 				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFelineClaws</defName>
+		<stages>
+			<li>
+				<label>Claws</label>
+				<description>Yowtch! Poked myself again.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Claws</label>
+				<description>Claws are so useful, I'll never need a knife again!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Claws</label>
+				<description>I keep poking holes in my clothes with these unruly claws!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>

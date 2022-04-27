@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralJawPart">
+		<mutationMemory>EtherChinchillaJaw</mutationMemory>
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaSnout</defName>
 		<label>chinchilla snout</label>
@@ -29,6 +30,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
+		<mutationMemory>EtherChinchillaEar</mutationMemory>
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaEar</defName>
 		<label>chinchilla ear</label>
@@ -49,6 +51,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralTailPart">
+		<mutationMemory>EtherChinchillaTail</mutationMemory>
 		<classInfluence>ChinchillaMorph</classInfluence>
 		<defName>EtherChinchillaTail</defName>
 		<label>chinchilla tail</label>
