@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using RimWorld;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -121,8 +122,29 @@ namespace Pawnmorph.Hediffs
                             // If there is already a collection, then append new values otherwise simply assign the new one
                             if (currentCollection != null)
                             {
+                                Type genericType = currentCollection.GetType().GenericTypeArguments[0];
                                 foreach (object value in collection)
+                                {
+                                    if (genericType == typeof(PawnCapacityModifier))
+                                    {
+                                        IList<PawnCapacityModifier> capMods = (IList<PawnCapacityModifier>)currentCollection;
+                                        PawnCapacityModifier newCapValue = (PawnCapacityModifier)value;
+
+                                        int index = capMods.FirstIndexOf(x => x.capacity == newCapValue.capacity);
+                                        if (index > -1)
+                                            currentCollection.RemoveAt(index);
+                                    }
+
+                                    if (genericType == typeof(StatModifier))
+                                    {
+                                        IList<StatModifier> statMods = (IList<StatModifier>)currentCollection;
+                                        StatModifier newStatValue = (StatModifier)value;
+                                        int index = statMods.FirstIndexOf(x => x.stat == newStatValue.stat);
+                                        if (index > -1)
+                                            currentCollection.RemoveAt(index);
+                                    }
                                     currentCollection.Add(value);
+                                }
                             }
                             else
                                 currentCollection = (IList)collection;
