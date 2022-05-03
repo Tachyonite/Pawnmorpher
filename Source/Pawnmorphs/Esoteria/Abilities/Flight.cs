@@ -35,6 +35,10 @@ namespace Pawnmorph.Abilities
 
         protected override void OnTick()
         {
+            if (casting)
+            {
+                StartCooldown();
+            }
         }
     }
 }

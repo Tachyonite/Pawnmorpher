@@ -32,7 +32,6 @@ namespace Pawnmorph.Abilities
         public MutationAbility(MutationAbilityDef def)
         {
             _def = def;
-
             Texture2D icon = null;
             if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
                 icon = ContentFinder<Texture2D>.Get(_def.iconPath);
@@ -74,6 +73,7 @@ namespace Pawnmorph.Abilities
             Gizmo.defaultLabel = _def.label;
             Gizmo.defaultDesc = _def.description;
             Gizmo.icon = icon;
+            HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
         }
 
         public void Initialize(Pawn pawn)
@@ -85,15 +85,18 @@ namespace Pawnmorph.Abilities
         public void Tick()
         {
             // Count down until cooldown is 1 tick remaining, then set enable gizmo and set it to 0.
-            if (currentCooldown-- > 1)
+            if (currentCooldown > 1)
             {
+                currentCooldown--;
                 if (currentCooldown % 60 == 0)
                     Gizmo.disabledReason = $"Cooling down: {currentCooldown/60}s";
 
+                Log.Message("Cooling down: " + currentCooldown);
                 return;
             }
-            else if (currentCooldown == 1)
+            else if (currentCooldown-- > 0)
             {
+                Log.Message("Finished cooling down");
                 Gizmo.disabled = false;
                 Gizmo.disabledReason = null;
                 currentCooldown = 0;
