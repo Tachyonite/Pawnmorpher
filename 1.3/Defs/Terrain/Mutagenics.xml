@@ -60,9 +60,9 @@
 		<thingCategories>
 			<li>RawMutagen</li>
 		</thingCategories>
-		<deepCommonality>0.5</deepCommonality>
-		<deepCountPerPortion>15</deepCountPerPortion>
-		<deepLumpSizeRange>1~4</deepLumpSizeRange>
+		<deepCommonality>0.125</deepCommonality>
+		<deepCountPerPortion>1</deepCountPerPortion>
+		<deepLumpSizeRange>1</deepLumpSizeRange>
 		<burnableByRecipe>false</burnableByRecipe>
 		<stuffProps>
 			<categories>
