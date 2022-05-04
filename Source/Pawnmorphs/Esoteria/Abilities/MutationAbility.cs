@@ -14,19 +14,52 @@ namespace Pawnmorph.Abilities
     public abstract class MutationAbility
     {
         private MutationAbilityDef _def;
+        private int _currentCooldown = 0;
 
-        public Command Gizmo { get; private set; }
-        public Pawn Pawn { get; private set; }
-        public int Cooldown => _def.cooldown;
-        public MutationAbilityDef AbilityDef => _def;
-        public int CurrentCooldown => currentCooldown;
-
-        private int currentCooldown = 0;
+        /// <summary>
+        /// Whether or not the ability currently being cast.
+        /// </summary>
         protected bool casting = false;
+
+        /// <summary>
+        /// Whether or not the ability is currently active.
+        /// </summary>
         protected bool active = false;
 
+        /// <summary>
+        /// Gets the ability definition.
+        /// </summary>
+        public MutationAbilityDef AbilityDef => _def;
 
+        /// <summary>
+        /// Gets the ability Gizmo.
+        /// </summary>
+        public Command Gizmo { get; private set; }
+
+        /// <summary>
+        /// Gets the pawn this ability is attached to.
+        /// </summary>
+        public Pawn Pawn { get; private set; }
+
+        /// <summary>
+        /// Gets the total cooldown in ticks.
+        /// </summary>
+        public int Cooldown => _def.cooldown;
+
+        /// <summary>
+        /// Gets the current cooldown in ticks.
+        /// </summary>
+        public int CurrentCooldown => _currentCooldown;
+
+
+        /// <summary>
+        /// Gets the ability type. Used to create gizmo.
+        /// </summary>
         abstract protected MutationAbilityType Type { get; }
+
+        /// <summary>
+        /// Gets the target parameters when using targeted gizmo.
+        /// </summary>
         virtual protected RimWorld.TargetingParameters TargetParameters { get; }
 
         public MutationAbility(MutationAbilityDef def)
@@ -76,30 +109,37 @@ namespace Pawnmorph.Abilities
             HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
         }
 
+        /// <summary>
+        /// Initializes the ability with the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
         public void Initialize(Pawn pawn)
         {
             Pawn = pawn;
             OnInitialize();
         }
 
+        /// <summary>
+        /// Ticks this instance.
+        /// </summary>
         public void Tick()
         {
             // Count down until cooldown is 1 tick remaining, then set enable gizmo and set it to 0.
-            if (currentCooldown > 1)
+            if (_currentCooldown > 1)
             {
-                currentCooldown--;
-                if (currentCooldown % 60 == 0)
-                    Gizmo.disabledReason = $"Cooling down: {currentCooldown/60}s";
+                _currentCooldown--;
+                if (_currentCooldown % 60 == 0)
+                    Gizmo.disabledReason = $"Cooling down: {_currentCooldown/60}s";
 
-                Log.Message("Cooling down: " + currentCooldown);
+                Log.Message("Cooling down: " + _currentCooldown);
                 return;
             }
-            else if (currentCooldown-- > 0)
+            else if (_currentCooldown-- > 0)
             {
                 Log.Message("Finished cooling down");
                 Gizmo.disabled = false;
                 Gizmo.disabledReason = null;
-                currentCooldown = 0;
+                _currentCooldown = 0;
             }
 
             if (active || casting)
@@ -115,16 +155,32 @@ namespace Pawnmorph.Abilities
             }
         }
 
+        /// <summary>
+        /// Starts the ability cooldown.
+        /// </summary>
         protected void StartCooldown()
         {
             casting = false;
-            currentCooldown = _def.cooldown;
-            Gizmo.disabledReason = $"Cooling down: {currentCooldown / 60}s";
+            _currentCooldown = _def.cooldown;
+            Gizmo.disabledReason = $"Cooling down: {_currentCooldown / 60}s";
             active = !active;
         }
 
+        /// <summary>
+        /// Called when ability is initialized.
+        /// </summary>
         protected abstract void OnInitialize();
+
+
+        /// <summary>
+        /// Called when ability is ticked.
+        /// </summary>
         protected abstract void OnTick();
+
+
+        /// <summary>
+        /// Called when ability is being cast. Return bool on whether cast succeeded or not.
+        /// </summary>
         protected abstract bool OnTryCast(LocalTargetInfo? target);
     }
 }
