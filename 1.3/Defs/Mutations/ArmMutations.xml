@@ -127,13 +127,29 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
 					<graphics>
 						<Wings>Parts/Chicken/Chicken_Wings</Wings>
 					</graphics>
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. [PAWN_nameDef] has mastered the wing and can now effortlessly fly long distances like a migratory bird. As an added bonus food is easily spottable when seen from above.</description>
+				<graphics>
+					<Wings>Parts/Chicken/Chicken_Wings</Wings>
+				</graphics>
+				<statOffsets>
+					<CaravanRidingSpeedFactor>1.5</CaravanRidingSpeedFactor>
+					<ForagedNutritionPerDay>+0.8</ForagedNutritionPerDay>
+				</statOffsets>
+			</li>
+		</stages>
+		
 		<!-- <stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>1.5</minSeverity>
