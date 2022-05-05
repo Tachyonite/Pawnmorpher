@@ -35,7 +35,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s eyes have become sharper at range, to about 20/10 vision - though they haven't quite got entirely used to the new visual acuity.</description>
+					<description>[PAWN_nameDef]'s eye has become sharper at range, to about 20/10 vision - though it hasn't quite got entirely used to the new visual acuity.</description>
 					<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 					<statOffsets>
 						<ShootingAccuracyPawn>0.0375</ShootingAccuracyPawn>
@@ -45,7 +45,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s eyes have become sharper at range, to about 20/4 vision, and can see detail at range that normal humans can only recognise simple shapes.</description>
+					<description>[PAWN_nameDef]'s eye has become sharper at range, to about 20/4 vision, and can see detail at range that normal humans can only recognise simple shapes.</description>
 					<partEfficiencyOffset>0.05</partEfficiencyOffset>
 					<statOffsets>
 						<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
@@ -53,6 +53,19 @@
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+
+				<description>[PAWN_nameDef]'s eye now detects accurately and precisely any distant movement, like a bird of prey! [PAWN_nameDef] is now rather deadly with a ranged weapon!</description>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<statOffsets>
+					<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<!-- Caprid Eye -->
