@@ -146,6 +146,18 @@
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s eye has turned a glaring yellow, and its pupil has become small, vertical slit. Keep absolutely still! [PAWN_possesive] vision is based on movement, never missing [PAWN_possesive] target!</description>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<statOffsets>
+					<MeleeHitChance>0.8</MeleeHitChance>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 		
 	<!-- Vulpine Eye -->
