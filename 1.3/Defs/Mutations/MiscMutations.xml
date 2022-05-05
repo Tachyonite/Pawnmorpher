@@ -58,6 +58,12 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>[PAWN_nameDef] now has a ear hole.</description>
+					<graphics>
+						<LeftEarBehind>Parts/None/None</LeftEarBehind>
+						<RightEar>Parts/None/None</RightEar>
+						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+						<LeftEar>Parts/None/None</LeftEar>
+					</graphics>
 				</values>
 			</li>
 		</stagePatches>
