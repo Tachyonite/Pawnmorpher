@@ -37,7 +37,7 @@
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<key>paragon</key>
 				<label>paragon</label>
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>2.5</minSeverity>
 			</li>
 		</stages>
 		<comps>

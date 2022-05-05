@@ -128,7 +128,7 @@
 				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
+				<minSeverity>2.5</minSeverity>
 				<labelOverride>elephant</labelOverride>
 				<description>The underlying bone and muscle structure of [PAWN_nameDef]'s foot has reshaped into something resembling a strong, if stubby, elephant-like foot.</description>
 				<statOffsets>
