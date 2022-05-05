@@ -123,6 +123,19 @@
 			</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s frontal lobe has expanded. [PAWN_pronoun]'s so good with maths [PAWN_pronoun] can solve simple differencial equations from memory, helping grealy with calculating ballistics trajectories.</description>
+				<statOffsets>
+					<HackingSpeed>0.75</HackingSpeed>
+					<ResearchSpeed>0.20</ResearchSpeed>
+					<MortarMissRadiusFactor>0</MortarMissRadiusFactor>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<!-- Iron Stomach -->
