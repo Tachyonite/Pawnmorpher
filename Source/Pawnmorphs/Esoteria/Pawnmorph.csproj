@@ -303,7 +303,7 @@
     <Compile Include="Abilities\MutationAbilityDef.cs" />
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
-    <Compile Include="Abilities\Skyfallers\SkyFallerDefOf.cs" />
+    <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />

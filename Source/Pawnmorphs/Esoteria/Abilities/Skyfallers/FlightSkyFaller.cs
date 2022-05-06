@@ -43,6 +43,12 @@ namespace Pawnmorph.Abilities.Skyfallers
             DrawDropSpotShadow();
         }
 
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref _target, "target");
+        }
+
 
         protected override void LeaveMap()
         {

@@ -13,9 +13,12 @@ namespace Pawnmorph.Abilities
     /// </summary>
     public abstract class MutationAbility
     {
-        private MutationAbilityDef _def;
+        private readonly MutationAbilityDef _def;
         private int _currentCooldown = 0;
 
+        /// <summary>
+        /// The current state of the ability.
+        /// </summary>
         protected MutationAbilityState state = MutationAbilityState.None;
 
         /// <summary>
@@ -54,6 +57,10 @@ namespace Pawnmorph.Abilities
         /// </summary>
         virtual protected RimWorld.TargetingParameters TargetParameters { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationAbility"/> class.
+        /// </summary>
+        /// <param name="def">The definition.</param>
         public MutationAbility(MutationAbilityDef def)
         {
             _def = def;

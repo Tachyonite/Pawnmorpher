@@ -26,8 +26,14 @@ namespace Pawnmorph.Abilities
 
         protected override bool OnTryCast(LocalTargetInfo? target)
         {
-            if (target == null)
+            if (target == null || Pawn.Spawned == false)
                 return false;
+
+            if (Pawn.Position.Roofed(Pawn.Map))
+            {
+                MoteMaker.ThrowText(Pawn.DrawPos, Pawn.Map, "FailFly_Roofed".Translate());
+                return false;
+            }
 
             _target = target;
             return true;
@@ -35,8 +41,12 @@ namespace Pawnmorph.Abilities
 
         protected override void OnInitialize()
         {
-
+            if (_skyfaller != null)
+            {
+                _skyfaller.OnLanded += OnLanded;
+            }
         }
+
 
         protected override void OnTick()
         {
