@@ -10,6 +10,9 @@ namespace Pawnmorph.Abilities
 {
     internal class Flight : MutationAbility
     {
+        private LocalTargetInfo? _target;
+        Skyfallers.FlightSkyFaller _skyfaller;
+
         protected override MutationAbilityType Type => MutationAbilityType.Target;
         protected override TargetingParameters TargetParameters => new TargetingParameters()
         {
@@ -23,22 +26,50 @@ namespace Pawnmorph.Abilities
 
         protected override bool OnTryCast(LocalTargetInfo? target)
         {
-            Log.Message("Flight cast at " + target);
+            if (target == null)
+                return false;
+
+            _target = target;
             return true;
         }
 
         protected override void OnInitialize()
         {
-            Log.Message("Flight initialized");
-            
+
         }
 
         protected override void OnTick()
         {
-            if (casting)
+            if (state == MutationAbilityState.Casting)
             {
-                StartCooldown();
+                if (_target == null)
+                {
+                    state = MutationAbilityState.None;
+                    return;
+                }
+
+                _skyfaller = new Skyfallers.FlightSkyFaller(_target.Value);
+                _skyfaller.OnLanded += OnLanded;
+
+                Map map = Pawn.Map;
+                IntVec3 position = Pawn.Position;
+
+                Pawn.DeSpawn();
+                _skyfaller.innerContainer.TryAddOrTransfer(Pawn);
+                Log.Message(_skyfaller.innerContainer.Count.ToString() + " _ " + _skyfaller.def.graphicData?.ToString());
+                _skyfaller.def.graphicData = null;
+
+                GenSpawn.Spawn(_skyfaller, position, map);
+                state = MutationAbilityState.Active;
             }
+        }
+
+        private void OnLanded(Skyfallers.FlightSkyFaller skyfaller)
+        {
+            GenSpawn.Spawn(Pawn, skyfaller.Position, skyfaller.Map);
+            _skyfaller.Discard();
+            _skyfaller = null;
+            StartCooldown();
         }
     }
 }

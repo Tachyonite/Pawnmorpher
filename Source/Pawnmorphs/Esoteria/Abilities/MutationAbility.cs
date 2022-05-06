@@ -16,15 +16,7 @@ namespace Pawnmorph.Abilities
         private MutationAbilityDef _def;
         private int _currentCooldown = 0;
 
-        /// <summary>
-        /// Whether or not the ability currently being cast.
-        /// </summary>
-        protected bool casting = false;
-
-        /// <summary>
-        /// Whether or not the ability is currently active.
-        /// </summary>
-        protected bool active = false;
+        protected MutationAbilityState state = MutationAbilityState.None;
 
         /// <summary>
         /// Gets the ability definition.
@@ -65,16 +57,12 @@ namespace Pawnmorph.Abilities
         public MutationAbility(MutationAbilityDef def)
         {
             _def = def;
-            Texture2D icon = null;
-            if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
-                icon = ContentFinder<Texture2D>.Get(_def.iconPath);
-
             switch (Type)
             {
                 case MutationAbilityType.Toggle:
                     Gizmo = new Command_Toggle()
                     {
-                        isActive = () => active,
+                        isActive = () => state == MutationAbilityState.Active,
                         toggleAction = () => TryCast(null),
                     };
                     break;
@@ -105,8 +93,15 @@ namespace Pawnmorph.Abilities
 
             Gizmo.defaultLabel = _def.label;
             Gizmo.defaultDesc = _def.description;
-            Gizmo.icon = icon;
             HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
+
+            LongEventHandler.ExecuteWhenFinished(LoadTexture);
+        }
+
+        private void LoadTexture()
+        {
+            if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
+                Gizmo.icon = ContentFinder<Texture2D>.Get(_def.iconPath);
         }
 
         /// <summary>
@@ -116,6 +111,7 @@ namespace Pawnmorph.Abilities
         public void Initialize(Pawn pawn)
         {
             Pawn = pawn;
+
             OnInitialize();
         }
 
@@ -124,33 +120,38 @@ namespace Pawnmorph.Abilities
         /// </summary>
         public void Tick()
         {
-            // Count down until cooldown is 1 tick remaining, then set enable gizmo and set it to 0.
-            if (_currentCooldown > 1)
-            {
-                _currentCooldown--;
-                if (_currentCooldown % 60 == 0)
-                    Gizmo.disabledReason = $"Cooling down: {_currentCooldown/60}s";
+            if (state == MutationAbilityState.None)
+                return;
 
-                Log.Message("Cooling down: " + _currentCooldown);
+            if (state == MutationAbilityState.Cooldown)
+            {
+                // Count down until cooldown is 1 tick remaining, then set enable gizmo and set it to 0.
+                if (_currentCooldown > 1)
+                {
+                    _currentCooldown--;
+                    if (_currentCooldown % 60 == 0)
+                        Gizmo.disabledReason = $"Cooling down: {_currentCooldown/60}s";
+
+                    return;
+                }
+                else if (_currentCooldown-- > 0)
+                {
+                    Gizmo.disabled = false;
+                    Gizmo.disabledReason = null;
+                    _currentCooldown = 0;
+                    state = MutationAbilityState.None;
+                }
                 return;
             }
-            else if (_currentCooldown-- > 0)
-            {
-                Log.Message("Finished cooling down");
-                Gizmo.disabled = false;
-                Gizmo.disabledReason = null;
-                _currentCooldown = 0;
-            }
 
-            if (active || casting)
-                OnTick();
+            OnTick();
         }
 
         private void TryCast(LocalTargetInfo? target)
         {
             if (OnTryCast(target))
             {
-                casting = true;
+                state = MutationAbilityState.Casting;
                 Gizmo.Disable("Casting...");
             }
         }
@@ -160,10 +161,9 @@ namespace Pawnmorph.Abilities
         /// </summary>
         protected void StartCooldown()
         {
-            casting = false;
+            state = MutationAbilityState.Cooldown;
             _currentCooldown = _def.cooldown;
             Gizmo.disabledReason = $"Cooling down: {_currentCooldown / 60}s";
-            active = !active;
         }
 
         /// <summary>

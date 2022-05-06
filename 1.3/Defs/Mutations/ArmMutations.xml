@@ -52,7 +52,7 @@
 						<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
 						<label>Fly</label>
 						<description>Fly to somewhere on the map.</description>
-						<iconPath>Parts/chickenface/chickenwings</iconPath>
+						<iconPath>Parts/chickenface/chickenwings_east</iconPath>
 						<cooldown>600</cooldown>
 					</li>
 				</abilities>
