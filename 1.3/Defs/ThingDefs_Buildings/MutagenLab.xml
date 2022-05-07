@@ -1,0 +1,90 @@
+<Defs>
+
+
+	<ThingDef ParentName="BenchBase">
+		<defName>MutagenLab</defName>
+		<label>mutagen lab</label>
+		<description>A work bench equipped with more advanced components for creating and reverse-engineering mechanite mutagens.</description>
+		<thingClass>Building_WorkTable</thingClass>
+		<graphicData>
+			<texPath>Things/Building/MutagenBench/MutagenBench</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(7,4)</drawSize>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+		</graphicData>
+		<castEdgeShadows>true</castEdgeShadows>
+		<staticSunShadowHeight>0.20</staticSunShadowHeight>
+		<costList>
+			<Steel>150</Steel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+		</costList>
+		<altitudeLayer>Building</altitudeLayer>
+		<fillPercent>0.5</fillPercent>
+		<useHitPoints>True</useHitPoints>
+		<statBases>
+			<WorkToBuild>3500</WorkToBuild>
+			<MaxHitPoints>120</MaxHitPoints>
+			<Flammability>1.0</Flammability>
+		</statBases>
+		<size>(5,2)</size>
+		<designationCategory>GR_GeneticsTab</designationCategory>
+		<passability>PassThroughOnly</passability>
+		<pathCost>70</pathCost>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<surfaceType>Item</surfaceType>
+		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+		<inspectorTabs>
+			<li>ITab_Bills</li>
+		</inspectorTabs>
+		<recipes>
+			<li>Make_ComponentsFromSlurry</li>
+			<li>Make_GenekitColorPicker</li>
+			<li>Make_ResurrectorFromMutonite</li>
+			<li>Make_HealerFromMutonite</li>
+			<li>Make_GlitterMedsFromMutonite</li>
+		</recipes>
+		<building>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+		</building>
+		<comps>
+			<li Class="CompProperties_AffectedByFacilities">
+				<linkableFacilities>
+					<li>ToolCabinet</li>
+				</linkableFacilities>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<researchPrerequisites>
+			<li>SerumSynthesis</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+	<WorkGiverDef>
+		<defName>DoBillsProduceMutagen</defName>
+		<label>synthesize mutagen</label>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<workTags>
+			<li>Intellectual</li>
+		</workTags>
+		<priorityInType>95</priorityInType>
+		<fixedBillGiverDefs>
+			<li>MutagenLab</li>
+		</fixedBillGiverDefs>
+		<verb>produce mutagen</verb>
+		<gerund>producing mutagen at</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+</Defs>

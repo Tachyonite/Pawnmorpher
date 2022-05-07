@@ -1,0 +1,81 @@
+\-Animal
+  |-Powerful
+  | |-ThickFur
+  | | |-MegaslothMorph
+  | | \-ThrumboMorph
+  | \-ThickHide
+  |   |-ElephantMorph
+  |   \-RhinocerosMorph
+  |-Reptile
+  | |-SnakeMorph
+  | |-IguanaMorph
+  | \-TortoiseMorph
+  |-Avian
+  | |-Ratite
+  | | |-CassowaryMorph
+  | | |-EmuMorph
+  | | \-OstrichMorph
+  | |-Galliform
+  | | |-ChookMorph
+  | | \-TurkeyMorph
+  | \-Anseriform
+  |   |-DuckMorph
+  |   \-GooseMorph
+  |-Ungulate
+  | |-OddToedUngulate
+  | \-EvenToedUngulate
+  |   |-Bovid
+  |   | |-CowMorph
+  |   | |-GazelleMorph
+  |   | |-IbexMorph
+  |   | \-MuffaloMorph
+  |   |-Camelid
+  |   | |-AlpacaMorph
+  |   | \-DromedaryMorph
+  |   |-Cervid
+  |   | |-BoomalopeMorph
+  |   | |-CaribouMorph
+  |   | |-DeerMorph
+  |   | \-ElkMorph
+  |   \-Suid
+  |     |-BoarMorph
+  |     \-PigMorph
+  |-PawFooted
+  | |-Bear
+  | | |-BearMorph
+  | | \-PolarBearMorph
+  | |-Hare
+  | | |-HareMorph
+  | | \-SnowhareMorph
+  | |-Rodent
+  | | |-AlphabeaverMorph
+  | | |-BoomratMorph
+  | | |-CapybaraMorph
+  | | |-ChinchillaMorph
+  | | |-RaccoonMorph
+  | | |-RatMorph
+  | | \-SquirrelMorph
+  | \-Carnivora
+  |   |-Canid
+  |   | |-Fox
+  |   | | |-ArcticFoxMorph
+  |   | | |-FennecFoxMorph
+  |   | | \-FoxMorph
+  |   | |-Wolf
+  |   | | |-WolfMorph
+  |   | | \-ArcticWolfMorph
+  |   | |-HuskyMorph
+  |   | |-LabradorRetrieverMorph
+  |   | |-WargMorph
+  |   | \-YorkshireTerrierMorph
+  |   \-Feline
+  |     |-Leopard
+  |     |-CatMorph
+  |     |-CougarMorph
+  |     |-LynxMorph
+  |     \-PantherMorph
+  |-ChaocowMorph
+  |-ChaoboomMorph
+  |-ChaofoxMorph
+  |-ChaodinoMorph
+  \-MonkeyMorph

@@ -21,11 +21,7 @@
 	<!-- === Domestication === -->
 
 	<Pawnmorph.MorphCategoryDef>
-		<defName>Farm</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Pet</defName>
+		<defName>Domestic</defName>
 	</Pawnmorph.MorphCategoryDef>
 
 	<!-- ======= Role ======== -->
@@ -53,42 +49,18 @@
 	<!-- ======= Genus ======= -->
 
 	<Pawnmorph.MorphCategoryDef>
-		<defName>Avian</defName>
+		<defName>Exotic</defName>
 	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Bovid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Canid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Cervid</defName>
-	</Pawnmorph.MorphCategoryDef>
-
+	
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
 		<defName>Chimera</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Feline</defName>
 	</Pawnmorph.MorphCategoryDef>
 
 	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
 		<defName>Powerful</defName>
 		<associatedMutationCategory>Powerful</associatedMutationCategory>
 	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Rodent</defName>
-	</Pawnmorph.MorphCategoryDef>
-
-	<Pawnmorph.MorphCategoryDef>
-		<defName>Reptile</defName>
-	</Pawnmorph.MorphCategoryDef>
-
+	
 	<!-- special -->
 	<Pawnmorph.MorphCategoryDef Abstract="true" Name="MorphRestrictedCategory">
 		<restricted>true</restricted>

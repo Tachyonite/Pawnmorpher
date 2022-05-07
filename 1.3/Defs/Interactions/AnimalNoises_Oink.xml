@@ -21,11 +21,11 @@
 			
 			<!-- Tails -->
 			<li>
-				<key>EtherRoughCurlyTail</key>
+				<key>EtherBoarTail</key>
 				<value>0.25</value>
 			</li>
 			<li>
-				<key>EtherCurlyTail</key>
+				<key>EtherPigTail</key>
 				<value>0.25</value>
 			</li>
 

@@ -1,146 +1,466 @@
+<!-- FOOT TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<defName>EtherLeg</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> 
+-->
+
+
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<defName>EtherDigitigradeLeg</defName>
-		<label>digitigrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does, however, put a spring in their step.</description>
-		<parts>
-			<li>Leg</li>
-		</parts>
-		<classInfluence>Carnivora</classInfluence>
-		<mutationTale>LegBecameDigitgrade</mutationTale>
-		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>crooked</labelOverride>
-				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
-				<minSeverity>-1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.4</offset>
-					</li>
-				</capMods>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<defName>EtherThickHideLeg</defName>
+		<label>thick leg</label>
+		<description>A very strong leg.</description>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<classInfluences>
+			<li>ThickHide</li>
+			<li>BigCervid</li>
+		</classInfluences>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>The muscles in [PAWN_nameDef]'s legs are swelling in size and tightening.</description>
+					
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>readjusting</labelOverride>
-				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.3</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>Burly muscles have developed along this leg, and are still growing.</description>
+
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>unfamiliar</label>
-				<minSeverity>0.3</minSeverity>
-				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s leg is thick with heavy, powerful muscle. Getting used to it will take [PAWN_pronoun] some time.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s leg is as thick and strong as a treetrunk, greatly adding to their overall size.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.025</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<PM_BodySize>0.1</PM_BodySize>
+					</statOffsets>
+				</values>
 			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+
+
+
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherAnimalLeg" ParentName="PawnmorphLegPart" Abstract="true">
+		<defName>EtherAnimalLeg</defName>
+		<mutationMemory>EtherDigitigradeLeg</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
+					<painOffset>0.02</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherDigitgradeLeg" ParentName="EtherAnimalLeg">
+		<defName>EtherDigitgradeLeg</defName>
+		<classInfluence>Carnivora</classInfluence>
+		<label>digitgrade</label>
+		<description>A digitgrade leg.</description>
+		<mutationTale>LegBecameDigitgrade</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] toes instead of [PAWN_possessive] heel, which has elongated.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.075</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherUnguligradeLeg" ParentName="EtherAnimalLeg">
 		<defName>EtherUnguligradeLeg</defName>
 		<label>unguligrade</label>
-		<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. This does, however, put a spring in their step.</description>
-		<parts>
-			<li>Leg</li>
-		</parts>
 		<classInfluence>Ungulate</classInfluence>
-		<mutationTale>LegBecameDigitgrade</mutationTale>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>crooked</labelOverride>
-				<description>[PAWN_nameDef]'s leg seems to have degraded into something that looks awfully uncomfortable to walk on.</description>
-				<minSeverity>-1</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.4</offset>
-					</li>
-				</capMods>
+		<description>An unguligrade leg.</description>
+		<mutationTale>LegBecameUnguligrade</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<CarryingCapacity>20</CarryingCapacity>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<labelOverride>readjusting</labelOverride>
-				<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
-				<minSeverity>0</minSeverity>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.3</offset>
-					</li>
-				</capMods>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
+					<statOffsets>
+						<CarryingCapacity>20</CarryingCapacity>
+					</statOffsets>
+				</values>
 			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>unfamiliar</label>
-				<minSeverity>0.3</minSeverity>
-				<description>The shape of [PAWN_nameDef]'s legs reminds one more of a beast than a human, for they now stand on their toes instead of their heel, which has elongated. They'll need some time to get used to the new shape.</description>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>-0.1</offset>
-					</li>
-				</capMods>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1</minSeverity>
-				<label>adapted</label>
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.1</offset>
-					</li>
-				</capMods>
-			</li>
-		</stages>
-		<comps>
-			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
-				<severityPerDay>0.25</severityPerDay>
-			</li>
-		</comps>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherAnimalLeg">
+		<defName>EtherCervineLeg</defName>
+		<label>cervine</label>
+		<classInfluence>Cervid</classInfluence>
+		<description>An unguligrade leg.</description>
+		<mutationTale>LegBecameUnguligrade</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>The shape of [PAWN_nameDef]'s leg is now more beast than human, forcing [PAWN_objective] to stand more on [PAWN_possessive] nails instead of [PAWN_possessive] heel, which has elongated.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
 		<defName>EtherRatiteLeg</defName>
 		<label>strong avian</label>
 		<classInfluence>Ratite</classInfluence>
-		<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid.</description>
-		<stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<capMods>
-					<li>
-						<capacity>Moving</capacity>
-						<offset>0.50</offset>
-					</li>
-				</capMods>
+		<description>A ratite leg.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
+					<painOffset>0.02</painOffset>
+				</values>
 			</li>
-		</stages>
-		<parts>
-			<li>Leg</li>
-		</parts>
-		<countToAffect>2</countToAffect>
-		<categories>
-			<li>Minor</li>
-		</categories>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped into very large avian legs. They are incredibly powerful, but look strange on a humanoid.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.30</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphLegPart">
+		<defName>EtherHareLeg</defName>
+		<label>spring-loaded leg</label>
+		<classInfluence>Leporid</classInfluence>
+		<description>A leporid spring-loaded leg.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<label>itching</label>
+					<description>[PAWN_nameDef]'s leg has started itching quite a lot, but nothing serious yet.</description>
+					<painOffset>0.02</painOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>The bones in [PAWN_nameDef]'s leg are growing longer or shorter as need be. It will be rather difficult and painful to move while this change is taking place.</description>
+					<painOffset>0.1</painOffset>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit. [PAWN_pronoun] will need some time to get used to the new shape.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.10</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s legs have reshaped to look something like a rabbit's. This helps them run away from predators, but good luck finding pants that fit.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.25</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="EtherSnakeTail" ParentName="OphidiaTailPart">
+		<defName>EtherSnakeTail</defName>
+		<label>snake tail</label>
+		<classInfluence>SnakeMorph</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>A tail is growing behind [PAWN_nameDef].</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s tail is getting longer and longer. in the same time [PAWN_nameDef]'s legs feel shorter and weaker than before</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
+					<statOffsets>
+						<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+						<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+<!-- 
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherSnakeTail">
+		<defName>EtherPythonTail</defName>
+		<classInfluence>SnakeMorph</classInfluence>
+		<label>snake tail</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a constrictor python.</description>
+					<verbOverrides>
+						<li>
+							<label>constrict</label>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>constrict</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef> -->
+
+
 </Defs>

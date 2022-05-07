@@ -1,0 +1,85 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase" Name="FootMutationBase" Abstract="true">
+		<rulePack>
+			<rulesStrings>
+				<li>image->[PAWN_nameFull]'s feet begin to change [circumstance_group]</li>
+				<li>circumstance_group->as someone watches [PAWN_possessive] feet change</li>
+				<li>circumstance_group->while people stare at [PAWN_possessive] feet change</li>
+				<li>desc_sentence->[PAWN_pronoun] tests [PAWN_possessive] new feet.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesCanidPaw</defName>
+		<label>feet became paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming paws</li>
+				<li>image->[PAWN_nameFull]'s toes shorten and grow blunt claws [circumstance_group]</li>
+				<li>image->the soles of [PAWN_nameFull]'s feet darken and become rough paw pads [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] feels the rough pads of [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesFelinePaw</defName>
+		<label>feet became paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming paws</li>
+				<li>image->[PAWN_nameFull]'s toes shorten and grow sharp retractable claws [circumstance_group]</li>
+				<li>image->the soles of [PAWN_nameFull]'s feet darken and become smooth paw pads [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] feels the smooth pads of [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new paws.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesHooves</defName>
+		<label>feet became hooves</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming hooves</li>
+				<li>image->[PAWN_nameFull]'s toes joining and hardening into a single hoof [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesClovenHooves</defName>
+		<label>feet became hooves</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming cloven hooves</li>
+				<li>image->[PAWN_nameFull]'s toes joining and hardening into a split hoof [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new hooves.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FootBecomesTrotter</defName>
+		<label>feet became trotters</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet becoming pig-like trotters</li>
+				<li>image->[PAWN_nameFull]'s toes shrinking and hardening into a trotter foot [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance them self on [PAWN_possessive] new trotters.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FeetBecomeTalons</defName>
+		<label>feet became talons</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet turning into talons</li>
+				<li>image->the skin on [PAWN_nameFull]'s feet begins to dry out and turn into scales [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s toe nails sharpening into large talons [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s toes lengthening into large avian feet [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries walking with [PAWN_possessive] new talons.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to pick something up with [PAWN_possessive] new talons.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

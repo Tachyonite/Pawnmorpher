@@ -2,7 +2,7 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationTest">
-				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
+				<xpath>Defs/BodyDef[defName="Human"]/corePart/Legacy/Parts/li/def[text()="Tail"]</xpath>
 				<success>Always</success>
 			</li>
 			<li Class="PatchOperationAdd">

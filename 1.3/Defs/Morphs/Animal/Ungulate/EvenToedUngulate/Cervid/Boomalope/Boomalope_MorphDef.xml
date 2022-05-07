@@ -1,0 +1,25 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CervidMorph">
+		<defName>BoomalopeMorph</defName>
+		<label>boomamorph</label>
+		<description>A humanoid sharing many characteristics with boomalopes, due to heavy mutagen exposure. They usually have thick hide, and an urge to seek out chemfuel.</description>
+		<race>Boomalope</race>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Tropical</li>
+			<li>Production</li>
+		</categories>
+		<fullTransformation>PawnmorphBoomalopeTF</fullTransformation>
+		<partialTransformation>PawnmorphBoomalopeTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(176,150,106)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BoomalopeTransformationMemory</transformationMemory>
+			<revertedMemory>BoomalopeRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,114 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
+		<mutationMemory>EtherAlphabeaverJaw</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverJaw</defName>
+		<label>alphabeaver snout</label>
+		<graphics>
+			<Muzzle>Parts/Alphabeaver/Alphabeaver_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
+		<mutationMemory>EtherAlphabeaverEar</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverEar</defName>
+		<label>alphabeaver ear</label>
+		<graphics>
+			<LeftEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fuzzy and waterproof ear has replaced [PAWN_nameDef]'s normal ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
+		<mutationMemory>EtherAlphabeaverTail</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverTail</defName>
+		<label>alphabeaver tail</label>
+		<graphics>
+			<Tail>Parts/Alphabeaver/Alphabeaver_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A perfect rudder in most scenarios, this tail can be used to speed up construction by inventive means known only to the user of one. Also really useful for smoothing floors.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherWebbedPawHand</defName>
+		<label>webbed paw</label>
+		<description>A dextrous, webbed paw that's good for grabbing things in wet conditions, reducing the likelihood of ruining a construction project.</description>
+		<initialSeverity>0</initialSeverity>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+				<label>unfamiliar</label>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1</minSeverity>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<label>adapted</label>
+				<statOffsets>
+					<ConstructSuccessChance>0.3</ConstructSuccessChance>
+				</statOffsets>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>1.0</power>
+						<cooldownTime>1</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherWebbedPawFoot</defName>
+		<label>webbed foot</label>
+		<description>This foot has a thick webbing between the toes for better swimming ability (except there's no stat for this, so it's just a boost for moving in general).</description>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>0.03</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

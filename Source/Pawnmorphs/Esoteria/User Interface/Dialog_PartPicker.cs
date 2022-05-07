@@ -560,7 +560,7 @@ namespace Pawnmorph.User_Interface
 
 
                 List<MutationDef> mutationDefs = cachedMutationDefsByPartDef[parts.FirstOrDefault().def];
-                foreach (MutationDef mutationDef in mutationDefs.Where(m => m.RemoveComp.layer == layer && (DebugSettings.godMode || m.IsTagged())))
+                foreach (MutationDef mutationDef in mutationDefs.Where(m => m.RemoveComp?.layer == layer && (DebugSettings.godMode || m.IsTagged())))
                 {
                     void addMutation()
                     {

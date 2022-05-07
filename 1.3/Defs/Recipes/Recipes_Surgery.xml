@@ -1,0 +1,32 @@
+<Defs>
+	<RecipeDef>
+		<defName>AdministerMutagenicMechSerumHealer</defName>
+		<label>administer mutagenic healer mech serum</label>
+		<description>Administer a mutagenic healer mech serum.</description>
+		<workerClass>Recipe_AdministerUsableItem</workerClass>
+		<jobString>Administering mutagenic healer mech serum.</jobString>
+		<targetsBodyPart>false</targetsBodyPart>
+		<anesthetize>false</anesthetize>
+		<workAmount>600</workAmount>
+		<dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
+		<surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MechSerumMutagenicHealer</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MechSerumMutagenicHealer</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<recipeUsers>
+			<li>Human</li>
+		</recipeUsers>
+	</RecipeDef>
+</Defs>

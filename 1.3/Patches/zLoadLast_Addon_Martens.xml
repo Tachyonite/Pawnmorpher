@@ -9,7 +9,7 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenJaw>Parts/Marten/Marten_Jaw</EtherMartenJaw>
+						<EtherMartenJaw>Parts/Marten/Marten_Muzzle</EtherMartenJaw>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
@@ -377,13 +377,13 @@
 								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<minSeverity>0.99</minSeverity>
 									<label>paw</label>
-									<description>[PAWN_nameDef]'s hand has been replace with the paw of a marten. [PAWN_subjective] can still use the appendage with suprising skill, despite the loss of [PAWN_possesive] oposable thumb.</description>
+									<description>[PAWN_nameDef]'s hand has been replace with the paw of a marten. [PAWN_subjective] can still use the appendage with suprising skill, despite the loss of [PAWN_possessive] oposable thumb.</description>
 									<partEfficiencyOffset>-0.1</partEfficiencyOffset>
 								</li>
 								<li Class="Pawnmorph.Hediffs.MutationStage">
 									<minSeverity>1.5</minSeverity>
 									<label>dextrous paw</label>
-									<description>Despite the normal inflexibility of the paw's digits, [PAWN_nameDef] has mastered the use of [PAWN_possesive] new paw to such a degree that [PAWN_subjective] can perform feats of dexterity [PAWN_subjective] could not have imagined before the changes.</description>
+									<description>Despite the normal inflexibility of the paw's digits, [PAWN_nameDef] has mastered the use of [PAWN_possessive] new paw to such a degree that [PAWN_subjective] can perform feats of dexterity [PAWN_subjective] could not have imagined before the changes.</description>
 									<partEfficiencyOffset>0.1</partEfficiencyOffset>
 								</li>
 							</stages>

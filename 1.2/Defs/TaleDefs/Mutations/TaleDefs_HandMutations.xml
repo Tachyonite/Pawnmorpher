@@ -1,0 +1,43 @@
+<Defs>
+	<TaleDef Name="HandMutationBase" ParentName="MutationTaleBase" Abstract="True">
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s hands changing</li>
+				<li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to pick something up.</li>
+				<li>desc_sentence->[PAWN_pronoun] tests their new hands.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsChangedMisc</defName>
+		<label>hands changed</label>
+	</TaleDef>
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomePaws</defName>
+		<label>hands became paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s thumbs shrinking and becoming dewclaws </li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming paws</li>
+				<li>image->[PAWN_nameFull] tries to grasp something [circumstance_group]</li>
+				<li>circumstance_group->while someone pats [PAWN_possessive] paws</li>
+				<li>circumstance_group->while someone rubs [PAWN_possessive] paw pads</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomeHooves</defName>
+		<label>hands became hooves</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s hands harding into hoves</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming near useless hooves</li>
+				<li>image->[PAWN_nameFull] tries to pull their fingers apart [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] tries fruitlessly to grasp something [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] hands.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

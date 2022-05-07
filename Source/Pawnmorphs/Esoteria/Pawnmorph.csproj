@@ -15,8 +15,8 @@
     <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">..\..\..\..\..\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\1.3\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
@@ -78,6 +78,9 @@
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
@@ -194,6 +197,9 @@
     <Reference Include="UnityEngine.SubstanceModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.SubstanceModule.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.TerrainModule.dll</HintPath>
@@ -321,6 +327,7 @@
     <Compile Include="Aspects\RandomGiver.cs" />
     <Compile Include="Aspects\SapienceHit.cs" />
     <Compile Include="Aspects\SkillBasedGiver.cs" />
+    <Compile Include="Aspects\Prideful.cs" />
     <Compile Include="Aspects\SplitMind.cs" />
     <Compile Include="AspectTracker.cs" />
     <Compile Include="AspectUtils.cs" />
@@ -471,6 +478,7 @@
     <Compile Include="HPatches\BillPatches.cs" />
     <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
+    <Compile Include="HPatches\CorpsePatch.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
@@ -479,6 +487,8 @@
     <Compile Include="HPatches\FoodUtilityPatches.cs" />
     <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
     <Compile Include="HPatches\GizmoPatches.cs" />
+    <Compile Include="HPatches\HealthUtilityPatch.cs" />
+    <Compile Include="HPatches\Mods\CompactHediffs\CustomHealthCardUtilsPatch.cs" />
     <Compile Include="HPatches\SelectorPatch.cs" />
     <Compile Include="HPatches\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HediffDefPatches.cs" />
@@ -508,6 +518,7 @@
     <Compile Include="HPatches\RelationshipPatches.cs" />
     <Compile Include="HPatches\RitualPatches.cs" />
     <Compile Include="HPatches\SapientAnimalPatches.cs" />
+    <Compile Include="HPatches\StatPart_IsCorpseFreshPatches.cs" />
     <Compile Include="HPatches\StylePatches.cs" />
     <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
     <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
@@ -586,6 +597,7 @@
     <Compile Include="MutationRules\Worker_MorphHediff.cs" />
     <Compile Include="MutationRuleUtilities.cs" />
     <Compile Include="MutationSite.cs" />
+    <Compile Include="MutationStagePatch.cs" />
     <Compile Include="Need_Control.cs" />
     <Compile Include="PartAddress.cs" />
     <Compile Include="PatchOperations\DebugAdd.cs" />
@@ -784,7 +796,7 @@
     <Compile Include="PawnmorpherSettings.cs" />
     <Compile Include="MorphTrader.cs" />
     <Compile Include="MutagenicStone.cs" />
-    <Compile Include="HPatches\PatchHealthCardWarps.cs" />
+    <Compile Include="HPatches\HealthCardUtilsPatch.cs" />
     <Compile Include="PawnMorphInstance.cs" />
     <Compile Include="PawnmorphGameComp.cs" />
     <Compile Include="HediffComp_Staged.cs" />

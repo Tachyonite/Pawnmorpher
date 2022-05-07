@@ -191,9 +191,6 @@ namespace Pawnmorph
                         }
                     }
                 }
-
-
-
             }
             catch (Exception e)
             {
@@ -229,11 +226,11 @@ namespace Pawnmorph
         private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
         {
             List<MutationGraphicsData> mainData = mutation.graphics.MakeSafe().Where(g => g.anchorID == anchorID).ToList();
+
             List<(string path, float minSeverity)> stageData = mutationStages.Where(s => !s.graphics.NullOrEmpty())
-                                                                             .SelectMany(s => s.graphics.Where(g => g.anchorID
-                                                                                                                 == anchorID)
-                                                                                               .Select(g => (g.path,
-                                                                                                             s.minSeverity)))
+                                                                             .SelectMany(s => s.graphics
+                                                                                .Where(g => g.anchorID == anchorID)
+                                                                                .Select(g => (g.path, s.minSeverity)))
                                                                              .ToList();
 
             string mainPath = mainData.FirstOrDefault()?.path ?? stageData.FirstOrDefault().path; //get the main path 
@@ -256,14 +253,24 @@ namespace Pawnmorph
             for (var index = mutationStages.Count - 1; index >= 0; index--)
             {
                 MutationStage stage = mutationStages[index];
-                MutationGraphicsData
-                    graphic = stage.graphics.MakeSafe()
-                                   .FirstOrDefault(s => s.anchorID
-                                                     == anchorID); //fill the severity graphics if they are present in descending order 
-                if (graphic != null)
+
+                string path = null;
+                if (stage.graphics != null)
+                {
+                    // Hide anchor graphics from mutation layer if not defined on specific stage.
+                    path = stage.graphics.FirstOrDefault(s => s.anchorID == anchorID)?.path ?? "Parts/None/None";
+                }
+                else
+                {
+                    // If no graphics are defined on stage then default to whatever is set on mutation.
+                    path = mainPath;
+                }
+
+                // fill the severity graphics if they are present in descending order
+                if (string.IsNullOrWhiteSpace(path) == false)
                     severityLst.Add(new AlienPartGenerator.BodyAddonHediffSeverityGraphic
                     {
-                        path = graphic.path,
+                        path = path,
                         severity = stage.minSeverity
                     });
             }

@@ -1,0 +1,129 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RaccoonTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I feel like digging in the trash, but... eugh.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>I'm a fluffy raccoon, awesome!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>I don't want to be a smelly raccoon!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Wow, look at these dainty claws!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RaccoonRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more garbage, please.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw man, but I looked so sneaky and cool.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I don't think I can stand the smell of rubbish now.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonJaw</defName>
+		<stages>
+			<li>
+				<label>Raccoon mask</label>
+				<description>I feel like I should be rooting around in a trash can.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon mask</label>
+				<description>Finally, these leftovers taste good!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon mask</label>
+				<description>Why do I want to eat garbage...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonEar</defName>
+		<stages>
+			<li>
+				<label>Raccoon ears</label>
+				<description>They're alright, but I'd prefer to have my normal ears.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon ears</label>
+				<description>These ears are kinda cool.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Raccoon ears</label>
+				<description>They're irritating and itchy.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRaccoonTail</defName>
+		<stages>
+			<li>
+				<label>Ringtail</label>
+				<description>The pattern on this thing is kinda cool, I guess.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ringtail</label>
+				<description>It's like a tube of fluffiness! Tails are great!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ringtail</label>
+				<description>It won't come off!!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

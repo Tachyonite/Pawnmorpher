@@ -33,8 +33,8 @@
 
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFMilk</defName>
-		<label>cowmorph milk</label>
-		<description>Milk from a cowmorph. Smells odd, but not off. Saturated with mutagenic mechanites. Drinking this will confer bovine mutations.</description>
+		<label>mutagenic milk</label>
+		<description>This milk smells odd, but not off. Saturated with mutagenic mechanites that the original species can no longer be determined. Drinking this will probably cause unpredictable though milk-related mutations.</description>
 		<graphicData>
 			<texPath>Things/Item/Resource/Milk</texPath>
 		</graphicData>
@@ -48,9 +48,13 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphCowTFPartial</li>
+						<li>PawnmorphGoatTFPartial</li>
+						<li>PawnmorphYakTFPartial</li>
 					</hediffDefs>
 					<hediffDefsComplete>
 						<li>PawnmorphCowTF</li>
+						<li>PawnmorphGoatTF</li>
+						<li>PawnmorphYakTF</li>
 					</hediffDefsComplete>
 					<severity>1</severity>
 				</li>
@@ -58,12 +62,12 @@
 		</ingestible>
 	</ThingDef>
 
-	<!-- ========== ChookMorph Eggs ========== -->
+	<!-- ========== mutagenic Eggs ========== -->
 
 	<ThingDef ParentName="TFItemBase">
 		<defName>TFEgg</defName>
-		<label>chookmorph egg</label>
-		<description>A strange egg usually laid by a chookmorph. It's basically a normal egg, but saturated with mutagenic mechanites. Eating them will transfer chicken-based mutations to the imbiber.</description>
+		<label>mutagenic egg</label>
+		<description>A strange egg usually laid by some avian morphs. It's basically a normal egg, but saturated with enough mutagenic mechanites that the original species can no longer be determined. Eating it can cause unpredictable avian-based mutations unless properly cooked into a meal.</description>
 		<graphicData>
 			<graphicClass>Graphic_StackCount</graphicClass>
 			<texPath>Things/Item/Resource/TFEgg</texPath>
@@ -79,9 +83,13 @@
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
 						<li>PawnmorphChickenTFPartial</li>
+						<li>PawnmorphDuckTFPartial</li>
+						<li>PawnmorphGooseTFPartial</li>
 					</hediffDefs>
 					<hediffDefsComplete>
 						<li>PawnmorphChickenTF</li>
+						<li>PawnmorphDuckTF</li>
+						<li>PawnmorphGooseTF</li>
 					</hediffDefsComplete>
 					<severity>1</severity>
 				</li>
