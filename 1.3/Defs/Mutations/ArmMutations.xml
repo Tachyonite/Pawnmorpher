@@ -90,8 +90,6 @@
 	</Pawnmorph.Hediffs.MutationDef> 
 
 
-
-
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
 		<defName>EtherWing</defName>
 		<label>wing</label>
@@ -110,6 +108,9 @@
 				<stageKey>unfamiliar</stageKey>
 				<values>
 					<description>TODO</description>
+					<statOffsets>
+						<PM_Lift>0.25</PM_Lift>
+					</statOffsets>
 					<graphics>
 						<Wings>Parts/Chicken/Chicken_Wings</Wings>
 					</graphics>
@@ -122,6 +123,9 @@
 					<graphics>
 						<Wings>Parts/Chicken/Chicken_Wings</Wings>
 					</graphics>
+					<statOffsets>
+						<PM_Lift>0.5</PM_Lift>
+					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
@@ -131,6 +135,18 @@
 					<graphics>
 						<Wings>Parts/Chicken/Chicken_Wings</Wings>
 					</graphics>
+					<statOffsets>
+						<PM_Lift>0.5</PM_Lift>
+					</statOffsets>
+					<abilities>
+						<li>
+							<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
+							<label>Fly</label>
+							<description>Fly to somewhere on the map.</description>
+							<iconPath>Parts/chickenface/chickenwings_east</iconPath>
+							<cooldown>600</cooldown>
+						</li>
+					</abilities>
 				</values>
 			</li>
 		</stagePatches>
