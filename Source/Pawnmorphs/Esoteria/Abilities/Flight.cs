@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Pawnmorph.Utilities;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,6 @@ namespace Pawnmorph.Abilities
 
                 Pawn.DeSpawn();
                 _skyfaller.innerContainer.TryAddOrTransfer(Pawn);
-                Log.Message(_skyfaller.innerContainer.Count.ToString() + " _ " + _skyfaller.def.graphicData?.ToString());
                 _skyfaller.def.graphicData = null;
 
                 GenSpawn.Spawn(_skyfaller, position, map);
@@ -77,9 +77,18 @@ namespace Pawnmorph.Abilities
         private void OnLanded(Skyfallers.FlightSkyFaller skyfaller)
         {
             GenSpawn.Spawn(Pawn, skyfaller.Position, skyfaller.Map);
-            _skyfaller.Discard();
             _skyfaller = null;
             StartCooldown();
+        }
+
+        protected override string OnIsDisabled()
+        {
+            float? lift = StatsUtility.GetStat(Pawn, PMStatDefOf.PM_Lift, 60);
+            Log.Message("Checking if disabled: " + lift);
+            if (lift.HasValue && lift >= 1.0f)
+                return null;
+            else
+                return "FailFly_Lift".Translate();
         }
     }
 }

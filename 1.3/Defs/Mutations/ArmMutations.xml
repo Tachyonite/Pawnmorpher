@@ -34,6 +34,9 @@
 				<statFactors>
 					<CarryingCapacity>0.7</CarryingCapacity>
 				</statFactors>
+				<statOffsets>
+					<PM_Lift>0.5</PM_Lift>
+				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- adaption cream -->
 				<minSeverity>1.5</minSeverity>
@@ -42,11 +45,17 @@
 				<statFactors>
 					<CarryingCapacity>0.9</CarryingCapacity>
 				</statFactors>
+				<statOffsets>
+					<PM_Lift>0.5</PM_Lift>
+				</statOffsets>
 			</li>
 			<li Class="Pawnmorph.Hediffs.MutationStage"> <!-- Paragon -->
 				<minSeverity>2.5</minSeverity>
 				<labelOverride>reinforced wing</labelOverride>
 				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but further adaptions to the hollow bones have rendered it as strong as a human arm despite its reduced weight.</description>
+				<statOffsets>
+					<PM_Lift>0.5</PM_Lift>
+				</statOffsets>
 				<abilities>
 					<li>
 						<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>

@@ -12,5 +12,6 @@ namespace Pawnmorph.Abilities
         Active,
         Casting,
         Cooldown,
+        Hidden,
     }
 }

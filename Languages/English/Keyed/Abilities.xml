@@ -1,3 +1,4 @@
 <LanguageData>
     <FailFly_Roofed>Cannot fly from under roof.</FailFly_Roofed>
+    <FailFly_Lift>Mutations do not provide enough lift to fly.</FailFly_Lift>
 </LanguageData>

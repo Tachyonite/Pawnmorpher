@@ -118,8 +118,8 @@ namespace Pawnmorph.Abilities
         public void Initialize(Pawn pawn)
         {
             Pawn = pawn;
-
             OnInitialize();
+            IsDisabled();
         }
 
         /// <summary>
@@ -127,8 +127,13 @@ namespace Pawnmorph.Abilities
         /// </summary>
         public void Tick()
         {
-            if (state == MutationAbilityState.None)
+            if (state == MutationAbilityState.None || Type == MutationAbilityType.Toggle)
+            {
+                if (Pawn.IsHashIntervalTick(120) && Gizmo.Visible)
+                    IsDisabled();
+
                 return;
+            }
 
             if (state == MutationAbilityState.Cooldown)
             {
@@ -143,8 +148,7 @@ namespace Pawnmorph.Abilities
                 }
                 else if (_currentCooldown-- > 0)
                 {
-                    Gizmo.disabled = false;
-                    Gizmo.disabledReason = null;
+                    IsDisabled();
                     _currentCooldown = 0;
                     state = MutationAbilityState.None;
                 }
@@ -152,6 +156,18 @@ namespace Pawnmorph.Abilities
             }
 
             OnTick();
+        }
+
+        private void IsDisabled()
+        {
+            string disabledReason = OnIsDisabled();
+            if (String.IsNullOrWhiteSpace(disabledReason))
+                Gizmo.disabled = false;
+            else
+            {
+                Gizmo.Disable(disabledReason);
+                state = MutationAbilityState.None;
+            }
         }
 
         private void TryCast(LocalTargetInfo? target)
@@ -189,5 +205,10 @@ namespace Pawnmorph.Abilities
         /// Called when ability is being cast. Return bool on whether cast succeeded or not.
         /// </summary>
         protected abstract bool OnTryCast(LocalTargetInfo? target);
+
+        /// <summary>
+        /// Called every so often to validate whether or not the skill is available.
+        /// </summary>
+        protected abstract string OnIsDisabled();
     }
 }
