@@ -11,7 +11,7 @@ namespace Pawnmorph.Abilities
 {
     internal class Flight : MutationAbility
     {
-        private LocalTargetInfo? _target;
+        private LocalTargetInfo _target;
         Skyfallers.FlightSkyFaller _skyfaller;
 
         protected override MutationAbilityType Type => MutationAbilityType.Target;
@@ -21,8 +21,14 @@ namespace Pawnmorph.Abilities
             validator = ((TargetInfo x) => DropCellFinder.IsGoodDropSpot(x.Cell, x.Map, allowFogged: true, canRoofPunch: false))
         };
 
+        public Flight() : base()
+        {
+            _target = LocalTargetInfo.Invalid;
+        }
+
         public Flight(MutationAbilityDef def) : base(def)
         {
+            _target = LocalTargetInfo.Invalid;
         }
 
         protected override bool OnTryCast(LocalTargetInfo? target)
@@ -36,7 +42,7 @@ namespace Pawnmorph.Abilities
                 return false;
             }
 
-            _target = target;
+            _target = target.Value;
             return true;
         }
 
@@ -53,13 +59,13 @@ namespace Pawnmorph.Abilities
         {
             if (state == MutationAbilityState.Casting)
             {
-                if (_target == null)
+                if (_target.IsValid == false)
                 {
                     state = MutationAbilityState.None;
                     return;
                 }
 
-                _skyfaller = new Skyfallers.FlightSkyFaller(_target.Value);
+                _skyfaller = new Skyfallers.FlightSkyFaller(_target);
                 _skyfaller.OnLanded += OnLanded;
 
                 Map map = Pawn.Map;
@@ -84,11 +90,16 @@ namespace Pawnmorph.Abilities
         protected override string OnIsDisabled()
         {
             float? lift = StatsUtility.GetStat(Pawn, PMStatDefOf.PM_Lift, 60);
-            Log.Message("Checking if disabled: " + lift);
             if (lift.HasValue && lift >= 1.0f)
                 return null;
             else
                 return "FailFly_Lift".Translate();
+        }
+
+        protected override void OnExposeData()
+        {
+            Scribe_TargetInfo.Look(ref _target, nameof(_target));
+            Scribe_References.Look(ref _skyfaller, nameof(_skyfaller));
         }
     }
 }

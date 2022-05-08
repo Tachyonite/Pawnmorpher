@@ -11,10 +11,11 @@ namespace Pawnmorph.Abilities
     /// <summary>
     /// Abstract base class for defining abilities.
     /// </summary>
-    public abstract class MutationAbility
+    public abstract class MutationAbility : IExposable
     {
-        private readonly MutationAbilityDef _def;
+        private MutationAbilityDef _def;
         private int _currentCooldown = 0;
+        private Pawn _pawn;
 
         /// <summary>
         /// The current state of the ability.
@@ -34,7 +35,7 @@ namespace Pawnmorph.Abilities
         /// <summary>
         /// Gets the pawn this ability is attached to.
         /// </summary>
-        public Pawn Pawn { get; private set; }
+        public Pawn Pawn => _pawn;
 
         /// <summary>
         /// Gets the total cooldown in ticks.
@@ -64,6 +65,27 @@ namespace Pawnmorph.Abilities
         public MutationAbility(MutationAbilityDef def)
         {
             _def = def;
+        }
+
+        public MutationAbility()
+        {
+
+        }
+
+        private void LoadTexture()
+        {
+            if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
+                Gizmo.icon = ContentFinder<Texture2D>.Get(_def.iconPath);
+        }
+
+        /// <summary>
+        /// Initializes the ability with the specified pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public void Initialize(Pawn pawn)
+        {
+            _pawn = pawn;
+
             switch (Type)
             {
                 case MutationAbilityType.Toggle:
@@ -103,24 +125,25 @@ namespace Pawnmorph.Abilities
             HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
 
             LongEventHandler.ExecuteWhenFinished(LoadTexture);
+
+            OnInitialize();
+
+            if (pawn.Spawned)
+                IsDisabled();
         }
 
-        private void LoadTexture()
+        public void ExposeData()
         {
-            if (String.IsNullOrWhiteSpace(_def.iconPath) == false)
-                Gizmo.icon = ContentFinder<Texture2D>.Get(_def.iconPath);
+            Scribe_References.Look(ref _pawn, nameof(_pawn));
+            Scribe_Deep.Look(ref _def, nameof(_def));
+            Scribe_Values.Look(ref _currentCooldown, nameof(_currentCooldown));
+            OnExposeData();
         }
 
         /// <summary>
-        /// Initializes the ability with the specified pawn.
+        /// Triggered on expose data.
         /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        public void Initialize(Pawn pawn)
-        {
-            Pawn = pawn;
-            OnInitialize();
-            IsDisabled();
-        }
+        protected abstract void OnExposeData();
 
         /// <summary>
         /// Ticks this instance.

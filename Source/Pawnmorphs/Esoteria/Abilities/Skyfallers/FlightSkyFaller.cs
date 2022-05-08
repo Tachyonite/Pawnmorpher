@@ -16,6 +16,11 @@ namespace Pawnmorph.Abilities.Skyfallers
         public event Action<FlightSkyFaller> OnLanded;
         public event Action<FlightSkyFaller> OnTakeOff;
 
+        public FlightSkyFaller()
+            : this(LocalTargetInfo.Invalid)
+        {
+            
+        }
 
         public FlightSkyFaller(LocalTargetInfo target)
             : base()
@@ -46,7 +51,7 @@ namespace Pawnmorph.Abilities.Skyfallers
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _target, "target");
+            Scribe_TargetInfo.Look(ref _target, nameof(_target));
         }
 
 

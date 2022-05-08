@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Verse;
 
 namespace Pawnmorph.Abilities
 {
-    public class MutationAbilityDef
+    public class MutationAbilityDef : IExposable
     {
         /// <summary>
         /// The class that contains the logic for the ability. Must be a MutationAbility type.
@@ -32,5 +33,14 @@ namespace Pawnmorph.Abilities
         /// The total cooldown in ticks.
         /// </summary>
         public int cooldown;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look<Type>(ref abilityClass, nameof(abilityClass));
+            Scribe_Values.Look<string>(ref label, nameof(label));
+            Scribe_Values.Look<string>(ref description, nameof(description));
+            Scribe_Values.Look<string>(ref iconPath, nameof(iconPath));
+            Scribe_Values.Look<int>(ref cooldown, nameof(cooldown));
+        }
     }
 }

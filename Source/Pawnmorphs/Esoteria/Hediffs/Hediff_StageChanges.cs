@@ -74,6 +74,7 @@ namespace Pawnmorph.Hediffs
                 var oldStage = cachedStage;
                 RecacheStage(stageIndex);
                 OnStageChanged(oldStage, cachedStage);
+                GenerateAbilities(cachedStage);
 
                 foreach (var comp in ObserverComps)
                     comp.OnStageChanged(oldStage, cachedStage);
@@ -127,7 +128,6 @@ namespace Pawnmorph.Hediffs
         {
             cachedStageIndex = stageIndex;
             cachedStage = def?.stages?[cachedStageIndex];
-            GenerateAbilities(cachedStage);
         }
 
         /// <summary>
@@ -142,10 +142,24 @@ namespace Pawnmorph.Hediffs
         {
             base.ExposeData();
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), base.CurStageIndex);
+            Scribe_Collections.Look(ref abilities, nameof(abilities));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 RecacheStage(cachedStageIndex);
+
+                if (abilities == null)
+                {
+                    abilities = new List<Abilities.MutationAbility>();
+                    GenerateAbilities(cachedStage);
+                }
+                else
+                {
+                    foreach (Abilities.MutationAbility ability in abilities)
+                    {
+                        ability.Initialize(pawn);
+                    }
+                }
             }
         }
     }
