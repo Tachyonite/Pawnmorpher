@@ -15,6 +15,7 @@ jobs:
 
     env:
       Solution_Name: "Source/Pawnmorphs/Pawnmorph.sln"
+      Name: Pawnmorpher
       #Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
     steps:
@@ -54,10 +55,11 @@ jobs:
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Textures (raw)"
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Scripts"
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Morphs"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Examples"
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Documentation"
-        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".git"
-        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".github"
-        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".vs"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.md"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.ps1"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
