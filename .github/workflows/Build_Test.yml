@@ -49,14 +49,14 @@ jobs:
 
     # Remove unnecesary directories
     - run: | 
-        rmdir /S /Q "Source"
-        rmdir /S /Q "Textures (raw)"
-        rmdir /S /Q "Scripts"
-        rmdir /S /Q "Morphs"
-        rmdir /S /Q "Documentation"
-        rmdir /S /Q ".git"
-        rmdir /S /Q ".github"
-        rmdir /S /Q ".vs"
+        Remove-Item -Force "Source"
+        Remove-Item -Force "Textures (raw)"
+        Remove-Item -Force "Scripts"
+        Remove-Item -Force "Morphs"
+        Remove-Item -Force "Documentation"
+        Remove-Item -Force ".git"
+        Remove-Item -Force ".github"
+        Remove-Item -Force ".vs"
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
