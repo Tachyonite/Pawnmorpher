@@ -50,7 +50,7 @@ jobs:
     # Remove unnecesary directories
     - run: | 
         rmdir /S /Q "Source"
-        rmdir /S /Q "Textures (raw)
+        rmdir /S /Q "Textures (raw)"
         rmdir /S /Q "Scripts"
         rmdir /S /Q "Morphs"
         rmdir /S /Q "Documentation"
