@@ -26,13 +26,11 @@ jobs:
       run: | 
         if ($env:Branch -eq "master") {
           echo Configuration="Release" >> $GITHUB_ENV  
-        }
-        else {
+        } else {
           echo Configuration="Debug" >> $GITHUB_ENV
         }
-
       env:
-        Branch: ${{github.base_ref}}
+        Branch: "${{github.base_ref}}"
       
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.1
@@ -54,7 +52,7 @@ jobs:
     #    Configuration: ${{ matrix.configuration }}
 
     - name: Build
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
+      run: msbuild $env:Solution_Name /p:Configuration=${{ env.Configuration }}
 
     # Remove unnecesary directories
     - name: Cleanup
@@ -70,10 +68,10 @@ jobs:
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
 
     - name: Generate artifact name
-      run: echo ArtifactName="$env:Name-$env:Configuration $(get-date -f MM-dd)" >> $GITHUB_ENV
+      run: echo ArtifactName="$env:Name-${{ env.Configuration }} $(get-date -f MM-dd)" >> $GITHUB_ENV
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: $ArtifactName
+        name: ${{ env.ArtifactName }}
         path: ${{ github.workspace }}/**/*
