@@ -48,15 +48,16 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     # Remove unnecesary directories
-    - run: | 
-        Remove-Item -Force "Source"
-        Remove-Item -Force "Textures (raw)"
-        Remove-Item -Force "Scripts"
-        Remove-Item -Force "Morphs"
-        Remove-Item -Force "Documentation"
-        Remove-Item -Force ".git"
-        Remove-Item -Force ".github"
-        Remove-Item -Force ".vs"
+    - name: Cleanup
+      run: | 
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Source"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Textures (raw)"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Scripts"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Morphs"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Documentation"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".git"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".github"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".vs"
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
