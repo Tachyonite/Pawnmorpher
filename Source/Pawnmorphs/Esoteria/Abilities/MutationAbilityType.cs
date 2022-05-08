@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pawnmorph.Abilities
 {
+    /// <summary>
+    /// Different types of mutation abilities.
+    /// </summary>
     public enum MutationAbilityType
     {
         /// <summary>

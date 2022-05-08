@@ -67,6 +67,9 @@ namespace Pawnmorph.Abilities
             _def = def;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MutationAbility"/> class.
+        /// </summary>
         public MutationAbility()
         {
 
@@ -132,6 +135,9 @@ namespace Pawnmorph.Abilities
                 IsDisabled();
         }
 
+        /// <summary>
+        /// Exposes the data for serialization and deserialization.
+        /// </summary>
         public void ExposeData()
         {
             Scribe_References.Look(ref _pawn, nameof(_pawn));

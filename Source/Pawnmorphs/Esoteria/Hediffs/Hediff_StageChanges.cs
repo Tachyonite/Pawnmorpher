@@ -148,6 +148,7 @@ namespace Pawnmorph.Hediffs
             {
                 RecacheStage(cachedStageIndex);
 
+                // Null if not previously saved.
                 if (abilities == null)
                 {
                     abilities = new List<Abilities.MutationAbility>();

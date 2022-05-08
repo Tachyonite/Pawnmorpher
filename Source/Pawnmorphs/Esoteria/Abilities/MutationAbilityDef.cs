@@ -7,6 +7,10 @@ using Verse;
 
 namespace Pawnmorph.Abilities
 {
+    /// <summary>
+    /// Ability properties.
+    /// </summary>
+    /// <seealso cref="Verse.IExposable" />
     public class MutationAbilityDef : IExposable
     {
         /// <summary>
@@ -34,6 +38,10 @@ namespace Pawnmorph.Abilities
         /// </summary>
         public int cooldown;
 
+
+        /// <summary>
+        /// Exposes the data for serialization and deserialization.
+        /// </summary>
         public void ExposeData()
         {
             Scribe_Values.Look<Type>(ref abilityClass, nameof(abilityClass));
