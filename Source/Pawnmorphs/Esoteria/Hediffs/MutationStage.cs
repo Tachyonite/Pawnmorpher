@@ -75,6 +75,9 @@ namespace Pawnmorph.Hediffs
         [CanBeNull]
         public List<VerbToolOverride> verbOverrides;
 
+        [CanBeNull]
+        public List<Abilities.MutationAbilityDef> abilities;
+
         /// <summary>
         /// Gets the skip aspects.
         /// </summary>
@@ -155,8 +158,6 @@ namespace Pawnmorph.Hediffs
             /// </summary>
             public float? chanceFactor;
         }
-
-
 
         /// <summary>
         /// 

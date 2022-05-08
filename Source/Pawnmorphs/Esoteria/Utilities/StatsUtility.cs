@@ -26,10 +26,13 @@ namespace Pawnmorph.Utilities
             /// </summary>
             public int Timestamp { get; set; }
 
+            public bool RequestedUpdate { get; set; }
+
             public CachedStat(Cached<float> stat, int ticks)
             {
                 Stat = stat;
                 Timestamp = ticks;
+                RequestedUpdate = false;
             }
         }
 
@@ -68,17 +71,27 @@ namespace Pawnmorph.Utilities
             {
                 // Cache new stat
                 Cached<float> statValue = new Cached<float>(() => pawn.GetStatValueForPawn(statDef, pawn));
-                statValue.Recalculate();
                 stat = new CachedStat(statValue, _tickManager.TicksGame);
                 pawnCache[statDef] = stat;
             }
-            else
+            else if (stat.RequestedUpdate == false)
             {
+                // If stat has not already been queued for update, then check if it should be updated.
+
                 // If stat is older than age limit, recalculate.
                 if (_tickManager.TicksGame - stat.Timestamp > maxAge)
                 {
-                    stat.Stat.Recalculate();
-                    stat.Timestamp = _tickManager.TicksGame;
+                    stat.RequestedUpdate = true;
+                    LongEventHandler.ExecuteWhenFinished(() =>
+                    {
+                        // Invalidate
+                        stat.Stat.Recalculate();
+                        // Get and cache new value
+                        var _ = stat.Stat.Value;
+
+                        stat.Timestamp = _tickManager.TicksGame;
+                        stat.RequestedUpdate = false;
+                    });
                 }
             }
 

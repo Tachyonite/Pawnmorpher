@@ -128,6 +128,7 @@ namespace Pawnmorph.Hediffs
             Scribe_Values.Look(ref _lastStageIndex, nameof(_lastStageIndex), -1); 
             Scribe_Values.Look(ref _curMutationIndex, nameof(_curMutationIndex));
             Scribe_Values.Look(ref forceRemove, nameof(forceRemove)); 
+
             if (Scribe.mode == LoadSaveMode.PostLoadInit && _checkList == null)
             {
                 ResetMutationOrder();
