@@ -46,9 +46,20 @@ jobs:
       run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
+
+    # Remove unnecesary directories
+    - run: | 
+        rmdir /S /Q "Source"
+        rmdir /S /Q "Textures (raw)
+        rmdir /S /Q "Scripts"
+        rmdir /S /Q "Morphs"
+        rmdir /S /Q "Documentation"
+        rmdir /S /Q ".git"
+        rmdir /S /Q ".github"
+        rmdir /S /Q ".vs"
         
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: Test_1.3
-        path: ..\..\..\1.3\Assemblies\
+        name: Artifacts
+        path: ${{ github.workspace }}/**/*
