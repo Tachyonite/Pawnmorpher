@@ -1,8 +1,10 @@
 name: 'Compile Test'
-on:
-  push:
-    branches:
-      - dev
+on: 
+  workflow_dispatch:
+    inputs:
+      changelog:
+        description: 'Changelog'     
+        required: true
 
 jobs:
   build:
@@ -60,9 +62,14 @@ jobs:
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.md"
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.ps1"
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
-        
+
+    - name: Generate artifact name
+      run: echo ArtifactName="$env:Name-$env:Configuration $(get-date -f MM-dd)" >> $GITHUB_ENV
+      env:
+        Configuration: ${{ matrix.configuration }}
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: Artifacts
+        name: $ArtifactName
         path: ${{ github.workspace }}/**/*
