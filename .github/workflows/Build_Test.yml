@@ -24,7 +24,7 @@ jobs:
 
     - name: Set configuration
       run: | 
-        if ($env:Branch == "master") {
+        if ($env:Branch -eq "master") {
           echo Configuration="Release" >> $GITHUB_ENV  
         }
         else {
