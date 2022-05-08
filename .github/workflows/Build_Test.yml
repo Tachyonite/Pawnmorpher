@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: "Source\Pawnmorphs\Pawnmorph.sln"
+      Solution_Name: "Source/Pawnmorphs/Pawnmorph.sln"
       #Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
     steps:
