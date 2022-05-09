@@ -25,9 +25,9 @@ jobs:
     - name: Set configuration
       run: | 
         if ($env:Branch -eq "refs/heads/master") {
-          echo Configuration="Release" >> $GITHUB_ENV  
+          echo "Configuration=Release" >> $GITHUB_ENV  
         } else {
-          echo Configuration="Debug" >> $GITHUB_ENV
+          echo "Configuration=Debug" >> $GITHUB_ENV
         }
       env:
         Branch: "${{ github.ref }}"
