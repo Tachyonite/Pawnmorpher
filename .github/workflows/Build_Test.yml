@@ -2,9 +2,6 @@ name: 'Compile Test'
 on: 
   workflow_dispatch:
     inputs:
-      changelog:
-        description: 'Changelog'     
-        required: true
 
 jobs:
   build:
@@ -68,7 +65,12 @@ jobs:
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
 
     - name: Generate artifact name
-      run: echo ArtifactName="$env:Name-${{ env.Configuration }} $(get-date -f MM-dd)" >> $env:GITHUB_ENV
+      run: |
+        $branch = ""
+        if ("${{ env.Configuration }}" -ne "Release") {
+            $branch = $env:Branch.replace("refs/heads/", "") + "_"
+        }
+        echo ArtifactName="$env:Name-${{ env.Configuration }}_$branch$(get-date -f MM-dd)" >> $env:GITHUB_ENV
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
