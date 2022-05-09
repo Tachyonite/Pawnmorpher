@@ -25,9 +25,9 @@ jobs:
     - name: Set configuration
       run: | 
         if ($env:Branch -eq "refs/heads/master") {
-          echo "Configuration=Release" >> $GITHUB_ENV  
+          echo "Configuration=Release" >> $env:GITHUB_ENV
         } else {
-          echo "Configuration=Debug" >> $GITHUB_ENV
+          echo "Configuration=Debug" >> $env:GITHUB_ENV
         }
       env:
         Branch: "${{ github.ref }}"
@@ -68,7 +68,7 @@ jobs:
         Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
 
     - name: Generate artifact name
-      run: echo ArtifactName="$env:Name-${{ env.Configuration }} $(get-date -f MM-dd)" >> $GITHUB_ENV
+      run: echo ArtifactName="$env:Name-${{ env.Configuration }} $(get-date -f MM-dd)" >> $env:GITHUB_ENV
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
