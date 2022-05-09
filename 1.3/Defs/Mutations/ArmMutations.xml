@@ -162,27 +162,6 @@
 				<statOffsets>
 					<CaravanRidingSpeedFactor>1.5</CaravanRidingSpeedFactor>
 					<ForagedNutritionPerDay>+0.8</ForagedNutritionPerDay>
-				</statOffsets>
-			</li>
-		</stages>
-		
-		<!-- <stages>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>1.5</minSeverity>
-				<labelOverride>sturdy wing</labelOverride>
-				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but several adaptions have stiffened the hollow bones.  They're stronger than before, but still not as good as a regular arm.</description>
-				<statFactors>
-					<CarryingCapacity>0.9</CarryingCapacity>
-				</statFactors>
-				<statOffsets>
-					<PM_Lift>0.5</PM_Lift>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<minSeverity>2.5</minSeverity>
-				<labelOverride>reinforced wing</labelOverride>
-				<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, but further adaptions to the hollow bones have rendered it as strong as a human arm despite its reduced weight.</description>
-				<statOffsets>
 					<PM_Lift>0.5</PM_Lift>
 				</statOffsets>
 				<abilities>
@@ -190,12 +169,12 @@
 						<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
 						<label>Fly</label>
 						<description>Fly to somewhere on the map.</description>
-						<iconPath>Parts/chickenface/chickenwings_east</iconPath>
+						<iconPath>Parts/Chicken/Chicken_Wings_east</iconPath>
 						<cooldown>600</cooldown>
 					</li>
 				</abilities>
 			</li>
-		</stages> -->
+		</stages>
 		<comps>
 			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
 				<mutationDependency>
