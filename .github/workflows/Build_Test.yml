@@ -71,6 +71,8 @@ jobs:
             $branch = $env:Branch.replace("refs/heads/", "") + "_"
         }
         echo ArtifactName="$env:Name-${{ env.Configuration }}_$branch$(get-date -f MM-dd)" >> $env:GITHUB_ENV
+      env:
+        Branch: "${{ github.ref }}"
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
