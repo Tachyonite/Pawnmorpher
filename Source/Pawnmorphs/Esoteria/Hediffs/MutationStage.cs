@@ -103,10 +103,22 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+            ApplyVerbOverrides(hediff);
+
             if (memory != null)
             {
                 hediff.pawn.TryAddMutationThought(memory);
             }
+        }
+
+        public void OnLoad(Hediff hediff)
+        {
+            ApplyVerbOverrides(hediff);
+        }
+
+
+        private void ApplyVerbOverrides(Hediff hediff)
+        {
 
             var verbGiver = hediff.TryGetComp<HediffComp_VerbGiver>();
             if (verbGiver != null && verbOverrides != null)
