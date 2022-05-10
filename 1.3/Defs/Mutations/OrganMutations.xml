@@ -83,10 +83,32 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s lung has grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness.</description>
-					<partEfficiencyOffset>0.15</partEfficiencyOffset>
-			</values>
+					<partEfficiencyOffset>0.075</partEfficiencyOffset>
+				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s lung has grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness. The Lung has develop further providing [PAWN_nameDef] with the ability to release a terrifying roar.</description>
+				<statOffsets>
+					<CaravanRidingSpeedFactor>1.5</CaravanRidingSpeedFactor>
+					<ForagedNutritionPerDay>+0.8</ForagedNutritionPerDay>
+					<PM_Lift>0.5</PM_Lift>
+				</statOffsets>
+				<abilities>
+					<li>
+						<abilityClass>Pawnmorph.Abilities.TerrifyingRoar</abilityClass>
+						<label>Terrifying Roar</label>
+						<description>Cause anyone nearby to panic.</description>
+						<iconPath></iconPath>
+						<cooldown>600</cooldown>
+					</li>
+				</abilities>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<!-- Expanded Cerabellum -->
@@ -190,7 +212,6 @@
 		<parts>
 			<li>Spine</li>
 		</parts>
-		<maxSeverity>1</maxSeverity>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
