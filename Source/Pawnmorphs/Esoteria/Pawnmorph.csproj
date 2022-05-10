@@ -303,6 +303,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abilities\Bullrush.cs" />
     <Compile Include="Abilities\Skyfallers\FlightSkyFaller.cs" />
     <Compile Include="Abilities\MutationAbility.cs" />
     <Compile Include="Abilities\Flight.cs" />
@@ -310,6 +311,7 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="Hediffs\Hediff_Bullrush.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
