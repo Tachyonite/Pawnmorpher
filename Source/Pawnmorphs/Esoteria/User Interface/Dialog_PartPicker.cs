@@ -678,7 +678,17 @@ namespace Pawnmorph.User_Interface
 
             // Draw the severity slider
             float curSeverity = mutationsOfDef.Select(n => n.Severity).Average();
-            float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity);
+            float minSeverity = 0; // mutationDef.minSeverity;
+            float maxSeverity = 1; // mutationDef.maxSeverity;
+
+            if (debugMode)
+            {
+                minSeverity = 0;
+                maxSeverity = 3;
+            }
+
+
+            float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, minSeverity, maxSeverity);
             if (curSeverity != newSeverity)
             {
                 curSeverity = newSeverity;
