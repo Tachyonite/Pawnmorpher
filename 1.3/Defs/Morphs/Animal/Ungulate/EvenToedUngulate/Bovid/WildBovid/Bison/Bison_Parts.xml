@@ -135,6 +135,12 @@
 					<description>Two short horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
 				</values>
 			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>Two short horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
+				</values>
+			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 

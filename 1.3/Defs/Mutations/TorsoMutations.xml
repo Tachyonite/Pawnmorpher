@@ -199,7 +199,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>TODO</description>
+				<description>A thick and scaled shell for unmatched protection against predators encases [PAWN_nameDef]'s body. [PAWN_pronoun] has a strange urge to live in a sewer.</description>
 				<graphics>
 					<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
 					<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
