@@ -57,7 +57,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidTailPart">
 		<classInfluence>CaribouMorph</classInfluence>
 		<defName>EtherCaribouTail</defName>
-		<label>ibex tail</label>
+		<label>caribou tail</label>
 		<graphics>
 			<Tail>Parts/Caribou/Caribou_Tail</Tail>
 		</graphics>
