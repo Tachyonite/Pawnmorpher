@@ -194,6 +194,21 @@
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>TODO</description>
+				<graphics>
+					<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+					<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+				</graphics>
+				<statOffsets>
+					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<!-- Pneumatized skeleton -->
