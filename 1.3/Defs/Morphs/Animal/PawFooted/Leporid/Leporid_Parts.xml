@@ -124,6 +124,23 @@
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>A long, furry, flexible ear sits atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses. [PAWN_nameDef] hears everything, even sounds mortals cannot hear.</description>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>+0.5</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PsychicSensitivityOffset>+0.025</PsychicSensitivityOffset>
+				</statOffsets>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LeporidTailPart" ParentName="PawFootedTailPart" Abstract="true">
