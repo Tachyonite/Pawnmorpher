@@ -172,5 +172,26 @@
 				</values>
 			</li>
 		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+				<graphics>
+					<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
+				</graphics>
+				<statOffsets>
+					<TameAnimalChance>1</TameAnimalChance>
+					<TrainAnimalChance>0.5</TrainAnimalChance>
+				</statOffsets>
+				<verbOverrides>
+					<li>
+						<label>horns</label>
+						<power>10</power>
+					</li>
+				</verbOverrides>
+			</li>
+		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
