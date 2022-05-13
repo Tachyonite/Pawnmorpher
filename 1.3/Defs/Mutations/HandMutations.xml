@@ -459,6 +459,7 @@
 		<label>wingtip</label>
 		<classInfluence>Avian</classInfluence>
 		<description>A wing tip.</description>
+		<mutationMemory>WingTipMemory</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
@@ -887,8 +888,8 @@
 		<classInfluence>ThickHide</classInfluence>
 		<defName>EtherElephantHand</defName>
 		<label>stump hand</label>
-		<!-- <mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory> -->
+		<mutationMemory>StumpHandMemory</mutationMemory>
+		<!-- <mutationTale>TODO</mutationTale> -->
 		<description>Thick, leathery elephant stumps have replaced this hand.  Doing any kind of fine manipulation with it will be exceedingly challenging.</description>
 		<stagePatches>
 			<li function="modify">

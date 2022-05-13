@@ -6,6 +6,7 @@
 		<defName>EtherEarHole</defName>
 		<label>ear hole</label>
 		<description>An ear hole.</description>
+		<mutationMemory>EtherEarHole</mutationMemory>
 		<classInfluences>
 			<li>Avian</li>
 			<li>Reptile</li>
@@ -75,6 +76,7 @@
 		<defName>EtherEggLayer</defName>
 		<label>egglayer</label>
 		<description>An egglayer</description>
+		<mutationMemory>EtherEggLayer</mutationMemory>
 		<parts>
 			<li>Pelvis</li>
 		</parts>

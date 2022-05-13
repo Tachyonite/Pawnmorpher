@@ -50,6 +50,7 @@
 		<defName>EtherLightFurredLimb</defName>
 		<label>light fur</label>
 		<classInfluence>Simian</classInfluence>
+		<mutationMemory>EtherFurredLimb</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
@@ -401,6 +402,7 @@
 		<defName>EtherThickHideLimb</defName>
 		<label>thick hide</label>
 		<classInfluence>ThickHide</classInfluence>
+		<mutationMemory>EtherThickHideLimb</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
@@ -449,6 +451,7 @@
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractScaledLimb" Abstract="true">
 		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
+		<mutationMemory>EtherScaledLimb</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>light</stageKey>
@@ -545,6 +548,7 @@
 	<!-- Feathers (abstract) -->
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractFeatheredLimb" Abstract="true">
+		<mutationMemory>EtherFeatheredLimb</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>light</stageKey>
