@@ -2,7 +2,7 @@
 
 	<!-- Fur (abstract) -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractFurredLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractFurredLimb" Abstract="true">
 		<mutationTale>LimbGrowsFur</mutationTale>
 		<mutationMemory>EtherFurredLimb</mutationMemory>
 		<mutationLogRulePack>FurGrowthLogPack</mutationLogRulePack>
@@ -313,7 +313,7 @@
 	
 	<!-- Hide (abstract) -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractHideLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractHideLimb" Abstract="true">
 		<mutationLogRulePack>HideGrowthLogPack</mutationLogRulePack>
 		<stagePatches>
 			<li function="modify">
@@ -447,7 +447,7 @@
 
 	<!-- Scales (abstract) -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractScaledLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractScaledLimb" Abstract="true">
 		<mutationLogRulePack>ScaleGrowthLogPack</mutationLogRulePack>
 		<stagePatches>
 			<li function="modify">
@@ -544,7 +544,7 @@
 
 	<!-- Feathers (abstract) -->
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="AbstractFeatheredLimb" Abstract="true">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="AbstractFeatheredLimb" Abstract="true">
 		<stagePatches>
 			<li function="modify">
 				<stageKey>light</stageKey>
@@ -631,7 +631,7 @@
 	
 	<!-- Wool -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinPart" Name="WoollyLimb">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphSkinBasePart" Name="WoollyLimb">
 		<defName>EtherWoollyLimb</defName>
 		<label>wool</label>
 		<classInfluences>

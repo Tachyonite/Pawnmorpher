@@ -419,7 +419,7 @@
 	
 	<!-- Skin - Suggestion: 0% - 25% - 50% - 75% - 100% -->
 	
-	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinBasePart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
 		<description>A covered limb.</description>
 		<minSeverity>0</minSeverity>
 		<initialSeverity>0</initialSeverity>
