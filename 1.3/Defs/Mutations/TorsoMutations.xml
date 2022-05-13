@@ -211,6 +211,60 @@
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>
 
+
+
+	<!-- Hump -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
+		<description>A hump of a dromedary</description>
+		<defName>EtherDromedaryHump</defName>
+		<classInfluences>
+			<li>DromedaryMorph</li>
+		</classInfluences>
+		<label>hump</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>TODO</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>TODO</description>
+					<!-- <graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics> -->
+					<statOffsets>
+						<ComfyTemperatureMax>15</ComfyTemperatureMax>
+						<hungerRateFactor>0.25</hungerRateFactor>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>TODO</description>
+					<!-- <graphics>
+						<Torso>Parts/Tortoise/Tortoise_Shell</Torso>
+						<TorsoBehind>Parts/Tortoise/Tortoise_Shell_Behind</TorsoBehind>
+					</graphics> -->
+					<statOffsets>
+						<ComfyTemperatureMax>30</ComfyTemperatureMax>
+						<hungerRateFactor>0.5</hungerRateFactor>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
 	<!-- Pneumatized skeleton -->
 
 	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericTorsoPart">
