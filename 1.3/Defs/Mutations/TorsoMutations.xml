@@ -242,8 +242,8 @@
 					</graphics> -->
 					<statOffsets>
 						<ComfyTemperatureMax>15</ComfyTemperatureMax>
-						<hungerRateFactor>0.25</hungerRateFactor>
 					</statOffsets>
+					<hungerRateFactor>0.25</hungerRateFactor>
 				</values>
 			</li>
 			<li function="modify">
@@ -256,8 +256,8 @@
 					</graphics> -->
 					<statOffsets>
 						<ComfyTemperatureMax>30</ComfyTemperatureMax>
-						<hungerRateFactor>0.5</hungerRateFactor>
 					</statOffsets>
+					<hungerRateFactor>0.5</hungerRateFactor>
 				</values>
 			</li>
 		</stagePatches>
