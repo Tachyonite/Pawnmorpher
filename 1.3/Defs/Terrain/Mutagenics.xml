@@ -35,6 +35,8 @@
 			<texPath>Things/Item/Resource/Mutastone</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
+		<useHitPoints>false</useHitPoints>
+		<healthAffectsPrice>false</healthAffectsPrice>
 		<soundInteract>Metal_Drop</soundInteract>
 		<soundDrop>Metal_Drop</soundDrop>
 		<comps>
@@ -55,14 +57,20 @@
 			<BluntDamageMultiplier>1</BluntDamageMultiplier>
 			<MutaniteConcentration>1</MutaniteConcentration>
 		</statBases>
-		<useHitPoints>false</useHitPoints>
 		<thingCategories>
 			<li>RawMutagen</li>
 		</thingCategories>
+		<deepCommonality>0.125</deepCommonality>
+		<deepCountPerPortion>1</deepCountPerPortion>
+		<deepLumpSizeRange>1</deepLumpSizeRange>
+		<burnableByRecipe>false</burnableByRecipe>
 		<stuffProps>
+			<categories>
+				<li>Mutagenic</li>
+			</categories>
 			<commonality>0.05</commonality>
 			<constructEffect>ConstructMetal</constructEffect>
-			<color>(105,105,105)</color>
+			<color>(160,225,60)</color>
 			<soundImpactStuff>BulletImpact_Metal</soundImpactStuff>
 			<soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
 			<soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
@@ -249,4 +257,14 @@
 			</li>
 		</comps>
 	</HediffDef>
+	
+	<StuffCategoryDef>
+		<defName>Mutagenic</defName>
+		<label>mutagenic</label>
+		<destroySoundSmall>BuildingDestroyed_Metal_Small</destroySoundSmall>
+		<destroySoundMedium>BuildingDestroyed_Metal_Medium</destroySoundMedium>
+		<destroySoundLarge>BuildingDestroyed_Metal_Big</destroySoundLarge>
+	</StuffCategoryDef>
+	
 </Defs>
+

@@ -40,13 +40,22 @@
                         <li>MutationAffinity</li>
                     </value>
                 </li>
-                <li Class="PatchOperationAdd">
-                    <xpath>/Defs/MemeDef[defName="HumanPrimacy"]</xpath>
-                    <value>
-                        <disagreeableTraits>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/MemeDef[defName="HumanPrimacy"]/disagreeableTraits</xpath>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="HumanPrimacy"]</xpath>
+                        <value>
+                            <disagreeableTraits>
+                                <li>MutationAffinity</li>
+                            </disagreeableTraits>
+                        </value>
+                    </nomatch>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="HumanPrimacy"]/disagreeableTraits</xpath>
+                        <value>
                             <li>MutationAffinity</li>
-                        </disagreeableTraits>
-                    </value>
+                        </value>
+                    </match>
                 </li>
             </operations>
         </match>

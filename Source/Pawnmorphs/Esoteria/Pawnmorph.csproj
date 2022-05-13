@@ -857,6 +857,7 @@
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\RWRaycast.cs" />
     <Compile Include="Utilities\SkillMod.cs" />
+    <Compile Include="Utilities\StatsUtility.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
     <Compile Include="Verbs\Tag.cs" />
@@ -904,6 +905,7 @@
     <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Abillities\" />
     <Folder Include="Alerts\" />
   </ItemGroup>
   <ItemGroup>

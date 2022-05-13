@@ -596,7 +596,8 @@ namespace Pawnmorph.Hediffs
             Scribe_Deep.Look(ref _causes, "causes"); 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                _causes = _causes ?? new MutationCauses(); 
+                _causes = _causes ?? new MutationCauses();
+                ClearCaches();
             }
         }
 
