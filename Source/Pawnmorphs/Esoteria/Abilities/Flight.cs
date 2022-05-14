@@ -42,6 +42,12 @@ namespace Pawnmorph.Abilities
                 return false;
             }
 
+            if (Pawn.Downed)
+            {
+                MoteMaker.ThrowText(Pawn.DrawPos, Pawn.Map, "Fail_Downed".Translate());
+                return false;
+            }
+
             _target = target.Value;
             return true;
         }
@@ -90,10 +96,13 @@ namespace Pawnmorph.Abilities
         protected override string OnIsDisabled()
         {
             float? lift = StatsUtility.GetStat(Pawn, PMStatDefOf.PM_Lift, 60);
-            if (lift.HasValue && lift >= 1.0f)
-                return null;
-            else
+            if (lift.HasValue && lift < 1.0f)
                 return "FailFly_Lift".Translate();
+
+            if (Pawn.Downed)
+                return "Fail_Downed".Translate();
+            
+            return null;
         }
 
         protected override void OnExposeData()
