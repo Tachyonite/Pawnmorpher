@@ -89,12 +89,6 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphEarPart" Abstract="true">
-		<graphics>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
-			<RightEar>Parts/None/None</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-			<LeftEar>Parts/None/None</LeftEar>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -142,9 +136,6 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphTailPart" Abstract="true">
-		<graphics>
-			<Tail>Parts/None/None</Tail>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -159,18 +150,18 @@
 				<stageKey>pressing</stageKey>
 				<values>
 					<description>A tail is growing behind [PAWN_nameDef].</description>
-					<graphics>
+					<!-- <graphics>
 						<Tail>Parts/Partials/Todo/Todo</Tail>
-					</graphics>
+					</graphics> -->
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s tail is getting longer and longer.</description>
-					<graphics>
+					<!-- <graphics>
 						<Tail>Parts/Partials/Todo/Todo</Tail>
-					</graphics>
+					</graphics> -->
 				</values>
 			</li>
 			<li function="modify">

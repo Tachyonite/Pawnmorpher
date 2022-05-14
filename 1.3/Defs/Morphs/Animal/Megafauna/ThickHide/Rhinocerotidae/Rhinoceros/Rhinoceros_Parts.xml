@@ -7,7 +7,7 @@
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideEarPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeEarPart">
 		<classInfluence>RhinocerosMorph</classInfluence>
 		<defName>EtherRhinocerosEar</defName>
 		<label>rhinoceros ear</label>
@@ -27,7 +27,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="ThickHideTailPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeTailPart">
 		<classInfluence>RhinocerosMorph</classInfluence>
 		<defName>EtherRhinocerosTail</defName>
 		<label>rhinoceros tail</label>
