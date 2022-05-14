@@ -90,23 +90,25 @@ namespace Pawnmorph.Hediffs
         {
             if (stage is MutationStage mutationStage)
             {
-                abilities.Clear();
-
                 if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
                     return;
 
-                Abilities.MutationAbility ability;
+                //Abilities.MutationAbility ability;
                 foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
                 {
                     // Only add ability once.
-                    if (abilities.Any(x => x.AbilityDef == abilityDef))
+                    Abilities.MutationAbility ability = abilities.SingleOrDefault(x => x.AbilityDef.abilityClass == abilityDef.abilityClass);
+                    if (ability != null)
+                    {
+                        ability.Initialize(pawn, abilityDef);
                         continue;
+                    }
 
                     if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
                     {
                         ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
-                        ability.Initialize(pawn);
                         abilities.Add(ability);
+                        ability.Initialize(pawn);
                     }
                 }
             }
@@ -150,17 +152,9 @@ namespace Pawnmorph.Hediffs
 
                 // Null if not previously saved.
                 if (abilities == null)
-                {
                     abilities = new List<Abilities.MutationAbility>();
-                    GenerateAbilities(cachedStage);
-                }
-                else
-                {
-                    foreach (Abilities.MutationAbility ability in abilities)
-                    {
-                        ability.Initialize(pawn);
-                    }
-                }
+
+                GenerateAbilities(cachedStage);
             }
         }
     }

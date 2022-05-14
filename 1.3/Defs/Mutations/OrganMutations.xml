@@ -103,7 +103,7 @@
 						<abilityClass>Pawnmorph.Abilities.TerrifyingRoar</abilityClass>
 						<label>Terrifying Roar</label>
 						<description>Cause anyone nearby to panic.</description>
-						<iconPath></iconPath>
+						<iconPath>UI/Buttons/PM_Icon_Terrifying_roar</iconPath>
 						<cooldown>600</cooldown>
 					</li>
 				</abilities>

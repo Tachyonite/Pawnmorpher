@@ -85,9 +85,12 @@ namespace Pawnmorph.Abilities
         /// Initializes the ability with the specified pawn.
         /// </summary>
         /// <param name="pawn">The pawn.</param>
-        public void Initialize(Pawn pawn)
+        public void Initialize(Pawn pawn, MutationAbilityDef def = null)
         {
             _pawn = pawn;
+
+            if (def != null)
+                _def = def;
 
             switch (Type)
             {
