@@ -1,5 +1,8 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalJawPart" ParentName="PawnmorphJawPart" Abstract="true">
+		<graphics>
+			<Muzzle>Parts/None/None</Muzzle>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -8,6 +11,8 @@
 					<description>[PAWN_nameDef]'s nose has been feeling stuffy lately and [PAWN_pronoun] has been seen vigourously scratching [PAWN_possessive] face. It's probably nothing to worry about. Right?</description>
 					<graphics>
 						<Muzzle>Parts/None/None</Muzzle>
+						<MuzzleMale>Parts/None/None</MuzzleMale>
+						<MuzzleFemale>Parts/None/None</MuzzleFemale>
 					</graphics>
 				</values>
 			</li>
@@ -16,6 +21,10 @@
 				<values>
 					<description>The bones of [PAWN_nameDef]'s jaw and chin have started growing outwards, painfully pressing out into an inhuman shape.</description>
 					<painOffset>0.1</painOffset>
+					<graphics>
+						<MuzzleMale>Parts/None/None</MuzzleMale>
+						<MuzzleFemale>Parts/None/None</MuzzleFemale>
+					</graphics>
 					<capMods>
 						<li>
 							<capacity>Talking</capacity>
@@ -32,6 +41,10 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face continues to change, with nose, jaw, chin, and all looking more and more like an animal's snout.</description>
+					<graphics>
+						<MuzzleMale>Parts/None/None</MuzzleMale>
+						<MuzzleFemale>Parts/None/None</MuzzleFemale>
+					</graphics>
 					<painOffset>0.2</painOffset>
 					<capMods>
 						<li>
@@ -89,6 +102,12 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalEarPart" ParentName="PawnmorphEarPart" Abstract="true">
+		<graphics>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/None/None</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<LeftEar>Parts/None/None</LeftEar>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -136,6 +155,9 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="AnimalTailPart" ParentName="PawnmorphTailPart" Abstract="true">
+		<graphics>
+			<Tail>Parts/None/None</Tail>
+		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
@@ -150,18 +172,18 @@
 				<stageKey>pressing</stageKey>
 				<values>
 					<description>A tail is growing behind [PAWN_nameDef].</description>
-					<!-- <graphics>
+					<graphics>
 						<Tail>Parts/Partials/Todo/Todo</Tail>
-					</graphics> -->
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s tail is getting longer and longer.</description>
-					<!-- <graphics>
+					<graphics>
 						<Tail>Parts/Partials/Todo/Todo</Tail>
-					</graphics> -->
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
