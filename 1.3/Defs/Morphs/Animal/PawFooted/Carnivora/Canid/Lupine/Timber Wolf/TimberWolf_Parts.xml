@@ -4,7 +4,8 @@
 		<defName>EtherWolfMuzzle</defName>
 		<label>timber wolf muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Wolf/Wolf_Muzzle</Muzzle>
+			<MuzzleMale>Parts/Wolf/Wolf_Muzzle</MuzzleMale>
+			<MuzzleFemale>Parts/Wolf/Wolf_Female_Muzzle</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

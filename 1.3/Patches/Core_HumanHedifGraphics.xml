@@ -185,6 +185,86 @@
 				</offsets>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Male Tails -->
+				<debug>false</debug>
+				<anchorID>MaleTail</anchorID>
+				<path>Parts/None/None</path>
+				<bodyPart>tail</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerInvert>false</layerInvert>
+				<drawnInBed>false</drawnInBed>
+				<drawForMale>true</drawForMale>
+				<drawForFemale>false</drawForFemale>
+				<!--Leave this here, it is hacky but necessary-->
+				<shaderType>CutoutSkin</shaderType>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Male>(0,-0.02)</Male>
+							<Thin>(0,-0.02)</Thin>
+							<Fat>(0,-0.06)</Fat>
+							<Hulk>(0,-0.06)</Hulk>
+						</bodyTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Male>(0,-0.35)</Male>
+							<Thin>(0,-0.35)</Thin>
+							<Fat>(0,-0.39)</Fat>
+							<Hulk>(0,-0.39)</Hulk>
+						</bodyTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Male>(0.2,-0.26)</Male>
+							<Thin>(0.22,-0.26)</Thin>
+							<Hulk>(0.4,-0.45)</Hulk>
+							<Fat>(0.46,-0.22)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
+				<!-- Female Tails -->
+				<debug>false</debug>
+				<anchorID>FemaleTail</anchorID>
+				<path>Parts/None/None</path>
+				<bodyPart>tail</bodyPart>
+				<inFrontOfBody>true</inFrontOfBody>
+				<layerInvert>false</layerInvert>
+				<drawnInBed>false</drawnInBed>
+				<drawForMale>false</drawForMale>
+				<drawForFemale>true</drawForFemale>
+				<!--Leave this here, it is hacky but necessary-->
+				<shaderType>CutoutSkin</shaderType>
+				<offsets>
+					<south>
+						<bodyTypes>
+							<Female>(0,-0.06)</Female>
+							<Thin>(0,-0.02)</Thin>
+							<Fat>(0,-0.06)</Fat>
+							<Hulk>(0,-0.06)</Hulk>
+						</bodyTypes>
+					</south>
+					<north>
+						<bodyTypes>
+							<Female>(0,-0.39)</Female>
+							<Thin>(0,-0.35)</Thin>
+							<Fat>(0,-0.39)</Fat>
+							<Hulk>(0,-0.39)</Hulk>
+						</bodyTypes>
+					</north>
+					<east>
+						<bodyTypes>
+							<Female>(0.31,-0.28)</Female>
+							<Thin>(0.22,-0.26)</Thin>
+							<Hulk>(0.4,-0.45)</Hulk>
+							<Fat>(0.46,-0.22)</Fat>
+						</bodyTypes>
+					</east>
+				</offsets>
+			</li>
+			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Behind-body tails -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
