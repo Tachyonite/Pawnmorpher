@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeJawPart" ParentName="ThickHideJawPart" Abstract="true">
-		<mutationMemory>EtherElephantidaeTrunk</mutationMemory>
+		<mutationMemory>EtherElephantTrunk</mutationMemory>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -137,7 +137,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeEarPart" ParentName="ThickHideEarPart" Abstract="true">
-		<mutationMemory>EtherElephantidaeEar</mutationMemory>
+		<mutationMemory>EtherElephantEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -159,7 +159,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeTailPart" ParentName="MegafaunaTailPart" Abstract="true">
-		<mutationMemory>EtherElephantidaeTail</mutationMemory>
+		<mutationMemory>EtherElephantTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

@@ -632,7 +632,7 @@
 		<label>stump foot</label>
 		<description>An stump-like elphantine foot.</description>
 		<mutationTale>GrewElephantFoot</mutationTale>
-		<mutationMemory>EtherElephantidaeFoot</mutationMemory>
+		<mutationMemory>EtherElephantFoot</mutationMemory>
 		<categories>
 			<li>Powerful</li>
 		</categories>

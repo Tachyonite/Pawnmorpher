@@ -12,9 +12,5 @@
 				<skinColorOverride>(130,126,119)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
-		<transformSettings>
-			<transformationMemory>ElephantTransformationMemory</transformationMemory>
-			<revertedMemory>ElephantRevertedMemory</revertedMemory>
-		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>

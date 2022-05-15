@@ -12,9 +12,5 @@
 				<skinColorOverride>(140,140,140)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
-		<transformSettings>
-			<transformationMemory>RhinocerosTransformationMemory</transformationMemory>
-			<revertedMemory>RhinocerosRevertedMemory</revertedMemory>
-		</transformSettings>
 	</Pawnmorph.MorphDef>
 </Defs>
