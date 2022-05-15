@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaJawPart" ParentName="ReptileJawPart" Abstract="true">
+		<mutationMemory>EtherLacertiliaSnout</mutationMemory>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
@@ -87,6 +88,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaTailPart" ParentName="ReptileTailPart" Abstract="true">
+		<mutationMemory>EtherLacertiliaTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>

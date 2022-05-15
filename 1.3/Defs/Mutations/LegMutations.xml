@@ -343,10 +343,11 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef Name="EtherSnakeTail" ParentName="OphidiaTailPart">
-		<defName>EtherSnakeTail</defName>
+	<Pawnmorph.Hediffs.MutationDef Name="EtherOphidiaTail" ParentName="OphidiaTailPart">
+		<defName>EtherOphidiaTail</defName>
+		<mutationMemory>EtherOphidiaTail</mutationMemory>
 		<label>snake tail</label>
-		<classInfluence>SnakeMorph</classInfluence>
+		<classInfluence>CobraMorph</classInfluence>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<graphics>
@@ -391,9 +392,9 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 <!-- 
-	<Pawnmorph.Hediffs.MutationDef ParentName="EtherSnakeTail">
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherOphidiaTail">
 		<defName>EtherPythonTail</defName>
-		<classInfluence>SnakeMorph</classInfluence>
+		<classInfluence>CobraMorph</classInfluence>
 		<label>snake tail</label>
 		<stagePatches>
 			<li function="modify">

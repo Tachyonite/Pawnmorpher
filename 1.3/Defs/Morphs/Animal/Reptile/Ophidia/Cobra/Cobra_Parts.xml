@@ -1,16 +1,17 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaJawPart">
-		<classInfluence>SnakeMorph</classInfluence>
-		<defName>EtherSnakeJaw</defName>
-		<label>snake snout</label>
+		<classInfluence>CobraMorph</classInfluence>
+		<defName>EtherCobraJaw</defName>
+		<label>cobra snout</label>
 		<graphics>
 			<Muzzle>Parts/Cobra/Cobra_Muzzle</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>SnakeMorph</classInfluence>
-		<defName>EtherSnakeHood</defName>
+		<classInfluence>CobraMorph</classInfluence>
+		<defName>EtherOphidiaHood</defName>
+		<mutationMemory>EtherOphidiaHood</mutationMemory>
 		<description>A large swooping hood engulfs [PAWN_nameDef]'s head, making them look rather intimidating.</description>
 		<label>cobra hood</label>
 		<graphics>

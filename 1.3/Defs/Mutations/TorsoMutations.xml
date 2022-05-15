@@ -157,6 +157,7 @@
 		<parts>
 			<li>Spine</li>
 		</parts>
+		<mutationMemory>EtherTestudinidaeShell</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>

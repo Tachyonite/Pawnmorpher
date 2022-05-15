@@ -4,13 +4,13 @@
 	<Pawnmorph.Social.PMInteractionWeightsDef>
 		<defName>PMInteractionWeights_Snake</defName>
 		<requiredMutationsAny>
-			<li>EtherSnakeJaw</li>
+			<li>EtherCobraJaw</li>
 		</requiredMutationsAny>
 		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to yap as a human with just a muzzle. A muzzled human will hiss half as often as chatting and a full morph will hiss twice as often as chatting -->
 		<mutationWeights>
 			<!-- Muzzles -->
 			<li>
-				<key>EtherSnakeJaw</key>
+				<key>EtherCobraJaw</key>
 				<value>0.25</value>
 			</li>
 
@@ -22,19 +22,19 @@
 
 			<!-- Hood -->
 			<li>
-				<key>EtherSnakeHood</key>
+				<key>EtherOphidiaHood</key>
 				<value>0.125</value>
 			</li>
 			
 			<!-- Tails -->
 			<li>
-				<key>EtherSnakeTail</key>
+				<key>EtherOphidiaTail</key>
 				<value>0.5</value>
 			</li>
 		</mutationWeights>
 		<morphWeights>
 			<li>
-				<key>SnakeMorph</key>
+				<key>CobraMorph</key>
 				<value>1</value>
 			</li>
 		</morphWeights>
