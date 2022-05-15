@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeJawPart" ParentName="ThickHideJawPart" Abstract="true">
+		<mutationMemory>EtherRhinocerotidaeJaw</mutationMemory>
 		<label>ceratorhine muzzle</label>
 		<stagePatches>
 			<li function="modify">
@@ -185,9 +186,11 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeEarPart" ParentName="ThickHideEarPart" Abstract="true">
+		<mutationMemory>EtherRhinocerotidaeEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeTailPart" ParentName="ThickHideTailPart" Abstract="true">
+		<mutationMemory>EtherRhinocerotidaeTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

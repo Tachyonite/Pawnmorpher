@@ -627,12 +627,12 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
-		<classInfluence>ThickHide</classInfluence>
+		<classInfluence>Elephantidae</classInfluence>
 		<defName>EtherThickHideFoot</defName>
 		<label>stump foot</label>
 		<description>An stump-like elphantine foot.</description>
 		<mutationTale>GrewElephantFoot</mutationTale>
-		<mutationMemory>EtherElephantFoot</mutationMemory>
+		<mutationMemory>EtherElephantidaeFoot</mutationMemory>
 		<categories>
 			<li>Powerful</li>
 		</categories>

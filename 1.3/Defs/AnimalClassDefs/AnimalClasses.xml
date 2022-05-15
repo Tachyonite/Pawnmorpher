@@ -78,8 +78,8 @@
 	</Pawnmorph.AnimalClassDef>
 
 	<Pawnmorph.AnimalClassDef>
-		<defName>Elephantidea</defName>
-		<label>elephantidea</label>
+		<defName>Elephantidae</defName>
+		<label>Elephantidae</label>
 		<parent>ThickHide</parent>
 	</Pawnmorph.AnimalClassDef>
 
