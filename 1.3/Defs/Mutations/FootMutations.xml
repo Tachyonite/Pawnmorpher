@@ -830,7 +830,7 @@
 		<description>A foot that looks almost like a hand</description>
 		<classInfluence>Simian</classInfluence>
 		<mutationTale></mutationTale>
-		<mutationMemory></mutationMemory>
+		<mutationMemory>EtherSimianFoot</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>

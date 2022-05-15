@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="SimianJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<mutationMemory>EtherSimianJaw</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>pressing</stageKey>
@@ -41,9 +42,11 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="SimianEarPart" ParentName="AnimalEarPart" Abstract="true">
+		<mutationMemory>EtherSimianEar</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="SimianTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<mutationMemory>EtherSimianTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
