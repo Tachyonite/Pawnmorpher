@@ -13,6 +13,7 @@
 		<raceSettings>
 			<graphicsSettings>
 				<skinColorOverride>(100,90,85)</skinColorOverride>
+				<hairColorOverride>(0,0,0,0)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
