@@ -2,7 +2,7 @@
 	
 	<ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherOphidiaJaw</defName>
+        <defName>EtherSnakeJaw</defName>
         <stages>
             <li>
                 <label>Snake face</label>
@@ -27,7 +27,7 @@
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherOphidiaHood</defName>
+        <defName>EtherSnakeHood</defName>
         <stages>
             <li>
                 <label>Snake hood</label>
@@ -52,7 +52,7 @@
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherOphidiaTail</defName>
+        <defName>EtherSnakeTail</defName>
         <stages>
             <li>
                 <label>Snake tail</label>
