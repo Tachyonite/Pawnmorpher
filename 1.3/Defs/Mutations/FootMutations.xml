@@ -627,7 +627,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
-		<classInfluence>ThickHide</classInfluence>
+		<classInfluence>Elephantidae</classInfluence>
 		<defName>EtherThickHideFoot</defName>
 		<label>stump foot</label>
 		<description>An stump-like elphantine foot.</description>
@@ -830,7 +830,7 @@
 		<description>A foot that looks almost like a hand</description>
 		<classInfluence>Simian</classInfluence>
 		<mutationTale></mutationTale>
-		<mutationMemory></mutationMemory>
+		<mutationMemory>EtherSimianFoot</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>

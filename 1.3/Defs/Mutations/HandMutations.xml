@@ -1063,8 +1063,8 @@
 		<defName>EtherMonkeyHand</defName>
 		<label>dextrous hand</label>
 		<description>A monkey's paw</description>
-		<!-- <mutationTale>TODO</mutationTale>
-		<mutationMemory>TODO</mutationMemory> -->
+		<!-- <mutationTale>TODO</mutationTale> -->
+		<mutationMemory>EtherSimianHand</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>

@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ComposableHediffs.xsd">
 	<HediffDef ParentName="NewPartialAspectedMorphParent">
-		<defName>PawnmorphSnakeTFPartial</defName>
+		<defName>PawnmorphCobraTFPartial</defName>
 		<label>cobramorph partial</label>
 		<description>This person has mechanites in their blood that are providing them with cobra-esque mutations.</description>
 		<stages>
@@ -22,7 +22,7 @@
 					</li>
 				</capMods>
 				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Morph">
-					<morphDef>SnakeMorph</morphDef>
+					<morphDef>CobraMorph</morphDef>
 				</mutationTypes>
 				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
 					<meanMutationsPerDay>7.7</meanMutationsPerDay>

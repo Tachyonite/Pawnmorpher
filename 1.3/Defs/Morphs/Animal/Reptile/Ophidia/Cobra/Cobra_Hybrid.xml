@@ -9,7 +9,7 @@
         </tags>
     </BodyPartDef>
     <BodyDef>
-        <defName>SnakeHybridBody</defName>
+        <defName>CobraHybridBody</defName>
         <label>naga</label>
         <corePart>
             <def>Torso</def>
@@ -432,7 +432,7 @@
     </BodyDef>
 
     <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="HumanRace">
-        <defName>SnakeMorph</defName>
+        <defName>CobraMorph</defName>
         <label>naga</label>
         <description>A snakelike human, with a large and powerful tail that has replaced its legs. This allows for viper-quick movement, and while you might expect them to lack arms, most cobramorphs do retain their arms. In many respects, they are a mutagenic-born mythological naga.</description>
         <statBases>
@@ -509,7 +509,7 @@
             <lifeExpectancy>80</lifeExpectancy>
             <leatherDef>Leather_Lizard</leatherDef>
             <nameCategory>HumanStandard</nameCategory>
-            <body>SnakeHybridBody</body>
+            <body>CobraHybridBody</body>
             <baseBodySize>1</baseBodySize>
             <baseHealthScale>1</baseHealthScale>
             <foodType>OmnivoreHuman</foodType>
@@ -564,7 +564,7 @@
                             <layerInvert>false</layerInvert>
                             <drawnInBed>false</drawnInBed>
                             <hediffGraphics>
-                                <EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
+                                <EtherOphidiaTail>Parts/Cobra/Cobra_Tail</EtherOphidiaTail>
                             </hediffGraphics>
 							<offsets>
 								<south/>

@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="OphidiaJawPart" ParentName="ReptileJawPart" Abstract="true">
+		<mutationMemory>EtherOphidiaJaw</mutationMemory>
 		<comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>

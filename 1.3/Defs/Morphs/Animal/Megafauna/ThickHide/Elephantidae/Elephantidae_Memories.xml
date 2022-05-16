@@ -1,4 +1,5 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElephantTransformationMemory</defName>
 		<stages>
@@ -24,7 +25,7 @@
 			</li>
 		</stages>
 	</ThoughtDef>
-	
+
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<defName>ElephantRevertedMemory</defName>
 		<stages>
@@ -53,22 +54,22 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherTrunk</defName>
+		<defName>EtherElephantTrunk</defName>
 		<stages>
 			<li>
-				<label>Trunk</label>
+				<label>Elephant trunk</label>
 				<description>What the...a trunk?</description>
 				<visible>true</visible>
 				<baseMoodEffect>-1</baseMoodEffect>
 			</li>
 			<li>
-				<label>Trunk</label>
+				<label>Elephant Trunk</label>
 				<description>I gotta give this a toot.</description>
 				<visible>true</visible>
 				<baseMoodEffect>2</baseMoodEffect>
 			</li>
 			<li>
-				<label>Trunk</label>
+				<label>Elephant Trunk</label>
 				<description>My nose...it's horrible!</description>
 				<visible>true</visible>
 				<baseMoodEffect>-3</baseMoodEffect>
@@ -151,28 +152,4 @@
 		</stages>
 	</ThoughtDef>
 
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherElephantLeg</defName>
-		<stages>
-			<li>
-				<label>Huge legs</label>
-				<description>I feel like I have trees for legs.</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Huge legs</label>
-				<description>Try to push me over now!</description>
-				<visible>true</visible>
-				<baseMoodEffect>2</baseMoodEffect>
-			</li>
-			<li>
-				<label>Huge legs</label>
-				<description>Now I have to wear XXL pants!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-3</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
 </Defs>
