@@ -430,6 +430,37 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions()));
         }
 
+
+
+        private static void MakePawnMorph([CanBeNull] MorphDef morph)
+        {
+            Pawn pawn = Find.CurrentMap.thingGrid
+                            .ThingsAt(UI.MouseCell())
+                            .OfType<Pawn>()
+                            .FirstOrDefault();
+            if (pawn == null) return;
+
+
+            IEnumerable<MutationDef> mutations = morph?.AllAssociatedMutations;
+            if (mutations == null)
+                return;
+
+
+            var mutList = mutations.ToList();
+            if (mutList.Count == 0) 
+                return;
+
+            var i = 0;
+            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
+            List<MutationDef> triedGive = new List<MutationDef>();
+
+            foreach (MutationDef mutation in mutations)
+                MutationUtilities.AddMutation(pawn, mutation);
+
+            AdaptAllMutations(pawn);
+            pawn.CheckRace();
+        }
+
         private static void GivePawnRandomMutations([CanBeNull] MorphDef morph)
         {
             Pawn pawn = Find.CurrentMap.thingGrid
@@ -484,6 +515,24 @@ namespace Pawnmorph.DebugUtils
             {
                 var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
                                                  () => GivePawnRandomMutations(morphDef));
+                options.Add(option);
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
+
+        [DebugAction("Pawnmorpher", "Make morph", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void MakeMorph()
+        {
+            var options = new List<DebugMenuOption>
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(null))};
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
+                                                 () => MakePawnMorph(morphDef));
                 options.Add(option);
             }
 
