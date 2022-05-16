@@ -458,7 +458,7 @@ namespace Pawnmorph.DebugUtils
                 MutationUtilities.AddMutation(pawn, mutation);
 
             AdaptAllMutations(pawn);
-            pawn.CheckRace();
+            RaceShiftUtilities.ChangePawnToMorph(pawn, morph);
         }
 
         private static void GivePawnRandomMutations([CanBeNull] MorphDef morph)
