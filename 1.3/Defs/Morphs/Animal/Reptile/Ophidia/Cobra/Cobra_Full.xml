@@ -1,6 +1,6 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ComposableHediffs.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
 	<HediffDef ParentName="NewAspectedMorphParent">
-		<defName>PawnmorphCobraTF</defName>
+		<defName>PawnmorphSnakeTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<label>cobramorph</label>
 		<description>This person has mechanites in their blood that are slowly mutating them into a cobramorph. Keep an eye on them, or they might just show you how snakelike they can be.</description>
@@ -16,7 +16,7 @@
 					</li>
 				</capMods>
 				<tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_Morph">
-					<morphDef>CobraMorph</morphDef>
+					<morphDef>SnakeMorph</morphDef>
 				</tfTypes>
 				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting" />
 				<tfSettings>
@@ -67,7 +67,7 @@
 					</li>
 				</capMods>
 				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Morph">
-					<morphDef>CobraMorph</morphDef>
+					<morphDef>SnakeMorph</morphDef>
 				</mutationTypes>
 				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
 					<meanMutationsPerDay>5</meanMutationsPerDay>
