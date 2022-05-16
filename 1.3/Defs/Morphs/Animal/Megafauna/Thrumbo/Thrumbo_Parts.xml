@@ -6,7 +6,9 @@
 		<label>thrumbo snout</label>
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<graphics>
-			<Muzzle>Parts/Thrumbo/Thrumbo_Muzzle</Muzzle>
+			<MuzzleMale>Parts/Thrumbo/Thrumbo_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Thrumbo/Thrumbo_Muzzle_Female</MuzzleFemale>
+			<BirdJawOrnament>Parts/Thrumbo/Thrumbo_Headfluff</BirdJawOrnament>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -126,6 +128,9 @@
 				<values>
                     <label>nub</label>
                     <description>[PAWN_nameDef] has grown a small hard nub on [PAWN_possessive] forehead. Maybe good for a headbutt but not much else.</description>
+					<graphics>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_A</Horns>
+					</graphics>
 					<verbOverrides>
                         <li>
                             <label>point</label>
@@ -142,9 +147,9 @@
 				<stageKey>short</stageKey>
 				<values>
                     <description>[PAWN_nameDef] has grown what looks like a small version of a thrumbo's horn. Not quite as sharp or powerful as a fully grown thrumbo horn, but can still inflict some damage.</description>
-					<!-- <graphics>
-						<Horns>TODO</Horns>
-					</graphics> -->
+					<graphics>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_B</Horns>
+					</graphics>
                     <statOffsets>
                         <MeleeArmorPenetration>0.1</MeleeArmorPenetration>
                     </statOffsets>
@@ -166,7 +171,7 @@
                     <label></label>
                     <description>A large and majestic horn near identical to what you find on a thrumbo adorns [PAWN_nameDef]'s head. It is a very powerful and sharp horn.</description>
 					<graphics>
-						<Horns>Parts/Thrumbo/Thrumbo_Horn</Horns>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_C</Horns>
 					</graphics>
                     <statOffsets>
                         <MeleeArmorPenetration>0.3</MeleeArmorPenetration>
@@ -214,10 +219,10 @@
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbo ear</label>
 		<graphics>
-			<LeftEar>Parts/Thrumbo/Thrumbo_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Thrumbo/Thrumbo_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Thrumbo/Thrumbo_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Thrumbo/Thrumbo_Ear_Right_Behind</RightEarBehindHead>
+			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
