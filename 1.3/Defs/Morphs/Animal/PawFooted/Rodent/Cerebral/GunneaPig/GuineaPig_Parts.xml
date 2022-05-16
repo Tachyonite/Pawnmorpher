@@ -51,24 +51,4 @@
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>GuineaPigMorph</classInfluence>
-		<defName>EtherGuineaPigHand</defName>
-		<label>guinea pig hand</label>
-		<mutationMemory>EtherGuineaPigHand</mutationMemory>
-		<mutationTale>HandsBecomeGuineaPigPaws</mutationTale>
-		<description>[PAWN_nameDef]'s hand has become small and , with small fingers claw.</description>
-	</Pawnmorph.Hediffs.MutationDef>
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
-		<classInfluence>GuineaPigMorph</classInfluence>
-		<defName>EtherGuineaPigFoot</defName>
-		<label>guinea pig foot</label>
-		<mutationMemory>EtherGuineaPigFoot</mutationMemory>
-		<mutationTale>FeetBecomeGuineaPigPaws</mutationTale>
-		<description>[PAWN_nameDef]'s foot has delicate finger-like toes, each tipped with a small claw.</description>
-		<!-- Stage patches go here
-		-->
-	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
