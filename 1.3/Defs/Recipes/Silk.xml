@@ -1,7 +1,7 @@
 <Defs>
     <RecipeDef>
         <defName>PMMake_Hazsilk</defName>
-        <label>make hazskilk</label>
+        <label>make hazsilk</label>
         <description>Turn cloth into hazsilk using antigen.</description>
         <jobString>creating hazsilk</jobString>
         <effectWorking>Cook</effectWorking>
@@ -45,7 +45,7 @@
 	
 	<RecipeDef>
         <defName>PMMake_HazsilkBulk</defName>
-        <label>make hazskilk x4</label>
+        <label>make hazsilk x4</label>
         <description>Turn cloth into hazsilk using antigen.</description>
         <jobString>creating hazsilk x4</jobString>
         <effectWorking>Cook</effectWorking>

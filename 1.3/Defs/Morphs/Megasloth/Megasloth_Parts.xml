@@ -247,27 +247,46 @@
 				<thought>ShavedMyself</thought>
 				<etherBondThought>ShavedMyselfBond</etherBondThought>
 				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolMegasloth</resource>
 				<stages>
 					<li>
+						<minProductionBoost>0</minProductionBoost>
 						<daysToProduce>1</daysToProduce>
 						<amount>5</amount>
-						<resource>WoolMegasloth</resource>
 					</li>
 					<li>
+						<minProductionBoost>0.3</minProductionBoost>
 						<daysToProduce>0.5</daysToProduce>
 						<amount>4</amount>
-						<resource>WoolMegasloth</resource>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.6</minProductionBoost>
 						<daysToProduce>0.25</daysToProduce>
 						<amount>3</amount>
-						<resource>WoolMegasloth</resource>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
 					</li>
 					<li>
+						<minProductionBoost>0.9</minProductionBoost>
 						<daysToProduce>0.1</daysToProduce>
 						<amount>2</amount>
-						<resource>WoolMegasloth</resource>
 						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
 					</li>
 				</stages>
 			</li>
@@ -275,48 +294,10 @@
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<minSeverity>0</minSeverity>
-				<hungerRateFactor>1.0</hungerRateFactor>
 				<statOffsets>
 					<ComfyTemperatureMin>-10</ComfyTemperatureMin>
 					<ComfyTemperatureMax>10</ComfyTemperatureMax>
 				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>productive</label>
-				<minSeverity>0.3</minSeverity>
-				<hungerRateFactor>1.3</hungerRateFactor>
-				<statOffsets>
-					<ComfyTemperatureMin>-10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>10</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>very productive</label>
-				<minSeverity>0.6</minSeverity>
-				<hungerRateFactor>1.6</hungerRateFactor>
-				<statOffsets>
-					<ComfyTemperatureMin>-10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>10</ComfyTemperatureMax>
-				</statOffsets>
-			</li>
-			<li Class="Pawnmorph.Hediffs.MutationStage">
-				<label>productive bliss</label>
-				<minSeverity>0.9</minSeverity>
-				<hungerRateFactor>2.0</hungerRateFactor>
-				<statOffsets>
-					<ComfyTemperatureMin>-10</ComfyTemperatureMin>
-					<ComfyTemperatureMax>10</ComfyTemperatureMax>
-				</statOffsets>
-				<hediffGivers>
-					<li Class="HediffGiver_RandomDrugEffect">
-						<hediff>CatatonicBreakdown</hediff>
-						<minSeverity>0.50</minSeverity>
-						<baseMtbDays>2</baseMtbDays>
-						<partsToAffect>
-							<li>Brain</li>
-						</partsToAffect>
-					</li>
-				</hediffGivers>
 			</li>
 		</stages>
 	</Pawnmorph.Hediffs.MutationDef>

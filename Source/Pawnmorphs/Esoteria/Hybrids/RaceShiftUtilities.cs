@@ -313,10 +313,7 @@ namespace Pawnmorph.Hybrids
             }
 
             if (graphicsComp == null)
-            {
-                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
-
-            }
+                return;
 
             story.bodyType = graphicsComp.BodyType;
             alienComp.crownType = graphicsComp.CrownType;
@@ -350,20 +347,12 @@ namespace Pawnmorph.Hybrids
             //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
             //
             var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
             var story = pawn.story; 
             if (alienComp == null)
             {
                 Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
                 return; 
             }
-
-            if(graphicsComp == null)
-            {
-                Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(InitialGraphicsComp)}!");
-
-            }
-
            
 
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;

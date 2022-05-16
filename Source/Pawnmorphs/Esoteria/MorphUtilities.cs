@@ -42,7 +42,6 @@ namespace Pawnmorph
         static MorphUtilities()
         {
             //check for mod incompatibilities here 
-
             if (ThingDefOf.Human.race.body != BodyDefOf.Human)
             {
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");

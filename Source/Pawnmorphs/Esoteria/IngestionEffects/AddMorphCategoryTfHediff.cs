@@ -50,9 +50,10 @@ namespace Pawnmorph.IngestionEffects
                     }
                     else
                     {
+                        // If morph is not restricted, serum permits restricted or category itself is restricted.
                         _allHediffs =
                             morphCategory.AllMorphsInCategories
-                                         .Where(m => !m.Restricted || allowRestricted)
+                                         .Where(m => !m.Restricted || allowRestricted || morphCategory.restricted)
                                          .Select(m => fullTf
                                                                                 ? m.fullTransformation
                                                                                 : m.partialTransformation)

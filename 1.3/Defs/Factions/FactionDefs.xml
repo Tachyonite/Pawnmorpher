@@ -8,6 +8,7 @@
         <pawnSingular>morph</pawnSingular>
         <pawnsPlural>morphs</pawnsPlural>
         <techLevel>Industrial</techLevel>
+        <allowedCultures><li>Astropolitan</li></allowedCultures>
         <backstoryFilters>
             <li>
                 <categories>

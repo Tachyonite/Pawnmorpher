@@ -40,7 +40,52 @@ namespace Pawnmorph.HPatches
 
                 return true; 
             }
+
+            [HarmonyPostfix]
+            static void SubstituteJob([NotNull] Pawn pawn, IntVec3 c, bool forced, ref Job __result)
+            {
+
+                if(__result?.def == JobDefOf.Sow)
+                {
+                    var plant = __result.plantDefToSow;
+
+                    if (plant?.IsMutantPlant() == true)
+                    {
+                        
+                        __result = JobMaker.MakeJob(PMJobDefOf.PM_MutagenicSow, __result.targetA);
+                        __result.playerForced = forced;
+                        __result.plantDefToSow = plant;
+
+                    }
+                }
+            }
         }
+
+
+        [HarmonyPatch(typeof(WorkGiver_PlantSeed))]
+        static class WorkGiverPlantSeedPatches
+        {
+            [HarmonyPatch(nameof(WorkGiver_GrowerSow.JobOnThing))]
+            [HarmonyPostfix]
+            static void SubstituteJob([NotNull] Pawn pawn, Thing t, bool forced, ref Job __result)
+            {
+
+                if (__result?.def == JobDefOf.PlantSeed)
+                {
+                    CompPlantable compPlantable = t.TryGetComp<CompPlantable>();
+                    var plant = compPlantable?.Props?.plantDefToSpawn;
+                    if (plant == null) return; 
+                    if (plant?.IsMutantPlant() == true)
+                    {
+                        __result = JobMaker.MakeJob(PMJobDefOf.PM_MutagenicSow, __result.targetA, __result.targetB);
+                        __result.playerForced = forced;
+                        __result.plantDefToSow = compPlantable.Props.plantDefToSpawn;
+                        __result.count = 1;
+                    }
+                }
+            }
+        }
+
 
         [HarmonyPatch(typeof(WorkGiver_GrowerSow)), HarmonyPatch("ExtraRequirements")]
         static class ExtraRequirementsPatch
@@ -62,8 +107,15 @@ namespace Pawnmorph.HPatches
                 var plant = WorkGiver_Grower.CalculateWantedPlantDef(c, pawn.Map);
                 if (plant == null) return;
                 __result = plant.IsValidFor(pawn);
+
+                if (__result && plant.IsMutantPlant())
+                {
+                    //check ideo 
+                    __result = PMHistoryEventDefOf.SowMutagenicPlants.DoerWillingToDo(pawn); 
+                }
             }
         }
+
 
         [HarmonyPatch]
         public static class PlantHarvestTPatch
@@ -121,6 +173,8 @@ namespace Pawnmorph.HPatches
             }
             public static int YieldNowPatch(Plant p, Pawn actor)
             {
+                
+
                 if (p is SpecialHarvestFailPlant sPlant)
                 {
                     return sPlant.GetYieldNow(actor); 

@@ -363,9 +363,17 @@ namespace Pawnmorph.DebugUtils
             if (pawn == null) return;
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             (TransformedPawn pawn, TransformedStatus status)? tfPawn = gComp?.GetTransformedPawnContaining(pawn);
+
             TransformedPawn transformedPawn = tfPawn?.pawn;
+
             if (transformedPawn == null || tfPawn?.status != TransformedStatus.Transformed) return;
-            MutagenDef mut = transformedPawn.mutagenDef ?? MutagenDefOf.defaultMutagen;
+
+            MutagenDef mut = null;
+            if (transformedPawn is MergedPawns)
+                mut = MutagenDefOf.MergeMutagen;
+            else
+                mut = MutagenDefOf.defaultMutagen;
+
             mut.MutagenCached.TryRevert(transformedPawn);
         }
 
