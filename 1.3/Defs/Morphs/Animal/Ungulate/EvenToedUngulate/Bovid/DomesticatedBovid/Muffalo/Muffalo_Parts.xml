@@ -7,6 +7,32 @@
 			<Muzzle>Parts/Muffalo/Muffalo_Muzzle</Muzzle>
 			<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_B</BirdJawOrnament>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament>Parts/None/None</BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament>Parts/None/None</BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_A</BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidEarPart">
