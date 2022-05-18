@@ -45,9 +45,10 @@
 		<description>a very thick arm.</description>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
-		<classInfluences>
-			<li>ThickHide</li>
-		</classInfluences>
+		<classInfluence>Powerful</classInfluence>
+		<categories>
+			<li>Powerful</li>
+		</categories>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
