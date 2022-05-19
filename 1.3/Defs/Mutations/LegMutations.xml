@@ -198,7 +198,10 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="EtherAnimalLeg">
 		<defName>EtherCervineLeg</defName>
 		<label>cervine</label>
-		<classInfluence>Cervid</classInfluence>
+		<classInfluences>
+			<li>SmallCervid</li>
+			<li>Boomalopemorph</li>
+		</classInfluences>
 		<description>An unguligrade leg.</description>
 		<mutationTale>LegBecameUnguligrade</mutationTale>
 		<stagePatches>
