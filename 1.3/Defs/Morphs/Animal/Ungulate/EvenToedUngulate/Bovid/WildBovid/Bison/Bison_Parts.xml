@@ -46,7 +46,8 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<!-- Commented out due to Tough Torso mutation -->
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<defName>EtherBisonWooly</defName>
 		<classInfluence>BisonMorph</classInfluence>
 		<label>thick fur</label>
@@ -106,7 +107,7 @@
 		<parts>
 			<li>Torso</li>
 		</parts>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidHornPart">

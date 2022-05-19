@@ -117,8 +117,8 @@
 		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
-	
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+	<!-- Commented out due to Powerful Torso mutation -->
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegawoolly</defName>
 		<label>fuzzy</label>
@@ -185,5 +185,5 @@
 				</statOffsets>
 			</li>
 		</stages>
-	</Pawnmorph.Hediffs.MutationDef>
+	</Pawnmorph.Hediffs.MutationDef> -->
 </Defs>
