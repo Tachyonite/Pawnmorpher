@@ -45,7 +45,9 @@
 		<description>a very thick arm.</description>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
-		<classInfluence>Powerful</classInfluence>
+		<classInfluences>
+			<li>Powerful</li>
+		</classInfluences>
 		<categories>
 			<li>Powerful</li>
 		</categories>
