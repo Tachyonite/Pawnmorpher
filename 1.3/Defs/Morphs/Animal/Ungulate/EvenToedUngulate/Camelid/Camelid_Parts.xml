@@ -24,5 +24,15 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>5</ComfyTemperatureMax>
+					</statOffsets>				
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
