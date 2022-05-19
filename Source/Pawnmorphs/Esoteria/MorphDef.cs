@@ -271,6 +271,7 @@ namespace Pawnmorph
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
             var tmpSiteLst = new List<(BodyPartDef bodyPart, MutationLayer layer)>();
+
             while (curNode != null)
             {
                 restrictionSet.AddRange(curNode.MutationExclusionList); 
@@ -278,22 +279,30 @@ namespace Pawnmorph
                 tmpList.Clear();
                 foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
                 {
-                    if(restrictionSet.Contains(mutation)) continue;
-                    if (curNode != this && mutation.IsRestricted)
+                    if (restrictionSet.Contains(mutation))
+                        continue;
+
+                    if (mutation.ClassInfluences.Contains(curNode) == false)
+                        continue;
+
+                    if (curNode != this && allowAllRestrictedParts == false && mutation.IsRestricted)
                     {
+                        if (categories == null)
+                            continue;
+
                         List<MutationCategoryDef> rCategories = mutation
-                                                               .categories?.Where(c => c.restrictionLevel
+                                                               .categories.Where(c => c.restrictionLevel
                                                                                     >= RestrictionLevel.CategoryOnly)
                                                                .ToList();
 
-                        bool allowed = rCategories?.All(cat => categories?.Any(c => c.associatedMutationCategory == cat) == true)
+                        bool allowed = rCategories.All(cat => categories.Any(c => c.associatedMutationCategory == cat) == true)
                                     == true; //make sure all restricted mutation categories are from one of the associated morph categories this morph is a part of 
 
-                        if (!allowed || !allowAllRestrictedParts)
+                        if (!allowed)
                             continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
                     }
 
-                    if (mutation.ClassInfluences.Contains(curNode)) tmpList.Add(mutation);
+                    tmpList.Add(mutation);
                 }
 
                 foreach (MutationDef mutationDef in tmpList)
@@ -321,7 +330,6 @@ namespace Pawnmorph
 
                 curNode = curNode.ParentClass; //move up one in the hierarchy 
             }
-
         }
 
         /// <summary>

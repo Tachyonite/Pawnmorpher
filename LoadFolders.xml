@@ -2,7 +2,6 @@
     <v1.1>
         <li>/</li>
         <li>1.1</li>
-        <li IfModActive="PeteTimesSix.CompactHediffs">1.1/ModIntegrations/CompactHediffs/</li>
         <li IfModActive="VanillaExpanded.VCookE">1.1/Mods/VCE</li>
         <li IfModActive="UnlimitedHugs.RemoteTech">1.1/Mods/RemoteTech</li>
         <li IfModActive="crustypeanut.rc2.core">1.1/Mods/RimCuisine2</li>
