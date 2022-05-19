@@ -912,6 +912,12 @@
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>0.05</PM_BodySize>
 					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -923,6 +929,12 @@
 						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.15</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 			<li function="modify">
@@ -934,6 +946,12 @@
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.1</offset>
+						</li>
+					</capMods>
 				</values>
 			</li>
 		</stagePatches>

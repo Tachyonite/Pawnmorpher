@@ -40,7 +40,7 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<description>[PAWN_nameDef] is a veritable wall of raw power and strength, owing to the powerful mutagen coursing through [PAWN_possessive] veins.</description>
-					<globalHealthMultiplier>4</globalHealthMultiplier>
+					<globalHealthMultiplier>3.5</globalHealthMultiplier>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
