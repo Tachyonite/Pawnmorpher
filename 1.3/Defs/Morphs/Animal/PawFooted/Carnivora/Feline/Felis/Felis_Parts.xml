@@ -47,7 +47,7 @@
 					</capMods>
 					<statOffsets>
 						<HuntingStealth>+0.1</HuntingStealth>
-						<Beauty>+0.01</Beauty>
+						<PawnBeauty>+0.01</PawnBeauty>
 					</statOffsets>
 				</values>
 			</li>
@@ -63,7 +63,7 @@
 					</capMods>
 					<statOffsets>
 						<HuntingStealth>+0.2</HuntingStealth>
-						<Beauty>+0.01</Beauty>
+						<PawnBeauty>+0.01</PawnBeauty>
 					</statOffsets>
 				</values>
 			</li>

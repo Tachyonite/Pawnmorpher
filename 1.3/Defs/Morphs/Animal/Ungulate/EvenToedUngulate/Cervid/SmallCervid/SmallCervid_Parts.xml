@@ -5,7 +5,7 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<statOffsets>
-						<Beauty>1</Beauty>
+						<PawnBeauty>1</PawnBeauty>
 					</statOffsets>
 				</values>
 			</li>
@@ -13,7 +13,7 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<statOffsets>
-						<Beauty>1</Beauty>
+						<PawnBeauty>1</PawnBeauty>
 					</statOffsets>
 				</values>
 			</li>
@@ -21,7 +21,7 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<statOffsets>
-						<Beauty>1.2</Beauty>
+						<PawnBeauty>1.2</PawnBeauty>
 					</statOffsets>
 				</values>
 			</li>
@@ -65,7 +65,7 @@
 				<values>
 					<label>short antlers</label>
 					<statOffsets>
-						<Beauty>+0.5</Beauty>
+						<PawnBeauty>+0.5</PawnBeauty>
 					</statOffsets>
 					<verbOverrides>
 						<li>
@@ -80,7 +80,7 @@
 				<values>
 					<label></label>
 					<statOffsets>
-						<Beauty>+1.0</Beauty>
+						<PawnBeauty>+1.0</PawnBeauty>
 					</statOffsets>
 					<verbOverrides>
 						<li>
