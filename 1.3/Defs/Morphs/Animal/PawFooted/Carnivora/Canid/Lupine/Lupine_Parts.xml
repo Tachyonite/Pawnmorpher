@@ -8,6 +8,7 @@
 					<statOffsets>
 						<HungerRateMultiplier>0.05</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
+						<HuntingStealth>0.1</HuntingStealth>
 					</statOffsets>
 				</values>
 			</li>
@@ -23,7 +24,7 @@
 					</capMods>
 					<statOffsets>
 						<HungerRateMultiplier>0.2</HungerRateMultiplier>
-						<MentalBreakThreshold>-0.115</MentalBreakThreshold>
+						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
 						<HuntingStealth>0.15</HuntingStealth>
 					</statOffsets>
 				</values>
@@ -40,7 +41,7 @@
 					</capMods>
 					<statOffsets>
 						<HungerRateMultiplier>0.2</HungerRateMultiplier>
-						<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+						<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 						<HuntingStealth>0.2</HuntingStealth>
 					</statOffsets>
 				</values>

@@ -5,6 +5,10 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
+					<statOffsets>
+						<SocialImpact>0.025</SocialImpact>
+						<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+					</statOffsets>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
 				</values>
 			</li>
