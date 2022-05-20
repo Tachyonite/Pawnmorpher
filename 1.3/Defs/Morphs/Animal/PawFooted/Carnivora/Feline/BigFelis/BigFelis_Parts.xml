@@ -42,7 +42,7 @@
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
-							<offset>+0.025</offset>
+							<offset>+0.05</offset>
 						</li>
 					</capMods>
 					<statOffsets>
@@ -56,7 +56,7 @@
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
-							<offset>+0.05</offset>
+							<offset>+0.1</offset>
 						</li>
 					</capMods>
 					<statOffsets>

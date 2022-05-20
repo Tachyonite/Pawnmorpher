@@ -404,7 +404,7 @@
 				<values>
 					<description>[PAWN_nameDef]'s hands have reshaped to become like paws, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
 					<statOffsets>
-						<MeleeWeapon_CooldownMultiplier>0.75</MeleeWeapon_CooldownMultiplier>
+						<MeleeWeapon_CooldownMultiplier>-0.25</MeleeWeapon_CooldownMultiplier>
 					</statOffsets>
 					<verbOverrides>
 						<li>
