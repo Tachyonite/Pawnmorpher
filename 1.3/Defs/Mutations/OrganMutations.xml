@@ -193,6 +193,7 @@
 					<statOffsets>
 						<DangerousFoodSensitivity>-1</DangerousFoodSensitivity>
 						<RottenFoodSensitivity>-1</RottenFoodSensitivity>
+						<ImmunityGainSpeed>0.2</ImmunityGainSpeed>
 					</statOffsets>
 				</values>
 			</li>

@@ -200,7 +200,7 @@
 		<label>cervine</label>
 		<classInfluences>
 			<li>SmallCervid</li>
-			<li>Boomalopemorph</li>
+			<li>BoomalopeMorph</li>
 		</classInfluences>
 		<description>An unguligrade leg.</description>
 		<mutationTale>LegBecameUnguligrade</mutationTale>

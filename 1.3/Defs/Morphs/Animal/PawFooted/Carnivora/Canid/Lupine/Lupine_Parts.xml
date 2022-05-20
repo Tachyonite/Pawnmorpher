@@ -8,6 +8,7 @@
 					<statOffsets>
 						<HungerRateMultiplier>0.05</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
+						<HuntingStealth>0.1</HuntingStealth>
 					</statOffsets>
 				</values>
 			</li>
@@ -15,10 +16,16 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
 					<statOffsets>
 						<HungerRateMultiplier>0.2</HungerRateMultiplier>
-						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
-						<HuntingStealth>0.05</HuntingStealth>
+						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
+						<HuntingStealth>0.15</HuntingStealth>
 					</statOffsets>
 				</values>
 			</li>
@@ -26,10 +33,16 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
 					<statOffsets>
 						<HungerRateMultiplier>0.2</HungerRateMultiplier>
-						<MentalBreakThreshold>-0.06</MentalBreakThreshold>
-						<HuntingStealth>0.1</HuntingStealth>
+						<MentalBreakThreshold>-0.1</MentalBreakThreshold>
+						<HuntingStealth>0.2</HuntingStealth>
 					</statOffsets>
 				</values>
 			</li>
