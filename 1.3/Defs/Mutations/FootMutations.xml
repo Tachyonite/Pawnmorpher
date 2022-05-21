@@ -527,7 +527,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>Thick scales plate [nameDef]'s clumsy foot, and large claws get in the way of movement.</description>
+					<description>Thick scales plate [PAWN_nameDef]'s clumsy foot, and large claws get in the way of movement.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -543,7 +543,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>Thick scales plate [nameDef]'s foot, and large claws get in the way of movement, but not as much as they used to.</description>
+					<description>Thick scales plate [PAWN_nameDef]'s foot, and large claws get in the way of movement, but not as much as they used to.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
