@@ -59,7 +59,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. The strange shape makes speaking very difficult.</description>
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
@@ -71,13 +71,13 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -103,7 +103,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s ear has grown into a camel's ear.</description>
+					<description>[PAWN_nameDef]'s ear has grown into a dromedary's ear.</description>
 				</values>
 			</li>
 		</stagePatches>
@@ -120,7 +120,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has a long thin camel tail.</description>
+					<description>[PAWN_nameDef] has a long thin dromedary tail.</description>
 				</values>
 			</li>
 		</stagePatches>
