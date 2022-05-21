@@ -32,7 +32,6 @@ namespace Pawnmorph.HPatches
                 float? stat = Utilities.StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 200);
                 if (stat.HasValue)
                 {
-                    Log.Message("Lethal damage: " + (__result * stat.Value).ToString());
                     return __result * stat.Value;
                 }
             }
