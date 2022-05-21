@@ -103,6 +103,7 @@
             <xs:element name="painOffset" type="xs:float" minOccurs="0" />
             <xs:element name="healthOffset" type="xs:float" minOccurs="0" />
 			<xs:element name="globalHealthMultiplier" type="xs:float" minOccurs="0" />
+			<xs:element name="hungerRateFactorOffset" type="xs:float" minOccurs="0" />
             <xs:element name="graphics" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>

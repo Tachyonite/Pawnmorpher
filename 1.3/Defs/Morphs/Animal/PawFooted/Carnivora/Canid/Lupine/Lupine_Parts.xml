@@ -5,8 +5,8 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
+					<hungerRateFactorOffset>0.05</hungerRateFactorOffset>
 					<statOffsets>
-						<HungerRateMultiplier>0.05</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
 						<HuntingStealth>0.1</HuntingStealth>
 					</statOffsets>
@@ -16,6 +16,7 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<hungerRateFactorOffset>0.2</hungerRateFactorOffset>
 					<capMods>
 						<li>
 							<capacity>Sight</capacity>
@@ -23,7 +24,6 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<HungerRateMultiplier>0.2</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
 						<HuntingStealth>0.15</HuntingStealth>
 					</statOffsets>
@@ -33,6 +33,7 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<hungerRateFactorOffset>0.2</hungerRateFactorOffset>
 					<capMods>
 						<li>
 							<capacity>Sight</capacity>
@@ -40,7 +41,6 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<HungerRateMultiplier>0.2</HungerRateMultiplier>
 						<MentalBreakThreshold>-0.1</MentalBreakThreshold>
 						<HuntingStealth>0.2</HuntingStealth>
 					</statOffsets>

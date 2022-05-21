@@ -38,6 +38,5 @@ namespace Pawnmorph.HPatches
             
             return __result;
         }
-
     }
 }

@@ -34,6 +34,7 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s muscles are much thicker and bulkier. They're dense with veins and raw power. Such an impressive growth is very painful.</description>
+					<hungerRateFactorOffset>3</hungerRateFactorOffset>
 				</values>
 			</li>
 			<li function="modify">
@@ -41,6 +42,7 @@
 				<values>
 					<description>[PAWN_nameDef] is a veritable wall of raw power and strength, owing to the powerful mutagen coursing through [PAWN_possessive] veins.</description>
 					<globalHealthMultiplier>3.5</globalHealthMultiplier>
+					<hungerRateFactorOffset>2</hungerRateFactorOffset>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -52,7 +54,6 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<HungerRateMultiplier>2</HungerRateMultiplier>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 						<PM_BodySize>1</PM_BodySize>
 					</statOffsets>
