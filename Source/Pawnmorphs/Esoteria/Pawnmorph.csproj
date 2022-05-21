@@ -313,6 +313,7 @@
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
+    <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />

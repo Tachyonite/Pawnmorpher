@@ -109,11 +109,11 @@
 					<max>6000</max>
 				</disappearsAfterTicks>
 			</li>
-			<li Class="Pawnmorph.HediffCompProperties_AddSeverity">
+			<!-- <li Class="Pawnmorph.HediffCompProperties_AddSeverity">
 				<hediff>EtherMegawoolly</hediff>
 				<severity>0.3</severity>
 				<mtbDays>0.2</mtbDays>
-			</li>
+			</li> -->
 		</comps>
 		<stages>
 			<li></li>

@@ -54,10 +54,6 @@ namespace Pawnmorph.Utilities
         /// <returns></returns>
         public static float? GetStat(Pawn pawn, StatDef statDef, int maxAge)
         {
-            // Cannot get stat for unspawned pawn.
-            if (pawn.Spawned == false)
-                return null;
-
             Dictionary<StatDef, CachedStat> pawnCache = _statCache.TryGetValue(pawn);
             if (pawnCache == null)
             {
@@ -69,12 +65,15 @@ namespace Pawnmorph.Utilities
             CachedStat stat = pawnCache.TryGetValue(statDef);
             if (stat == null)
             {
+                if (pawn.Spawned == false)
+                    return null;
+
                 // Cache new stat
                 Cached<float> statValue = new Cached<float>(() => pawn.GetStatValueForPawn(statDef, pawn));
                 stat = new CachedStat(statValue, _tickManager.TicksGame);
                 pawnCache[statDef] = stat;
             }
-            else if (stat.RequestedUpdate == false)
+            else if (stat.RequestedUpdate == false && pawn.Spawned)
             {
                 // If stat has not already been queued for update, then check if it should be updated.
 
