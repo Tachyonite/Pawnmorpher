@@ -7,6 +7,38 @@
 		<graphics>
 			<Muzzle>Parts/Alphabeaver/Alphabeaver_Muzzle</Muzzle>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A robust beaver jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. On the other hand, those teeth make speech very difficult, and [PAWN_nameDef] has a hearty appetite.</description>
+					<statOffsets>
+						<HungerRateMultiplier>1</HungerRateMultiplier>
+						<PlantWorkSpeed>0.1</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. Adaptation has made speaking a little easier, but [PAWN_nameDef] still has a hearty appetite.</description>
+					<statOffsets>
+						<HungerRateMultiplier>1.5</HungerRateMultiplier>
+						<PlantWorkSpeed>0.2</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. With further adaptation, [PAWN_nameDef] is talking normally, but still need to eat more than normal.</description>
+					<statOffsets>
+						<HungerRateMultiplier>1.5</HungerRateMultiplier>
+						<PlantWorkSpeed>0.3</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
