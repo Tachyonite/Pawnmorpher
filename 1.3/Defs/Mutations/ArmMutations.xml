@@ -47,10 +47,8 @@
 		<mutationMemory>TODO</mutationMemory> -->
 		<classInfluences>
 			<li>Powerful</li>
+			<li>Ursine</li>
 		</classInfluences>
-		<categories>
-			<li>Powerful</li>
-		</categories>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>

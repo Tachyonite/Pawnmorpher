@@ -41,9 +41,6 @@
 		<defName>EtherThickHideLeg</defName>
 		<label>thick leg</label>
 		<description>A very strong leg.</description>
-		<categories>
-			<li>Powerful</li>
-		</categories>
 		<classInfluences>
 			<li>Powerful</li>
 			<li>BigCervid</li>

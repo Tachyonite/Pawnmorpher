@@ -278,13 +278,17 @@ namespace Pawnmorph.User_Interface
                 SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
             }
 
-            var comp = pawn.GetComp<GraphicsUpdaterComp>();
-            if (comp != null)
+            if (pawn != null)
             {
-                // If pawn has visible graphics, then refresh.
-                comp.IsDirty = true;
-                comp.CompTick();
-                PortraitsCache.SetDirty(pawn);
+                var comp = pawn.GetComp<GraphicsUpdaterComp>();
+                if (comp != null)
+                {
+                    // If pawn has visible graphics, then refresh.
+                    comp.IsDirty = true;
+                    comp.CompTick();
+                    PortraitsCache.SetDirty(pawn);
+                }
+                pawn.health?.capacities?.Notify_CapacityLevelsDirty();
             }
 
             base.Close(doCloseSound);

@@ -150,6 +150,8 @@ namespace Pawnmorph.DebugUtils
                 if(sevAdj == null) continue;
                 mutation.Severity = sevAdj.NaturalSeverityLimit; 
             }
+
+            p.health?.capacities?.Notify_CapacityLevelsDirty();
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
