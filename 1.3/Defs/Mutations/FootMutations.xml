@@ -318,6 +318,7 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -332,6 +333,7 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
+							<chanceFactor>0.5</chanceFactor>
 							<power>3</power>
 						</li>
 					</verbOverrides>
@@ -346,6 +348,7 @@
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Scratch</li>
+							<li>cut</li>
 						</capacities>
 						<power>0</power>
 						<cooldownTime>1.5</cooldownTime>
@@ -376,7 +379,8 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
-							<power>4.0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.0</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -395,7 +399,8 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
-							<power>5.0</power>
+							<chanceFactor>1</chanceFactor>
+							<power>6.0</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -425,7 +430,8 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
-							<power>5.0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7.3</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -440,7 +446,8 @@
 					<verbOverrides>
 						<li>
 							<label>avian claws</label>
-							<power>8.0</power>
+							<chanceFactor>1</chanceFactor>
+							<power>7.3</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -646,6 +653,7 @@
 					<verbOverrides>
 						<li>
 							<label>stomp</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -660,6 +668,7 @@
 					<verbOverrides>
 						<li>
 							<label>stomp</label>
+							<chanceFactor>0.5</chanceFactor>
 							<power>5</power>
 						</li>
 					</verbOverrides>
@@ -682,7 +691,8 @@
 					<verbOverrides>
 						<li>
 							<label>stomp</label>
-							<power>10</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -704,7 +714,8 @@
 					<verbOverrides>
 						<li>
 							<label>stomp</label>
-							<power>16.9</power>
+							<chanceFactor>1</chanceFactor>
+							<power>8</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -745,7 +756,8 @@
 					<description>Curved claws are pressing out from the nails, but are too blunt to be of use at the moment.</description>
 					<verbOverrides>
 						<li>
-							<label>tip</label>
+							<label>claws</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -757,7 +769,8 @@
 					<description>The claws have grown larger, and have sharpened enough to prove a threat.</description>
 					<verbOverrides>
 						<li>
-							<label>tip</label>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
 							<power>5</power>
 						</li>
 					</verbOverrides>
@@ -778,8 +791,9 @@
 					</capMods>
 					<verbOverrides>
 						<li>
-							<label>tip</label>
-							<power>10</power>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -799,8 +813,9 @@
 					</capMods>
 					<verbOverrides>
 						<li>
-							<label>tip</label>
-							<power>15</power>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -810,7 +825,7 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>tip</label>
+						<label>claws</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Scratch</li>
