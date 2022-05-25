@@ -10,7 +10,7 @@
 						<capacities>
 							<li>Stab</li>
 						</capacities>
-						<power>25.0</power>
+						<power>24.0</power>
 						<cooldownTime>4</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -20,8 +20,8 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>8.0</power>
-						<cooldownTime>2</cooldownTime>
+						<power>13</power>
+						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
@@ -35,10 +35,12 @@
 						<li>
 							<label>tusks</label>
 							<power>0</power>
+							<chanceFactor>0</chanceFactor>
 						</li>
 						<li>
 							<label>trunk</label>
 							<power>0</power>
+							<chanceFactor>0</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -50,10 +52,12 @@
 						<li>
 							<label>tusks</label>
 							<power>0</power>
+							<chanceFactor>0</chanceFactor>
 						</li>
 						<li>
 							<label>trunk</label>
 							<power>0</power>
+							<chanceFactor>0</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -65,11 +69,13 @@
 					<verbOverrides>
 						<li>
 							<label>tusks</label>
-							<power>0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12.0</power>
 						</li>
 						<li>
 							<label>trunk</label>
-							<power>0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -81,11 +87,13 @@
 					<verbOverrides>
 						<li>
 							<label>tusks</label>
-							<power>13</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>24.0</power>
 						</li>
 						<li>
 							<label>trunk</label>
-							<power>4</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>13</power>
 						</li>
 					</verbOverrides>
 					<statOffsets>
@@ -114,6 +122,18 @@
 							<offset>0.15</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>1</chanceFactor>
+							<power>24.0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>1</chanceFactor>
+							<power>13</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -131,6 +151,18 @@
 							<offset>0.15</offset>
 						</li>
 					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>1</chanceFactor>
+							<power>24.0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>1</chanceFactor>
+							<power>13</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
