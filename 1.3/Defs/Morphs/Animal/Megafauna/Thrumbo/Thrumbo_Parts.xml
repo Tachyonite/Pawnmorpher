@@ -12,37 +12,9 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>pressing</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>The changes to [PAWN_nameDef]'s face continue. Broad tree munching teeth have started to form in a powerful new snout.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -52,12 +24,6 @@
 					<statOffsets>
 						<PM_BodySize>0.50</PM_BodySize>
 					</statOffsets>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>8</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -79,22 +45,6 @@
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>15.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaHornPart">
@@ -113,11 +63,8 @@
                     <description>Something is pressing out from below [PAWN_nameDef]'s scalp, in the middle of the forehead.</description>
 					<verbOverrides>
                         <li>
-                            <label>point</label>
-                            <power>0</power>
-                        </li>
-                        <li>
-                            <label>base</label>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0</chanceFactor>
                             <power>0</power>
                         </li>
                     </verbOverrides>
@@ -133,12 +80,9 @@
 					</graphics>
 					<verbOverrides>
                         <li>
-                            <label>point</label>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0</chanceFactor>
                             <power>0</power>
-                        </li>
-                        <li>
-                            <label>base</label>
-                            <power>3</power>
                         </li>
                     </verbOverrides>
 				</values>
@@ -155,12 +99,9 @@
                     </statOffsets>
 					<verbOverrides>
                         <li>
-                            <label>point</label>
-                            <power>14</power>
-                        </li>
-                        <li>
-                            <label>base</label>
-                            <power>6</power>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0.5</chanceFactor>
+                            <power>10</power>
                         </li>
                     </verbOverrides>
 				</values>
@@ -178,12 +119,9 @@
                     </statOffsets>
 					<verbOverrides>
                         <li>
-                            <label>point</label>
-                            <power>28</power>
-                        </li>
-                        <li>
-                            <label>base</label>
-                            <power>9</power>
+                            <label>thrumbo horn</label>
+							<chanceFactor>1</chanceFactor>
+                            <power>18.12</power>
                         </li>
                     </verbOverrides>
 				</values>
@@ -193,21 +131,13 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>point</label>
+						<label>thrumbo horn</label>
 						<capacities>
 							<li>Scratch</li>
 							<li>Stab</li>
 						</capacities>
 						<power>0</power>
-						<cooldownTime>2.6</cooldownTime>
-					</li>
-					<li>
-						<label>base</label>
-						<capacities>
-							<li>Blunt</li>
-						</capacities>
-						<power>0</power>
-						<cooldownTime>2</cooldownTime>
+						<cooldownTime>3</cooldownTime>
 					</li>
 				</tools>
 			</li>
