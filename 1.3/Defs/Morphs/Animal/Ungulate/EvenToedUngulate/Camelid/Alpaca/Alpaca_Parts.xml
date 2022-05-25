@@ -7,7 +7,15 @@
 		<graphics>
 			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
 		</graphics>
-		<comps>
+		<!-- 
+			Current throws grammar rule exceptions. 
+		
+			Bad string pass when reading rule [talkedabout]->which seems to be getting hairier.
+			Bad string pass when reading rule [talkedabout]->and now their ears itch.
+			Bad string pass when reading rule [talkedabout]->and now their face feels funny.
+		
+		-->
+		<!-- <comps>
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
@@ -17,6 +25,7 @@
 						</capacities>
 						<hediff>PawnmorphAlpacaTFPartial</hediff>
 						<cooldownTime>0.8</cooldownTime>
+						<power>1</power>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 					<li>
@@ -26,6 +35,7 @@
 						</capacities>
 						<hediff>PawnmorphAlpacaTF</hediff>
 						<cooldownTime>2</cooldownTime>
+						<power>1</power>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
@@ -38,9 +48,11 @@
 					<verbOverrides>
 						<li>
 							<label>spit</label>
+							<chanceFactor>0</chanceFactor>
 						</li>
 						<li>
 							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -51,9 +63,11 @@
 					<verbOverrides>
 						<li>
 							<label>spit</label>
+							<chanceFactor>0</chanceFactor>
 						</li>
 						<li>
 							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -64,9 +78,11 @@
 					<verbOverrides>
 						<li>
 							<label>spit</label>
+							<chanceFactor>0.5</chanceFactor>
 						</li>
 						<li>
 							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -78,9 +94,11 @@
 					<verbOverrides>
 						<li>
 							<label>spit</label>
+							<chanceFactor>1</chanceFactor>
 						</li>
 						<li>
 							<label>gob</label>
+							<chanceFactor>0.5</chanceFactor>
 						</li>
 					</verbOverrides>
 				</values>
@@ -89,15 +107,35 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>2</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>1.5</chanceFactor>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>3</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>2</chanceFactor>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
-		</stagePatches>
+		</stagePatches> -->
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
