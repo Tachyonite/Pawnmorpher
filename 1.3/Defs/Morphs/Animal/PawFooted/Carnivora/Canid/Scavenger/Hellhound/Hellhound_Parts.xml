@@ -227,6 +227,7 @@
 					<verbOverrides>
 						<li>
 							<label>horns</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -239,6 +240,7 @@
 					<verbOverrides>
 						<li>
 							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
 							<power>2.0</power>
 						</li>
 					</verbOverrides>
@@ -252,6 +254,7 @@
 					<verbOverrides>
 						<li>
 							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
 							<power>4.0</power>
 						</li>
 					</verbOverrides>
@@ -266,6 +269,7 @@
 					<verbOverrides>
 						<li>
 							<label>horns</label>
+							<chanceFactor>1.0</chanceFactor>
 							<power>9.0</power>
 						</li>
 					</verbOverrides>
@@ -279,10 +283,10 @@
 						<label>horns</label>
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
-							<li>Scratch</li>
+							<li>Stab</li>
 						</capacities>
 						<power>0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<cooldownTime>1.7</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>

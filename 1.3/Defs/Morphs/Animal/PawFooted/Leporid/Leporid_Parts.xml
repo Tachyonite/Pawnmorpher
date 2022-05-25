@@ -1,67 +1,17 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="LeporidJawPart" ParentName="PawFootedJawPart" Abstract="true">
 		<mutationMemory>EtherHareJaw</mutationMemory>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>3.4</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>pressing</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>Shifting, twisting, pulsing. The painful transformation of [PAWN_nameDef]'s poor face continues. [PAWN_possessive] jaws have elongated into a snout and [PAWN_possessive] front teeth have grown longer.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, with a twitchy pink button nose and long buck teeth. The strange shape makes speaking very difficult.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
 					<capMods>
 						<li>
 							<capacity>Consciousness</capacity>

@@ -9,8 +9,8 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<power>8</power>
+						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
@@ -23,6 +23,7 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -34,6 +35,7 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -45,7 +47,8 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
-							<power>0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>4</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -56,7 +59,32 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
-							<power>5</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8.5</power>
 						</li>
 					</verbOverrides>
 				</values>

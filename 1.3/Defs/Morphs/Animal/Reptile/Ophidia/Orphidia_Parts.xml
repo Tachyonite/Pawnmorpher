@@ -4,29 +4,13 @@
 			<li Class="HediffCompProperties_VerbGiver">
 				<tools>
 					<li>
-						<label>venom-fangs</label>
+						<label>fangs</label>
 						<capacities>
 							<li>ToxicBite</li>
-						</capacities>
-						<power>12</power>
-						<cooldownTime>2</cooldownTime>
-						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-						<surpriseAttack>
-							<extraMeleeDamages>
-								<li>
-									<def>Stun</def>
-									<amount>14</amount>
-								</li>
-							</extraMeleeDamages>
-						</surpriseAttack>
-					</li>
-					<li>
-						<label>muta-fangs</label>
-						<capacities>
 							<li>MutagenicStab</li>
 						</capacities>
 						<power>12</power>
-						<cooldownTime>2</cooldownTime>
+						<cooldownTime>2.5</cooldownTime>
 						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
 						<surpriseAttack>
 							<extraMeleeDamages>
@@ -46,11 +30,8 @@
 				<values>
 					<verbOverrides>
 						<li>
-							<label>venom-fangs</label>
-							<power>0</power>
-						</li>
-						<li>
-							<label>muta-fangs</label>
+							<label>fangs</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -61,11 +42,8 @@
 				<values>
 					<verbOverrides>
 						<li>
-							<label>venom-fangs</label>
-							<power>0</power>
-						</li>
-						<li>
-							<label>muta-fangs</label>
+							<label>fangs</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -76,12 +54,9 @@
 				<values>
 					<verbOverrides>
 						<li>
-							<label>venom-fangs</label>
-							<power>0</power>
-						</li>
-						<li>
-							<label>muta-fangs</label>
-							<power>0</power>
+							<label>fangs</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -92,12 +67,9 @@
 					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. The strange shape makes speaking very difficult.</description>
 					<verbOverrides>
 						<li>
-							<label>venom-fangs</label>
-							<power>4</power>
-						</li>
-						<li>
-							<label>muta-fangs</label>
-							<power>4</power>
+							<label>fangs</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12</power>
 						</li>
 					</verbOverrides>
 					<statOffsets>
@@ -109,6 +81,13 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. Adaptation has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
 					<statOffsets>
 						<AimingDelayFactor>-0.3</AimingDelayFactor>
 					</statOffsets>
@@ -118,6 +97,13 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
 					<statOffsets>
 						<AimingDelayFactor>-0.25</AimingDelayFactor>
 					</statOffsets>

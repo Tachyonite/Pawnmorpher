@@ -15,12 +15,6 @@
 						<MentalBreakThreshold>-0.05</MentalBreakThreshold>
 						<ImmunityGainSpeed>0.025</ImmunityGainSpeed>
 					</statOffsets>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>8</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -40,7 +34,7 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
-							<power>15</power>
+							<power>9.5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -62,7 +56,7 @@
 					<verbOverrides>
 						<li>
 							<label>teeth</label>
-							<power>15</power>
+							<power>9.5</power>
 						</li>
 					</verbOverrides>
 				</values>
