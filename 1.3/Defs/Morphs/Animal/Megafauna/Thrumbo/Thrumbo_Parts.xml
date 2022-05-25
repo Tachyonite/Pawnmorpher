@@ -135,6 +135,7 @@
 						<capacities>
 							<li>Scratch</li>
 							<li>Stab</li>
+							<li>Cut</li>
 						</capacities>
 						<power>0</power>
 						<cooldownTime>3</cooldownTime>
