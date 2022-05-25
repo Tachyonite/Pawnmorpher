@@ -8,49 +8,15 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>pressing</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>The changes to [PAWN_nameDef]'s face continue. [PAWN_possessive] jaw has grown into a snout with a powerful bite and thick slab of muscle for a toungue.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves. The strange shape makes speaking very difficult.</description>
-					<verbOverrides>
-						<li>
-							<label>teeth</label>
-							<power>5</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -66,22 +32,6 @@
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>teeth</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Bite</li>
-						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurTailPart">
@@ -93,9 +43,40 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>1</chanceFactor>
+							<power>20</power>
+						</li>
+					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
