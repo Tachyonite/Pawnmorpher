@@ -53,7 +53,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>1</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -66,7 +67,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>3</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.2</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -82,7 +84,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>5</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -97,7 +100,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>5</power>
+							<chanceFactor>1</chanceFactor>
+							<power>6.5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -368,7 +372,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>3.0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -382,7 +387,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>6.0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -394,7 +400,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>8.0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -409,7 +416,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>11.0</power>
+							<chanceFactor>1</chanceFactor>
+							<power>7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -440,14 +448,6 @@
 						<power>0</power>
 						<cooldownTime>1.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-						<surpriseAttack>
-							<extraMeleeDamages>
-								<li>
-									<def>Stun</def>
-									<amount>14</amount>
-								</li>
-							</extraMeleeDamages>
-						</surpriseAttack>
 					</li>
 				</tools>
 			</li>
@@ -543,7 +543,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -556,7 +557,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>5</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10.6</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -572,7 +574,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>10</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>11.2</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -588,7 +591,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>20</power>
+							<chanceFactor>1</chanceFactor>
+							<power>11.2</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -618,10 +622,19 @@
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Scratch</li>
+							<li>Blunt</li>
 						</capacities>
 						<power>0.0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<cooldownTime>2.5</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
 					</li>
 				</tools>
 			</li>
@@ -632,68 +645,6 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart" Name="RodentHandPaw" Abstract="true">
 		<defName>EtherAbstractRodentPawHand</defName>
 		<description>a rodent handpaw.</description>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>readjusting</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>claws</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>unfamiliar</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>claws</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>claws</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>claws</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>claws</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>0</power>
-						<cooldownTime>1</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef ParentName="RodentHandPaw">
@@ -812,7 +763,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>5</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -827,7 +779,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>10</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.8</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -842,7 +795,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>15</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>9.7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -859,7 +813,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>25</power>
+							<chanceFactor>1</chanceFactor>
+							<power>9.7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -875,7 +830,7 @@
 							<li>Scratch</li>
 						</capacities>
 						<power>0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
@@ -1002,7 +957,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>0</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.2</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -1014,7 +970,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>4</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -1032,7 +989,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>8</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>9</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -1050,7 +1008,8 @@
 					<verbOverrides>
 						<li>
 							<label>claws</label>
-							<power>8</power>
+							<chanceFactor>1</chanceFactor>
+							<power>9</power>
 						</li>
 					</verbOverrides>
 				</values>
