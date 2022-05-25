@@ -156,7 +156,7 @@
 				<stageKey>short</stageKey>
 				<values>
 					<labelOverride>curled horns</labelOverride>
-					<description>Hefty Ram horns grows [PAWN_nameDef]'s head. While they are still growing they already add a lot of power to his attacks</description>
+					<description>Hefty Ram horns grows [PAWN_nameDef]'s head. While they are still growing they already add a lot of power to his attacks.</description>
 					<graphics>
 						<Horns>Parts/Sheep/Sheep_Horns_B</Horns>
 					</graphics>
@@ -165,7 +165,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>A pair of Burly Ram horns crowns [PAWN_nameDef]'s head. The power they add will earn respect from even the fiercest of enemy </description>
+					<description>A pair of Burly Ram horns crowns [PAWN_nameDef]'s head. The power they add will earn respect from even the fiercest of enemy.</description>
 					<graphics>
 						<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
 					</graphics>
