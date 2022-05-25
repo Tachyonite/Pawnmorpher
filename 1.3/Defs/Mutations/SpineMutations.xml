@@ -94,13 +94,13 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s back hurts a bit. Nothing too bad.</description>
+					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s back feels very heavy, as a big hump is growing on it. It is painful to stand.</description>
+					<description>Reserves of fat has been diverted to [PAWN_namedef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch</description>
 					<graphics>
 						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
 					</graphics>
@@ -113,7 +113,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s back is now extended with a big, fatty, hump. [PAWN_pronoun] is now ready to endure very hot habitats!</description>
+					<description>[PAWN_nameDef]'s hump has grown so that [PAWN_objective] can go days without food. The increased circulation also helps [PAWN_objective] cool off.</description>
 					<graphics>
 						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
 					</graphics>

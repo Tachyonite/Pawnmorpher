@@ -18,9 +18,27 @@
 		</graphics>
 		<stagePatches>
 			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>A small tail has appeared at the base of [PAWN_nameDef]'s spine. It's rapidly growing longer and thicker.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s tail reaching his ankles and has become very thick. It'll take some time before [PAWN_nameDef] gets used to it.</description>
+				</values>
+			</li>
+			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>TODO.</description>
+					<description>A long, muscular tail has grown from [PAWN_nameDef]'s spine. It's tough enough to shrug off brutal attacks and sturdy so [PAWN_nameDef] can brace against it, keeping them stable.</description>
 				</values>
 			</li>
 		</stagePatches>
