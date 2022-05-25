@@ -204,19 +204,19 @@
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly longer then before.</description>
+					<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly shorter then before.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s arms has gotten significantly shorter and are clad in a soft down.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. It is far too small and weak to fly but has grown a lovely plumage.</description>
 					<statOffsets>
 						<MeleeHitChance>0.2</MeleeHitChance>
 						<MeleeDodgeChance>0.05</MeleeDodgeChance>
@@ -226,7 +226,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing. It's flightless but the eye-catching plumage has become a great distraction should they find themself in a brawl!</description>
 					<statOffsets>
 						<MeleeHitChance>0.2</MeleeHitChance>
 						<MeleeDodgeChance>0.05</MeleeDodgeChance>
