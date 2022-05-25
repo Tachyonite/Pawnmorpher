@@ -11,34 +11,13 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="DomesticatedBovidHornPart" ParentName="BovidHornPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>gored</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>nubs</stageKey>
-				<values>
-					<verbOverrides>
-						<li>
-							<label>gored</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
-				</values>
-			</li>
-			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
 					<verbOverrides>
 						<li>
-							<label>gored</label>
-							<power>9</power>
+							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>5</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -48,8 +27,9 @@
 				<values>
 					<verbOverrides>
 						<li>
-							<label>gored</label>
-							<power>18</power>
+							<label>horns</label>
+							<chanceFactor>1</chanceFactor>
+							<power>14</power>
 						</li>
 					</verbOverrides>
 				</values>
