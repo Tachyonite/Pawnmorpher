@@ -69,7 +69,7 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
-							<power>15</power>
+							<power>12.7</power>
 							<chanceFactor>0.5</chanceFactor>
 						</li>
 					</verbOverrides>
@@ -81,7 +81,7 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
-							<power>15</power>
+							<power>12.7</power>
 							<chanceFactor>1</chanceFactor>
 						</li>
 					</verbOverrides>
@@ -93,7 +93,7 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
-							<power>15</power>
+							<power>12.7</power>
 							<chanceFactor>1</chanceFactor>
 						</li>
 					</verbOverrides>

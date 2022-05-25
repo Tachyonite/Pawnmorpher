@@ -26,7 +26,7 @@
 						<li>
 							<label>beak</label>
 							<chanceFactor>0.5</chanceFactor>
-							<power>16.5</power>
+							<power>14</power>
 						</li>
 					</verbOverrides>
 					<capMods>
@@ -44,7 +44,7 @@
 						<li>
 							<label>beak</label>
 							<chanceFactor>1</chanceFactor>
-							<power>16.5</power>
+							<power>14</power>
 						</li>
 					</verbOverrides>
 					<capMods>

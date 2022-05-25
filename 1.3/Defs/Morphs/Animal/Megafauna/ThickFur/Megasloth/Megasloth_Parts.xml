@@ -74,7 +74,7 @@
 						<li>
 							<label>tail</label>
 							<chanceFactor>1</chanceFactor>
-							<power>20</power>
+							<power>18</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -89,7 +89,7 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>20.0</power>
+						<power>18.0</power>
 						<cooldownTime>4</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>

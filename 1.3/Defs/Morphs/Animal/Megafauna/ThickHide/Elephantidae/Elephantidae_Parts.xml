@@ -10,7 +10,7 @@
 						<capacities>
 							<li>Stab</li>
 						</capacities>
-						<power>24.0</power>
+						<power>20.4</power>
 						<cooldownTime>4</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -20,7 +20,7 @@
 						<capacities>
 							<li>Blunt</li>
 						</capacities>
-						<power>13</power>
+						<power>12.7</power>
 						<cooldownTime>3</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
@@ -88,12 +88,12 @@
 						<li>
 							<label>tusks</label>
 							<chanceFactor>0.5</chanceFactor>
-							<power>24.0</power>
+							<power>20.4</power>
 						</li>
 						<li>
 							<label>trunk</label>
 							<chanceFactor>0.5</chanceFactor>
-							<power>13</power>
+							<power>12.7</power>
 						</li>
 					</verbOverrides>
 					<statOffsets>
@@ -126,12 +126,12 @@
 						<li>
 							<label>tusks</label>
 							<chanceFactor>1</chanceFactor>
-							<power>24.0</power>
+							<power>20.4</power>
 						</li>
 						<li>
 							<label>trunk</label>
 							<chanceFactor>1</chanceFactor>
-							<power>13</power>
+							<power>12.7</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -155,12 +155,12 @@
 						<li>
 							<label>tusks</label>
 							<chanceFactor>1</chanceFactor>
-							<power>24.0</power>
+							<power>20.4</power>
 						</li>
 						<li>
 							<label>trunk</label>
 							<chanceFactor>1</chanceFactor>
-							<power>13</power>
+							<power>12.7</power>
 						</li>
 					</verbOverrides>
 				</values>
