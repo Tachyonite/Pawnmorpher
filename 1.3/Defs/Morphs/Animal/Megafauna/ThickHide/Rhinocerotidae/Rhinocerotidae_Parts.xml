@@ -58,7 +58,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. The strange shape makes speaking very difficult.</description>
+					<description>An oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. The strange shape makes speaking very difficult.</description>
 					<verbOverrides>
 						<li>
 							<label>horn</label>
@@ -85,7 +85,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
+					<description>An oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
 					<verbOverrides>
 						<li>
 							<label>horn</label>
@@ -114,7 +114,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>An oversized rhino jaw, complete with a mighty horn. Over time the horn has hardened to a tensile strength like steel. It rends flesh guts buildings alike!</description>
 					<verbOverrides>
 						<li>
 							<label>horn</label>

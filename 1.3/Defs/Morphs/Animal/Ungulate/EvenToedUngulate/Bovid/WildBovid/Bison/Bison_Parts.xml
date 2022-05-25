@@ -139,7 +139,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>Two short horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
+					<description>Two stout horns has emerged from the sides of [PAWN_nameDef]'s head. They're very sharp and tempts [PAWN nameDef] to use them.</description>
 				</values>
 			</li>
 		</stagePatches>

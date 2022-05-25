@@ -177,7 +177,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>Burly curled horns decorate [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They have reached their full size.</description>
+				<description>Magnificent horns wreathes [PAWN_nameDef]'s head like a crown. They demand reverance from animals who innately understand the owner's whims.</description>
 				<graphics>
 					<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
 				</graphics>

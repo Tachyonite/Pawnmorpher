@@ -116,7 +116,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>TODO</description>
+				<description>A luxurious fox tail drapes from [PAWN_nameDef]'s spine. It sweeps after after them, keeping everything prim and proper!</description>
 				<statOffsets>
 					<FilthRate>0</FilthRate>
 					<TradePriceImprovement>+0.1</TradePriceImprovement>

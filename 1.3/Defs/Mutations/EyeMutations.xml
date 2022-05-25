@@ -59,7 +59,7 @@
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
 
-				<description>[PAWN_nameDef]'s eye now detects accurately and precisely any distant movement, like a bird of prey! [PAWN_nameDef] is now rather deadly with a ranged weapon!</description>
+				<description>[PAWN_nameDef]'s eagle eye can now spot targets from increadible distances. Honing instincts locks the eye on the target, allowing precise trickshots.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
 					<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn>
@@ -151,7 +151,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>[PAWN_nameDef]'s eye has turned a glaring yellow, and its pupil has become small, vertical slit. Keep absolutely still! [PAWN_possesive] vision is based on movement, never missing [PAWN_possesive] target!</description>
+				<description>[PAWN_nameDef]'s cold eye has become incredibly sensitive to movement. In a brawl [PAWN_nameDef] never misses even a single twitch of muscle!</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 				<statOffsets>
 					<MeleeHitChance>0.8</MeleeHitChance>
