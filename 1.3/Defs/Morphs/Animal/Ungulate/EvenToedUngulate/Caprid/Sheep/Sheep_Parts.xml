@@ -188,7 +188,7 @@
 				<verbOverrides>
 					<li>
 						<label>horns</label>
-						<power>10</power>
+						<power>5.5</power>
 					</li>
 				</verbOverrides>
 			</li>

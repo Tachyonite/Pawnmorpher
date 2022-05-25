@@ -10,8 +10,8 @@
 						<capacities>
 							<li>Bite</li>
 						</capacities>
-						<power>10.0</power>
-						<cooldownTime>1.5</cooldownTime>
+						<power>8</power>
+						<cooldownTime>2</cooldownTime>
 						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 					</li>
 				</tools>
@@ -19,11 +19,12 @@
 		</comps>
 		<stagePatches>
 			<li function="initial">
-				<stageKey>pressing</stageKey>
+				<stageKey>initial</stageKey>
 				<values>
 					<verbOverrides>
 						<li>
 							<label>beak</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -35,6 +36,7 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -46,6 +48,7 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
+							<chanceFactor>0</chanceFactor>
 							<power>0</power>
 						</li>
 					</verbOverrides>
@@ -58,7 +61,8 @@
 					<verbOverrides>
 						<li>
 							<label>beak</label>
-							<power>5</power>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8</power>
 						</li>
 					</verbOverrides>
 					<statOffsets>
@@ -70,6 +74,13 @@
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. Adaptation has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8</power>
+						</li>
+					</verbOverrides>
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>
@@ -79,6 +90,13 @@
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s face has grown to have short turtle jaws, with scaly skin surrounding the thick keratin of [PAWN_pronoun] new beak. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8</power>
+						</li>
+					</verbOverrides>
 					<statOffsets>
 						<AimingDelayFactor>-0.10</AimingDelayFactor>
 					</statOffsets>
