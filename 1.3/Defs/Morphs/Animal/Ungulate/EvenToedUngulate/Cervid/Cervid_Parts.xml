@@ -37,6 +37,7 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
+					<description>[PAWN_nameDef]'s forehead is a little bit itchy, and two small lumps has appareed, but nothing to worry about right?</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -49,6 +50,7 @@
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
+					<description>In [PAWN_nameDef]'s forehead have appeared two small bones shaped like antlers. While they are small they're very hard.</description>
 					<verbOverrides>
 						<li>
 							<label>horns</label>

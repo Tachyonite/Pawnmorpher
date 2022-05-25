@@ -82,7 +82,7 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>From [PAWN_nameDef]'s head a large pair of antlers is growing under a soft felt of velvet skin. While still not fully grown they're already dangerous for being so hard.</description>
 					<!-- 
 					<graphics>
 						<Horns></Horns>
@@ -93,7 +93,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has large caribou antlers.</description>
+					<description>[PAWN_nameDef]'s head now sports an impressive rack with many nasty-looking spikes. Shirts are especially at risk.</description>
 					<graphics>
 						<Horns>Parts/Caribou/Caribou_Horns</Horns>
 					</graphics>

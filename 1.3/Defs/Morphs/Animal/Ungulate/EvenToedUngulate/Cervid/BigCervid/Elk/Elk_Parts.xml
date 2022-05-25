@@ -82,7 +82,7 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Wide, imposing antlers are growing from [PAWN_nameDef]'s head. While covered under soft velvet skin the hard, quick growing bone underneath adds a lot of power to a strike.</description>
 					<graphics>
 						<Horns>Parts/Elk/Elk_Horns_A</Horns>
 					</graphics>
@@ -92,7 +92,7 @@
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>Wide, imposing antlers decorate [PAWN_nameDef]'s head.</description>
+					<description>Some might consider hunting [PAWN_nameDef] for the large rack that embellishes [PAWN_possessive] head. Hunters beware for [PAWN_pronoun] will fight back ferociously!</description>
 				</values>
 			</li>
 		</stagePatches>

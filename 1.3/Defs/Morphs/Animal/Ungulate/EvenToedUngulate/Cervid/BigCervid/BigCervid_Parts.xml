@@ -11,18 +11,6 @@
 	<Pawnmorph.Hediffs.MutationDef Name ="BigCervidHornPart" ParentName="CervidHornPart" Abstract="true">
 		<stagePatches>
 			<li function="modify">
-				<stageKey>initial</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>nubs</stageKey>
-				<values>
-					<description>TODO</description>
-				</values>
-			</li>
-			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
 					<label>short antlers</label>

@@ -85,14 +85,14 @@
 			<li function="modify">
 				<stageKey>short</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>Slender horns are sprouting form the top of  [PAWN_nameDef]'s head. Already they're forming a graceful arch and add significant power to any attack.</description>
 					
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has grown large, graceful, gazelle horns</description>
+					<description>[PAWN_nameDef]'s antlers are the envy of anyone around. Far from helpless though [PAWN_nameDef] can easily dispatch of anyone that displeases them.</description>
 					
 				</values>
 			</li>

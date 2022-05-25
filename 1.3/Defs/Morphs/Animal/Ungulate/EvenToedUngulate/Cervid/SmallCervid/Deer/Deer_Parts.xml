@@ -88,7 +88,7 @@
 				<stageKey>short</stageKey>
 				<values>
 					<label>buck</label>
-					<description>TODO</description>
+					<description>A pair of horns are sprouting form the top of  [PAWN_nameDef]'s head. They're covered in soft velvet but are growing bigger rapidly.</description>
 					<graphics>
 						<Horns>Parts/Deer/Deer_Antler_B</Horns>
 					</graphics>
@@ -98,7 +98,7 @@
 				<stageKey>horns</stageKey>
 				<values>
 					<label>stag</label>
-					<description>Burly antlers decorate [PAWN_nameDef]'s head.</description>
+					<description>From the base of [PAWN_nameDef]'s head a tree like pair of horns has grown into an impressive rack. They're going to make short work of any hunter seeking a trophy!</description>
 					<graphics>
 						<Horns>Parts/Deer/Deer_Antler_C</Horns>
 					</graphics>
