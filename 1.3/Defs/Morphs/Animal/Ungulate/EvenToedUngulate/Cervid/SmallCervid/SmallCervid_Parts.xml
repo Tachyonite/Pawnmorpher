@@ -40,24 +40,12 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<description>TODO</description>
-					<verbOverrides>
-						<li>
-							<label>gored</label>
-							<power>0</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>nubs</stageKey>
 				<values>
 					<description>TODO</description>
-					<verbOverrides>
-						<li>
-							<label>gored</label>
-							<power>2</power>
-						</li>
-					</verbOverrides>
 				</values>
 			</li>
 			<li function="modify">
@@ -69,8 +57,9 @@
 					</statOffsets>
 					<verbOverrides>
 						<li>
-							<label>gored</label>
-							<power>7.0</power>
+							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
 						</li>
 					</verbOverrides>
 				</values>
@@ -84,28 +73,13 @@
 					</statOffsets>
 					<verbOverrides>
 						<li>
-							<label>gored</label>
-							<power>14.0</power>
+							<label>horns</label>
+							<chanceFactor>1</chanceFactor>
+							<power>13.5</power>
 						</li>
 					</verbOverrides>
 				</values>
 			</li>
 		</stagePatches>
-		<comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>gored</label>
-						<labelUsedInLogging>False</labelUsedInLogging>
-						<capacities>
-							<li>Scratch</li>
-						</capacities>
-						<power>0</power>
-						<cooldownTime>3</cooldownTime>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 </Defs>
