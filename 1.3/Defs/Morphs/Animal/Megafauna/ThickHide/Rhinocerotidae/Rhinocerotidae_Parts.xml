@@ -63,7 +63,7 @@
 						<li>
 							<label>horn</label>
 							<chanceFactor>0.5</chanceFactor>
-							<power>22.8</power>
+							<power>19.4</power>
 						</li>
 						<li>
 							<label>horn bash</label>
@@ -143,6 +143,7 @@
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Stab</li>
+							<li>Demolish</li>
 						</capacities>
 						<power>0</power>
 						<cooldownTime>4</cooldownTime>
