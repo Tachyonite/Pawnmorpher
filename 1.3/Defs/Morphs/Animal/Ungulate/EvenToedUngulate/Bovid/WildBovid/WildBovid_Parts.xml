@@ -53,7 +53,7 @@
 						<label>Bullrush</label>
 						<description>A bit like berserker rage...</description>
 						<iconPath>UI/Buttons/PM_Icon_Bullrush</iconPath>
-						<cooldown>600</cooldown>
+						<cooldown>120000</cooldown>
 					</li>
 				</abilities>
 			</li>

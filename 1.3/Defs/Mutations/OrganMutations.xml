@@ -100,7 +100,7 @@
 						<label>Terrifying Roar</label>
 						<description>Cause anyone nearby to panic.</description>
 						<iconPath>UI/Buttons/PM_Icon_Terrifying_roar</iconPath>
-						<cooldown>600</cooldown>
+						<cooldown>180000</cooldown>
 					</li>
 				</abilities>
 			</li>

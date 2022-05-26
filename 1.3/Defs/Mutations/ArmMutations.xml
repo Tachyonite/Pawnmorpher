@@ -145,7 +145,7 @@
 							<label>Fly</label>
 							<description>Fly to somewhere on the map.</description>
 							<iconPath>UI/Buttons/PM_Icon_Flight</iconPath>
-							<cooldown>600</cooldown>
+							<cooldown>60000</cooldown>
 						</li>
 					</abilities>
 				</values>
@@ -171,7 +171,7 @@
 						<label>Fly</label>
 						<description>Fly to somewhere on the map.</description>
 						<iconPath>UI/Buttons/PM_Icon_Flight</iconPath>
-						<cooldown>600</cooldown>
+						<cooldown>60000</cooldown>
 					</li>
 				</abilities>
 			</li>

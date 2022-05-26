@@ -40,7 +40,7 @@ namespace Pawnmorph.Abilities
                     if (otherPawn == Pawn)
                         continue;
 
-                    if (otherPawn.Position.DistanceTo(Pawn.Position) < 10)
+                    if (otherPawn.Position.DistanceTo(Pawn.Position) <= 5)
                         otherPawn.mindState.StartFleeingBecauseOfPawnAction(Pawn);
                 }
 

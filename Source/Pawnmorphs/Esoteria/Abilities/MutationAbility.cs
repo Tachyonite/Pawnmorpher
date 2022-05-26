@@ -174,7 +174,7 @@ namespace Pawnmorph.Abilities
                 {
                     _currentCooldown--;
                     if (_currentCooldown % 60 == 0)
-                        Gizmo.disabledReason = $"Cooling down: {_currentCooldown/60}s";
+                        UpdateCooldownText();
 
                     return;
                 }
@@ -218,7 +218,15 @@ namespace Pawnmorph.Abilities
         {
             state = MutationAbilityState.Cooldown;
             _currentCooldown = _def.cooldown;
-            Gizmo.disabledReason = $"Cooling down: {_currentCooldown / 60}s";
+            UpdateCooldownText();
+        }
+
+        private void UpdateCooldownText()
+        {
+            if (_currentCooldown > Utilities.TimeMetrics.TICKS_PER_HOUR)
+                Gizmo.disabledReason = $"Cooling down: {_currentCooldown / Utilities.TimeMetrics.TICKS_PER_HOUR}h";
+            else
+                Gizmo.disabledReason = $"Cooling down: {_currentCooldown / 60}s";
         }
 
         /// <summary>
