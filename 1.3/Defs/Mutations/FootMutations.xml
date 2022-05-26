@@ -348,7 +348,7 @@
 						<labelUsedInLogging>False</labelUsedInLogging>
 						<capacities>
 							<li>Scratch</li>
-							<li>cut</li>
+							<li>Cut</li>
 						</capacities>
 						<power>0</power>
 						<cooldownTime>1.5</cooldownTime>
