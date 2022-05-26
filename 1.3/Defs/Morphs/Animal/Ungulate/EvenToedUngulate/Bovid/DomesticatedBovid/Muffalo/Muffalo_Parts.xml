@@ -83,6 +83,7 @@
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ShavedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_ShaveSelf</jobGiver>
 				<etherBondThought>ShavedMyselfBond</etherBondThought>
 				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
 				<resource>WoolMuffalo</resource>

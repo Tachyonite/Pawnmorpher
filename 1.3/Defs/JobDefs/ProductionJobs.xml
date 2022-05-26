@@ -31,14 +31,6 @@
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
 	
-    <JobDef>
-        <defName>PMMegaShaveSelf</defName>
-        <driverClass>Pawnmorph.Jobs.Driver_MegaShaveSelf</driverClass>
-        <reportString>shaving myself.</reportString>
-        <casualInterruptible>false</casualInterruptible>
-        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
-    </JobDef>
-
     
   <JobDef>
     <defName>PMHuntingForMushrooms</defName>

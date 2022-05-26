@@ -314,6 +314,7 @@
     <Compile Include="Abilities\TerrifyingRoar.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
+    <Compile Include="Jobs\Giver_Producer.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
@@ -575,13 +576,11 @@
     <Compile Include="IPawnTransformer.cs" />
     <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_TerrainProduction.cs" />
-    <Compile Include="Jobs\Driver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Driver_ResurrectTf.cs" />
     <Compile Include="Jobs\Driver_ShaveSelf.cs" />
     <Compile Include="Jobs\Giver_DrainChemcyst.cs" />
     <Compile Include="Jobs\Driver_MilkSelf.cs" />
     <Compile Include="Jobs\Driver_ProduceThing.cs" />
-    <Compile Include="Jobs\Giver_MegaShaveSelf.cs" />
     <Compile Include="Jobs\Giver_MilkSelf.cs" />
     <Compile Include="Jobs\Giver_SapientAnimalJoy.cs" />
     <Compile Include="Jobs\Giver_ShaveSelf.cs" />

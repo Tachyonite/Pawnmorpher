@@ -38,6 +38,8 @@ namespace Pawnmorph
         private Cached<bool> _isDry;
         private Cached<bool> _canProduce;
         private HediffComp_Staged _currentStage;
+        private ThinkNode_JobGiver _jobGiverCached;
+
 
         /// <summary>
         /// Gets a value indicating whether this instance can produce.
@@ -69,6 +71,35 @@ namespace Pawnmorph
         /// <value>The props.</value>
         public HediffCompProperties_Production Props => (HediffCompProperties_Production)props;
 
+
+
+
+        /// <summary>
+        /// Gets the cached job giver.
+        /// </summary>
+        /// <value>
+        /// The job giver.
+        /// </value>
+        [CanBeNull]
+        public ThinkNode_JobGiver JobGiver
+        {
+            get
+            {
+                if (_jobGiverCached == null && Props.jobGiver != null)
+                {
+                    _jobGiverCached = Activator.CreateInstance(Props.jobGiver) as ThinkNode_JobGiver;
+                    if (_jobGiverCached == null)
+                    {
+                        Log.Error($"at comp production: unable to cast {Props.jobGiver.Name} to {nameof(ThinkNode_JobGiver)}!");
+                        return null;
+                    }
+
+                    if (_jobGiverCached is Jobs.Giver_Producer producer)
+                        producer.ProductionComp = this;
+                }
+                return _jobGiverCached;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HediffComp_Production"/> class.
@@ -178,7 +209,7 @@ namespace Pawnmorph
                 if (Pawn.Spawned)
                 {
                     _canProduceNow = true;
-                    if (Props.JobGiver != null && !Pawn.Downed)
+                    if (JobGiver != null && !Pawn.Downed)
                     {
                         GiveJob();
                     }
@@ -208,15 +239,14 @@ namespace Pawnmorph
         private void GiveJob()
         {
             HatchingTicker = 0;
-            var jobPkg = Props.JobGiver.TryIssueJobPackage(Pawn, default); // Caller already checked this.
-
+            var jobPkg = JobGiver.TryIssueJobPackage(Pawn, default); // Caller already checked this.
             if (jobPkg.Job == null)
             {
                 Produce();
             }
             else
             {
-                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, resumeCurJobAfterwards: true);
+                Pawn.jobs.StartJob(jobPkg.Job, JobCondition.InterruptForced, jobGiver: JobGiver, resumeCurJobAfterwards: true);
             }
         }
 
