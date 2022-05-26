@@ -109,7 +109,7 @@ namespace Pawnmorph.IncidentWorkers
 
   
 
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
