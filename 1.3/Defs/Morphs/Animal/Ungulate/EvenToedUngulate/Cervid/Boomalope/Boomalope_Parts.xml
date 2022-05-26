@@ -63,7 +63,7 @@
 		<comps>
 			<li Class="Pawnmorph.HediffCompProperties_Production">
 				<thought>ChemMilkedMyself</thought>
-				<jobGiver>Pawnmorph.Jobs.MilkSelf</jobGiver>
+				<jobGiver>Pawnmorph.Jobs.Giver_MilkSelf</jobGiver>
 				<etherBondThought>ChemMilkedMyselfBond</etherBondThought>
 				<etherBrokenThought>ChemMilkedMyselfBroken</etherBrokenThought>
 				<resource>Chemfuel</resource>
