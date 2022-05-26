@@ -403,7 +403,7 @@ namespace Pawnmorph
             if (originalPawn?.RaceProps == null) throw new ArgumentNullException(nameof(originalPawn));
             if (race == null) throw new ArgumentNullException(nameof(race));
 
-            return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYears);
+            return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYearsFloat);
         }
 
         

@@ -1077,15 +1077,6 @@ namespace Pawnmorph.Chambers
             _lastTotal = _timer;
             sender.Reset();
 
-            //remove any mutations left over 
-            foreach (IReadOnlyMutationData mData in _addedMutationData.Where(m => !m.Removing))
-            {
-                var hediff =
-                    pawn.health?.hediffSet?.hediffs?.FirstOrDefault(h => h.def == mData.Mutation && h.Part == mData.Part) as
-                        Hediff_AddedMutation;
-                hediff?.MarkForRemoval();
-            }
-
             SelectorComp.Enabled = false;
         }
 

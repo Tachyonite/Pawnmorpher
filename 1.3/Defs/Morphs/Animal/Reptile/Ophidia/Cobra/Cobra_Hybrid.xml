@@ -534,6 +534,27 @@
                         <li>Narrow_Pointy</li>
                         <li>Narrow_Wide</li>
                     </aliencrowntypes>
+                    <colorChannels>
+                        <li>
+                            <name>hair</name>
+                            <first Class="ColorGenerator_Options">
+                                <options>
+                                    <li>
+										<weight>10</weight>
+                                        <only>RGBA(0, 0, 0, 0)</only>
+                                    </li>
+                                </options>
+                            </first>
+							<second Class="ColorGenerator_Options">
+								<options>
+									<li>
+										<weight>10</weight>
+										<only>RGBA(0, 0, 0, 0)</only>
+									</li>
+								</options>
+							</second>
+                        </li>
+                    </colorChannels>
                     <bodyAddons>
                         <li>
                             <!-- Body Tails -->

@@ -82,7 +82,7 @@
                 <thought>PM_TfLovedPrecept_TransformationReaction</thought>
             </li>
             <li Class="PreceptComp_SituationalThought">
-                <thought>PM_FormerHuman_Disapprove_Social</thought>
+                <thought>PM_FormerHuman_Approve_Social</thought>
             </li>
         </comps>
     </PreceptDef>
