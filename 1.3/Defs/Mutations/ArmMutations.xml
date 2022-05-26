@@ -108,7 +108,7 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s arms has gotten significantly shorter and are clad in a soft down.</description>
 					<statOffsets>
 						<PM_Lift>0.25</PM_Lift>
 					</statOffsets>

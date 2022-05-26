@@ -844,20 +844,19 @@
 		<label>dextrous toes</label>
 		<description>A foot that looks almost like a hand</description>
 		<classInfluence>Simian</classInfluence>
-		<mutationTale></mutationTale>
+		<!-- <mutationTale></mutationTale> -->
 		<mutationMemory>EtherSimianFoot</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
 				<values>
-					<description>TODO</description>
-
+					<description>[PAWN_nameDef]'s feet are arching. Surely a message is all they need.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>The toes on [PAWN_nameDef]'s feet are lengthening drastically while the sole is shrinking. Walking is proving very difficult.</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -869,7 +868,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>TODO</description>
+					<description>[PAWN_nameDef]'s toes has lengthened to finger like protrutions with multiple dextrous joints. While walking like this is very difficult [PAWN_objective] is finding the extra grip very handy!</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -885,7 +884,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s foot have reshaped itself into what look to be a hand. This make finding shoes somewhat difficult.</description>
+					<description>With practise [PAWN_nameDef]'s gotten used to the the additional "fingers". While [PAWN_objective] feet are far more sensitive than before and hinders [PAWN_objective] movement [PAWN_nameDef] can use them almost as good as his regular hands!</description>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
