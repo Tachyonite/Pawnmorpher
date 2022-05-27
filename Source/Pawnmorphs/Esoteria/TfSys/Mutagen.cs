@@ -98,8 +98,20 @@ namespace Pawnmorph.TfSys
         /// </returns>
         public virtual bool CanInfect(Pawn pawn)
         {
-            if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
-            if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
+            if (!def.canInfectAnimals && pawn.RaceProps.Animal) 
+                return false;
+
+            if (def.canInfectMechanoids == false && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal)
+            {
+                if (pawn.def is AlienRace.ThingDef_AlienRace alien)
+                {
+                    if (alien.alienRace.compatibility.IsFlesh == false)
+                        return false;
+                }
+                else
+                    return false;
+            }
+
             var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
@@ -127,15 +139,27 @@ namespace Pawnmorph.TfSys
             if (!def.canInfectAnimals && race.race.Animal)
             {
                 builder.AppendLine($"{race.defName} is an animal and {def.defName} cannot infect animals");
-                return ;
-            }
-
-            if (!def.canInfectMechanoids && race.race.FleshType != FleshTypeDefOf.Normal)
-            {
-
-                builder.AppendLine($"{race.defName} has a custom flesh type");
                 return;
             }
+
+
+            if (def.canInfectMechanoids == false && race.race.FleshType != FleshTypeDefOf.Normal)
+            {
+                if (race is AlienRace.ThingDef_AlienRace alien)
+                {
+                    if (alien.alienRace.compatibility.IsFlesh == false)
+                    {
+                        builder.AppendLine($"alien {race.defName} has a custom fleh type and is not flesh compatible");
+                        return;
+                    }
+                }
+                else
+                {
+                    builder.AppendLine($"{race.defName} has a custom flesh type");
+                    return;
+                }
+            }
+                
             var ext = race.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null&& ext.immuneToAll)
             {
