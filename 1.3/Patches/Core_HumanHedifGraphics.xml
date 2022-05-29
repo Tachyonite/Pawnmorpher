@@ -62,6 +62,8 @@
 						<layerOffset>-0.328</layerOffset>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Female Muzzles -->
@@ -88,6 +90,8 @@
 						<layerOffset>-0.328</layerOffset>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Bird jaw ornament -->
@@ -102,6 +106,8 @@
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear -->
@@ -112,6 +118,8 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear (Behind Head) -->
@@ -122,6 +130,8 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear -->
@@ -132,6 +142,8 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<anchorID>RightEar</anchorID>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear (Behind Head) -->
@@ -142,6 +154,8 @@
 				<anchorID>RightEarBehindHead</anchorID>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Tails -->
@@ -184,6 +198,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Tails -->
@@ -224,6 +240,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Female Tails -->
@@ -264,6 +282,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Behind-body tails -->
@@ -304,6 +324,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Body-extending tails -->
@@ -336,6 +358,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Headspikes -->
@@ -358,6 +382,8 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Horns -->
@@ -393,6 +419,8 @@
 					<li>UpperHead</li>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Background) -->
@@ -407,6 +435,8 @@
 					<li>UpperHead</li>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Udders -->
@@ -435,6 +465,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Wings -->
@@ -457,6 +489,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Spines -->
@@ -478,6 +512,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Spine Behind-->
@@ -502,6 +538,8 @@
 					<north/>
 					<east/>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos -->
@@ -526,6 +564,8 @@
 						</bodyTypes>
 					</east>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos Behind-->
@@ -550,6 +590,8 @@
 					<north/>
 					<east/>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Left Arm -->
@@ -598,6 +640,8 @@
 						</bodyTypes>
 					</south>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 
 				<inFrontOfBody>true</inFrontOfBody>
 			</li>
@@ -645,6 +689,8 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm -->
@@ -694,6 +740,8 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm (Behind Body) -->
@@ -738,6 +786,8 @@
 						</bodyTypes>
 					</south>
 				</offsets>
+				<hediffGraphics>
+				</hediffGraphics>
 				<inFrontOfBody>false</inFrontOfBody>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -748,6 +798,8 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Eye -->
@@ -757,6 +809,8 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
+				<hediffGraphics>
+				</hediffGraphics>
 			</li>
 		</value>
 	</Operation>
