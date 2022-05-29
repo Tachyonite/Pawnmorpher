@@ -69,6 +69,7 @@ namespace Pawnmorph.Abilities.Skyfallers
                 Map.listerThings.Add(this);
 
             OnLanded?.Invoke(this);
+            Map.listerThings.Remove(this);
             base.Impact();
         }
     }

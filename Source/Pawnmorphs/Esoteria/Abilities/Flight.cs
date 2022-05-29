@@ -88,7 +88,6 @@ namespace Pawnmorph.Abilities
 
         private void OnLanded(Skyfallers.FlightSkyFaller skyfaller)
         {
-            GenSpawn.Spawn(Pawn, skyfaller.Position, skyfaller.Map);
             _skyfaller = null;
             StartCooldown();
         }
