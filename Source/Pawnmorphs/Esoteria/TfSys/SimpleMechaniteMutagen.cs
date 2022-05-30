@@ -318,6 +318,7 @@ namespace Pawnmorph.TfSys
             float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.animal, transformedPawn.original.RaceProps);
             float originalAge = transformedPawn.original.ageTracker.AgeBiologicalYearsFloat;
 
+            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
             transformedPawn.original.ageTracker.AgeBiologicalTicks += agedTicksDelta;
 

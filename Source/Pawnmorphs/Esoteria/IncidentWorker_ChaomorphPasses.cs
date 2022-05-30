@@ -55,7 +55,7 @@ namespace Pawnmorph
             for (var i = 0; i < num2; i++)
             {
                 IntVec3 loc = CellFinder.RandomClosewalkCellNear(intVec, map, 10);
-                pawn = PawnGenerator.GeneratePawn(animal);
+                pawn = Utilities.PawnGeneratorUtility.GenerateAnimal(animal);
                 GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
                 pawn.mindState.exitMapAfterTick = Find.TickManager.TicksGame + num3;
                 if (invalid.IsValid) pawn.mindState.forcedGotoPosition = CellFinder.RandomClosewalkCellNear(invalid, map, 10);

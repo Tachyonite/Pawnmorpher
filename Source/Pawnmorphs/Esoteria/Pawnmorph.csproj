@@ -878,6 +878,7 @@
     <Compile Include="Utilities\LinqUtils.cs" />
     <Compile Include="Utilities\MathUtilities.cs" />
     <Compile Include="Utilities\PatchUtilities.cs" />
+    <Compile Include="Utilities\PawnGeneratorUtility.cs" />
     <Compile Include="Utilities\RandUtilities.cs" />
     <Compile Include="Utilities\RWRaycast.cs" />
     <Compile Include="Utilities\SkillMod.cs" />
