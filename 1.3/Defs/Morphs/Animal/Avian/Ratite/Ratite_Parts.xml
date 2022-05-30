@@ -67,7 +67,7 @@
 				<stageKey>growing</stageKey>
 				<values>
 					<statOffsets>
-						<MeleeDodgeChance>+0.025</MeleeDodgeChance>
+						<MeleeDodgeChance>2.5</MeleeDodgeChance>
 					</statOffsets>
 				</values>
 			</li>
@@ -75,7 +75,7 @@
 				<stageKey>grown</stageKey>
 				<values>
 					<statOffsets>
-						<MeleeDodgeChance>+0.05</MeleeDodgeChance>
+						<MeleeDodgeChance>5</MeleeDodgeChance>
 					</statOffsets>
 				</values>
 			</li>

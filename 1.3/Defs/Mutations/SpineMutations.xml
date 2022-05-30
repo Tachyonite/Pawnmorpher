@@ -33,7 +33,7 @@
 					<description>[PAWN_nameDef]'s spine has become flexible. [PAWN_pronoun] would likely win a contortion contest.</description>
 					<partEfficiencyOffset>0.15</partEfficiencyOffset>
 					<statOffsets>
-						<MeleeDodgeChance>0.15</MeleeDodgeChance>
+						<MeleeDodgeChance>15</MeleeDodgeChance>
 					</statOffsets>
 				</values>
 			</li>

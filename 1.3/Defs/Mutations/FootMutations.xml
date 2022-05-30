@@ -503,7 +503,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<MeleeDodgeChance>0.05</MeleeDodgeChance>
+						<MeleeDodgeChance>5</MeleeDodgeChance>
 						<HuntingStealth>0.10</HuntingStealth>
 					</statOffsets>
 				</values>
@@ -542,7 +542,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<MeleeDodgeChance>-0.03</MeleeDodgeChance>
+						<MeleeDodgeChance>-3</MeleeDodgeChance>
 						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
@@ -558,7 +558,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<MeleeDodgeChance>-0.03</MeleeDodgeChance>
+						<MeleeDodgeChance>-3</MeleeDodgeChance>
 						<ArmorRating_Sharp>0.06</ArmorRating_Sharp>
 					</statOffsets>
 				</values>
