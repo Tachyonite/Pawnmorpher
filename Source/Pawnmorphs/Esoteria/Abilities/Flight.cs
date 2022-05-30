@@ -13,6 +13,8 @@ namespace Pawnmorph.Abilities
     {
         private LocalTargetInfo _target;
         Skyfallers.FlightSkyFaller _skyfaller;
+        private bool _isDrafted;
+        private bool _selected;
 
         protected override MutationAbilityType Type => MutationAbilityType.Target;
         protected override TargetingParameters TargetParameters => new TargetingParameters()
@@ -77,6 +79,9 @@ namespace Pawnmorph.Abilities
                 Map map = Pawn.Map;
                 IntVec3 position = Pawn.Position;
 
+                _isDrafted = Pawn.Drafted;
+                _selected = Find.Selector.IsSelected(Pawn);
+
                 Pawn.DeSpawn();
                 _skyfaller.innerContainer.TryAddOrTransfer(Pawn);
                 _skyfaller.def.graphicData = null;
@@ -89,6 +94,21 @@ namespace Pawnmorph.Abilities
         private void OnLanded(Skyfallers.FlightSkyFaller skyfaller)
         {
             _skyfaller = null;
+
+            if (_isDrafted)
+            {
+                Pawn.drafter.Drafted = true;
+
+                if (_selected)
+                {
+                    Selector selector = Find.Selector;
+                    if (selector.SelectedObjects.Count == 0)
+                    {
+                        selector.Select(Pawn);
+                    }
+                }
+            }
+
             StartCooldown();
         }
 
@@ -108,6 +128,7 @@ namespace Pawnmorph.Abilities
         {
             Scribe_TargetInfo.Look(ref _target, nameof(_target));
             Scribe_References.Look(ref _skyfaller, nameof(_skyfaller));
+            Scribe_Values.Look(ref _isDrafted, nameof(_isDrafted));
         }
     }
 }

@@ -65,12 +65,12 @@ namespace Pawnmorph.Abilities.Skyfallers
 
         protected override void Impact()
         {
-            if (Map.listerThings.Contains(this))
-                Map.listerThings.Add(this);
+            Map.listerThings.Add(this);
 
-            OnLanded?.Invoke(this);
-            Map.listerThings.Remove(this);
+            Map map = Map;
             base.Impact();
+            OnLanded?.Invoke(this);
+            map.listerThings.Remove(this);
         }
     }
 }
