@@ -25,7 +25,7 @@
 		</stages>
 	</ThoughtDef>
 
-	<ThoughtDef ParentName="OutlookMemoryBase">
+	<!-- <ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
 		<defName>EtherRatFoot</defName>
 		<stages>
@@ -48,7 +48,7 @@
 				<baseMoodEffect>-3</baseMoodEffect>
 			</li>
 		</stages>
-	</ThoughtDef>
+	</ThoughtDef> -->
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
