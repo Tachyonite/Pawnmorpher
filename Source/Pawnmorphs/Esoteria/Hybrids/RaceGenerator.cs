@@ -555,9 +555,11 @@ namespace Pawnmorph.Hybrids
                 tradeability = humanDef.tradeability,
                 fillPercent = morph.raceSettings.coverPercent
             };
-            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(animal.tools.MakeSafe()));
-            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
-            var vLst = impliedRace.Verbs.MakeSafe().Concat(animal.Verbs.MakeSafe()).ToList();
+
+            // Verbs from animals are provided by mutations.
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe()); //.Concat(animal.tools.MakeSafe())
+            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance);
+            var vLst = impliedRace.Verbs.MakeSafe().ToList();//.Concat(animal.Verbs.MakeSafe()).ToList();
 
             verbField.SetValue(impliedRace, vLst); 
 
