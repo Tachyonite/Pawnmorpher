@@ -1,0 +1,44 @@
+<Defs>
+
+    <InteractionDef Name="FH_TameAttemptBase" Abstract="true">
+        <symbol>Things/Mote/SpeechSymbols/PrisonerRecruit</symbol>
+        <workerClass>Pawnmorph.Social.Worker_FormerHumanRecruitAttempt</workerClass>
+        <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
+        <initiatorXpGainAmount>90</initiatorXpGainAmount>
+    </InteractionDef>
+    
+    <InteractionDef ParentName="FH_TameAttemptBase">
+        <defName>FormerHumanTameAttempt</defName>
+        <label>animal taming</label>
+        <logRulesInitiator>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_nameDef] tried to reason with [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] offered food to [RECIPIENT_nameDef] under control.</li>
+                <li>r_logentry->[INITIATOR_nameDef] attempted to collar [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] demanded obedience from [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] called [RECIPIENT_nameDef] to come to [INITIATOR_objective].</li>
+                <li>r_logentry->[INITIATOR_nameDef] tried to make [RECIPIENT_nameDef] sit still.</li>
+                <li>r_logentry->[INITIATOR_nameDef] seized [RECIPIENT_nameDef] sharply and barked a command.</li>
+                <li>r_logentry->[INITIATOR_nameDef] attempted to hold [RECIPIENT_nameDef] still.</li>
+                <li>r_logentry->[INITIATOR_nameDef] shouted a command at [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to blink twice if [RECIPIENT_pronoun] was intelligent.</li>
+                <li>r_logentry->[INITIATOR_nameDef] tried to coerce [RECIPIENT_nameDef] back towards the community.</li>
+                <li>r_logentry->[INITIATOR_nameDef] called [RECIPIENT_nameDef] to come back to the community.</li>
+                <li>r_logentry->[INITIATOR_nameDef] touched a vulnerable body part of [RECIPIENT_nameDef], demanding obedience.</li>
+                <li>r_logentry->[INITIATOR_nameDef] pointed at the ground, demanding that [RECIPIENT_nameDef] come.</li>
+                <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a stern command.</li>
+            </rulesStrings>
+        </logRulesInitiator>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <!-- will show up for all former humans -->
+
+            </li>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <!-- we can't use the thought fields in the interaction workers 
+              so I'm using this to add thoughts to the recipient  -->
+                <thought>FormerHumanTameThought</thought>
+              </li>
+        </modExtensions>
+    </InteractionDef>
+</Defs>

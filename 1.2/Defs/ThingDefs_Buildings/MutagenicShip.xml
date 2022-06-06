@@ -1,0 +1,56 @@
+<Defs>
+
+  <IncidentDef>
+    <defName>MutagenicShipPartCrash</defName>
+    <label>ship part crash (mutagenic)</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Pawnmorph.IncidentWorker_MutagenicShipCrash</workerClass>
+    <letterLabel>Mutagenic ship</letterLabel>
+    <letterText>A large piece of an ancient ship has crashed nearby.\n\nIt's mysterious influence will kill all plants in an expanding circle around itself, and mutate any pawns and animals that get too close.\n\nDestroy it as soon as possible. But beware - it will probably defend itself.</letterText>
+    <letterDef>ThreatBig</letterDef>
+    <baseChance>2.0</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <tags>
+      <li>MechanoidShip</li>
+    </tags>
+    <refireCheckTags>
+      <li>MechanoidShip</li>
+    </refireCheckTags>
+    <category>ThreatBig</category>
+    <pointsScaleable>true</pointsScaleable>
+    <minThreatPoints>450</minThreatPoints>
+    <mechClusterBuilding>CrashedMutagenicShipPart</mechClusterBuilding>
+    <tale>ShipPartCrash</tale>
+  </IncidentDef>
+
+  <ThingDef ParentName="CrashedShipPartBase" Name="MutagenicShipPartBase" Abstract="True">
+    <!-- same as ship part base minus the snow expanding comp -->
+   
+  </ThingDef>
+
+
+
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>CrashedMutagenicShipPartIncoming</defName>
+    <label>crashed ship part (incoming)</label>
+    <size>(6, 3)</size>
+    <skyfaller>
+      <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>
+      <shadowSize>(7, 3.5)</shadowSize>
+      <explosionRadius>5</explosionRadius>
+      <explosionDamage>MutagenCloud_Large</explosionDamage>
+      <cameraShake>1</cameraShake>
+      <metalShrapnelCountRange>
+        <min>6</min>
+        <max>10</max>
+      </metalShrapnelCountRange>
+      <rubbleShrapnelCountRange>
+        <min>300</min>
+        <max>400</max>
+      </rubbleShrapnelCountRange>
+    </skyfaller>
+  </ThingDef>
+</Defs>

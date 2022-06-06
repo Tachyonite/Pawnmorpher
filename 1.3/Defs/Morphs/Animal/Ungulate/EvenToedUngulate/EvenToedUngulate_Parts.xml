@@ -1,0 +1,13 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="EvenToedUngulateJawPart" ParentName="UngulateJawPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="EvenToedUngulateEarPart" ParentName="UngulateEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="EvenToedUngulateTailPart" ParentName="UngulateTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="EvenToedUngulateHornPart" ParentName="UngulateHornPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

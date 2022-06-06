@@ -1,0 +1,146 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="FH_NakedThought" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Worker_FHNaked</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Nudist</li>
+        </nullifyingTraits>
+    </ThoughtDef>
+
+    <ThoughtDef Name="FH_NakedThougthNudist" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Worker_FHNaked</workerClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <requiredTraits>
+            <li>Nudist</li>
+        </requiredTraits>
+    </ThoughtDef>
+    <ThoughtDef ParentName="FH_NakedThought">
+		<defName>SapientAnimalNaked</defName>
+		<stages>
+			<li>
+				<label>naked</label>
+				<description>I know I'm covered in fur but...c'mon!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<!--  you can now add varients for different sapient levels like in the example -->
+			<li>
+				<label>naked</label>
+				<description>It would help if I could put something on, even just to pretend...</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Why do I feel weird out and about? Oh! Clothes!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>There's no other option, right?</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>Chicken</li>
+						<li>Iguana</li>
+						<li>Cobra</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_NakedThought">
+		<defName>SapientChickenNaked</defName>
+		<stages>
+			<li>
+				<label>naked</label>
+				<description>I know I'm covered in feathers but...c'mon!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>It would help if I could put something on, even just to pretend...</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Why do I feel weird out and about? Oh! Clothes!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>There's no other option, right?</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>false</isBlackList>
+					<filterList>
+						<li>Chicken</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_NakedThought">
+		<defName>SapientReptileNaked</defName>
+		<stages>
+			<li>
+				<label>naked</label>
+				<description>I know I'm covered in scales but...c'mon!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>It would help if I could put something on, even just to pretend...</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Why do I feel weird out and about? Oh! Clothes!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>There's no other option, right?</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>false</isBlackList>
+					<filterList>
+						<li>Iguana</li>
+						<li>Cobra</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+</Defs>

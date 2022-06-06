@@ -1,0 +1,53 @@
+<Defs>
+    <HediffDef>
+        <defName>FeralPillSapienceDrop</defName>
+        <label>feralising</label>
+        <description>This pawn's sapience is rapidly degrading to an animal level, thanks to the administration of feral pills.</description>
+		<hediffClass>Pawnmorph.Hediffs.Hediff_Descriptive</hediffClass>
+        <minSeverity>0</minSeverity>
+        <initialSeverity>1</initialSeverity>
+        <stages>
+			<li>
+				<statOffsets>
+                    <SapienceRecoverFactor>-2</SapienceRecoverFactor>
+                </statOffsets>
+			</li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.6</severityPerDay>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <HediffDef>
+		<defName>PM_InstantStabiliserHigh</defName>
+		<description>This pawn has been stabilised against further mutations. This lasts for five days, and the pawn cannot receive additional mutations in this timeframe.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutagen stabilised</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-2</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+			</li>
+
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-1.5</MutagenSensitivity>
+					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+
+</Defs>

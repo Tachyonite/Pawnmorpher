@@ -16,6 +16,7 @@
             <xs:element name="label" type="xs:string" minOccurs="0" />
             <xs:element name="description" type="xs:string" minOccurs="0" />
             <xs:element name="maxSeverity" type="xs:float" minOccurs="0" />
+            <xs:element name="minSeverity" type="xs:float" minOccurs="0" />
             <xs:element name="initialSeverity" type="xs:float" minOccurs="0" />
             <xs:element name="hediffClass" type="xs:string" minOccurs="0" />
             <xs:element name="defaultAddChance" type="xs:float" minOccurs="0"/>
@@ -53,6 +54,21 @@
                     <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
                 </xs:complexType>
             </xs:element>
+            <xs:element name="stagePatches" minOccurs="0">
+				<xs:complexType>
+				    <xs:sequence>
+						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+								    <xs:element name="stageKey" type="xs:string" minOccurs="0" />
+								    <xs:element name="values" type="HediffStage" minOccurs="0" />
+								</xs:all>
+								<xs:attribute name="function" type="xs:string" use="optional" />
+							</xs:complexType>
+						</xs:element>
+				    </xs:sequence>
+				</xs:complexType>
+            </xs:element>
             <xs:element name="spawnThingOnRemoved" type="xs:string" minOccurs="0"/>
             <xs:element name="parts" minOccurs="0" type="ListOfStrings" />
             <xs:element name="categories" minOccurs="0" type="ListOfStrings" />
@@ -79,12 +95,15 @@
     </xs:complexType>
     <xs:complexType name="HediffStage">
         <xs:all>
+		    <xs:element name="key" minOccurs="0" type="xs:string" />
             <xs:element name="minSeverity" minOccurs="0" type="xs:float" />
             <xs:element name="label" minOccurs="0" type="xs:string" />
             <xs:element name="labelOverride" minOccurs="0" type="xs:string" />
             <xs:element name="description" minOccurs="0" type="xs:string" />
             <xs:element name="painOffset" type="xs:float" minOccurs="0" />
             <xs:element name="healthOffset" type="xs:float" minOccurs="0" />
+			<xs:element name="globalHealthMultiplier" type="xs:float" minOccurs="0" />
+			<xs:element name="hungerRateFactorOffset" type="xs:float" minOccurs="0" />
             <xs:element name="graphics" minOccurs="0">
                 <xs:complexType>
                     <xs:sequence>
@@ -158,6 +177,20 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+
+            <xs:element name="abilities" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Abilities provided by this mutation's stage.
+                        See Pawnmorph.Abilities.MutationAbility
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="li" type="MutationAbility" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:all>
         <xs:attribute name="Class" type="CustomHediffStages" use="optional" />
     </xs:complexType>
@@ -193,6 +226,47 @@
             </xs:element>
             <xs:element name="power" type="xs:float" minOccurs="0" />
             <xs:element name="cooldownTime" type="xs:float" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="MutationAbility">
+        <xs:all>
+            <xs:element name="abilityClass" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The class containing this ability's functionality.
+                        Must inherit Pawnmorph.Abilities.MutationAbility.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="label" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The text shown as the title of the button.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        The tooltip shown when hovering the mouse over the button.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="iconPath" type="xs:string" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Path to the icon shown on the button.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cooldown" type="xs:integer" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cooldown in ticks of how long it takes for the ability to become available again after use.
+                        1 second is generally 60 ticks.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:all>
     </xs:complexType>
 </xs:schema>

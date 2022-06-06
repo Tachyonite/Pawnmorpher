@@ -1,0 +1,100 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+		<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidJawPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkJaw</defName>
+		<label>elk snout</label>
+		<mutationMemory>EtherElkJaw</mutationMemory>
+		<graphics>
+			<Muzzle>Parts/Elk/Elk_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown into a long elk snout with a shaggy neck beard. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidEarPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkEar</defName>
+		<label>elk ear</label>
+		<mutationMemory>EtherElkEar</mutationMemory>
+		<graphics>
+			<LeftEar>Parts/Elk/Elk_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Elk/Elk_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Elk/Elk_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Elk/Elk_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A broad elk ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidTailPart">
+		<classInfluence>ElkMorph</classInfluence>
+		<defName>EtherElkTail</defName>
+		<label>elk tail</label>
+		<mutationMemory>EtherElkTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Elk/Elk_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short wooly tail hangs down from [PAWN_nameDef]'s spine.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
+		<defName>EtherElkAntlers</defName>
+		<label>elk antlers</label>
+		<description>Wide, imposing antlers.</description>
+		<classInfluence>ElkMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<mutationMemory>EtherElkAntlers</mutationMemory>
+		<graphics>
+			<Horns>Parts/Elk/Elk_Horns_B</Horns>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Wide, imposing antlers are growing from [PAWN_nameDef]'s head. While covered under soft velvet skin the hard, quick growing bone underneath adds a lot of power to a strike.</description>
+					<graphics>
+						<Horns>Parts/Elk/Elk_Horns_A</Horns>
+					</graphics>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Some might consider hunting [PAWN_nameDef] for the large rack that embellishes [PAWN_possessive] head. Hunters beware for [PAWN_pronoun] will fight back ferociously!</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

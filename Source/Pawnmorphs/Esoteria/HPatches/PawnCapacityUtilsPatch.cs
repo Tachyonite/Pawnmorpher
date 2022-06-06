@@ -114,10 +114,6 @@ namespace Pawnmorph.HPatches
         {
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
             {
-                List<CodeInstruction> lst = insts.ToList();
-
-                const int len = 5;
-                var subArr = new CodeInstruction[len];
                 var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
                 {
                     (OpCodes.Ldarg_1, null), //part 
@@ -133,26 +129,61 @@ namespace Pawnmorph.HPatches
                                                                      BindingFlags.Public | BindingFlags.Instance)))
                 };
 
-                MethodInfo subMethod =
-                    typeof(BodyUtilities).GetMethod(nameof(BodyUtilities.GetPartMaxHealth),
-                                                    BindingFlags.Public | BindingFlags.Static);
-
-                for (var i = 0; i < lst.Count - len; i++)
-                {
-                    for (var j = 0; j < len; j++) subArr[j] = lst[i + j];
-
-                    if (!subArr.MatchesPattern(pattern)) continue;
-
-                    lst[i + 1].opcode = OpCodes.Nop;
-                    lst[i + 1].operand = null;
-                    lst[i + 4].opcode = OpCodes.Call;
-                    lst[i + 4].operand = subMethod;
-                    break;
-                }
-
-
-                return lst; 
+                return PatchMaxHealthReference(insts, pattern, 1);
             }
+        }
+
+        [HarmonyPatch(typeof(PawnCapacityUtility.CapacityImpactorBodyPartHealth), nameof(PawnCapacityUtility.CapacityImpactorBodyPartHealth.Readable))]
+        static class CapacityImpactorBodyPartHealth
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
+            {
+                var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
+                {
+                    (OpCodes.Ldarg_0, null), //part 
+                    (OpCodes.Ldfld, new OpCodeOperand(typeof(PawnCapacityUtility.CapacityImpactorBodyPartHealth).GetField(nameof(PawnCapacityUtility.CapacityImpactorBodyPartHealth.bodyPart),
+                                                                        BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(BodyPartRecord).GetField(nameof(BodyPartRecord.def),
+                                                                       BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldarg_1, null), //pawn 
+                    (OpCodes.Callvirt,
+                     new OpCodeOperand(typeof(BodyPartDef).GetMethod(nameof(BodyPartDef.GetMaxHealth),
+                                                                     BindingFlags.Public | BindingFlags.Instance)))
+                };
+
+                return PatchMaxHealthReference(insts, pattern, 2);
+            }
+        }
+
+        private static IEnumerable<CodeInstruction> PatchMaxHealthReference(IEnumerable<CodeInstruction> insts, ValueTuple<OpCode, OpCodeOperand?>[] pattern, int nullifyPatternIndex)
+        {
+
+            List<CodeInstruction> lst = insts.ToList();
+
+            int len = pattern.Length;
+            var subArr = new CodeInstruction[len];
+
+            MethodInfo subMethod =
+                typeof(BodyUtilities).GetMethod(nameof(BodyUtilities.GetPartMaxHealth),
+                                                BindingFlags.Public | BindingFlags.Static);
+
+            for (var i = 0; i < lst.Count - len; i++)
+            {
+                for (var j = 0; j < len; j++) subArr[j] = lst[i + j];
+
+                if (!subArr.MatchesPattern(pattern)) continue;
+
+                lst[i + nullifyPatternIndex].opcode = OpCodes.Nop;
+                lst[i + nullifyPatternIndex].operand = null;
+                lst[i + pattern.Length - 1].opcode = OpCodes.Call;
+                lst[i + pattern.Length - 1].operand = subMethod;
+
+                break;
+            }
+
+
+            return lst;
         }
     }
 }

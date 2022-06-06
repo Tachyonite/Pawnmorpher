@@ -1,0 +1,287 @@
+<Defs>
+	<!-- Animal (fur) -->
+		<!-- Monkey -->
+		<!-- Powerful -->
+			<!-- Thickly furred -->
+				<!-- Megasloth -->
+				<!-- Thrumbo -->
+			<!-- Thick hide -->
+				<!-- Elephant -->
+				<!-- Rhinoceros -->
+		<!-- Reptile (scales) -->
+			<!-- Cobra -->
+			<!-- Iguana -->
+			<!-- Tortoise -->
+		<!-- Avian (feathers) -->
+            <!-- Ratite -->
+			    <!-- Cassowary -->
+			    <!-- Emu -->
+			    <!-- Ostrich -->
+            <!-- Galliform -->
+			    <!-- Turkey -->
+			    <!-- Chicken -->
+            <!-- Anseriform -->
+			    <!-- Duck -->
+			    <!-- Goose -->
+		<!-- Ungulate (unguligrade & hide) -->
+			<!-- Odd-toed ungulate (hoof) -->
+				<!-- Horse -->
+			<!-- Even-toed ungulate (cloven hoof) -->
+			    <!-- Fur-covered ungulates -->
+					<!-- Caprid -->
+						<!-- Ibex -->
+						<!-- Goat -->
+				<!-- Wool-covered ungulates -->
+					<!-- Ovid -->
+						<!-- Sheep -->
+				<!-- Hide-covered ungulates -->
+					<!-- Bovid -->
+						<!-- Cow -->
+						<!-- Gazelle -->
+						<!-- Muffalo -->
+					<!-- Camelid -->
+						<!-- Alpaca -->
+						<!-- Dromedary -->
+					<!-- Cervid -->
+						<!-- Boomalope -->
+						<!-- Caribou -->
+						<!-- Deer -->
+						<!-- Elk -->
+					<!-- Suid (trotter foot) -->
+						<!-- Pig -->
+						<!-- WildBoar -->
+		<!-- Paw footed [Needs a better name] (paw feet) -->
+			<!-- Bear -->
+				<!-- Bear_Grizzly -->
+				<!-- Bear_Polar -->
+			<!-- Hare -->
+				<!-- Hare -->
+				<!-- Snowhare -->
+			<!-- Rodent (dextrous paws) -->
+				<!-- Alphabeaver -->
+				<!-- Boomrat -->
+				<!-- Capybara -->
+				<!-- Chinchilla -->
+				<!-- Raccoon -->
+				<!-- Rat -->
+				<!-- Squirrel -->
+			<!-- Carnivora (digitigrade) -->
+				<!-- Martens -->
+				<!-- Canid (paw hands) -->
+					<!-- Husky -->
+					<!-- LabradorRetriever -->
+					<!-- Warg -->
+					<!-- YorkshireTerrier -->
+					<!-- Fox -->
+						<!-- Fox_Fennec -->
+						<!-- Fox_Red -->
+						<!-- Fox_Arctic -->
+					<!-- Wolf -->
+						<!-- Wolf_Timber -->
+						<!-- Wolf_Arctic -->
+				<!-- Feline (claw hands) -->
+					<!-- Cat -->
+					<!-- Cougar -->
+					<!-- Lynx -->
+					<!-- Panther -->
+					<!-- Leopard -->
+						<!-- Leopard -->
+						<!-- Snow Leopard -->
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Animal</defName>
+        <label>animal</label>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Powerful</defName>
+        <label>powerful</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>ThickFur</defName>
+        <label>thickly furred</label>
+        <parent>Powerful</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>ThickHide</defName>
+        <label>thick hide</label>
+        <parent>Powerful</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Reptile</defName>
+        <label>reptile</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Avian</defName>
+        <label>avian</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ratite</defName>
+        <label>ratite</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Galliform</defName>
+        <label>galliform</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Anseriform</defName>
+        <label>anseriform</label>
+        <parent>Avian</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ungulate</defName>
+        <label>ungulate</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>OddToedUngulate</defName>
+        <label>odd-toed ungulate</label>
+        <parent>Ungulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>EvenToedUngulate</defName>
+        <label>even-toed ungulate</label>
+        <parent>Ungulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Bovid</defName>
+        <label>bovid</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>WoollyUngulate</defName>
+        <label>woolly even-toed ungulate</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>FurryUngulate</defName>
+        <label>furry even-toed ungulate</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ovid</defName>
+        <label>ovid</label>
+        <parent>WoollyUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>Caprid</defName>
+        <label>caprid</label>
+        <parent>FurryUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Camelid</defName>
+        <label>camelid</label>
+        <parent>WoollyUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Cervid</defName>
+        <label>cervid</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Suid</defName>
+        <label>suid</label>
+        <parent>EvenToedUngulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>PawFooted</defName>
+        <label>paw footed</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Bear</defName>
+        <label>bear</label>
+        <parent>PawFooted</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Hare</defName>
+        <label>hare</label>
+        <parent>PawFooted</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Rodent</defName>
+        <label>rodent</label>
+        <parent>PawFooted</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Carnivora</defName>
+        <label>carnivora</label>
+        <parent>PawFooted</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Canid</defName>
+        <label>canid</label>
+        <parent>Carnivora</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Fox</defName>
+        <label>fox</label>
+        <parent>Canid</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Wolf</defName>
+        <label>wolf</label>
+        <parent>Canid</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Feline</defName>
+        <label>feline</label>
+        <parent>Carnivora</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Leopard</defName>
+        <label>leopard</label>
+        <parent>Feline</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Invertebrates</defName>
+        <label>invertebrates</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Insect</defName>
+        <label>insect</label>
+        <parent>Invertebrates</parent>
+    </Pawnmorph.AnimalClassDef>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Arachnid</defName>
+        <label>spiders</label>
+        <parent>Invertebrates</parent>
+    </Pawnmorph.AnimalClassDef>
+</Defs>

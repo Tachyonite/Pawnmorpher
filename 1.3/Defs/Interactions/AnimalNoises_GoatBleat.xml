@@ -27,12 +27,6 @@
 				<value>0.125</value>
 			</li>
 
-			<!-- Eyes -->
-            <li>
-				<key>EtherGoatEye</key>
-				<value>0.125</value>
-			</li>
-
             <!-- Horns -->
             <li>
 				<key>EtherGoatHorns</key>

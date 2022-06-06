@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="WildBovidMorph">
+		<defName>BisonMorph</defName>
+		<label>bisonmorph</label>
+		<description>A large humanoid resulting when a human is exposed to bison specific mutagens. Usually covered in long thick fur.</description>
+		<race>Bison</race>
+		<categories>
+			<li>Temperate</li>
+		</categories>
+		<fullTransformation>PawnmorphBisonTF</fullTransformation>
+		<partialTransformation>PawnmorphBisonTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(120,90,65)</skinColorOverride>
+				<hairColorOverride>(0,0,0,0)</hairColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BisonTransformationMemory</transformationMemory>
+			<revertedMemory>BisonRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

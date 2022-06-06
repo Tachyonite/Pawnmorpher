@@ -4,6 +4,7 @@
 using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -45,15 +46,14 @@ namespace Pawnmorph.IncidentWorkers
 
 
             IntVec3 loc = CellFinder.RandomClosewalkCellNear(result, map, 12);
-            Pawn pawn = PawnGenerator.GeneratePawn(kind);
-            GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
-            pawn.SetFaction(Faction.OfPlayer);
-            var oPawn = GenerateGordon(pawn);
             
+            Pawn pawn = PawnGeneratorUtility.GenerateAnimal(kind, Faction.OfPlayer);
+            
+            var oPawn = GenerateGordon(pawn);
+            pawn.Name = oPawn.Name ?? pawn.Name;
 
             FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn);
 
-            pawn.Name = oPawn.Name ?? pawn.Name; 
             if (pawn.story != null)
             {
                 pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
@@ -76,6 +76,7 @@ namespace Pawnmorph.IncidentWorkers
             var pm = TfSys.TransformedPawn.Create(oPawn, pawn); 
             Find.World.GetComponent<PawnmorphGameComp>().AddTransformedPawn(pm);
 
+            GenSpawn.Spawn(pawn, loc, map, Rot4.Random);
             return true;
         }
 
@@ -100,7 +101,7 @@ namespace Pawnmorph.IncidentWorkers
             Faction faction = Faction.OfPlayer;
             bool useFirst = Rand.Bool;
             string firstName, lastName;
-            firstName = lastName = "";
+            firstName = lastName = null;
             if (useFirst)
                 firstName = "Gordon";
             else
@@ -108,7 +109,7 @@ namespace Pawnmorph.IncidentWorkers
 
   
 
-            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), 17);
+            float convertedAge = Mathf.Max(TransformerUtility.ConvertAge(animal, ThingDefOf.Human.race), FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             float chronoAge = animal.ageTracker.AgeChronologicalYears * convertedAge / animal.ageTracker.AgeBiologicalYears;
             var local = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer, -1,
                                                   fixedChronologicalAge: chronoAge,
@@ -121,7 +122,7 @@ namespace Pawnmorph.IncidentWorkers
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
 
             var name = lPawn.Name as NameTriple;
-            lPawn.Name = new NameTriple(firstName, name?.Nick ?? firstName, lastName); 
+            lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last); 
 
 
             if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))

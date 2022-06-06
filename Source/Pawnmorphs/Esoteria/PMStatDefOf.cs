@@ -102,7 +102,16 @@ namespace Pawnmorph
         ///     Multiplier on the total pawn body size.
         /// </summary>
         public static StatDef PM_BodySize;
-        
+
+
+        /// <summary>
+        ///     Controls whether or not the pawn can use the flight ability.
+        /// </summary>
+        /// use the inverse of this value to get the multiplier
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [NotNull]
+        public static StatDef PM_Lift;
+
 
         // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()

@@ -23,6 +23,7 @@ namespace Pawnmorph
         public static AnimalClassDef Animal;
 
         public static AnimalClassDef Canid;
+        public static AnimalClassDef Reptile;
 
         public static AnimalClassDef Powerful;
     }

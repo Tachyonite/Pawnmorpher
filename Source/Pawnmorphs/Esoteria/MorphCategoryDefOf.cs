@@ -13,9 +13,7 @@ namespace Pawnmorph
         public static MorphCategoryDef Powerful;
         public static MorphCategoryDef Combat;
         public static MorphCategoryDef Production;
-        public static MorphCategoryDef Reptile; 
         public static MorphCategoryDef Social;
-        public static MorphCategoryDef Canid; 
         public static MorphCategoryDef Crafter;
         public static MorphCategoryDef Chimera; 
     }

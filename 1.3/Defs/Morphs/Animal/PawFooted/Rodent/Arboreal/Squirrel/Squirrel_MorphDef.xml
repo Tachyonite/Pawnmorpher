@@ -1,0 +1,22 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="ArborealMorph">
+		<defName>SquirrelMorph</defName>
+		<label>squirrelmorph</label>
+		<description>A smaller, squirrel-like humanoid. These former humans share many characteristics with squirrels, usually making them fragile in combat, but their dextrous paws make them good crafters and artists.</description>
+		<race>Squirrel</race>
+		<categories>
+			<li>Temperate</li>
+		</categories>
+		<fullTransformation>PawnmorphSquirrelTF</fullTransformation>
+		<partialTransformation>PawnmorphSquirrelTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(161,95,38)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>SquirrelTransformationMemory</transformationMemory>
+			<revertedMemory>SquirrelRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -6,10 +6,11 @@ namespace Pawnmorph.Jobs
     {
         public override void Produce()
         {
-            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(MutationsDefOf.EtherChemfuelUdder);
-            var comp = hediff?.TryGetComp<HediffComp_Production>();
-
-            comp?.Produce();
+            if (job.jobGiver is Giver_Producer giver)
+            {
+                HediffComp_Production comp = giver.ProductionComp;
+                comp.Produce();
+            }
         }
     }
 }

@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/RulePackDef.xsd">
+    <!-- -->
+    <RulePackDef Name="CoveringMutationLogPackBase" ParentName="CustomMutationRulePackBase" Abstract="true">
+        <rulePack>
+            <rulesStrings>
+                <li>action->grew a [bulk_label_group] of </li>
+                <li>action->was covered in </li>
+                <li>initial->[PART_label]</li>
+                <li>bulk_label_group->[bulk_label]</li>
+                <li>pname->[PAWN_nameDef]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef ParentName="CoveringMutationLogPackBase">
+        <defName>FurGrowthLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>label->fur</li>
+                <li>bulk_label->coat</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef ParentName="CoveringMutationLogPackBase">
+        <defName>HideGrowthLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>label->hide</li>
+                <li>bulk_label->layer</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef ParentName="CoveringMutationLogPackBase">
+        <defName>ScaleGrowthLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>label->scales</li>
+                <li>bulk_label->coating</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef ParentName="CoveringMutationLogPackBase">
+        <defName>FeatherGrowthLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>label->feathers</li>
+                <li>bulk_label->layer</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>

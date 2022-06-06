@@ -66,32 +66,6 @@ namespace Pawnmorph
         /// </summary>
         public Type jobGiver;
 
-        [Unsaved] private ThinkNode_JobGiver _jobGiverCached;
-
-        /// <summary>
-        /// Gets the cached job giver.
-        /// </summary>
-        /// <value>
-        /// The job giver.
-        /// </value>
-        [CanBeNull]
-        public ThinkNode_JobGiver JobGiver
-        {
-            get
-            {
-                if (_jobGiverCached == null && jobGiver != null)
-                {
-                    _jobGiverCached = Activator.CreateInstance(jobGiver) as ThinkNode_JobGiver;
-                    if (_jobGiverCached == null)
-                    {
-                        Log.Error($"at comp production: unable to cast {jobGiver.Name} to {nameof(ThinkNode_JobGiver)}!");
-                        return null;
-                    }
-                }
-                return _jobGiverCached;
-            }
-        }
-
         /// <summary>
         /// get all configuration errors with this instance 
         /// </summary>

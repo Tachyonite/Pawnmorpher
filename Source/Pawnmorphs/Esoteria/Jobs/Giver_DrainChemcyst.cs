@@ -5,14 +5,11 @@ using Verse.AI;
 
 namespace Pawnmorph.Jobs
 {
-    class Giver_DrainChemcyst : ThinkNode_JobGiver
+    class Giver_DrainChemcyst : Giver_Producer
     {
         [CanBeNull]
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.health.hediffSet.GetFirstHediffOfDef(MutationsDefOf.EtherChemfuelUdder)?.TryGetComp<HediffComp_Production>()
-                == null) return null;
-
             var pos = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 2.5f, null, Danger.Some);
             var job = new Job(PMJobDefOf.PMDrainChemcyst, pos);
             return job;

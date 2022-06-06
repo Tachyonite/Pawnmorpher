@@ -1,0 +1,22 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CerebralMorph">
+		<defName>ChinchillaMorph</defName>
+		<label>chinchillamorph</label>
+		<description>A small chinchillalike humanoid. They are fragile in combat, but so adorable! They are very soft, but please ask before petting them...</description>
+		<race>Chinchilla</race>
+		<categories>
+			<li>Tropical</li>
+		</categories>
+		<fullTransformation>PawnmorphChinchillaTF</fullTransformation>
+		<partialTransformation>PawnmorphChinchillaTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(178, 170, 158)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ChinchillaTransformationMemory</transformationMemory>
+			<revertedMemory>ChinchillaRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -278,13 +278,17 @@ namespace Pawnmorph.User_Interface
                 SoundDefOf.Checkbox_TurnedOn.PlayOneShotOnCamera();
             }
 
-            var comp = pawn.GetComp<GraphicsUpdaterComp>();
-            if (comp != null)
+            if (pawn != null)
             {
-                // If pawn has visible graphics, then refresh.
-                comp.IsDirty = true;
-                comp.CompTick();
-                PortraitsCache.SetDirty(pawn);
+                var comp = pawn.GetComp<GraphicsUpdaterComp>();
+                if (comp != null)
+                {
+                    // If pawn has visible graphics, then refresh.
+                    comp.IsDirty = true;
+                    comp.CompTick();
+                    PortraitsCache.SetDirty(pawn);
+                }
+                pawn.health?.capacities?.Notify_CapacityLevelsDirty();
             }
 
             base.Close(doCloseSound);
@@ -560,7 +564,7 @@ namespace Pawnmorph.User_Interface
 
 
                 List<MutationDef> mutationDefs = cachedMutationDefsByPartDef[parts.FirstOrDefault().def];
-                foreach (MutationDef mutationDef in mutationDefs.Where(m => m.RemoveComp.layer == layer && (DebugSettings.godMode || m.IsTagged())))
+                foreach (MutationDef mutationDef in mutationDefs.Where(m => m.RemoveComp?.layer == layer && (DebugSettings.godMode || m.IsTagged())))
                 {
                     void addMutation()
                     {
@@ -678,7 +682,17 @@ namespace Pawnmorph.User_Interface
 
             // Draw the severity slider
             float curSeverity = mutationsOfDef.Select(n => n.Severity).Average();
-            float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, mutationDef.minSeverity, mutationDef.maxSeverity);
+            float minSeverity = 0; // mutationDef.minSeverity;
+            float maxSeverity = 1; // mutationDef.maxSeverity;
+
+            if (debugMode)
+            {
+                minSeverity = 0;
+                maxSeverity = 3;
+            }
+
+
+            float newSeverity = Widgets.HorizontalSlider(new Rect(partListViewRect.x, curY, partListViewRect.width, SLIDER_HEIGHT), curSeverity, minSeverity, maxSeverity);
             if (curSeverity != newSeverity)
             {
                 curSeverity = newSeverity;

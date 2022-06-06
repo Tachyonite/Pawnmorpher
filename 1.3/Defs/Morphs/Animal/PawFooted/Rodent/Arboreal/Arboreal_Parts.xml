@@ -1,0 +1,57 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="ArborealJawPart" ParentName="RodentJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth well suited for gnawing, digging, and pulling up roots. On the other hand, those teeth make speech very difficult.</description>
+					<statOffsets>
+						<PlantHarvestYield>0.2</PlantHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth well suited for gnawing, digging, and pulling up roots. Adaptation has made speaking a little easier.</description>
+					<statOffsets>
+						<PlantHarvestYield>0.4</PlantHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth well suited for gnawing, digging, and pulling up roots. With further adaptation, [PAWN_nameDef] is talking normally.</description>
+					<statOffsets>
+						<PlantHarvestYield>0.5</PlantHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ArborealEarPart" ParentName="RodentEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ArborealTailPart" ParentName="RodentTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<PlantWorkSpeed>+0.05</PlantWorkSpeed>
+				</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<PlantWorkSpeed>+0.1</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
