@@ -1,0 +1,59 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+
+    <!--this thought is for when a former human is bonded to one or more regular animals  -->
+    <ThoughtDef>
+        <defName>FormerHumanAnimalPalsThought</defName>
+        <workerClass>Pawnmorph.Thoughts.AnimalPalsWorker</workerClass>
+        <stages>
+            <li>
+                <label>animal pal</label>
+                <description>I never thought I'd share the perspective of my bonded animal.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>animal pal</label>
+                <description>They're an animal like me, but I'm glad they still recognise me for me...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>animal pal</label>
+                <description>Animal friend...my friend. We're closer like this...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>animal pal</label>
+                <description>Even closer friends now...both animals.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- this thought is for when a former human is bonded to one or more former humans  -->
+    <ThoughtDef>
+        <defName>FormerHumanPalsThought</defName>
+        <workerClass>Pawnmorph.Thoughts.FormerHumanPalsWorker</workerClass>
+        <stages>
+            <li>
+                <label>former human pal</label>
+                <description>I'm in the same boat as them now, though I never thought it'd happen...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>former human pal</label>
+                <description>Both of us being like this makes our bond stronger.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>former human pal</label>
+                <description>We'll both figure out...how to live like...this...before we both eventually turn feral...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>former human pal</label>
+                <description>Good friend...pal...closer now as animals.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

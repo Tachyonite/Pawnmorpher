@@ -1,0 +1,99 @@
+<Defs>
+	<ThoughtDef Name="MutationMemoryBase" Abstract="true">
+
+		<showBubble>false</showBubble> <!-- should we make a bubble for the mutation thoughts? -->
+		<durationDays>4</durationDays>
+		<thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+		<!-- should probably be about as long as it takes pawns to "get used to" the mutation -->
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>CanidPawHandMemory</defName>
+		<stages>
+			<li> <!-- the first entry is for no trait -->
+				<label>paw-hands</label>
+				<description>How am I supposed to do anything with paws for hands?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>paw-hands</label> <!-- second stage is for the pawns that have the furry trait -->
+				<description>Sure they're not as flexible...but they're cute. That's all that matters, right?</description>
+				<baseMoodEffect>+3</baseMoodEffect>
+			</li>
+			<li>
+				<label>paw-hands</label> <!-- third stage is for those with the body purist trait-->
+				<description>Not my hands, not my damned hands!</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>HoofHandMemory</defName>
+		<stages>
+			<li>
+				<label>hoof-hands</label>
+				<description>I can't do anything with hooves!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>hoof-hands</label>
+				<!-- second stage is for the pawns that have the furry trait -->
+				<description>They're kinda cool. Useless, but cool?</description>
+				<baseMoodEffect>+1</baseMoodEffect>
+			</li>
+			<li>
+				<label>hoof-hands</label>
+				<!-- third stage is for those with the body purist trait-->
+				<description>They're horrific and beastly, I'm useless!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>StumpHandMemory</defName>
+		<stages>
+			<li>
+				<label>stump-hands</label>
+				<description>I break everything I touch!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>stump-hands</label>
+				<!-- second stage is for the pawns that have the furry trait -->
+				<description>I will smash through every wall there is.</description>
+				<baseMoodEffect>+3</baseMoodEffect>
+			</li>
+			<li>
+				<label>stump-hands</label>
+				<!-- third stage is for those with the body purist trait-->
+				<description>I can't even pat a dog without hurting it!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="MutationMemoryBase">
+		<defName>WingTipMemory</defName>
+		<stages>
+			<li>
+				<label>wing tip-hands</label>
+				<description>I don't have any fingers, what am I supposed to do?!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>wing tip-hands</label>
+				<!-- second stage is for the pawns that have the furry trait -->
+				<description>Flap flap. Flap flap. They are admittedly difficult to work with.</description>
+				<baseMoodEffect>+1</baseMoodEffect>
+			</li>
+			<li>
+				<label>wing tip-hands</label>
+				<!-- third stage is for those with the body purist trait-->
+				<description>WHY ME?!</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

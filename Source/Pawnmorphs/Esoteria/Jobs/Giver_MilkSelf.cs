@@ -8,7 +8,7 @@ namespace Pawnmorph.Jobs
     /// <summary>
     /// job giver for pawns milking themselves 
     /// </summary>
-    public class Giver_MilkSelf : ThinkNode_JobGiver
+    public class Giver_MilkSelf : Giver_Producer
     {
         /// <summary>
         /// attempt to generate a job for the given pawn 
@@ -18,9 +18,6 @@ namespace Pawnmorph.Jobs
         [CanBeNull]
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.health.hediffSet.GetFirstHediffOfDef(MutationsDefOf.EtherUdder)?.TryGetComp<HediffComp_Production>()
-                == null) return null;
-
             var pos = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 2.5f, null, Danger.Some);
             var job = new Job(PMJobDefOf.PMMilkSelf, pos);
             return job;

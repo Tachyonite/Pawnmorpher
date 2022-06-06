@@ -30,7 +30,7 @@
                     <li>
                         <!-- on average this would require 50 mutations to give  -->
                         <aspect>Paragon</aspect>
-                        <chance>0.01</chance>
+                        <chance>0.003</chance>
                     </li>
                     <!--
                     <li>

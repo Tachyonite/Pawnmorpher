@@ -17,6 +17,12 @@ namespace Pawnmorph.Hediffs
     public class MutationStage : HediffStage, IDescriptiveStage, IExecutableStage
     {
         /// <summary>
+        /// Optional key that can be used to reference back to this specific stage.
+        /// </summary>
+        [CanBeNull]
+        public string key;
+
+        /// <summary>
         /// list of all aspect givers in this stage 
         /// </summary>
         [CanBeNull]
@@ -30,7 +36,12 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// the max health offset of this particular part 
         /// </summary>
-        public float healthOffset = 0; 
+        public float healthOffset = 0;
+
+        /// <summary>
+        /// the max health modifier of this pawn's bodyparts.
+        /// </summary>
+        public float globalHealthMultiplier = 0;
 
         /// <summary>
         /// The label override
@@ -64,6 +75,9 @@ namespace Pawnmorph.Hediffs
         [CanBeNull]
         public List<VerbToolOverride> verbOverrides;
 
+        [CanBeNull]
+        public List<Abilities.MutationAbilityDef> abilities;
+
         /// <summary>
         /// Gets the skip aspects.
         /// </summary>
@@ -89,10 +103,22 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+            ApplyVerbOverrides(hediff);
+
             if (memory != null)
             {
                 hediff.pawn.TryAddMutationThought(memory);
             }
+        }
+
+        public void OnLoad(Hediff hediff)
+        {
+            ApplyVerbOverrides(hediff);
+        }
+
+
+        private void ApplyVerbOverrides(Hediff hediff)
+        {
 
             var verbGiver = hediff.TryGetComp<HediffComp_VerbGiver>();
             if (verbGiver != null && verbOverrides != null)
@@ -144,8 +170,6 @@ namespace Pawnmorph.Hediffs
             /// </summary>
             public float? chanceFactor;
         }
-
-
 
         /// <summary>
         /// 

@@ -20,4 +20,16 @@
         <toStringStyle>PercentZero</toStringStyle>
         <displayPriorityInCategory>75</displayPriorityInCategory>
     </StatDef>
+    
+    <StatDef ParentName="BaseMutagenic">
+        <defName>PM_Lift</defName>
+        <label>Lift</label>
+        <description>How much weight mutations currently provide lift for.</description>
+        <defaultBaseValue>0</defaultBaseValue>
+        <hideAtValue>0</hideAtValue>
+        <minValue>0</minValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+        <maxValue>1</maxValue>
+    </StatDef>
 </Defs>

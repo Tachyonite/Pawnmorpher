@@ -223,7 +223,7 @@ X-aspect is most commonly used to restore human-level sapience to etherbroken an
 	<ThingDef ParentName="PM_PillBase">
 		<defName>MutagenStabiliser</defName>
 		<label>mutapill, stabiliser</label>
-		<description>These pills contain a refined form of antigen in a slow-release capsule.  When taken, they will neutralize any active mutagenic mechanites in the body and prevent further mutations for five days.
+		<description>These pills contain a refined form of antigen in a slow-release capsule.  When taken, they will neutralize any active mutagenic mechanites in the body after a short duration while preventing further mutations for five days.
 
 Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic diseases and mutagenic buildup when working in highly contaminated areas. It's also officially prescribed alongside mutagen injectors to halt the transformation process when finished, though most mutagen junkies prefer raw antigen as a cheaper and equally-effective alternative.</description>
 		<graphicData>

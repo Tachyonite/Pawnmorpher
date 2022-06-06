@@ -46,13 +46,5 @@
         </skillRequirements>
         <workSkill>Intellectual</workSkill>
     </RecipeDef>
-
-    <RecipeDef ParentName="PM_AspectInjectorRecipeBase">
-        <defName>PM_MakeParagonInjector</defName>
-        <label>make paragon injector</label>
-        <description>Make an injector which gives stronger mutations.</description>
-        <products>
-            <PM_ParagonInjector>1</PM_ParagonInjector>
-        </products>
-    </RecipeDef>
+	
 </Defs>

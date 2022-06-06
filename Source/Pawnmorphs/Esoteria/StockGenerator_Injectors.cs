@@ -25,36 +25,35 @@ namespace Pawnmorph
 
         [Unsaved] private List<ThingDef> _injectors;
         [NotNull]
-         List<ThingDef> Injectors
+        List<ThingDef> Injectors
         {
             get
             {
                 if (_injectors == null)
                 {
-                    var allThingsInCat = PMThingCategoryDefOf.Injector.DescendantThingDefs.ToList(); //only grab injectors 
-
+                    IEnumerable<ThingDef> allThingsInCat = PMThingCategoryDefOf.Injector.DescendantThingDefs; //only grab injectors 
 
                     //get all full transformation hediffs in the given morph category 
-                    var allHediffs = (animalClass?.GetAllMorphsInClass()).MakeSafe().Select(m => m.fullTransformation).ToList();
-                    _injectors = new List<ThingDef>(); 
+                    IEnumerable<HediffDef> allHediffs = (animalClass?.GetAllMorphsInClass()).MakeSafe().Select(m => m.fullTransformation);
+                    _injectors = new List<ThingDef>();
 
                     foreach (ThingDef thingDef in allThingsInCat)
                     {
-                        List<IngestionOutcomeDoer> outcomeDoers = thingDef.ingestible?.outcomeDoers;
-                        if(outcomeDoers == null) continue;
+                        IEnumerable<IngestionOutcomeDoer> outcomeDoers = thingDef.ingestible?.outcomeDoers;
+                        if (outcomeDoers == null) 
+                            continue;
 
-                        var rGivers = outcomeDoers.OfType<IngestionOutcomeDoer_MultipleTfBase>();
-                        foreach (HediffDef hediffDef in rGivers.SelectMany(g => g.AllCompleteDefs.MakeSafe().Concat(g.AllPartialDefs.MakeSafe())))
+                        IEnumerable<HediffDef> rGivers = outcomeDoers.OfType<IngestionOutcomeDoer_GiveHediff>().Select(g => g.hediffDef);
+
+                        foreach (HediffDef hediffDef in rGivers)
                         {
                             if (allHediffs.Contains(hediffDef)) //if any ingestion outcome doer adds a hediff we're looking for add it to the list and stop looking
                             {
-                                _injectors.Add(thingDef); 
+                                _injectors.Add(thingDef);
                                 break;
                             }
                         }
-                        
                     }
-
                 }
 
                 return _injectors; 

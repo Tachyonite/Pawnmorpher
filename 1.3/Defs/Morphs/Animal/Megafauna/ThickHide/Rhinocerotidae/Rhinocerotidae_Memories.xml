@@ -1,0 +1,128 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RhinocerosTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>Became rhinomorph</label>
+				<description>I feel so heavy, and this horn is really something else.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Became rhinomorph</label>
+				<description>I'm a huge war machine, this is incredible!</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Became rhinomorph</label>
+				<description>I'm going to run you over if you don't turn me back right now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RhinocerosRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>I'm normal again, and there's no heavy horn on my face!</description>
+				<baseMoodEffect>+3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I feel so much weaker. I'm not as special as before.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I feel human again, and those bestial features are gone!</description>
+				<baseMoodEffect>+10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I feel so weak now. I wanted more, not less!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRhinocerosJaw</defName>
+		<stages>
+			<li>
+				<label>Rhino horn</label>
+				<description>Let's hope the colony doesn't want to mount my head on a wall...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino horn</label>
+				<description>Look at this majestic horn, I feel powerful!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino horn</label>
+				<description>I WILL STAB SOMEBODY WITH THIS THING.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRhinocerosEar</defName>
+		<stages>
+			<li>
+				<label>Rhino ears</label>
+				<description>Did someone stick some tubes on my ears?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino ears</label>
+				<description>Perfect for healing and cooling you off a bit!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino ears</label>
+				<description>I'm used to my ears, not these weird tubes...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRhinocerosTail</defName>
+		<stages>
+			<li>
+				<label>Rhino tail</label>
+				<description>It's just a useless piece of skin hanging of me...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino tail</label>
+				<description>Well...it's a tail, I guess.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rhino tail</label>
+				<description>Why do I even have this...weird tail thing?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

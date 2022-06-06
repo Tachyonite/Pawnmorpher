@@ -1,0 +1,134 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+
+    <ThoughtDef ParentName="FH_NakedThougthNudist">
+		<defName>NudistSapientAnimalNaked</defName>
+		<stages>
+			<li>
+				<label>happily nude</label>
+				<description>Eh, I'm covered in fur, I don't care. This is more natural!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+			<!--  you can now add varients for different sapient levels like in the example -->
+			<li>
+				<label>happily nude</label>
+				<description>Nothin' between me and the world, it's just right.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>There's no other option right?</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Why would they want to put stuff over their fur...</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+
+
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>true</isBlackList>
+					<filterList>
+						<li>Chicken</li>
+						<li>Iguana</li>
+						<li>Cobra</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_NakedThougthNudist">
+		<defName>NudistSapientChickenNaked</defName>
+		<stages>
+			<li>
+				<label>happily nude</label>
+				<description>Eh, I'm covered in feathers, I don't care. This is more natural!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Nothin' between me and the world, it's just right.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>There's no other option right?</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Why would they want to put stuff over their feathers...</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>false</isBlackList>
+					<filterList>
+						<li>Chicken</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_NakedThougthNudist">
+		<defName>NudistSapientReptileNaked</defName>
+		<stages>
+			<li>
+				<label>happily nude</label>
+				<description>Eh, I'm covered in scales, I don't care. This is more natural!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Nothin' between me and the world, it's just right.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>There's no other option right?</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Why would they want to put stuff over their scales...</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+				<!-- this thought is now only valid for sapient animals -->
+				<raceFilter>
+					<isBlackList>false</isBlackList>
+					<filterList>
+						<li>Iguana</li>
+						<li>Cobra</li>
+					</filterList>
+				</raceFilter>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+</Defs>

@@ -1,0 +1,14 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="FamiliarisMorph">
+		<defName>HuskyMorph</defName>
+		<label>huskymorph</label>
+		<race>Husky</race>
+		<fullTransformation>PawnmorphHuskyTF</fullTransformation>
+		<partialTransformation>PawnmorphHuskyTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(137,133,133)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

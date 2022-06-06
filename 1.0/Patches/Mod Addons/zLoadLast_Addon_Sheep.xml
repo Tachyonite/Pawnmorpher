@@ -8,19 +8,19 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherSheepSnout>Parts/sheepface/sheepface</EtherSheepSnout>
+						<EtherSheepSnout>Legacy/Parts/sheepface/sheepface</EtherSheepSnout>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Ear"]/hediffGraphics</xpath>
 					<value>
-						<EtherSheepEar>Parts/sheepface/sheepears</EtherSheepEar>
+						<EtherSheepEar>Legacy/Parts/sheepface/sheepears</EtherSheepEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.29]/hediffGraphics</xpath>
 					<value>
-						<EtherSheepTail>Parts/sheepface/sheeptail</EtherSheepTail>
+						<EtherSheepTail>Legacy/Parts/sheepface/sheeptail</EtherSheepTail>
 					</value>
 				</li>
 				

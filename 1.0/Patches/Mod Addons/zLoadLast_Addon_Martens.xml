@@ -9,37 +9,37 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenJaw>Parts/Marten/Marten_Jaw</EtherMartenJaw>
+						<EtherMartenJaw>Legacy/Parts/Marten/Marten_Jaw</EtherMartenJaw>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenEar>Parts/Marten/Marten_Ear_Left</EtherMartenEar>
+						<EtherMartenEar>Legacy/Parts/Marten/Marten_Ear_Left</EtherMartenEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenEar>Parts/Marten/Marten_Ear_Left_Behind</EtherMartenEar>
+						<EtherMartenEar>Legacy/Parts/Marten/Marten_Ear_Left_Behind</EtherMartenEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenEar>Parts/Marten/Marten_Ear_Right</EtherMartenEar>
+						<EtherMartenEar>Legacy/Parts/Marten/Marten_Ear_Right</EtherMartenEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenEar>Parts/Marten/Marten_Ear_Right_Behind</EtherMartenEar>
+						<EtherMartenEar>Legacy/Parts/Marten/Marten_Ear_Right_Behind</EtherMartenEar>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Tail" and layerOffset=-0.29]/hediffGraphics</xpath>
 					<value>
-						<EtherMartenTail>Parts/Marten/Marten_Tail</EtherMartenTail>
+						<EtherMartenTail>Legacy/Parts/Marten/Marten_Tail</EtherMartenTail>
 					</value>
 				</li>
 

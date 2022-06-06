@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="SapientAnimalBondedNonMasterBase" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Worker_SapientAnimalBondedNonMaster</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="SapientAnimalBondedNonMasterBase">
+        <defName>SapientAnimalBondedNonMaster</defName> <!-- thought for when a sapient animal is bonded to a pawn but that pawn is not it's master -->
+        <stages>
+            <li>
+                <label>friend isn't caretaker</label>
+                <description>I have a special bond with my friend, but they're not by my side.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+            <li>
+                <label>friend isn't caretaker</label>
+                <description>I have a special bond with my friend, but they're not by my side.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+            <li>
+                <label>friend isn't master</label>
+                <description>I think...they're my master...but they're not here.</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+            <li>
+                <label>bond is not master</label>
+                <description>Where's master? Want food...</description>
+                <baseMoodEffect>-12</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

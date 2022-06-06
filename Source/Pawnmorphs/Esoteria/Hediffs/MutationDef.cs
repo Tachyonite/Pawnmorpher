@@ -39,6 +39,11 @@ namespace Pawnmorph.Hediffs
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
         /// <summary>
+        ///     The stage patches that are applied once the object has been deserialized.
+        /// </summary>
+        public List<MutationStagePatch> stagePatches = new List<MutationStagePatch>();
+
+        /// <summary>
         ///     The default chance to add this mutation
         /// </summary>
         public float defaultAddChance = 1f;
@@ -279,7 +284,7 @@ namespace Pawnmorph.Hediffs
                 yield return "both classInfluence and classInfluences are set. only 1 should be set in any mutation";
             }
 
-            if (classInfluence == null && (classInfluences == null || classInfluences.Count > 0))
+            if (classInfluence == null && (classInfluences == null || classInfluences.Count == 0))
             {
                 yield return "No classInfluence has been assigned.";
             }
@@ -327,6 +332,13 @@ namespace Pawnmorph.Hediffs
                     //Log.Message($"{defName} has implicitly defined {nameof(mutationMemory)}, this should be assigned explicitly");
                 }
             }
+
+
+            foreach (MutationStagePatch stagePatch in stagePatches)
+            {
+                stagePatch.Apply(this);
+            }
+
 
             if (parts != null)
             {

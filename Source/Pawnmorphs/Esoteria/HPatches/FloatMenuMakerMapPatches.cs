@@ -131,12 +131,12 @@ namespace Pawnmorph
         [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor), typeof(Vector3), typeof(Pawn), typeof(bool))]
         static class AddHumanlikeOrdersToSA
         {
-
             [NotNull]
             private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
 
-            [NotNull] private static readonly MethodInfo _targetMethodSig =
-                typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 
+            [NotNull] 
+            private static readonly MethodInfo _targetMethodSig = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 
+
             [HarmonyTranspiler]
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
@@ -160,5 +160,44 @@ namespace Pawnmorph
             }
         }
 
+        [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders", typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>))]
+        static class AddHumanlikeOrders
+        {
+            [NotNull]
+            private static readonly MethodInfo originalMethod = AccessTools.DeclaredPropertyGetter(typeof(Thing), nameof(Thing.IngestibleNow));
+
+            [NotNull]
+            private static readonly MethodInfo proxyMethod = typeof(AddHumanlikeOrders).GetMethod(nameof(IngestibleNowProxy));
+
+            public static bool IngestibleNowProxy(Thing thing, Pawn pawn)
+            {
+                bool result = thing.IngestibleNow;
+                if (result && thing is Corpse corpse)
+                {
+                    if (corpse.IsNotFresh() && StatsUtility.GetStat(pawn, PMStatDefOf.RottenFoodSensitivity, 300) >= 1.0f)
+                        return false;
+                }
+
+                return result;
+            }
+
+            [HarmonyTranspiler]
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+            {
+                var codes = instructions.ToList();
+
+                for (var i = 3; i < codes.Count - 1; i++)
+                {
+                    if (codes[i].opcode == OpCodes.Callvirt && (MethodInfo)codes[i].operand == originalMethod)
+                    {
+                        codes[i].opcode = OpCodes.Call;
+                        codes[i].operand = proxyMethod;
+                        codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_1));
+                        break;
+                    }
+                }
+                return codes;
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ using Verse.AI;
 namespace Pawnmorph.Jobs
 {
     /// <summary> Job giver for making a human pawn lay eggs. </summary>
-    public class Giver_LayEgg : ThinkNode_JobGiver
+    public class Giver_LayEgg : Giver_Producer
     {
         /// <summary>
         /// attempt to create a new job for the given pawn 
@@ -19,9 +19,6 @@ namespace Pawnmorph.Jobs
         [CanBeNull]
         protected override Job TryGiveJob(Pawn pawn)
         {
-            if (pawn.health.hediffSet.GetFirstHediffOfDef(MutationsDefOf.EtherEggLayer)?.TryGetComp<HediffComp_Production>()
-                == null) return null;
-
             var pos = RCellFinder.RandomWanderDestFor(pawn, pawn.Position, 2.5f, null, Danger.Some);
             var job = new Job(PMJobDefOf.PMLayEgg, pos);
             return job; 

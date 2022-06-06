@@ -10,39 +10,39 @@
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="Jaw"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
-						<EtherSnowLeopardJaw>Parts/Leopard/Leopard_Jaw</EtherSnowLeopardJaw>
+						<EtherLeopardJaw>Legacy/Parts/Leopard/Leopard_Jaw</EtherLeopardJaw>
+						<EtherSnowLeopardJaw>Legacy/Parts/Leopard/Leopard_Jaw</EtherSnowLeopardJaw>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left</EtherLeopardEar>
+						<EtherLeopardEar>Legacy/Parts/Leopard/Leopard_Ear_Left</EtherLeopardEar>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="left ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Left_Behind</EtherLeopardEar>
+						<EtherLeopardEar>Legacy/Parts/Leopard/Leopard_Ear_Left_Behind</EtherLeopardEar>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="true"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right</EtherLeopardEar>
+						<EtherLeopardEar>Legacy/Parts/Leopard/Leopard_Ear_Right</EtherLeopardEar>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[bodyPart="right ear" and inFrontOfBody="false"]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardEar>Parts/Leopard/Leopard_Ear_Right_Behind</EtherLeopardEar>
+						<EtherLeopardEar>Legacy/Parts/Leopard/Leopard_Ear_Right_Behind</EtherLeopardEar>
 					</value>
 				</li>
 				<li Class="Pawnmorph.PatchOperations.DebugAdd">
 					<!-- TODO figure out a way to make this more general -->
 					<xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/bodyAddons/li[(bodyPart="Tail" or bodyPart="tail") and layerOffset=-0.28]/hediffGraphics</xpath>
 					<value>
-						<EtherLeopardTail>Parts/Leopard/Leopard_Tail</EtherLeopardTail>
+						<EtherLeopardTail>Legacy/Parts/Leopard/Leopard_Tail</EtherLeopardTail>
 					</value>
 				</li>
 				<!-- Defs -->

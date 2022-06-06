@@ -18,6 +18,7 @@ namespace Pawnmorph.Hediffs
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
 
+        private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
         private List<IStageChangeObserverComp> observerComps;
         private IEnumerable<IStageChangeObserverComp> ObserverComps
         {
@@ -72,12 +73,53 @@ namespace Pawnmorph.Hediffs
             {
                 var oldStage = cachedStage;
                 RecacheStage(stageIndex);
-
                 OnStageChanged(oldStage, cachedStage);
+                GenerateAbilities(cachedStage);
 
                 foreach (var comp in ObserverComps)
                     comp.OnStageChanged(oldStage, cachedStage);
             }
+
+            foreach (Abilities.MutationAbility ability in abilities)
+            {
+                ability.Tick();
+            }
+        }
+
+        private void GenerateAbilities(HediffStage stage)
+        {
+            if (stage is MutationStage mutationStage)
+            {
+                if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
+                    return;
+
+                //Abilities.MutationAbility ability;
+                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
+                {
+                    // Only add ability once.
+                    Abilities.MutationAbility ability = abilities.SingleOrDefault(x => x.AbilityDef.abilityClass == abilityDef.abilityClass);
+                    if (ability != null)
+                    {
+                        ability.Initialize(pawn, abilityDef);
+                        continue;
+                    }
+
+                    if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
+                    {
+                        ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
+                        abilities.Add(ability);
+                        ability.Initialize(pawn);
+                    }
+                }
+            }
+        }
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+
+            foreach (Abilities.MutationAbility item in abilities)
+                yield return item.Gizmo;
         }
 
         /// <summary>
@@ -102,10 +144,17 @@ namespace Pawnmorph.Hediffs
         {
             base.ExposeData();
             Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), base.CurStageIndex);
+            Scribe_Collections.Look(ref abilities, nameof(abilities));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 RecacheStage(cachedStageIndex);
+
+                // Null if not previously saved.
+                if (abilities == null)
+                    abilities = new List<Abilities.MutationAbility>();
+
+                GenerateAbilities(cachedStage);
             }
         }
     }

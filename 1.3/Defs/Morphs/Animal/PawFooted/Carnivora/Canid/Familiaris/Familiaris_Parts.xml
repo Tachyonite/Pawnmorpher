@@ -1,0 +1,103 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisJawPart" ParentName="CanidJawPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisJaw</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<statOffsets>
+						<SocialImpact>0.025</SocialImpact>
+						<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+					</statOffsets>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<SocialImpact>0.05</SocialImpact>
+						<MentalBreakThreshold>-0.115</MentalBreakThreshold>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a dog. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally and has mastered the art of puppy dog eyes.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<SocialImpact>0.1</SocialImpact>
+						<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisEarPart" ParentName="CanidEarPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy dog ear flicks around at the sides of [PAWN_nameDef]'s head. It is incredibly cute.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FamiliarisTailPart" ParentName="CanidTailPart" Abstract="true">
+		<mutationMemory>EtherFamiliarisTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MentalBreakThreshold>-0.0175</MentalBreakThreshold>
+						<SocialImpact>+0.025</SocialImpact>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A briskly wagging, excitable dog tail. Was that a small wag just then?</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.035</MentalBreakThreshold>
+						<SocialImpact>+0.05</SocialImpact>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

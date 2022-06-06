@@ -249,7 +249,11 @@ namespace Pawnmorph
             {
                 Log.Error($"Hediff_AddedPart [{def.defName},{Label}] has null part after loading.");
                 pawn.health.hediffSet.hediffs.Remove(this);
+                return;
             }
+            
+            if (CurrentMutationStage != null)
+                CurrentMutationStage.OnLoad(this);
         }
 
         /// <summary>

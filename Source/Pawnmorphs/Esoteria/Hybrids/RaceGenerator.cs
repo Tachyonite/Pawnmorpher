@@ -70,9 +70,9 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = hSize,
-                baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
-                baseHungerRate = hHRate,
+                baseBodySize = human.baseBodySize,
+                baseHealthScale = human.baseHealthScale,
+                baseHungerRate = human.baseHungerRate,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 wildness = animal.wildness/2,
@@ -555,9 +555,11 @@ namespace Pawnmorph.Hybrids
                 tradeability = humanDef.tradeability,
                 fillPercent = morph.raceSettings.coverPercent
             };
-            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(animal.tools.MakeSafe()));
-            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
-            var vLst = impliedRace.Verbs.MakeSafe().Concat(animal.Verbs.MakeSafe()).ToList();
+
+            // Verbs from animals are provided by mutations.
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe()); //.Concat(animal.tools.MakeSafe())
+            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance);
+            var vLst = impliedRace.Verbs.MakeSafe().ToList();//.Concat(animal.Verbs.MakeSafe()).ToList();
 
             verbField.SetValue(impliedRace, vLst); 
 

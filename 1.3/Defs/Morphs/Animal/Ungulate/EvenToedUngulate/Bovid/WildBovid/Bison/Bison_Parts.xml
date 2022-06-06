@@ -1,0 +1,148 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidJawPart">
+		<classInfluence>BisonMorph</classInfluence>
+		<defName>EtherBisonSnout</defName>
+		<label>bison snout</label>
+		<graphics>
+			<Muzzle>Parts/Bison/Bison_Muzzle</Muzzle>
+			<BirdJawOrnament>Parts/Bison/Bison_Foreheadhair</BirdJawOrnament>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidEarPart">
+		<classInfluence>BisonMorph</classInfluence>
+		<defName>EtherBisonEar</defName>
+		<label>bison ear</label>
+		<graphics>
+			<LeftEar>Parts/Bison/Bison_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bison/Bison_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bison/Bison_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bison/Bison_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large tan ear that belongs to a bison. It flicks idly.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidTailPart">
+		<classInfluence>BisonMorph</classInfluence>
+		<defName>EtherBisonTail</defName>
+		<label>bison tail</label>
+		<graphics>
+			<Tail>Parts/Bison/Bison_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A bisonlike tail. A tuft of fur puffs out at the end.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Commented out due to Tough Torso mutation -->
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherBisonWooly</defName>
+		<classInfluence>BisonMorph</classInfluence>
+		<label>thick fur</label>
+		<description>Thick fur grows over [PAWN_nameDef]'s body constantly. Luckily, they can shave themselves to manage it.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<mutationTale>StartsGrowingWool</mutationTale>
+		<mutationMemory>EtherWooly</mutationMemory>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ShavedMyself</thought>
+				<etherBondThought>ShavedMyselfBond</etherBondThought>
+				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolBison</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>2</daysToProduce>
+						<amount>12</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>7</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>4</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>3</amount>
+						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<parts>
+			<li>Torso</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef> -->
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="WildBovidHornPart">
+		<defName>EtherBisonHorns</defName>
+		<classInfluence>BisonMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of bison horns.</description>
+		<graphics>
+			<Horns>Parts/Bison/Bison_Horns_B</Horns>
+		</graphics>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
+					<graphics>
+						<Horns>Parts/Bison/Bison_Horns_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Two short horns grow from the sides of [PAWN_nameDef]'s head. They're sharp and dangerous to get near if [PAWN_nameDef] happened to be in a bad mood.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>Two stout horns has emerged from the sides of [PAWN_nameDef]'s head. They're very sharp and tempts [PAWN_nameDef] to use them.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

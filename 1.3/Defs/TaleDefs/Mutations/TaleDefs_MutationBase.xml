@@ -1,0 +1,17 @@
+<Defs>
+	<TaleDef Name="MutationTaleBase" Abstract="True">
+		<type>Volatile</type>
+		<baseInterest>16</baseInterest>
+		<ignoreChance>0.05</ignoreChance>
+		<taleClass>Tale_SinglePawn</taleClass>
+		<rulePack>
+			<rulesStrings>
+				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
+				<li>circumstance_phrase->as people look on in horror</li>
+				<!--these are supposed to be labled as 'circumstance_phrase' not 'circumstance_group' -->
+				<li>circumstance_phrase->as people laugh nearby</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about it.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>
