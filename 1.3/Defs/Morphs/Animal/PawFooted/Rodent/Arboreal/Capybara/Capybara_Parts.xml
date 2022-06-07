@@ -22,7 +22,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PWAN_nameDef]'s ear has turned into small round capybara ear.</description>
+					<description>[PAWN_nameDef]'s ear has turned into small round capybara ear.</description>
 				</values>
 			</li>
 		</stagePatches>
