@@ -214,7 +214,7 @@
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<graphics>
-			<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
+			<Horns>Parts/None/None</Horns>
 		</graphics>
 		<categories>
 			<li>Combo</li>
@@ -251,6 +251,9 @@
 				<stageKey>short</stageKey>
 				<values>
 					<description>[PAWN_nameDef] has grown a pair of short and serrated horns from their skull.</description>
+					<graphics>
+						<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
+					</graphics>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
@@ -258,14 +261,15 @@
 							<power>4.0</power>
 						</li>
 					</verbOverrides>
-
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>horns</stageKey>
 				<values>
 					<description>[PAWN_nameDef] has grown a pair of large, serrated horns from their skull.</description>
-					
+					<graphics>
+						<Horns>Parts/COMBINATIONS/Hellhound/Hellhound_Horns</Horns>
+					</graphics>
 					<verbOverrides>
 						<li>
 							<label>horns</label>
