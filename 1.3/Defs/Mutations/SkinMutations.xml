@@ -553,14 +553,14 @@
 			<li function="modify">
 				<stageKey>light</stageKey>
 				<values>
-					<label>isolated</label>
+					<label>bristles</label>
 					<description>This limb appears to be covered in gooseumps as prickles of feathery quills are poking through the skin in places.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>dusting</stageKey>
 				<values>
-					<label>bristles</label>
+					<label>isolated</label>
 					<description>Quills have begun to develop feathers in patches over the skin here.</description>
 				</values>
 			</li>
