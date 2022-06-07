@@ -94,13 +94,13 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though</description>
+					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>Reserves of fat has been diverted to [PAWN_namedef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch</description>
+					<description>Reserves of fat has been diverted to [PAWN_nameDef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch.</description>
 					<graphics>
 						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
 					</graphics>
