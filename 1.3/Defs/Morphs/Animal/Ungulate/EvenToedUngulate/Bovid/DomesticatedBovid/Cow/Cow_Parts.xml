@@ -45,7 +45,7 @@
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
-	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHornPart">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidHornPart">
 		<defName>EtherHorns</defName>
 		<classInfluence>CowMorph</classInfluence>
 		<label>horns</label>
