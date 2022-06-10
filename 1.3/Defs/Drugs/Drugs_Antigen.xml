@@ -22,7 +22,7 @@ Raw antigen is often used as an emergency treatment for mutagenic diseases and m
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>AntigenEffective</hediffDef>
-					<severity>0.04</severity>
+					<severity>0.10</severity>
 				</li>
 			</outcomeDoers>
 		</ingestible>

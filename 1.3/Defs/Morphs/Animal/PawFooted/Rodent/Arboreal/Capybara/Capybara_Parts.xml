@@ -22,24 +22,7 @@
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
-					<description>[PWAN_nameDef]'s ear has turned into small round capybara ear.</description>
-				</values>
-			</li>
-		</stagePatches>
-	</Pawnmorph.Hediffs.MutationDef>
-
-	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
-		<classInfluence>CapybaraMorph</classInfluence>
-		<defName>EtherCapybaraTail</defName>
-		<label>capybara tail</label>
-		<graphics>
-			<Tail>Parts/Capybara/Capybara_Tail</Tail>
-		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>grown</stageKey>
-				<values>
-					<description>The small and fluffy tail of a capybara.</description>
+					<description>[PAWN_nameDef]'s ear has turned into small round capybara ear.</description>
 				</values>
 			</li>
 		</stagePatches>

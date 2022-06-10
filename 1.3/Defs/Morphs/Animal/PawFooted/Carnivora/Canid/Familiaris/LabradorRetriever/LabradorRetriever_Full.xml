@@ -3,7 +3,7 @@
 		<defName>PawnmorphLabradorRetrieverTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<label>labradorretrievermorph</label>
-		<description>This person has mechanites in their blood that are slowly mutating them into a labmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more caprine.</description>
+		<description>This person has mechanites in their blood that are slowly mutating them into a labmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more canine.</description>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
 				<label>reeling</label>

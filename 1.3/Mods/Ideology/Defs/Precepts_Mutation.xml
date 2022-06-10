@@ -46,7 +46,7 @@
                 </entries>
             </li>
             <li Class="PreceptComp_SituationalThought">
-                <thought>PM_HasMutation_Approved_Social</thought>
+                <thought>PM_HasMutation_Disapprove_Social</thought>
             </li>
         </comps>
     </PreceptDef>

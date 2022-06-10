@@ -94,13 +94,16 @@
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
-					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though</description>
+					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though.</description>
+					<graphics>
+						<Spines>Parts/None/None</Spines>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
-					<description>Reserves of fat has been diverted to [PAWN_namedef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch</description>
+					<description>Reserves of fat has been diverted to [PAWN_nameDef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch.</description>
 					<graphics>
 						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
 					</graphics>
@@ -144,6 +147,10 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<description>Thick plates of bone are beginning to grow out from [PAWN_nameDef]'s chest and back.</description>
+					<graphics>
+						<Spines>Parts/None/None</Spines>
+						<SpinesBehind>Parts/None/None</SpinesBehind>
+					</graphics>
 				</values>
 			</li>
 			<li function="modify">

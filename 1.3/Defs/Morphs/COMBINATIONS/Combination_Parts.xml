@@ -65,15 +65,15 @@
 		<label>wolfspike</label>
 		<description>The iguana horns have spread over this lupine muzzle, covering it partly in scales and giving it a particularly sharp point.</description>
 		<parts>
-			<li>Skull</li>
+			<li>Jaw</li>
 		</parts>
 		<categories>
 			<li>Combo</li>
 		</categories>
-		<blockSites>
-			<li>Jaw</li>
-		</blockSites>
 		<classInfluence>Wolf</classInfluence>
+		<graphics>
+			<Muzzle>Parts/COMBINATIONS/Wolfspike/Wolfspike</Muzzle>
+		</graphics>
 		<stages>
 			<li Class="Pawnmorph.Hediffs.MutationStage">
 				<capMods>
