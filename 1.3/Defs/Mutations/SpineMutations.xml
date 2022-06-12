@@ -80,7 +80,7 @@
 
 	<!-- Hump -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHump" ParentName ="PawnmorphGenericOrganPart">
 		<description>A hump of a dromedary</description>
 		<defName>EtherDromedaryHump</defName>
 		<classInfluences>
@@ -131,7 +131,7 @@
     
 	<!-- Tortoise Shell -->
 
-	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphShell" ParentName ="PawnmorphGenericOrganPart">
 		<description>A thick and scaled shell. The ultimate cumbersome defense on the Rimworld!</description>
 		<defName>EtherTortoiseShell</defName>
 		<mutationMemory>EtherTestudinidaeShell</mutationMemory>
