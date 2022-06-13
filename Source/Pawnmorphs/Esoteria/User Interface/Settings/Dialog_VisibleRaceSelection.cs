@@ -59,13 +59,13 @@ namespace Pawnmorph.User_Interface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "Enable visible mutations for races.");
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "enableMutationVisualsHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.");
+            Widgets.Label(descriptionRect, "enableMutationVisualsText".Translate());
 
             curY += descriptionRect.height;
 
@@ -123,7 +123,7 @@ namespace Pawnmorph.User_Interface.Settings
 
         private void ApplyChanges()
         {
-            Find.WindowStack.Add(new Dialog_Popup("Requires a game restart to take affect.", new Vector2(300, 100)));
+            Find.WindowStack.Add(new Dialog_Popup("requiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
             _settingsReference.AddRange(_selectedAliens.Where(x => x.Value).Select(x => x.Key.defName).ToList());
         }

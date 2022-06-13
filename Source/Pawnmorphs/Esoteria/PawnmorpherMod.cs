@@ -58,7 +58,7 @@ namespace Pawnmorph
 
             checkBoxSection.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
 
-            if (checkBoxSection.ButtonText("Show mutations on races."))
+            if (checkBoxSection.ButtonText("enableMutationVisualsButton".Translate()))
                 ShowVisibleRaceSelection();
 
             listingStandard.EndSection(checkBoxSection);
