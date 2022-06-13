@@ -50,6 +50,7 @@ namespace Pawnmorph
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
                 TransferPatchesToExplicitRaces();
+                AddMutationsToWhitelistedRaces();
                 CheckForObsoletedComponents();
                 try
                 {
@@ -331,9 +332,25 @@ namespace Pawnmorph
                 }
 
             }
+        }
 
+        private static void AddMutationsToWhitelistedRaces()
+        {
+            List<AlienPartGenerator.BodyAddon> allAddons = GetAllAddonsToAdd().ToList();
 
-
+            foreach (string raceDefName in PawnmorpherMod.Settings.visibleRaces)
+            {
+                ThingDef_AlienRace race = (ThingDef_AlienRace)ThingDef.Named(raceDefName);
+                try
+                {
+                    AddAddonsToRace(race, allAddons);
+                    CheckDefaultOffsets(race, (ThingDef_AlienRace)ThingDefOf.Human);
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"caught {e.GetType().Name} while trying to add mutation body graphics to {race.defName}!\n{e}");
+                }
+            }
         }
 
 
