@@ -340,7 +340,7 @@ namespace Pawnmorph
 
             foreach (string raceDefName in PawnmorpherMod.Settings.visibleRaces)
             {
-                ThingDef_AlienRace race = (ThingDef_AlienRace)DefDatabase<ThingDef>.GetNamedSilentFail(raceDefName);
+                ThingDef_AlienRace race = DefDatabase<ThingDef>.GetNamedSilentFail(raceDefName) as ThingDef_AlienRace;
                 if (race == null)
                     continue;
 
