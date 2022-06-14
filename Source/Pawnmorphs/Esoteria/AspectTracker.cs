@@ -278,6 +278,7 @@ namespace Pawnmorph
         public void Notify_AspectChanged(Aspect aspect)
         {
             Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+            HPatches.StatWorkerPatches.GetValueUnfinalizedPatch.Invalidate(Pawn);
         }
 
         /// <summary>

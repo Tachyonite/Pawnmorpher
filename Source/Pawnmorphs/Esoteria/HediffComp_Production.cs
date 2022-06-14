@@ -129,6 +129,8 @@ namespace Pawnmorph
         public override void CompPostPostAdd(DamageInfo? dinfo)
         {
             base.CompPostPostAdd(dinfo);
+
+            Stage = -1;
             UpdateCurrentStage();
         }
 
@@ -141,6 +143,7 @@ namespace Pawnmorph
             if (Props.stages != null && Props.stages.Count > 0)
             {
                 HediffComp_Staged stage;
+                int stageIndex = 0;
                 for (int i = 0; i < Props.stages.Count; i++)
                 {
                     stage = Props.stages[i];
@@ -151,7 +154,13 @@ namespace Pawnmorph
                         break;
 
                     _currentStage = stage;
-                    Stage = Props.stages.IndexOf(stage);
+                    stageIndex = i;
+                }
+
+                if (Stage != stageIndex)
+                {
+                    Stage = stageIndex;
+                    HPatches.StatWorkerPatches.GetValueUnfinalizedPatch.Invalidate(Pawn);
                 }
             }
         }
