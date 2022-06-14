@@ -22,8 +22,8 @@
 	<manhunterTfChance>Chance for pawns to go manhunter when transformed</manhunterTfChance>
 	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
 	<PMInjectorsRequireTaggingTooltip>If true, tagging animals is required to make injectors.</PMInjectorsRequireTaggingTooltip>
-	<enableMutationVisualsButton>Show mutations on races.</enableMutationVisualsButton>
-	<enableMutationVisualsHeader>Enable mutations visuals for races.</enableMutationVisualsHeader>
-	<enableMutationVisualsText>Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.</enableMutationVisualsText>
-	<requiresRestart>Requires a game restart to take affect.</requiresRestart>
+	<PMEnableMutationVisualsButton>Show mutations on races.</PMEnableMutationVisualsButton>
+	<PMEnableMutationVisualsHeader>Enable mutations visuals for races.</PMEnableMutationVisualsHeader>
+	<PMEnableMutationVisualsText>Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.</PMEnableMutationVisualsText>
+	<PMRequiresRestart>Requires a game restart to take affect.</PMRequiresRestart>
 </LanguageData>
