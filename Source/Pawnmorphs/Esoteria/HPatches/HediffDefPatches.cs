@@ -16,7 +16,7 @@ namespace Pawnmorph.HPatches
     
     static class HediffDefPatches
     {
-        [NotNull] private static readonly Dictionary<HediffDef, bool> _immunityCache = new Dictionary<HediffDef, bool>(1000);
+        [NotNull] private static readonly Dictionary<HediffDef, bool> _immunityCache = new Dictionary<HediffDef, bool>(100);
 
         [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.PossibleToDevelopImmunityNaturally))]
         private static class HediffImmunityPatch
@@ -26,9 +26,13 @@ namespace Pawnmorph.HPatches
                 if (_immunityCache.TryGetValue(__instance, out __result))
                     return false;
 
-                __result = __instance.PossibleToDevelopImmunityNaturally();
-                _immunityCache[__instance] = __result;
-                return false;
+                return true;
+            }
+
+            private static void Postfix(HediffDef __instance, ref bool __result, bool __runOriginal)
+            {
+                if (__runOriginal)
+                    _immunityCache[__instance] = __result;
             }
         }
 
