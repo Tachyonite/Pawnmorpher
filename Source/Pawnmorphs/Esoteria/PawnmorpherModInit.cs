@@ -336,6 +336,9 @@ namespace Pawnmorph
 
         private static void AddMutationsToWhitelistedRaces()
         {
+            if (PawnmorpherMod.Settings.visibleRaces == null)
+                return;
+
             List<AlienPartGenerator.BodyAddon> allAddons = GetAllAddonsToAdd().ToList();
 
             foreach (string raceDefName in PawnmorpherMod.Settings.visibleRaces)
