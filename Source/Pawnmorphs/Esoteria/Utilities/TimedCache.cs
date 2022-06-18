@@ -58,5 +58,16 @@ namespace Pawnmorph.Utilities
             _requestedUpdate = false;
             _valueGetter = valueGetter;
         }
+
+        public TimedCache(Func<T> valueGetter, T initialValue)
+            : this(valueGetter)
+        {
+            _value = initialValue;
+        }
+
+        public void Offset(int offset)
+        {
+            _timestamp += offset;
+        }
     }
 }
