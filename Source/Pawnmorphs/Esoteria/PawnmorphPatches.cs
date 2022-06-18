@@ -318,7 +318,10 @@ namespace Pawnmorph
             {
                 if (methodInfo.methodInfo == null)
                 {
+#if DEBUG
+                    // Only show configuration errors in debug mode.
                     Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
+#endif
 
                     continue;
                 }
