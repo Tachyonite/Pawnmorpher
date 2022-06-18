@@ -122,20 +122,6 @@ namespace Pawnmorph.HPatches
 
                 if (__result) __result = nd.IsValidFor(___pawn);
             }
-
-            [HarmonyPatch(nameof(Pawn_NeedsTracker.NeedsTrackerTick)), HarmonyPrefix]
-            static bool DisableIfInChamberPatch(Pawn ___pawn)
-            {
-                if (___pawn?.IsHashIntervalTick(150) != true)
-                {
-                    return true; 
-                }
-
-                //needs should not tick while in the chamber 
-                IThingHolder owner = ___pawn.holdingOwner?.Owner;
-                if (owner == null) return true; 
-                return !(owner is MutaChamber);
-            }
         }
         
 
