@@ -63,6 +63,8 @@ namespace Pawnmorph
 
 
         [NotNull] private static readonly List<PawnKindDef> _allRegularFormerHumanPawnKinds;
+
+        [NotNull] private static readonly Dictionary<Pawn, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<Pawn, TimedCache<Intelligence>>(100);
         
 
 
@@ -577,10 +579,26 @@ namespace Pawnmorph
         /// <exception cref="System.ArgumentNullException">pawn</exception>
         public static Intelligence GetIntelligence([NotNull] this Pawn pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            SapienceTracker sTracker = pawn.GetSapienceTracker();
-            if (sTracker == null) return pawn.RaceProps.intelligence;
-            return sTracker.CurrentIntelligence;
+            if (pawn == null)
+                throw new ArgumentNullException(nameof(pawn));
+
+            if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value) == false)
+            {
+                value = new TimedCache<Intelligence>(() =>
+                {
+                    SapienceTracker sTracker = pawn.GetSapienceTracker();
+                    if (sTracker == null)
+                        return pawn.RaceProps.intelligence;
+
+                    return sTracker.CurrentIntelligence;
+                }, pawn.RaceProps.intelligence);
+
+                // Stagger the stored timestamp to avoid every pawn updating cached value on same tick.
+                value.Offset(-_intelligenceCache.Count);
+                _intelligenceCache[pawn] = value;
+            }
+
+            return value.GetValue(200);
         }
 
         /// <summary>

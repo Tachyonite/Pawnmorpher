@@ -14,35 +14,11 @@ namespace Pawnmorph.Utilities
     /// </summary>
     public static class StatsUtility
     {
-        /// <summary>
-        /// Timestamp and pawn stat combination.
-        /// </summary>
-        private class CachedStat
-        {
-            public Cached<float> Stat { get; set; }
-
-            /// <summary>
-            /// Timestamp in ticks for when the stat was last recalculated.
-            /// </summary>
-            public int Timestamp { get; set; }
-
-            public bool RequestedUpdate { get; set; }
-
-            public CachedStat(Cached<float> stat, int ticks)
-            {
-                Stat = stat;
-                Timestamp = ticks;
-                RequestedUpdate = false;
-            }
-        }
-
-        private static Dictionary<Pawn, Dictionary<StatDef, CachedStat>> _statCache;
-        private static TickManager _tickManager;
+        private static Dictionary<ulong, TimedCache<float>> _statCache;
 
         static StatsUtility()
         {
-            _statCache = new Dictionary<Pawn, Dictionary<StatDef, CachedStat>>();
-            _tickManager = Find.TickManager;
+            _statCache = new Dictionary<ulong, TimedCache<float>>(400);
         }
 
         /// <summary>
@@ -54,47 +30,20 @@ namespace Pawnmorph.Utilities
         /// <returns></returns>
         public static float? GetStat(Pawn pawn, StatDef statDef, int maxAge)
         {
-            Dictionary<StatDef, CachedStat> pawnCache = _statCache.TryGetValue(pawn);
-            if (pawnCache == null)
-            {
-                // Cache new pawn
-                pawnCache = new Dictionary<StatDef, CachedStat>();
-                _statCache[pawn] = pawnCache;
-            }
+            ulong lookupID = (ulong)pawn.thingIDNumber << 32 | statDef.index;
 
-            CachedStat stat = pawnCache.TryGetValue(statDef);
-            if (stat == null)
+
+            if (_statCache.TryGetValue(lookupID, out TimedCache<float> cachedValue) == false)
             {
                 if (pawn.Spawned == false)
                     return null;
 
                 // Cache new stat
-                Cached<float> statValue = new Cached<float>(() => pawn.GetStatValueForPawn(statDef, pawn));
-                stat = new CachedStat(statValue, _tickManager.TicksGame);
-                pawnCache[statDef] = stat;
-            }
-            else if (stat.RequestedUpdate == false && pawn.Spawned)
-            {
-                // If stat has not already been queued for update, then check if it should be updated.
-
-                // If stat is older than age limit, recalculate.
-                if (_tickManager.TicksGame - stat.Timestamp > maxAge)
-                {
-                    stat.RequestedUpdate = true;
-                    LongEventHandler.ExecuteWhenFinished(() =>
-                    {
-                        // Invalidate
-                        stat.Stat.Recalculate();
-                        // Get and cache new value
-                        var _ = stat.Stat.Value;
-
-                        stat.Timestamp = _tickManager.TicksGame;
-                        stat.RequestedUpdate = false;
-                    });
-                }
+                cachedValue = new TimedCache<float>(() => pawn.GetStatValueForPawn(statDef, pawn));
+                _statCache[lookupID] = cachedValue;
             }
 
-            return stat.Stat.Value;
+            return cachedValue.GetValue(maxAge);
         }
     }
 }

@@ -150,6 +150,25 @@ namespace Pawnmorph
         }
 
         /// <summary>
+        /// Determines whether the specified thought definition is nullified.
+        /// </summary>
+        /// <param name="thoughtDef">The thought definition.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified thought definition is nullified; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsNullified(ThoughtDef thoughtDef)
+        {
+            if (def.nullifiedThoughts.Contains(thoughtDef))
+                return true;
+
+            if (CurrentStage.nullifiedThoughts.Contains(thoughtDef))
+                return true;
+
+            return false;
+        }
+
+
+        /// <summary>
         /// list of all stages in this Aspect 
         /// </summary>
         [NotNull]
