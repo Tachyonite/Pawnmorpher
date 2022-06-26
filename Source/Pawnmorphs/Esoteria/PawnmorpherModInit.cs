@@ -54,8 +54,17 @@ namespace Pawnmorph
                 CheckForObsoletedComponents();
                 try
                 {
+
+
                     CheckForModConflicts();
+
+#if DEBUG
+                    // Only show configuration errors in debug mode.
                     DisplayGroupedModIssues();
+#endif
+
+
+
                 }
                 catch (Exception e) // just logging, ok to catch and swallow the exception 
                 {
