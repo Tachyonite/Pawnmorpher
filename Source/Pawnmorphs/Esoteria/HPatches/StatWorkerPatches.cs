@@ -50,14 +50,10 @@ namespace Pawnmorph.HPatches
             public static void Invalidate(Pawn pawn)
             {
                 ulong pawnId = (ulong)pawn.thingIDNumber << 32;
-
-                Log.Warning("Invalidating pawn: " + pawn.LabelCap + " - " + Convert.ToString((long)pawnId, 2));
-
                 foreach (var item in _cache)
                 {
                     if ((item.Key & pawnId) == pawnId)
                     {
-                        Log.Warning("updating entry: " + Convert.ToString((long)item.Key, 2) + " - " + Convert.ToString((long)(item.Key & pawnId), 2));
                         item.Value.QueueUpdate();
                     }
                 }
