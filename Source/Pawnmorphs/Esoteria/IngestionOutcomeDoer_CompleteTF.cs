@@ -32,7 +32,8 @@ namespace Pawnmorph
 
             foreach (Hediff hediff in pawn.health.hediffSet.hediffs) // Loop through all the hediffs on the pawn.
             {
-                if(hediff?.def == null) continue;
+                if (hediff.def == null)
+                    continue;
 
                 if (TryForceTransformation(pawn, hediff)) return;
             }
@@ -42,15 +43,21 @@ namespace Pawnmorph
         {
             if (mustBeReeling)
             {
-                var tfHediff = hediff as IMutagenicHediff;
-                // TODO this should probably be changed to CurrentStageHasTransformations
-                if (tfHediff?.CurrentStageHasMutations != false) return false; 
+                if (hediff is IMutagenicHediff mutagenic && mutagenic.CurrentStageHasTransformation == false) 
+                    return false; 
+            }
+            
+            if (hediff is Hediff_MutagenicBase mutagenicHediff)
+            {
+                mutagenicHediff.TryTransform();
+                return true;
             }
 
-
             foreach (IPawnTransformer pawnTransformer in hediff.def.GetAllTransformers())
+            {
                 if (pawnTransformer.TransformPawn(pawn, hediff))
                     return true;
+            }
 
             return false;
             
