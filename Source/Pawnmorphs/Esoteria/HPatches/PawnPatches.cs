@@ -210,7 +210,7 @@ namespace Pawnmorph.HPatches
         static float GetBodySizePatch(float __result, [NotNull] Pawn __instance)
         {
             float? bodySizeModifier = StatsUtility.GetStat(__instance, PMStatDefOf.PM_BodySize, 300);
-            if (bodySizeModifier.HasValue)
+            if (bodySizeModifier.HasValue && bodySizeModifier.Value > 0)
                 return __result * bodySizeModifier.Value;
 
             return __result;
