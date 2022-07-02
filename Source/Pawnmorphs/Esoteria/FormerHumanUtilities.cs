@@ -594,11 +594,22 @@ namespace Pawnmorph
                 }, pawn.RaceProps.intelligence);
 
                 // Stagger the stored timestamp to avoid every pawn updating cached value on same tick.
+                value.Update();
                 value.Offset(-_intelligenceCache.Count);
                 _intelligenceCache[pawn] = value;
             }
 
             return value.GetValue(200);
+        }
+
+        /// <summary>
+        /// Invalidates the cached intelligence level of the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static void InvalidateIntelligence([NotNull] this Pawn pawn)
+        {
+            if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value))
+                value.Update();
         }
 
         /// <summary>

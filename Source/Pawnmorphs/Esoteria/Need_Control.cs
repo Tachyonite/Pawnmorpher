@@ -372,9 +372,11 @@ namespace Pawnmorph
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
 
-            if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
-
             SapienceLevelChanged?.Invoke(this, pawn, oldLevel, newLevel);
+
+            if (pawn.Faction == Faction.OfPlayer) 
+                Find.ColonistBar?.MarkColonistsDirty();
+
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Doer), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
             if (_currentLevel == SapienceLevel.PermanentlyFeral)
             {
