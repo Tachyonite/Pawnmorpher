@@ -458,7 +458,7 @@ namespace Pawnmorph
         {
             float age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
             return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
-                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
+                                             fixedChronologicalAge: Math.Max(original.ageTracker.AgeChronologicalYears, age),
                                              fixedGender: fixedGender);
         }
 
@@ -819,7 +819,9 @@ namespace Pawnmorph
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
-            if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
+
+            if (original.Faction == Faction.OfPlayer && animal.Faction != original.Faction) 
+                animal.SetFaction(original.Faction);
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 
