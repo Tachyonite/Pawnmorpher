@@ -6,6 +6,7 @@
 		<graphics>
 			<Muzzle>Parts/Megasloth/Megasloth_Muzzle</Muzzle>
 		</graphics>
+		<mutationMemory>EtherMegaslothSnout</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -38,6 +39,7 @@
 		<classInfluence>MegaslothMorph</classInfluence>
 		<defName>EtherMegaslothTail</defName>
 		<label>megatherine tail</label>
+		<mutationMemory>EtherMegaslothTail</mutationMemory>
 		<graphics>
 			<Tail>Parts/Megasloth/Megasloth_Tail</Tail>
 		</graphics>

@@ -5,6 +5,7 @@
 		<defName>EtherThrumboSnout</defName>
 		<label>thrumbo snout</label>
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
+		<mutationMemory>EtherThrumboSnout</mutationMemory>
 		<graphics>
 			<MuzzleMale>Parts/Thrumbo/Thrumbo_Muzzle_Male</MuzzleMale>
 			<MuzzleFemale>Parts/Thrumbo/Thrumbo_Muzzle_Female</MuzzleFemale>
@@ -53,7 +54,7 @@
 		<classInfluence>ThrumboMorph</classInfluence>
 		<description>A razor-sharp thrumbo horn.</description>
 		<mutationTale>GrewThrumboHorn</mutationTale>
-		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<mutationMemory>EtherThrumboHorn</mutationMemory>
 		<value>30</value>
 		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
 		<stagePatches>
@@ -149,6 +150,7 @@
 		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboEar</defName>
 		<label>thrumbo ear</label>
+		<mutationMemory>EtherThrumboEar</mutationMemory>
 		<graphics>
 			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
 			<LeftEarBehind>Parts/None/None</LeftEarBehind>
@@ -169,6 +171,7 @@
 		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboTail</defName>
 		<label>thrumbo tail</label>
+		<mutationMemory>EtherThrumboTail</mutationMemory>
 		<graphics>
 			<Tail>Parts/Thrumbo/Thrumbo_Tail</Tail>
 		</graphics>
