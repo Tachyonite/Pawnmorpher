@@ -162,7 +162,12 @@ namespace Pawnmorph.TfSys
             animalToSpawn.needs.rest.CurLevel =
                 original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
-            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
+
+            float sapienceLevel;
+            if (original.health?.hediffSet?.HasHediff(TfHediffDefOf.SapienceLimiterHediff) == true)
+                sapienceLevel = original.GetSapienceLevel() ?? 1;
+            else
+                sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
 
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
