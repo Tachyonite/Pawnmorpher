@@ -49,6 +49,11 @@ namespace Pawnmorph.HPatches
                 }
 
 
+                // Disable Ate without a table for ferals
+                if (newThought.def == ThoughtDefOf.AteWithoutTable && (__instance.pawn.GetQuantizedSapienceLevel() ?? SapienceLevel.Sapient) >= SapienceLevel.MostlyFeral)
+                    return false;
+
+
                 newThought = newThought.GetSubstitute(__instance.pawn);
 
                 return true;
