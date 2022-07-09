@@ -100,8 +100,13 @@ namespace Pawnmorph.TfSys
             meldToSpawn.health.AddHediff(hediff);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
-            needs.food.CurLevel = firstPawn.needs.food?.CurLevel ?? needs.food.MaxLevel;
-            needs.rest.CurLevel = firstPawn.needs.rest?.CurLevel ?? needs.rest.MaxLevel;
+
+            if (needs.food != null)
+                needs.food.CurLevel = firstPawn.needs.food?.CurLevel ?? needs.food.MaxLevel;
+
+            if (needs.rest != null)
+                needs.rest.CurLevel = firstPawn.needs.rest?.CurLevel ?? needs.rest.MaxLevel;
+
             meldToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
             meldToSpawn.training.Train(TrainableDefOf.Obedience, null, true);
             meldToSpawn.Name = firstPawn.Name;
