@@ -71,8 +71,12 @@ namespace Pawnmorph.TfSys
 
             Pawn pawnTf = PawnGenerator.GeneratePawn(request);
 
-            pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurLevel ?? pawnTf.needs.food.MaxLevel;
-            pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
+
+            if (pawnTf.needs.food != null)
+                pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurLevel ?? pawnTf.needs.food.MaxLevel;
+
+            if (pawnTf.needs.rest != null)
+                pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
 
             Log.Message($"going to spawn {pawnTf.Name} {pawnTf.KindLabel}");
             var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.GetCorrectPosition(), transformedPawn.GetCorrectMap());
@@ -158,10 +162,12 @@ namespace Pawnmorph.TfSys
 
 
             // Copies the original pawn's food need to the animal's.
-            animalToSpawn.needs.food.CurLevel = original.needs.food?.CurLevel ?? animalToSpawn.needs.food.MaxLevel;
+            if (animalToSpawn.needs.food != null)
+                animalToSpawn.needs.food.CurLevel = original.needs.food?.CurLevel ?? animalToSpawn.needs.food.MaxLevel;
 
             // Copies the original pawn's rest need to the animal's.
-            animalToSpawn.needs.rest.CurLevel = original.needs.rest?.CurLevel ?? animalToSpawn.needs.rest.MaxLevel;
+            if (animalToSpawn.needs.rest != null)
+                animalToSpawn.needs.rest.CurLevel = original.needs.rest?.CurLevel ?? animalToSpawn.needs.rest.MaxLevel;
             
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
             float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);

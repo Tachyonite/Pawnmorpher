@@ -302,8 +302,12 @@ namespace Pawnmorph.TfSys
                 {
                     PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
                     Pawn pawnTf = PawnGenerator.GeneratePawn(request);
-                    pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurInstantLevel ?? pawnTf.needs.food.MaxLevel;
-                    pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
+
+                    if (pawnTf.needs.food != null)
+                        pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurInstantLevel ?? pawnTf.needs.food.MaxLevel;
+
+                    if (pawnTf.needs.rest != null)
+                        pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
 
                     var spawnedPawn = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
                     spawnedPawn.apparel.DestroyAll();
