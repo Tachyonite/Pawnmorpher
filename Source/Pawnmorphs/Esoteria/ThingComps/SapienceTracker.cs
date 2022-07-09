@@ -284,6 +284,14 @@ namespace Pawnmorph.ThingComps
             {
                 _lastIntelligenceLevel = CurrentIntelligence;
 
+                // Release draft if pawn sapience dropped below draftable.
+                if (CurrentIntelligence == Intelligence.Animal)
+                {
+                    if (pawn.Drafted)
+                        pawn.drafter.Drafted = false;
+                }
+
+
                 FormerHumanUtilities.InvalidateIntelligence(pawn);
                 PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
                 Find.ColonistBar.MarkColonistsDirty();
