@@ -100,8 +100,8 @@ namespace Pawnmorph.TfSys
             meldToSpawn.health.AddHediff(hediff);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
-            needs.food.CurLevel = firstPawn.needs.food.CurLevel;
-            needs.rest.CurLevel = firstPawn.needs.rest.CurLevel;
+            needs.food.CurLevel = firstPawn.needs.food?.CurLevel ?? needs.food.MaxLevel;
+            needs.rest.CurLevel = firstPawn.needs.rest?.CurLevel ?? needs.rest.MaxLevel;
             meldToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
             meldToSpawn.training.Train(TrainableDefOf.Obedience, null, true);
             meldToSpawn.Name = firstPawn.Name;
@@ -302,8 +302,8 @@ namespace Pawnmorph.TfSys
                 {
                     PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
                     Pawn pawnTf = PawnGenerator.GeneratePawn(request);
-                    pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurInstantLevel;
-                    pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
+                    pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurInstantLevel ?? pawnTf.needs.food.MaxLevel;
+                    pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
 
                     var spawnedPawn = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
                     spawnedPawn.apparel.DestroyAll();
