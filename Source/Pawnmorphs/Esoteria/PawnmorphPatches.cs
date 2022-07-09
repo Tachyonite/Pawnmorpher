@@ -254,6 +254,9 @@ namespace Pawnmorph
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod);
 
+            // Pawn Utilities
+            methodsToPatch.Add(typeof(PawnUtility).GetMethod(nameof(PawnUtility.SpawnedMasteredPawns), STATIC_FLAGS));
+
             //wildman
             AddWildmanMethods(methodsToPatch);
 
