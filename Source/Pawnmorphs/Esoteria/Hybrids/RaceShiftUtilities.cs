@@ -213,7 +213,14 @@ namespace Pawnmorph.Hybrids
                     removed = true;
                 }
 
+
+            float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
+            float originalAge = pawn.ageTracker.AgeBiologicalYearsFloat;
+
+            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
+
             pawn.def = race;
+            pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
 
             if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
@@ -244,8 +251,7 @@ namespace Pawnmorph.Hybrids
                 ValidateApparelForChangedPawn(pawn, oldRace); 
             }
 
-
-            if(race != ThingDefOf.Human) 
+            if (race != ThingDefOf.Human) 
                 ValidateExplicitRaceChange(pawn, race, oldRace);
 
             var mTracker = pawn.GetComp<MorphTrackingComp>();
