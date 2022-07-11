@@ -347,65 +347,88 @@ namespace Pawnmorph.Hybrids
             //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
             //
             var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            var story = pawn.story; 
+            var story = pawn.story;
             if (alienComp == null)
             {
                 Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
-                return; 
+                return;
             }
-           
+
 
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
-            var newGen = race.alienRace.generalSettings.alienPartGenerator; 
+            var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
-            //get the new head type 
-            var oldHIndex = oldGen.aliencrowntypes.FindIndex(s => s == alienComp.crownType);
-            float hRatio = newGen.aliencrowntypes.Count / ((float) oldGen.aliencrowntypes.Count) ; 
+            // Identify equivalent head. 
+            int newHIndex = newGen.aliencrowntypes.FindIndex(x => x == alienComp.crownType);
 
-            int newHIndex; 
-            if (oldHIndex == -1) //-1 means not found 
-            {
-                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count); //just pick a random head 
-            }
-            else
-            {
-                newHIndex = Mathf.FloorToInt(oldHIndex * hRatio); //squeeze the old index into the range of the new crow type 
-            }
+            // If no equivalent body type found, select random.
+            if (newHIndex == -1)
+                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count);
 
 
             //now get the new body type 
+            // Check by name first, target race may not have the same body types or in same order.
+            int newBIndex = newGen.alienbodytypes.FindIndex(x => x.defName == story.bodyType.defName);
 
-            var bRatio = newGen.alienbodytypes.Count / ((float) oldGen.alienbodytypes.Count);
-            var oldBIndex = oldGen.alienbodytypes.FindIndex(b => b == story.bodyType);
+            // If no equivalent body type found, select random.
+            if (newBIndex == -1)
+                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count);
 
-            int newBIndex; 
-            if (oldBIndex == -1 )
-            {
-                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count); 
-            }
-            else
-            {
-                newBIndex = Mathf.FloorToInt(oldBIndex * bRatio);
-            }
-
-            
 
             //now set the body and head type 
-
             var newHeadType = newGen.aliencrowntypes[newHIndex];
-            
+
             alienComp.crownType = newHeadType;
 
             if (newGen.alienbodytypes.Count > 0)
             {
                 var newBType = newGen.alienbodytypes[newBIndex];
-                story.bodyType = newBType; 
+                story.bodyType = newBType;
             }
 
-            if (oldRace.alienRace.styleSettings?[typeof(HairDef)] != null && race.alienRace.styleSettings?[typeof(HairDef)]== null)
+
+            // Transfer hair
+            StyleSettings targetStyle = race.alienRace.styleSettings?[typeof(HairDef)];
+            StyleSettings oldStyle = oldRace.alienRace.styleSettings?[typeof(HairDef)];
+
+            // Target race has hair
+            if (targetStyle != null && targetStyle.hasStyle)
             {
-                story.hairDef = HairDefOf.Shaved; 
+                // Current race has hair
+                if (oldStyle != null && oldStyle.hasStyle)
+                {
+                    // If target hair style has whitelisted tags and if current hair style does not have tag supported by target race, then pick a new random style.
+                    // Otherwise keep current hairstyle
+                    if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && story.hairDef.styleTags.Any(x => targetStyle.styleTags.Contains(x)) == false)
+                    {
+                        // Otherwise select a new random hairstyle of target race.
+                        story.hairDef = PawnStyleItemChooser.ChooseStyleItem<HairDef>(pawn);
+                    }
+                }
             }
+            else
+                story.hairDef = HairDefOf.Shaved;
+
+            // Transfer beard
+            targetStyle = race.alienRace.styleSettings?[typeof(BeardDef)];
+            oldStyle = oldRace.alienRace.styleSettings?[typeof(BeardDef)];
+
+            // Target race has hair
+            if (targetStyle != null && targetStyle.hasStyle)
+            {
+                // Current race has hair
+                if (oldStyle != null && oldStyle.hasStyle)
+                {
+                    // Does the current hair style contain any tags supported by target species.
+                    if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && pawn.style.beardDef.styleTags.Any(x => targetStyle.styleTags.Contains(x)) == false)
+                    {
+                        // Otherwise select a new random hairstyle of target race.
+                        pawn.style.beardDef = PawnStyleItemChooser.ChooseStyleItem<BeardDef>(pawn);
+                    }
+                }
+            }
+            else
+                pawn.style.beardDef = BeardDefOf.NoBeard;
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
