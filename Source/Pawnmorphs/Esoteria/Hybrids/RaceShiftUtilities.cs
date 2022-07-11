@@ -244,28 +244,30 @@ namespace Pawnmorph.Hybrids
             //always revert to human settings first so the race change is consistent 
             ValidateReversion(pawn);
 
+            //if (race != ThingDefOf.Human) 
+            ValidateExplicitRaceChange(pawn, race, oldRace);
+
+
             //check if the body def changed and handle any apparel changes 
             if (oldRace.race.body != race.race.body)
             {
-
                 ValidateApparelForChangedPawn(pawn, oldRace); 
             }
 
-            if (race != ThingDefOf.Human) 
-                ValidateExplicitRaceChange(pawn, race, oldRace);
-
             var mTracker = pawn.GetComp<MorphTrackingComp>();
-            if (mTracker == null)
+            if (mTracker != null)
             {
-                Warning($"changing the race of {pawn.Name} but they have no {nameof(MorphTrackingComp)}!");
-            }
-            else
-            {
-                mTracker.SetNeedsRaceCheck(); 
+                mTracker.SetNeedsRaceCheck();
             }
 
-            //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
-            pawn.RefreshGraphics();
+            HandleGraphicsChanges(pawn, RaceGenerator.GetMorphOfRace(race));
+
+            //if (race == ThingDefOf.Human)
+            //{
+            //    ValidateReversion(pawn);
+            //}
+
+            //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
 
@@ -321,9 +323,11 @@ namespace Pawnmorph.Hybrids
             if (graphicsComp == null)
                 return;
 
-            story.bodyType = graphicsComp.BodyType;
-            alienComp.crownType = graphicsComp.CrownType;
-            story.hairDef = graphicsComp.HairDef; 
+            //story.bodyType = graphicsComp.BodyType;
+            //alienComp.crownType = graphicsComp.CrownType;
+            //story.hairDef = graphicsComp.HairDef; 
+
+            graphicsComp.RestoreGraphics();
         }
 
 
@@ -382,9 +386,11 @@ namespace Pawnmorph.Hybrids
 
 
             //now set the body and head type 
-            var newHeadType = newGen.aliencrowntypes[newHIndex];
-
-            alienComp.crownType = newHeadType;
+            if (newGen.aliencrowntypes.Count > 0)
+            {
+                var newHeadType = newGen.aliencrowntypes[newHIndex];
+                alienComp.crownType = newHeadType;
+            }
 
             if (newGen.alienbodytypes.Count > 0)
             {
@@ -534,7 +540,6 @@ namespace Pawnmorph.Hybrids
            
 
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-            HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
 
             if (pawn.IsColonist)
@@ -664,10 +669,30 @@ namespace Pawnmorph.Hybrids
         private static void HandleGraphicsChanges(Pawn pawn, MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.GetSkinColor() ?? Color.white;
-            comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.GetSkinColor(false) ?? Color.white;
-            comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.GetHairColor(false) ?? Color.white; 
-            pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
+            if (morph != null)
+            {
+                comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.ColorChannels["skin"].first;
+                comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.ColorChannels["skin"].second;
+
+                comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
+                comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.ColorChannels["hair"].second;
+            }
+            else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
+            {
+                foreach (var channel in alien.GetPartGenerator().colorChannels)
+                {
+                    comp.ColorChannels[channel.name].first = comp.GenerateColor(channel, first: true);
+                    comp.ColorChannels[channel.name].second = comp.GenerateColor(channel, first: false);
+                }
+            }
+
+            pawn.story.hairColor = comp.ColorChannels["hair"].first;
+            
+            var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
+            if (gUpdater != null)
+                gUpdater.IsDirty = true;
+            else
+                pawn.RefreshGraphics();
         }
 
         /// <summary>
@@ -690,9 +715,9 @@ namespace Pawnmorph.Hybrids
             if (!isHybrid) return;
 
             var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
-            storedGraphics.RestoreGraphics();
 
             ChangePawnRace(pawn, human);
+            storedGraphics.RestoreGraphics();
 
             
             var morphRThought = oldMorph.transformSettings?.revertedMemory;

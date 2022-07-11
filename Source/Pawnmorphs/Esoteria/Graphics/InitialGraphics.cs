@@ -304,13 +304,18 @@ namespace Pawnmorph.GraphicSys
 
             public void Restore([NotNull] Pawn_StyleTracker styleTracker)
             {
-                styleTracker.beardDef = beardDef;
                 styleTracker.nextHairDef = nextHairDef;
+
+                styleTracker.beardDef = beardDef;
                 styleTracker.nextBeardDef = nextBeardDef;
-                styleTracker.nextFaceTattooDef = nextFaceTattooDef;
-                styleTracker.nextBodyTatooDef = nextBodyTatooDef;
-                styleTracker.FaceTattoo = faceTattoo;
-                styleTracker.BodyTattoo = bodyTattoo;
+                
+                if (ModLister.IdeologyInstalled)
+                {
+                    styleTracker.nextFaceTattooDef = nextFaceTattooDef;
+                    styleTracker.nextBodyTatooDef = nextBodyTatooDef;
+                    styleTracker.FaceTattoo = faceTattoo;
+                    styleTracker.BodyTattoo = bodyTattoo;
+                }
             }
 
             public void Scan([NotNull] Pawn_StyleTracker styleTracker)
@@ -318,10 +323,14 @@ namespace Pawnmorph.GraphicSys
                 beardDef = styleTracker.beardDef;
                 nextHairDef = styleTracker.nextHairDef;
                 nextBeardDef = styleTracker.nextBeardDef;
-                nextFaceTattooDef = styleTracker.nextFaceTattooDef;
-                nextBodyTatooDef = styleTracker.nextBodyTatooDef;
-                faceTattoo = styleTracker.FaceTattoo;
-                bodyTattoo = styleTracker.BodyTattoo; 
+
+                if (ModLister.IdeologyInstalled)
+                {
+                    nextFaceTattooDef = styleTracker.nextFaceTattooDef;
+                    nextBodyTatooDef = styleTracker.nextBodyTatooDef;
+                    faceTattoo = styleTracker.FaceTattoo;
+                    bodyTattoo = styleTracker.BodyTattoo;
+                }
             }
         }
     }
