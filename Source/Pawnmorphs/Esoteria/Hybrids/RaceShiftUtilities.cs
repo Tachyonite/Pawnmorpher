@@ -215,7 +215,6 @@ namespace Pawnmorph.Hybrids
 
 
             float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
-            float originalAge = pawn.ageTracker.AgeBiologicalYearsFloat;
 
             currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
 
@@ -261,20 +260,32 @@ namespace Pawnmorph.Hybrids
             }
 
             HandleGraphicsChanges(pawn, RaceGenerator.GetMorphOfRace(race));
-
-            //if (race == ThingDefOf.Human)
-            //{
-            //    ValidateReversion(pawn);
-            //}
-
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
-            if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
+
+            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+            if (graphicsComp != null)
+                graphicsComp.ScanGraphics();
+
+
+            var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
+            if (gUpdater != null)
+            {
+                gUpdater.IsDirty = true;
+                gUpdater.PostSpawnSetup(false);
+            }
+
+
+            if (reRollTraits && race is ThingDef_AlienRace alienDef) 
+                ReRollRaceTraits(pawn, alienDef);
 
             //save location 
             if (Current.ProgramState == ProgramState.Playing)
                 pawn.ExposeData();
-            if (pawn.Faction != faction) pawn.SetFaction(faction);
+
+            if (pawn.Faction != faction) 
+                pawn.SetFaction(faction);
+
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
@@ -353,9 +364,6 @@ namespace Pawnmorph.Hybrids
 
         private static void ValidateGraphicsPaths([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
         {
-            //this implimentation is a work in progress 
-            //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
-            //
             var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
             var story = pawn.story;
             if (alienComp == null)
@@ -364,66 +372,45 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
-
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
             var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
-            // Identify equivalent head. 
-            int newHIndex = newGen.aliencrowntypes.FindIndex(x => x == alienComp.crownType);
-
-            // If no equivalent body type found, select random.
-            if (newHIndex == -1)
-                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count);
-
-
-            //now get the new body type 
-            // Check by name first, target race may not have the same body types or in same order.
-            int newBIndex = newGen.alienbodytypes.FindIndex(x => x.defName == story.bodyType.defName);
-
-            // If no equivalent body type found, select random.
-            if (newBIndex == -1)
-                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count);
-
-
-            //now set the body and head type 
-            if (newGen.aliencrowntypes.Count > 0)
-            {
-                var newHeadType = newGen.aliencrowntypes[newHIndex];
-                alienComp.crownType = newHeadType;
-            }
-
-            if (newGen.alienbodytypes.Count > 0)
-            {
-                var newBType = newGen.alienbodytypes[newBIndex];
-                story.bodyType = newBType;
-            }
-
+            alienComp.crownType = TransferPawnPart(newGen.aliencrowntypes, alienComp.crownType);
+            story.bodyType = TransferPawnPart(newGen.alienbodytypes, story.bodyType);
 
             // Transfer hair
-            StyleSettings targetStyle = race.alienRace.styleSettings?[typeof(HairDef)];
-            StyleSettings oldStyle = oldRace.alienRace.styleSettings?[typeof(HairDef)];
-
-            // Target race has hair
-            if (targetStyle != null && targetStyle.hasStyle)
-            {
-                // Current race has hair
-                if (oldStyle != null && oldStyle.hasStyle)
-                {
-                    // If target hair style has whitelisted tags and if current hair style does not have tag supported by target race, then pick a new random style.
-                    // Otherwise keep current hairstyle
-                    if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && story.hairDef.styleTags.Any(x => targetStyle.styleTags.Contains(x)) == false)
-                    {
-                        // Otherwise select a new random hairstyle of target race.
-                        story.hairDef = PawnStyleItemChooser.ChooseStyleItem<HairDef>(pawn);
-                    }
-                }
-            }
-            else
-                story.hairDef = HairDefOf.Shaved;
+            pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, HairDefOf.Shaved);
 
             // Transfer beard
-            targetStyle = race.alienRace.styleSettings?[typeof(BeardDef)];
-            oldStyle = oldRace.alienRace.styleSettings?[typeof(BeardDef)];
+            pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
+        }
+
+
+        private static T TransferPawnPart<T>(List<T> collection, T current)
+        {
+            // Identify equivalent head. 
+            int index = collection.FindIndex(x => x.Equals(current));
+
+            // If no equivalent body type found, select random.
+            if (index == -1)
+                index = Rand.Range(0, collection.Count);
+
+            if (collection.Count > 0)
+            {
+                return collection[index];
+            }
+
+            return current;
+        }
+
+
+        private static T TransferStyle<T>(Pawn pawn, ThingDef_AlienRace originalRace, ThingDef_AlienRace targetRace, T current, T noStyle) where T : StyleItemDef
+        {
+            // Log.Message($"Transferring {typeof(T).ToString()} from {originalRace.defName} to {targetRace.defName}");
+
+            // Transfer beard
+            StyleSettings targetStyle = targetRace.alienRace?.styleSettings?[typeof(T)];
+            StyleSettings oldStyle = originalRace.alienRace?.styleSettings?[typeof(T)];
 
             // Target race has hair
             if (targetStyle != null && targetStyle.hasStyle)
@@ -431,16 +418,22 @@ namespace Pawnmorph.Hybrids
                 // Current race has hair
                 if (oldStyle != null && oldStyle.hasStyle)
                 {
-                    // Does the current hair style contain any tags supported by target species.
-                    if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && pawn.style.beardDef.styleTags.Any(x => targetStyle.styleTags.Contains(x)) == false)
+                    if (current != null && current != noStyle)
                     {
-                        // Otherwise select a new random hairstyle of target race.
-                        pawn.style.beardDef = PawnStyleItemChooser.ChooseStyleItem<BeardDef>(pawn);
+                        // If target style has whitelisted tags and current style has tag supported by target race then keep current style.
+                        // Otherwise keep current hairstyle
+                        if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && current.styleTags.Any(x => targetStyle.styleTags.Contains(x)))
+                            return current;
                     }
+
+                    // Otherwise select a new random hairstyle of target race.
+                    return PawnStyleItemChooser.ChooseStyleItem<T>(pawn) ?? noStyle;
                 }
             }
             else
-                pawn.style.beardDef = BeardDefOf.NoBeard;
+                return noStyle;
+
+            return current;
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)

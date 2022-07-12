@@ -354,6 +354,14 @@ namespace Pawnmorph
                             }
                         }
                 });
+
+
+                if (aRace.comps == null)
+                    aRace.comps = new List<CompProperties>();
+
+                aRace.comps.Add(new MorphTrackingCompProperties());
+                aRace.comps.Add(new CompProperties(typeof(InitialGraphicsComp)));
+                aRace.comps.Add(new CompProperties(typeof(GraphicsUpdaterComp)));
             }
         }
 
