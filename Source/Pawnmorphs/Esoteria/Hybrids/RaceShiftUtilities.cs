@@ -247,10 +247,16 @@ namespace Pawnmorph.Hybrids
             ValidateExplicitRaceChange(pawn, race, oldRace);
 
 
+            MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+
             //check if the body def changed and handle any apparel changes 
             if (oldRace.race.body != race.race.body)
             {
-                ValidateApparelForChangedPawn(pawn, oldRace); 
+                ValidateApparelForChangedPawn(pawn, oldRace);
+
+                MorphDef morph = oldMorph ?? newMorph;
+                if (morph != null)
+                    FixHediffs(pawn, oldRace, morph);
             }
 
             var mTracker = pawn.GetComp<MorphTrackingComp>();
@@ -259,7 +265,7 @@ namespace Pawnmorph.Hybrids
                 mTracker.SetNeedsRaceCheck();
             }
 
-            HandleGraphicsChanges(pawn, RaceGenerator.GetMorphOfRace(race));
+            HandleGraphicsChanges(pawn, newMorph);
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
 
@@ -547,12 +553,6 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings?.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings?.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
-
-            if (oldRace.race.body != pawn.RaceProps.body)
-            {
-                FixHediffs(pawn, oldRace, morph); 
-            }
-
         }
 
         private static void CheckRequiredMutations([NotNull] Pawn pawn, [NotNull] List<MutationDef> requiredMutations)
