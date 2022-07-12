@@ -425,10 +425,10 @@ namespace Pawnmorph.Hybrids
                     {
                         // If target style has whitelisted tags and current style has tag supported by target race then keep current style.
                         // Otherwise keep current hairstyle
-                        if (targetStyle.styleTags != null && targetStyle.styleTags.Count > 0 && current.styleTags.Any(x => targetStyle.styleTags.Contains(x)))
+                        if (targetStyle.styleTags.NullOrEmpty() == false && targetStyle.styleTags.Any(x => current.styleTags.Contains(x)))
                             return current;
                     }
-
+                                        
                     // Otherwise select a new random hairstyle of target race.
                     return PawnStyleItemChooser.ChooseStyleItem<T>(pawn) ?? noStyle;
                 }
