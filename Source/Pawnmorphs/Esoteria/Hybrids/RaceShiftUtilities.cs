@@ -265,22 +265,19 @@ namespace Pawnmorph.Hybrids
                 mTracker.SetNeedsRaceCheck();
             }
 
+            // Update skin color and if turning from explicit race to human then generate new human skin color.
             HandleGraphicsChanges(pawn, newMorph);
+            
             //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
-
-            var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-            if (graphicsComp != null)
-                graphicsComp.ScanGraphics();
-
-
-            var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
-            if (gUpdater != null)
+            // If reverted to human then rescan graphics to fix base skin color if originally alien.
+            if (race == ThingDefOf.Human)
             {
-                gUpdater.IsDirty = true;
-                gUpdater.PostSpawnSetup(false);
-            }
+                var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+                if (graphicsComp != null && graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
+                    graphicsComp.ScanGraphics();
 
+            }
 
             if (reRollTraits && race is ThingDef_AlienRace alienDef) 
                 ReRollRaceTraits(pawn, alienDef);
