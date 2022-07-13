@@ -297,10 +297,15 @@ namespace Pawnmorph.SapienceStates
         {
             if (currentLevel == SapienceLevel.Feral)
             {
-                _countdownStarted = true; 
+                _countdownStarted = true;
+            }
+            else if (_countdownStarted && currentLevel < SapienceLevel.Feral)
+            {
+                // Stop cooldown if sapience is increased above Feral
+                _countdownStarted = false;
             }
 
-            if(PawnUtility.ShouldSendNotificationAbout(pawn))
+            if (PawnUtility.ShouldSendNotificationAbout(pawn))
                 SendFHLetter(pawn, oldLevel, currentLevel);
         }
 

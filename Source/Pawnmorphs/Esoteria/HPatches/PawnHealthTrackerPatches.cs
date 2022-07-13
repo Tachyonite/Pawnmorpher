@@ -29,11 +29,7 @@ namespace Pawnmorph.HPatches
 
             if (pawn.RaceProps?.Humanlike == true)
             {
-                float? stat = Utilities.StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 200);
-                if (stat.HasValue)
-                {
-                    return __result * stat.Value;
-                }
+                return __result * pawn.BodySize;
             }
             
             return __result;

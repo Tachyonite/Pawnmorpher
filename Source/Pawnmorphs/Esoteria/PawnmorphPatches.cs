@@ -295,6 +295,10 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("Recache", STATIC_FLAGS));
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("GetPawnRowTooltip", STATIC_FLAGS));
 
+
+
+            methodsToPatch.Add(typeof(Dialog_InfoCard).GetMethod(nameof(Dialog_InfoCard.DoWindowContents), INSTANCE_FLAGS));
+
             AddJobGiverMethods(methodsToPatch);
 
 
@@ -318,7 +322,10 @@ namespace Pawnmorph
             {
                 if (methodInfo.methodInfo == null)
                 {
+#if DEBUG
+                    // Only show configuration errors in debug mode.
                     Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
+#endif
 
                     continue;
                 }

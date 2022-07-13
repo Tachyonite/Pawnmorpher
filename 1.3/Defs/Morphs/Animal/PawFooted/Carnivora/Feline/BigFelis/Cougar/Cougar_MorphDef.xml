@@ -12,7 +12,7 @@
 		<partialTransformation>PawnmorphCougarTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(177,136,112)</skinColorOverride>
+				<skinColorOverride>(163,130,104)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>

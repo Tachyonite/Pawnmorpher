@@ -59,7 +59,7 @@ namespace Pawnmorph.Things
         public static void GenerateInjectorDefs()
         {
             foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefsListForReading)
-                if (morphDef.injectorDef == null)
+                if (morphDef.injectorDef == null && morphDef.noInjector == false)
                 {
                     morphDef.injectorDef = CreateInjectorDefFor(morphDef);
                     if(morphDef.injectorDef != null)

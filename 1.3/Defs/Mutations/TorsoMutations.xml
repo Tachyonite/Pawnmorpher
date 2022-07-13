@@ -153,7 +153,7 @@
 		<description>Light and maneuverable bones.</description>
 		<defName>EtherPneumatizedSkeleton</defName>
 		<classInfluence>Anserigalliform</classInfluence>
-		<label>pneumatizedSkeleton</label>
+		<label>pneumatized skeleton</label>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>

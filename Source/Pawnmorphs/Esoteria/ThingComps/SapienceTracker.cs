@@ -47,9 +47,14 @@ namespace Pawnmorph.ThingComps
         {
             get
             {
+                if (_sapienceState == null)
+                    return Pawn.RaceProps.intelligence;
+
                 //hacky fix to correct null reference exception during loading 
-                if (_sapienceState != null && _sapienceState.Tracker == null) _sapienceState.Tracker = this;
-                return _sapienceState?.CurrentIntelligence ?? Pawn.RaceProps.intelligence;
+                if (_sapienceState.Tracker == null) 
+                    _sapienceState.Tracker = this;
+
+                return _sapienceState.CurrentIntelligence;
             }
         }
 
@@ -89,7 +94,7 @@ namespace Pawnmorph.ThingComps
                 {
                     SapienceLevel last = _sapienceLevel;
                     _sapienceLevel = value;
-                    OnSapienceLevelChanges(last);
+                    SapienceLevelChanges(SapienceNeed, Pawn, last, value);
                 }
             }
         }
@@ -141,7 +146,8 @@ namespace Pawnmorph.ThingComps
             Need_Control sNeed = SapienceNeed;
             sNeed?.SetSapience(initialLevel);
             _sapienceState.Enter();
-            if (Pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
+            if (Pawn.Faction == Faction.OfPlayer) 
+                Find.ColonistBar?.MarkColonistsDirty();
 
             //initialize work settings if they have it 
             Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
@@ -266,24 +272,30 @@ namespace Pawnmorph.ThingComps
             Find.ColonistBar.MarkColonistsDirty();
         }
 
-        private void OnSapienceLevelChanges(SapienceLevel lastSapienceLevel)
+        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
-            if (lastSapienceLevel.IsColonistAnimal() && !_sapienceLevel.IsColonistAnimal())
+            if (pawn.Faction != Faction.OfPlayer) 
+                return;
+
+            if (oldLevel.IsColonistAnimal() && !currentLevel.IsColonistAnimal())
                 OnNoLongerColonist();
 
             if (_lastIntelligenceLevel != CurrentIntelligence)
             {
                 _lastIntelligenceLevel = CurrentIntelligence;
+
+                // Release draft if pawn sapience dropped below draftable.
+                if (CurrentIntelligence == Intelligence.Animal)
+                {
+                    if (pawn.Drafted)
+                        pawn.drafter.Drafted = false;
+                }
+
+
+                FormerHumanUtilities.InvalidateIntelligence(pawn);
                 PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
+                Find.ColonistBar.MarkColonistsDirty();
             }
-        }
-
-        private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
-        {
-            if (pawn.Faction != Faction.OfPlayer) return;
-
-
-            Find.ColonistBar.MarkColonistsDirty();
         }
 
         private void TrySubscribe()

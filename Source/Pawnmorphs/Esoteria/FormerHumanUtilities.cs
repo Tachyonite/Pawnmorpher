@@ -63,6 +63,8 @@ namespace Pawnmorph
 
 
         [NotNull] private static readonly List<PawnKindDef> _allRegularFormerHumanPawnKinds;
+
+        [NotNull] private static readonly Dictionary<Pawn, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<Pawn, TimedCache<Intelligence>>(100);
         
 
 
@@ -456,7 +458,7 @@ namespace Pawnmorph
         {
             float age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
             return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
-                                             fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
+                                             fixedChronologicalAge: Math.Max(original.ageTracker.AgeChronologicalYears, age),
                                              fixedGender: fixedGender);
         }
 
@@ -577,10 +579,37 @@ namespace Pawnmorph
         /// <exception cref="System.ArgumentNullException">pawn</exception>
         public static Intelligence GetIntelligence([NotNull] this Pawn pawn)
         {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            SapienceTracker sTracker = pawn.GetSapienceTracker();
-            if (sTracker == null) return pawn.RaceProps.intelligence;
-            return sTracker.CurrentIntelligence;
+            if (pawn == null)
+                throw new ArgumentNullException(nameof(pawn));
+
+            if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value) == false)
+            {
+                value = new TimedCache<Intelligence>(() =>
+                {
+                    SapienceTracker sTracker = pawn.GetSapienceTracker();
+                    if (sTracker == null)
+                        return pawn.RaceProps.intelligence;
+
+                    return sTracker.CurrentIntelligence;
+                }, pawn.RaceProps.intelligence);
+
+                // Stagger the stored timestamp to avoid every pawn updating cached value on same tick.
+                value.Update();
+                value.Offset(-_intelligenceCache.Count);
+                _intelligenceCache[pawn] = value;
+            }
+
+            return value.GetValue(200);
+        }
+
+        /// <summary>
+        /// Invalidates the cached intelligence level of the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static void InvalidateIntelligence([NotNull] this Pawn pawn)
+        {
+            if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value))
+                value.Update();
         }
 
         /// <summary>
@@ -790,7 +819,9 @@ namespace Pawnmorph
         {
             if (original == null) throw new ArgumentNullException(nameof(original));
             if (animal == null) throw new ArgumentNullException(nameof(animal));
-            if (original.Faction == Faction.OfPlayer) animal.SetFaction(original.Faction);
+
+            if (original.Faction == Faction.OfPlayer && animal.Faction != original.Faction) 
+                animal.SetFaction(original.Faction);
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
 

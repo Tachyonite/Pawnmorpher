@@ -1,4 +1,6 @@
 ﻿using Pawnmorph.DebugUtils;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -39,21 +41,29 @@ namespace Pawnmorph
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
+
+            Listing_Standard checkBoxSection = listingStandard.BeginSection(10 * Text.LineHeight);
+            checkBoxSection.ColumnWidth = inRect.width / 2;
+            checkBoxSection.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
                                             ref settings.chamberDatabaseIgnoreStorageLimit,
                                             "ChamberDatabaseIgnoresDataLimitTooltip".Translate());
-            listingStandard.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
-                                            "PMInjectorsRequireTaggingTooltip".Translate()); 
+            checkBoxSection.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
+                                            "PMInjectorsRequireTaggingTooltip".Translate());
 
-            listingStandard.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
 
-            listingStandard.GapLine();
+            if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
+                ShowVisibleRaceSelection();
+
+            listingStandard.EndSection(checkBoxSection);
+
+
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
             listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)}");
@@ -86,7 +96,17 @@ namespace Pawnmorph
             }
 
             listingStandard.End();
+
             base.DoSettingsWindowContents(inRect);
+        }
+
+        private void ShowVisibleRaceSelection()
+        {
+            if (settings.visibleRaces == null)
+                settings.visibleRaces = new List<string>();
+
+            User_Interface.Settings.Dialog_VisibleRaceSelection raceSelection = new User_Interface.Settings.Dialog_VisibleRaceSelection(settings.visibleRaces);
+            Find.WindowStack.Add(raceSelection);
         }
 
         /// <summary>

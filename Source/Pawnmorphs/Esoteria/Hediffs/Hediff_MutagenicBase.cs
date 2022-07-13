@@ -377,6 +377,17 @@ namespace Pawnmorph.Hediffs
 
             if (stage.tfChance.ShouldTransform(this))
             {
+                TryTransform();
+            }
+        }
+
+        /// <summary>
+        /// Triggers transformation.
+        /// </summary>
+        public virtual void TryTransform()
+        {
+            if (CurStage is HediffStage_Transformation stage)
+            {
                 PawnKindDef pawnKind = stage.tfTypes.GetTF(this);
                 TFGender gender = stage.tfGenderSelector.GetGender(this);
 
