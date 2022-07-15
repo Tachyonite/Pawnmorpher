@@ -871,8 +871,10 @@
     <Compile Include="User Interface\Dialog_PartPicker.cs" />
     <Compile Include="User Interface\Dialog_Popup.cs" />
     <Compile Include="User Interface\MutationData.cs" />
+    <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
     <Compile Include="Utilities\Cached.cs" />
+    <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
@@ -934,7 +936,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
-    <Folder Include="User Interface\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

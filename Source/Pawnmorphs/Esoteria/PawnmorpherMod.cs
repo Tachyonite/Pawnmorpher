@@ -61,6 +61,9 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
                 ShowVisibleRaceSelection();
 
+            if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
+                ShowRaceReplacements();
+
             listingStandard.EndSection(checkBoxSection);
 
 
@@ -107,6 +110,15 @@ namespace Pawnmorph
 
             User_Interface.Settings.Dialog_VisibleRaceSelection raceSelection = new User_Interface.Settings.Dialog_VisibleRaceSelection(settings.visibleRaces);
             Find.WindowStack.Add(raceSelection);
+        }
+
+        private void ShowRaceReplacements()
+        {
+            //if (settings.visibleRaces == null)
+            //    settings.visibleRaces = new List<string>();
+
+            User_Interface.Settings.Dialog_RaceReplacements raceReplacements = new User_Interface.Settings.Dialog_RaceReplacements(new Dictionary<string, string>());
+            Find.WindowStack.Add(raceReplacements);
         }
 
         /// <summary>
