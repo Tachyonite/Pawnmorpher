@@ -176,7 +176,6 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
-            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             ThingDef_AlienRace human;
 
             try
@@ -190,6 +189,27 @@ namespace Pawnmorph.Hybrids
             }
 
 
+
+            foreach (var item in PawnmorpherMod.Settings.raceReplacements)
+            {
+                MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
+                if (morph != null)
+                {
+                    if (morph.ExplicitHybridRace == null)
+                    {
+                        ThingDef race = DefDatabase<ThingDef>.GetNamed(item.Value, false);
+                        if (race != null && race is ThingDef_AlienRace alien)
+                        {
+                            morph.raceSettings.explicitHybridRace = alien;
+                            morph.hybridRaceDef = alien;
+                        }
+                    }
+                }
+            }
+
+
+
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {

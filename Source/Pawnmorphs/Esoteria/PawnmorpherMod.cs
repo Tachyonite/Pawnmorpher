@@ -114,10 +114,10 @@ namespace Pawnmorph
 
         private void ShowRaceReplacements()
         {
-            //if (settings.visibleRaces == null)
-            //    settings.visibleRaces = new List<string>();
+            if (settings.raceReplacements == null)
+                settings.raceReplacements = new Dictionary<string, string>();
 
-            User_Interface.Settings.Dialog_RaceReplacements raceReplacements = new User_Interface.Settings.Dialog_RaceReplacements(new Dictionary<string, string>());
+            User_Interface.Settings.Dialog_RaceReplacements raceReplacements = new User_Interface.Settings.Dialog_RaceReplacements(settings.raceReplacements);
             Find.WindowStack.Add(raceReplacements);
         }
 

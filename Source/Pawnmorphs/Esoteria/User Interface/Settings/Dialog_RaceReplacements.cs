@@ -53,15 +53,14 @@ namespace Pawnmorph.User_Interface.Settings
             aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
 
 
-            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.OrderBy<MorphDef, string>(x => x.LabelCap, StringComparer.CurrentCulture);
 
             // Only include the existing options if they match current values (meaning they have not been patched by other mods)
             _selectedReplacements = morphs.ToDictionary(x => x, x =>
             {
-                string raceDefName = _settingsReference.TryGetValue(x.defName);
-                if (raceDefName != null && raceDefName == x.ExplicitHybridRace.defName)
+                if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && raceDefName == (x.ExplicitHybridRace?.defName ?? raceDefName))
                 {
-                    return aliens.FirstOrDefault(y => y.defName == raceDefName);
+                    return x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace;
                 }
 
                 return null;
@@ -102,7 +101,7 @@ namespace Pawnmorph.User_Interface.Settings
             Text.Font = GameFont.Tiny;
             Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
             lineListing.Begin(listbox);
-
+            
             foreach (var morph in _morphs.Filtered)
             {
                 if (_patchedMorphs.Contains(morph))
