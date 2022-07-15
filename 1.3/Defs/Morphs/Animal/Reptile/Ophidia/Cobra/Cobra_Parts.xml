@@ -8,6 +8,15 @@
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
+	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaTailPart">
+		<defName>EtherSnakeTail</defName>
+		<label>snake tail</label>
+		<classInfluence>SnakeMorph</classInfluence>
+		<graphics>
+			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeHood</defName>
@@ -26,4 +35,5 @@
 		</parts>
 		<!--Needs Stats-->
 	</Pawnmorph.Hediffs.MutationDef>
+	
 </Defs>
