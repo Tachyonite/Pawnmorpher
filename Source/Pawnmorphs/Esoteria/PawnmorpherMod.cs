@@ -61,7 +61,7 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
                 ShowVisibleRaceSelection();
 
-            if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
+            if (checkBoxSection.ButtonText("PMRaceReplacementButton".Translate()))
                 ShowRaceReplacements();
 
             listingStandard.EndSection(checkBoxSection);

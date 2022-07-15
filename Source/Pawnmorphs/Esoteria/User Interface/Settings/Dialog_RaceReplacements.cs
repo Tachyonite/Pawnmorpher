@@ -76,13 +76,13 @@ namespace Pawnmorph.User_Interface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMEnableMutationVisualsHeader".Translate());
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMRaceReplacementHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "PMEnableMutationVisualsText".Translate());
+            Widgets.Label(descriptionRect, "PMRaceReplacementText".Translate());
 
             curY += descriptionRect.height;
 
@@ -107,7 +107,7 @@ namespace Pawnmorph.User_Interface.Settings
             {
                 if (_patchedMorphs.Contains(morph))
                 {
-                    lineListing.LabelDouble(morph.LabelCap, morph.ExplicitHybridRace.LabelCap, "Locked by patch.");
+                    lineListing.LabelDouble(morph.LabelCap, morph.ExplicitHybridRace.LabelCap, "PMRaceReplacementLocked".Translate());
                     continue;
                 }
 
