@@ -5,7 +5,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. The strange shape makes speaking very difficult.</description>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. The strange shape makes speaking very difficult.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.2</AimingDelayFactor>
 					</statOffsets>
@@ -14,7 +14,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. Adapting to it has made speaking less frustrating.</description>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.15</AimingDelayFactor>
 					</statOffsets>
@@ -23,7 +23,7 @@
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>The lower part of [PAWN_nameDef]'s face has reformed into a scaly snout, with small round nostrils at its tip and a prominent dewlap on [PAWN_possessive] neck. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
 						<AimingDelayFactor>-0.10</AimingDelayFactor>
 					</statOffsets>

@@ -6,26 +6,6 @@
 		<graphics>
 			<Muzzle>Parts/Dromedary/Dromedary_Muzzle</Muzzle>
 		</graphics>
-		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. The strange shape makes speaking very difficult.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s face has pushed out into a long dromedary snout, with slit nostrils that can be closed to keep out sand and debris. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
@@ -39,12 +19,6 @@
 			<RightEarBehindHead>Parts/Dromedary/Dromedary_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>growing</stageKey>
-				<values>
-					<description>[PAWN_nameDef]'s ear is growing longer.</description>
-				</values>
-			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
