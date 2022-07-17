@@ -84,56 +84,6 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
 		<durationDays>1</durationDays>
-		<defName>EtherCowEar</defName>
-		<stages>
-			<li>
-				<label>Cow ears</label>
-				<description>They're soft, but they are rather large...</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cow ears</label>
-				<description>These are a great looooook on me!</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cow ears</label>
-				<description>Not my ears! I dooooon't want to be a coooow!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-	
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
-		<defName>EtherCowTail</defName>
-		<stages>
-			<li>
-				<label>Cow tail</label>
-				<description>Stop. Twitching!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cow tail</label>
-				<description>The hole in the pants is worth it for this.</description>
-				<visible>true</visible>
-				<baseMoodEffect>1</baseMoodEffect>
-			</li>
-			<li>
-				<label>Cow tail</label>
-				<description>It's terribly uncomfortable, and I can't sit in a chair!</description>
-				<visible>true</visible>
-				<baseMoodEffect>-2</baseMoodEffect>
-			</li>
-		</stages>
-	</ThoughtDef>
-
-	<ThoughtDef ParentName="OutlookMemoryBase">
-		<durationDays>1</durationDays>
 		<defName>EtherHorns</defName>
 		<stages>
 			<li>
