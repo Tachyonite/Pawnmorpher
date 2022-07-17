@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCamelidMuzzle</defName>
+		<stages>
+			<li>
+				<label>Camelid face</label>
+				<description>Why do I want a smoke all of a sudden?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Camelid face</label>
+				<description>I'll look so classy with a cigar!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Camelid face</label>
+				<description>My lips are so swollen, did I get stung by a bee?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCamelidEar</defName>
+		<stages>
+			<li>
+				<label>camelid ears</label>
+				<description>What am I supposed to do with these?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>camelid ears</label>
+				<description>Perfect for the desert heat!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>camelid ears</label>
+				<description>These things are so twitchy, get them off me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCamelidTail</defName>
+		<stages>
+			<li>
+				<label>Camelid tail</label>
+				<description>What is this useful for again?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Camelid tail</label>
+				<description>Look at it back there! So cute!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Camelid tail</label>
+				<description>Can't keep it still even if I wanted to!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

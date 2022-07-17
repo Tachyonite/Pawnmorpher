@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidJawPart" ParentName="EvenToedUngulateJawPart" Abstract="true">
+		<mutationMemory>EtherCamelidMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -23,6 +24,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<mutationMemory>EtherCamelidEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -44,6 +46,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="CamelidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
+		<mutationMemory>EtherCamelidTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

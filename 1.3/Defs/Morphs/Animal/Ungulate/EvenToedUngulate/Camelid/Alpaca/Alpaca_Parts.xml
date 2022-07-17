@@ -3,6 +3,7 @@
 		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaSnout</defName>
 		<label>alpaca snout</label>
+		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<graphics>
 			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
@@ -168,6 +169,7 @@
 			<RightEar>Parts/Alpaca/Alpaca_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Alpaca/Alpaca_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
+		<mutationMemory>EtherAlpacaEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
@@ -185,6 +187,7 @@
 		<graphics>
 			<Tail>Parts/Alpaca/Alpaca_Tail</Tail>
 		</graphics>
+		<mutationMemory>EtherAlpacaTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
