@@ -57,20 +57,20 @@ namespace Pawnmorph.Abilities.Skyfallers
 
         protected override void LeaveMap()
         {
-            def = SkyFallerDefOf.FlightIncoming;
-            this.SetPositionDirect(_target.Cell);
-            this.ageTicks = 0;
             OnTakeOff?.Invoke(this);
+            Map map = Map;
+            DeSpawn();
+
+            def = SkyFallerDefOf.FlightIncoming;
+
+            GenSpawn.Spawn(this, _target.Cell, map);
+            this.ageTicks = 0;
         }
 
         protected override void Impact()
         {
-            Map.listerThings.Add(this);
-
-            Map map = Map;
-            base.Impact();
             OnLanded?.Invoke(this);
-            map.listerThings.Remove(this);
+            base.Impact();
         }
     }
 }
