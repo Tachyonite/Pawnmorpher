@@ -69,8 +69,8 @@ namespace Pawnmorph.Abilities.Skyfallers
 
         protected override void Impact()
         {
-            OnLanded?.Invoke(this);
             base.Impact();
+            OnLanded?.Invoke(this);
         }
     }
 }

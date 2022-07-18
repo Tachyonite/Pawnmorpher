@@ -128,10 +128,10 @@ namespace Pawnmorph.Abilities
 
             Gizmo.defaultLabel = _def.label;
             Gizmo.defaultDesc = _def.description;
-            HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
+            HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo, Pawn);
 
             LongEventHandler.ExecuteWhenFinished(LoadTexture);
-
+            
             OnInitialize();
 
             if (pawn.Spawned)
