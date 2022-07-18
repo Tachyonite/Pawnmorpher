@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Verse;
 
 namespace Pawnmorph.Utilities.Collections
 {
@@ -40,7 +41,10 @@ namespace Pawnmorph.Utilities.Collections
         {
             get => _filterString;
             set 
-            { 
+            {
+                if (_filterString == value || (_filterString != null && _filterString.Equals(value)))
+                    return;
+
                 _filterString = value;
                 Invalidate();
             }
@@ -59,6 +63,7 @@ namespace Pawnmorph.Utilities.Collections
         /// </summary>
         public void Invalidate()
         {
+            Log.Message("Replacement Dialog: Invalidated filter.");
             if (String.IsNullOrEmpty(_filterString))
             {
                 _filteredCollection = _totalCollection.ToList().AsReadOnly();

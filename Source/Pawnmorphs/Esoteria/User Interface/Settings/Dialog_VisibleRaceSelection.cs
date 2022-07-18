@@ -46,19 +46,8 @@ namespace Pawnmorph.User_Interface.Settings
             aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDef.Named("Human"));
 
             // Exclude implicit and explicit morph races.
-            List<AlienRace.ThingDef_AlienRace> explicitPatchedRaces = new List<AlienRace.ThingDef_AlienRace>(20);
-
-            foreach (MorphDef morph in MorphDef.AllDefs.Where(m => m.ExplicitHybridRace != null))
-            {
-                if (PawnmorpherMod.Settings.raceReplacements.TryGetValue(morph.defName, out string explicitDefName))
-                {
-                    if (explicitDefName != morph.ExplicitHybridRace.defName && morph.ExplicitHybridRace is AlienRace.ThingDef_AlienRace alien)
-                        explicitPatchedRaces.Add(alien);
-                }
-            }
-
             aliens = aliens.Except(Hybrids.RaceGenerator.ImplicitRaces);
-            aliens = aliens.Except(explicitPatchedRaces);
+            aliens = aliens.Except(Hybrids.RaceGenerator.ExplicitPatchedRaces.Select(x => x.ExplicitHybridRace).OfType<AlienRace.ThingDef_AlienRace>());
             aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
 
             _aliens = aliens;

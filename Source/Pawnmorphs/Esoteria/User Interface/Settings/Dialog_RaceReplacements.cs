@@ -25,21 +25,25 @@ namespace Pawnmorph.User_Interface.Settings
         private Vector2 _scrollPosition = new Vector2(0, 0);
         private string _searchText = string.Empty;
         private IEnumerable<AlienRace.ThingDef_AlienRace> _aliens;
-        private IEnumerable<MorphDef> _patchedMorphs;
         private Dictionary<MorphDef, AlienRace.ThingDef_AlienRace> _selectedReplacements;
         private Dictionary<string, string> _settingsReference;
+        private List<MorphDef> _patchedMorphs;
         private ListFilter<MorphDef> _morphs;
 
         public Dialog_RaceReplacements(Dictionary<string, string> settingsReference)
         {
             _settingsReference = settingsReference;
             _selectedReplacements = new Dictionary<MorphDef, AlienRace.ThingDef_AlienRace>();
+            _patchedMorphs = Hybrids.RaceGenerator.ExplicitPatchedRaces;
         }
 
         public override void PostOpen()
         {
             base.PostOpen();
             RefreshAliens();
+            Log.Message("Replacement Dialog: Post open");
+            Log.Message("Patched races: " + String.Join(", ", _patchedMorphs.Select(x => x.defName)));
+            Log.Message("Settings: " + String.Join(", ", _settingsReference));
         }
 
         private void RefreshAliens()
@@ -58,16 +62,17 @@ namespace Pawnmorph.User_Interface.Settings
             // Only include the existing options if they match current values (meaning they have not been patched by other mods)
             _selectedReplacements = morphs.ToDictionary(x => x, x =>
             {
-                if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && raceDefName == (x.ExplicitHybridRace?.defName ?? raceDefName))
+                if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && _patchedMorphs.Contains(x) == false)
                 {
                     return x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace;
                 }
 
                 return null;
             });
-            _patchedMorphs = morphs.Where(x => x.ExplicitHybridRace != null && _selectedReplacements.Values.Contains(x.ExplicitHybridRace) == false);
             _aliens = aliens.Except(_patchedMorphs.Select(x => x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace));
             _morphs = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
+
+            Log.Message("Replacement Dialog: Refresh aliens");
         }
 
 
@@ -106,12 +111,12 @@ namespace Pawnmorph.User_Interface.Settings
             {
                 if (_patchedMorphs.Contains(morph))
                 {
-                    lineListing.LabelDouble(morph.LabelCap, morph.ExplicitHybridRace.LabelCap, "PMRaceReplacementLocked".Translate());
+                    lineListing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack.Name})", "PMRaceReplacementLocked".Translate());
                     continue;
                 }
 
                 ThingDef alien = _selectedReplacements[morph];
-                if (lineListing.ButtonTextLabeled(morph.LabelCap, alien?.LabelCap ?? ""))
+                if (lineListing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack.Name})"))
                 {
                     List<FloatMenuOption> options = new List<FloatMenuOption>();
 
@@ -120,9 +125,11 @@ namespace Pawnmorph.User_Interface.Settings
 
                     foreach (var alienItem in _aliens.Except(_selectedReplacements.Values))
                     {
-                        options.Add(new FloatMenuOption(alienItem.LabelCap, () => _selectedReplacements[morph] = alienItem));
+                        options.Add(new FloatMenuOption($"{alienItem.LabelCap} ({alienItem.modContentPack.Name})", () => _selectedReplacements[morph] = alienItem));
                     }
-                    Find.WindowStack.Add(new FloatMenu(options));
+
+                    if (options.Count > 0)
+                        Find.WindowStack.Add(new FloatMenu(options));
                 }
             }
             lineListing.End();
@@ -156,6 +163,9 @@ namespace Pawnmorph.User_Interface.Settings
             Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
             _settingsReference.AddRange(_selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName));
+
+            Log.Message("Patched races: " + String.Join(", ", _patchedMorphs.Select(x => x.defName)));
+            Log.Message("Settings: " + String.Join(", ", _settingsReference));
         }
 
         public override void OnCancelKeyPressed()
