@@ -90,6 +90,7 @@ namespace Pawnmorph.Hediffs
         {
             if (stage is MutationStage mutationStage)
             {
+                abilities = new List<Abilities.MutationAbility>();
                 if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
                     return;
 

@@ -159,6 +159,9 @@ namespace Pawnmorph.Abilities
         /// </summary>
         public void Tick()
         {
+            if (Pawn == null || Gizmo == null)
+                return;
+
             if (state == MutationAbilityState.None || Type == MutationAbilityType.Toggle)
             {
                 if (Pawn.IsHashIntervalTick(120) && Gizmo.Visible)
