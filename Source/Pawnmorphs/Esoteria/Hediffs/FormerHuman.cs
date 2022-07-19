@@ -103,6 +103,11 @@ namespace Pawnmorph.Hediffs
             var idx = (int)currentLevel;
             if (idx < def.stages.Count) SetStage(idx);
 
+            if (pawn.IsHumanlike())
+            {
+                FormerHumanUtilities.ResetTraining(pawn);
+            }
+
             SetLabel(currentLevel);
         }
 
