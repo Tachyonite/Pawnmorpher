@@ -59,7 +59,16 @@ namespace Pawnmorph
         /// <summary>
         /// Gets the current stage.
         /// </summary>
-        public HediffComp_Staged CurStage => _currentStage;
+        public HediffComp_Staged CurStage
+        {
+            get
+            {
+                if (_currentStage == null)
+                    UpdateCurrentStage();
+
+                return _currentStage;
+            }
+        }
 
         /// <summary>
         /// Gets the current stage index.
@@ -124,14 +133,6 @@ namespace Pawnmorph
                 return false;
 
             return true;
-        }
-
-        public override void CompPostPostAdd(DamageInfo? dinfo)
-        {
-            base.CompPostPostAdd(dinfo);
-
-            Stage = -1;
-            UpdateCurrentStage();
         }
 
         /// <summary>
@@ -240,8 +241,6 @@ namespace Pawnmorph
             Scribe_Values.Look(ref _canProduceNow, nameof(CanProduceNow));
             Scribe_Values.Look(ref _productionBoost, "productionBoost");
             base.CompExposeData();
-
-            UpdateCurrentStage();
         }
 
 
