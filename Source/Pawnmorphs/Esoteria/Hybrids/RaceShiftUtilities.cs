@@ -213,7 +213,13 @@ namespace Pawnmorph.Hybrids
                     removed = true;
                 }
 
+
+            float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
+
+            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
+
             pawn.def = race;
+            pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
 
             if (removed && !map.listerThings.Contains(pawn))
                 map.listerThings.Add(pawn);
@@ -237,36 +243,52 @@ namespace Pawnmorph.Hybrids
             //always revert to human settings first so the race change is consistent 
             ValidateReversion(pawn);
 
+            //if (race != ThingDefOf.Human) 
+            ValidateExplicitRaceChange(pawn, race, oldRace);
+
+
+            MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+
             //check if the body def changed and handle any apparel changes 
             if (oldRace.race.body != race.race.body)
             {
+                ValidateApparelForChangedPawn(pawn, oldRace);
 
-                ValidateApparelForChangedPawn(pawn, oldRace); 
+                MorphDef morph = oldMorph ?? newMorph;
+                if (morph != null)
+                    FixHediffs(pawn, oldRace, morph);
             }
-
-
-            if(race != ThingDefOf.Human) 
-                ValidateExplicitRaceChange(pawn, race, oldRace);
 
             var mTracker = pawn.GetComp<MorphTrackingComp>();
-            if (mTracker == null)
+            if (mTracker != null)
             {
-                Warning($"changing the race of {pawn.Name} but they have no {nameof(MorphTrackingComp)}!");
-            }
-            else
-            {
-                mTracker.SetNeedsRaceCheck(); 
+                mTracker.SetNeedsRaceCheck();
             }
 
-            //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin 
-            pawn.RefreshGraphics();
+            // Update skin color and if turning from explicit race to human then generate new human skin color.
+            HandleGraphicsChanges(pawn, newMorph);
+            
+            //no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
-            if (reRollTraits && race is ThingDef_AlienRace alienDef) ReRollRaceTraits(pawn, alienDef);
+            // If reverted to human then rescan graphics to fix base skin color if originally alien.
+            if (race == ThingDefOf.Human)
+            {
+                var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+                if (graphicsComp != null && graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
+                    graphicsComp.ScanGraphics();
+
+            }
+
+            if (reRollTraits && race is ThingDef_AlienRace alienDef) 
+                ReRollRaceTraits(pawn, alienDef);
 
             //save location 
             if (Current.ProgramState == ProgramState.Playing)
                 pawn.ExposeData();
-            if (pawn.Faction != faction) pawn.SetFaction(faction);
+
+            if (pawn.Faction != faction) 
+                pawn.SetFaction(faction);
+
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);
@@ -315,9 +337,11 @@ namespace Pawnmorph.Hybrids
             if (graphicsComp == null)
                 return;
 
-            story.bodyType = graphicsComp.BodyType;
-            alienComp.crownType = graphicsComp.CrownType;
-            story.hairDef = graphicsComp.HairDef; 
+            //story.bodyType = graphicsComp.BodyType;
+            //alienComp.crownType = graphicsComp.CrownType;
+            //story.hairDef = graphicsComp.HairDef; 
+
+            graphicsComp.RestoreGraphics();
         }
 
 
@@ -343,69 +367,75 @@ namespace Pawnmorph.Hybrids
 
         private static void ValidateGraphicsPaths([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
         {
-            //this implimentation is a work in progress 
-            //currently, when shifting to an explicit race the body and head types will come out 'shuffled'
-            //
             var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            var story = pawn.story; 
+            var story = pawn.story;
             if (alienComp == null)
             {
                 Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
-                return; 
+                return;
             }
-           
 
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
-            var newGen = race.alienRace.generalSettings.alienPartGenerator; 
+            var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
-            //get the new head type 
-            var oldHIndex = oldGen.aliencrowntypes.FindIndex(s => s == alienComp.crownType);
-            float hRatio = newGen.aliencrowntypes.Count / ((float) oldGen.aliencrowntypes.Count) ; 
+            alienComp.crownType = TransferPawnPart(newGen.aliencrowntypes, alienComp.crownType);
+            story.bodyType = TransferPawnPart(newGen.alienbodytypes, story.bodyType);
 
-            int newHIndex; 
-            if (oldHIndex == -1) //-1 means not found 
+            // Transfer hair
+            pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, HairDefOf.Shaved);
+
+            // Transfer beard
+            pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
+        }
+
+
+        private static T TransferPawnPart<T>(List<T> collection, T current)
+        {
+            // Identify equivalent head. 
+            int index = collection.FindIndex(x => x.Equals(current));
+
+            // If no equivalent body type found, select random.
+            if (index == -1)
+                index = Rand.Range(0, collection.Count);
+
+            if (collection.Count > 0)
             {
-                newHIndex = Rand.Range(0, newGen.aliencrowntypes.Count); //just pick a random head 
+                return collection[index];
+            }
+
+            return current;
+        }
+
+
+        private static T TransferStyle<T>(Pawn pawn, ThingDef_AlienRace originalRace, ThingDef_AlienRace targetRace, T current, T noStyle) where T : StyleItemDef
+        {
+            // Log.Message($"Transferring {typeof(T).ToString()} from {originalRace.defName} to {targetRace.defName}");
+
+            // Transfer beard
+            StyleSettings targetStyle = targetRace.alienRace?.styleSettings?[typeof(T)];
+            StyleSettings oldStyle = originalRace.alienRace?.styleSettings?[typeof(T)];
+
+            // Target race has hair
+            if (targetStyle != null && targetStyle.hasStyle)
+            {
+                // Current race has hair
+                if (oldStyle != null && oldStyle.hasStyle)
+                {
+                    if (current != null && current != noStyle)
+                    {
+                        // If pawn still supports current hairstyle, keep it.
+                        if (PawnStyleItemChooser.WantsToUseStyle(pawn, current))
+                            return current;
+                    }
+                                        
+                    // Otherwise pick a new hairstyle.
+                    return PawnStyleItemChooser.ChooseStyleItem<T>(pawn) ?? noStyle;
+                }
             }
             else
-            {
-                newHIndex = Mathf.FloorToInt(oldHIndex * hRatio); //squeeze the old index into the range of the new crow type 
-            }
+                return noStyle;
 
-
-            //now get the new body type 
-
-            var bRatio = newGen.alienbodytypes.Count / ((float) oldGen.alienbodytypes.Count);
-            var oldBIndex = oldGen.alienbodytypes.FindIndex(b => b == story.bodyType);
-
-            int newBIndex; 
-            if (oldBIndex == -1 )
-            {
-                newBIndex = Rand.Range(0, newGen.alienbodytypes.Count); 
-            }
-            else
-            {
-                newBIndex = Mathf.FloorToInt(oldBIndex * bRatio);
-            }
-
-            
-
-            //now set the body and head type 
-
-            var newHeadType = newGen.aliencrowntypes[newHIndex];
-            
-            alienComp.crownType = newHeadType;
-
-            if (newGen.alienbodytypes.Count > 0)
-            {
-                var newBType = newGen.alienbodytypes[newBIndex];
-                story.bodyType = newBType; 
-            }
-
-            if (oldRace.alienRace.styleSettings?[typeof(HairDef)] != null && race.alienRace.styleSettings?[typeof(HairDef)]== null)
-            {
-                story.hairDef = HairDefOf.Shaved; 
-            }
+            return current;
         }
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
@@ -505,7 +535,6 @@ namespace Pawnmorph.Hybrids
            
 
             MorphDef.TransformSettings tfSettings = morph.transformSettings;
-            HandleGraphicsChanges(pawn, morph);
             ChangePawnRace(pawn, hRace, true);
 
             if (pawn.IsColonist)
@@ -520,12 +549,6 @@ namespace Pawnmorph.Hybrids
 
             if (tfSettings?.transformTale != null) TaleRecorder.RecordTale(tfSettings.transformTale, pawn);
             pawn.TryGainMemory(tfSettings?.transformationMemory ?? PMThoughtDefOf.DefaultMorphTfMemory);
-
-            if (oldRace.race.body != pawn.RaceProps.body)
-            {
-                FixHediffs(pawn, oldRace, morph); 
-            }
-
         }
 
         private static void CheckRequiredMutations([NotNull] Pawn pawn, [NotNull] List<MutationDef> requiredMutations)
@@ -635,10 +658,30 @@ namespace Pawnmorph.Hybrids
         private static void HandleGraphicsChanges(Pawn pawn, MorphDef morph)
         {
             var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-            comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.GetSkinColor() ?? Color.white;
-            comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.GetSkinColor(false) ?? Color.white;
-            comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.GetHairColor(false) ?? Color.white; 
-            pawn.story.hairColor = comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
+            if (morph != null)
+            {
+                comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.ColorChannels["skin"].first;
+                comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.ColorChannels["skin"].second;
+
+                comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
+                comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.ColorChannels["hair"].second;
+            }
+            else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
+            {
+                foreach (var channel in alien.GetPartGenerator().colorChannels)
+                {
+                    comp.ColorChannels[channel.name].first = comp.GenerateColor(channel, first: true);
+                    comp.ColorChannels[channel.name].second = comp.GenerateColor(channel, first: false);
+                }
+            }
+
+            pawn.story.hairColor = comp.ColorChannels["hair"].first;
+            
+            var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
+            if (gUpdater != null)
+                gUpdater.IsDirty = true;
+            else
+                pawn.RefreshGraphics();
         }
 
         /// <summary>
@@ -661,9 +704,9 @@ namespace Pawnmorph.Hybrids
             if (!isHybrid) return;
 
             var storedGraphics = pawn.GetComp<GraphicSys.InitialGraphicsComp>();
-            storedGraphics.RestoreGraphics();
 
             ChangePawnRace(pawn, human);
+            storedGraphics.RestoreGraphics();
 
             
             var morphRThought = oldMorph.transformSettings?.revertedMemory;
