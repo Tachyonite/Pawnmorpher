@@ -193,18 +193,21 @@ namespace Pawnmorph.Hybrids
                     ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
             }
 
-            foreach (var item in PawnmorpherMod.Settings.raceReplacements)
+            if (PawnmorpherMod.Settings.raceReplacements != null)
             {
-                MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
-                if (morph != null)
+                foreach (var item in PawnmorpherMod.Settings.raceReplacements)
                 {
-                    if (morph.ExplicitHybridRace == null)
+                    MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
+                    if (morph != null)
                     {
-                        ThingDef race = DefDatabase<ThingDef>.GetNamed(item.Value, false);
-                        if (race != null && race is ThingDef_AlienRace alien)
+                        if (morph.ExplicitHybridRace == null)
                         {
-                            morph.raceSettings.explicitHybridRace = alien;
-                            morph.hybridRaceDef = alien;
+                            ThingDef race = DefDatabase<ThingDef>.GetNamed(item.Value, false);
+                            if (race != null && race is ThingDef_AlienRace alien)
+                            {
+                                morph.raceSettings.explicitHybridRace = alien;
+                                morph.hybridRaceDef = alien;
+                            }
                         }
                     }
                 }
@@ -225,7 +228,7 @@ namespace Pawnmorph.Hybrids
                 }
                 else
                 {
-                    if (PawnmorpherMod.Settings.raceReplacements.ContainsKey(morphDef.defName) == false)
+                    if (PawnmorpherMod.Settings.raceReplacements?.ContainsKey(morphDef.defName) == false)
                         ExplicitPatchedRaces.Add(morphDef);
 
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
