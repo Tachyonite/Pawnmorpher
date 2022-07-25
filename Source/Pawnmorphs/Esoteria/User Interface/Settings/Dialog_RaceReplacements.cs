@@ -41,9 +41,6 @@ namespace Pawnmorph.User_Interface.Settings
         {
             base.PostOpen();
             RefreshAliens();
-            Log.Message("Replacement Dialog: Post open");
-            Log.Message("Patched races: " + String.Join(", ", _patchedMorphs.Select(x => x.defName)));
-            Log.Message("Settings: " + String.Join(", ", _settingsReference));
         }
 
         private void RefreshAliens()
