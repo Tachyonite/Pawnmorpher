@@ -11,9 +11,6 @@ namespace Pawnmorph
     [DefOf]
     public static class PMInteractionDefOf
     {
-        [NotNull]
-        public static InteractionDef FormerHumanTameAttempt;
-
         [NotNull] public static InteractionDef FormerHumanAnimalChat; 
 
         static PMInteractionDefOf()

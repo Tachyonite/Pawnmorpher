@@ -672,7 +672,6 @@
     <Compile Include="SlurryNet\SlurryNetManager.cs" />
     <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
-    <Compile Include="Social\Worker_FormerHumanRecruitAttempt.cs" />
     <Compile Include="StatWorkers\HasMorphStat.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
