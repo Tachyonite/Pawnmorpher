@@ -97,6 +97,14 @@ namespace Pawnmorph.Designations
             Map.designationManager.RemoveAllDesignationsOn(t);
             Map.designationManager.AddDesignation(new Designation((LocalTargetInfo) t, Designation));
             _justDesignated.Add((Pawn) t);
+
+            if (t is Pawn pawn)
+            {
+                if (pawn.guest != null && pawn.guest.lastRecruiterName == null)
+                {
+                    pawn.guest.resistance = 10 * pawn.def.race.wildness;
+                }
+            }
         }
 
         private IEnumerable<Pawn> TameablesInCell(IntVec3 c)
