@@ -31,25 +31,20 @@ namespace Pawnmorph.Jobs
         /// <returns></returns>
         protected override Toil FinalInteractToil()
         {
-            return TryRecruit(TargetIndex.A);
-        }
-
-
-        Toil TryRecruit(TargetIndex recruiteeInd)
-        {
             Toil toil = new Toil();
-            toil.initAction = (Action)(() =>
-                                          {
-                                              Pawn actor = toil.actor;
-                                              Pawn thing = (Pawn)actor.jobs.curJob.GetTarget(recruiteeInd).Thing;
-                                              if (!thing.Spawned || !thing.Awake())
-                                                  return;
-                                              InteractionDef intDef = PMInteractionDefOf.FormerHumanTameAttempt; 
-                                              actor.interactions.TryInteractWith(thing, intDef);
-                                          });
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.actor;
+                Pawn pawn = (Pawn)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                if (pawn.Spawned && pawn.Awake())
+                {
+                    actor.interactions.TryInteractWith(pawn, InteractionDefOf.RecruitAttempt);
+                }
+            };
             toil.socialMode = RandomSocialMode.Off;
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
             toil.defaultDuration = 350;
+            toil.activeSkill = () => SkillDefOf.Social;
             return toil;
         }
 
