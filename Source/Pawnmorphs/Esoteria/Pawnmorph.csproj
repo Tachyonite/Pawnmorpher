@@ -314,6 +314,7 @@
     <Compile Include="Abilities\TerrifyingRoar.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
+    <Compile Include="HPatches\RecipeDefPatch.cs" />
     <Compile Include="Jobs\Giver_Producer.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
