@@ -14,7 +14,7 @@ namespace Pawnmorph.HPatches
     internal class RecipeDefPatch
     {
         static PawnmorpherSettings _settings;
-        static Dictionary<ThingDef, MorphDef> _injectorMorphMapping;
+        static Dictionary<int, MorphDef> _injectorMorphMapping;
 
         public static void Prepare(MethodBase original)
         {
@@ -26,7 +26,7 @@ namespace Pawnmorph.HPatches
 
             List<MorphDef> allMorphs = MorphDef.AllDefs.ToList();
 
-            _injectorMorphMapping = new Dictionary<ThingDef, MorphDef>(_injectors.Count);
+            _injectorMorphMapping = new Dictionary<int, MorphDef>(_injectors.Count);
             foreach (var injector in _injectors)
             {
                 IngestionOutcomeDoer_GiveHediff hediff = injector.ingestible.outcomeDoers.OfType<IngestionOutcomeDoer_GiveHediff>().FirstOrDefault();
@@ -34,7 +34,7 @@ namespace Pawnmorph.HPatches
                 {
                     MorphDef morphDef = allMorphs.FirstOrDefault(m => m.fullTransformation == hediff.hediffDef);
                     if (morphDef != null)
-                        _injectorMorphMapping[injector] = morphDef;
+                        _injectorMorphMapping[injector.index] = morphDef;
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace Pawnmorph.HPatches
             // If recipe is available (Has been researched)
             if (__result && _settings.injectorsRequireTagging && __instance.ProducedThingDef != null)
             {
-                if (_injectorMorphMapping.TryGetValue(__instance.ProducedThingDef, out var morphDef))
+                if (_injectorMorphMapping.TryGetValue(__instance.ProducedThingDef.index, out var morphDef))
                 {
                     if (DebugSettings.godMode)
                         return true;
