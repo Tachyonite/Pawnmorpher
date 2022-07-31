@@ -26,31 +26,6 @@ namespace Pawnmorph.ITabs
         private Bill mouseoverBill;
 
         private static readonly Vector2 WinSize = new Vector2(420f, 480f);
-
-        [CanBeNull]
-        MorphDef MorphFromSyringeRecipe([NotNull] RecipeDef rDef)
-        {
-            var ingestible = rDef.ProducedThingDef?.ingestible; //get the morph required to be tagged by checking the hediff the ingestion outcome doer gives a pawn and comparing that with the 
-            if (ingestible == null) return null; //full and/or partial tf hediff stored in MorphDef
-            var fOutcomeDoer = ingestible.outcomeDoers?.OfType<IngestionOutcomeDoer_GiveHediff>().FirstOrDefault(); //this is hacky and need to figure out a more elegant solution that doesn't 
-            var morphHDef = fOutcomeDoer?.hediffDef; //required all injector or morph xml files to be updated 
-            if (morphHDef == null) return null;
-            return MorphDef.AllDefs.FirstOrDefault(m => m.fullTransformation == morphHDef
-                                                     || m.partialTransformation == morphHDef); 
-        }
-
-
-        bool CanUseRecipe(RecipeDef recipe)
-        {
-            if(!(recipe.AvailableNow && recipe.AvailableOnNow(SelTable))) return false;
-            if (!LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().injectorsRequireTagging)
-                return true; 
-            
-            
-            var mDef = MorphFromSyringeRecipe(recipe);
-            return mDef?.IsTagged() != false; 
-        }
-
         [TweakValue("PMInterface", 0f, 128f)]
         private static float PasteX = 48f;
 
@@ -109,7 +84,7 @@ namespace Pawnmorph.ITabs
                 for (int i = 0; i < SelTable.def.AllRecipes.Count; i++)
                 {
                     RecipeDef recipe = SelTable.def.AllRecipes[i];
-                    if (CanUseRecipe(recipe))
+                    if (recipe.AvailableNow)
                     {
                         var tempRecipe = recipe;
                         list.Add(new FloatMenuOption(recipe.LabelCap, delegate
