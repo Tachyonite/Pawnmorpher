@@ -84,6 +84,8 @@ namespace Pawnmorph
 
 
 
+        public bool patchMaxFoodEaten = true;
+
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
@@ -106,6 +108,9 @@ namespace Pawnmorph
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
             Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
+
+            Scribe_Values.Look(ref patchMaxFoodEaten, nameof(patchMaxFoodEaten), true);
+
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (formerChance > 1) formerChance /= 100f; 
