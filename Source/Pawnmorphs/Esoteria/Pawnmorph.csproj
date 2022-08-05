@@ -313,7 +313,6 @@
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
-    <Compile Include="HPatches\Need_FoodPatch.cs" />
     <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
     <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
