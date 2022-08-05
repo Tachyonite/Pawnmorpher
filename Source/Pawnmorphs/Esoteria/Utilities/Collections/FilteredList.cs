@@ -50,7 +50,11 @@ namespace Pawnmorph.Utilities.Collections
             }
         }
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListFilter{T}"/> class.
+        /// </summary>
+        /// <param name="collection">Initial collection that is copied.</param>
+        /// <param name="filterCallback">Filter callback called for each item when filter text is modified. Provides Item, Filtertext and expects a bool returned on whether or not item is visible.</param>
         public ListFilter(IEnumerable<T> collection, Func<T, string, bool> filterCallback)
         {
             _totalCollection = collection.ToList();
