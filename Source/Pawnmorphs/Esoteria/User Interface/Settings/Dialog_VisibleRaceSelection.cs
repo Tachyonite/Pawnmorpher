@@ -70,7 +70,7 @@ namespace Pawnmorph.User_Interface.Settings
 
             curY += descriptionRect.height;
 
-            float totalHeight = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
+            float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
             totalHeight -= 100;
 
             _aliensListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
