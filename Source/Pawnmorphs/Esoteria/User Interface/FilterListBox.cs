@@ -9,6 +9,10 @@ using Verse;
 
 namespace Pawnmorph.User_Interface
 {
+    /// <summary>
+    /// Searchable list box.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     internal class FilterListBox<T>
     {
         private Vector2 _scrollPosition = new Vector2(0, 0);
@@ -20,11 +24,19 @@ namespace Pawnmorph.User_Interface
             _filteredList = collection;
         }
 
-        public void Draw(Rect inRect, float x, float y, float totalHeight, Action<T, Listing_Standard> callback)
+        /// <summary>
+        /// Draws filter box.
+        /// </summary>
+        /// <param name="inRect">The parent rectangle.</param>
+        /// <param name="x">X position.</param>
+        /// <param name="y">Y position.</param>
+        /// <param name="height">Filterbox height.</param>
+        /// <param name="callback">The callback.</param>
+        public void Draw(Rect inRect, float x, float y, float height, Action<T, Listing_Standard> callback)
         {
             float curY = y;
 
-            _searchText = Widgets.TextArea(new Rect(0, curY, 200f, 28f), _searchText);
+            _searchText = Widgets.TextArea(new Rect(x, curY, 200f, 28f), _searchText);
             if (Widgets.ButtonText(new Rect(205, curY, 28, 28), "X"))
                 _searchText = "";
 
@@ -33,7 +45,7 @@ namespace Pawnmorph.User_Interface
 
             _filteredList.Filter = _searchText.ToLower();
             Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count() + 1) * Text.LineHeight);
-            Widgets.BeginScrollView(new Rect(0, curY, inRect.width, totalHeight), ref _scrollPosition, listbox);
+            Widgets.BeginScrollView(new Rect(x, curY, inRect.width, height), ref _scrollPosition, listbox);
 
             Text.Font = GameFont.Tiny;
             Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
