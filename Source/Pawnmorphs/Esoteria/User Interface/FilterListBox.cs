@@ -29,6 +29,7 @@ namespace Pawnmorph.User_Interface
                 _searchText = "";
 
             curY += 35;
+            totalHeight -= 35;
 
             _filteredList.Filter = _searchText.ToLower();
             Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count() + 1) * Text.LineHeight);
