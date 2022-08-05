@@ -82,10 +82,10 @@ namespace Pawnmorph
         /// </summary>
         public Dictionary<string, string> raceReplacements;
 
-
-
-        public bool patchMaxFoodEaten = true;
-
+        /// <summary>
+        /// Dictionary of optional patches explicitly enabled or disabled.
+        /// </summary>
+        public Dictionary<string, bool> optionalPatches;
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
@@ -108,8 +108,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
             Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
-
-            Scribe_Values.Look(ref patchMaxFoodEaten, nameof(patchMaxFoodEaten), true);
+            Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

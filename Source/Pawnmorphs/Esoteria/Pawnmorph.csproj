@@ -315,6 +315,7 @@
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
     <Compile Include="HPatches\Need_FoodPatch.cs" />
     <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
+    <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
     <Compile Include="HPatches\RecipeDefPatch.cs" />
     <Compile Include="Jobs\Giver_Producer.cs" />
@@ -872,7 +873,9 @@
     <Compile Include="User Interface\ButtonTexturesPM.cs" />
     <Compile Include="User Interface\Dialog_PartPicker.cs" />
     <Compile Include="User Interface\Dialog_Popup.cs" />
+    <Compile Include="User Interface\FilterListBox.cs" />
     <Compile Include="User Interface\MutationData.cs" />
+    <Compile Include="User Interface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
     <Compile Include="Utilities\Cached.cs" />
