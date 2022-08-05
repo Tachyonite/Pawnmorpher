@@ -63,7 +63,6 @@ namespace Pawnmorph.Utilities.Collections
         /// </summary>
         public void Invalidate()
         {
-            Log.Message("Replacement Dialog: Invalidated filter.");
             if (String.IsNullOrEmpty(_filterString))
             {
                 _filteredCollection = _totalCollection.ToList().AsReadOnly();

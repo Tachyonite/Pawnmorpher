@@ -17,7 +17,6 @@ namespace Pawnmorph.Hediffs
 
         public override void PostAdd(DamageInfo? dinfo)
         {
-            Log.Message(String.Join(", ", pawn.health.hediffSet.GetHediffsVerbs().Select(x => x.tool.label)));
             Verb hornsVerb = pawn.health.hediffSet.GetHediffsVerbs().FirstOrDefault(x => x.tool.label == "gored");
             
             if (hornsVerb != null)
