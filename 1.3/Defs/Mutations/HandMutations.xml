@@ -34,8 +34,6 @@
 	</Pawnmorph.Hediffs.MutationDef>
 -->
 
-
-
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<defName>EtherPawHand</defName>
@@ -845,7 +843,7 @@
 		<label>stump hand</label>
 		<mutationMemory>StumpHandMemory</mutationMemory>
 		<!-- <mutationTale>TODO</mutationTale> -->
-		<description>Thick, leathery elephant stumps have replaced this hand.  Doing any kind of fine manipulation with it will be exceedingly challenging.</description>
+		<description>Thick, leathery stumps have replaced this hand. Doing any kind of fine manipulation with it will be exceedingly challenging.</description>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>readjusting</stageKey>
@@ -878,7 +876,7 @@
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>Thick, leathery elephant stumps have replaced [PAWN_nameDef]' hand. [PAWN_pronoun] will find any any kind of fine manipulation exceedingly challenging until he gets used to them.</description>
+					<description>Thick, leathery stumps have replaced [PAWN_nameDef]' hand. [PAWN_pronoun] will find any any kind of fine manipulation exceedingly challenging until he gets used to them.</description>
 					<statOffsets>
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
