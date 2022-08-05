@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pawnmorph.Utilities.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,11 @@ namespace Pawnmorph.User_Interface.Settings
         private static Vector2 CANCEL_BUTTON_SIZE = new Vector2(120f, 40f);
         private const float SPACER_SIZE = 17f;
 
-
-
-        private Vector2 _scrollPosition = new Vector2(0, 0);
-        private string _searchText = string.Empty;
-        private IEnumerable<AlienRace.ThingDef_AlienRace> _aliens;
         private Dictionary<AlienRace.ThingDef_AlienRace, bool> _selectedAliens;
         List<string> _settingsReference;
+
+
+        FilterListBox<AlienRace.ThingDef_AlienRace> _aliensListBox;
 
         public Dialog_VisibleRaceSelection(List<string> settingsReference)
         {
@@ -50,8 +49,10 @@ namespace Pawnmorph.User_Interface.Settings
             aliens = aliens.Except(Hybrids.RaceGenerator.ExplicitPatchedRaces.Select(x => x.ExplicitHybridRace).OfType<AlienRace.ThingDef_AlienRace>());
             aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
 
-            _aliens = aliens;
             _selectedAliens = aliens.Where(x => _settingsReference.Contains(x.defName)).ToDictionary(x => x, x => true);
+
+            var filterList = new ListFilter<AlienRace.ThingDef_AlienRace>(aliens, (alien, filterText) => alien.LabelCap.ToString().ToLower().Contains(filterText));
+            _aliensListBox = new FilterListBox<AlienRace.ThingDef_AlienRace>(filterList);
         }
 
 
@@ -69,35 +70,15 @@ namespace Pawnmorph.User_Interface.Settings
 
             curY += descriptionRect.height;
 
-            _searchText = Widgets.TextArea(new Rect(0, curY, 200f, 28f), _searchText);
-            if (Widgets.ButtonText(new Rect(205, curY, 28, 28), "X"))
-                _searchText = "";
-
-            curY += 35;
-
             float totalHeight = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
             totalHeight -= 100;
 
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_aliens.Count() + 1) * Text.LineHeight);
-            Widgets.BeginScrollView(new Rect(0, curY, inRect.width, totalHeight), ref _scrollPosition, listbox);
-
-            Text.Font = GameFont.Tiny;
-            Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
-            lineListing.Begin(listbox);
-
-            string searchText = _searchText.ToLower();
-            foreach (var item in _aliens)
+            _aliensListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
             {
-                if (searchText == "" || item.LabelCap.ToString().ToLower().Contains(searchText))
-                {
-                    bool current = _selectedAliens.TryGetValue(item, false);
-                    lineListing.CheckboxLabeled(item.LabelCap, ref current, item.modContentPack.ModMetaData.Name);
-                    _selectedAliens[item] = current;
-                }
-            }
-            lineListing.End();
-
-            Widgets.EndScrollView();
+                bool current = _selectedAliens.TryGetValue(item, false);
+                listing.CheckboxLabeled(item.LabelCap, ref current, item.modContentPack.ModMetaData.Name);
+                _selectedAliens[item] = current;
+            });
 
             // Draw the apply, reset and cancel buttons.
             float buttonVertPos = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
