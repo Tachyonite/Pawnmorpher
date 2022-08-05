@@ -30,4 +30,7 @@
 	<PMRaceReplacementHeader>Set race replacements for morphs.</PMRaceReplacementHeader>
 	<PMRaceReplacementText>Here you can replace morphs with races from other mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
 	<PMRaceReplacementLocked>Locked by patch.</PMRaceReplacementLocked>
+	<PMOptionalPatchesButton>Toggle optional patches.</PMOptionalPatchesButton>
+	<PMOptionalPatchesHeader>Toggle optional patches.</PMOptionalPatchesHeader>
+	<PMOptionalPatchesText>Enable or disable patches that are not strictly necessary for the mod to function.\nHover over a patch to see description.</PMOptionalPatchesText>
 </LanguageData>

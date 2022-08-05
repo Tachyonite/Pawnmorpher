@@ -11,18 +11,15 @@ using Verse;
 
 namespace Pawnmorph.HPatches.Optional
 {
+    [OptionalPatch("Max meal size.", "Multiplies the max meal size by pawn bodysize.", nameof(_enabled), true)]
     [HarmonyPatch]
     static class FoodStackMultiplier
     {
+        static bool _enabled = true;
+
         static bool Prepare(MethodBase original)
         {
-            bool patch = PawnmorpherMod.Settings.patchMaxFoodEaten;
-#if DEBUG
-            if (patch)
-                Log.Message("Max food eaten patched");
-#endif
-
-            return patch;
+            return _enabled;
         }
 
         [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.WillIngestStackCountOf)), HarmonyPrefix]
@@ -34,8 +31,6 @@ namespace Pawnmorph.HPatches.Optional
                 num = 1;
             }
             __result = (int)num;
-            Log.Message(num.ToString());
-
             return false;
         }
 

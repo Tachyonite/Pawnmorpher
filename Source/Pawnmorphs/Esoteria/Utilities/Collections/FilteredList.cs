@@ -45,7 +45,7 @@ namespace Pawnmorph.Utilities.Collections
                 if (_filterString == value || (_filterString != null && _filterString.Equals(value)))
                     return;
 
-                _filterString = value;
+                _filterString = value.ToLower();
                 Invalidate();
             }
         }
