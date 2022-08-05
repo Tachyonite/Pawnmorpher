@@ -68,8 +68,6 @@ namespace Pawnmorph.User_Interface.Settings
             });
             _aliens = aliens.Except(_patchedMorphs.Select(x => x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace));
             _morphs = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
-
-            Log.Message("Replacement Dialog: Refresh aliens");
         }
 
 
@@ -160,9 +158,6 @@ namespace Pawnmorph.User_Interface.Settings
             Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
             _settingsReference.AddRange(_selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName));
-
-            Log.Message("Patched races: " + String.Join(", ", _patchedMorphs.Select(x => x.defName)));
-            Log.Message("Settings: " + String.Join(", ", _settingsReference));
         }
 
         public override void OnCancelKeyPressed()
