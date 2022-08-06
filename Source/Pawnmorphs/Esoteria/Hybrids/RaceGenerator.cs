@@ -344,6 +344,8 @@ namespace Pawnmorph.Hybrids
 
             foreach (AlienPartGenerator.BodyAddon addon in human)
             {
+                addon.scaleWithPawnDrawsize = true;
+
                 AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
                 {
                     path = addon.path,

@@ -53,6 +53,7 @@ namespace Pawnmorph
                 AddMutationsToWhitelistedRaces();
                 EnableDisableOptionalPatches();
                 CheckForObsoletedComponents();
+                Events.PawnScaling.Initialize();
                 try
                 {
 
