@@ -52,6 +52,7 @@ namespace Pawnmorph
                 PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
                 CheckForObsoletedComponents();
+                Events.PawnScaling.Initialize();
                 try
                 {
 
