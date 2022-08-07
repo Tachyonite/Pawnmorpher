@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
+using static RimWorld.PawnUtility;
 
 namespace Pawnmorph.Events
 {
@@ -33,6 +34,7 @@ namespace Pawnmorph.Events
         }
 
 
+        [HarmonyLib.HarmonyAfter(new string[] { "erdelf.HumanoidAlienRaces" })]
         [HarmonyLib.HarmonyPatch(typeof(Verse.PawnGraphicSet), nameof(Verse.PawnGraphicSet.ResolveAllGraphics)), HarmonyLib.HarmonyPostfix]
         private static void ResolveAllGraphics(Pawn ___pawn)
         {
@@ -92,7 +94,9 @@ namespace Pawnmorph.Events
             {
                 // Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
                 // Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
-                drawLoc.z += GetScale(__instance.BodySize) / 2;
+                // Only offset when standing.
+                if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
+                    drawLoc.z += GetScale(__instance.BodySize) / 2;
             }
         }
 
