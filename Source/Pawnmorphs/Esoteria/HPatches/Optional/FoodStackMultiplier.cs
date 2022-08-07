@@ -19,6 +19,9 @@ namespace Pawnmorph.HPatches.Optional
 
         static bool Prepare(MethodBase original)
         {
+            if (original == null && _enabled)
+                Log.Message("[PM] Optional meal size patch enabled.");
+
             return _enabled;
         }
 
