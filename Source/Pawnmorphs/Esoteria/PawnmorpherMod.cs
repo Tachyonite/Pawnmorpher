@@ -64,6 +64,10 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMRaceReplacementButton".Translate()))
                 ShowRaceReplacements();
 
+            if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
+                ShowOptionalPatches();
+
+
             listingStandard.EndSection(checkBoxSection);
 
 
@@ -118,6 +122,15 @@ namespace Pawnmorph
                 settings.raceReplacements = new Dictionary<string, string>();
 
             User_Interface.Settings.Dialog_RaceReplacements raceReplacements = new User_Interface.Settings.Dialog_RaceReplacements(settings.raceReplacements);
+            Find.WindowStack.Add(raceReplacements);
+        }
+
+        private void ShowOptionalPatches()
+        {
+            if (settings.optionalPatches == null)
+                settings.optionalPatches = new Dictionary<string, bool>();
+
+            User_Interface.Settings.Dialog_OptionalPatches raceReplacements = new User_Interface.Settings.Dialog_OptionalPatches(settings.optionalPatches);
             Find.WindowStack.Add(raceReplacements);
         }
 

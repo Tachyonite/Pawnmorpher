@@ -51,6 +51,7 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
+                EnableDisableOptionalPatches();
                 CheckForObsoletedComponents();
                 Events.PawnScaling.Initialize();
                 try
@@ -89,6 +90,47 @@ namespace Pawnmorph
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
+        }
+
+        private static void EnableDisableOptionalPatches()
+        {
+            Dictionary<string, bool> optionalPatches = PawnmorpherMod.Settings.optionalPatches;
+            if (optionalPatches == null)
+                return;
+
+            foreach (var item in optionalPatches)
+            {
+                Type patch = Assembly.GetExecutingAssembly().GetType(item.Key);
+                if (patch != null)
+                {
+                    var attribute = patch.GetCustomAttribute<HPatches.Optional.OptionalPatchAttribute>(false);
+                    if (attribute != null)
+                    {
+                        if (attribute.DefaultEnabled == item.Value)
+                            continue;
+
+                        MemberInfo member = patch.GetMember(attribute.EnableMemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty).FirstOrDefault();
+                        if (member != null)
+                        {
+                            switch (member)
+                            {
+                                case FieldInfo field:
+                                    field.SetValue(null, item.Value);
+                                    break;
+
+                                case PropertyInfo property:
+                                    property.SetValue(null, item.Value);
+                                    break;
+                            }
+                            continue;
+                        }
+                    }
+                }
+#if DEBUG
+                Log.Warning("[Pawnmorpher] Failed toggling optional patch: " + item.Key);
+#endif
+            }
+
         }
 
         private static void VerifyMorphDefDatabase()
