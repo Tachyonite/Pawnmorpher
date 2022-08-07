@@ -33,6 +33,21 @@ namespace Pawnmorph.Events
             });
         }
 
+        private static void SetCompScales(AlienComp comp, float size)
+        {
+            comp.customDrawSize = new Vector2(size, size);
+            comp.customHeadDrawSize = new Vector2(size, size);
+            comp.customPortraitDrawSize = new Vector2(size, size);
+            comp.customPortraitHeadDrawSize = new Vector2(size, size);
+        }
+
+
+        [HarmonyLib.HarmonyPatch(typeof(AlienComp), nameof(AlienComp.PostSpawnSetup)), HarmonyLib.HarmonyPostfix]
+        private static void PostSpawnSetup(bool respawningAfterLoad, AlienComp __instance)
+        {
+            SetCompScales(__instance, GetScale(((Pawn)__instance.parent).BodySize));
+        }
+
 
         [HarmonyLib.HarmonyAfter(new string[] { "erdelf.HumanoidAlienRaces" })]
         [HarmonyLib.HarmonyPatch(typeof(Verse.PawnGraphicSet), nameof(Verse.PawnGraphicSet.ResolveAllGraphics)), HarmonyLib.HarmonyPostfix]
@@ -47,10 +62,7 @@ namespace Pawnmorph.Events
             {
                 float size = GetScale(bodysize);
 
-                comp.customDrawSize = new Vector2(size, size);
-                comp.customHeadDrawSize = new Vector2(size, size);
-                comp.customPortraitDrawSize = new Vector2(size, size);
-                comp.customPortraitHeadDrawSize = new Vector2(size, size);
+                SetCompScales(comp, size);
 
                 if (_meshCache.TryGetValue(size, out var mesh) == false)
                 {
