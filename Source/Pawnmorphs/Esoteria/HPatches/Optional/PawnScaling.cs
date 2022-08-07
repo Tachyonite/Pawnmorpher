@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +11,25 @@ using Verse;
 using static AlienRace.AlienPartGenerator;
 using static RimWorld.PawnUtility;
 
-namespace Pawnmorph.Events
+namespace Pawnmorph.HPatches.Optional
 {
+    [OptionalPatch("Pawn scaling.", "Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.", nameof(_enabled), true)]
     [HarmonyLib.HarmonyPatch]
-    internal static class PawnScaling
+    static class PawnScaling
     {
-        private static Dictionary<float, AlienGraphicMeshSet> _meshCache;
+        static Dictionary<float, AlienGraphicMeshSet> _meshCache;
+        static bool _enabled = true;
 
-
-
-        public static void Initialize()
+        static bool Prepare(MethodBase original)
         {
-            StatsUtility.GetEvents(PMStatDefOf.PM_BodySize).StatChanged += PawnScaling_StatChanged;
-            _meshCache = new Dictionary<float, AlienGraphicMeshSet>();
+            if (original == null && _enabled)
+            {
+                StatsUtility.GetEvents(PMStatDefOf.PM_BodySize).StatChanged += PawnScaling_StatChanged;
+                _meshCache = new Dictionary<float, AlienGraphicMeshSet>();
+                Log.Message("[PM] Optional pawn scaling patch enabled.");
+            }
+
+            return _enabled;
         }
 
         private static void PawnScaling_StatChanged(Verse.Pawn pawn, RimWorld.StatDef stat, float oldValue, float newValue)
