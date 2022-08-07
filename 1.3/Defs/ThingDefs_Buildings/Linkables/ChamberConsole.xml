@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    
+  <ThingDef ParentName="BuildingBase">
+    <defName>PMChamberConsole</defName>
+    <label>Control console</label>
+    <description>A console that when linked to a chamber allows for even more control of the mutation process.\nOperating system is currently missing and will come soon™</description>
+
+
+    
+    <designationCategory>GR_GeneticsTab</designationCategory>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+
+    <researchPrerequisites>
+      <li>MutagenChambers</li>
+    </researchPrerequisites>
+    
+    <!-- <comps>
+        <li>
+            <compClass>CompQuality</compClass>
+        </li>
+    </comps> -->
+
+    <size>(3,1)</size>
+    <graphicData>
+      <texPath>Things/Building/ChamberConsole/ChamberConsole</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+      <drawSize>(3,1.5)</drawSize>
+      <drawOffsetNorth>(0,0,0.25)</drawOffsetNorth>
+      <drawRotated>false</drawRotated>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+			</damageData>
+    </graphicData>
+    <rotatable>false</rotatable>
+
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+
+    <fillPercent>0.7</fillPercent>
+    <castEdgeShadows>true</castEdgeShadows>
+    <pathCost>42</pathCost>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <defaultPlacingRot>North</defaultPlacingRot>
+
+    <costStuffCount>50</costStuffCount>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Mass>15</Mass>
+      <WorkToBuild>2000</WorkToBuild>
+      <Flammability>0</Flammability>
+      <Beauty>5</Beauty>
+    </statBases>
+
+    <designationHotKey>Misc12</designationHotKey>
+    <staticSunShadowHeight>0.5</staticSunShadowHeight>
+    <surfaceType>Item</surfaceType>
+    <canOverlapZones>false</canOverlapZones>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+    </placeWorkers>
+    <comps>
+      <li Class="CompProperties_Power">
+          <compClass>CompPowerTrader</compClass>
+          <basePowerConsumption>30</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Facility">
+        <!-- <statOffsets>
+          <Comfort>0.05</Comfort>
+        </statOffsets> -->
+        <maxSimultaneous>1</maxSimultaneous>
+        <maxDistance>7</maxDistance>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

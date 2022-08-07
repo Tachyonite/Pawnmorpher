@@ -114,6 +114,11 @@
 				<offset>(0,0,0.25)</offset>
     <layer>PawnRope</layer>
             </li>
+            <li Class="CompProperties_AffectedByFacilities">
+                <linkableFacilities>
+                    <li>PMChamberConsole</li>
+                </linkableFacilities>
+            </li>
         </comps>
         <designationCategory>GR_GeneticsTab</designationCategory>
         <building>
