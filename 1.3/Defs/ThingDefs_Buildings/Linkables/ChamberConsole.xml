@@ -27,11 +27,11 @@
     <size>(3,1)</size>
     <graphicData>
       <texPath>Things/Building/ChamberConsole/ChamberConsole</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>Graphic_Multi</graphicClass>
 			<shaderType>CutoutComplex</shaderType>
-      <drawSize>(3,1.5)</drawSize>
+      <drawSize>(3,3)</drawSize>
       <drawOffsetNorth>(0,0,0.25)</drawOffsetNorth>
-      <drawRotated>false</drawRotated>
+      <drawOffsetSouth>(0,0,0.25)</drawOffsetSouth>
 			<damageData>
 				<cornerTL>Damage/Corner</cornerTL>
 				<cornerTR>Damage/Corner</cornerTR>
@@ -39,10 +39,9 @@
 				<cornerBR>Damage/Corner</cornerBR>
 			</damageData>
     </graphicData>
-    <rotatable>false</rotatable>
 
     <altitudeLayer>Building</altitudeLayer>
-    <passability>PassThroughOnly</passability>
+    <passability>Impassable</passability>
 
     <fillPercent>0.7</fillPercent>
     <castEdgeShadows>true</castEdgeShadows>
