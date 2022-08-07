@@ -22,6 +22,9 @@ namespace Pawnmorph.HPatches.Optional
             return _enabled;
         }
 
+        /// <summary>
+        /// Copied vanilla code and added ingester.BodySize multiplier.
+        /// </summary>
         [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.WillIngestStackCountOf)), HarmonyPrefix]
         static bool WillIngestStackCountOf(Pawn ingester, ThingDef def, float singleFoodNutrition, ref int __result)
         {
@@ -35,6 +38,10 @@ namespace Pawnmorph.HPatches.Optional
         }
 
 
+        /// <summary>
+        /// Copied vanilla code and added ingester.BodySize multiplier.
+        /// Also reduced the number of calls to GetStatValue(StatDefOf.Nutrition).
+        /// </summary>
         [HarmonyPatch(typeof(Thing), "IngestedCalculateAmounts"), HarmonyPrefix]
         static bool IngestedCalculateAmounts(Pawn ingester, float nutritionWanted, out int numTaken, out float nutritionIngested, Thing __instance, ThingDef ___def, int ___stackCount)
         {
