@@ -396,7 +396,15 @@ namespace Pawnmorph.User_Interface
             if (Widgets.ButtonText(bodyButtonRect, pawn.story.bodyType.defName))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
-                foreach (BodyTypeDef bodyType in DefDatabase<BodyTypeDef>.AllDefs)
+
+                // Get list of body types from alien race if possible otherwise list all.
+                IEnumerable<BodyTypeDef> bodyTypes;
+                if (pawn.def is ThingDef_AlienRace alien)
+                    bodyTypes = alien.GetPartGenerator().alienbodytypes;
+                else
+                    bodyTypes = DefDatabase<BodyTypeDef>.AllDefs;
+
+                foreach (BodyTypeDef bodyType in bodyTypes)
                 {
                     void changeBodyType()
                     {
