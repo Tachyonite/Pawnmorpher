@@ -21,14 +21,13 @@ namespace Pawnmorph.User_Interface.Settings
         private const float SPACER_SIZE = 17f;
 
 
-
-        private Vector2 _scrollPosition = new Vector2(0, 0);
-        private string _searchText = string.Empty;
         private IEnumerable<AlienRace.ThingDef_AlienRace> _aliens;
         private Dictionary<MorphDef, AlienRace.ThingDef_AlienRace> _selectedReplacements;
         private Dictionary<string, string> _settingsReference;
         private List<MorphDef> _patchedMorphs;
-        private ListFilter<MorphDef> _morphs;
+
+
+        FilterListBox<MorphDef> _morphListBox;
 
         public Dialog_RaceReplacements(Dictionary<string, string> settingsReference)
         {
@@ -67,7 +66,9 @@ namespace Pawnmorph.User_Interface.Settings
                 return null;
             });
             _aliens = aliens.Except(_patchedMorphs.Select(x => x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace));
-            _morphs = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
+
+            var morphFiltered = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
+            _morphListBox = new FilterListBox<MorphDef>(morphFiltered);
         }
 
 
@@ -85,33 +86,21 @@ namespace Pawnmorph.User_Interface.Settings
 
             curY += descriptionRect.height;
 
-            _searchText = Widgets.TextArea(new Rect(0, curY, 200f, 28f), _searchText);
-            if (Widgets.ButtonText(new Rect(205, curY, 28, 28), "X"))
-                _searchText = "";
-
             curY += 35;
 
             float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - SPACER_SIZE;
 
 
-            _morphs.Filter = _searchText.ToLower();
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_morphs.Filtered.Count() + 1) * Text.LineHeight);
-            Widgets.BeginScrollView(new Rect(0, curY, inRect.width, totalHeight), ref _scrollPosition, listbox);
-
-            Text.Font = GameFont.Tiny;
-            Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
-            lineListing.Begin(listbox);
-            
-            foreach (var morph in _morphs.Filtered)
+            _morphListBox.Draw(inRect, 0, curY, totalHeight, (morph, listing) =>
             {
                 if (_patchedMorphs.Contains(morph))
                 {
-                    lineListing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack.Name})", "PMRaceReplacementLocked".Translate());
-                    continue;
+                    listing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack.Name})", "PMRaceReplacementLocked".Translate());
+                    return;
                 }
 
                 ThingDef alien = _selectedReplacements[morph];
-                if (lineListing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack.Name})"))
+                if (listing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack.Name})"))
                 {
                     List<FloatMenuOption> options = new List<FloatMenuOption>();
 
@@ -126,11 +115,8 @@ namespace Pawnmorph.User_Interface.Settings
                     if (options.Count > 0)
                         Find.WindowStack.Add(new FloatMenu(options));
                 }
-            }
-            lineListing.End();
-
-            Widgets.EndScrollView();
-
+            });
+            
             // Draw the apply, reset and cancel buttons.
             float buttonVertPos = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
             float applyHorPos = inRect.width / 2 - APPLY_BUTTON_SIZE.x - RESET_BUTTON_SIZE.x / 2 - SPACER_SIZE;
