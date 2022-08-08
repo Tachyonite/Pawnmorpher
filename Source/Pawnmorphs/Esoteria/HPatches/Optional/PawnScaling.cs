@@ -32,6 +32,7 @@ namespace Pawnmorph.HPatches.Optional
             return _enabled;
         }
 
+        // Trigger pawn graphics update at the end of the tick if body size stat changes.
         private static void PawnScaling_StatChanged(Verse.Pawn pawn, RimWorld.StatDef stat, float oldValue, float newValue)
         {
             LongEventHandler.ExecuteWhenFinished(() =>
@@ -48,7 +49,7 @@ namespace Pawnmorph.HPatches.Optional
             comp.customPortraitHeadDrawSize = new Vector2(size, size);
         }
 
-
+        // Override HAR comp scales.
         [HarmonyLib.HarmonyPatch(typeof(AlienComp), nameof(AlienComp.PostSpawnSetup)), HarmonyLib.HarmonyPostfix]
         private static void PostSpawnSetup(bool respawningAfterLoad, AlienComp __instance)
         {
@@ -69,8 +70,10 @@ namespace Pawnmorph.HPatches.Optional
             {
                 float size = GetScale(bodysize);
 
+                // Set draw sizes
                 SetCompScales(comp, size);
 
+                // Generate new pawn textures of target size.
                 if (_meshCache.TryGetValue(size, out var mesh) == false)
                 {
                     mesh = new AlienGraphicMeshSet()
@@ -89,9 +92,9 @@ namespace Pawnmorph.HPatches.Optional
             };
         }
 
-
+        // Apply scale to body addon offsets.
         [HarmonyLib.HarmonyPatch(typeof(AlienRace.HarmonyPatches), nameof(AlienRace.HarmonyPatches.DrawAddonsFinalHook)), HarmonyLib.HarmonyPostfix]
-        public static void DrawAddonsFinalHook(Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, ref Graphic graphic, ref Vector3 offsetVector, ref float angle, ref Material mat)
+        private static void DrawAddonsFinalHook(Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, ref Graphic graphic, ref Vector3 offsetVector, ref float angle, ref Material mat)
         {
             float value = GetScale(pawn.BodySize);
             offsetVector.x *= value;
@@ -99,15 +102,16 @@ namespace Pawnmorph.HPatches.Optional
             offsetVector.z *= value;
         }
 
+        // Calculate the rendered size based on body size
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static float GetScale(float bodysize)
         {
             return Mathf.Sqrt(bodysize);
         }
 
-
+        // Offset rendered pawn from actual position to move selection box to their feet.
         [HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
-        public static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
+        private static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
         {
             if (__instance.BodySize > 1)
             {
@@ -119,9 +123,9 @@ namespace Pawnmorph.HPatches.Optional
             }
         }
 
-
+        // Apply scale offset to head position.
         [HarmonyLib.HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt)), HarmonyLib.HarmonyPostfix]
-        public static void BaseHeadOffsetAt(Rot4 rotation, ref Vector3 __result, Pawn ___pawn)
+        private static void BaseHeadOffsetAt(Rot4 rotation, ref Vector3 __result, Pawn ___pawn)
         {
             if (___pawn.BodySize == 1)
                 return;
