@@ -174,7 +174,18 @@ namespace Pawnmorph.GraphicSys
                 return false; //if they're the same color don't  do anything 
             }
 
-            var col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
+            // If base is transparent don't do anything
+            if (baseColor.a == 0)
+                return false;
+            
+            Color col;
+            if (morphColor.a == 0)
+            {
+                // If target is transparent, keep using base.
+                col = baseColor;
+            }
+            else
+                col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
 
             Pawn.story.hairColor = GComp.ColorChannels["hair"].first = col;
 
