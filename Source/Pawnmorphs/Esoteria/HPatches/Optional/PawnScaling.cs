@@ -13,7 +13,7 @@ using static RimWorld.PawnUtility;
 
 namespace Pawnmorph.HPatches.Optional
 {
-    [OptionalPatch("Pawn scaling.", "Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.", nameof(_enabled), false)]
+    [OptionalPatch("PMPawnScalingCaption", "PMPawnScalingDescription", nameof(_enabled), false)]
     [HarmonyLib.HarmonyPatch]
     static class PawnScaling
     {

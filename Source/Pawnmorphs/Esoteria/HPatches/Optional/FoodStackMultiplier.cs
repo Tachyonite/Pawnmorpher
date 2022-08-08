@@ -11,7 +11,7 @@ using Verse;
 
 namespace Pawnmorph.HPatches.Optional
 {
-    [OptionalPatch("Max meal size.", "Multiplies the max meal size by pawn bodysize.", nameof(_enabled), true)]
+    [OptionalPatch("PMFoodStackMultiplierCaption", "PMFoodStackMultiplierDescription", nameof(_enabled), true)]
     [HarmonyPatch]
     static class FoodStackMultiplier
     {
