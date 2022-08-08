@@ -13,12 +13,12 @@ using static RimWorld.PawnUtility;
 
 namespace Pawnmorph.HPatches.Optional
 {
-    [OptionalPatch("Pawn scaling.", "Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.", nameof(_enabled), true)]
+    [OptionalPatch("Pawn scaling.", "Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.", nameof(_enabled), false)]
     [HarmonyLib.HarmonyPatch]
     static class PawnScaling
     {
         static Dictionary<float, AlienGraphicMeshSet> _meshCache;
-        static bool _enabled = true;
+        static bool _enabled = false;
 
         static bool Prepare(MethodBase original)
         {
