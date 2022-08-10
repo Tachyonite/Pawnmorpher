@@ -62,6 +62,10 @@
 					<li>ToolCabinet</li>
 				</linkableFacilities>
 			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>120</basePowerConsumption>
+			</li>
 		</comps>
 		<placeWorkers>
 			<li>PlaceWorker_ShowFacilitiesConnections</li>
