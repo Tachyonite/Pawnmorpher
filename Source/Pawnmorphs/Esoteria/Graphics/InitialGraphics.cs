@@ -206,7 +206,7 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _skinColor, "skinColor");
             Scribe_Values.Look(ref _skinColorSecond, "skinColorSecond");
             Scribe_Values.Look(ref _hairColorSecond, "hairColorSecond");
-            Scribe_Values.Look(ref _crownType, "crownType");
+            Scribe_Values.Look(ref _crownType, "initialCrownType");
             Scribe_Values.Look(ref _hairColor, nameof(HairColor));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
             Scribe_Defs.Look(ref _body, nameof(_body));
@@ -228,7 +228,8 @@ namespace Pawnmorph.GraphicSys
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (!_scanned) ScanGraphics();
+            if (!_scanned) 
+                ScanGraphics();
         }
 
         /// <summary>
