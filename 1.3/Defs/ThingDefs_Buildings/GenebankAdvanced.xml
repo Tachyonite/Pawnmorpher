@@ -7,10 +7,6 @@
             <texPath>Things/Building/GeneticStorageAdvanced/GenebankAdvanced</texPath>
             <graphicClass>Graphic_Multi</graphicClass>
             <drawSize>(2,2)</drawSize>
-            <drawOffsetNorth>(0,0,0.20)</drawOffsetNorth>
-            <drawOffsetSouth>(0,0,0.20)</drawOffsetSouth>
-            <drawOffsetEast>(0.3,0,0)</drawOffsetEast>
-            <drawOffsetWest>(-0.3,0,0)</drawOffsetWest>
         </graphicData>
         <minifiedDef>MinifiedThing</minifiedDef>
         <defaultPlacingRot>South</defaultPlacingRot>
