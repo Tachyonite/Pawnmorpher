@@ -571,8 +571,8 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.Interning.cs" />
+    <Compile Include="User Interface\MainTabWindow_ChamberDatabase.cs" />
+    <Compile Include="User Interface\MainTabWindow_ChamberDatabase.Interning.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
@@ -877,6 +877,9 @@
     <Compile Include="User Interface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="User Interface\TableBox\Table.cs" />
+    <Compile Include="User Interface\TableBox\TableColumn.cs" />
+    <Compile Include="User Interface\Window_Genebank.cs" />
     <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />

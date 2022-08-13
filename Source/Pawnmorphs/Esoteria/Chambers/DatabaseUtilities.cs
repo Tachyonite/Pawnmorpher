@@ -153,6 +153,9 @@ namespace Pawnmorph.Chambers
                 storageAmount /= 1000f;
             }
 
+            // Round to 2 decimals
+            storageAmount = Mathf.RoundToInt(storageAmount * 100) / 100;
+
             return storageAmount + Suffixes[idx];
         }
 

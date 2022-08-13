@@ -19,8 +19,94 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.MainTabWindow" />
     public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
-        
-        
+        private readonly struct RowEntry : IEquatable<RowEntry>
+        {
+            public readonly Def def;
+            public readonly string label;
+            public readonly int storageSpaceUsed;
+
+            public RowEntry(MutationDef mDef)
+            {
+                label = mDef.label;
+                storageSpaceUsed = mDef.GetRequiredStorage();
+                def = mDef;
+            }
+
+            public RowEntry(PawnKindDef pkDef)
+            {
+                label = pkDef.label;
+                storageSpaceUsed = pkDef.GetRequiredStorage();
+                def = pkDef;
+            }
+
+            /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+            /// <param name="other">An object to compare with this object.</param>
+            /// <returns>
+            ///     <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
+            ///     <see langword="false" />.
+            /// </returns>
+            public bool Equals(RowEntry other)
+            {
+                return Equals(def, other.def)
+                    && label == other.label
+                    && storageSpaceUsed == other.storageSpaceUsed;
+            }
+
+            /// <summary>Indicates whether this instance and a specified object are equal.</summary>
+            /// <param name="obj">The object to compare with the current instance. </param>
+            /// <returns>
+            ///     <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same
+            ///     value; otherwise, <see langword="false" />.
+            /// </returns>
+            public override bool Equals(object obj)
+            {
+                return obj is RowEntry other && Equals(other);
+            }
+
+            /// <summary>Returns the hash code for this instance.</summary>
+            /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    int hashCode = def != null ? def.GetHashCode() : 0;
+                    hashCode = (hashCode * 397) ^ (label != null ? label.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ storageSpaceUsed;
+                    return hashCode;
+                }
+            }
+
+            /// <summary>
+            ///     Returns a value that indicates whether the values of two
+            ///     <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects are equal.
+            /// </summary>
+            /// <param name="left">The first value to compare.</param>
+            /// <param name="right">The second value to compare.</param>
+            /// <returns>
+            ///     true if the <paramref name="left" /> and <paramref name="right" /> parameters have the same value; otherwise,
+            ///     false.
+            /// </returns>
+            public static bool operator ==(RowEntry left, RowEntry right)
+            {
+                return left.Equals(right);
+            }
+
+            /// <summary>
+            ///     Returns a value that indicates whether two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" />
+            ///     objects have different values.
+            /// </summary>
+            /// <param name="left">The first value to compare.</param>
+            /// <param name="right">The second value to compare.</param>
+            /// <returns>true if <paramref name="left" /> and <paramref name="right" /> are not equal; otherwise, false.</returns>
+            public static bool operator !=(RowEntry left, RowEntry right)
+            {
+                return !left.Equals(right);
+            }
+        }
+
+
+
+
         private const float DESCRIPTION_ROW_FRACT = 0.60f;
         private const float TEXT_ROW_FRACT = 5f / 7f;
         private const float BUTTON_FRACT = 1f - TEXT_ROW_FRACT;
@@ -28,23 +114,21 @@ namespace Pawnmorph
         private const float STORAGE_INFO_FRACT = (1 - DESCRIPTION_ROW_FRACT) * TEXT_ROW_FRACT;
 
 
+        private const string HEADER_LABEL = "PMGenebankHeader";
+        private const string AVAILABLE_HEADER_LABEL = "PMGenebankAvailableHeader";
+        private const string TOTAL_HEADER_LABEL = "PMGenebankTotalHeader";
+
+
         //header constants 
         private const float HEADER_LABEL_FRACT = 0.5f;
         private const float HEADER_SPACE_FRACT = 1f - HEADER_LABEL_FRACT;
         private const float HEADER_HEIGHT = 60*2f; 
         
-        [NotNull] readonly
-            private List<RowEntry> _rowEntries = new List<RowEntry>();
-
-
-
+        [NotNull] 
+        private readonly List<RowEntry> _rowEntries = new List<RowEntry>();
         private Vector2 _scrollPosition;
-
-
         private List<TabRecord> _tabs;
-
         private Mode _curMode;
-
         private ChamberDatabase _chamberDatabase;
 
         /// <summary>
@@ -55,36 +139,21 @@ namespace Pawnmorph
         /// </value>
         public override Vector2 RequestedTabSize => new Vector2(1010f, 740f);
 
-        [NotNull]
-        private List<TabRecord> Tabs
+        public override void PostOpen()
         {
-            get
+            base.PostOpen();
+
+
+            _tabs = new List<TabRecord>()
             {
-                if (_tabs == null)
-                    _tabs = new List<TabRecord>
-                    {
-                        new TabRecord("PMDBTaggedAnimal".Translate(), () => SetMode(Mode.Animal), () => _curMode == Mode.Animal),
-                        new TabRecord("PMDBTaggedMutations".Translate(), () => SetMode(Mode.Mutations),
-                                      () => _curMode == Mode.Mutations)
-                    };
+                new TabRecord("PMDBTaggedAnimal".Translate(), () => SelectPage(Mode.Animal), () => _curMode == Mode.Animal),
+                new TabRecord("PMDBTaggedMutations".Translate(), () => SelectPage(Mode.Mutations), () => _curMode == Mode.Mutations)
+            };
+            _chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
 
-                return _tabs;
-            }
-        }
-
-        [NotNull]
-        private ChamberDatabase Database
-        {
-            get
-            {
-                ChamberDatabase database = _chamberDatabase;
-                if (database != null) return database;
-
-                _chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
-                if (_chamberDatabase == null) Log.Error("Unable to find chamber database world component!");
-
-                return _chamberDatabase;
-            }
+            if (_chamberDatabase == null) 
+                Log.Error("Unable to find chamber database world component!");
+            
         }
 
 
@@ -116,7 +185,7 @@ namespace Pawnmorph
             
             sRect.y += HEADER_HEIGHT; 
 
-            TabDrawer.DrawTabs(sRect, Tabs);
+            TabDrawer.DrawTabs(sRect, _tabs);
             switch (_curMode)
             {
                 case Mode.Animal:
@@ -130,9 +199,6 @@ namespace Pawnmorph
             }
         }
 
-        private const string HEADER_LABEL = "PMGenebankHeader";
-        private const string AVAILABLE_HEADER_LABEL = "PMGenebankAvailableHeader";
-        private const string TOTAL_HEADER_LABEL = "PMGenebankTotalHeader";
 
         private void DrawHeader(Rect sRect)
         {
@@ -161,16 +227,15 @@ namespace Pawnmorph
             labelRect.y += h/2f;
             totalRect.y += h; 
 
-            var db = Database;
             Widgets.Label(labelRect, HEADER_LABEL.Translate());
-            float fS = db.FreeStorage;
-            float tS = db.TotalStorage;
+            float fS = _chamberDatabase.FreeStorage;
+            float tS = _chamberDatabase.TotalStorage;
             float pct = fS == 0 ? 0 : fS / tS; 
             Widgets.Label(availableRect, DatabaseUtilities.GetStorageString(fS) + $"({pct.ToStringPercent()})" );
-            Widgets.Label(totalRect, DatabaseUtilities.GetStorageString(db.TotalStorage));
+            Widgets.Label(totalRect, DatabaseUtilities.GetStorageString(_chamberDatabase.TotalStorage));
         }
 
-      
+
 
         /// <summary>
         ///     called just before the tab is opened
@@ -184,7 +249,8 @@ namespace Pawnmorph
         private void DrawAnimalsTab(Rect inRect)
         {
             _rowEntries.Clear();
-            foreach (PawnKindDef taggedAnimal in Database.TaggedAnimals) _rowEntries.Add(new RowEntry(taggedAnimal));
+            foreach (PawnKindDef taggedAnimal in _chamberDatabase.TaggedAnimals) 
+                _rowEntries.Add(new RowEntry(taggedAnimal));
 
             DrawTable(inRect, _cachedHeaders[(int) Mode.Animal]);
         }
@@ -207,7 +273,7 @@ namespace Pawnmorph
         private void DrawMutationsTab(Rect inRect)
         {
             _rowEntries.Clear();
-            foreach (MutationDef mutation in Database.StoredMutations) _rowEntries.Add(new RowEntry(mutation));
+            foreach (MutationDef mutation in _chamberDatabase.StoredMutations) _rowEntries.Add(new RowEntry(mutation));
 
             DrawTable(inRect, _cachedHeaders[(int) Mode.Mutations]);
         }
@@ -259,7 +325,7 @@ namespace Pawnmorph
             Widgets.Label(cRect, DatabaseUtilities.GetStorageString(entry.storageSpaceUsed));
 
             string usageStr;
-            int totalStorage = Database.TotalStorage;
+            int totalStorage = _chamberDatabase.TotalStorage;
             if (totalStorage <= 0)
                 usageStr = "NaN"; //should be an error message if total storage is 0 ? 
             else
@@ -347,94 +413,14 @@ namespace Pawnmorph
         }
 
 
-        private void SetMode(Mode mode)
+        private void SelectPage(Mode mode)
         {
             _curMode = mode;
-        }
 
-        private readonly struct RowEntry : IEquatable<RowEntry>
-        {
-            public readonly Def def;
-            public readonly string label;
-            public readonly int storageSpaceUsed;
 
-            public RowEntry(MutationDef mDef)
-            {
-                label = mDef.label;
-                storageSpaceUsed = mDef.GetRequiredStorage();
-                def = mDef;
-            }
 
-            public RowEntry(PawnKindDef pkDef)
-            {
-                label = pkDef.label;
-                storageSpaceUsed = pkDef.GetRequiredStorage();
-                def = pkDef;
-            }
 
-            /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-            /// <param name="other">An object to compare with this object.</param>
-            /// <returns>
-            ///     <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise,
-            ///     <see langword="false" />.
-            /// </returns>
-            public bool Equals(RowEntry other)
-            {
-                return Equals(def, other.def)
-                    && label == other.label
-                    && storageSpaceUsed == other.storageSpaceUsed;
-            }
 
-            /// <summary>Indicates whether this instance and a specified object are equal.</summary>
-            /// <param name="obj">The object to compare with the current instance. </param>
-            /// <returns>
-            ///     <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same
-            ///     value; otherwise, <see langword="false" />.
-            /// </returns>
-            public override bool Equals(object obj)
-            {
-                return obj is RowEntry other && Equals(other);
-            }
-
-            /// <summary>Returns the hash code for this instance.</summary>
-            /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    int hashCode = def != null ? def.GetHashCode() : 0;
-                    hashCode = (hashCode * 397) ^ (label != null ? label.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ storageSpaceUsed;
-                    return hashCode;
-                }
-            }
-
-            /// <summary>
-            ///     Returns a value that indicates whether the values of two
-            ///     <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" /> objects are equal.
-            /// </summary>
-            /// <param name="left">The first value to compare.</param>
-            /// <param name="right">The second value to compare.</param>
-            /// <returns>
-            ///     true if the <paramref name="left" /> and <paramref name="right" /> parameters have the same value; otherwise,
-            ///     false.
-            /// </returns>
-            public static bool operator ==(RowEntry left, RowEntry right)
-            {
-                return left.Equals(right);
-            }
-
-            /// <summary>
-            ///     Returns a value that indicates whether two <see cref="T:Pawnmorph.MainTabWindow_ChamberDatabase.RowEntry" />
-            ///     objects have different values.
-            /// </summary>
-            /// <param name="left">The first value to compare.</param>
-            /// <param name="right">The second value to compare.</param>
-            /// <returns>true if <paramref name="left" /> and <paramref name="right" /> are not equal; otherwise, false.</returns>
-            public static bool operator !=(RowEntry left, RowEntry right)
-            {
-                return !left.Equals(right);
-            }
         }
 
         private enum Mode

@@ -63,6 +63,16 @@ namespace Pawnmorph.Utilities.Collections
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ListFilter{T}"/> class.
+        /// </summary>
+        /// <param name="filterCallback">Filter callback called for each item when filter text is modified. Provides Item, Filtertext and expects a bool returned on whether or not item is visible.</param>
+        public ListFilter(Func<T, string, bool> filterCallback)
+        {
+            _totalCollection = new List<T>();
+            _filterCallback = filterCallback;
+        }
+
+        /// <summary>
         /// Invalidates the filtered collection and regenerates it.
         /// </summary>
         public void Invalidate()
