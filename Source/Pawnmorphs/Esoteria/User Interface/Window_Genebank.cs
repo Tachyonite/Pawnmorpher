@@ -1,6 +1,7 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,33 +41,32 @@ namespace Pawnmorph.User_Interface
             public readonly string StorageSpaceUsed;
             public readonly string StorageSpaceUsedPercentage;
             public readonly Dictionary<string, string> DataCache;
-            public readonly string SearchString;
+            public string SearchString;
 
-            public RowItem(MutationDef def, int totalCapacity, string searchString)
+            private RowItem(Def def)
             {
                 DataCache = new Dictionary<string, string>();
-                SearchString = searchString.ToLower();
                 Label = def.LabelCap;
                 Def = def;
+                StorageSpaceUsedPercentage = "0%";
+            }
 
+            public RowItem(MutationDef def, int totalCapacity, string searchString)
+                : this(def)
+            {
+                SearchString = searchString.ToLower();
                 int size = def.GetRequiredStorage();
                 StorageSpaceUsed = DatabaseUtilities.GetStorageString(size);
-
-                StorageSpaceUsedPercentage = "0%";
                 if (totalCapacity > 0)
                     StorageSpaceUsedPercentage = ((float)size / totalCapacity).ToStringPercent();
             }
 
             public RowItem(PawnKindDef def, int totalCapacity, string searchString)
+                : this(def)
             {
-                DataCache = new Dictionary<string, string>();
                 SearchString = searchString.ToLower();
-                Label = def.LabelCap;
-                Def = def;
-
                 int size = def.GetRequiredStorage();
                 StorageSpaceUsed = DatabaseUtilities.GetStorageString(size);
-                StorageSpaceUsedPercentage = "0%";
                 if (totalCapacity > 0)
                     StorageSpaceUsedPercentage = ((float)size / totalCapacity).ToStringPercent();
             }
@@ -215,8 +215,8 @@ namespace Pawnmorph.User_Interface
             // Capacity meter.
             Rect capacityBarRect = new Rect(capacity.x, capSection.y + Text.LineHeight, capacity.width, Text.LineHeight);
             Widgets.DrawBoxSolid(capacityBarRect, Color.black);
-            capacityBarRect = capacityBarRect.ContractedBy(10);
-            capacityBarRect.width = capacityBarRect.width / _totalCapacity * freeCapacity;
+            capacityBarRect = capacityBarRect.ContractedBy(3);
+            capacityBarRect.width = Mathf.Max(0f, capacityBarRect.width / _totalCapacity * freeCapacity);
             Widgets.DrawBoxSolid(capacityBarRect, Color.green);
         }
 
@@ -253,7 +253,6 @@ namespace Pawnmorph.User_Interface
                 string searchText = animal.label;
                 item = new RowItem(animal, _totalCapacity, searchText);
 
-                //item.DataCache["paragon"] = 
                 _table.AddRow(item);
             }
             _table.Refresh();
@@ -282,13 +281,61 @@ namespace Pawnmorph.User_Interface
             });
 
 
+            _table.AddColumn("Paragon", 60f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["paragon"]));
+            _table.AddColumn("Abilities", 200f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["abilities"]));
+            _table.AddColumn("Stats", 400f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["stats"]));
+
+
             RowItem item;
             foreach (MutationDef mutation in _chamberDatabase.StoredMutations)
             {
                 string searchText = mutation.label;
                 item = new RowItem(mutation, _totalCapacity, searchText);
 
-                //item.DataCache["paragon"] = 
+                if (mutation.stages == null)
+                    continue;
+
+                var stages = mutation.stages.OfType<MutationStage>().ToList();
+
+                // Add empty entry of all cached values to avoid having to check for them during rendering.
+                item.DataCache["stats"] = "";
+                item.DataCache["paragon"] = "";
+                item.DataCache["abilities"] = "";
+
+                if (stages.Count > 0)
+                {
+                    var lastStage = stages[stages.Count - 1];
+
+
+                    // If any stage has abilities, it will be the last one. Paragon or not.
+                    if (lastStage.abilities != null)
+                    {
+                        string abilities = String.Join(", ", lastStage.abilities.Select(x => x.label));
+                        item.DataCache["abilities"] = abilities;
+                        searchText += " " + abilities;
+                    }
+
+                    if (lastStage.key == "paragon")
+                    {
+                        item.DataCache["paragon"] = "Paragon";
+                        lastStage = stages[stages.Count - 2];
+                        searchText += " " + "paragon";
+                    }
+
+                    List<StatDef> stats = new List<StatDef>();
+                    if (lastStage.statFactors != null)
+                        stats.AddRange(lastStage.statFactors.Where(x => x.value > 1).Select(x => x.stat));
+
+                    if (lastStage.statOffsets != null)
+                        stats.AddRange(lastStage.statOffsets.Where(x => x.value > 0).Select(x => x.stat));
+
+                    string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
+                    searchText += " " + statsImpact;
+
+                    item.DataCache["stats"] = statsImpact;
+                }
+
+                item.SearchString = searchText.ToLower();
                 _table.AddRow(item);
             }
             _table.Refresh();
