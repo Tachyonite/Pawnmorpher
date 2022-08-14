@@ -59,6 +59,11 @@ namespace Pawnmorph.User_Interface.TableBox
             _rows.Items.Add(item);
         }
 
+        public void DeleteRow(T item)
+        {
+            _rows.Items.Remove(item);
+        }
+
         public void Refresh()
         {
             _rows.Invalidate();
@@ -99,10 +104,15 @@ namespace Pawnmorph.User_Interface.TableBox
         {
             Rect searchBox = new Rect(boundingBox.x, boundingBox.y, boundingBox.width - 28f - CELL_SPACING, 28f);
             _searchText = Widgets.TextArea(searchBox, _searchText);
-            if (Widgets.ButtonText(new Rect(searchBox.width + CELL_SPACING, boundingBox.y, 28, 28), "X"))
+            if (Widgets.ButtonText(new Rect(boundingBox.xMax - 28f, boundingBox.y, 28, 28), "X"))
                 _searchText = "";
+            
+            searchBox.width = 70f;
+            if (_searchText == String.Empty)
+                Widgets.NoneLabelCenteredVertically(searchBox, "Search...");
+            
             _rows.Filter = _searchText;
-
+            
             boundingBox.y += 35;
             boundingBox.height -= 35;
 
@@ -211,5 +221,6 @@ namespace Pawnmorph.User_Interface.TableBox
 
             Widgets.EndScrollView();
         }
+
     }
 }

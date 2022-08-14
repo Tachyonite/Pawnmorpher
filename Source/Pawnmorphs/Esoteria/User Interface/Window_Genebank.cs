@@ -156,11 +156,28 @@ namespace Pawnmorph.User_Interface
             mainBox.y += TabDrawer.TabHeight;
             mainBox.height -= TabDrawer.TabHeight;
 
-
             Widgets.DrawBoxSolidWithOutline(mainBox, Color.black, Color.gray);
+
+
+            Rect footer = new Rect(mainBox.x, mainBox.yMax - 40, mainBox.width, 40);
+            footer = footer.ContractedBy(SPACING);
+            mainBox.height -= footer.height;
 
             TabDrawer.DrawTabs(mainBox, _tabs);
             _table.Draw(mainBox.ContractedBy(SPACING));
+            
+            Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
+            if (Widgets.ButtonText(new Rect(footer.x, footer.y, 100f, footer.height), "Delete"))
+            {
+                foreach (RowItem item in _table.SelectedRows)
+                {
+                    Delete(item.Def);
+                    _table.DeleteRow(item);
+                }
+
+                _table.Refresh();
+            }
+
 
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
@@ -237,12 +254,6 @@ namespace Pawnmorph.User_Interface
                     collection.OrderBy(x => x.Size);
                 else
                     collection.OrderByDescending(x => x.Size);
-            });
-
-            _table.AddColumn("Delete", 45f, (ref Rect box, RowItem item) =>
-            {
-                if (Widgets.ButtonImage(box, PMTexButton.CloseXSmall))
-                    Delete(item.Def);
             });
         }
 
