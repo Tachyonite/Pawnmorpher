@@ -877,6 +877,7 @@
     <Compile Include="User Interface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="User Interface\TableBox\ITableRow.cs" />
     <Compile Include="User Interface\TableBox\Table.cs" />
     <Compile Include="User Interface\TableBox\TableColumn.cs" />
     <Compile Include="User Interface\Window_Genebank.cs" />

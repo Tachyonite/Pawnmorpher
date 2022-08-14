@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph.User_Interface.TableBox
 {
-    internal class Table<T>
+    internal class Table<T> where T : ITableRow
     {
         private const float CELL_SPACING = 5;
         private const float ROW_SPACING = 3;
@@ -25,7 +26,7 @@ namespace Pawnmorph.User_Interface.TableBox
             _rows = new ListFilter<T>(filterCallback);
         }
 
-        public TableColumn<T> AddColumn(string header, float width, RowCallback<Rect, T> callback)
+        public TableColumn<T> AddColumn(string header, float width, RowCallback<Rect, T> callback = null)
         {
             TableColumn<T> column = new TableColumn<T>(header, width, callback);
             _columns.Add(column);
@@ -34,6 +35,13 @@ namespace Pawnmorph.User_Interface.TableBox
 
         public void AddRow(T item)
         {
+            // Ensure new rows have every column in data cache to avoid needing to check for every single cell during rendering.
+            foreach (TableColumn column in _columns)
+            {
+                if (item.RowData.ContainsKey(column) == false)
+                    item.RowData[column] = String.Empty;
+            }
+
             _rows.Items.Add(item);
         }
 
@@ -105,7 +113,11 @@ namespace Pawnmorph.User_Interface.TableBox
                     else
                         rowRect.width = tableWidth * column.Width;
 
-                    column.Callback(ref rowRect, _rows.Filtered[currentIndex]);
+                    if (column.Callback != null)
+                        column.Callback(ref rowRect, _rows.Filtered[currentIndex]);
+                    else
+                        Widgets.Label(rowRect, _rows.Filtered[currentIndex].RowData[column]);
+
                     rowRect.x = rowRect.xMax + CELL_SPACING;
                 }
                 rowRect.y += rowRect.height;

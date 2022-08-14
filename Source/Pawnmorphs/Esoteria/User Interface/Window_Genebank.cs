@@ -1,6 +1,7 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
+using Pawnmorph.User_Interface.TableBox;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -34,18 +35,19 @@ namespace Pawnmorph.User_Interface
             //Templates,
         }
 
-        private class RowItem
+        private class RowItem : ITableRow
         {
             public readonly Def Def;
             public readonly string Label;
             public readonly string StorageSpaceUsed;
             public readonly string StorageSpaceUsedPercentage;
-            public readonly Dictionary<string, string> DataCache;
             public string SearchString;
+
+            public Dictionary<TableColumn, string> RowData { get; }
 
             private RowItem(Def def)
             {
-                DataCache = new Dictionary<string, string>();
+                RowData = new Dictionary<TableColumn, string>();
                 Label = def.LabelCap;
                 Def = def;
                 StorageSpaceUsedPercentage = "0%";
@@ -128,23 +130,6 @@ namespace Pawnmorph.User_Interface
             SelectTab(Mode.Mutations);
         }
 
-        private void SelectTab(Mode mode)
-        {
-            _currentTab = mode;
-            _table.Clear();
-
-            switch (mode)
-            {
-                case Mode.Animal:
-                    GenerateAnimalTabContent();
-                    break;
-
-                case Mode.Mutations:
-                    GenerateMutationsTabContent();
-                    break;
-            }
-        }
-
         public override void DoWindowContents(Rect inRect)
         {
             if (_chamberDatabase == null)
@@ -221,15 +206,22 @@ namespace Pawnmorph.User_Interface
         }
 
 
-
-
-
-        private void GenerateAnimalTabContent()
+        private void SelectTab(Mode mode)
         {
-            _currentTab = Mode.Animal;
+            _currentTab = mode;
+            _table.Clear();
 
-            var column = _table.AddColumn("Race", 0.25f, (ref Rect box, RowItem item) => Widgets.Label(box, item.Label));
-            column.IsFixedWidth = false;
+            switch (mode)
+            {
+                case Mode.Animal:
+                    GenerateAnimalTabContent();
+                    break;
+
+                case Mode.Mutations:
+                    GenerateMutationsTabContent();
+                    break;
+            }
+
 
             _table.AddColumn("Size", 100f, (ref Rect box, RowItem item) =>
             {
@@ -245,7 +237,15 @@ namespace Pawnmorph.User_Interface
                 if (Widgets.ButtonImage(box, PMTexButton.CloseXSmall))
                     Delete(item.Def);
             });
+        }
 
+
+        private void GenerateAnimalTabContent()
+        {
+            _currentTab = Mode.Animal;
+
+            var column = _table.AddColumn("Race", 0.25f, (ref Rect box, RowItem item) => Widgets.Label(box, item.Label));
+            column.IsFixedWidth = false;
 
             RowItem item;
             foreach (PawnKindDef animal in _chamberDatabase.TaggedAnimals)
@@ -265,25 +265,9 @@ namespace Pawnmorph.User_Interface
             var column = _table.AddColumn("Mutation", 0.25f, (ref Rect box, RowItem item) => Widgets.Label(box, item.Label));
             column.IsFixedWidth = false;
 
-            _table.AddColumn("Size", 100f, (ref Rect box, RowItem item) =>
-            {
-                box.width = box.width / 2 - 5;
-                Widgets.Label(box, item.StorageSpaceUsed);
-
-                box.x = box.xMax + 5;
-                Widgets.Label(box, item.StorageSpaceUsedPercentage);
-            });
-
-            _table.AddColumn("Delete", 45f, (ref Rect box, RowItem item) =>
-            {
-                if (Widgets.ButtonImage(box, PMTexButton.CloseXSmall))
-                    Delete(item.Def);
-            });
-
-
-            _table.AddColumn("Paragon", 60f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["paragon"]));
-            _table.AddColumn("Abilities", 200f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["abilities"]));
-            _table.AddColumn("Stats", 400f, (ref Rect box, RowItem item) => Widgets.Label(box, item.DataCache["stats"]));
+            TableColumn colParagon = _table.AddColumn("Paragon", 60f);
+            TableColumn colAbilities = _table.AddColumn("Abilities", 200f);
+            TableColumn colStats = _table.AddColumn("Stats", 400f);
 
 
             RowItem item;
@@ -296,12 +280,6 @@ namespace Pawnmorph.User_Interface
                     continue;
 
                 var stages = mutation.stages.OfType<MutationStage>().ToList();
-
-                // Add empty entry of all cached values to avoid having to check for them during rendering.
-                item.DataCache["stats"] = "";
-                item.DataCache["paragon"] = "";
-                item.DataCache["abilities"] = "";
-
                 if (stages.Count > 0)
                 {
                     var lastStage = stages[stages.Count - 1];
@@ -311,13 +289,13 @@ namespace Pawnmorph.User_Interface
                     if (lastStage.abilities != null)
                     {
                         string abilities = String.Join(", ", lastStage.abilities.Select(x => x.label));
-                        item.DataCache["abilities"] = abilities;
+                        item.RowData[colAbilities] = abilities;
                         searchText += " " + abilities;
                     }
 
                     if (lastStage.key == "paragon")
                     {
-                        item.DataCache["paragon"] = "Paragon";
+                        item.RowData[colParagon] = "Paragon";
                         lastStage = stages[stages.Count - 2];
                         searchText += " " + "paragon";
                     }
@@ -332,7 +310,7 @@ namespace Pawnmorph.User_Interface
                     string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
                     searchText += " " + statsImpact;
 
-                    item.DataCache["stats"] = statsImpact;
+                    item.RowData[colStats] = statsImpact;
                 }
 
                 item.SearchString = searchText.ToLower();
