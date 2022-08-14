@@ -105,6 +105,7 @@ namespace Pawnmorph.User_Interface.TableBox
 
             TableColumn<T> column;
             Rect columnHeader = new Rect(boundingBox);
+            columnHeader.height = Text.LineHeight;
 
             float tableWidth = boundingBox.width - GenUI.ScrollBarWidth - CELL_SPACING;
             for (int i = 0; i < _columns.Count; i++)
@@ -116,7 +117,10 @@ namespace Pawnmorph.User_Interface.TableBox
                 }
                 else
                     columnHeader.width = tableWidth * column.Width;
-
+                
+                if (column.Callback == null || column.OrderByCallback != null)
+                    Widgets.DrawHighlightIfMouseover(columnHeader);
+                
                 Widgets.Label(columnHeader, column.Caption);
                 if (Widgets.ButtonInvisible(columnHeader, true))
                     Sort(column);
