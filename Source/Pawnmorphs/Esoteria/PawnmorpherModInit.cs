@@ -49,7 +49,7 @@ namespace Pawnmorph
                 InjectGraphics(); 
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
-                TransferPatchesToExplicitRaces();
+                PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
                 CheckForObsoletedComponents();
                 try
@@ -313,33 +313,55 @@ namespace Pawnmorph
         }
 
 
-        private static void TransferPatchesToExplicitRaces()
+        private static void PatchExplicitRaces()
         {
             List<AlienPartGenerator.BodyAddon> allAddons = GetAllAddonsToAdd().ToList();
 
-            var explicitRaces =
-                MorphDef.AllDefs.Where(m => m.ExplicitHybridRace != null && m.raceSettings?.transferHumanBodyAddons == true)
-                        .Select(m => m.ExplicitHybridRace);
+            var explicitMorphs = MorphDef.AllDefs.Where(m => m.ExplicitHybridRace != null);
 
-            foreach (var explicitRace in explicitRaces)
+            foreach (var morph in explicitMorphs)
             {
-                var aRace = explicitRace as ThingDef_AlienRace;
+                var aRace = morph.ExplicitHybridRace as ThingDef_AlienRace;
                 if (aRace == null)
                 {
-                    Log.Warning($"could not transfer mutation graphics to {explicitRace.defName} because it is not a {nameof(ThingDef_AlienRace)}");
+                    Log.Warning($"could not transfer mutation graphics to {morph.ExplicitHybridRace.defName} because it is not a {nameof(ThingDef_AlienRace)}");
                     continue;
                 }
 
                 try
                 {
-                    AddAddonsToRace(aRace, allAddons);
-                    CheckDefaultOffsets(aRace, (ThingDef_AlienRace) ThingDefOf.Human); 
+                    if (morph.raceSettings?.transferHumanBodyAddons == true)
+                    {
+                        AddAddonsToRace(aRace, allAddons);
+                        CheckDefaultOffsets(aRace, (ThingDef_AlienRace) ThingDefOf.Human); 
+                    }
                 }
                 catch (Exception e)
                 {
                     Log.Error($"caught {e.GetType().Name} while trying to add mutation body graphics to {aRace.defName}!\n{e}");
                 }
 
+                if (aRace.modExtensions == null)
+                    aRace.modExtensions = new List<DefModExtension>();
+
+                aRace.modExtensions.Add(new RaceMutationSettingsExtension()
+                {
+                    mutationRetrievers = new List<IRaceMutationRetriever>()
+                        {
+                            new Hediffs.MutationRetrievers.AnimalClassRetriever()
+                            {
+                                animalClass = morph,
+                            }
+                        }
+                });
+
+
+                if (aRace.comps == null)
+                    aRace.comps = new List<CompProperties>();
+
+                aRace.comps.Add(new MorphTrackingCompProperties());
+                aRace.comps.Add(new CompProperties(typeof(InitialGraphicsComp)));
+                aRace.comps.Add(new CompProperties(typeof(GraphicsUpdaterComp)));
             }
         }
 

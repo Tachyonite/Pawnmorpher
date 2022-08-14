@@ -52,6 +52,8 @@ namespace Pawnmorph.ThingComps
                     if (isManhunter)
                         // TODO this will only ever fire once, even if the pawn shows up again later
                         RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);
+
+                    FormerHumanUtilities.InvalidateIntelligence(Pawn);
                 }
             }
         }

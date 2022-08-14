@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pawnmorph.Utilities.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using Verse.Sound;
 
 namespace Pawnmorph.User_Interface.Settings
 {
-    internal class Dialog_VisibleRaceSelection : Window
+    internal class Dialog_RaceReplacements : Window
     {
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
@@ -24,13 +25,16 @@ namespace Pawnmorph.User_Interface.Settings
         private Vector2 _scrollPosition = new Vector2(0, 0);
         private string _searchText = string.Empty;
         private IEnumerable<AlienRace.ThingDef_AlienRace> _aliens;
-        private Dictionary<AlienRace.ThingDef_AlienRace, bool> _selectedAliens;
-        List<string> _settingsReference;
+        private Dictionary<MorphDef, AlienRace.ThingDef_AlienRace> _selectedReplacements;
+        private Dictionary<string, string> _settingsReference;
+        private List<MorphDef> _patchedMorphs;
+        private ListFilter<MorphDef> _morphs;
 
-        public Dialog_VisibleRaceSelection(List<string> settingsReference)
+        public Dialog_RaceReplacements(Dictionary<string, string> settingsReference)
         {
             _settingsReference = settingsReference;
-            _selectedAliens = new Dictionary<AlienRace.ThingDef_AlienRace, bool>();
+            _selectedReplacements = new Dictionary<MorphDef, AlienRace.ThingDef_AlienRace>();
+            _patchedMorphs = Hybrids.RaceGenerator.ExplicitPatchedRaces;
         }
 
         public override void PostOpen()
@@ -45,13 +49,25 @@ namespace Pawnmorph.User_Interface.Settings
 
             aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDef.Named("Human"));
 
-            // Exclude implicit and explicit morph races.
+            // Exclude implicit and uninfectable morph races.
             aliens = aliens.Except(Hybrids.RaceGenerator.ImplicitRaces);
-            aliens = aliens.Except(Hybrids.RaceGenerator.ExplicitPatchedRaces.Select(x => x.ExplicitHybridRace).OfType<AlienRace.ThingDef_AlienRace>());
             aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
 
-            _aliens = aliens;
-            _selectedAliens = aliens.Where(x => _settingsReference.Contains(x.defName)).ToDictionary(x => x, x => true);
+
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.OrderBy<MorphDef, string>(x => x.LabelCap, StringComparer.CurrentCulture);
+
+            // Only include the existing options if they match current values (meaning they have not been patched by other mods)
+            _selectedReplacements = morphs.ToDictionary(x => x, x =>
+            {
+                if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && _patchedMorphs.Contains(x) == false)
+                {
+                    return x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace;
+                }
+
+                return null;
+            });
+            _aliens = aliens.Except(_patchedMorphs.Select(x => x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace));
+            _morphs = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
         }
 
 
@@ -59,13 +75,13 @@ namespace Pawnmorph.User_Interface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMEnableMutationVisualsHeader".Translate());
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMRaceReplacementHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "PMEnableMutationVisualsText".Translate());
+            Widgets.Label(descriptionRect, "PMRaceReplacementText".Translate());
 
             curY += descriptionRect.height;
 
@@ -75,24 +91,40 @@ namespace Pawnmorph.User_Interface.Settings
 
             curY += 35;
 
-            float totalHeight = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
-            totalHeight -= 100;
+            float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - SPACER_SIZE;
 
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_aliens.Count() + 1) * Text.LineHeight);
+
+            _morphs.Filter = _searchText.ToLower();
+            Rect listbox = new Rect(0, 0, inRect.width - 20, (_morphs.Filtered.Count() + 1) * Text.LineHeight);
             Widgets.BeginScrollView(new Rect(0, curY, inRect.width, totalHeight), ref _scrollPosition, listbox);
 
             Text.Font = GameFont.Tiny;
             Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
             lineListing.Begin(listbox);
-
-            string searchText = _searchText.ToLower();
-            foreach (var item in _aliens)
+            
+            foreach (var morph in _morphs.Filtered)
             {
-                if (searchText == "" || item.LabelCap.ToString().ToLower().Contains(searchText))
+                if (_patchedMorphs.Contains(morph))
                 {
-                    bool current = _selectedAliens.TryGetValue(item, false);
-                    lineListing.CheckboxLabeled(item.LabelCap, ref current, item.modContentPack.ModMetaData.Name);
-                    _selectedAliens[item] = current;
+                    lineListing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack.Name})", "PMRaceReplacementLocked".Translate());
+                    continue;
+                }
+
+                ThingDef alien = _selectedReplacements[morph];
+                if (lineListing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack.Name})"))
+                {
+                    List<FloatMenuOption> options = new List<FloatMenuOption>();
+
+                    if (alien != null)
+                        options.Add(new FloatMenuOption(" ", () => _selectedReplacements[morph] = null));
+
+                    foreach (var alienItem in _aliens.Except(_selectedReplacements.Values))
+                    {
+                        options.Add(new FloatMenuOption($"{alienItem.LabelCap} ({alienItem.modContentPack.Name})", () => _selectedReplacements[morph] = alienItem));
+                    }
+
+                    if (options.Count > 0)
+                        Find.WindowStack.Add(new FloatMenu(options));
                 }
             }
             lineListing.End();
@@ -125,7 +157,7 @@ namespace Pawnmorph.User_Interface.Settings
         {
             Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
-            _settingsReference.AddRange(_selectedAliens.Where(x => x.Value).Select(x => x.Key.defName).ToList());
+            _settingsReference.AddRange(_selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName));
         }
 
         public override void OnCancelKeyPressed()

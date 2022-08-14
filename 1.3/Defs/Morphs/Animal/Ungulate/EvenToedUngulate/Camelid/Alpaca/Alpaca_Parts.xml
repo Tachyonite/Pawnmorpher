@@ -3,10 +3,31 @@
 		<classInfluence>AlpacaMorph</classInfluence>
 		<defName>EtherAlpacaSnout</defName>
 		<label>alpaca snout</label>
+		<mutationMemory>EtherAlpacaSnout</mutationMemory>
 		<mutationTale>GrewAlpacaMuzzle</mutationTale>
 		<graphics>
 			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
 		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
 		<!-- 
 			Current throws grammar rule exceptions. 
 		
@@ -148,6 +169,7 @@
 			<RightEar>Parts/Alpaca/Alpaca_Ear_Right</RightEar>
 			<RightEarBehindHead>Parts/Alpaca/Alpaca_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
+		<mutationMemory>EtherAlpacaEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>
@@ -165,6 +187,7 @@
 		<graphics>
 			<Tail>Parts/Alpaca/Alpaca_Tail</Tail>
 		</graphics>
+		<mutationMemory>EtherAlpacaTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>grown</stageKey>

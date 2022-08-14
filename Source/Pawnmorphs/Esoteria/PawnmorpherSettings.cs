@@ -77,6 +77,11 @@ namespace Pawnmorph
         /// </summary>
         public List<string> visibleRaces;
 
+        /// <summary>
+        /// Dictionary of morphdef and selected replacement racedef
+        /// </summary>
+        public Dictionary<string, string> raceReplacements;
+
 
 
 
@@ -100,6 +105,7 @@ namespace Pawnmorph
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
             Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
+            Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (formerChance > 1) formerChance /= 100f; 

@@ -251,21 +251,6 @@
 	</ThingDef>
 
 	<ThingDef ParentName="GenusSerumBase">
-		<defName>RandomExoticTransformer</defName>
-		<label>mutaserum, exotic</label>
-		<description>A serum filled with mechanites and animal DNA that causes exotic animal mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-		<ingestible>
-			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
-					<fullTf>true</fullTf>
-					<morphCategory>Exotic</morphCategory>
-					<severity>1.00</severity>
-				</li>
-			</outcomeDoers>
-		</ingestible>
-	</ThingDef>
-
-	<ThingDef ParentName="GenusSerumBase">
 		<defName>RandomAvianTransformer</defName>
 		<label>mutaserum, avian</label>
 		<description>A serum filled with mechanites and animal DNA that causes avian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
@@ -371,20 +356,6 @@
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
 					<animalClass>Reptile</animalClass>
-					<severity>1.00</severity>
-				</li>
-			</outcomeDoers>
-		</ingestible>
-	</ThingDef>
-	
-	<ThingDef ParentName="GenusSerumBase">
-		<defName>RandomSimianTransformer</defName>
-		<label>mutaserum, simian</label>
-		<description>A serum filled with mechanites and animal DNA that causes simian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
-		<ingestible>
-			<outcomeDoers>
-				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
-					<animalClass>Simian</animalClass>
 					<severity>1.00</severity>
 				</li>
 			</outcomeDoers>

@@ -106,16 +106,6 @@ namespace Pawnmorph.ThingComps
         }
 
         /// <summary>
-        ///     Posts the expose data.
-        /// </summary>
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            PawnKindDef chosenKind = AnimalSelector.ChosenKind;
-            Scribe_Defs.Look(ref chosenKind, "chosenAnimal");
-        }
-
-        /// <summary>
         ///     Does the find.
         /// </summary>
         /// <param name="worker">The worker.</param>

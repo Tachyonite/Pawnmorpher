@@ -99,10 +99,7 @@ namespace Pawnmorph.HPatches
 
             private static bool ShouldUseOptimizedCode(Pawn eater)
             {
-                if (eater?.GetSapienceState() != null) return true; //pawns with special sapience states like former human and anamlistic should use the optimized path
-                var shouldUseOptimizedPath = eater.IsHumanlike() && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) != 0;
-                //shouldUseOptimizedPath |= eater.IsSapientFormerHuman();
-                return shouldUseOptimizedPath; 
+                return eater.IsHumanlike() && (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) != 0; 
             }
 
             [HarmonyTranspiler]

@@ -285,7 +285,7 @@ namespace Pawnmorph.DebugUtils
             var sapienceState = pawn?.GetSapienceState();
             if (sapienceState?.IsFormerHuman == true)
             {
-                Worker_FormerHumanRecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn, 1f);
+                InteractionWorker_RecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn);
                 DebugActionsUtility.DustPuffFrom(pawn);
             }
         }

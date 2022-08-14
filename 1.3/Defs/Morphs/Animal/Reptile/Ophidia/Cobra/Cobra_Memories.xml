@@ -14,7 +14,7 @@
             </li>
             <li>
                 <label>changed</label>
-                <description>MY LEGS!</description>
+                <description>MY LEGS! WHERE ARE MY LEGS?!</description>
                 <baseMoodEffect>-5</baseMoodEffect>
             </li>
             <li>
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label>reverted</label>
-                <description>MY LEGS!</description>
+                <description>MY LEGS! THEY'RE BACK!</description>
                 <baseMoodEffect>10</baseMoodEffect>
             </li>
             <li>

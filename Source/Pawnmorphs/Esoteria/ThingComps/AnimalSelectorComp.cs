@@ -189,17 +189,6 @@ namespace Pawnmorph.ThingComps
             }
         }
 
-
-        /// <summary>
-        ///     Posts the expose data.
-        /// </summary>
-        public override void PostExposeData()
-        {
-            base.PostExposeData();
-            Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
-            Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
-        }
-
         private void ChoseAnimal(PawnKindDef chosenKind)
         {
             _chosenKind = chosenKind;
@@ -223,6 +212,21 @@ namespace Pawnmorph.ThingComps
             }
 
             return _cachedGizmoArr; 
+        }
+
+        /// <summary>
+        /// Save/Load data.
+        /// </summary>
+        public override void PostExposeData()
+        {
+            Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
+
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                if (_chosenKind != null)
+                    ChoseAnimal(_chosenKind);
+            }
         }
     }
 

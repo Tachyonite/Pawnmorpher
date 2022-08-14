@@ -1,5 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="EquineJawPart" ParentName="OddToedUngulateJawPart" Abstract="true">
+		<mutationMemory>EtherEquineMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
@@ -23,6 +24,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="EquineEarPart" ParentName="OddToedUngulateEarPart" Abstract="true">
+		<mutationMemory>EtherEquineEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -50,6 +52,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="EquineTailPart" ParentName="OddToedUngulateTailPart" Abstract="true">
+		<mutationMemory>EtherEquineTail</mutationMemory>
 	</Pawnmorph.Hediffs.MutationDef>
 
 </Defs>

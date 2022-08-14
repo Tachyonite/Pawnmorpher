@@ -850,14 +850,24 @@ namespace Pawnmorph
             animal.needs.AddOrRemoveNeedsAsAppropriate();
 
             //nC.CurLevelPercentage = sapienceLevel;
+            ResetTraining(animal);
+        }
 
-            if (animal.training == null) return;
+        /// <summary>
+        /// Resets the training levels of the provided pawn to max if pawn has training component.
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static void ResetTraining(Pawn pawn)
+        {
+            if (pawn.training == null) 
+                return;
 
             foreach (TrainableDef training in DefDatabase<TrainableDef>.AllDefs)
             {
-                if (!animal.training.CanBeTrained(training)) continue;
+                if (!pawn.training.CanBeTrained(training)) 
+                    continue;
 
-                animal.training.Train(training, null, true);
+                pawn.training.Train(training, null, true);
             }
         }
 

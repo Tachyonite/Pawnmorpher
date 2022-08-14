@@ -26,12 +26,14 @@ namespace Pawnmorph.GraphicSys
         private Color _skinColorSecond;
         private Color _hairColorSecond;
         private Color _hairColor;
+        private Gender _initialGender;
         private string _crownType;
         private StyleInfo _styleInfo = new StyleInfo();
 
         private HairDef _hairDef;
 
         private BodyTypeDef _body;
+        private ThingDef _scannedRace;
 
         /// <summary>Gets the draw size.</summary>
         /// <value>The size of the custom draw.</value>
@@ -42,6 +44,15 @@ namespace Pawnmorph.GraphicSys
                 if (!_scanned)
                     ScanGraphics();
                 return _customDrawSize;
+            }
+        }
+
+        /// <summary>Gets the pawn scanned pawn race.</summary>
+        public ThingDef ScannedRace
+        {
+            get
+            {
+                return _scannedRace;
             }
         }
 
@@ -93,6 +104,20 @@ namespace Pawnmorph.GraphicSys
                     _hairColor = Pawn.story.hairColor; //fix for hair color not being saved in previous saves 
 
                 return _hairColor;
+            }
+        }
+
+        /// <summary>Gets the color of the hair.</summary>
+        /// <value>The color of the hair.</value>
+        public Gender Gender
+        {
+            get
+            {
+                if (!_scanned) ScanGraphics();
+                if (_initialGender == default)
+                    _initialGender = Pawn.gender; //fix for gender not being saved in previous saves 
+
+                return _initialGender;
             }
         }
 
@@ -196,12 +221,14 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _skinColor, "skinColor");
             Scribe_Values.Look(ref _skinColorSecond, "skinColorSecond");
             Scribe_Values.Look(ref _hairColorSecond, "hairColorSecond");
-            Scribe_Values.Look(ref _crownType, "crownType");
+            Scribe_Values.Look(ref _crownType, "initialCrownType");
             Scribe_Values.Look(ref _hairColor, nameof(HairColor));
+            Scribe_Values.Look(ref _initialGender, nameof(_initialGender));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
             Scribe_Defs.Look(ref _body, nameof(_body));
             Scribe_Defs.Look(ref _hairDef, nameof(_hairDef));
             Scribe_Deep.Look(ref _styleInfo, "styleInfo");
+            Scribe_Defs.Look(ref _scannedRace, nameof(_scannedRace));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -217,14 +244,16 @@ namespace Pawnmorph.GraphicSys
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             base.PostSpawnSetup(respawningAfterLoad);
-            if (!_scanned) ScanGraphics();
+            if (!_scanned) 
+                ScanGraphics();
         }
 
         /// <summary>
         ///     Restores the alien Comp attached to the parent from the ones stored earlier
         ///     this does not resolve the graphics, that is the job of the caller
         /// </summary>
-        public void RestoreGraphics()
+        /// <param name="force">Force restore everything regardless of gender.</param>
+        public void RestoreGraphics(bool force = false)
         {
             Assert(_scanned, "_scanned");
 
@@ -235,16 +264,23 @@ namespace Pawnmorph.GraphicSys
             comp.customPortraitDrawSize = CustomPortraitDrawSize;
             comp.fixGenderPostSpawn = FixGenderPostSpawn;
             comp.SetHairColor(HairColor, HairColorSecond);
-            comp.crownType = CrownType;
 
             var pawn = (Pawn) parent;
             Pawn_StoryTracker story = pawn.story;
             story.hairColor = HairColor;
             story.hairDef = HairDef;
-            story.bodyType = BodyType;
 
             Pawn_StyleTracker styleTracker = pawn.style;
-            if (styleTracker != null) _styleInfo.Restore(styleTracker);
+
+            // Restore head, body and beard if pawn is still the same gender or if forced.
+            if (force || _initialGender == pawn.gender)
+            {
+                comp.crownType = _crownType;
+                story.bodyType = _body;
+                _styleInfo?.Restore(styleTracker, true);
+            }
+            else
+                _styleInfo?.Restore(styleTracker, false);
         }
 
         /// <summary>
@@ -263,9 +299,12 @@ namespace Pawnmorph.GraphicSys
             _hairDef = Pawn.story.hairDef;
             _skinColorSecond = comp.GetSkinColor(false) ?? Color.white;
             _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white;
+            _initialGender = Pawn.gender;
             _crownType = comp.crownType;
             _hairColor = Pawn.story.hairColor;
             _body = Pawn.story.bodyType;
+            _scannedRace = Pawn.def;
+
 
             var styleTracker = Pawn.style;
             if (styleTracker != null)
@@ -302,15 +341,24 @@ namespace Pawnmorph.GraphicSys
                 Scribe_Defs.Look(ref bodyTattoo, nameof(bodyTattoo));
             }
 
-            public void Restore([NotNull] Pawn_StyleTracker styleTracker)
+            public void Restore([NotNull] Pawn_StyleTracker styleTracker, bool restoreBeard = true)
             {
-                styleTracker.beardDef = beardDef;
                 styleTracker.nextHairDef = nextHairDef;
-                styleTracker.nextBeardDef = nextBeardDef;
-                styleTracker.nextFaceTattooDef = nextFaceTattooDef;
-                styleTracker.nextBodyTatooDef = nextBodyTatooDef;
-                styleTracker.FaceTattoo = faceTattoo;
-                styleTracker.BodyTattoo = bodyTattoo;
+
+                // Only restore beard if male or forced.
+                if (restoreBeard)
+                {
+                    styleTracker.beardDef = beardDef;
+                    styleTracker.nextBeardDef = nextBeardDef;
+                }
+                
+                if (ModLister.IdeologyInstalled)
+                {
+                    styleTracker.nextFaceTattooDef = nextFaceTattooDef;
+                    styleTracker.nextBodyTatooDef = nextBodyTatooDef;
+                    styleTracker.FaceTattoo = faceTattoo;
+                    styleTracker.BodyTattoo = bodyTattoo;
+                }
             }
 
             public void Scan([NotNull] Pawn_StyleTracker styleTracker)
@@ -318,10 +366,14 @@ namespace Pawnmorph.GraphicSys
                 beardDef = styleTracker.beardDef;
                 nextHairDef = styleTracker.nextHairDef;
                 nextBeardDef = styleTracker.nextBeardDef;
-                nextFaceTattooDef = styleTracker.nextFaceTattooDef;
-                nextBodyTatooDef = styleTracker.nextBodyTatooDef;
-                faceTattoo = styleTracker.FaceTattoo;
-                bodyTattoo = styleTracker.BodyTattoo; 
+
+                if (ModLister.IdeologyInstalled)
+                {
+                    nextFaceTattooDef = styleTracker.nextFaceTattooDef;
+                    nextBodyTatooDef = styleTracker.nextBodyTatooDef;
+                    faceTattoo = styleTracker.FaceTattoo;
+                    bodyTattoo = styleTracker.BodyTattoo;
+                }
             }
         }
     }

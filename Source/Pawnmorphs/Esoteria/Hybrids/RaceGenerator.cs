@@ -28,6 +28,11 @@ namespace Pawnmorph.Hybrids
         private const float HUNGER_LERP_VALUE = 0.3f;
         private static List<ThingDef_AlienRace> _lst;
 
+        /// <summary>
+        /// Gets the list of explicite race morphs patched externally.
+        /// </summary>
+        public static List<MorphDef> ExplicitPatchedRaces { get; private set; } = new List<MorphDef>();
+
         [NotNull]
         private static readonly Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
@@ -176,7 +181,6 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
-            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             ThingDef_AlienRace human;
 
             try
@@ -189,7 +193,29 @@ namespace Pawnmorph.Hybrids
                     ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
             }
 
+            if (PawnmorpherMod.Settings.raceReplacements != null)
+            {
+                foreach (var item in PawnmorpherMod.Settings.raceReplacements)
+                {
+                    MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
+                    if (morph != null)
+                    {
+                        if (morph.ExplicitHybridRace == null)
+                        {
+                            ThingDef race = DefDatabase<ThingDef>.GetNamed(item.Value, false);
+                            if (race != null && race is ThingDef_AlienRace alien)
+                            {
+                                morph.raceSettings.explicitHybridRace = alien;
+                                morph.hybridRaceDef = alien;
+                            }
+                        }
+                    }
+                }
+            }
 
+
+
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {
@@ -202,6 +228,9 @@ namespace Pawnmorph.Hybrids
                 }
                 else
                 {
+                    if (PawnmorpherMod.Settings.raceReplacements?.ContainsKey(morphDef.defName) == false)
+                        ExplicitPatchedRaces.Add(morphDef);
+
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
                 }
                 

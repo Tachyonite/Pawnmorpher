@@ -90,23 +90,16 @@ namespace Pawnmorph.Hediffs
         {
             if (stage is MutationStage mutationStage)
             {
+                abilities = new List<Abilities.MutationAbility>();
                 if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
                     return;
 
                 //Abilities.MutationAbility ability;
                 foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
                 {
-                    // Only add ability once.
-                    Abilities.MutationAbility ability = abilities.SingleOrDefault(x => x.AbilityDef.abilityClass == abilityDef.abilityClass);
-                    if (ability != null)
-                    {
-                        ability.Initialize(pawn, abilityDef);
-                        continue;
-                    }
-
                     if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
                     {
-                        ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
+                        Abilities.MutationAbility ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
                         abilities.Add(ability);
                         ability.Initialize(pawn);
                     }

@@ -34,8 +34,8 @@ namespace Pawnmorph.Designations
         /// </summary>
         public RecruitSapientFormerHuman()
         {
-            this.defaultLabel = (string)"DesignatorTame".Translate();
-            this.defaultDesc = (string)"DesignatorTameDesc".Translate();
+            this.defaultLabel = (string)"PMDesignatorRecruitSapient".Translate();
+            this.defaultDesc = (string)"PMDesignatorRecruitSapientDesc".Translate();
             this.icon = ContentFinder<Texture2D>.Get("UI/Designators/Tame", true);
             this.soundDragSustain = SoundDefOf.Designate_DragStandard;
             this.soundDragChanged = SoundDefOf.Designate_DragStandard_Changed;
@@ -97,6 +97,14 @@ namespace Pawnmorph.Designations
             Map.designationManager.RemoveAllDesignationsOn(t);
             Map.designationManager.AddDesignation(new Designation((LocalTargetInfo) t, Designation));
             _justDesignated.Add((Pawn) t);
+
+            if (t is Pawn pawn)
+            {
+                if (pawn.guest != null && pawn.guest.lastRecruiterName == null)
+                {
+                    pawn.guest.resistance = 10 * pawn.def.race.wildness;
+                }
+            }
         }
 
         private IEnumerable<Pawn> TameablesInCell(IntVec3 c)

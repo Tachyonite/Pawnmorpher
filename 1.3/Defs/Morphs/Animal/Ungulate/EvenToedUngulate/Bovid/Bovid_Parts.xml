@@ -1,28 +1,30 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef Name ="BovidJawPart" ParentName="EvenToedUngulateJawPart" Abstract="true">
+		<mutationMemory>EtherBovidMuzzle</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<description>A snout has taken shape on [PAWN_nameDef]'s face, one that has a bovine look. [PAWN_nameDef] has found it great for chowing down on food, but [PAWN_pronoun]'s had difficulty talking... aside from lowing and grunting that is.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a bovine snout with teeth that easily grind vegetable matter. [PAWN_nameDef] has found it great for chowing down on food, but [PAWN_pronoun]'s had difficulty talking... aside from lowing and grunting that is.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A snout has taken shape on [PAWN_nameDef]'s face, one that has a bovine look. With adaptation normal speech is a little easier for [PAWN_nameDef] and now it seems [PAWN_pronoun] can just eat and eat and eat, barely stopping for breath.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a bovine snout with teeth that easily grind vegetable matter. With adaptation normal speech is a little easier for [PAWN_nameDef] and now it seems [PAWN_pronoun] can just eat and eat and eat, barely stopping for breath.</description>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
-					<description>A snout has taken shape on [PAWN_nameDef]'s face, one that has a bovine look. Further adaptation has removed all of the difficulties with speaking.</description>
+					<description>[PAWN_nameDef]'s face has pushed out into a bovine snout with teeth that easily grind vegetable matter. Further adaptation has removed all of the difficulties with speaking.</description>
 				</values>
 			</li>
 		</stagePatches>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="BovidEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<mutationMemory>EtherBovidEar</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>
@@ -50,6 +52,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name ="BovidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
+		<mutationMemory>EtherBovidTail</mutationMemory>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>growing</stageKey>

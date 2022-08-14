@@ -128,10 +128,10 @@ namespace Pawnmorph.Abilities
 
             Gizmo.defaultLabel = _def.label;
             Gizmo.defaultDesc = _def.description;
-            HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo);
+            HPatches.GizmoPatches.HideGizmoOnMerged(Gizmo, Pawn);
 
             LongEventHandler.ExecuteWhenFinished(LoadTexture);
-
+            
             OnInitialize();
 
             if (pawn.Spawned)
@@ -159,6 +159,9 @@ namespace Pawnmorph.Abilities
         /// </summary>
         public void Tick()
         {
+            if (Pawn == null || Gizmo == null)
+                return;
+
             if (state == MutationAbilityState.None || Type == MutationAbilityType.Toggle)
             {
                 if (Pawn.IsHashIntervalTick(120) && Gizmo.Visible)

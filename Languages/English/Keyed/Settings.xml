@@ -26,4 +26,8 @@
 	<PMEnableMutationVisualsHeader>Enable mutations visuals for races.</PMEnableMutationVisualsHeader>
 	<PMEnableMutationVisualsText>Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.</PMEnableMutationVisualsText>
 	<PMRequiresRestart>Requires a game restart to take affect.</PMRequiresRestart>
+	<PMRaceReplacementButton>Set race replacements.</PMRaceReplacementButton>
+	<PMRaceReplacementHeader>Set race replacements for morphs.</PMRaceReplacementHeader>
+	<PMRaceReplacementText>Here you can replace morphs with races from other mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
+	<PMRaceReplacementLocked>Locked by patch.</PMRaceReplacementLocked>
 </LanguageData>
