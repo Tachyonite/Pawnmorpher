@@ -21,12 +21,16 @@ namespace Pawnmorph.User_Interface.TableBox
         private Vector2 _scrollPosition;
         private bool _ascendingOrder;
         private TableColumn _currentOrderColumn;
+        private List<T> _selectedRows;
+
+        public IReadOnlyList<T> SelectedRows => _selectedRows;
 
         public Table(Func<T, string, bool> filterCallback)
         {
             _columns = new List<TableColumn<T>>();
             _rows = new ListFilter<T>(filterCallback);
             _ascendingOrder = false;
+            _selectedRows = new List<T>(20);
         }
 
         public TableColumn<T> AddColumn(string header, float width)
@@ -140,10 +144,12 @@ namespace Pawnmorph.User_Interface.TableBox
             Widgets.BeginScrollView(boundingBox, ref _scrollPosition, listbox);
             rowRect.y = _scrollPosition.y;
 
+            T currentRow;
             // Get index of first row visible in scrollbox
             int currentIndex = Mathf.FloorToInt(_scrollPosition.y / rowRect.height);
             for (; currentIndex < _rows.Filtered.Count; currentIndex++)
             {
+                currentRow = _rows.Filtered[currentIndex];
                 rowRect.x = 0;
                 for (int i = 0; i < _columns.Count; i++)
                 {
@@ -156,14 +162,44 @@ namespace Pawnmorph.User_Interface.TableBox
                         rowRect.width = tableWidth * column.Width;
 
                     if (column.Callback != null)
-                        column.Callback(ref rowRect, _rows.Filtered[currentIndex]);
+                        column.Callback(ref rowRect, currentRow);
                     else
-                        Widgets.Label(rowRect, _rows.Filtered[currentIndex].RowData[column]);
+                        Widgets.Label(rowRect, currentRow.RowData[column]);
+
 
                     rowRect.x = rowRect.xMax + CELL_SPACING;
                 }
-                rowRect.y += rowRect.height;
 
+                rowRect.x = 0;
+                rowRect.width = tableWidth;
+
+                // Hightlight entire row if selected.
+                if (_selectedRows.Contains(currentRow))
+                    Widgets.DrawHighlightSelected(rowRect);
+
+                // Hightlight row if moused over.
+                Widgets.DrawHighlightIfMouseover(rowRect);
+
+                if (Widgets.ButtonInvisible(rowRect, false))
+                {
+                    if (Input.GetKey(KeyCode.LeftControl) == false)
+                        _selectedRows.Clear();
+
+                    _selectedRows.Add(currentRow);
+                    //if (Input.GetKey(KeyCode.LeftShift) == false)
+                    //{
+
+                    //}
+                    //else
+                    //{
+                    //    if (Input.GetKey(KeyCode.LeftControl) == false)
+                    //        _selectedRows.Clear();
+
+                    //    _selectedRows.Add(currentRow);
+                    //}
+                }
+
+                rowRect.y += rowRect.height;
                 //
                 //Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y), new Vector2(viewRect.x + mainView.width, viewRect.y),
                 //                 Color.black, lineWidth);
