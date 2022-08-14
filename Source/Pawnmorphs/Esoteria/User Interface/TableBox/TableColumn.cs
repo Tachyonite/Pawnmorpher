@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Pawnmorph.Utilities.Collections;
+using RimWorld;
 using Steamworks;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,31 @@ namespace Pawnmorph.User_Interface.TableBox
     internal class TableColumn<T> : TableColumn
     {
         public RowCallback<Rect, T> Callback { get; }
+        public Action<ListFilter<T>, bool> OrderByCallback { get; }
 
-        public TableColumn(string caption, float width, RowCallback<Rect, T> callback = null)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableColumn{T}"/> class.
+        /// </summary>
+        /// <param name="caption">The column's title.</param>
+        /// <param name="width">The width of the column. Use 0.xf for percentage/fractional widths.</param>
+        public TableColumn(string caption, float width)
+           : base(caption, width)
+        {
+            Callback = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableColumn{T}"/> class.
+        /// </summary>
+        /// <param name="caption">The column's title.</param>
+        /// <param name="width">The width of the column. Use 0.xf for percentage/fractional widths.</param>
+        /// <param name="callback">The rendering callback when a cell of this column should be rendered.</param>
+        /// <param name="orderByCallback">Callback for ordering by this column. Arguments are the collection to apply ordering to and if current ordering is ascending. Null if not sortable.</param>
+        public TableColumn(string caption, float width, RowCallback<Rect, T> callback, Action<ListFilter<T>, bool> orderByCallback)
            : base (caption, width)
         {
             Callback = callback;
+            OrderByCallback = orderByCallback;
         }
     }
 }

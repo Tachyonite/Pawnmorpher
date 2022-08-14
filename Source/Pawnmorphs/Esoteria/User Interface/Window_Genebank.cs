@@ -41,6 +41,7 @@ namespace Pawnmorph.User_Interface
             public readonly string Label;
             public readonly string StorageSpaceUsed;
             public readonly string StorageSpaceUsedPercentage;
+            public readonly int Size;
             public string SearchString;
 
             public Dictionary<TableColumn, string> RowData { get; }
@@ -57,20 +58,20 @@ namespace Pawnmorph.User_Interface
                 : this(def)
             {
                 SearchString = searchString.ToLower();
-                int size = def.GetRequiredStorage();
-                StorageSpaceUsed = DatabaseUtilities.GetStorageString(size);
+                Size = def.GetRequiredStorage();
+                StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
                 if (totalCapacity > 0)
-                    StorageSpaceUsedPercentage = ((float)size / totalCapacity).ToStringPercent();
+                    StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
             }
 
             public RowItem(PawnKindDef def, int totalCapacity, string searchString)
                 : this(def)
             {
                 SearchString = searchString.ToLower();
-                int size = def.GetRequiredStorage();
-                StorageSpaceUsed = DatabaseUtilities.GetStorageString(size);
+                Size = def.GetRequiredStorage();
+                StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
                 if (totalCapacity > 0)
-                    StorageSpaceUsedPercentage = ((float)size / totalCapacity).ToStringPercent();
+                    StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
             }
         }
 
@@ -230,6 +231,12 @@ namespace Pawnmorph.User_Interface
 
                 box.x = box.xMax + 5;
                 Widgets.Label(box, item.StorageSpaceUsedPercentage);
+            }, (collection, ascending) =>
+            {
+                if (ascending)
+                    collection.OrderBy(x => x.Size);
+                else
+                    collection.OrderByDescending(x => x.Size);
             });
 
             _table.AddColumn("Delete", 45f, (ref Rect box, RowItem item) =>
@@ -262,7 +269,15 @@ namespace Pawnmorph.User_Interface
         {
             _currentTab = Mode.Mutations;
 
-            var column = _table.AddColumn("Mutation", 0.25f, (ref Rect box, RowItem item) => Widgets.Label(box, item.Label));
+            var column = _table.AddColumn("Mutation", 0.25f, 
+                (ref Rect box, RowItem item) => Widgets.Label(box, item.Label), 
+                (collection, ascending) =>
+                {
+                    if (ascending)
+                        collection.OrderBy(x => x.Label);
+                    else
+                        collection.OrderByDescending(x => x.Label);
+                });
             column.IsFixedWidth = false;
 
             TableColumn colParagon = _table.AddColumn("Paragon", 60f);

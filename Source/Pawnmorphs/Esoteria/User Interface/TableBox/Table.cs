@@ -19,16 +19,26 @@ namespace Pawnmorph.User_Interface.TableBox
         private ListFilter<T> _rows;
         private string _searchText;
         private Vector2 _scrollPosition;
+        private bool _ascendingOrder;
+        private TableColumn _currentOrderColumn;
 
         public Table(Func<T, string, bool> filterCallback)
         {
             _columns = new List<TableColumn<T>>();
             _rows = new ListFilter<T>(filterCallback);
+            _ascendingOrder = false;
         }
 
-        public TableColumn<T> AddColumn(string header, float width, RowCallback<Rect, T> callback = null)
+        public TableColumn<T> AddColumn(string header, float width)
         {
-            TableColumn<T> column = new TableColumn<T>(header, width, callback);
+            TableColumn<T> column = new TableColumn<T>(header, width);
+            _columns.Add(column);
+            return column;
+        }
+
+        public TableColumn<T> AddColumn(string header, float width, RowCallback<Rect, T> callback, Action<ListFilter<T>, bool> orderByCallback = null)
+        {
+            TableColumn<T> column = new TableColumn<T>(header, width, callback, orderByCallback);
             _columns.Add(column);
             return column;
         }
@@ -54,6 +64,31 @@ namespace Pawnmorph.User_Interface.TableBox
         {
             _rows.Items.Clear();
             _columns.Clear();
+        }
+
+        private void Sort(TableColumn<T> column)
+        {
+            if (column.Callback != null && column.OrderByCallback == null)
+                return;
+
+            // If current sorting is ascending or new column is clicked.
+            if (_ascendingOrder == false || _currentOrderColumn != column)
+            {
+                _ascendingOrder = true;
+                if (column.Callback == null)
+                    _rows.OrderBy(x => x.RowData[column]);
+                else
+                    column.OrderByCallback(_rows, _ascendingOrder);
+                _currentOrderColumn = column;
+            }
+            else
+            {
+                _ascendingOrder = false;
+                if (column.Callback == null)
+                    _rows.OrderByDescending(x => x.RowData[column]);
+                else
+                    column.OrderByCallback(_rows, _ascendingOrder);
+            }
         }
 
         public void Draw(Rect boundingBox)
@@ -83,6 +118,9 @@ namespace Pawnmorph.User_Interface.TableBox
                     columnHeader.width = tableWidth * column.Width;
 
                 Widgets.Label(columnHeader, column.Caption);
+                if (Widgets.ButtonInvisible(columnHeader, true))
+                    Sort(column);
+
                 columnHeader.x = columnHeader.xMax + CELL_SPACING;
             }
 
