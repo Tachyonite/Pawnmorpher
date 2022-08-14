@@ -28,7 +28,7 @@
 	<PMRequiresRestart>Requires a game restart to take affect.</PMRequiresRestart>
 	<PMRaceReplacementButton>Set race replacements.</PMRaceReplacementButton>
 	<PMRaceReplacementHeader>Set race replacements for morphs.</PMRaceReplacementHeader>
-	<PMRaceReplacementText>These options allow replacing implicit morph races with races from other mods.</PMRaceReplacementText>
+	<PMRaceReplacementText>Here you can replace morphs with races from other mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
 	<PMRaceReplacementLocked>Locked by patch.</PMRaceReplacementLocked>
 	<PMOptionalPatchesButton>Toggle optional patches.</PMOptionalPatchesButton>
 	<PMOptionalPatchesHeader>Toggle optional patches.</PMOptionalPatchesHeader>

@@ -66,5 +66,26 @@ namespace Pawnmorph.Jobs
         {
             return Enumerable.Empty<Toil>();
         }
+
+
+        /// <summary>
+        ///     gets the 'talk to animal' toil
+        /// </summary>
+        /// <param name="tameeInd">The tamee ind.</param>
+        /// <returns></returns>
+        protected override Toil TalkToAnimal(TargetIndex tameeInd)
+        {
+            var toil = new Toil();
+            toil.initAction = delegate
+            {
+                Pawn actor = toil.GetActor();
+                var recipient = (Pawn)(Thing)actor.CurJob.GetTarget(tameeInd);
+                actor.interactions.TryInteractWith(recipient, InteractionDefOf.BuildRapport);
+            };
+            toil.FailOn(() => !CanInteractNow);
+            toil.defaultCompleteMode = ToilCompleteMode.Delay;
+            toil.defaultDuration = 270;
+            return toil;
+        }
     }
 }
