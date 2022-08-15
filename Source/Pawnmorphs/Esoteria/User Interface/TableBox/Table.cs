@@ -1,6 +1,7 @@
 ﻿using Pawnmorph.Utilities.Collections;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace Pawnmorph.User_Interface.TableBox
         private bool _ascendingOrder;
         private TableColumn _currentOrderColumn;
         private List<T> _selectedRows;
+        private float _fixedColumnWidth;
+        private float _dynamicColumnWidth;
 
         public IReadOnlyList<T> SelectedRows => _selectedRows;
 
@@ -67,6 +70,19 @@ namespace Pawnmorph.User_Interface.TableBox
         public void Refresh()
         {
             _rows.Invalidate();
+
+            _fixedColumnWidth = 0;
+            _dynamicColumnWidth = 0;
+            TableColumn column;
+            for (int i = 0; i < _columns.Count; i++)
+            {
+                column = _columns[i];
+
+                if (column.IsFixedWidth)
+                    _fixedColumnWidth += column.Width;
+                else
+                    _dynamicColumnWidth += column.Width;
+            }
         }
 
         public void Clear()
@@ -122,6 +138,7 @@ namespace Pawnmorph.User_Interface.TableBox
             columnHeader.height = Text.LineHeight;
 
             float tableWidth = boundingBox.width - GenUI.ScrollBarWidth - CELL_SPACING;
+            float leftoverWidth = tableWidth - _fixedColumnWidth - (CELL_SPACING * _columns.Count);
             for (int i = 0; i < _columns.Count; i++)
             {
                 column = _columns[i];
@@ -130,7 +147,7 @@ namespace Pawnmorph.User_Interface.TableBox
                     columnHeader.width = column.Width;
                 }
                 else
-                    columnHeader.width = tableWidth * column.Width;
+                    columnHeader.width = column.Width / _dynamicColumnWidth * leftoverWidth;
                 
                 if (column.Callback == null || column.OrderByCallback != null)
                     Widgets.DrawHighlightIfMouseover(columnHeader);
@@ -169,7 +186,7 @@ namespace Pawnmorph.User_Interface.TableBox
                         rowRect.width = column.Width;
                     }
                     else
-                        rowRect.width = tableWidth * column.Width;
+                        rowRect.width = column.Width / _dynamicColumnWidth * leftoverWidth;
 
                     if (column.Callback != null)
                         column.Callback(ref rowRect, currentRow);

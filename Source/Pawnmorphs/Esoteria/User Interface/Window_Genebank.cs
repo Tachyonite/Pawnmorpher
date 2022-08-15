@@ -21,11 +21,11 @@ namespace Pawnmorph.User_Interface
             Find.WindowStack.Add(new Window_Genebank());
         }
 
+        private static Mode _priorMode = Mode.Mutations;
 
-        private const float MAIN_COLUMN_WIDTH_FRACT = 0.75f;
+        private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
         private const float SPACING = 10f;
         private const float HEADER_HEIGHT = 150;
-
 
         private enum Mode
         {
@@ -128,7 +128,7 @@ namespace Pawnmorph.User_Interface
             if (_chamberDatabase == null)
                 Log.Error("Unable to find chamber database world component!");
 
-            SelectTab(Mode.Mutations);
+            SelectTab(_priorMode);
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -160,8 +160,8 @@ namespace Pawnmorph.User_Interface
 
 
             Rect footer = new Rect(mainBox.x, mainBox.yMax - 40, mainBox.width, 40);
-            footer = footer.ContractedBy(SPACING);
             mainBox.height -= footer.height;
+            footer = footer.ContractedBy(SPACING);
 
             TabDrawer.DrawTabs(mainBox, _tabs);
             _table.Draw(mainBox.ContractedBy(SPACING));
@@ -182,6 +182,14 @@ namespace Pawnmorph.User_Interface
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
             Widgets.DrawBoxSolidWithOutline(detailsBox, Color.black, Color.gray);
+        }
+
+        public override void PostClose()
+        {
+            // Remember selected tab for next time interface is opened.
+            _priorMode = _currentTab;
+
+            base.PostClose();
         }
 
 
@@ -255,6 +263,9 @@ namespace Pawnmorph.User_Interface
                 else
                     collection.OrderByDescending(x => x.Size);
             });
+
+
+            _table.Refresh();
         }
 
 
@@ -273,14 +284,13 @@ namespace Pawnmorph.User_Interface
 
                 _table.AddRow(item);
             }
-            _table.Refresh();
         }
 
         private void GenerateMutationsTabContent()
         {
             _currentTab = Mode.Mutations;
 
-            var column = _table.AddColumn("Mutation", 0.25f, 
+            var column = _table.AddColumn("Mutation", 0.5f, 
                 (ref Rect box, RowItem item) => Widgets.Label(box, item.Label), 
                 (collection, ascending) =>
                 {
@@ -292,9 +302,9 @@ namespace Pawnmorph.User_Interface
             column.IsFixedWidth = false;
 
             TableColumn colParagon = _table.AddColumn("Paragon", 60f);
-            TableColumn colAbilities = _table.AddColumn("Abilities", 200f);
-            TableColumn colStats = _table.AddColumn("Stats", 400f);
-
+            TableColumn colAbilities = _table.AddColumn("Abilities", 100f);
+            TableColumn colStats = _table.AddColumn("Stats", 0.5f);
+            colStats.IsFixedWidth = false;
 
             RowItem item;
             foreach (MutationDef mutation in _chamberDatabase.StoredMutations)
@@ -342,7 +352,6 @@ namespace Pawnmorph.User_Interface
                 item.SearchString = searchText.ToLower();
                 _table.AddRow(item);
             }
-            _table.Refresh();
         }
 
         private void GenerateRacesTabContent()
@@ -351,6 +360,11 @@ namespace Pawnmorph.User_Interface
         }
 
         private void GenerateTemplatesTabContent()
+        {
+
+        }
+
+        private void GenerateDetailsWindow()
         {
 
         }
