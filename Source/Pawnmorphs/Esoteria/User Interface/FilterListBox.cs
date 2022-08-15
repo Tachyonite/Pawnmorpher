@@ -44,24 +44,26 @@ namespace Pawnmorph.User_Interface
             curY += 35;
             height -= 35;
 
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count + 1) * Text.LineHeight);
-            Widgets.BeginScrollView(new Rect(x, curY, inRect.width, height), ref _scrollPosition, listbox);
-
             Text.Font = GameFont.Tiny;
             Listing_Standard lineListing = new Listing_Standard();
+            float lineHeight = 30f + lineListing.verticalSpacing;
+
+            Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count + 1) * lineHeight);
+            Widgets.BeginScrollView(new Rect(x, curY, inRect.width, height), ref _scrollPosition, listbox);
+
 
             // Begin listcontrol and add empty gap for all the space above scrollbox.
             lineListing.Begin(listbox);
             lineListing.Gap(_scrollPosition.y);
 
             // Get index of first row visible in scrollbox
-            int currentIndex = Mathf.FloorToInt(_scrollPosition.y / Text.LineHeight);
+            int currentIndex = Mathf.FloorToInt(_scrollPosition.y / lineHeight);
             for (; currentIndex < _filteredList.Filtered.Count; currentIndex++)
             {
                 callback(_filteredList.Filtered[currentIndex], lineListing);
 
                 // Break if next row starts outside bottom of scrollbox + 1 row to ensure smooth scrolling - though this should possibly not be needed for IMGUI.
-                if (lineListing.CurHeight > height + _scrollPosition.y + Text.LineHeight)
+                if (lineListing.CurHeight > height + _scrollPosition.y + lineHeight)
                     break;
             }
             lineListing.End();
