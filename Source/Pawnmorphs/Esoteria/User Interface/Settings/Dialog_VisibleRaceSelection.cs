@@ -78,11 +78,13 @@ namespace Pawnmorph.User_Interface.Settings
             float totalHeight = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
             totalHeight -= 100;
 
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_aliens.Count() + 1) * Text.LineHeight);
+
+            Listing_Standard lineListing = new Listing_Standard();
+            float lineHeight = 30f + lineListing.verticalSpacing;
+            Rect listbox = new Rect(0, 0, inRect.width - 20, (_aliens.Count() + 1) * lineHeight);
             Widgets.BeginScrollView(new Rect(0, curY, inRect.width, totalHeight), ref _scrollPosition, listbox);
 
             Text.Font = GameFont.Tiny;
-            Listing_Standard lineListing = new Listing_Standard(listbox, () => _scrollPosition);
             lineListing.Begin(listbox);
 
             string searchText = _searchText.ToLower();
