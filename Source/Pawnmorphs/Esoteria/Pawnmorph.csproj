@@ -874,6 +874,10 @@
     <Compile Include="User Interface\Dialog_Popup.cs" />
     <Compile Include="User Interface\FilterListBox.cs" />
     <Compile Include="User Interface\MutationData.cs" />
+    <Compile Include="User Interface\Preview\DrawOptions.cs" />
+    <Compile Include="User Interface\Preview\PawnPreview.cs" />
+    <Compile Include="User Interface\Preview\PreviewBase.cs" />
+    <Compile Include="User Interface\Preview\RacePreview.cs" />
     <Compile Include="User Interface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
