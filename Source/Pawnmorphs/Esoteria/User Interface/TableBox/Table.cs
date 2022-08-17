@@ -28,6 +28,8 @@ namespace Pawnmorph.User_Interface.TableBox
 
         public IReadOnlyList<T> SelectedRows => _selectedRows;
 
+        public event EventHandler<IReadOnlyList<T>> SelectionChanged;
+
         public Table(Func<T, string, bool> filterCallback)
         {
             _columns = new List<TableColumn<T>>();
@@ -213,6 +215,8 @@ namespace Pawnmorph.User_Interface.TableBox
                         _selectedRows.Clear();
 
                     _selectedRows.Add(currentRow);
+
+                    SelectionChanged?.Invoke(this, _selectedRows);
                     //if (Input.GetKey(KeyCode.LeftShift) == false)
                     //{
 

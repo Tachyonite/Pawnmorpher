@@ -74,7 +74,8 @@ namespace Pawnmorph.User_Interface.Preview
 
         public void Draw(Rect boundingBox)
         {
-            GUI.DrawTexture(boundingBox, _previewTexture);
+            if (_previewTexture != null)
+                GUI.DrawTexture(boundingBox, _previewTexture);
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
+using Pawnmorph.User_Interface.Preview;
 using Pawnmorph.User_Interface.TableBox;
 using RimWorld;
 using System;
@@ -87,7 +88,6 @@ namespace Pawnmorph.User_Interface
             CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING*2;
         }
 
-
         private List<TabRecord> _tabs;
         private Mode _currentTab;
         private float _mainWidth;
@@ -97,13 +97,66 @@ namespace Pawnmorph.User_Interface
         private TableBox.Table<RowItem> _table;
         private int _totalCapacity;
 
+        private Preview.Preview _previewNorth;
+        private Preview.Preview _previewEast;
+        private Preview.Preview _previewSouth;
+
+
         public Window_Genebank()
         {
             _tabs = new List<TabRecord>();
             _table = new TableBox.Table<RowItem>((item, text) => item.SearchString.Contains(text));
+            _table.SelectionChanged += Table_SelectionChanged;
 
             this.resizeable = true;
             this.doCloseX = true;
+        }
+
+        private void Table_SelectionChanged(object sender, IReadOnlyList<RowItem> e)
+        {
+            Def def = null;
+            if (e.Count == 1)
+            {
+                def = e[0].Def;
+                Log.Message("Selection changed to: " + def.LabelCap);
+            }
+
+            switch (_currentTab)
+            {
+                case Mode.Mutations:
+                    (_previewNorth as PawnPreview).ClearMutations();
+                    (_previewEast as PawnPreview).ClearMutations();
+                    (_previewSouth as PawnPreview).ClearMutations();
+
+                    if (def is MutationDef mutation)
+                    {
+                        Log.Message("Applied mutation");
+                        (_previewNorth as PawnPreview).AddMutation(mutation);
+                        (_previewEast as PawnPreview).AddMutation(mutation);
+                        (_previewSouth as PawnPreview).AddMutation(mutation);
+                    }
+                    break;
+
+                case Mode.Animal:
+                    if (def is PawnKindDef thing)
+                    {
+                        Log.Message("Set thing");
+                        (_previewNorth as PawnKindDefPreview).Thing = thing;
+                        (_previewEast as PawnKindDefPreview).Thing = thing;
+                        (_previewSouth as PawnKindDefPreview).Thing = thing;
+                    }
+                    else
+                    {
+                        (_previewNorth as PawnKindDefPreview).Thing = null;
+                        (_previewEast as PawnKindDefPreview).Thing = null;
+                        (_previewSouth as PawnKindDefPreview).Thing = null;
+                    }
+                    break;
+            }
+
+            _previewNorth.Refresh();
+            _previewEast.Refresh();
+            _previewSouth.Refresh();
         }
 
         protected override void SetInitialSizeAndPosition()
@@ -182,6 +235,7 @@ namespace Pawnmorph.User_Interface
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
             Widgets.DrawBoxSolidWithOutline(detailsBox, Color.black, Color.gray);
+            DrawDetails(detailsBox.ContractedBy(SPACING));
         }
 
         public override void PostClose()
@@ -190,6 +244,24 @@ namespace Pawnmorph.User_Interface
             _priorMode = _currentTab;
 
             base.PostClose();
+        }
+
+        private void DrawDetails(Rect inRect)
+        {
+            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
+
+            if (_previewNorth != null)
+            {
+                _previewEast.Draw(previewBox);
+
+                previewBox.y = previewBox.yMax + SPACING;
+
+                _previewSouth.Draw(previewBox);
+
+                previewBox.y = previewBox.yMax + SPACING;
+
+                _previewNorth.Draw(previewBox);
+            }
         }
 
 
@@ -284,6 +356,20 @@ namespace Pawnmorph.User_Interface
 
                 _table.AddRow(item);
             }
+
+
+            _previewNorth = new PawnKindDefPreview(200, 200, null);
+            _previewNorth.Rotation = Rot4.North;
+
+
+            _previewEast = new PawnKindDefPreview(200, 200, null);
+            _previewEast.Rotation = Rot4.East;
+            _previewEast.PreviewIndex = 2;
+
+
+            _previewSouth = new PawnKindDefPreview(200, 200, null);
+            _previewSouth.Rotation = Rot4.South;
+            _previewSouth.PreviewIndex = 3;
         }
 
         private void GenerateMutationsTabContent()
@@ -352,6 +438,19 @@ namespace Pawnmorph.User_Interface
                 item.SearchString = searchText.ToLower();
                 _table.AddRow(item);
             }
+
+            _previewNorth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
+            _previewNorth.Rotation = Rot4.North;
+
+
+            _previewEast = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
+            _previewEast.Rotation = Rot4.East;
+            _previewEast.PreviewIndex = 2;
+
+
+            _previewSouth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
+            _previewSouth.Rotation = Rot4.South;
+            _previewSouth.PreviewIndex = 3;
         }
 
         private void GenerateRacesTabContent()
@@ -360,11 +459,6 @@ namespace Pawnmorph.User_Interface
         }
 
         private void GenerateTemplatesTabContent()
-        {
-
-        }
-
-        private void GenerateDetailsWindow()
         {
 
         }
