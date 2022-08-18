@@ -23,10 +23,20 @@ namespace Pawnmorph.User_Interface
         }
 
         private static Mode _priorMode = Mode.Mutations;
+        private static string HEADER = "PMGenebankHeader".Translate();
+        private static string CAPACITY_AVAILABLE = "PMGenebankAvailableHeader".Translate();
+        private static string CAPACITY_TOTAL = "PMGenebankTotalHeader".Translate();
+        private static float CAPACITY_WIDTH;
 
         private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
         private const float SPACING = 10f;
         private const float HEADER_HEIGHT = 150;
+
+        static Window_Genebank()
+        {
+            Text.Font = GameFont.Small;
+            CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
+        }
 
         private enum Mode
         {
@@ -74,18 +84,6 @@ namespace Pawnmorph.User_Interface
                 if (totalCapacity > 0)
                     StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
             }
-        }
-
-        private static string HEADER = "PMGenebankHeader".Translate();
-        private static string CAPACITY_AVAILABLE = "PMGenebankAvailableHeader".Translate();
-        private static string CAPACITY_TOTAL = "PMGenebankTotalHeader".Translate();
-
-        private static float CAPACITY_WIDTH;
-
-        static Window_Genebank()
-        {
-            Text.Font = GameFont.Small;
-            CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING*2;
         }
 
         private List<TabRecord> _tabs;
@@ -248,18 +246,24 @@ namespace Pawnmorph.User_Interface
 
         private void DrawDetails(Rect inRect)
         {
+            //if (_table.SelectedRows.Count == 1)
+            //    Widgets.InfoCardButton(inRect.x, inRect.y, _table.SelectedRows[0].Def);
+
             Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
 
             if (_previewNorth != null)
             {
+                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
                 _previewEast.Draw(previewBox);
 
                 previewBox.y = previewBox.yMax + SPACING;
 
+                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
                 _previewSouth.Draw(previewBox);
 
                 previewBox.y = previewBox.yMax + SPACING;
 
+                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
                 _previewNorth.Draw(previewBox);
             }
         }
@@ -348,14 +352,38 @@ namespace Pawnmorph.User_Interface
             var column = _table.AddColumn("Race", 0.25f, (ref Rect box, RowItem item) => Widgets.Label(box, item.Label));
             column.IsFixedWidth = false;
 
+            var colTemperature = _table.AddColumn("Temperature", 100f);
+            var colLifespan = _table.AddColumn("Tolerance", 60f);
+            var colDiet = _table.AddColumn("Diet", 100f);
+            var colValue = _table.AddColumn("Value", 75f);
+            //Nutrition requirements?
+
             RowItem item;
             foreach (PawnKindDef animal in _chamberDatabase.TaggedAnimals)
             {
                 string searchText = animal.label;
                 item = new RowItem(animal, _totalCapacity, searchText);
 
+                float? minTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMin)?.value;
+                float? maxTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMax)?.value;
+                if (minTemp.HasValue && maxTemp.HasValue)
+                    item.RowData[colTemperature] = $"{minTemp.Value}-{maxTemp.Value}c";
+
+                item.RowData[colLifespan] = Mathf.FloorToInt(animal.RaceProps.lifeExpectancy).ToString();
+
+                DietCategory diet = animal.RaceProps.ResolvedDietCategory;
+                if (diet != DietCategory.NeverEats)
+                    item.RowData[colDiet] = diet.ToString();
+
+                float? marketValue = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.MarketValue)?.value;
+                if (marketValue.HasValue)
+                    item.RowData[colValue] = $"${marketValue.Value}";
+
+                // CompProperties_Milkable
+
                 _table.AddRow(item);
             }
+
 
 
             _previewNorth = new PawnKindDefPreview(200, 200, null);
