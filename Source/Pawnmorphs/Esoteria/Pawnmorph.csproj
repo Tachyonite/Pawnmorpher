@@ -571,6 +571,10 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="User Interface\Genebank\GeneRowItem.cs" />
+    <Compile Include="User Interface\Genebank\IGeneTab.cs" />
+    <Compile Include="User Interface\Genebank\Tabs\AnimalsTab.cs" />
+    <Compile Include="User Interface\Genebank\Tabs\MutationsTab.cs" />
     <Compile Include="User Interface\MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="User Interface\MainTabWindow_ChamberDatabase.Interning.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
