@@ -1,5 +1,6 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.User_Interface.Preview;
 using Pawnmorph.User_Interface.TableBox;
 using RimWorld;
@@ -100,15 +101,15 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             previews[2].PreviewIndex = 3;
         }
 
-        public void SelectedRow(GeneRowItem selectedRow, Preview.Preview[] previews)
+        public void SelectedRow(IReadOnlyList<GeneRowItem> selectedRows, Preview.Preview[] previews)
         {
             (previews[0] as PawnPreview).ClearMutations();
             (previews[1] as PawnPreview).ClearMutations();
             (previews[2] as PawnPreview).ClearMutations();
 
-            if (selectedRow != null)
+            foreach (var item in selectedRows)
             {
-                MutationDef mutation = selectedRow.Def as MutationDef;
+                MutationDef mutation = item.Def as MutationDef;
                 (previews[0] as PawnPreview).AddMutation(mutation);
                 (previews[1] as PawnPreview).AddMutation(mutation);
                 (previews[2] as PawnPreview).AddMutation(mutation);

@@ -13,6 +13,6 @@ namespace Pawnmorph.User_Interface.Genebank
 
         public abstract void InitDetails(Preview.Preview[] previews);
 
-        public abstract void SelectedRow(IEnumerable<GeneRowItem> selectedRows, Preview.Preview[] previews);
+        public abstract void SelectedRow(IReadOnlyList<GeneRowItem> selectedRows, Preview.Preview[] previews);
     }
 }

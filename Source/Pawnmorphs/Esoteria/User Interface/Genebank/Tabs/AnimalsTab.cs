@@ -5,6 +5,7 @@ using Pawnmorph.User_Interface.TableBox;
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,11 +71,11 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             previews[2].PreviewIndex = 3;
         }
 
-        public void SelectedRow(GeneRowItem selectedRow, Preview.Preview[] previews)
+        public void SelectedRow(IReadOnlyList<GeneRowItem> selectedRows, Preview.Preview[] previews)
         {
-            if (selectedRow != null)
+            if (selectedRows.Count == 1)
             {
-                PawnKindDef thing = (PawnKindDef)selectedRow.Def;
+                PawnKindDef thing = (PawnKindDef)selectedRows[0].Def;
                 (previews[0] as PawnKindDefPreview).Thing = thing;
                 (previews[1] as PawnKindDefPreview).Thing = thing;
                 (previews[2] as PawnKindDefPreview).Thing = thing;
