@@ -25,20 +25,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             _databank = databank;
 
-            _previewNorth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewNorth = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewEast = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewSouth = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3

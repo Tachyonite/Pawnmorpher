@@ -25,20 +25,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             _databank = databank;
 
-            _previewNorth = new PawnKindDefPreview(200, 200, null)
+            _previewNorth = new PawnKindDefPreview(195, 195, null)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnKindDefPreview(200, 200, null)
+            _previewEast = new PawnKindDefPreview(195, 195, null)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnKindDefPreview(200, 200, null)
+            _previewSouth = new PawnKindDefPreview(195, 195, null)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3
