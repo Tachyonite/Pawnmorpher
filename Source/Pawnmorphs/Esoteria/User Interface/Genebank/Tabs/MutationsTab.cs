@@ -14,9 +14,39 @@ using Verse;
 
 namespace Pawnmorph.User_Interface.Genebank.Tabs
 {
-    internal class MutationsTab : IGeneTab
+    internal class MutationsTab : GenebankTab
     {
-        public void GenerateTable(Table<GeneRowItem> table, ChamberDatabase databank)
+        PawnPreview _previewNorth;
+        PawnPreview _previewEast;
+        PawnPreview _previewSouth;
+        ChamberDatabase _databank;
+
+        public override void Initialize(ChamberDatabase databank)
+        {
+            _databank = databank;
+
+            _previewNorth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            {
+                Rotation = Rot4.North
+            };
+
+
+            _previewEast = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            {
+                Rotation = Rot4.East,
+                PreviewIndex = 2
+            };
+
+
+            _previewSouth = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            {
+                Rotation = Rot4.South,
+                PreviewIndex = 3
+            };
+        }
+
+
+        public override void GenerateTable(Table<GeneRowItem> table)
         {
             
             var column = table.AddColumn("Mutation", 0.5f,
@@ -36,8 +66,8 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             colStats.IsFixedWidth = false;
 
             GeneRowItem item;
-            int totalCapacity = databank.TotalStorage;
-            foreach (MutationDef mutation in databank.StoredMutations)
+            int totalCapacity = _databank.TotalStorage;
+            foreach (MutationDef mutation in _databank.StoredMutations)
             {
                 string searchText = mutation.label;
                 item = new GeneRowItem(mutation, totalCapacity, searchText);
@@ -85,35 +115,51 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         }
 
-        public void InitDetails(Preview.Preview[] previews)
+        public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
         {
-            previews[0] = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
-            previews[0].Rotation = Rot4.North;
-
-
-            previews[1] = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
-            previews[1].Rotation = Rot4.East;
-            previews[1].PreviewIndex = 2;
-
-
-            previews[2] = new PawnPreview(200, 200, ThingDefOf.Human as AlienRace.ThingDef_AlienRace);
-            previews[2].Rotation = Rot4.South;
-            previews[2].PreviewIndex = 3;
+            UpdatePreviews(selectedRows);
         }
 
-        public void SelectedRow(IReadOnlyList<GeneRowItem> selectedRows, Preview.Preview[] previews)
+        private void UpdatePreviews(IReadOnlyList<GeneRowItem> selectedRows)
         {
-            (previews[0] as PawnPreview).ClearMutations();
-            (previews[1] as PawnPreview).ClearMutations();
-            (previews[2] as PawnPreview).ClearMutations();
+            _previewNorth.ClearMutations();
+            _previewEast.ClearMutations();
+            _previewSouth.ClearMutations();
 
             foreach (var item in selectedRows)
             {
                 MutationDef mutation = item.Def as MutationDef;
-                (previews[0] as PawnPreview).AddMutation(mutation);
-                (previews[1] as PawnPreview).AddMutation(mutation);
-                (previews[2] as PawnPreview).AddMutation(mutation);
+                _previewNorth.AddMutation(mutation);
+                _previewEast.AddMutation(mutation);
+                _previewSouth.AddMutation(mutation);
             }
+
+            _previewNorth.Refresh();
+            _previewEast.Refresh();
+            _previewSouth.Refresh();
+        }
+
+        public override void DrawDetails(Rect inRect)
+        {
+            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewNorth.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewEast.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewSouth.Draw(previewBox);
+        }
+
+        public override void Delete(Def def)
+        {
+            _databank.RemoveFromDatabase(def as MutationDef);
         }
     }
 }

@@ -47,15 +47,11 @@ namespace Pawnmorph.User_Interface
         private ChamberDatabase _chamberDatabase;
         private Table<GeneRowItem> _table;
 
-        private Preview.Preview[] _previews;
-
-        private IGeneTab _currentTab;
+        private GenebankTab _currentTab;
 
 
         public Window_Genebank()
         {
-            _previews = new Preview.Preview[3];
-
             _tabs = new List<TabRecord>();
             _table = new Table<GeneRowItem>((item, text) => item.SearchString.Contains(text));
             _table.SelectionChanged += Table_SelectionChanged;
@@ -66,10 +62,7 @@ namespace Pawnmorph.User_Interface
 
         private void Table_SelectionChanged(object sender, IReadOnlyList<GeneRowItem> e)
         {
-            _currentTab.SelectedRow(e, _previews);
-            _previews[0].Refresh();
-            _previews[1].Refresh();
-            _previews[2].Refresh();
+            _currentTab.SelectionChanged(e);
         }
 
         protected override void SetInitialSizeAndPosition()
@@ -93,7 +86,7 @@ namespace Pawnmorph.User_Interface
             if (_chamberDatabase == null)
                 Log.Error("Unable to find chamber database world component!");
 
-            SelectTab((IGeneTab)Activator.CreateInstance(_priorMode));
+            SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -134,20 +127,26 @@ namespace Pawnmorph.User_Interface
             Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
             if (Widgets.ButtonText(new Rect(footer.x, footer.y, 100f, footer.height), "Delete"))
             {
-                foreach (GeneRowItem item in _table.SelectedRows)
-                {
-                    Delete(item.Def);
-                    _table.DeleteRow(item);
-                }
-
-                _table.Refresh();
+                DeleteSelection();
             }
 
 
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
             Widgets.DrawBoxSolidWithOutline(detailsBox, Color.black, Color.gray);
-            DrawDetails(detailsBox.ContractedBy(SPACING));
+
+            if (_currentTab != null)
+                _currentTab.DrawDetails(detailsBox.ContractedBy(SPACING));
+        }
+
+        private void DeleteSelection()
+        {
+            foreach (GeneRowItem item in _table.SelectedRows)
+            {
+                _currentTab.Delete(item.Def);
+                _table.DeleteRow(item);
+            }
+            _table.Refresh();
         }
 
         public override void PostClose()
@@ -157,31 +156,6 @@ namespace Pawnmorph.User_Interface
 
             base.PostClose();
         }
-
-        private void DrawDetails(Rect inRect)
-        {
-            //if (_table.SelectedRows.Count == 1)
-            //    Widgets.InfoCardButton(inRect.x, inRect.y, _table.SelectedRows[0].Def);
-
-            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
-
-            if (_previews[0] != null)
-            {
-                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-                _previews[0].Draw(previewBox);
-
-                previewBox.y = previewBox.yMax + SPACING;
-
-                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-                _previews[1].Draw(previewBox);
-
-                previewBox.y = previewBox.yMax + SPACING;
-
-                Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-                _previews[2].Draw(previewBox);
-            }
-        }
-
 
         private void DrawHeader(Rect inRect)
         {
@@ -224,13 +198,13 @@ namespace Pawnmorph.User_Interface
         }
 
 
-        private void SelectTab(IGeneTab tab)
+        private void SelectTab(GenebankTab tab)
         {
             _currentTab = tab;
             _table.Clear();
 
-            tab.GenerateTable(_table, _chamberDatabase);
-            tab.InitDetails(_previews);
+            tab.Initialize(_chamberDatabase);
+            tab.GenerateTable(_table);
 
 
             _table.AddColumn("Size", 100f, (ref Rect box, GeneRowItem item) =>
@@ -252,15 +226,5 @@ namespace Pawnmorph.User_Interface
             _table.Refresh();
         }
 
-        private void Delete(Def def)
-        {
-            //explicit type casts here are hacky but best way to reuse the gui code 
-            if (def is PawnKindDef pkDef)
-                _chamberDatabase.RemoveFromDatabase(pkDef);
-            else if (def is MutationDef mDef)
-                _chamberDatabase.RemoveFromDatabase(mDef);
-            else
-                throw new NotImplementedException(nameof(Delete) + " is not implemented for " + def.GetType().Name + "!");
-        }
     }
 }

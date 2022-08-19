@@ -14,9 +14,39 @@ using Verse;
 
 namespace Pawnmorph.User_Interface.Genebank.Tabs
 {
-    internal class AnimalsTab : IGeneTab
+    internal class AnimalsTab : GenebankTab
     {
-        public void GenerateTable(Table<GeneRowItem> table, ChamberDatabase databank)
+        PawnKindDefPreview _previewNorth;
+        PawnKindDefPreview _previewEast;
+        PawnKindDefPreview _previewSouth;
+        ChamberDatabase _databank;
+
+        public override void Initialize(ChamberDatabase databank)
+        {
+            _databank = databank;
+
+            _previewNorth = new PawnKindDefPreview(200, 200, null)
+            {
+                Rotation = Rot4.North
+            };
+
+
+            _previewEast = new PawnKindDefPreview(200, 200, null)
+            {
+                Rotation = Rot4.East,
+                PreviewIndex = 2
+            };
+
+
+            _previewSouth = new PawnKindDefPreview(200, 200, null)
+            {
+                Rotation = Rot4.South,
+                PreviewIndex = 3
+            };
+        }
+
+
+        public override void GenerateTable(Table<GeneRowItem> table)
         {
             var column = table.AddColumn("Race", 0.25f, (ref Rect box, GeneRowItem item) => Widgets.Label(box, item.Label));
             column.IsFixedWidth = false;
@@ -28,8 +58,8 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             //Nutrition requirements?
 
             GeneRowItem item;
-            int totalStorage = databank.TotalStorage;
-            foreach (PawnKindDef animal in databank.TaggedAnimals)
+            int totalStorage = _databank.TotalStorage;
+            foreach (PawnKindDef animal in _databank.TaggedAnimals)
             {
                 string searchText = animal.label;
                 item = new GeneRowItem(animal, totalStorage, searchText);
@@ -55,36 +85,49 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             }
         }
 
-        public void InitDetails(Preview.Preview[] previews)
-        {
-            previews[0] = new PawnKindDefPreview(200, 200, null);
-            previews[0].Rotation = Rot4.North;
-
-
-            previews[1] = new PawnKindDefPreview(200, 200, null);
-            previews[1].Rotation = Rot4.East;
-            previews[1].PreviewIndex = 2;
-
-
-            previews[2] = new PawnKindDefPreview(200, 200, null);
-            previews[2].Rotation = Rot4.South;
-            previews[2].PreviewIndex = 3;
-        }
-
-        public void SelectedRow(IReadOnlyList<GeneRowItem> selectedRows, Preview.Preview[] previews)
+        public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
         {
             if (selectedRows.Count == 1)
             {
-                PawnKindDef thing = (PawnKindDef)selectedRows[0].Def;
-                (previews[0] as PawnKindDefPreview).Thing = thing;
-                (previews[1] as PawnKindDefPreview).Thing = thing;
-                (previews[2] as PawnKindDefPreview).Thing = thing;
+                UpdatePreviews(selectedRows[0].Def as PawnKindDef);
                 return;
             }
+            UpdatePreviews(null);
+        }
 
-            (previews[0] as PawnKindDefPreview).Thing = null;
-            (previews[1] as PawnKindDefPreview).Thing = null;
-            (previews[2] as PawnKindDefPreview).Thing = null;
+        private void UpdatePreviews(PawnKindDef thing)
+        {
+            _previewNorth.Thing = thing;
+            _previewEast.Thing = thing;
+            _previewSouth.Thing = thing;
+
+            _previewNorth.Refresh();
+            _previewEast.Refresh();
+            _previewSouth.Refresh();
+        }
+
+
+        public override void DrawDetails(Rect inRect)
+        {
+            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewNorth.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewEast.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewSouth.Draw(previewBox);
+        }
+
+        public override void Delete(Def def)
+        {
+            _databank.RemoveFromDatabase(def as PawnKindDef);
         }
     }
 }
