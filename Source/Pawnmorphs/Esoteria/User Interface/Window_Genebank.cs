@@ -46,7 +46,6 @@ namespace Pawnmorph.User_Interface
         private float _currentY;
         private ChamberDatabase _chamberDatabase;
         private Table<GeneRowItem> _table;
-        private int _totalCapacity;
 
         private Preview.Preview[] _previews;
 
@@ -90,7 +89,6 @@ namespace Pawnmorph.User_Interface
 
 
             _chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
-            _totalCapacity = _chamberDatabase.TotalStorage;
 
             if (_chamberDatabase == null)
                 Log.Error("Unable to find chamber database world component!");
@@ -206,21 +204,23 @@ namespace Pawnmorph.User_Interface
             capSection.y += Text.LineHeight;
 
             float freeCapacity = _chamberDatabase.FreeStorage;
+            float totalCapacity = _chamberDatabase.TotalStorage;
 
             capSection.x = inRect.x;
             Widgets.Label(capSection, DatabaseUtilities.GetStorageString(freeCapacity));
 
             capSection.x = capSection.width + SPACING;
-            Widgets.Label(capSection, DatabaseUtilities.GetStorageString(_totalCapacity));
+            Widgets.Label(capSection, DatabaseUtilities.GetStorageString(totalCapacity));
 
             capacity.y = capSection.y + Text.LineHeight;
 
             // Capacity meter.
+            float usedCapacity = _chamberDatabase.UsedStorage;
             Rect capacityBarRect = new Rect(capacity.x, capSection.y + Text.LineHeight, capacity.width, Text.LineHeight);
             Widgets.DrawBoxSolid(capacityBarRect, Color.black);
             capacityBarRect = capacityBarRect.ContractedBy(3);
-            capacityBarRect.width = Mathf.Max(0f, capacityBarRect.width / _totalCapacity * freeCapacity);
-            Widgets.DrawBoxSolid(capacityBarRect, Color.green);
+            capacityBarRect.width = Mathf.Max(0f, capacityBarRect.width * (usedCapacity / totalCapacity));
+            Widgets.DrawBoxSolid(capacityBarRect, Color.Lerp(Color.green, Color.red, usedCapacity / totalCapacity));
         }
 
 
