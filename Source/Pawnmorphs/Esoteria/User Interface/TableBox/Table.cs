@@ -121,7 +121,7 @@ namespace Pawnmorph.User_Interface.TableBox
         public void Draw(Rect boundingBox)
         {
             Rect searchBox = new Rect(boundingBox.x, boundingBox.y, boundingBox.width - 28f - CELL_SPACING, 28f);
-            _searchText = Widgets.TextArea(searchBox, _searchText);
+            _searchText = Widgets.TextField(searchBox, _searchText);
             if (Widgets.ButtonText(new Rect(boundingBox.xMax - 28f, boundingBox.y, 28, 28), "X"))
                 _searchText = "";
             
@@ -211,9 +211,9 @@ namespace Pawnmorph.User_Interface.TableBox
 
                 if (Widgets.ButtonInvisible(rowRect, false))
                 {
-                    if (Input.GetKeyDown(KeyCode.LeftControl) == false)
+                    if (Event.current.control == false)
                         _selectedRows.Clear();
-
+                    
                     _selectedRows.Add(currentRow);
 
                     SelectionChanged?.Invoke(this, _selectedRows);
