@@ -251,6 +251,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
             DrawStageSelection(stageSelectionRect);
 
+            Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, stageSelectionRect.yMax + SPACING, 0, 0);
             descriptionRect.xMax = inRect.xMax;
             descriptionRect.yMax = inRect.yMax - ABILITY_SIZE - SPACING;
@@ -281,7 +282,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 {
                     scrollBox.width = stageButtonViewRect.width + SPACING;
                 }
-                scrollBox.height = stageButtonViewRect.height;
+                scrollBox.height = stageButtonViewRect.height + GenUI.ScrollBarWidth;
                 scrollBox.x = inRect.xMax - scrollBox.width;
 
                 Widgets.Label(new Rect(scrollBox.x - 75, inRect.y, 75, STAGE_BUTTON_SIZE), "Stage: ");
@@ -307,7 +308,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
                 Widgets.EndScrollView();
 
-                Widgets.Label(new Rect(scrollBox.x, scrollBox.yMax + SPACING, scrollBox.width, Text.LineHeight), _stages[_currentStage].label.CapitalizeFirst());
+                Widgets.Label(new Rect(scrollBox.x, scrollBox.yMax, scrollBox.width, Text.LineHeight), _stages[_currentStage].label.CapitalizeFirst());
             }
 
         }

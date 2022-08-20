@@ -69,7 +69,7 @@ namespace Pawnmorph.User_Interface
         {
             base.SetInitialSizeAndPosition();
             //base.windowRect = new Rect(40, 40, Screen.width - 80, Screen.height - 80);
-            base.windowRect = new Rect(40, 40, Screen.width - 80, 800);
+            base.windowRect = new Rect(40, 40, Screen.width - 80, 830);
         }
 
         public override void PostOpen()

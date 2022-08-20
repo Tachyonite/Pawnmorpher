@@ -3,6 +3,7 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.User_Interface.Preview;
 using Pawnmorph.User_Interface.TableBox;
 using RimWorld;
+using RimWorld.BaseGen;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,10 +21,14 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         PawnKindDefPreview _previewEast;
         PawnKindDefPreview _previewSouth;
         ChamberDatabase _databank;
+        string _animalDescription;
+        StringBuilder _stringBuilder;
+        Vector2 _descriptionScrollPosition;
 
         public override void Initialize(ChamberDatabase databank)
         {
             _databank = databank;
+            _stringBuilder = new StringBuilder();
             int size = (int)(PREVIEW_SIZE - GenUI.GapTiny);
 
             _previewNorth = new PawnKindDefPreview(size, size, null)
@@ -53,7 +58,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             column.IsFixedWidth = false;
 
             var colTemperature = table.AddColumn("Temperature", 100f);
-            var colLifespan = table.AddColumn("Tolerance", 60f);
+            var colLifespan = table.AddColumn("Lifespan", 60f);
             var colDiet = table.AddColumn("Diet", 100f);
             var colValue = table.AddColumn("Value", 75f);
             //Nutrition requirements?
@@ -74,44 +79,74 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
                 DietCategory diet = animal.RaceProps.ResolvedDietCategory;
                 if (diet != DietCategory.NeverEats)
-                    item.RowData[colDiet] = diet.ToString();
+                {
+                    string dietString = diet.ToString();
+                    item.RowData[colDiet] = dietString;
+                    searchText += " " + dietString;
+                }
+
 
                 float? marketValue = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.MarketValue)?.value;
                 if (marketValue.HasValue)
                     item.RowData[colValue] = $"${marketValue.Value}";
 
                 // CompProperties_Milkable
-
+                item.SearchString = searchText;
                 table.AddRow(item);
             }
         }
 
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
         {
-            if (selectedRows.Count == 1)
-            {
-                UpdatePreviews(selectedRows[0].Def as PawnKindDef);
-                return;
-            }
-            UpdatePreviews(null);
+            UpdatePreviews(selectedRows);
+            UpdateDetails(selectedRows);
         }
 
-        private void UpdatePreviews(PawnKindDef thing)
+        private void UpdatePreviews(IReadOnlyList<GeneRowItem> selectedRows)
         {
-            _previewNorth.Thing = thing;
-            _previewEast.Thing = thing;
-            _previewSouth.Thing = thing;
+            PawnKindDef selectedRace = null;
+            if (selectedRows.Count == 1)
+                selectedRace = selectedRows[0].Def as PawnKindDef;
+
+            _previewNorth.Thing = selectedRace;
+            _previewEast.Thing = selectedRace;
+            _previewSouth.Thing = selectedRace;
 
             _previewNorth.Refresh();
             _previewEast.Refresh();
             _previewSouth.Refresh();
         }
 
+        private void UpdateDetails(IReadOnlyList<GeneRowItem> selectedRows)
+        {
+            if (selectedRows.Count == 1)
+            {
+                PawnKindDef selectedRace = selectedRows[0].Def as PawnKindDef;
+
+
+                _stringBuilder.Clear();
+                foreach (StatDrawEntry item in selectedRace.RaceProps.SpecialDisplayStats(selectedRace.race, StatRequest.ForEmpty()))
+                {
+                    if (item.ShouldDisplay)
+                        _stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
+                }
+                _animalDescription = _stringBuilder.ToString();
+            }
+        }
+
 
         public override void DrawDetails(Rect inRect)
         {
             Rect previewBox = new Rect(inRect.x, inRect.y, PREVIEW_SIZE, PREVIEW_SIZE);
+            DrawPreviews(previewBox);
 
+            Text.Font = GameFont.Small;
+            Rect descriptionBox = new Rect(inRect.x + previewBox.width + SPACING, inRect.y, inRect.width - previewBox.width - SPACING, previewBox.height * 3 + SPACING * 2);
+            Widgets.LabelScrollable(descriptionBox, _animalDescription, ref _descriptionScrollPosition);
+        }
+
+        private void DrawPreviews(Rect previewBox)
+        {
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewNorth.Draw(previewBox);
 
