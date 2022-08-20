@@ -30,27 +30,34 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         Vector2 _abilitiesScrollPosition;
         Vector2 _stageScrollPosition;
         int _currentStage;
-        
+        string _stageDescription;
+        StringBuilder _stringBuilder;
+        Vector2 _stageDescriptionScrollbarPosition;
+        MutationDef _selectedDef;
+        Dictionary<string, string> _dpsCache;
 
         public override void Initialize(ChamberDatabase databank)
         {
             _databank = databank;
             _stages = new List<MutationStage>();
+            _stringBuilder = new StringBuilder();
+            _dpsCache = new Dictionary<string, string>();
+            int size = (int)(PREVIEW_SIZE - GenUI.GapTiny);
 
-            _previewNorth = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewNorth = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewEast = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewSouth = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3
@@ -136,6 +143,52 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         }
 
+        private void SelectStage(int stageId)
+        {
+            _currentStage = stageId;
+            _stringBuilder.Clear();
+
+            MutationStage stage = _stages[_currentStage];
+
+            _stringBuilder.AppendLine(stage.description);
+            if (_stringBuilder.Length > 0)
+                _stringBuilder.AppendLine();
+
+            foreach (StatDrawEntry item in Verse.HediffStatsUtility.SpecialDisplayStats(stage, null))
+            {
+                if (item.ShouldDisplay)
+                    _stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
+            }
+
+            if (_stringBuilder.Length > 0)
+                _stringBuilder.AppendLine();
+
+            HediffCompProperties_VerbGiver verbComp = _selectedDef.CompProps<HediffCompProperties_VerbGiver>();
+            if (stage.verbOverrides != null && verbComp != null)
+            {
+                _dpsCache.Clear();
+                foreach (var verb in stage.verbOverrides)
+                {
+                    Tool verbTool = verbComp.tools.SingleOrDefault(x => x.label == verb.label);
+                    if (verbTool == null)
+                        continue;
+
+                    if ((verb.power ?? 0) + (verb.cooldownTime ?? 0) + (verb.chanceFactor ?? 0) == 0)
+                        continue;
+
+                    float power = verb.power ?? verbTool.power;
+                    float cooldown = verb.cooldownTime ?? verbTool.cooldownTime;
+                    float chance = verb.chanceFactor ?? verbTool.chanceFactor;
+                    _dpsCache[verbTool.label] = $"{verbTool.LabelCap}: {power / cooldown * chance:0.##}dps";
+                }
+
+                foreach (var item in _dpsCache)
+                    _stringBuilder.AppendLine(item.Value);
+            }
+
+            _stageDescription = _stringBuilder.ToString();
+        }
+
         private void UpdatePreviews(IReadOnlyList<GeneRowItem> selectedRows)
         {
             _previewNorth.ClearMutations();
@@ -165,22 +218,26 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             if (selectedRows.Count == 1)
             {
-                _stages.AddRange((selectedRows[0].Def as MutationDef).stages.OfType<MutationStage>());
+                _selectedDef = (selectedRows[0].Def as MutationDef);
+                _stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
+
+
+
                 foreach (var stage in _stages)
                 {
-                    if (stage.abilities == null)
-                        continue;
-
-                    foreach (var ability in stage.abilities)
+                    if (stage.abilities != null)
                     {
-                        ability.CacheTexture();
+                        foreach (var ability in stage.abilities)
+                        {
+                            ability.CacheTexture();
+                        }
                     }
                 }
 
                 if (_stages[_stages.Count - 1].minSeverity > 1)
-                    _currentStage = _stages.Count - 2;
+                    SelectStage(_stages.Count - 2);
                 else
-                    _currentStage = _stages.Count - 1;
+                    SelectStage(_stages.Count - 1);
             }
         }
 
@@ -194,10 +251,23 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
             DrawStageSelection(stageSelectionRect);
 
+            Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, stageSelectionRect.yMax + SPACING, 0, 0);
+            descriptionRect.xMax = inRect.xMax;
+            descriptionRect.yMax = inRect.yMax - ABILITY_SIZE - SPACING;
+            DrawDescriptionBox(descriptionRect);
+
 
             Text.Font = GameFont.Medium;
             Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - ABILITY_SIZE, inRect.width, ABILITY_SIZE);
             DrawAbilities(abilitiesRect);
+        }
+
+        private void DrawDescriptionBox(Rect descriptionRect)
+        {
+            if (_stages.Count > 0)
+            {
+                Widgets.LabelScrollable(descriptionRect, _stageDescription, ref _stageDescriptionScrollbarPosition);
+            }
         }
 
         private void DrawStageSelection(Rect inRect)
@@ -222,7 +292,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 {
                     Widgets.DrawBoxSolidWithOutline(stageButtonRect, Color.black, Color.grey);
                     if (Widgets.ButtonInvisible(stageButtonRect))
-                        _currentStage = i;
+                        SelectStage(i);
 
                     Rect labelRect = new Rect(stageButtonRect);
                     labelRect.x += 10;
@@ -244,7 +314,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         public void DrawPreview(Rect inRect)
         {
-            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
+            Rect previewBox = new Rect(inRect.x, inRect.y, PREVIEW_SIZE, PREVIEW_SIZE);
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewNorth.Draw(previewBox);

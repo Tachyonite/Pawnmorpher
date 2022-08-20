@@ -24,21 +24,22 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         public override void Initialize(ChamberDatabase databank)
         {
             _databank = databank;
+            int size = (int)(PREVIEW_SIZE - GenUI.GapTiny);
 
-            _previewNorth = new PawnKindDefPreview(195, 195, null)
+            _previewNorth = new PawnKindDefPreview(size, size, null)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnKindDefPreview(195, 195, null)
+            _previewEast = new PawnKindDefPreview(size, size, null)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnKindDefPreview(195, 195, null)
+            _previewSouth = new PawnKindDefPreview(size, size, null)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3
@@ -109,7 +110,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         public override void DrawDetails(Rect inRect)
         {
-            Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
+            Rect previewBox = new Rect(inRect.x, inRect.y, PREVIEW_SIZE, PREVIEW_SIZE);
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewNorth.Draw(previewBox);

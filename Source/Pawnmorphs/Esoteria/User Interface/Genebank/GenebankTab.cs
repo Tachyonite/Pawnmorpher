@@ -12,6 +12,7 @@ namespace Pawnmorph.User_Interface.Genebank
     abstract class GenebankTab
     {
         protected const float SPACING = 10f;
+        protected const float PREVIEW_SIZE = 200f;
 
         public abstract void Initialize(ChamberDatabase databank);
 

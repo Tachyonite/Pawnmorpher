@@ -211,7 +211,7 @@ namespace Pawnmorph.User_Interface.TableBox
 
                 if (Widgets.ButtonInvisible(rowRect, false))
                 {
-                    if (Input.GetKey(KeyCode.LeftControl) == false)
+                    if (Input.GetKeyDown(KeyCode.LeftControl) == false)
                         _selectedRows.Clear();
 
                     _selectedRows.Add(currentRow);
