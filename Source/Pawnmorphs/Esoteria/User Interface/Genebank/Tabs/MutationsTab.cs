@@ -9,6 +9,7 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -19,12 +20,15 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
     internal class MutationsTab : GenebankTab
     {
         private const float ABILITY_SIZE = 100;
+        private const float STAGE_BUTTON_SIZE = 30;
 
         PawnPreview _previewNorth;
         PawnPreview _previewEast;
         PawnPreview _previewSouth;
         ChamberDatabase _databank;
         List<MutationStage> _stages;
+        Vector2 _abilitiesScrollPosition;
+        Vector2 _stageScrollPosition;
         int _currentStage;
         
 
@@ -172,6 +176,11 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                         ability.CacheTexture();
                     }
                 }
+
+                if (_stages[_stages.Count - 1].minSeverity > 1)
+                    _currentStage = _stages.Count - 2;
+                else
+                    _currentStage = _stages.Count - 1;
             }
         }
 
@@ -179,11 +188,58 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             DrawPreview(inRect);
 
+
             Text.Font = GameFont.Medium;
-            float height = ABILITY_SIZE + Text.LineHeight + SPACING;
-            Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - height, inRect.width, height);
-            Widgets.Label(new Rect(abilitiesRect.x, abilitiesRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), "Abilities:");
+            Rect stageSelectionRect = new Rect(0, inRect.y, inRect.width / 2, STAGE_BUTTON_SIZE + SPACING + Text.LineHeight);
+            stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
+            DrawStageSelection(stageSelectionRect);
+
+
+            Text.Font = GameFont.Medium;
+            Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - ABILITY_SIZE, inRect.width, ABILITY_SIZE);
             DrawAbilities(abilitiesRect);
+        }
+
+        private void DrawStageSelection(Rect inRect)
+        {
+            if (_stages.Count > 0)
+            {
+                Rect stageButtonViewRect = new Rect(0, 0, (STAGE_BUTTON_SIZE + SPACING) * _stages.Count, STAGE_BUTTON_SIZE);
+                Rect scrollBox = new Rect(inRect);
+                scrollBox.width -= 60;
+                if (stageButtonViewRect.width < scrollBox.width)
+                {
+                    scrollBox.width = stageButtonViewRect.width + SPACING;
+                }
+                scrollBox.height = stageButtonViewRect.height;
+                scrollBox.x = inRect.xMax - scrollBox.width;
+
+                Widgets.Label(new Rect(scrollBox.x - 75, inRect.y, 75, STAGE_BUTTON_SIZE), "Stage: ");
+                
+                Rect stageButtonRect = new Rect(0, 0, STAGE_BUTTON_SIZE, STAGE_BUTTON_SIZE);
+                Widgets.BeginScrollView(scrollBox, ref _stageScrollPosition, stageButtonViewRect);
+                for (int i = 0; i < _stages.Count; i++)
+                {
+                    Widgets.DrawBoxSolidWithOutline(stageButtonRect, Color.black, Color.grey);
+                    if (Widgets.ButtonInvisible(stageButtonRect))
+                        _currentStage = i;
+
+                    Rect labelRect = new Rect(stageButtonRect);
+                    labelRect.x += 10;
+                    Widgets.Label(labelRect, (i + 1).ToString());
+
+                    if (i == _currentStage)
+                        Widgets.DrawHighlightSelected(stageButtonRect);
+
+                    Widgets.DrawHighlightIfMouseover(stageButtonRect);
+                    stageButtonRect.x = stageButtonRect.xMax + SPACING;
+                }
+
+                Widgets.EndScrollView();
+
+                Widgets.Label(new Rect(scrollBox.x, scrollBox.yMax + SPACING, scrollBox.width, Text.LineHeight), _stages[_currentStage].label.CapitalizeFirst());
+            }
+
         }
 
         public void DrawPreview(Rect inRect)
@@ -204,9 +260,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             _previewSouth.Draw(previewBox);
         }
 
-        Vector2 _abilitiesScrollPosition;
         public void DrawAbilities(Rect inRect)
         {
+            Widgets.Label(new Rect(inRect.x, inRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), "Abilities:");
             if (_stages.Count > 0)
             {
                 var abilities = _stages[_currentStage].abilities;
@@ -223,9 +279,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     MutationAbilityDef ability = abilities[i];
                     Widgets.DrawBoxSolidWithOutline(abilityRect, Color.black, Color.gray);
                     Widgets.DrawTextureFitted(abilityRect.ContractedBy(GenUI.GapTiny), ability.IconTexture, 1f);
-                    TooltipHandler.TipRegion(abilityRect, () => $"Cooldown: {ability.cooldown / TimeMetrics.TICKS_PER_HOUR}h", (int)abilityRect.x + 117858);
-                    Widgets.Label(new Rect(abilityRect.x, abilityRect.yMax + SPACING, ABILITY_SIZE, Text.LineHeight), ability.label);
-
+                    TooltipHandler.TipRegion(abilityRect, () => $"{ability.label}\nCooldown: {ability.cooldown / TimeMetrics.TICKS_PER_HOUR}h", (int)abilityRect.x + 117858);
                     abilityRect.x = abilityRect.xMax + SPACING;
                 }
 
