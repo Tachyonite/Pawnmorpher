@@ -1,8 +1,10 @@
-﻿using Pawnmorph.Chambers;
+﻿using Pawnmorph.Abilities;
+using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.User_Interface.Preview;
 using Pawnmorph.User_Interface.TableBox;
+using Pawnmorph.Utilities;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -16,14 +18,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 {
     internal class MutationsTab : GenebankTab
     {
+        private const float ABILITY_SIZE = 100;
+
         PawnPreview _previewNorth;
         PawnPreview _previewEast;
         PawnPreview _previewSouth;
         ChamberDatabase _databank;
+        List<MutationStage> _stages;
+        int _currentStage;
+        
 
         public override void Initialize(ChamberDatabase databank)
         {
             _databank = databank;
+            _stages = new List<MutationStage>();
 
             _previewNorth = new PawnPreview(195, 195, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
@@ -118,6 +126,10 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
         {
             UpdatePreviews(selectedRows);
+            UpdateStages(selectedRows);
+
+
+
         }
 
         private void UpdatePreviews(IReadOnlyList<GeneRowItem> selectedRows)
@@ -126,20 +138,55 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             _previewEast.ClearMutations();
             _previewSouth.ClearMutations();
 
-            foreach (var item in selectedRows)
-            {
-                MutationDef mutation = item.Def as MutationDef;
-                _previewNorth.AddMutation(mutation);
-                _previewEast.AddMutation(mutation);
-                _previewSouth.AddMutation(mutation);
-            }
+            //if (selectedRows.Count == 1)
+            //{
+                foreach (var item in selectedRows)
+                {
+                    MutationDef mutation = item.Def as MutationDef;
+                    _previewNorth.AddMutation(mutation);
+                    _previewEast.AddMutation(mutation);
+                    _previewSouth.AddMutation(mutation);
+                }
+            //}
 
             _previewNorth.Refresh();
             _previewEast.Refresh();
             _previewSouth.Refresh();
         }
 
+        private void UpdateStages(IReadOnlyList<GeneRowItem> selectedRows)
+        {
+            _stages.Clear();
+            _currentStage = 0;
+
+            if (selectedRows.Count == 1)
+            {
+                _stages.AddRange((selectedRows[0].Def as MutationDef).stages.OfType<MutationStage>());
+                foreach (var stage in _stages)
+                {
+                    if (stage.abilities == null)
+                        continue;
+
+                    foreach (var ability in stage.abilities)
+                    {
+                        ability.CacheTexture();
+                    }
+                }
+            }
+        }
+
         public override void DrawDetails(Rect inRect)
+        {
+            DrawPreview(inRect);
+
+            Text.Font = GameFont.Medium;
+            float height = ABILITY_SIZE + Text.LineHeight + SPACING;
+            Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - height, inRect.width, height);
+            Widgets.Label(new Rect(abilitiesRect.x, abilitiesRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), "Abilities:");
+            DrawAbilities(abilitiesRect);
+        }
+
+        public void DrawPreview(Rect inRect)
         {
             Rect previewBox = new Rect(inRect.x, inRect.y, 200, 200);
 
@@ -155,6 +202,35 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewSouth.Draw(previewBox);
+        }
+
+        Vector2 _abilitiesScrollPosition;
+        public void DrawAbilities(Rect inRect)
+        {
+            if (_stages.Count > 0)
+            {
+                var abilities = _stages[_currentStage].abilities;
+                if (abilities == null || abilities.Count == 0)
+                    return;
+
+                Rect abilitiesViewRect = new Rect(0, 0, (ABILITY_SIZE + SPACING) * abilities.Count, ABILITY_SIZE);
+                Rect abilityRect = new Rect(0, 0, ABILITY_SIZE, ABILITY_SIZE);
+
+                Widgets.BeginScrollView(inRect, ref _abilitiesScrollPosition, abilitiesViewRect);
+
+                for (int i = 0; i < abilities.Count; i++)
+                {
+                    MutationAbilityDef ability = abilities[i];
+                    Widgets.DrawBoxSolidWithOutline(abilityRect, Color.black, Color.gray);
+                    Widgets.DrawTextureFitted(abilityRect.ContractedBy(GenUI.GapTiny), ability.IconTexture, 1f);
+                    TooltipHandler.TipRegion(abilityRect, () => $"Cooldown: {ability.cooldown / TimeMetrics.TICKS_PER_HOUR}h", (int)abilityRect.x + 117858);
+                    Widgets.Label(new Rect(abilityRect.x, abilityRect.yMax + SPACING, ABILITY_SIZE, Text.LineHeight), ability.label);
+
+                    abilityRect.x = abilityRect.xMax + SPACING;
+                }
+
+                Widgets.EndScrollView();
+            }
         }
 
         public override void Delete(Def def)
