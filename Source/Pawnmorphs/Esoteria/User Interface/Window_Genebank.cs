@@ -215,7 +215,7 @@ namespace Pawnmorph.User_Interface
 
                 box.x = box.xMax + 5;
                 Widgets.Label(box, item.StorageSpaceUsedPercentage);
-            }, (collection, ascending) =>
+            }, (collection, ascending, column) =>
             {
                 if (ascending)
                     collection.OrderBy(x => x.Size);

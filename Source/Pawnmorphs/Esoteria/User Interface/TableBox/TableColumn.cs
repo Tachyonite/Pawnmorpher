@@ -31,7 +31,7 @@ namespace Pawnmorph.User_Interface.TableBox
     internal class TableColumn<T> : TableColumn
     {
         public RowCallback<Rect, T> Callback { get; }
-        public Action<ListFilter<T>, bool> OrderByCallback { get; }
+        public Action<ListFilter<T>, bool, TableColumn> OrderByCallback { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TableColumn{T}"/> class.
@@ -39,7 +39,7 @@ namespace Pawnmorph.User_Interface.TableBox
         /// <param name="caption">The column's title.</param>
         /// <param name="width">The width of the column. Use 0.xf for percentage/fractional widths.</param>
         /// <param name="orderByCallback">Callback for ordering by this column. Arguments are the collection to apply ordering to and if current ordering is ascending. Null if not sortable.</param>
-        public TableColumn(string caption, float width, Action<ListFilter<T>, bool> orderByCallback = null)
+        public TableColumn(string caption, float width, Action<ListFilter<T>, bool, TableColumn> orderByCallback = null)
            : base(caption, width)
         {
             Callback = null;
@@ -53,7 +53,7 @@ namespace Pawnmorph.User_Interface.TableBox
         /// <param name="width">The width of the column. Use 0.xf for percentage/fractional widths.</param>
         /// <param name="callback">The rendering callback when a cell of this column should be rendered.</param>
         /// <param name="orderByCallback">Callback for ordering by this column. Arguments are the collection to apply ordering to and if current ordering is ascending. Null if not sortable.</param>
-        public TableColumn(string caption, float width, RowCallback<Rect, T> callback, Action<ListFilter<T>, bool> orderByCallback)
+        public TableColumn(string caption, float width, RowCallback<Rect, T> callback, Action<ListFilter<T>, bool, TableColumn> orderByCallback)
            : base (caption, width)
         {
             Callback = callback;

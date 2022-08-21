@@ -70,7 +70,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             
             var column = table.AddColumn("Mutation", 0.5f,
                 (ref Rect box, GeneRowItem item) => Widgets.Label(box, item.Label),
-                (collection, ascending) =>
+                (collection, ascending, column) =>
                 {
                     if (ascending)
                         collection.OrderBy(x => x.Label);

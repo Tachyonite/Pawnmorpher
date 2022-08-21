@@ -29,7 +29,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             _databank = databank;
             _stringBuilder = new StringBuilder();
-            int size = (int)(PREVIEW_SIZE - GenUI.GapTiny);
+            int size = (int)PREVIEW_SIZE;
 
             _previewNorth = new PawnKindDefPreview(size, size, null)
             {
@@ -58,7 +58,13 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             column.IsFixedWidth = false;
 
             var colTemperature = table.AddColumn("Temperature", 100f);
-            var colLifespan = table.AddColumn("Lifespan", 60f);
+            var colLifespan = table.AddColumn("Lifespan", 60f, (x, ascending, column) =>
+            {
+                if (ascending)
+                    x.OrderBy(y => int.Parse(y.RowData[column]));
+                else
+                    x.OrderByDescending(y => int.Parse(y.RowData[column]));
+            });
             var colDiet = table.AddColumn("Diet", 100f);
             var colValue = table.AddColumn("Value", 75f);
             //Nutrition requirements?
@@ -148,17 +154,17 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         private void DrawPreviews(Rect previewBox)
         {
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-            _previewNorth.Draw(previewBox);
+            _previewNorth.Draw(previewBox.ContractedBy(3));
 
             previewBox.y = previewBox.yMax + SPACING;
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-            _previewEast.Draw(previewBox);
+            _previewEast.Draw(previewBox.ContractedBy(3));
 
             previewBox.y = previewBox.yMax + SPACING;
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-            _previewSouth.Draw(previewBox);
+            _previewSouth.Draw(previewBox.ContractedBy(3));
         }
 
         public override void Delete(Def def)
