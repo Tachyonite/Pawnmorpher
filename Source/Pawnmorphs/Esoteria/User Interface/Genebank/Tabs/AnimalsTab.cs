@@ -154,17 +154,17 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         private void DrawPreviews(Rect previewBox)
         {
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-            _previewNorth.Draw(previewBox.ContractedBy(3));
-
-            previewBox.y = previewBox.yMax + SPACING;
-
-            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewEast.Draw(previewBox.ContractedBy(3));
 
             previewBox.y = previewBox.yMax + SPACING;
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewSouth.Draw(previewBox.ContractedBy(3));
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewNorth.Draw(previewBox.ContractedBy(3));
         }
 
         public override void Delete(Def def)

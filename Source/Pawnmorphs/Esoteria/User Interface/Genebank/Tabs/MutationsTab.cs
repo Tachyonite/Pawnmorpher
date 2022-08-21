@@ -318,17 +318,17 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             Rect previewBox = new Rect(inRect.x, inRect.y, PREVIEW_SIZE, PREVIEW_SIZE);
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
-            _previewNorth.Draw(previewBox);
-
-            previewBox.y = previewBox.yMax + SPACING;
-
-            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewEast.Draw(previewBox);
 
             previewBox.y = previewBox.yMax + SPACING;
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewSouth.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+
+            Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
+            _previewNorth.Draw(previewBox);
         }
 
         public void DrawAbilities(Rect inRect)
