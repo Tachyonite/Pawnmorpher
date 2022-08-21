@@ -97,7 +97,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     item.RowData[colValue] = $"${marketValue.Value}";
 
                 // CompProperties_Milkable
-                item.SearchString = searchText;
+                item.SearchString = searchText.ToLower();
                 table.AddRow(item);
             }
         }
