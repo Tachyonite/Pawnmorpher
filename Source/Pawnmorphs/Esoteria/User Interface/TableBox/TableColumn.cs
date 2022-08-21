@@ -38,10 +38,12 @@ namespace Pawnmorph.User_Interface.TableBox
         /// </summary>
         /// <param name="caption">The column's title.</param>
         /// <param name="width">The width of the column. Use 0.xf for percentage/fractional widths.</param>
-        public TableColumn(string caption, float width)
+        /// <param name="orderByCallback">Callback for ordering by this column. Arguments are the collection to apply ordering to and if current ordering is ascending. Null if not sortable.</param>
+        public TableColumn(string caption, float width, Action<ListFilter<T>, bool> orderByCallback = null)
            : base(caption, width)
         {
             Callback = null;
+            OrderByCallback = orderByCallback;
         }
 
         /// <summary>

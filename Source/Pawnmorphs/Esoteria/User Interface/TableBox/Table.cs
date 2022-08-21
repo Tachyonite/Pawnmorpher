@@ -26,10 +26,20 @@ namespace Pawnmorph.User_Interface.TableBox
         private float _fixedColumnWidth;
         private float _dynamicColumnWidth;
 
+        /// <summary>
+        /// Returns the current selected rows.
+        /// </summary>
         public IReadOnlyList<T> SelectedRows => _selectedRows;
 
+        /// <summary>
+        /// Triggered when selected rows is changed.
+        /// </summary>
         public event EventHandler<IReadOnlyList<T>> SelectionChanged;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Table{T}" /> class.
+        /// </summary>
+        /// <param name="filterCallback">Callback used to apply filter text.</param>
         public Table(Func<T, string, bool> filterCallback)
         {
             _columns = new List<TableColumn<T>>();
@@ -38,13 +48,26 @@ namespace Pawnmorph.User_Interface.TableBox
             _selectedRows = new List<T>(20);
         }
 
-        public TableColumn<T> AddColumn(string header, float width)
+
+        /// <summary>Adds the column.</summary>
+        /// <param name="header">Column caption.</param>
+        /// <param name="width">Column width.</param>
+        /// <param name="orderByCallback">Optional callback to tell the column how to order rows.</param>
+        public TableColumn<T> AddColumn(string header, float width, Action<ListFilter<T>, bool> orderByCallback = null)
         {
             TableColumn<T> column = new TableColumn<T>(header, width);
             _columns.Add(column);
             return column;
         }
 
+        /// <summary>
+        /// Adds the column.
+        /// </summary>
+        /// <param name="header">Column caption.</param>
+        /// <param name="width">Column width.</param>
+        /// <param name="callback">Render callback when cell in column is drawn.</param>
+        /// <param name="orderByCallback">Optional callback to tell the column how to order rows.</param>
+        /// <returns></returns>
         public TableColumn<T> AddColumn(string header, float width, RowCallback<Rect, T> callback, Action<ListFilter<T>, bool> orderByCallback = null)
         {
             TableColumn<T> column = new TableColumn<T>(header, width, callback, orderByCallback);
@@ -52,6 +75,10 @@ namespace Pawnmorph.User_Interface.TableBox
             return column;
         }
 
+        /// <summary>
+        /// Add a new row to the table.
+        /// </summary>
+        /// <param name="item">Row to add.</param>
         public void AddRow(T item)
         {
             // Ensure new rows have every column in data cache to avoid needing to check for every single cell during rendering.
@@ -64,11 +91,18 @@ namespace Pawnmorph.User_Interface.TableBox
             _rows.Items.Add(item);
         }
 
+        /// <summary>
+        /// Remove specific row from table.
+        /// </summary>
+        /// <param name="item">Row to remove.</param>
         public void DeleteRow(T item)
         {
             _rows.Items.Remove(item);
         }
 
+        /// <summary>
+        /// Invalidate rows and recalculates columns.
+        /// </summary>
         public void Refresh()
         {
             _rows.Invalidate();
@@ -87,6 +121,9 @@ namespace Pawnmorph.User_Interface.TableBox
             }
         }
 
+        /// <summary>
+        /// Clears all rows and columns from table.
+        /// </summary>
         public void Clear()
         {
             _rows.Items.Clear();
@@ -95,14 +132,14 @@ namespace Pawnmorph.User_Interface.TableBox
 
         private void Sort(TableColumn<T> column)
         {
-            if (column.Callback != null && column.OrderByCallback == null)
+            if (column.OrderByCallback == null)
                 return;
 
             // If current sorting is ascending or new column is clicked.
             if (_ascendingOrder == false || _currentOrderColumn != column)
             {
                 _ascendingOrder = true;
-                if (column.Callback == null)
+                if (column.OrderByCallback == null)
                     _rows.OrderBy(x => x.RowData[column]);
                 else
                     column.OrderByCallback(_rows, _ascendingOrder);
@@ -111,13 +148,17 @@ namespace Pawnmorph.User_Interface.TableBox
             else
             {
                 _ascendingOrder = false;
-                if (column.Callback == null)
+                if (column.OrderByCallback == null)
                     _rows.OrderByDescending(x => x.RowData[column]);
                 else
                     column.OrderByCallback(_rows, _ascendingOrder);
             }
         }
 
+        /// <summary>
+        /// Draw table to bounding box.
+        /// </summary>
+        /// <param name="boundingBox">Decides the size and position of the table.</param>
         public void Draw(Rect boundingBox)
         {
             Rect searchBox = new Rect(boundingBox.x, boundingBox.y, boundingBox.width - 28f - CELL_SPACING, 28f);
@@ -231,9 +272,6 @@ namespace Pawnmorph.User_Interface.TableBox
                 }
 
                 rowRect.y += rowRect.height;
-                //
-                //Widgets.DrawLine(new Vector2(viewRect.x, viewRect.y), new Vector2(viewRect.x + mainView.width, viewRect.y),
-                //                 Color.black, lineWidth);
 
                 // Break if next row starts outside bottom of scrollbox + 1 row to ensure smooth scrolling - though this should possibly not be needed for IMGUI.
                 if (rowRect.y > boundingBox.height + _scrollPosition.y + rowRect.height)
