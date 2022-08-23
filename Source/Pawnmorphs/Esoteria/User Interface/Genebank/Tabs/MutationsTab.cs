@@ -182,8 +182,13 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     _dpsCache[verbTool.label] = $"{verbTool.LabelCap}: {power / cooldown * chance:0.##}dps";
                 }
 
-                foreach (var item in _dpsCache)
-                    _stringBuilder.AppendLine(item.Value);
+                if (_dpsCache.Count > 0)
+                {
+                    _stringBuilder.AppendLine("Attacks:");
+
+                    foreach (var item in _dpsCache)
+                        _stringBuilder.AppendLine(item.Value);
+                }
             }
 
             _stageDescription = _stringBuilder.ToString();

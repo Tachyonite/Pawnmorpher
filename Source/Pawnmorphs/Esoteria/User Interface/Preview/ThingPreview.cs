@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,24 @@ namespace Pawnmorph.User_Interface.Preview
         public PawnKindDef Thing
         {
             get => _thing;
-            set => _thing = value;
+            set
+            {
+                SetThing(value);
+            }
         }
 
 
         public PawnKindDefPreview(int height, int width, PawnKindDef thing)
             : base(height, width)
         {
+            SetThing(thing);
+        }
+
+        private void SetThing(PawnKindDef thing)
+        {
+            if (thing != null)
+                _scale = 1 / Math.Max(1, thing.RaceProps.baseBodySize / 2.5f);
+
             _thing = thing;
         }
 
@@ -42,7 +54,7 @@ namespace Pawnmorph.User_Interface.Preview
             {
                 graphic = _thing.race.graphic;
             }
-
+            
             graphic.DrawFromDef(new UnityEngine.Vector3(_previewOffsetX, 0, 0), _rotation, _thing.race);
         }
     }

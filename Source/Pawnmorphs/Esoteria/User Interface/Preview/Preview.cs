@@ -24,6 +24,7 @@ namespace Pawnmorph.User_Interface.Preview
         protected int _width;
         protected Rot4 _rotation;
         protected Quaternion _up;
+        protected float _scale;
 
 
         public int Height
@@ -52,6 +53,7 @@ namespace Pawnmorph.User_Interface.Preview
 
         protected Preview(int height, int width)
         {
+            _scale = 1f;
             Height = height;
             Width = width;
             _rotation = Rot4.South;
@@ -65,6 +67,7 @@ namespace Pawnmorph.User_Interface.Preview
 
             _camera.gameObject.SetActive(true);
             _camera.transform.position = new Vector3(_previewOffsetX, 1f, 0f);
+            _camera.orthographicSize = 1f / _scale;
             _camera.Render();
             _camera.gameObject.SetActive(false);
         }
@@ -92,7 +95,6 @@ namespace Pawnmorph.User_Interface.Preview
                 cameraObject.SetActive(false);
                 
                 _camera = cameraObject.GetComponent<Camera>();
-                _camera.transform.position = new Vector3(0f, 1f, 0f);
                 _camera.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
                 _camera.orthographic = true;
                 _camera.orthographicSize = 1f;
@@ -102,7 +104,6 @@ namespace Pawnmorph.User_Interface.Preview
                 _camera.nearClipPlane = Current.Camera.nearClipPlane;
                 _camera.farClipPlane = Current.Camera.farClipPlane;
                 _camera.forceIntoRenderTexture = false;
-
                 _previewTexture = new RenderTexture(_width, _height, 24);
                 _camera.targetTexture = _previewTexture;
             }
