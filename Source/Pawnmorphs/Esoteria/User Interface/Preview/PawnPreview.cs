@@ -24,17 +24,39 @@ namespace Pawnmorph.User_Interface.Preview
         IList<ApparelGraphicRecord> _apparelGraphics;
         IList<Apparel> _apparel;
 
+        public Gender Gender => _pawn.gender;
 
-        //public PawnPreview(int height, int width, Pawn pawn)
-        //    : base(height, width)
-        //{
-        //    _pawn = pawn;
-        //    _drawOptions = DrawOptions.All;
-        //}
+        public string AdjustText(string input)
+        {
+            return input.AdjustedFor(_pawn);
+        }
+
+        /// <summary>
+        /// Sets the preview gender.
+        /// </summary>
+        /// <param name="gender">The gender.</param>
+        /// <param name="bodyType">Type of the body.</param>
+        public void SetGender(Gender gender, BodyTypeDef bodyType)
+        {
+            if (bodyType == null)
+            {
+                // Default to base gendered.
+                if (gender == Gender.Male)
+                    bodyType = BodyTypeDefOf.Male;
+                else
+                    bodyType = BodyTypeDefOf.Female;
+            }
+
+            _pawn.story.bodyType = bodyType;
+            _pawn.gender = gender;
+        }
 
         public PawnPreview(int height, int width, ThingDef_AlienRace race)
             : base(height, width)
         {
+            if (race == null)
+                throw new ArgumentNullException(nameof(race));
+
             _drawOptions = DrawOptions.All;
 
             _pawn = new Pawn();
@@ -45,13 +67,15 @@ namespace Pawnmorph.User_Interface.Preview
             //_pawn.health = new Pawn_HealthTracker(_pawn);
             //_pawn.story = new Pawn_StoryTracker(_pawn);
             PawnComponentsUtility.CreateInitialComponents(_pawn);
-
-
-            _pawn.story.bodyType = BodyTypeDefOf.Male;
+            
+            _pawn.Name = new NameTriple("(name)", "X", "(last)");
+            _pawn.story.birthLastName = "(birthname)";
+            _pawn.story.Title = "(title)";
+            _pawn.story.bodyType = race.alienRace?.generalSettings?.alienPartGenerator?.alienbodytypes[0] ?? BodyTypeDefOf.Male;
             _pawn.story.crownType = CrownType.Average;
             _pawn.story.hairDef = HairDefOf.Shaved;
-            _pawn.PostMake();
-
+            //_pawn.PostMake();
+            _pawn.InitializeComps();
             _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("skin", Color.white, Color.white);
             _pawn.Drawer.renderer.graphics.ResolveAllGraphics();
         }

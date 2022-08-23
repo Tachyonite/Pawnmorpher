@@ -25,10 +25,10 @@ namespace Pawnmorph.User_Interface
         }
 
         private static Type _priorMode = typeof(MutationsTab);
-        private static string HEADER = "PMGenebankHeader".Translate();
-        private static string CAPACITY_AVAILABLE = "PMGenebankAvailableHeader".Translate();
-        private static string CAPACITY_TOTAL = "PMGenebankTotalHeader".Translate();
-        private static float CAPACITY_WIDTH;
+        private static readonly string HEADER = "PMGenebankHeader".Translate();
+        private static readonly string CAPACITY_AVAILABLE = "PMGenebankAvailableHeader".Translate();
+        private static readonly string CAPACITY_TOTAL = "PMGenebankTotalHeader".Translate();
+        private static readonly float CAPACITY_WIDTH;
 
         private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
         private const float SPACING = 10f;
@@ -40,12 +40,12 @@ namespace Pawnmorph.User_Interface
             CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
         }
 
-        private List<TabRecord> _tabs;
+        private readonly List<TabRecord> _tabs;
+        private readonly Table<GeneRowItem> _table;
         private float _mainWidth;
         private float _detailsWidth;
         private float _currentY;
         private ChamberDatabase _chamberDatabase;
-        private Table<GeneRowItem> _table;
 
         private GenebankTab _currentTab;
 

@@ -143,14 +143,18 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         }
 
-        private void SelectStage(int stageId)
+        /// <summary>
+        /// Updates all data based on the provided stage index.
+        /// </summary>
+        /// <param name="stageIndex">The stage index.</param>
+        private void SelectStage(int stageIndex)
         {
-            _currentStage = stageId;
+            _currentStage = stageIndex;
             _stringBuilder.Clear();
 
             MutationStage stage = _stages[_currentStage];
 
-            _stringBuilder.AppendLine(stage.description);
+            _stringBuilder.AppendLine(_previewSouth.AdjustText(stage.description));
             if (_stringBuilder.Length > 0)
                 _stringBuilder.AppendLine();
 
@@ -163,6 +167,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             if (_stringBuilder.Length > 0)
                 _stringBuilder.AppendLine();
 
+            // Add attack descriptions.
             HediffCompProperties_VerbGiver verbComp = _selectedDef.CompProps<HediffCompProperties_VerbGiver>();
             if (stage.verbOverrides != null && verbComp != null)
             {
