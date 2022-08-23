@@ -57,6 +57,7 @@ namespace Pawnmorph.User_Interface
             _table.SelectionChanged += Table_SelectionChanged;
 
             this.resizeable = true;
+            this.draggable = true;
             this.doCloseX = true;
         }
 
