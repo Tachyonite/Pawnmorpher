@@ -8,6 +8,12 @@ namespace Pawnmorph.User_Interface.TableBox
 {
     internal interface ITableRow
     {
-        public Dictionary<TableColumn, string> RowData { get; }
+        public bool HasColumn(TableColumn column);
+
+        public string this[TableColumn key]
+        {
+            get;
+            set;
+        }
     }
 }

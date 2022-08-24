@@ -84,8 +84,8 @@ namespace Pawnmorph.User_Interface.TableBox
             // Ensure new rows have every column in data cache to avoid needing to check for every single cell during rendering.
             foreach (TableColumn column in _columns)
             {
-                if (item.RowData.ContainsKey(column) == false)
-                    item.RowData[column] = String.Empty;
+                if (item.HasColumn(column) == false)
+                    item[column] = String.Empty;
             }
 
             _rows.Items.Add(item);
@@ -140,7 +140,7 @@ namespace Pawnmorph.User_Interface.TableBox
             {
                 _ascendingOrder = true;
                 if (column.OrderByCallback == null)
-                    _rows.OrderBy(x => x.RowData[column]);
+                    _rows.OrderBy(x => x[column]);
                 else
                     column.OrderByCallback(_rows, _ascendingOrder, column);
                 _currentOrderColumn = column;
@@ -149,7 +149,7 @@ namespace Pawnmorph.User_Interface.TableBox
             {
                 _ascendingOrder = false;
                 if (column.OrderByCallback == null)
-                    _rows.OrderByDescending(x => x.RowData[column]);
+                    _rows.OrderByDescending(x => x[column]);
                 else
                     column.OrderByCallback(_rows, _ascendingOrder, column);
             }
@@ -234,7 +234,7 @@ namespace Pawnmorph.User_Interface.TableBox
                     if (column.Callback != null)
                         column.Callback(ref rowRect, currentRow);
                     else
-                        Widgets.Label(rowRect, currentRow.RowData[column]);
+                        Widgets.Label(rowRect, currentRow[column]);
 
 
                     rowRect.x = rowRect.xMax + CELL_SPACING;

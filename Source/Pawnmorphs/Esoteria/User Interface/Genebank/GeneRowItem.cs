@@ -19,11 +19,24 @@ namespace Pawnmorph.User_Interface.Genebank
         public readonly int Size;
         public string SearchString;
 
-        public Dictionary<TableColumn, string> RowData { get; }
+        private Dictionary<TableColumn, string> _rowData;
+
+
+        public string this[TableColumn key]
+        {
+            get
+            {
+                return _rowData[key];
+            }
+            set
+            {
+                _rowData[key] = value;
+            }
+        }
 
         private GeneRowItem(Def def)
         {
-            RowData = new Dictionary<TableColumn, string>();
+            _rowData = new Dictionary<TableColumn, string>();
             Label = def.LabelCap;
             Def = def;
             StorageSpaceUsedPercentage = "0%";
@@ -47,6 +60,11 @@ namespace Pawnmorph.User_Interface.Genebank
             StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
             if (totalCapacity > 0)
                 StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
+        }
+
+        public bool HasColumn(TableColumn column)
+        {
+            return _rowData.ContainsKey(column);
         }
     }
 }

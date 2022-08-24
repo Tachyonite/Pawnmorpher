@@ -104,13 +104,13 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     if (lastStage.abilities != null)
                     {
                         string abilities = String.Join(", ", lastStage.abilities.Select(x => x.label));
-                        item.RowData[colAbilities] = abilities;
+                        item[colAbilities] = abilities;
                         searchText += " " + abilities;
                     }
 
                     if (lastStage.key == "paragon")
                     {
-                        item.RowData[colParagon] = "Paragon";
+                        item[colParagon] = "Paragon";
                         lastStage = stages[stages.Count - 2];
                         searchText += " " + "paragon";
                     }
@@ -125,7 +125,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
                     searchText += " " + statsImpact;
 
-                    item.RowData[colStats] = statsImpact;
+                    item[colStats] = statsImpact;
                 }
 
                 item.SearchString = searchText.ToLower();

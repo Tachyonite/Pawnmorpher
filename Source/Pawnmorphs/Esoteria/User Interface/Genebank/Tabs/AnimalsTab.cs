@@ -61,44 +61,58 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             var colLifespan = table.AddColumn("Lifespan", 60f, (x, ascending, column) =>
             {
                 if (ascending)
-                    x.OrderBy(y => int.Parse(y.RowData[column]));
+                    x.OrderBy(y => int.Parse(y[column]));
                 else
-                    x.OrderByDescending(y => int.Parse(y.RowData[column]));
+                    x.OrderByDescending(y => int.Parse(y[column]));
             });
             var colDiet = table.AddColumn("Diet", 100f);
             var colValue = table.AddColumn("Value", 75f);
+            var colMutations = table.AddColumn("Mutations", 75f);
             //Nutrition requirements?
 
-            GeneRowItem item;
+            GeneRowItem row;
             int totalStorage = _databank.TotalStorage;
             foreach (PawnKindDef animal in _databank.TaggedAnimals)
             {
                 string searchText = animal.label;
-                item = new GeneRowItem(animal, totalStorage, searchText);
+                row = new GeneRowItem(animal, totalStorage, searchText);
 
+                // Comfortable temperature
                 float? minTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMin)?.value;
                 float? maxTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMax)?.value;
                 if (minTemp.HasValue && maxTemp.HasValue)
-                    item.RowData[colTemperature] = $"{minTemp.Value}-{maxTemp.Value}c";
+                    row[colTemperature] = $"{minTemp.Value}-{maxTemp.Value}c";
 
-                item.RowData[colLifespan] = Mathf.FloorToInt(animal.RaceProps.lifeExpectancy).ToString();
+                // life expectancy
+                row[colLifespan] = Mathf.FloorToInt(animal.RaceProps.lifeExpectancy).ToString();
 
+                // Diet
                 DietCategory diet = animal.RaceProps.ResolvedDietCategory;
                 if (diet != DietCategory.NeverEats)
                 {
                     string dietString = diet.ToString();
-                    item.RowData[colDiet] = dietString;
+                    row[colDiet] = dietString;
                     searchText += " " + dietString;
                 }
 
-
+                // Market value
                 float? marketValue = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.MarketValue)?.value;
                 if (marketValue.HasValue)
-                    item.RowData[colValue] = $"${marketValue.Value}";
+                    row[colValue] = $"${marketValue.Value}";
+
+                // Get mutations
+                IReadOnlyList<MutationDef> animalMutations = animal.GetAllMutationsFrom();
+                int totalMutations = animalMutations.Count();
+                if (totalMutations > 0)
+                {
+                    int taggedMutations = animalMutations.Intersect(_databank.StoredMutations).Count();
+                    row[colMutations] = $"{taggedMutations}/{totalMutations}";
+                }
+                
 
                 // CompProperties_Milkable
-                item.SearchString = searchText.ToLower();
-                table.AddRow(item);
+                row.SearchString = searchText.ToLower();
+                table.AddRow(row);
             }
         }
 
