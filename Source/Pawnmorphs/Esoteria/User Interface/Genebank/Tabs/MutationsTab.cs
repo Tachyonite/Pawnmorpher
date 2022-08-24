@@ -258,14 +258,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             DrawPreview(inRect);
 
+            float width = inRect.width - PREVIEW_SIZE - SPACING;
 
             Text.Font = GameFont.Medium;
-            Rect stageSelectionRect = new Rect(0, inRect.y, inRect.width / 2, STAGE_BUTTON_SIZE + SPACING + Text.LineHeight);
+            Rect stageSelectionRect = new Rect(0, inRect.y, width / 3 * 2, STAGE_BUTTON_SIZE + SPACING + Text.LineHeight);
             stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
-            DrawStageSelection(stageSelectionRect);
+            DrawStageSelection(ref stageSelectionRect);
+
+            Rect titleBox = new Rect(inRect.x + PREVIEW_SIZE + SPACING, inRect.y, width - stageSelectionRect.width, 100);
+            float titleHeight = DrawTitle(titleBox);
+
+            float descriptionHeight = Mathf.Max(stageSelectionRect.yMax, titleHeight);
 
             Text.Font = GameFont.Small;
-            Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, stageSelectionRect.yMax + SPACING, 0, 0);
+            Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, descriptionHeight + SPACING, 0, 0);
             descriptionRect.xMax = inRect.xMax;
             descriptionRect.yMax = inRect.yMax - ABILITY_SIZE - SPACING;
             DrawDescriptionBox(descriptionRect);
@@ -276,6 +282,39 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             DrawAbilities(abilitiesRect);
         }
 
+        private float DrawTitle(Rect inRect)
+        {
+            if (_selectedDef == null)
+                return inRect.y;
+
+            float curY = inRect.y;
+            Text.Font = GameFont.Medium;
+            Widgets.LongLabel(inRect.x, inRect.width, _selectedDef.LabelCap, ref curY);
+
+            _stringBuilder.Clear();
+            Text.Font = GameFont.Small;
+            IReadOnlyList<ThingDef> _influences = _selectedDef.AssociatedAnimals;
+            int iterations = Math.Min(_influences.Count, 9);
+            for (int i = 0; i < iterations; i++)
+            {
+                _stringBuilder.AppendLine("/ " + _influences[i].LabelCap);
+            }
+            Widgets.LongLabel(inRect.x, inRect.width, _stringBuilder.ToString(), ref curY);
+            curY -= Text.LineHeight;
+            int others = _influences.Count - iterations;
+            if (others > 0)
+            {
+                _stringBuilder.Clear();
+                for (int i = iterations; i < _influences.Count; i++)
+                {
+                    _stringBuilder.AppendLine("/ " + _influences[i].LabelCap);
+                }
+                Widgets.Label(inRect.x, ref curY, inRect.width, $"/ {others} others.", _stringBuilder.ToString());
+            }
+
+            return curY;
+        }
+
         private void DrawDescriptionBox(Rect descriptionRect)
         {
             if (_stages.Count > 0)
@@ -284,19 +323,19 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             }
         }
 
-        private void DrawStageSelection(Rect inRect)
+        private void DrawStageSelection(ref Rect inRect)
         {
             if (_stages.Count > 0)
             {
                 Rect stageButtonViewRect = new Rect(0, 0, (STAGE_BUTTON_SIZE + SPACING) * _stages.Count, STAGE_BUTTON_SIZE);
                 Rect scrollBox = new Rect(inRect);
-                scrollBox.width -= 60;
+                scrollBox.width -= 75;
                 if (stageButtonViewRect.width < scrollBox.width)
                 {
-                    scrollBox.width = stageButtonViewRect.width + SPACING;
+                    scrollBox.width = stageButtonViewRect.width;
                 }
                 scrollBox.height = stageButtonViewRect.height + GenUI.ScrollBarWidth;
-                scrollBox.x = inRect.xMax - scrollBox.width;
+                scrollBox.x = inRect.xMax - scrollBox.width + SPACING;
 
                 Widgets.Label(new Rect(scrollBox.x - 75, inRect.y, 75, STAGE_BUTTON_SIZE), "Stage: ");
                 
@@ -322,6 +361,8 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 Widgets.EndScrollView();
 
                 Widgets.Label(new Rect(scrollBox.x, scrollBox.yMax, scrollBox.width, Text.LineHeight), _stages[_currentStage].label.CapitalizeFirst());
+
+                inRect.width = scrollBox.width + 75;
             }
 
         }
