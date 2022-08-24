@@ -91,41 +91,41 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 string searchText = mutation.label;
                 item = new GeneRowItem(mutation, totalCapacity, searchText);
 
-                if (mutation.stages == null)
-                    continue;
-
-                var stages = mutation.stages.OfType<MutationStage>().ToList();
-                if (stages.Count > 0)
+                if (mutation.stages != null)
                 {
-                    var lastStage = stages[stages.Count - 1];
-
-
-                    // If any stage has abilities, it will be the last one. Paragon or not.
-                    if (lastStage.abilities != null)
+                    var stages = mutation.stages.OfType<MutationStage>().ToList();
+                    if (stages.Count > 0)
                     {
-                        string abilities = String.Join(", ", lastStage.abilities.Select(x => x.label));
-                        item[colAbilities] = abilities;
-                        searchText += " " + abilities;
+                        var lastStage = stages[stages.Count - 1];
+
+
+                        // If any stage has abilities, it will be the last one. Paragon or not.
+                        if (lastStage.abilities != null)
+                        {
+                            string abilities = String.Join(", ", lastStage.abilities.Select(x => x.label));
+                            item[colAbilities] = abilities;
+                            searchText += " " + abilities;
+                        }
+
+                        if (lastStage.key == "paragon")
+                        {
+                            item[colParagon] = "Paragon";
+                            lastStage = stages[stages.Count - 2];
+                            searchText += " " + "paragon";
+                        }
+
+                        List<StatDef> stats = new List<StatDef>();
+                        if (lastStage.statFactors != null)
+                            stats.AddRange(lastStage.statFactors.Where(x => x.value > 1).Select(x => x.stat));
+
+                        if (lastStage.statOffsets != null)
+                            stats.AddRange(lastStage.statOffsets.Where(x => x.value > 0).Select(x => x.stat));
+
+                        string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
+                        searchText += " " + statsImpact;
+
+                        item[colStats] = statsImpact;
                     }
-
-                    if (lastStage.key == "paragon")
-                    {
-                        item[colParagon] = "Paragon";
-                        lastStage = stages[stages.Count - 2];
-                        searchText += " " + "paragon";
-                    }
-
-                    List<StatDef> stats = new List<StatDef>();
-                    if (lastStage.statFactors != null)
-                        stats.AddRange(lastStage.statFactors.Where(x => x.value > 1).Select(x => x.stat));
-
-                    if (lastStage.statOffsets != null)
-                        stats.AddRange(lastStage.statOffsets.Where(x => x.value > 0).Select(x => x.stat));
-
-                    string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
-                    searchText += " " + statsImpact;
-
-                    item[colStats] = statsImpact;
                 }
 
                 item.SearchString = searchText.ToLower();
@@ -154,7 +154,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             MutationStage stage = _stages[_currentStage];
 
-            _stringBuilder.AppendLine(_previewSouth.AdjustText(stage.description));
+            _stringBuilder.AppendLine(_previewSouth.AdjustText(stage.description ?? _selectedDef.description));
             if (_stringBuilder.Length > 0)
                 _stringBuilder.AppendLine();
 
@@ -229,7 +229,10 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             if (selectedRows.Count == 1)
             {
                 _selectedDef = (selectedRows[0].Def as MutationDef);
-                _stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
+                if (_selectedDef.stages != null)
+                    _stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
+                else
+                    _stages.Add(new MutationStage());
 
 
 
