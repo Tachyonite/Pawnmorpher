@@ -150,6 +150,21 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     if (item.ShouldDisplay)
                         _stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
                 }
+
+
+                IReadOnlyList<MutationDef> animalMutations = selectedRace.GetAllMutationsFrom();
+                int totalMutations = animalMutations.Count();
+                if (totalMutations > 0)
+                {
+                    _stringBuilder.AppendLine();
+                    _stringBuilder.AppendLine("Sequenced mutations:");
+                    IEnumerable<MutationDef> taggedMutations = animalMutations.Intersect(_databank.StoredMutations);
+                    foreach (MutationDef mutation in taggedMutations)
+                    {
+                        _stringBuilder.AppendLine(mutation.LabelCap);
+                    }
+
+                }
                 _animalDescription = _stringBuilder.ToString();
             }
         }
