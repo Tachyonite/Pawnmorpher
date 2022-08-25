@@ -18,7 +18,6 @@
 	<PM_Genebank_MutationTab_Details_Abilities>Abilities:</PM_Genebank_MutationTab_Details_Abilities>
 	<PM_Genebank_MutationTab_Details_OtherInfluences>others.</PM_Genebank_MutationTab_Details_OtherInfluences>
 	<PM_Genebank_MutationTab_Details_AbilityCooldown>Cooldown:</PM_Genebank_MutationTab_Details_AbilityCooldown>
-	<PM_Genebank_MutationTab_Details_AbilityHours>h</PM_Genebank_MutationTab_Details_AbilityHours>
 	<PM_Genebank_MutationTab_Details_DamagePerSecond>dps</PM_Genebank_MutationTab_Details_DamagePerSecond>
 
 	<!-- Animals Tab -->
@@ -30,5 +29,5 @@
 	<PM_Genebank_AnimalsTab_Column_Value>Value</PM_Genebank_AnimalsTab_Column_Value>
 	<PM_Genebank_AnimalsTab_Column_Mutations>Mutations</PM_Genebank_AnimalsTab_Column_Mutations>
 
-	<MutationTab_Details_Mutations>Sequenced mutations:</MutationTab_Details_Mutations>
+	<PM_Genebank_AnimalsTab_Details_Mutations>Sequenced mutations:</PM_Genebank_AnimalsTab_Details_Mutations>
 </LanguageData>
