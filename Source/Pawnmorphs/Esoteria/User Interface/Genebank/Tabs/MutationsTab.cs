@@ -22,6 +22,38 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         private const float ABILITY_SIZE = 100;
         private const float STAGE_BUTTON_SIZE = 30;
 
+        private static readonly string TAB_COLUMN_MUTATION = "PM_Genebank_MutationTab_Column_Mutation".Translate();
+
+        private static readonly string TAB_COLUMN_PARAGON = "PM_Genebank_MutationTab_Column_Paragon".Translate();
+        private static readonly float TAB_COLUMN_PARAGON_SIZE;
+
+        private static readonly string TAB_COLUMN_ABILITIES = "PM_Genebank_MutationTab_Column_Abilities".Translate();
+        private static readonly float TAB_COLUMN_ABILITIES_SIZE;
+
+        private static readonly string TAB_COLUMN_STATS = "PM_Genebank_MutationTab_Column_Stats".Translate();
+
+        private static readonly string DESCRIPTION_STAGES = "PM_Genebank_MutationTab_Details_Stages".Translate();
+        private static readonly float DESCRIPTION_STAGES_SIZE;
+
+        private static readonly string DESCRIPTION_ATTACKS = "PM_Genebank_MutationTab_Details_Attacks".Translate();
+        private static readonly string DESCRIPTION_ABILITIES = "PM_Genebank_MutationTab_Details_Abilities".Translate();
+        private static readonly string DESCRIPTION_OTHERS = "PM_Genebank_MutationTab_Details_OtherInfluences".Translate();
+        private static readonly string DESCRIPTION_COOLDOWN = "PM_Genebank_MutationTab_Details_AbilityCooldown".Translate();
+        private static readonly string DESCRIPTION_HOURS = "PM_Genebank_MutationTab_Details_AbilityHours".Translate();
+
+        
+        static MutationsTab()
+        {
+            Text.Font = GameFont.Small;
+            TAB_COLUMN_PARAGON_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_PARAGON).x, 60f);
+            TAB_COLUMN_ABILITIES_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ABILITIES).x, 100f);
+
+            Text.Font = GameFont.Medium;
+            DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
+        }
+
+
+
         PawnPreview _previewNorth;
         PawnPreview _previewEast;
         PawnPreview _previewSouth;
@@ -68,7 +100,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         public override void GenerateTable(Table<GeneRowItem> table)
         {
             
-            var column = table.AddColumn("Mutation", 0.5f,
+            var column = table.AddColumn(TAB_COLUMN_MUTATION, 0.5f,
                 (ref Rect box, GeneRowItem item) => Widgets.Label(box, item.Label),
                 (collection, ascending, column) =>
                 {
@@ -79,9 +111,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 });
             column.IsFixedWidth = false;
 
-            TableColumn colParagon = table.AddColumn("Paragon", 60f);
-            TableColumn colAbilities = table.AddColumn("Abilities", 100f);
-            TableColumn colStats = table.AddColumn("Stats", 0.5f);
+            TableColumn colParagon = table.AddColumn(TAB_COLUMN_PARAGON, TAB_COLUMN_PARAGON_SIZE);
+            TableColumn colAbilities = table.AddColumn(TAB_COLUMN_ABILITIES, TAB_COLUMN_ABILITIES_SIZE);
+            TableColumn colStats = table.AddColumn(TAB_COLUMN_STATS, 0.5f);
             colStats.IsFixedWidth = false;
 
             GeneRowItem item;
@@ -109,9 +141,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
                         if (lastStage.key == "paragon")
                         {
-                            item[colParagon] = "Paragon";
+                            item[colParagon] = TAB_COLUMN_PARAGON.ToLower();
                             lastStage = stages[stages.Count - 2];
-                            searchText += " " + "paragon";
+                            searchText += " " + item[colParagon];
                         }
 
                         List<StatDef> stats = new List<StatDef>();
@@ -189,7 +221,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
                 if (_dpsCache.Count > 0)
                 {
-                    _stringBuilder.AppendLine("Attacks:");
+                    _stringBuilder.AppendLine(DESCRIPTION_ATTACKS);
 
                     foreach (var item in _dpsCache)
                         _stringBuilder.AppendLine(item.Value);
@@ -309,7 +341,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 {
                     _stringBuilder.AppendLine("/ " + _influences[i].LabelCap);
                 }
-                Widgets.Label(inRect.x, ref curY, inRect.width, $"/ {others} others.", _stringBuilder.ToString());
+                Widgets.Label(inRect.x, ref curY, inRect.width, $"/ {others} {DESCRIPTION_OTHERS}.", _stringBuilder.ToString());
             }
 
             return curY;
@@ -329,7 +361,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             {
                 Rect stageButtonViewRect = new Rect(0, 0, (STAGE_BUTTON_SIZE + SPACING) * _stages.Count, STAGE_BUTTON_SIZE);
                 Rect scrollBox = new Rect(inRect);
-                scrollBox.width -= 75;
+                scrollBox.width -= DESCRIPTION_STAGES_SIZE;
                 if (stageButtonViewRect.width < scrollBox.width)
                 {
                     scrollBox.width = stageButtonViewRect.width;
@@ -337,7 +369,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 scrollBox.height = stageButtonViewRect.height + GenUI.ScrollBarWidth;
                 scrollBox.x = inRect.xMax - scrollBox.width + SPACING;
 
-                Widgets.Label(new Rect(scrollBox.x - 75, inRect.y, 75, STAGE_BUTTON_SIZE), "Stage: ");
+                Widgets.Label(new Rect(scrollBox.x - DESCRIPTION_STAGES_SIZE, inRect.y, DESCRIPTION_STAGES_SIZE, STAGE_BUTTON_SIZE), DESCRIPTION_STAGES);
                 
                 Rect stageButtonRect = new Rect(0, 0, STAGE_BUTTON_SIZE, STAGE_BUTTON_SIZE);
                 Widgets.BeginScrollView(scrollBox, ref _stageScrollPosition, stageButtonViewRect);
@@ -362,7 +394,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
                 Widgets.Label(new Rect(scrollBox.x, scrollBox.yMax, scrollBox.width, Text.LineHeight), _stages[_currentStage].label.CapitalizeFirst());
 
-                inRect.width = scrollBox.width + 75;
+                inRect.width = scrollBox.width + DESCRIPTION_STAGES_SIZE;
             }
 
         }
@@ -387,7 +419,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         public void DrawAbilities(Rect inRect)
         {
-            Widgets.Label(new Rect(inRect.x, inRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), "Abilities:");
+            Widgets.Label(new Rect(inRect.x, inRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), DESCRIPTION_ABILITIES);
             if (_stages.Count > 0)
             {
                 var abilities = _stages[_currentStage].abilities;
@@ -404,7 +436,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     MutationAbilityDef ability = abilities[i];
                     Widgets.DrawBoxSolidWithOutline(abilityRect, Color.black, Color.gray);
                     Widgets.DrawTextureFitted(abilityRect.ContractedBy(GenUI.GapTiny), ability.IconTexture, 1f);
-                    TooltipHandler.TipRegion(abilityRect, () => $"{ability.label}\nCooldown: {ability.cooldown / TimeMetrics.TICKS_PER_HOUR}h", (int)abilityRect.x + 117858);
+                    TooltipHandler.TipRegion(abilityRect, () => $"{ability.label}\n{DESCRIPTION_COOLDOWN} {ability.cooldown / TimeMetrics.TICKS_PER_HOUR}{DESCRIPTION_HOURS}", (int)abilityRect.x + 117858);
                     abilityRect.x = abilityRect.xMax + SPACING;
                 }
 

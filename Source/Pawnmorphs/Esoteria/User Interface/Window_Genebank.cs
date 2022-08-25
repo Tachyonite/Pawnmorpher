@@ -30,6 +30,11 @@ namespace Pawnmorph.User_Interface
         private static readonly string CAPACITY_TOTAL = "PMGenebankTotalHeader".Translate();
         private static readonly float CAPACITY_WIDTH;
 
+
+        private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
+        private static readonly float TAB_MUTATIONS_HEADER_SIZE;
+
+
         private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
         private const float SPACING = 10f;
         private const float HEADER_HEIGHT = 150;
@@ -38,6 +43,7 @@ namespace Pawnmorph.User_Interface
         {
             Text.Font = GameFont.Small;
             CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
+            TAB_MUTATIONS_HEADER_SIZE = Text.CalcSize(TAB_MUTATIONS_HEADER).x;
         }
 
         private readonly List<TabRecord> _tabs;
