@@ -40,7 +40,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         private static readonly float DESCRIPTION_ABILITIES_SIZE;
         private static readonly string DESCRIPTION_OTHERS = "PM_Genebank_MutationTab_Details_OtherInfluences".Translate();
         private static readonly string DESCRIPTION_COOLDOWN = "PM_Genebank_MutationTab_Details_AbilityCooldown".Translate();
-        private static readonly string DESCRIPTION_HOURS = "PM_Genebank_MutationTab_Details_AbilityHours".Translate();
+        private static readonly string DESCRIPTION_HOURS = "LetterHour".Translate();
         private static readonly string DESCRIPTION_DPS = "PM_Genebank_MutationTab_Details_DamagePerSecond".Translate();
 
 
