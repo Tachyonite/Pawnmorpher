@@ -37,11 +37,13 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         private static readonly string DESCRIPTION_ATTACKS = "PM_Genebank_MutationTab_Details_Attacks".Translate();
         private static readonly string DESCRIPTION_ABILITIES = "PM_Genebank_MutationTab_Details_Abilities".Translate();
+        private static readonly float DESCRIPTION_ABILITIES_SIZE;
         private static readonly string DESCRIPTION_OTHERS = "PM_Genebank_MutationTab_Details_OtherInfluences".Translate();
         private static readonly string DESCRIPTION_COOLDOWN = "PM_Genebank_MutationTab_Details_AbilityCooldown".Translate();
         private static readonly string DESCRIPTION_HOURS = "PM_Genebank_MutationTab_Details_AbilityHours".Translate();
+        private static readonly string DESCRIPTION_DPS = "PM_Genebank_MutationTab_Details_DamagePerSecond".Translate();
 
-        
+
         static MutationsTab()
         {
             Text.Font = GameFont.Small;
@@ -50,6 +52,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             Text.Font = GameFont.Medium;
             DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
+            DESCRIPTION_ABILITIES_SIZE = Text.CalcSize(DESCRIPTION_ABILITIES).x;
         }
 
 
@@ -216,7 +219,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                     float power = verb.power ?? verbTool.power;
                     float cooldown = verb.cooldownTime ?? verbTool.cooldownTime;
                     float chance = verb.chanceFactor ?? verbTool.chanceFactor;
-                    _dpsCache[verbTool.label] = $"{verbTool.LabelCap}: {power / cooldown * chance:0.##}dps";
+                    _dpsCache[verbTool.label] = $"{verbTool.LabelCap}: {power / cooldown * chance:0.##}{DESCRIPTION_DPS}";
                 }
 
                 if (_dpsCache.Count > 0)
@@ -419,7 +422,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         public void DrawAbilities(Rect inRect)
         {
-            Widgets.Label(new Rect(inRect.x, inRect.y - Text.LineHeight - SPACING, 100, Text.LineHeight), DESCRIPTION_ABILITIES);
+            Widgets.Label(new Rect(inRect.x, inRect.y - Text.LineHeight - SPACING, DESCRIPTION_ABILITIES_SIZE, Text.LineHeight), DESCRIPTION_ABILITIES);
             if (_stages.Count > 0)
             {
                 var abilities = _stages[_currentStage].abilities;

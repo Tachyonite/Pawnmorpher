@@ -19,6 +19,7 @@
 	<PM_Genebank_MutationTab_Details_OtherInfluences>others.</PM_Genebank_MutationTab_Details_OtherInfluences>
 	<PM_Genebank_MutationTab_Details_AbilityCooldown>Cooldown:</PM_Genebank_MutationTab_Details_AbilityCooldown>
 	<PM_Genebank_MutationTab_Details_AbilityHours>h</PM_Genebank_MutationTab_Details_AbilityHours>
+	<PM_Genebank_MutationTab_Details_DamagePerSecond>dps</PM_Genebank_MutationTab_Details_DamagePerSecond>
 
 	<!-- Animals Tab -->
 	<PM_Genebank_AnimalsTab_Caption>Animals</PM_Genebank_AnimalsTab_Caption>
