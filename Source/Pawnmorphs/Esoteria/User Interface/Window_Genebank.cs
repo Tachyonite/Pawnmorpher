@@ -32,7 +32,13 @@ namespace Pawnmorph.User_Interface
 
 
         private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
-        private static readonly float TAB_MUTATIONS_HEADER_SIZE;
+        private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
+
+        private static readonly string COLUMN_SIZE = "PM_Genebank_AnimalsTab_Caption".Translate();
+        private static readonly float COLUMN_SIZE_SIZE;
+
+        private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
+        private static readonly float BUTTON_DELETE_SIZE;
 
 
         private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
@@ -43,7 +49,8 @@ namespace Pawnmorph.User_Interface
         {
             Text.Font = GameFont.Small;
             CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
-            TAB_MUTATIONS_HEADER_SIZE = Text.CalcSize(TAB_MUTATIONS_HEADER).x;
+            COLUMN_SIZE_SIZE = Mathf.Max(Text.CalcSize(COLUMN_SIZE).x, 100f);
+            BUTTON_DELETE_SIZE = Mathf.Max(Text.CalcSize(BUTTON_DELETE).x, 100f);
         }
 
         private readonly List<TabRecord> _tabs;
@@ -84,8 +91,8 @@ namespace Pawnmorph.User_Interface
             base.PostOpen();
 
 
-            _tabs.Add(new TabRecord("Mutations", () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
-            _tabs.Add(new TabRecord("Animals", () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
+            _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
+            _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
 
 
 
@@ -133,7 +140,7 @@ namespace Pawnmorph.User_Interface
             _table.Draw(mainBox.ContractedBy(SPACING));
             
             Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
-            if (Widgets.ButtonText(new Rect(footer.x, footer.y, 100f, footer.height), "Delete"))
+            if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_DELETE_SIZE, footer.height), BUTTON_DELETE))
             {
                 DeleteSelection();
             }
@@ -215,7 +222,7 @@ namespace Pawnmorph.User_Interface
             tab.GenerateTable(_table);
 
 
-            _table.AddColumn("Size", 100f, (ref Rect box, GeneRowItem item) =>
+            _table.AddColumn(COLUMN_SIZE, COLUMN_SIZE_SIZE, (ref Rect box, GeneRowItem item) =>
             {
                 box.width = box.width / 2 - 5;
                 Widgets.Label(box, item.StorageSpaceUsed);

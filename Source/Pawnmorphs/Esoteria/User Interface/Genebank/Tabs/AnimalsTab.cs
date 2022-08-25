@@ -112,7 +112,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 float? minTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMin)?.value;
                 float? maxTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMax)?.value;
                 if (minTemp.HasValue && maxTemp.HasValue)
-                    row[colTemperature] = $"{GenTemperature.CelsiusTo(minTemp.Value, Prefs.TemperatureMode)}-{GenText.ToStringTemperature(maxTemp.Value)}";
+                    row[colTemperature] = $"{GenTemperature.CelsiusTo(minTemp.Value, Prefs.TemperatureMode)}-{GenText.ToStringTemperature(maxTemp.Value, "")}";
 
                 // life expectancy
                 row[colLifespan] = Mathf.FloorToInt(animal.RaceProps.lifeExpectancy).ToString();

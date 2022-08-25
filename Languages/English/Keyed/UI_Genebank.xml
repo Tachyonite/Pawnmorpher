@@ -3,6 +3,7 @@
     <PM_Genebank_Header>Genebank Storage</PM_Genebank_Header>
     <PM_Genebank_AvailableHeader>Available Storage</PM_Genebank_AvailableHeader>
     <PM_Genebank_TotalHeader>Total Storage</PM_Genebank_TotalHeader>
+    <PM_Genebank_DeleteButton>Delete</PM_Genebank_DeleteButton>
 	
 	<PM_Column_Stats_Size>Size</PM_Column_Stats_Size>
 
