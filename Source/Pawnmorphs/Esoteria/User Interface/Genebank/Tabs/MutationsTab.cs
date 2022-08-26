@@ -70,6 +70,7 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         Vector2 _stageDescriptionScrollbarPosition;
         MutationDef _selectedDef;
         Dictionary<string, string> _dpsCache;
+        private IReadOnlyList<GeneRowItem> _selectedRows;
 
         public override void Initialize(ChamberDatabase databank)
         {
@@ -171,11 +172,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
         {
-            UpdatePreviews(selectedRows);
+            _selectedRows = selectedRows;
             UpdateStages(selectedRows);
-
-
-
+            UpdatePreviews(selectedRows);
         }
 
         /// <summary>
@@ -240,16 +239,21 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             _previewEast.ClearMutations();
             _previewSouth.ClearMutations();
 
-            //if (selectedRows.Count == 1)
-            //{
-                foreach (var item in selectedRows)
+            foreach (var item in selectedRows)
+            {
+                MutationDef mutation = item.Def as MutationDef;
+                _previewNorth.AddMutation(mutation);
+                _previewEast.AddMutation(mutation);
+                _previewSouth.AddMutation(mutation);
+
+                if (_stages.Count > 0)
                 {
-                    MutationDef mutation = item.Def as MutationDef;
-                    _previewNorth.AddMutation(mutation);
-                    _previewEast.AddMutation(mutation);
-                    _previewSouth.AddMutation(mutation);
+                    MutationStage stage = _stages[_currentStage];
+                    _previewEast.SetSeverity(mutation, stage.minSeverity);
+                    _previewNorth.SetSeverity(mutation, stage.minSeverity);
+                    _previewSouth.SetSeverity(mutation, stage.minSeverity);
                 }
-            //}
+            }
 
             _previewNorth.Refresh();
             _previewEast.Refresh();
@@ -293,28 +297,31 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
         {
             DrawPreview(inRect);
 
-            float width = inRect.width - PREVIEW_SIZE - SPACING;
+            if (_selectedDef != null)
+            {
+                float width = inRect.width - PREVIEW_SIZE - SPACING;
 
-            Text.Font = GameFont.Medium;
-            Rect stageSelectionRect = new Rect(0, inRect.y, width / 3 * 2, STAGE_BUTTON_SIZE + SPACING + Text.LineHeight);
-            stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
-            DrawStageSelection(ref stageSelectionRect);
+                Text.Font = GameFont.Medium;
+                Rect stageSelectionRect = new Rect(0, inRect.y, width / 3 * 2, STAGE_BUTTON_SIZE + SPACING + Text.LineHeight);
+                stageSelectionRect.x = inRect.xMax - stageSelectionRect.width;
+                DrawStageSelection(ref stageSelectionRect);
 
-            Rect titleBox = new Rect(inRect.x + PREVIEW_SIZE + SPACING, inRect.y, width - stageSelectionRect.width, 100);
-            float titleHeight = DrawTitle(titleBox);
+                Rect titleBox = new Rect(inRect.x + PREVIEW_SIZE + SPACING, inRect.y, width - stageSelectionRect.width, 100);
+                float titleHeight = DrawTitle(titleBox);
 
-            float descriptionHeight = Mathf.Max(stageSelectionRect.yMax, titleHeight);
+                float descriptionHeight = Mathf.Max(stageSelectionRect.yMax, titleHeight);
 
-            Text.Font = GameFont.Small;
-            Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, descriptionHeight + SPACING, 0, 0);
-            descriptionRect.xMax = inRect.xMax;
-            descriptionRect.yMax = inRect.yMax - ABILITY_SIZE - SPACING;
-            DrawDescriptionBox(descriptionRect);
+                Text.Font = GameFont.Small;
+                Rect descriptionRect = new Rect(inRect.x + PREVIEW_SIZE + SPACING, descriptionHeight + SPACING, 0, 0);
+                descriptionRect.xMax = inRect.xMax;
+                descriptionRect.yMax = inRect.yMax - ABILITY_SIZE - SPACING;
+                DrawDescriptionBox(descriptionRect);
 
 
-            Text.Font = GameFont.Medium;
-            Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - ABILITY_SIZE, inRect.width, ABILITY_SIZE);
-            DrawAbilities(abilitiesRect);
+                Text.Font = GameFont.Medium;
+                Rect abilitiesRect = new Rect(inRect.x, inRect.yMax - ABILITY_SIZE, inRect.width, ABILITY_SIZE);
+                DrawAbilities(abilitiesRect);
+            }
         }
 
         private float DrawTitle(Rect inRect)
@@ -380,7 +387,10 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
                 {
                     Widgets.DrawBoxSolidWithOutline(stageButtonRect, Color.black, Color.grey);
                     if (Widgets.ButtonInvisible(stageButtonRect))
+                    {
                         SelectStage(i);
+                        UpdatePreviews(_selectedRows);
+                    }
 
                     Rect labelRect = new Rect(stageButtonRect);
                     labelRect.x += 10;

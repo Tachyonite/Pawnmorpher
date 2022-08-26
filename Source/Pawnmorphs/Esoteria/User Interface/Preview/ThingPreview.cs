@@ -39,7 +39,7 @@ namespace Pawnmorph.User_Interface.Preview
         }
 
 
-        public override void OnRefresh()
+        protected override void OnRefresh()
         {
             if (_thing == null)
                 return;

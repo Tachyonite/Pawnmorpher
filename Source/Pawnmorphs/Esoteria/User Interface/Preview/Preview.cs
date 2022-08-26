@@ -26,25 +26,36 @@ namespace Pawnmorph.User_Interface.Preview
         protected Quaternion _up;
         protected float _scale;
 
-
+        /// <summary>
+        /// Gets or sets the height of the preview texture.
+        /// </summary>
         public int Height
         {
             get => _height;
             set => _height = value;
         }
 
+        /// <summary>
+        /// Gets or sets the index of the preview. Identical indexes may cause preview overlap.
+        /// </summary>
         public int PreviewIndex
         {
             get => _previewOffsetX / -10;
             set => _previewOffsetX = -10 * value;
         }
 
+        /// <summary>
+        /// Gets or sets the width of the preview texture.
+        /// </summary>
         public int Width
         {
             get => _width;
             set => _width = value;
         }
 
+        /// <summary>
+        /// Gets or sets the preview rotation.
+        /// </summary>
         public Rot4 Rotation
         {
             get => _rotation;
@@ -61,6 +72,9 @@ namespace Pawnmorph.User_Interface.Preview
             InitCamera();
         }
 
+        /// <summary>
+        /// Triggers an invalidate and refresh of displayed preview.
+        /// </summary>
         public void Refresh()
         {
             OnRefresh();
@@ -72,17 +86,20 @@ namespace Pawnmorph.User_Interface.Preview
             _camera.gameObject.SetActive(false);
         }
 
-        public abstract void OnRefresh();
+        /// <summary>
+        /// Called when preview is refreshed.
+        /// </summary>
+        protected abstract void OnRefresh();
 
-
+        /// <summary>
+        /// Draws preview to the specified bounding box.
+        /// </summary>
+        /// <param name="boundingBox">The bounding box.</param>
         public void Draw(Rect boundingBox)
         {
             if (_previewTexture != null)
                 GUI.DrawTexture(boundingBox, _previewTexture);
         }
-
-
-
 
         private void InitCamera()
         {
