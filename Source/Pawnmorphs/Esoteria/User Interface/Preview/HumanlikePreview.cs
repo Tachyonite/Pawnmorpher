@@ -12,7 +12,7 @@ using Verse;
 
 namespace Pawnmorph.User_Interface.Preview
 {
-    internal class PawnPreview : Preview
+    internal class HumanlikePreview : Preview
     {
         Pawn _pawn;
 
@@ -52,13 +52,13 @@ namespace Pawnmorph.User_Interface.Preview
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PawnPreview"/> class.
+        /// Initializes a new instance of the <see cref="HumanlikePreview"/> class.
         /// </summary>
         /// <param name="height">The preview texture height.</param>
         /// <param name="width">The preview texture width.</param>
         /// <param name="race">The pawn race to render.</param>
         /// <exception cref="System.ArgumentNullException">Race cannot be null.</exception>
-        public PawnPreview(int height, int width, ThingDef_AlienRace race)
+        public HumanlikePreview(int height, int width, ThingDef_AlienRace race)
             : base(height, width)
         {
             if (race == null)

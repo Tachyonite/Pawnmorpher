@@ -57,9 +57,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
 
 
-        PawnPreview _previewNorth;
-        PawnPreview _previewEast;
-        PawnPreview _previewSouth;
+        HumanlikePreview _previewNorth;
+        HumanlikePreview _previewEast;
+        HumanlikePreview _previewSouth;
         ChamberDatabase _databank;
         List<MutationStage> _stages;
         Vector2 _abilitiesScrollPosition;
@@ -80,20 +80,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             _dpsCache = new Dictionary<string, string>();
             int size = (int)(PREVIEW_SIZE - GenUI.GapTiny);
 
-            _previewNorth = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewNorth = new HumanlikePreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewEast = new HumanlikePreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnPreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
+            _previewSouth = new HumanlikePreview(size, size, ThingDefOf.Human as AlienRace.ThingDef_AlienRace)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3
