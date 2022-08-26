@@ -428,6 +428,27 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewNorth.Draw(previewBox);
+
+            previewBox.y = previewBox.yMax + SPACING;
+            previewBox.width = 75f;
+            previewBox.height = 20f;
+            if (Widgets.ButtonText(previewBox, "Male"))
+                SetPreviewGender(Gender.Male);
+            
+            previewBox.x = inRect.x + PREVIEW_SIZE - previewBox.width;
+            if (Widgets.ButtonText(previewBox, "Female"))
+                SetPreviewGender(Gender.Female);
+
+        }
+
+        private void SetPreviewGender(Gender gender)
+        {
+            _previewNorth.SetGender(gender, null);
+            _previewEast.SetGender(gender, null);
+            _previewSouth.SetGender(gender, null);
+            _previewNorth.Refresh();
+            _previewEast.Refresh();
+            _previewSouth.Refresh();
         }
 
         public void DrawAbilities(Rect inRect)
