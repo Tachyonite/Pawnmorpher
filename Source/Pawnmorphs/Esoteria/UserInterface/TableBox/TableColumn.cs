@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface.TableBox
+namespace Pawnmorph.UserInterface.TableBox
 {
     internal delegate void RowCallback<Rect, T>(ref Rect boundingBox, T item);
 

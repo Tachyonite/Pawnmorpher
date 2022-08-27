@@ -1,10 +1,10 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
-using Pawnmorph.User_Interface.Genebank;
-using Pawnmorph.User_Interface.Genebank.Tabs;
-using Pawnmorph.User_Interface.Preview;
-using Pawnmorph.User_Interface.TableBox;
+using Pawnmorph.UserInterface.Genebank;
+using Pawnmorph.UserInterface.Genebank.Tabs;
+using Pawnmorph.UserInterface.Preview;
+using Pawnmorph.UserInterface.TableBox;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     internal class Window_Genebank : Window
     {

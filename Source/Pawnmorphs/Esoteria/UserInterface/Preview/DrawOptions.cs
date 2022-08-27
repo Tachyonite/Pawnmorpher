@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pawnmorph.User_Interface.Preview
+namespace Pawnmorph.UserInterface.Preview
 {
     [Flags]
     internal enum DrawOptions

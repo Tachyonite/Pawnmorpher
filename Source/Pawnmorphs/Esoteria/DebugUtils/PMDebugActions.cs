@@ -14,7 +14,7 @@ using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;

@@ -1,6 +1,6 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
-using Pawnmorph.User_Interface.TableBox;
+using Pawnmorph.UserInterface.TableBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Genebank
+namespace Pawnmorph.UserInterface.Genebank
 {
     internal class GeneRowItem : ITableRow
     {

@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Preview
+namespace Pawnmorph.UserInterface.Preview
 {
     internal abstract class Preview
     {

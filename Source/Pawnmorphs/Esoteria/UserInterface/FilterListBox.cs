@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     /// <summary>
     /// Searchable list box.

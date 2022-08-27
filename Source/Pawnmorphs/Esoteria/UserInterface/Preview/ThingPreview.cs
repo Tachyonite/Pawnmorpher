@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Preview
+namespace Pawnmorph.UserInterface.Preview
 {
     internal class ThingPreview : Preview
     {

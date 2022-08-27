@@ -10,7 +10,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace Pawnmorph.User_Interface.Preview
+namespace Pawnmorph.UserInterface.Preview
 {
     internal class PawnPreview : ThingPreview
     {

@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Verse;
 
-namespace Pawnmorph.User_Interface.TableBox
+namespace Pawnmorph.UserInterface.TableBox
 {
     internal class Table<T> where T : ITableRow
     {

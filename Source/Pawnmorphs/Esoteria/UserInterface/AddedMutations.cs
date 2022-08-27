@@ -10,7 +10,7 @@ using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     /// <summary>
     /// interface for a readonly reference to added mutations 

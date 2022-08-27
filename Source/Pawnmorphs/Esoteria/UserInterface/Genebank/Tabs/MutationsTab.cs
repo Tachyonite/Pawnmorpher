@@ -2,8 +2,8 @@
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
-using Pawnmorph.User_Interface.Preview;
-using Pawnmorph.User_Interface.TableBox;
+using Pawnmorph.UserInterface.Preview;
+using Pawnmorph.UserInterface.TableBox;
 using Pawnmorph.Utilities;
 using RimWorld;
 using System;
@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Genebank.Tabs
+namespace Pawnmorph.UserInterface.Genebank.Tabs
 {
     internal class MutationsTab : GenebankTab
     {

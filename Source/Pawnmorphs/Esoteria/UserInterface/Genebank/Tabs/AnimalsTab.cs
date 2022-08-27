@@ -1,7 +1,7 @@
 ﻿using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
-using Pawnmorph.User_Interface.Preview;
-using Pawnmorph.User_Interface.TableBox;
+using Pawnmorph.UserInterface.Preview;
+using Pawnmorph.UserInterface.TableBox;
 using RimWorld;
 using RimWorld.BaseGen;
 using System;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Genebank.Tabs
+namespace Pawnmorph.UserInterface.Genebank.Tabs
 {
     internal class AnimalsTab : GenebankTab
     {

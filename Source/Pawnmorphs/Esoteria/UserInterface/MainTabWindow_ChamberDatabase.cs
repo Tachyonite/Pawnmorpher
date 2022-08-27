@@ -7,7 +7,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using RimWorld;
 using UnityEngine;
 using Verse;

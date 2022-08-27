@@ -1,4 +1,5 @@
-﻿using Pawnmorph.Utilities.Collections;
+﻿using Pawnmorph.HPatches.Optional;
+using Pawnmorph.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace Pawnmorph.User_Interface.Settings
+namespace Pawnmorph.UserInterface.Settings
 {
-    internal class Dialog_VisibleRaceSelection : Window
+    internal class Dialog_OptionalPatches : Window
     {
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
@@ -20,39 +21,42 @@ namespace Pawnmorph.User_Interface.Settings
         private static Vector2 CANCEL_BUTTON_SIZE = new Vector2(120f, 40f);
         private const float SPACER_SIZE = 17f;
 
-        private Dictionary<AlienRace.ThingDef_AlienRace, bool> _selectedAliens;
-        List<string> _settingsReference;
 
+        FilterListBox<(Type, OptionalPatchAttribute)> _patchListBox;
 
-        FilterListBox<AlienRace.ThingDef_AlienRace> _aliensListBox;
+        Dictionary<string, bool> _settingsReference;
+        Dictionary<string, bool> _settingsReferenceSession;
 
-        public Dialog_VisibleRaceSelection(List<string> settingsReference)
+        public Dialog_OptionalPatches(Dictionary<string, bool> settingsReference)
         {
             _settingsReference = settingsReference;
-            _selectedAliens = new Dictionary<AlienRace.ThingDef_AlienRace, bool>();
+            _settingsReferenceSession = new Dictionary<string, bool>();
+            ResetSession();
+        }
+
+        private void ResetSession()
+        {
+            _settingsReferenceSession.Clear();
+            _settingsReferenceSession.AddRange(_settingsReference);
         }
 
         public override void PostOpen()
         {
             base.PostOpen();
-            RefreshAliens();
-        }
 
-        private void RefreshAliens()
-        {
-            IEnumerable<AlienRace.ThingDef_AlienRace> aliens = DefDatabase<AlienRace.ThingDef_AlienRace>.AllDefsListForReading;
+            // Discover all optional patches.
+            List<(Type, OptionalPatchAttribute)> types = new List<(Type, OptionalPatchAttribute)>(50);
+            foreach (Type type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes())
+            {
+                OptionalPatchAttribute attribute = type.GetCustomAttributes(typeof(OptionalPatchAttribute), false).FirstOrDefault() as OptionalPatchAttribute;
+                if (attribute != null)
+                {
+                    types.Add((type, attribute));
+                }
+            }
 
-            aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDef.Named("Human"));
-
-            // Exclude implicit and explicit morph races.
-            aliens = aliens.Except(Hybrids.RaceGenerator.ImplicitRaces);
-            aliens = aliens.Except(Hybrids.RaceGenerator.ExplicitPatchedRaces.Select(x => x.ExplicitHybridRace).OfType<AlienRace.ThingDef_AlienRace>());
-            aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
-
-            _selectedAliens = aliens.Where(x => _settingsReference.Contains(x.defName)).ToDictionary(x => x, x => true);
-
-            var filterList = new ListFilter<AlienRace.ThingDef_AlienRace>(aliens, (alien, filterText) => alien.LabelCap.ToString().ToLower().Contains(filterText));
-            _aliensListBox = new FilterListBox<AlienRace.ThingDef_AlienRace>(filterList);
+            var list = new ListFilter<(Type, OptionalPatchAttribute)>(types.OrderBy(x => x.Item2.Caption, StringComparer.CurrentCulture), (item, filterText) => item.Item2.Caption.ToLower().Contains(filterText));
+            _patchListBox = new FilterListBox<(Type, OptionalPatchAttribute)>(list);
         }
 
 
@@ -60,24 +64,22 @@ namespace Pawnmorph.User_Interface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMEnableMutationVisualsHeader".Translate());
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMOptionalPatchesHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "PMEnableMutationVisualsText".Translate());
+            Widgets.Label(descriptionRect, "PMOptionalPatchesText".Translate());
 
             curY += descriptionRect.height;
 
             float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
-            totalHeight -= 100;
-
-            _aliensListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
+            _patchListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
             {
-                bool current = _selectedAliens.TryGetValue(item, false);
-                listing.CheckboxLabeled(item.LabelCap, ref current, item.modContentPack.ModMetaData.Name);
-                _selectedAliens[item] = current;
+                bool current = _settingsReferenceSession.TryGetValue(item.Item1.FullName, item.Item2.DefaultEnabled);
+                listing.CheckboxLabeled(item.Item2.Caption, ref current, item.Item2.Description);
+                _settingsReferenceSession[item.Item1.FullName] = current;
             });
 
             // Draw the apply, reset and cancel buttons.
@@ -92,7 +94,7 @@ namespace Pawnmorph.User_Interface.Settings
             if (Widgets.ButtonText(new Rect(resetHorPos, buttonVertPos, RESET_BUTTON_SIZE.x, RESET_BUTTON_SIZE.y), RESET_BUTTON_LOC_STRING.Translate()))
             {
                 RimWorld.SoundDefOf.Checkbox_TurnedOff.PlayOneShotOnCamera(null);
-                RefreshAliens();
+                ResetSession();
             }
             if (Widgets.ButtonText(new Rect(cancelHorPos, buttonVertPos, CANCEL_BUTTON_SIZE.x, CANCEL_BUTTON_SIZE.y), CANCEL_BUTTON_LOC_STRING.Translate()))
             {
@@ -100,13 +102,11 @@ namespace Pawnmorph.User_Interface.Settings
             }
         }
 
-
-
         private void ApplyChanges()
         {
             Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
-            _settingsReference.AddRange(_selectedAliens.Where(x => x.Value).Select(x => x.Key.defName).ToList());
+            _settingsReference.AddRange(_settingsReferenceSession);
         }
 
         public override void OnCancelKeyPressed()
@@ -117,7 +117,6 @@ namespace Pawnmorph.User_Interface.Settings
         public override void OnAcceptKeyPressed()
         {
             ApplyChanges();
-
             base.OnAcceptKeyPressed();
         }
     }

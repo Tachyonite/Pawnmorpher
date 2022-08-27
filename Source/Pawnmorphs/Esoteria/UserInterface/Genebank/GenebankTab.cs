@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface.Genebank
+namespace Pawnmorph.UserInterface.Genebank
 {
     abstract class GenebankTab
     {

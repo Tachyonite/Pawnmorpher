@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     internal class Dialog_Popup : Window
     {
