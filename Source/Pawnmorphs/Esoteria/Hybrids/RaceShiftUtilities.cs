@@ -351,7 +351,19 @@ namespace Pawnmorph.Hybrids
             {
                 if (race is ThingDef_AlienRace aRace)
                 {
+                    // Handle if target race is single-gendered.
+                    float? maleProbability = aRace.alienRace?.generalSettings?.maleGenderProbability;
+                    if (maleProbability != null)
+                    {
+                        if (maleProbability == 0f)
+                            pawn.gender = Gender.Female;
+                        else if (maleProbability == 100f)
+                            pawn.gender = Gender.Male;
+                    }
+
+
                     ValidateGraphicsPaths(pawn, oldARace, aRace);
+                    HPatches.PawnPatches.QueueRaceCheck(pawn);
                 } //validating the graphics paths only works for aliens 
                 else
                 {
@@ -374,18 +386,25 @@ namespace Pawnmorph.Hybrids
                 Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
                 return;
             }
-
+            
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
             var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
             alienComp.crownType = TransferPawnPart(newGen.aliencrowntypes, alienComp.crownType);
             story.bodyType = TransferPawnPart(newGen.alienbodytypes, story.bodyType);
-
+            
             // Transfer hair
             pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, HairDefOf.Shaved);
 
             // Transfer beard
             pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
+            
+            // Regenerate in case target race has different channels.
+            // Default is "skin" and "hair" but might also have "eyes" or "tail"
+            alienComp.ColorChannels.Clear();
+
+            // Update hair with new hairstyle.
+            pawn.Drawer.renderer.graphics.CalculateHairMats();
         }
 
 

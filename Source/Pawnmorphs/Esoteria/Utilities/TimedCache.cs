@@ -15,6 +15,9 @@ namespace Pawnmorph.Utilities
         private int _timestamp;
         private bool _requestedUpdate;
 
+        public delegate void ValueChangedHandler(TimedCache<T> sender, T oldValue, T newValue);
+        public event ValueChangedHandler ValueChanged;
+
         /// <summary>
         /// Timestamp in ticks for when the stat was last recalculated.
         /// </summary>
@@ -47,9 +50,13 @@ namespace Pawnmorph.Utilities
 
         public void Update()
         {
+            T oldValue = _value;
             _value = _valueGetter.Invoke();
             _timestamp = _tickManager.TicksGame;
             _requestedUpdate = false;
+
+            if (oldValue.Equals(_value) == false)
+                ValueChanged?.Invoke(this, oldValue, _value);
         }
 
         public TimedCache(Func<T> valueGetter)

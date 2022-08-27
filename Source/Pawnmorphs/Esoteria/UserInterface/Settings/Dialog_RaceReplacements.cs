@@ -95,12 +95,12 @@ namespace Pawnmorph.UserInterface.Settings
             {
                 if (_patchedMorphs.Contains(morph))
                 {
-                    listing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack.Name})", "PMRaceReplacementLocked".Translate());
+                    listing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack?.Name})", "PMRaceReplacementLocked".Translate());
                     return;
                 }
 
                 ThingDef alien = _selectedReplacements[morph];
-                if (listing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack.Name})"))
+                if (listing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack?.Name})"))
                 {
                     List<FloatMenuOption> options = new List<FloatMenuOption>();
 
@@ -109,7 +109,7 @@ namespace Pawnmorph.UserInterface.Settings
 
                     foreach (var alienItem in _aliens.Except(_selectedReplacements.Values))
                     {
-                        options.Add(new FloatMenuOption($"{alienItem.LabelCap} ({alienItem.modContentPack.Name})", () => _selectedReplacements[morph] = alienItem));
+                        options.Add(new FloatMenuOption($"{alienItem.LabelCap} ({alienItem.modContentPack?.Name})", () => _selectedReplacements[morph] = alienItem));
                     }
 
                     if (options.Count > 0)

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Verse;
 
 namespace Pawnmorph.HPatches.Optional
 {
@@ -16,7 +17,7 @@ namespace Pawnmorph.HPatches.Optional
     internal class OptionalPatchAttribute : Attribute
     {
         /// <summary>
-        /// Gets the descriptive tooltip displayed when hovering over the patch in options menu.
+        /// Gets the translated descriptive tooltip displayed when hovering over the patch in options menu.
         /// </summary>
         public string Description { get; }
 
@@ -31,22 +32,22 @@ namespace Pawnmorph.HPatches.Optional
         public bool DefaultEnabled { get; }
 
         /// <summary>
-        /// Patch title.
+        /// Gets translated patch title.
         /// </summary>
         public string Caption { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OptionalPatchAttribute"/> class.
         /// </summary>
-        /// <param name="caption">The patch caption in options menu.</param>
-        /// <param name="description">Description shown as a tooltip in options menu.</param>
+        /// <param name="captionKey">Translation key to use for caption in options menu.</param>
+        /// <param name="descriptionKey">Translation key to use as tooltip in options menu.</param>
         /// <param name="enabledMember">Name of the settable field or property that contains the value that determines if the patch is active.</param>
         /// <param name="defaultEnabled">Default state of the patch when listed in options menu.</param>
-        public OptionalPatchAttribute(string caption, string description, string enabledMember, bool defaultEnabled)
+        public OptionalPatchAttribute(string captionKey, string descriptionKey, string enabledMember, bool defaultEnabled)
         {
-            Caption = caption;
+            Caption = captionKey.Translate();
+            Description = descriptionKey.Translate();
             EnableMemberName = enabledMember;
-            Description = description;
             DefaultEnabled = defaultEnabled;
         }
     }

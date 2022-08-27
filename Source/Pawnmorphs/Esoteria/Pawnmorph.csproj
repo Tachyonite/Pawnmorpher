@@ -312,6 +312,7 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
     <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
     <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
@@ -952,6 +953,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
