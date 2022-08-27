@@ -502,6 +502,18 @@ namespace Pawnmorph
                 partGen.bodyAddons = new List<AlienPartGenerator.BodyAddon>(); 
             }
 
+
+            List<string> addonChannels = allAddons.Select(x => x.ColorChannel).Distinct().ToList();
+
+            // Copy over missing color channels needed by addons
+            var targetColorGenerators = partGen.colorChannels;
+            foreach (var channelGenerator in (ThingDefOf.Human as ThingDef_AlienRace).alienRace.generalSettings.alienPartGenerator.colorChannels)
+            {
+                // If channel doesn't already exist on target AND an addon needs it, then copy.
+                if (targetColorGenerators.Any(x => x.name == channelGenerator.name) == false && addonChannels.Contains(channelGenerator.name))
+                    targetColorGenerators.Add(channelGenerator);
+            }
+
             foreach (AlienPartGenerator.BodyAddon bodyAddon in allAddons) 
             {
                 if (bodyAddon is TaggedBodyAddon tagged)
