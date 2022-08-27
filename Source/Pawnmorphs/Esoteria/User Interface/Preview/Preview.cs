@@ -78,6 +78,7 @@ namespace Pawnmorph.User_Interface.Preview
         public void Refresh()
         {
             OnRefresh();
+            OnDraw(new Vector3(_previewOffsetX, 0f, 0f));
 
             _camera.gameObject.SetActive(true);
             _camera.transform.position = new Vector3(_previewOffsetX, 1f, 0f);
@@ -90,6 +91,11 @@ namespace Pawnmorph.User_Interface.Preview
         /// Called when preview is refreshed.
         /// </summary>
         protected abstract void OnRefresh();
+
+        /// <summary>
+        /// Called when preview should draw.
+        /// </summary>
+        protected abstract void OnDraw(Vector3 drawPosition);
 
         /// <summary>
         /// Draws preview to the specified bounding box.

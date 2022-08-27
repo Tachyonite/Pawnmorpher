@@ -881,7 +881,8 @@
     <Compile Include="User Interface\Preview\DrawOptions.cs" />
     <Compile Include="User Interface\Preview\HumanlikePreview.cs" />
     <Compile Include="User Interface\Preview\Preview.cs" />
-    <Compile Include="User Interface\Preview\PawnKindDefPreview.cs" />
+    <Compile Include="User Interface\Preview\PawnPreview.cs" />
+    <Compile Include="User Interface\Preview\ThingPreview.cs" />
     <Compile Include="User Interface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />

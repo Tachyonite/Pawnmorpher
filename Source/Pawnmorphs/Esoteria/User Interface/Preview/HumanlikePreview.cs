@@ -12,7 +12,7 @@ using Verse;
 
 namespace Pawnmorph.User_Interface.Preview
 {
-    internal class HumanlikePreview : Preview
+    internal class HumanlikePreview : ThingPreview
     {
         Pawn _pawn;
 
@@ -78,6 +78,7 @@ namespace Pawnmorph.User_Interface.Preview
             _pawn.story.hairDef = HairDefOf.Shaved;
             _pawn.InitializeComps();
             _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("skin", Color.white, Color.white);
+            Thing = _pawn;
         }
 
         protected override void OnRefresh()
@@ -85,9 +86,7 @@ namespace Pawnmorph.User_Interface.Preview
             if (_pawn == null)
                 return;
 
-            //_pawn.Drawer.renderer.graphics = new PawnGraphicSet(_pawn);
             _pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-            RenderPawn();
         }
 
         /// <summary>
@@ -136,13 +135,6 @@ namespace Pawnmorph.User_Interface.Preview
         public void ClearMutations()
         {
             _pawn.health.RemoveAllHediffs();
-        }
-
-        private void RenderPawn()
-        {
-            _pawn.Rotation = _rotation;
-            _pawn.DrawAt(new Vector3(_previewOffsetX, 0, 0));
-
         }
     }
 }

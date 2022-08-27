@@ -48,9 +48,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             TAB_COLUMN_MUTATIONS_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_MUTATIONS).x, 75f);
         }
 
-        PawnKindDefPreview _previewNorth;
-        PawnKindDefPreview _previewEast;
-        PawnKindDefPreview _previewSouth;
+        PawnPreview _previewNorth;
+        PawnPreview _previewEast;
+        PawnPreview _previewSouth;
         ChamberDatabase _databank;
         string _animalDescription;
         StringBuilder _stringBuilder;
@@ -62,20 +62,20 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             _stringBuilder = new StringBuilder();
             int size = (int)PREVIEW_SIZE;
 
-            _previewNorth = new PawnKindDefPreview(size, size, null)
+            _previewNorth = new PawnPreview(size, size, null)
             {
                 Rotation = Rot4.North
             };
 
 
-            _previewEast = new PawnKindDefPreview(size, size, null)
+            _previewEast = new PawnPreview(size, size, null)
             {
                 Rotation = Rot4.East,
                 PreviewIndex = 2
             };
 
 
-            _previewSouth = new PawnKindDefPreview(size, size, null)
+            _previewSouth = new PawnPreview(size, size, null)
             {
                 Rotation = Rot4.South,
                 PreviewIndex = 3
@@ -159,9 +159,9 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             if (selectedRows.Count == 1)
                 selectedRace = selectedRows[0].Def as PawnKindDef;
 
-            _previewNorth.Thing = selectedRace;
-            _previewEast.Thing = selectedRace;
-            _previewSouth.Thing = selectedRace;
+            _previewNorth.PawnKindDef = selectedRace;
+            _previewEast.PawnKindDef = selectedRace;
+            _previewSouth.PawnKindDef = selectedRace;
 
             _previewNorth.Refresh();
             _previewEast.Refresh();
@@ -225,6 +225,35 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
 
             Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
             _previewNorth.Draw(previewBox.ContractedBy(3));
+
+            if (_previewEast.PawnKindDef != null)
+            {
+                if (_previewEast.PawnKindDef.fixedGender == null && _previewEast.PawnKindDef.RaceProps.hasGenders)
+                {
+                    previewBox.y = previewBox.yMax + SPACING;
+                    previewBox.width = 75f;
+                    previewBox.height = 20f;
+
+
+                    if (Widgets.ButtonText(previewBox, "Male"))
+                        SetPreviewGender(Gender.Male);
+
+                    previewBox.x = previewBox.x + PREVIEW_SIZE - previewBox.width;
+                    if (Widgets.ButtonText(previewBox, "Female"))
+                        SetPreviewGender(Gender.Female);
+                }
+            }
+        }
+
+        private void SetPreviewGender(Gender gender)
+        {
+            _previewEast.SetGender(gender);
+            _previewNorth.SetGender(gender);
+            _previewSouth.SetGender(gender);
+
+            _previewEast.Refresh();
+            _previewNorth.Refresh();
+            _previewSouth.Refresh();
         }
 
         public override void Delete(Def def)
