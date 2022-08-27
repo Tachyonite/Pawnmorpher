@@ -18,12 +18,6 @@ namespace Pawnmorph.User_Interface
 {
     internal class Window_Genebank : Window
     {
-        [DebugAction(category = "Pawnmorpher", name = "Open new genebank UI", actionType = DebugActionType.Action)]
-        public static void OpenNewGenebank()
-        {
-            Find.WindowStack.Add(new Window_Genebank());
-        }
-
         private static Type _priorMode = typeof(MutationsTab);
         private static readonly string HEADER = "PMGenebankHeader".Translate();
         private static readonly string CAPACITY_AVAILABLE = "PMGenebankAvailableHeader".Translate();
@@ -59,9 +53,7 @@ namespace Pawnmorph.User_Interface
         private float _detailsWidth;
         private float _currentY;
         private ChamberDatabase _chamberDatabase;
-
         private GenebankTab _currentTab;
-
 
         public Window_Genebank()
         {
@@ -91,15 +83,17 @@ namespace Pawnmorph.User_Interface
             base.PostOpen();
 
 
+            _chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
+            if (_chamberDatabase == null)
+            {
+                Log.Error("Unable to find chamber database world component!");
+                this.Close();
+            }
+
+
+
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
-
-
-
-            _chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
-
-            if (_chamberDatabase == null)
-                Log.Error("Unable to find chamber database world component!");
 
             SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
@@ -107,12 +101,7 @@ namespace Pawnmorph.User_Interface
         public override void DoWindowContents(Rect inRect)
         {
             if (_chamberDatabase == null)
-            {
-                Widgets.Label(inRect, "NO DATABASE COMPONENT FOUND.");
                 return;
-            }
-
-
 
             // Apply edge spacing
             inRect = inRect.ContractedBy(SPACING);
