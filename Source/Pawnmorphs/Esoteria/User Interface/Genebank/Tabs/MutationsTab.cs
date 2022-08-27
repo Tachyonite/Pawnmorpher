@@ -432,11 +432,11 @@ namespace Pawnmorph.User_Interface.Genebank.Tabs
             previewBox.y = previewBox.yMax + SPACING;
             previewBox.width = 75f;
             previewBox.height = 20f;
-            if (Widgets.ButtonText(previewBox, "Male"))
+            if (Widgets.ButtonText(previewBox, MALE))
                 SetPreviewGender(Gender.Male);
             
             previewBox.x = inRect.x + PREVIEW_SIZE - previewBox.width;
-            if (Widgets.ButtonText(previewBox, "Female"))
+            if (Widgets.ButtonText(previewBox, FEMALE))
                 SetPreviewGender(Gender.Female);
 
         }

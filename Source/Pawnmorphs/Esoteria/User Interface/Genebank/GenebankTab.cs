@@ -13,6 +13,8 @@ namespace Pawnmorph.User_Interface.Genebank
     {
         protected const float SPACING = 10f;
         protected const float PREVIEW_SIZE = 200f;
+        protected readonly string FEMALE = "Female".Translate().CapitalizeFirst();
+        protected readonly string MALE = "Male".Translate().CapitalizeFirst();
 
         /// <summary>
         /// The very first method to be called. Only called once.
