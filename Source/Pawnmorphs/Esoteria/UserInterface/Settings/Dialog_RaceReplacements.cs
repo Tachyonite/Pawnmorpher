@@ -8,7 +8,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
-namespace Pawnmorph.User_Interface.Settings
+namespace Pawnmorph.UserInterface.Settings
 {
     internal class Dialog_RaceReplacements : Window
     {

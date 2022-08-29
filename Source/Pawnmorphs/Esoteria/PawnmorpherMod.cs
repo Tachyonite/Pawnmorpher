@@ -112,7 +112,7 @@ namespace Pawnmorph
             if (settings.visibleRaces == null)
                 settings.visibleRaces = new List<string>();
 
-            User_Interface.Settings.Dialog_VisibleRaceSelection raceSelection = new User_Interface.Settings.Dialog_VisibleRaceSelection(settings.visibleRaces);
+            UserInterface.Settings.Dialog_VisibleRaceSelection raceSelection = new UserInterface.Settings.Dialog_VisibleRaceSelection(settings.visibleRaces);
             Find.WindowStack.Add(raceSelection);
         }
 
@@ -121,7 +121,7 @@ namespace Pawnmorph
             if (settings.raceReplacements == null)
                 settings.raceReplacements = new Dictionary<string, string>();
 
-            User_Interface.Settings.Dialog_RaceReplacements raceReplacements = new User_Interface.Settings.Dialog_RaceReplacements(settings.raceReplacements);
+            UserInterface.Settings.Dialog_RaceReplacements raceReplacements = new UserInterface.Settings.Dialog_RaceReplacements(settings.raceReplacements);
             Find.WindowStack.Add(raceReplacements);
         }
 
@@ -130,7 +130,7 @@ namespace Pawnmorph
             if (settings.optionalPatches == null)
                 settings.optionalPatches = new Dictionary<string, bool>();
 
-            User_Interface.Settings.Dialog_OptionalPatches raceReplacements = new User_Interface.Settings.Dialog_OptionalPatches(settings.optionalPatches);
+            UserInterface.Settings.Dialog_OptionalPatches raceReplacements = new UserInterface.Settings.Dialog_OptionalPatches(settings.optionalPatches);
             Find.WindowStack.Add(raceReplacements);
         }
 

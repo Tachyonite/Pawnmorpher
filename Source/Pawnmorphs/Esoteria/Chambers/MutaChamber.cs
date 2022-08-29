@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using RimWorld;
 using UnityEngine;
 using Verse;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     [StaticConstructorOnStartup]
     internal class ButtonTexturesPM

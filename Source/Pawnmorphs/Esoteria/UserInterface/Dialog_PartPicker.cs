@@ -13,7 +13,7 @@ using Verse;
 using Verse.Sound;
 using Pawnmorph.GraphicSys;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     /// <summary>
     /// part picker dialogue windo

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Abilities
@@ -37,6 +39,23 @@ namespace Pawnmorph.Abilities
         /// The total cooldown in ticks.
         /// </summary>
         public int cooldown;
+
+        private Texture2D _iconTextureCache;
+
+        public Texture2D IconTexture
+        {
+            get 
+            {
+                CacheTexture();
+                return _iconTextureCache;
+            }
+        }
+
+        public void CacheTexture()
+        {
+            if (_iconTextureCache == null)
+                _iconTextureCache = ContentFinder<Texture2D>.Get(iconPath);
+        }
 
 
         /// <summary>

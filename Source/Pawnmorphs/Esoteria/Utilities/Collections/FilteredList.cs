@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,6 +60,38 @@ namespace Pawnmorph.Utilities.Collections
         {
             _totalCollection = collection.ToList();
             _filterCallback = filterCallback;
+            Invalidate();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListFilter{T}"/> class.
+        /// </summary>
+        /// <param name="filterCallback">Filter callback called for each item when filter text is modified. Provides Item, Filtertext and expects a bool returned on whether or not item is visible.</param>
+        public ListFilter(Func<T, string, bool> filterCallback)
+        {
+            _totalCollection = new List<T>();
+            _filterCallback = filterCallback;
+        }
+
+        /// <summary>
+        /// Orders underlying collection ascending.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="keySelector">The key selector.</param>
+        public void OrderBy<TKey>(Func<T, TKey> keySelector)
+        {
+            _totalCollection = _totalCollection.OrderBy(keySelector).ToList();
+            Invalidate();
+        }
+
+        /// <summary>
+        /// Orders underlying collection descending.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="keySelector">The key selector.</param>
+        public void OrderByDescending<TKey>(Func<T, TKey> keySelector)
+        {
+            _totalCollection = _totalCollection.OrderByDescending(keySelector).ToList();
             Invalidate();
         }
 

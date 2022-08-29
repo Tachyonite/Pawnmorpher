@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Verse;
 
-namespace Pawnmorph.User_Interface
+namespace Pawnmorph.UserInterface
 {
     /// <summary>
     /// interface for a readonly variant of mutation data 
