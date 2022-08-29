@@ -289,6 +289,7 @@ namespace Pawnmorph.Hybrids
                 headOffset = human.headOffset,
                 headOffsetDirectional = human.headOffsetDirectional,
                 bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
+                colorChannels = human.colorChannels,
                 alienProps = impliedRace
             };
 
@@ -342,6 +343,7 @@ namespace Pawnmorph.Hybrids
             bodyParts.Add("Tail");
             bodyParts.Add("Waist");
 
+            FieldInfo colorChannel = HarmonyLib.AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "colorChannel");
             foreach (AlienPartGenerator.BodyAddon addon in human)
             {
                 addon.scaleWithPawnDrawsize = true;
@@ -373,6 +375,8 @@ namespace Pawnmorph.Hybrids
                     scaleWithPawnDrawsize = addon.scaleWithPawnDrawsize,
                     alignWithHead = addon.alignWithHead
                 };
+                if (temp.ColorChannel != addon.ColorChannel)
+                    colorChannel.SetValue(temp, addon.ColorChannel);
 
                 if (headParts.Contains(temp.bodyPart))
                 {
