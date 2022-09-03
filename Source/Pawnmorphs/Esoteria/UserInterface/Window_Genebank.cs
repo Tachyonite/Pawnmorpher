@@ -28,7 +28,7 @@ namespace Pawnmorph.UserInterface
         private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
         private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
 
-        private static readonly string COLUMN_SIZE = "PM_Genebank_AnimalsTab_Caption".Translate();
+        private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
         private static readonly float COLUMN_SIZE_SIZE;
 
         private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
