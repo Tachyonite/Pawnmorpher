@@ -106,5 +106,10 @@ namespace Pawnmorph.Utilities
             if (_events.TryGetValue(statDef.index, out var events))
                 ((IInvokable)events).Invoke(pawn, statDef, oldValue, newValue);
         }
+
+        internal static void Clear()
+        {
+            _statCache.Clear();
+        }
     }
 }

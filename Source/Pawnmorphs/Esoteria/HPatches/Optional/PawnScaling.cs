@@ -26,7 +26,6 @@ namespace Pawnmorph.HPatches.Optional
             {
                 StatsUtility.GetEvents(PMStatDefOf.PM_BodySize).StatChanged += PawnScaling_StatChanged;
                 _meshCache = new Dictionary<float, AlienGraphicMeshSet>();
-                Log.Message("[PM] Optional pawn scaling patch enabled.");
             }
 
             return _enabled;

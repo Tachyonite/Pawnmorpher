@@ -9,7 +9,7 @@ namespace Pawnmorph.Utilities
 {
     internal class TimedCache<T>
     {
-        private static TickManager _tickManager = Find.TickManager;
+        private TickManager _tickManager;
         private T _value;
         private readonly Func<T> _valueGetter;
         private int _timestamp;
@@ -61,6 +61,7 @@ namespace Pawnmorph.Utilities
 
         public TimedCache(Func<T> valueGetter)
         {
+            _tickManager = Find.TickManager;
             _timestamp = _tickManager.TicksGame;
             _requestedUpdate = false;
             _valueGetter = valueGetter;
