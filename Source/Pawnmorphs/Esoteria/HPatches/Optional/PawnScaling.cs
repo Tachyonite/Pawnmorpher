@@ -40,6 +40,7 @@ namespace Pawnmorph.HPatches.Optional
             });
         }
 
+        // Updates all draw sizes on comp to specified size.
         private static void SetCompScales(AlienComp comp, float size)
         {
             comp.customDrawSize = new Vector2(size, size);
@@ -112,13 +113,14 @@ namespace Pawnmorph.HPatches.Optional
         [HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
         private static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
         {
-            if (__instance.BodySize > 1)
+            // Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
+            if (__instance.RaceProps.Humanlike && __instance.BodySize > 1)
             {
                 // Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
                 // Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
                 // Only offset when standing.
                 if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
-                    drawLoc.z += GetScale(__instance.BodySize) / 2;
+                    drawLoc.z += GetScale(__instance.BodySize) / 3f;
             }
         }
 
