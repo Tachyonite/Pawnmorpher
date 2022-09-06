@@ -295,6 +295,8 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("Recache", STATIC_FLAGS));
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("GetPawnRowTooltip", STATIC_FLAGS));
 
+            // Food restrictions tracker
+            methodsToPatch.Add(AccessTools.PropertyGetter(typeof(Pawn_FoodRestrictionTracker), nameof(Pawn_FoodRestrictionTracker.Configurable)));
 
 
             methodsToPatch.Add(typeof(Dialog_InfoCard).GetMethod(nameof(Dialog_InfoCard.DoWindowContents), INSTANCE_FLAGS));
