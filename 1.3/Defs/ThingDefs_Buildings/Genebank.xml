@@ -10,6 +10,9 @@
       <drawSize>(2,2)</drawSize>
     </graphicData>
     <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>Buildings</li>
+    </thingCategories>
     <defaultPlacingRot>South</defaultPlacingRot>
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
