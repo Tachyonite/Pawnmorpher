@@ -84,7 +84,7 @@ namespace Pawnmorph.HPatches.Optional
                     };
                     _meshCache.Add(size, mesh);
                 }
-                
+
                 comp.alienGraphics = mesh;
                 comp.alienHeadGraphics = mesh;
                 comp.alienPortraitGraphics = mesh;
@@ -101,6 +101,27 @@ namespace Pawnmorph.HPatches.Optional
             // Don't affect y layer
             offsetVector.z *= value;
         }
+
+
+        [HarmonyLib.HarmonyAfter(new string[] { "erdelf.HumanoidAlienRaces" })]
+        [HarmonyLib.HarmonyPatch(typeof(RimWorld.PawnCacheRenderer), nameof(RimWorld.PawnCacheRenderer.RenderPawn)), HarmonyLib.HarmonyPrefix]
+        private static void CacheRenderPawnPrefix(Pawn pawn, ref float cameraZoom, bool portrait)
+        {
+            if (portrait)
+            {
+                cameraZoom = 1f / GetScale(pawn.BodySize);
+            }
+        }
+
+        [HarmonyLib.HarmonyPatch(typeof(GlobalTextureAtlasManager), nameof(GlobalTextureAtlasManager.TryGetPawnFrameSet)), HarmonyLib.HarmonyPrefix]
+        private static bool TryGetPawnFrameSetPrefix(Pawn pawn)
+        {
+            if (pawn.BodySize > 1.0f)
+                return false;
+
+            return true;
+        }
+
 
         // Calculate the rendered size based on body size
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
