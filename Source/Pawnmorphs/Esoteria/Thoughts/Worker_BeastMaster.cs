@@ -33,7 +33,7 @@ namespace Pawnmorph.Thoughts
 
         protected override bool AnimalMasterCheck(Pawn p, Pawn animal)
         {
-            return animal.playerSettings.RespectedMaster == p && animal.IsFormerHuman();
+            return base.AnimalMasterCheck(p,animal) && animal.IsFormerHuman();
         }
     }
 }
