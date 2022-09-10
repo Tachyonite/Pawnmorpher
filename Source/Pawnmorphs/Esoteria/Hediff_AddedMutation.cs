@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.HPatches;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -289,6 +290,17 @@ namespace Pawnmorph
                 {
                     Log.Error($"could not cast {otherMutation.def.defName} of type {otherMutation.def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
                 }
+
+            if (Part.def == BodyPartDefOf.Head)
+            {
+                // Hide hair
+                pawn.story.hairDef = HairDefOf.Shaved;
+            }
+            else if (Part.def == BodyPartDefOf.Jaw)
+            {
+                // Hide beard
+                pawn.style.beardDef = BeardDefOf.NoBeard;
+            }
         }
 
         /// <summary>called after this instance is removed from the pawn</summary>
@@ -297,6 +309,22 @@ namespace Pawnmorph
             base.PostRemoved();
             if (!PawnGenerator.IsBeingGenerated(pawn))
                 pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
+            
+            var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
+            if (initialGraphics != null)
+            {
+                if (Part.def == BodyPartDefOf.Head)
+                {
+                    // Hide hair
+                    pawn.story.hairDef = initialGraphics.HairDef;
+                }
+                else if (Part.def == BodyPartDefOf.Jaw)
+                {
+                    // Hide beard
+                    if (initialGraphics.Beard != null)
+                        pawn.style.beardDef = initialGraphics.Beard;
+                }
+            }
         }
 
         /// <summary>

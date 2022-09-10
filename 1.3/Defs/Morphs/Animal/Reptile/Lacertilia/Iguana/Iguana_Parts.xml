@@ -53,8 +53,11 @@
 			<Skullspike>Parts/Iguana/Iguana_Spines</Skullspike>
 		</graphics>
 		<parts>
-			<li>Skull</li>
+			<li>Head</li>
 		</parts>
+		<blockSites>
+			<li>Skull</li>
+		</blockSites>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 </Defs>

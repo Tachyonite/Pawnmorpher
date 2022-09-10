@@ -157,6 +157,11 @@ namespace Pawnmorph.GraphicSys
         }
 
         /// <summary>
+        /// Gets the pawn's original beard.
+        /// </summary>
+        public BeardDef Beard => _styleInfo?.Beard;
+
+        /// <summary>
         ///     Gets the initial body type of this pawn
         /// </summary>
         /// <value>
@@ -315,6 +320,8 @@ namespace Pawnmorph.GraphicSys
 
         private class StyleInfo : IExposable
         {
+            public BeardDef Beard => beardDef;
+
              BeardDef beardDef;
 
 
