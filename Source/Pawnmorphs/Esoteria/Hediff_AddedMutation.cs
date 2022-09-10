@@ -291,15 +291,18 @@ namespace Pawnmorph
                     Log.Error($"could not cast {otherMutation.def.defName} of type {otherMutation.def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
                 }
 
-            if (Part.def == BodyPartDefOf.Head)
+            if (Def.RemoveComp?.layer == MutationLayer.Core)
             {
-                // Hide hair
-                pawn.story.hairDef = HairDefOf.Shaved;
-            }
-            else if (Part.def == BodyPartDefOf.Jaw)
-            {
-                // Hide beard
-                pawn.style.beardDef = BeardDefOf.NoBeard;
+                if (Part.def == BodyPartDefOf.Head)
+                {
+                    // Hide hair
+                    pawn.story.hairDef = HairDefOf.Shaved;
+                }
+                else if (Part.def == BodyPartDefOf.Jaw)
+                {
+                    // Hide beard
+                    pawn.style.beardDef = BeardDefOf.NoBeard;
+                }
             }
         }
 
@@ -309,20 +312,23 @@ namespace Pawnmorph
             base.PostRemoved();
             if (!PawnGenerator.IsBeingGenerated(pawn))
                 pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
-            
-            var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
-            if (initialGraphics != null)
+
+            if (Def.RemoveComp?.layer == MutationLayer.Core)
             {
-                if (Part.def == BodyPartDefOf.Head)
+                var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
+                if (initialGraphics != null)
                 {
-                    // Hide hair
-                    pawn.story.hairDef = initialGraphics.HairDef;
-                }
-                else if (Part.def == BodyPartDefOf.Jaw)
-                {
-                    // Hide beard
-                    if (initialGraphics.Beard != null)
-                        pawn.style.beardDef = initialGraphics.Beard;
+                    if (Part.def == BodyPartDefOf.Head)
+                    {
+                        // Hide hair
+                        pawn.story.hairDef = initialGraphics.HairDef;
+                    }
+                    else if (Part.def == BodyPartDefOf.Jaw)
+                    {
+                        // Hide beard
+                        if (initialGraphics.Beard != null)
+                            pawn.style.beardDef = initialGraphics.Beard;
+                    }
                 }
             }
         }
