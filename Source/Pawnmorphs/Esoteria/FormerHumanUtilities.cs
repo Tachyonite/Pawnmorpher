@@ -42,7 +42,7 @@ namespace Pawnmorph
 
         private const float
             FORMER_HUMAN_FILTH_ADJ =
-                0.33f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
+                1f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
 
         private const float ANIMALISTIC_FILTH_AMOUNT = 2; //animalistic humanoids make the same amount of filth as dogs 
         private const float MAX_SAPIENCE_REDUCE_AMOUNT = 0.2f;
