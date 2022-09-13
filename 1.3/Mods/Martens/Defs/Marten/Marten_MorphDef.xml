@@ -1,16 +1,14 @@
 <Defs>
-    <Pawnmorph.MorphDef ParentName="ExoticMorph">
+    <Pawnmorph.MorphDef ParentName="CarnivoraMorph">
         <defName>MartenMorph</defName>
         <label>martenmorph</label>
         <description>The product of a mad scientist's attempt to create an army of super (cute) soldiers, martenmorphs are deceptively strong fighters, with suprising agility that makes them nigh untouchable in melee.</description>
-        <race>ZGF_PineMart</race>
+        <race>ZGF_RimMart</race>
         <classification>Carnivora</classification>
         <categories>
             <li>Cold</li>
             <li>Temperate</li>
-
             <li>Combat</li>
-
         </categories>
         <fullTransformation>PawnmorphMartenTF</fullTransformation>
         <partialTransformation>PawnmorphMartenTFPartial</partialTransformation>
