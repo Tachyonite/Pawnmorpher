@@ -6,7 +6,7 @@
         <stages>
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <painOffset>0.1</painOffset>
-                <vomitMtbDays>1</vomitMtbDays>>
+                <vomitMtbDays>1</vomitMtbDays>
                 <capMods>
                     <li>
                         <capacity>Moving</capacity>
