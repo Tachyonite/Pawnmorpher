@@ -850,7 +850,6 @@
 				<values>
 					<labelOverride>thick nails</labelOverride>
 					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
-					
 					<statOffsets>
 						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
 					</statOffsets>
@@ -863,7 +862,6 @@
 					<description>Some of the fingers on this hand have disappeared entirely, while the rest are growing fatter and more inflexible. [PAWN_nameDef]'s hand isn't going to be of much use soon.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
-						<PM_BodySize>0.05</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -880,7 +878,6 @@
 					<statOffsets>
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
-						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>
@@ -897,7 +894,6 @@
 					<statOffsets>
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
-						<PM_BodySize>0.1</PM_BodySize>
 					</statOffsets>
 					<capMods>
 						<li>

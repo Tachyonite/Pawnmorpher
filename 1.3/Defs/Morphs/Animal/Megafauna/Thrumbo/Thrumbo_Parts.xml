@@ -22,27 +22,18 @@
 				<stageKey>adapting</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. The strange shape makes speaking very difficult.</description>
-					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adapting to it has made speaking less frustrating.</description>
-					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
-					</statOffsets>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>paragon</stageKey>
 				<values>
 					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
-					</statOffsets>
 				</values>
 			</li>
 		</stagePatches>

@@ -96,9 +96,6 @@
 							<power>12.7</power>
 						</li>
 					</verbOverrides>
-					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
-					</statOffsets>
 					<capMods>
 						<li>
 							<capacity>Manipulation</capacity>
@@ -112,7 +109,6 @@
 				<values>
 					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
 					</statOffsets>
@@ -141,7 +137,6 @@
 				<values>
 					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
 					</statOffsets>

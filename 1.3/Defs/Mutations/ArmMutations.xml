@@ -62,7 +62,7 @@
 					<description>This arm is a little clumsier, and a lot bigger.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
-						<PM_BodySize>0.05</PM_BodySize>
+						<PM_BodySize>0.01</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>
@@ -72,7 +72,7 @@
 					<description>[PAWN_nameDef]'s arm has grown a lot larger, making most tasks more difficult.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
-						<PM_BodySize>0.1</PM_BodySize>
+						<PM_BodySize>0.025</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>
@@ -83,7 +83,7 @@
 					<statOffsets>
 						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
 						<MeleeHitChance>0.075</MeleeHitChance>
-						<PM_BodySize>0.1</PM_BodySize>
+						<PM_BodySize>0.025</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>

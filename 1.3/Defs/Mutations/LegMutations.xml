@@ -86,7 +86,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<PM_BodySize>0.1</PM_BodySize>
+						<PM_BodySize>0.05</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>
