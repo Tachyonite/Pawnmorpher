@@ -6,7 +6,7 @@
         <match Class="PatchOperationSequence">
             <operations>
                 <li Class="PatchOperationAddModExtension">
-                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjAndroid" or defName="ChjDroid"]</xpath>
+                    <xpath>/Defs/AlienRace.ThingDef_AlienRace[defName="ChjAndroid" or defName="ChjDroid" or defName = "ChjBattleDroid"]</xpath>
                     <value>
                         <li Class="Pawnmorph.RaceMutationSettingsExtension">
                             <immuneToAll>true</immuneToAll>
