@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.HPatches;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -289,14 +290,66 @@ namespace Pawnmorph
                 {
                     Log.Error($"could not cast {otherMutation.def.defName} of type {otherMutation.def.GetType().Name} to {nameof(MutationDef)}!\n{e}");
                 }
+
+            ApplyVisualAdjustment();
+        }
+
+        /// <summary>
+        /// Applies the visual adjustments caused by this mutation.
+        /// </summary>
+        public void ApplyVisualAdjustment()
+        {
+            if (Def.RemoveComp?.layer == MutationLayer.Core)
+            {
+                if (Part.def == BodyPartDefOf.Head && pawn.story.hairDef != PMStyleDefOf.PM_HairHidden)
+                {
+                    // Hide hair
+                    var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
+                    if (initialGraphics != null && pawn.def == ThingDefOf.Human)
+                        initialGraphics.HairDef = pawn.story.hairDef;
+                    pawn.story.hairDef = PMStyleDefOf.PM_HairHidden;
+                }
+                else if (Part.def == BodyPartDefOf.Jaw && pawn.style.beardDef != PMStyleDefOf.PM_BeardHidden)
+                {
+                    // Hide beard
+                    var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
+                    if (initialGraphics != null && pawn.def == ThingDefOf.Human)
+                        initialGraphics.BeardDef = pawn.style.beardDef;
+                    pawn.style.beardDef = PMStyleDefOf.PM_BeardHidden;
+                }
+            }
         }
 
         /// <summary>called after this instance is removed from the pawn</summary>
         public override void PostRemoved()
         {
             base.PostRemoved();
+
             if (!PawnGenerator.IsBeingGenerated(pawn))
                 pawn.GetMutationTracker()?.NotifyMutationRemoved(this);
+
+            // Don't change style if mutation is skin
+            if (Def.RemoveComp?.layer == MutationLayer.Core)
+            {
+                // If no other mutation is blocking the same part then reset style.
+                if (pawn.GetMutationTracker()?.AllMutations.Any(x => x.Part == Part && x.Def.RemoveComp?.layer == MutationLayer.Core) == false)
+                {
+                    var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
+                    if (initialGraphics != null)
+                    {
+                        if (Part.def == BodyPartDefOf.Head)
+                        {
+                            // Revert hair
+                            pawn.story.hairDef = initialGraphics.HairDef;
+                        }
+                        else if (Part.def == BodyPartDefOf.Jaw)
+                        {
+                            // Revert beard
+                            pawn.style.beardDef = initialGraphics.BeardDef;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

@@ -157,6 +157,24 @@ namespace Pawnmorph.GraphicSys
         }
 
         /// <summary>
+        /// Gets the pawn's original beard.
+        /// </summary>
+        public BeardDef BeardDef
+        {
+            get
+            {
+                if (!_scanned)
+                    ScanGraphics();
+                return _styleInfo?.Beard;
+            }
+            set
+            {
+                if(_styleInfo != null)
+                    _styleInfo.Beard = value;
+            }
+        }
+
+        /// <summary>
         ///     Gets the initial body type of this pawn
         /// </summary>
         /// <value>
@@ -187,6 +205,10 @@ namespace Pawnmorph.GraphicSys
                     ScanGraphics();
                 return _hairDef;
             }
+            set
+            {
+                _hairDef = value;
+            }
         }
 
         private Pawn Pawn => (Pawn) parent;
@@ -200,6 +222,8 @@ namespace Pawnmorph.GraphicSys
             builder.AppendLine($"{nameof(SkinColor)} {SkinColor}");
             builder.AppendLine($"{nameof(HairColor)} {HairColor}");
             builder.AppendLine($"{nameof(CrownType)} {CrownType}");
+            builder.AppendLine($"{nameof(BeardDef)} {BeardDef}");
+            builder.AppendLine($"{nameof(HairDef)} {HairDef}");
             return builder.ToString();
         }
 
@@ -296,7 +320,10 @@ namespace Pawnmorph.GraphicSys
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
             _skinColor = comp.GetSkinColor() ?? Color.white;
-            _hairDef = Pawn.story.hairDef;
+
+            if (Pawn.story.hairDef != PMStyleDefOf.PM_HairHidden)
+                _hairDef = Pawn.story.hairDef;
+
             _skinColorSecond = comp.GetSkinColor(false) ?? Color.white;
             _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white;
             _initialGender = Pawn.gender;
@@ -315,7 +342,13 @@ namespace Pawnmorph.GraphicSys
 
         private class StyleInfo : IExposable
         {
-             BeardDef beardDef;
+            public BeardDef Beard
+            {
+                get => beardDef;
+                set => beardDef = value;
+            }
+
+            BeardDef beardDef;
 
 
              HairDef nextHairDef;
@@ -363,7 +396,9 @@ namespace Pawnmorph.GraphicSys
 
             public void Scan([NotNull] Pawn_StyleTracker styleTracker)
             {
-                beardDef = styleTracker.beardDef;
+                if (styleTracker.beardDef != PMStyleDefOf.PM_BeardHidden)
+                    beardDef = styleTracker.beardDef;
+
                 nextHairDef = styleTracker.nextHairDef;
                 nextBeardDef = styleTracker.nextBeardDef;
 

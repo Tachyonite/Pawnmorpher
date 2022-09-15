@@ -1,5 +1,5 @@
 <Defs>
-    <Pawnmorph.Hediffs.MutationDef ParentName="ExoticJawPart">
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraJawPart">
         <classInfluence>MartenMorph</classInfluence>
         <defName>EtherMartenJaw</defName>
         <label>musteline muzzle</label>
@@ -29,25 +29,9 @@
 				</values>
 			</li>
         </stagePatches>
-        <comps>
-            <li Class="HediffCompProperties_VerbGiver">
-                <tools>
-                    <li>
-                        <label>teeth</label>
-                        <labelUsedInLogging>False</labelUsedInLogging>
-                        <capacities>
-                            <li>Bite</li>
-                        </capacities>
-                        <power>8.5</power>
-                        <cooldownTime>1.5</cooldownTime>
-                        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-                    </li>
-                </tools>
-            </li>
-        </comps>
     </Pawnmorph.Hediffs.MutationDef>
 
-    <Pawnmorph.Hediffs.MutationDef ParentName="ExoticEarPart">
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraEarPart">
         <classInfluence>MartenMorph</classInfluence>
         <defName>EtherMartenEar</defName>
         <label>musteline</label>
@@ -76,7 +60,7 @@
 		</stagePatches>
     </Pawnmorph.Hediffs.MutationDef>
 
-    <Pawnmorph.Hediffs.MutationDef ParentName="ExoticTailPart">
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraTailPart">
         <classInfluence>MartenMorph</classInfluence>
         <defName>EtherMartenTail</defName>
         <label>marten tail</label>

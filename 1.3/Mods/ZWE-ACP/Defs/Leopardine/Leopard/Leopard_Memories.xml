@@ -1,0 +1,30 @@
+<Defs>
+    <ThoughtDef>
+        <defName>LeopardTransformationMemory</defName>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I feel like I should be out hunting...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Rrowwl! I feel so sleek and powerful.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I'm a big stupid cat! I don't wanna be a big stupid cat!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Now how about giving me the full experience?</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>
