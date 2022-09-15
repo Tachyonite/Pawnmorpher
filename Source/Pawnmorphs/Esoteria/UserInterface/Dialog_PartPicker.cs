@@ -12,6 +12,7 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hediffs.MutationRetrievers;
 
 namespace Pawnmorph.UserInterface
 {
@@ -582,6 +583,26 @@ namespace Pawnmorph.UserInterface
                         {
                             pawn.health.RemoveHediff(mutation);
                         }
+
+
+                        if (mutationDef.blockSites != null)
+                        {
+                            // Foreach body part blocked by added mutation
+                            foreach (var blockedPartDef in mutationDef.blockSites)
+                            {
+                                // Find all equivalent body part records
+                                foreach (BodyPartRecord partRecord in (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m.def == blockedPartDef))
+                                {
+                                    // Remove all mutations on those body parts of same layer
+                                    foreach (Hediff_AddedMutation mutation in pawnCurrentMutations.Where(m => m.Part == partRecord && m.Def.RemoveComp.layer == layer))
+                                    {
+                                        pawn.health.RemoveHediff(mutation);
+                                    }
+                                    addedMutations.RemoveByPartAndLayer(partRecord, layer);
+                                }
+                            }
+                        }
+
                         foreach (BodyPartRecord part in parts)
                         {
                             addedMutations.RemoveByPartAndLayer(part, layer);
@@ -928,12 +949,9 @@ namespace Pawnmorph.UserInterface
                 }
                 if (!isWearingHat)
                 {
-                    if (addedMutations.Parts.Any(x => x.IsInGroup(BodyPartGroupDefOf.UpperHead)) == false)
-                    {
-                        // Draw hair
-                        Material hairMat = graphics.HairMatAt(previewRot);
-                        GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
-                    }
+                    // Draw hair
+                    Material hairMat = graphics.HairMatAt(previewRot);
+                    GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
                 }
             }
             if (toggleClothesEnabled)

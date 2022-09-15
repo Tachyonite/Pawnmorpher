@@ -31,8 +31,11 @@
 			</li>
 		</stages>
 		<parts>
-			<li>Skull</li>
+			<li>Head</li>
 		</parts>
+		<blockSites>
+			<li>Skull</li>
+		</blockSites>
 		<!--Needs Stats-->
 	</Pawnmorph.Hediffs.MutationDef>
 	

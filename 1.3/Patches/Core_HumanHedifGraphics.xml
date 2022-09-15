@@ -383,7 +383,7 @@
 				<anchorID>Skullspike</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -418,7 +418,7 @@
 				<anchorID>CobraHood</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -436,7 +436,7 @@
 				<anchorID>CobraHoodBackground</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>

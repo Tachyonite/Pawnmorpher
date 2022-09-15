@@ -279,6 +279,12 @@ namespace Pawnmorph.Hybrids
 
             }
 
+
+            foreach (Hediff_AddedMutation mutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+            {
+                mutation.ApplyVisualAdjustment();
+            } 
+
             if (reRollTraits && race is ThingDef_AlienRace alienDef) 
                 ReRollRaceTraits(pawn, alienDef);
 
