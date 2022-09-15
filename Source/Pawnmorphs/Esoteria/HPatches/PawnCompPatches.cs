@@ -2,6 +2,7 @@
 // last updated 11/27/2019  1:16 PM
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -101,6 +102,12 @@ namespace Pawnmorph.HPatches
                 if (nd == PMNeedDefOf.SapientAnimalControl)
                 {
                     __result = Need_Control.IsEnabledFor(___pawn);
+                    return;
+                }
+                //Need_Control.EnabledRaces.Contains(___pawn.def); Can't use it because it's private
+                var raceMutationSettingsExtension = ___pawn.kindDef.race.GetModExtension<RaceMutationSettingsExtension>();
+                if (raceMutationSettingsExtension != null && raceMutationSettingsExtension.immuneToAll)
+                {
                     return;
                 }
 
