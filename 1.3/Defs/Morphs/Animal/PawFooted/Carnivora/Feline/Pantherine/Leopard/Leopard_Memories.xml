@@ -2,22 +2,22 @@
 
 	<ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherSnowLeopardJaw</defName>
+        <defName>EtherLeopardJaw</defName>
         <stages>
             <li>
-                <label>Snowy face</label>
+                <label>Spotted face</label>
                 <description>It's hard to talk without purring.</description>
                 <visible>true</visible>
                 <baseMoodEffect>-1</baseMoodEffect>
             </li>
             <li>
-                <label>Snowy face</label>
+                <label>Spotted face</label>
                 <description>Mrrow!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
-                <label>Snowy face</label>
+                <label>Spotted face</label>
                 <description>No! I don't want to purr!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-3</baseMoodEffect>
@@ -27,22 +27,22 @@
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherSnowLeopardEar</defName>
+        <defName>EtherLeopardEar</defName>
         <stages>
             <li>
-                <label>Snowy ears</label>
-                <description>As far as things go, these aren't too bad. They're kinda cute, actually.</description>
+                <label>Leopard ears</label>
+                <description>As far as things go, these aren't too bad.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
-                <label>Snowy ears</label>
+                <label>Leopard ears</label>
                 <description>I can hear everything!</description>
                 <visible>true</visible>
                 <baseMoodEffect>2</baseMoodEffect>
             </li>
             <li>
-                <label>Snowy ears</label>
+                <label>Leopard ears</label>
                 <description>I feel like an anime character...</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
@@ -52,23 +52,23 @@
 	
     <ThoughtDef ParentName="OutlookMemoryBase">
         <durationDays>1</durationDays>
-        <defName>EtherSnowLeopardTail</defName>
+        <defName>EtherLeopardTail</defName>
         <stages>
             <li>
-                <label>Snowy tail</label>
-                <description>Sure, it's fluffy and all, but it kind of gets in the way...</description>
-                <visible>true</visible>
-                <baseMoodEffect>-1</baseMoodEffect>
-            </li>
-            <li>
-                <label>Snowy tail</label>
-                <description>So big! So fluffy! I love it!</description>
+                <label>Spotted tail</label>
+                <description>These spots are kinda cool.</description>
                 <visible>true</visible>
                 <baseMoodEffect>1</baseMoodEffect>
             </li>
             <li>
-                <label>Snowy tail</label>
-                <description>God, this thing is always getting in my way...</description>
+                <label>Spotted tail</label>
+                <description>It's not as fluffy as I would have liked, but it's still cool!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Spotted tail</label>
+                <description>This thing has a mind of its own! Get it off me!</description>
                 <visible>true</visible>
                 <baseMoodEffect>-2</baseMoodEffect>
             </li>

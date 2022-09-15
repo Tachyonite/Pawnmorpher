@@ -1,9 +1,9 @@
 <Defs>
     <HediffDef ParentName="NewAspectedMorphParent">
-        <defName>PawnmorphMartenTF</defName>
+        <defName>PawnmorphSnowLeopardTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
-        <label>martenmorph</label>
-        <description>This person has mechanites in their blood that are slowly mutating them into a martenmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more marten than human.</description>
+        <label>snepmorph</label>
+        <description>This person has mechanites in their blood that are slowly mutating them into a snowy variety of leopardmorph. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more feline than human.</description>
         <stages>
             <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
                 <label>reeling</label>
@@ -15,18 +15,8 @@
                         <offset>-0.05</offset>
                     </li>
                 </capMods>
-                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_List">
-					<animals>
-                        <li>ZGF_BeechMart</li>
-                        <li>ZGF_JapaneseMart</li>
-                        <li>ZGF_NilgiriMart</li>
-                        <li>ZGF_PineMart</li>
-                        <li>ZGF_RimMart</li>
-                        <li>ZGF_Sable</li>
-                        <li>ZGF_YellowMart</li>
-                        <li>ZGF_MegaMart</li>
-                        <li>ZGF_Boommarten</li>
-                    </animals>
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_Morph">
+					<morphDef>SnowLeopardMorph</morphDef>
 				</tfTypes>
 				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting" />
 				<tfSettings>
@@ -77,7 +67,7 @@
                     </li>
                 </capMods>
                 <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Morph">
-					<morphDef>MartenMorph</morphDef>
+					<morphDef>SnowLeopardMorph</morphDef>
 				</mutationTypes>
 				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
 					<meanMutationsPerDay>5</meanMutationsPerDay>
