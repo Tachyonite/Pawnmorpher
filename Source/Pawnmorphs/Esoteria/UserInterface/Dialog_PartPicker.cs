@@ -122,6 +122,7 @@ namespace Pawnmorph.UserInterface
 
         private ValueTuple<Color, Color> initialPawnColors;
 
+        private AlienPartGenerator.AlienComp alienComp;
 
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
@@ -250,7 +251,8 @@ namespace Pawnmorph.UserInterface
             // Settting flags for this window. 
             forcePause = true;
 
-            var initialSkin = pawn.GetComp<AlienPartGenerator.AlienComp>().GetChannel("skin");
+            alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+            var initialSkin = alienComp.GetChannel("skin");
             initialPawnColors = new ValueTuple<Color,Color>(initialSkin.first, initialSkin.second);
          
             SetCaches();
@@ -258,7 +260,7 @@ namespace Pawnmorph.UserInterface
             // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
             cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
             initialBodyType = pawn.story.bodyType;
-            initialCrownType = pawn.GetComp<AlienPartGenerator.AlienComp>().crownType;
+            initialCrownType = alienComp.crownType;
             RecachePawnMutations();
         }
 
@@ -373,7 +375,7 @@ namespace Pawnmorph.UserInterface
             Rect crownLabelRect = new Rect(previewRect.x, curY, previewRect.width / 3, Text.CalcHeight(CROWN_LABEL_LOC_STRING.Translate(), previewRect.width / 3));
             Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.GetComp<AlienPartGenerator.AlienComp>().crownType.Replace('_', ' '), previewRect.width * 2 / 3));
             Widgets.Label(crownLabelRect, CROWN_LABEL_LOC_STRING.Translate());
-            if (Widgets.ButtonText(crownButtonRect, pawn.GetComp<AlienPartGenerator.AlienComp>().crownType.Replace('_', ' ')))
+            if (Widgets.ButtonText(crownButtonRect, alienComp.crownType.Replace('_', ' ')))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 ThingDef_AlienRace pawnDef = pawn.def as ThingDef_AlienRace;
@@ -381,7 +383,7 @@ namespace Pawnmorph.UserInterface
                 {
                     void changeHeadType()
                     {
-                        pawn.GetComp<AlienPartGenerator.AlienComp>().crownType = crownType;
+                        alienComp.crownType = crownType;
                         recachePreview = true;
                     }
                     options.Add(new FloatMenuOption(crownType.Replace('_', ' '), changeHeadType));
@@ -469,7 +471,7 @@ namespace Pawnmorph.UserInterface
             }
             RecachePawnMutations();
             pawn.story.bodyType = initialBodyType;
-            pawn.GetComp<AlienPartGenerator.AlienComp>().crownType = initialCrownType;
+            alienComp.crownType = initialCrownType;
             recachePreview = true;
         }
 
@@ -821,6 +823,7 @@ namespace Pawnmorph.UserInterface
 
                 camera.gameObject.SetActive(true);
                 camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
+                camera.orthographicSize = alienComp.customDrawSize.x;
                 camera.Render();
                 camera.gameObject.SetActive(false);
             }
@@ -862,23 +865,21 @@ namespace Pawnmorph.UserInterface
         {
             Color? hybridColor = CalculatePawnSkin();
 
-            var comp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-
             if (hybridColor.HasValue)
-                comp.ColorChannels["skin"].first = hybridColor.Value;
+                alienComp.ColorChannels["skin"].first = hybridColor.Value;
             else
             {
-                comp.ColorChannels["skin"].first = initialPawnColors.Item1;
-                comp.ColorChannels["skin"].second = initialPawnColors.Item2;
+                alienComp.ColorChannels["skin"].first = initialPawnColors.Item1;
+                alienComp.ColorChannels["skin"].second = initialPawnColors.Item2;
             }
-            comp.CompTick();
+            alienComp.CompTick();
 
             PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
             graphics.ResolveAllGraphics();
 
             Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
             
-            Mesh bodyMesh = pawn.RaceProps.Humanlike ? MeshPool.humanlikeBodySet.MeshAt(previewRot) : graphics.nakedGraphic.MeshAt(previewRot);
+            Mesh bodyMesh = alienComp.alienGraphics.bodySet.MeshAt(previewRot);
             Vector3 bodyOffset = new Vector3 (PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
 
             foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
@@ -895,13 +896,13 @@ namespace Pawnmorph.UserInterface
             Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
             if (graphics.headGraphic != null)
             {
-                Mesh mesh2 = MeshPool.humanlikeHeadSet.MeshAt(previewRot);
+                Mesh mesh2 = alienComp.alienGraphics.headSet.MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
                 Material material = graphics.HeadMatAt(previewRot);
 
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
-                Mesh hairMesh = graphics.HairMeshSet.MeshAt(previewRot);
+                Mesh hairMesh = alienComp.alienGraphics.hairSetAverage.MeshAt(previewRot);
                 Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
                 bool isWearingHat = false;
                 if (toggleClothesEnabled)
