@@ -76,8 +76,10 @@ namespace Pawnmorph.UserInterface.Preview
             _pawn.story.bodyType = race.alienRace?.generalSettings?.alienPartGenerator?.alienbodytypes[0] ?? BodyTypeDefOf.Male;
             _pawn.story.crownType = CrownType.Average;
             _pawn.story.hairDef = HairDefOf.Shaved;
+            _pawn.ageTracker.AgeBiologicalTicks = _pawn.ageTracker.AdultMinAgeTicks + 1;
             _pawn.InitializeComps();
             _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("skin", Color.white, Color.white);
+            _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("hair", Color.gray, Color.gray);
             Thing = _pawn;
         }
 
