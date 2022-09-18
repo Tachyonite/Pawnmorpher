@@ -1,0 +1,10 @@
+<Patch>
+	<Operation Class = "PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[race/animalType="Dryad"]</xpath>
+		<value>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<neverFormerHuman>true</neverFormerHuman>
+			</li>
+		</value>
+	</Operation>
+</Patch>
