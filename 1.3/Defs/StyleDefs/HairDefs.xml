@@ -3,6 +3,6 @@
     <defName>PM_HairHidden</defName>
     <label>no hair</label>
     <styleGender>Any</styleGender>
-    <texPath>Things/Mote/Transparent</texPath>
+    <texPath>Parts/None/None</texPath>
   </HairDef>
 </Defs>
