@@ -51,6 +51,7 @@ namespace Pawnmorph
                 GenerateImplicitRaces();
                 PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
+                EnableDisableOptionalPatches();
                 CheckForObsoletedComponents();
                 try
                 {
@@ -88,6 +89,47 @@ namespace Pawnmorph
             {
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
+        }
+
+        private static void EnableDisableOptionalPatches()
+        {
+            Dictionary<string, bool> optionalPatches = PawnmorpherMod.Settings.optionalPatches;
+            if (optionalPatches == null)
+                return;
+
+            foreach (var item in optionalPatches)
+            {
+                Type patch = Assembly.GetExecutingAssembly().GetType(item.Key);
+                if (patch != null)
+                {
+                    var attribute = patch.GetCustomAttribute<HPatches.Optional.OptionalPatchAttribute>(false);
+                    if (attribute != null)
+                    {
+                        if (attribute.DefaultEnabled == item.Value)
+                            continue;
+
+                        MemberInfo member = patch.GetMember(attribute.EnableMemberName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.GetProperty).FirstOrDefault();
+                        if (member != null)
+                        {
+                            switch (member)
+                            {
+                                case FieldInfo field:
+                                    field.SetValue(null, item.Value);
+                                    break;
+
+                                case PropertyInfo property:
+                                    property.SetValue(null, item.Value);
+                                    break;
+                            }
+                            continue;
+                        }
+                    }
+                }
+#if DEBUG
+                Log.Warning("[Pawnmorpher] Failed toggling optional patch: " + item.Key);
+#endif
+            }
+
         }
 
         private static void VerifyMorphDefDatabase()
@@ -458,6 +500,18 @@ namespace Pawnmorph
             if (partGen.bodyAddons == null)
             {
                 partGen.bodyAddons = new List<AlienPartGenerator.BodyAddon>(); 
+            }
+
+
+            List<string> addonChannels = allAddons.Select(x => x.ColorChannel).Distinct().ToList();
+
+            // Copy over missing color channels needed by addons
+            var targetColorGenerators = partGen.colorChannels;
+            foreach (var channelGenerator in (ThingDefOf.Human as ThingDef_AlienRace).alienRace.generalSettings.alienPartGenerator.colorChannels)
+            {
+                // If channel doesn't already exist on target AND an addon needs it, then copy.
+                if (targetColorGenerators.Any(x => x.name == channelGenerator.name) == false && addonChannels.Contains(channelGenerator.name))
+                    targetColorGenerators.Add(channelGenerator);
             }
 
             foreach (AlienPartGenerator.BodyAddon bodyAddon in allAddons) 

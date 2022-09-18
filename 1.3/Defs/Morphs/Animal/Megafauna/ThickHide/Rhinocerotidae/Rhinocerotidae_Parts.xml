@@ -71,9 +71,6 @@
 							<power>12</power>
 						</li>
 					</verbOverrides>
-					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
-					</statOffsets>
 					<capMods>
 						<li>
 							<capacity>Moving</capacity>
@@ -99,7 +96,6 @@
 						</li>
 					</verbOverrides>
 					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
@@ -128,7 +124,6 @@
 						</li>
 					</verbOverrides>
 					<statOffsets>
-						<PM_BodySize>0.50</PM_BodySize>
 						<MeleeHitChance>0.05</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>

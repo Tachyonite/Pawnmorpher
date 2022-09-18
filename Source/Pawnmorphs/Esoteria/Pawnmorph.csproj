@@ -312,7 +312,11 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="PMStyleDefOf.cs" />
+    <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
+    <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
+    <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
     <Compile Include="HPatches\RecipeDefPatch.cs" />
     <Compile Include="Jobs\Giver_Producer.cs" />
@@ -569,8 +573,11 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.Interning.cs" />
+    <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
+    <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\MutationsTab.cs" />
+    <Compile Include="UserInterface\MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
@@ -866,13 +873,23 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
-    <Compile Include="User Interface\AddedMutations.cs" />
-    <Compile Include="User Interface\ButtonTexturesPM.cs" />
-    <Compile Include="User Interface\Dialog_PartPicker.cs" />
-    <Compile Include="User Interface\Dialog_Popup.cs" />
-    <Compile Include="User Interface\MutationData.cs" />
-    <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
-    <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="UserInterface\AddedMutations.cs" />
+    <Compile Include="UserInterface\ButtonTexturesPM.cs" />
+    <Compile Include="UserInterface\Dialog_PartPicker.cs" />
+    <Compile Include="UserInterface\Dialog_Popup.cs" />
+    <Compile Include="UserInterface\FilterListBox.cs" />
+    <Compile Include="UserInterface\MutationData.cs" />
+    <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
+    <Compile Include="UserInterface\Preview\Preview.cs" />
+    <Compile Include="UserInterface\Preview\PawnPreview.cs" />
+    <Compile Include="UserInterface\Preview\ThingPreview.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="UserInterface\TableBox\ITableRow.cs" />
+    <Compile Include="UserInterface\TableBox\Table.cs" />
+    <Compile Include="UserInterface\TableBox\TableColumn.cs" />
+    <Compile Include="UserInterface\Window_Genebank.cs" />
     <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
@@ -936,6 +953,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

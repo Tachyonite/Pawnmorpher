@@ -686,7 +686,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<PM_BodySize>0.1</PM_BodySize>
+						<PM_BodySize>0.025</PM_BodySize>
 					</statOffsets>
 					<verbOverrides>
 						<li>
@@ -709,7 +709,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<PM_BodySize>0.1</PM_BodySize>
+						<PM_BodySize>0.025</PM_BodySize>
 					</statOffsets>
 					<verbOverrides>
 						<li>

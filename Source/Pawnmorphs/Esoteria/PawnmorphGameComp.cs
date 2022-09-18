@@ -166,6 +166,7 @@ namespace Pawnmorph
                 // Now clear.
                 pawnmorphs.Clear();
                 mergedpawnmorphs.Clear();
+                StatsUtility.Clear();
 
                 // Make sure they're all valid.
                 ValidateTransformedPawns();

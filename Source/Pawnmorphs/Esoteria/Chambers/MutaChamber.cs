@@ -5,11 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -424,7 +425,10 @@ namespace Pawnmorph.Chambers
 
 
             if (_innerState != ChamberState.Idle) yield break;
-            yield return PartPickerGizmo;
+
+            if ((innerContainer[0] as Pawn).def is ThingDef_AlienRace)
+                yield return PartPickerGizmo;
+
             yield return MergingGizmo;
         }
 

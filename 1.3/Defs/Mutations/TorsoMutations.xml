@@ -55,7 +55,7 @@
 					</capMods>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
-						<PM_BodySize>1</PM_BodySize>
+						<PM_BodySize>0.6</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>
@@ -103,7 +103,7 @@
 					</capMods>
 					<statOffsets>
 						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
-						<PM_BodySize>0.5</PM_BodySize>
+						<PM_BodySize>0.3</PM_BodySize>
 					</statOffsets>
 				</values>
 			</li>

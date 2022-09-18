@@ -13,7 +13,7 @@ using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;

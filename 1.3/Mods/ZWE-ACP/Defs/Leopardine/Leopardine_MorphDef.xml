@@ -1,0 +1,10 @@
+<Defs>
+    <Pawnmorph.MorphDef Abstract="true" ParentName="PantherineMorph" Name="LeopardMorphBase">
+        <description>A suprisingly docile morph, Leopardmorphs act alot like an oversized and overconfident house cat. Be wary though, unlike their domesticated kin their hunting instincts are sharp and their claws yet sharper.</description>
+        <transformSettings>
+            <transformationMemory>LeopardTransformationMemory</transformationMemory>
+            <revertedMemory>LeopardRevertedMemory</revertedMemory>
+        </transformSettings>
+    </Pawnmorph.MorphDef>
+
+</Defs>

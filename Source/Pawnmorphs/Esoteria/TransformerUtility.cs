@@ -542,7 +542,7 @@ namespace Pawnmorph
 
 
 
-            //HandleApparelAndEquipment(originalPawn, caravan); 
+            HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -551,14 +551,6 @@ namespace Pawnmorph
 
             if (originalPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
                 originalPawn.ownership.UnclaimBed(); // ...unclaim it.
-
-            if (originalPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
-            {
-                Pawn carryingPawn = originalPawn.CarriedBy;
-                Thing outPawn;
-               // carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
-               //                                               out outPawn); // ...drop them so they can be removed.
-            }
 
             if (originalPawn.IsPrisoner)
                 HandlePrisoner(originalPawn);
@@ -707,8 +699,9 @@ namespace Pawnmorph
             
             if (originalPawn.Spawned)
             {
-                apparelTracker?.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+                apparelTracker?.DropAll(originalPawn.PositionHeld); // Drop all apparel
+                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // Drop all equipment (i.e. guns).
+                originalPawn.inventory.DropAllNearPawn(originalPawn.PositionHeld); // Drop anything else being carried.
             }
             else if (caravan != null)
             {
