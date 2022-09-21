@@ -1,5 +1,5 @@
 <Defs>
-	<ThingDef ParentName="AnimalThingBase">
+	<ThingDef ParentName="PMSpecialChaomorphBase">
 		<defName>PM_Chaothrumbo</defName>
 		<label>chaothrumbo</label>
 		<thingClass>Pawnmorph.Things.Chaothrumbo</thingClass>
@@ -14,11 +14,6 @@
 			<ArmorRating_Heat>0.50</ArmorRating_Heat>
 		</statBases>
 		<uiIconScale>1.75</uiIconScale>
-		<comps>
-			<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman">
-				<always>true</always>
-			</li>
-		</comps>
 		<tools>
 			<li>
 				<label>horn</label>
@@ -71,41 +66,16 @@
 		</tools>
 		<race>
 			<body>QuadrupedAnimalWithHoovesAndHorn</body>
-			<herdMigrationAllowed>false</herdMigrationAllowed>
-			<baseBodySize>7</baseBodySize>
-			<baseHungerRate>3.5</baseHungerRate>
 			<baseHealthScale>8.0</baseHealthScale>
 			<foodType>OmnivoreAnimal, VegetarianRoughAnimal, DendrovoreAnimal</foodType>
 			<leatherDef>Leather_Thrumbo</leatherDef>
 			<trainability>Advanced</trainability>
-			<gestationPeriodDays>20000</gestationPeriodDays>
-			<manhunterOnDamageChance>1.00</manhunterOnDamageChance>
-			<fleshType>Chaomorph</fleshType>
 			<useMeatFrom>Chaocow</useMeatFrom>
 			<wildness>0.585</wildness>
-			<lifeExpectancy>220</lifeExpectancy>
 			<willNeverEat>
 				<li MayRequire="Ludeon.RimWorld.Royalty">Plant_TreeAnima</li>
 				<li MayRequire="Ludeon.RimWorld.Ideology">Plant_TreeGauranlen</li>
 			</willNeverEat>
-			<lifeStageAges>
-				<li>
-					<def>AnimalBaby</def>
-					<minAge>0</minAge>
-				</li>
-				<li>
-					<def>AnimalJuvenile</def>
-					<minAge>2.0</minAge>
-				</li>
-				<li>
-					<def>AnimalAdult</def>
-					<minAge>4.0</minAge>
-					<soundCall>Pawn_Thrumbo_Call</soundCall>
-					<soundAngry>Pawn_Thrumbo_Angry</soundAngry>
-					<soundWounded>Pawn_Thrumbo_Pain</soundWounded>
-					<soundDeath>Pawn_Thrumbo_Death</soundDeath>
-				</li>
-			</lifeStageAges>
 			<soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
 			<soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
 			<soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
@@ -113,16 +83,6 @@
 		<tradeTags>
 			<li>AnimalExotic</li>
 		</tradeTags>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
-				<chaoType>Special</chaoType>
-				<selectionWeight>-1</selectionWeight>
-			</li>
-			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
-				<transformedThought>PM_CThrumboTfThought</transformedThought>
-				<backstory>PM_ChaothrumboBackstory</backstory>
-			</li>
-		</modExtensions>
 	</ThingDef>
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>PM_Chaothrumbo</defName>
