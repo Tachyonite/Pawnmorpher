@@ -2,6 +2,7 @@
 // last updated 11/27/2019  1:16 PM
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -103,11 +104,11 @@ namespace Pawnmorph.HPatches
                     __result = Need_Control.IsEnabledFor(___pawn);
                     return;
                 }
+                else if(!Need_Control.EnabledRaces.Contains(___pawn.def))
+                    return;
 
                 bool isColonist = (___pawn.Faction?.IsPlayer == true);
-                
 
-                
                 if (nd == PMNeedDefOf.Joy && isColonist && IsSapientOrAnimilistic(___pawn))
                     __result = CheckNeed(___pawn, PMNeedDefOf.Joy);
 

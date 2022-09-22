@@ -131,7 +131,7 @@ namespace Pawnmorph
         public float SeekerLevel => _seekerLevel;
 
         [NotNull]
-        private static HashSet<ThingDef> EnabledRaces
+        public static HashSet<ThingDef> EnabledRaces
         {
             get
             {
