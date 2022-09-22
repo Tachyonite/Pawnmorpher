@@ -8,7 +8,7 @@
 		<race>
 			<fleshType>Chaomorph</fleshType>
 			<lifeExpectancy>22</lifeExpectancy>
-			<gestationPeriodDays>20</gestationPeriodDays>
+			<gestationPeriodDays>20000</gestationPeriodDays>
 			<mateMtbHours>99999999</mateMtbHours>
 			<trainability>Advanced</trainability>
 			<lifeStageAges>
@@ -54,6 +54,49 @@
 			<li>AnimalChaotic</li>
 		</tradeTags>
 	</ThingDef>
+	
+	<ThingDef ParentName="PMChaomorphBase" Name="PMSpecialChaomorphBase" Abstract="True">
+
+		<race>
+			<lifeStageAges Inherit = "False">
+				<li>
+					<def>AnimalBaby</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>AnimalJuvenile</def>
+					<minAge>2.0</minAge>
+				</li>
+				<li>
+					<def>AnimalAdult</def>
+					<minAge>4.0</minAge>
+					<soundCall>Pawn_Thrumbo_Call</soundCall>
+					<soundAngry>Pawn_Thrumbo_Angry</soundAngry>
+					<soundWounded>Pawn_Thrumbo_Pain</soundWounded>
+					<soundDeath>Pawn_Thrumbo_Death</soundDeath>
+				</li>
+			</lifeStageAges>
+			<herdMigrationAllowed>false</herdMigrationAllowed>
+			<baseBodySize>7</baseBodySize>
+			<baseHungerRate>3.5</baseHungerRate>
+			<lifeExpectancy>220</lifeExpectancy>
+			<manhunterOnDamageChance>1.00</manhunterOnDamageChance>
+		</race>
+		<tradeTags>
+			<li>AnimalExotic</li>
+		</tradeTags>
+		<modExtensions Inherit = "False">
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Special</chaoType>
+				<selectionWeight>-1</selectionWeight>
+			</li>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<transformedThought>PM_CThrumboTfThought</transformedThought>
+				<backstory>PM_ChaothrumboBackstory</backstory>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
 	<ThingDef ParentName="PMChaocreatureBase" Name="PMChaomeldBase" Abstract="True">
 		<comps>
 			<li>
