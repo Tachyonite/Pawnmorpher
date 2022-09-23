@@ -17,12 +17,14 @@
         <li>/</li>
         <li>1.3</li>
 		<li IfModActive="Ludeon.RimWorld.Ideology">1.3/Mods/Ideology</li>	
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.3/Mods/Royalty</li>	
         <li IfModActive="RaZim.ZGFMartens">1.3/Mods/Martens</li>
         <li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.3/Mods/VEF</li>
         <li IfModActive="VanillaExpanded.VCookE">1.3/Mods/VCE</li>
         <li IfModActive="crustypeanut.rc2.core">1.3/Mods/RimCuisine2</li>
         <li IfModActive="UnlimitedHugs.RemoteTech">1.3/Mods/RemoteTech</li>
 		<li IfModActive="vanillaexpanded.backgrounds">1.3/Mods/VBE</li>
-		<li IfModActive = "zmodw.zwanimals,acpteam.acpvanillastyle">1.3/Mods/ZWE-ACP</li>
+		<li IfModActive="zmodw.zwanimals,acpteam.acpvanillastyle">1.3/Mods/ZWE-ACP</li>
+		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.3/Mods/ADogSaidAnimalProsthetics</li>
     </v1.3>
 </loadFolders>
