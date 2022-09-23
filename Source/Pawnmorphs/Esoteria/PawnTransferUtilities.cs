@@ -305,15 +305,15 @@ namespace Pawnmorph
                     continue;
 
                 Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                health2.AddHediff(newHediff);
                 if (newHediff is Hediff_Level newLevel)
                 {
                     newLevel.SetLevelTo((int)hediff.Severity);
                 }
-                else 
+                else
                 {
                     newHediff.Severity = hediff.Severity;
                 }
-                health2.AddHediff(newHediff);
             }
         }
 
