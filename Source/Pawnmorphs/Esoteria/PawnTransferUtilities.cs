@@ -301,11 +301,36 @@ namespace Pawnmorph
                 if (otherRecord == null && hediff.Part != null)
                     continue;
 
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) 
-                    continue;
-
+                if (health2.hediffSet.HasHediff(hediff.def, otherRecord))
+                { 
+                    Hediff otherHediff = health2.hediffSet.GetFirstHediffOfDef(hediff.def);
+                    if (hediff.Severity == otherHediff.Severity)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (otherHediff is Hediff_Psylink psylinkExitsting)
+                        {
+                            psylinkExitsting.ChangeLevel((int)(hediff.Severity - psylinkExitsting.Severity), false);
+                        }
+                        else if (otherHediff is Hediff_Level newLevelExitsting)
+                        {
+                            newLevelExitsting.SetLevelTo((int)hediff.Severity);
+                        }
+                        else
+                        {
+                            otherHediff.Severity = hediff.Severity;
+                        }
+                    }
+                }
                 Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+
+                if (newHediff is Hediff_Psylink psyDiff)
+                    psyDiff.suppressPostAddLetter = true;
+
                 health2.AddHediff(newHediff);
+<<<<<<< Updated upstream
                 if (newHediff is Hediff_Level newLevel)
                 {
                     if(newLevel is Hediff_Psylink level)
@@ -317,11 +342,28 @@ namespace Pawnmorph
                         newLevel.SetLevelTo((int)hediff.Severity);
                     }
                     
+=======
+                //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
+                if (newHediff is Hediff_Level newLevel)
+                {
+                    if (newLevel is Hediff_Psylink level)
+                    {
+                        level.ChangeLevel((int)(hediff.Severity - level.Severity), false);
+                    }
+                    else
+                    {
+                        newLevel.SetLevelTo((int)hediff.Severity);
+                    }
+>>>>>>> Stashed changes
                 }
                 else
                 {
                     newHediff.Severity = hediff.Severity;
                 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             }
         }
 
