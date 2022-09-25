@@ -202,7 +202,7 @@
 		<defName>EtherWooly</defName>
 		<classInfluence>AlpacaMorph</classInfluence>
 		<label>thick wool</label>
-		<description>Thick wool grows over [PAWN_nameDef]'s torso constantly. They can shave themselves, because they're a strong independent alpacamorph that don't need no man.</description>
+		<description>Thick wool grows over the torso constantly. It can be shaved without anyone's help.</description>
 		<initialSeverity>0.01</initialSeverity>
 		<mutationTale>StartsGrowingWool</mutationTale>
 		<mutationMemory>EtherWooly</mutationMemory>

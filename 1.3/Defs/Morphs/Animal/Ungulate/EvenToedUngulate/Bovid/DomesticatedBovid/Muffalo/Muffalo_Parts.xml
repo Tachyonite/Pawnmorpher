@@ -77,7 +77,7 @@
 		<defName>EtherMuffaloWooly</defName>
 		<classInfluence>MuffaloMorph</classInfluence>
 		<label>thick fur</label>
-		<description>Thick fur grows over [PAWN_nameDef]'s body constantly. They can shave themselves, but keeping it short is a futile effort.</description>
+		<description>Thick fur grows over the body constantly. It can be shaved, but keeping it short is a futile effort.</description>
 		<initialSeverity>0.01</initialSeverity>
 		<mutationTale>StartsGrowingWool</mutationTale>
 		<mutationMemory>EtherWooly</mutationMemory>

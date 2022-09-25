@@ -60,7 +60,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name ="RatiteTailPart" ParentName="AvianTailPart" Abstract="true">
 		<defName>EtherRatiteTailfeathers</defName>
-		<description>A plume of coarse feathers sprout from a bird tail above [PAWN_nameDef]'s butt.</description>
+		<description>A plume of coarse feathers sprouting from a bird tail above the gluteus maximus.</description>
 		<label>Tailfeathers</label>
 		<stagePatches>
 			<li function="modify">

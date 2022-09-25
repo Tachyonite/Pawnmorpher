@@ -156,7 +156,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>SnakeMorph</classInfluence>
 		<defName>EtherSnakeHood</defName>
-		<description>A large swooping hood engulfs [PAWN_nameDef]'s head, making them look rather intimidating.</description>
+		<description>A large swooping hood engulfs the head, granting a rather intimidating look.</description>
 		<label>cobra hood</label>
 		<graphics>
 			<CobraHood>Parts/Cobra/Cobra_Hood</CobraHood>
