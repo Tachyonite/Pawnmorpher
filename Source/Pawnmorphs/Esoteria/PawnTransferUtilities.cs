@@ -308,7 +308,15 @@ namespace Pawnmorph
                 health2.AddHediff(newHediff);
                 if (newHediff is Hediff_Level newLevel)
                 {
-                    newLevel.SetLevelTo((int)hediff.Severity);
+                    if(newLevel is Hediff_Psylink level)
+                    {
+                        level.ChangeLevel((int)hediff.Severity, false);
+                    }
+                    else 
+                    {
+                        newLevel.SetLevelTo((int)hediff.Severity);
+                    }
+                    
                 }
                 else
                 {
