@@ -109,7 +109,7 @@ namespace Pawnmorph.HPatches.Optional
         {
             if (portrait)
             {
-                cameraZoom = 1f / GetScale(pawn.BodySize);
+                cameraZoom *= 1f / GetScale(pawn.BodySize);
             }
         }
 
