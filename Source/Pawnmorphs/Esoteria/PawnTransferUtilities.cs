@@ -147,6 +147,38 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
+        ///     Transfers all transferable abilities from pawn1 to pawn2. Due to how Psycasts work, they first need to be all removed
+        /// </summary>
+        /// <param name="pawn1">The source pawn.</param>
+        /// <param name="pawn2">The destination pawn.</param>
+        /// <param name="selector">The selector.</param>
+        public static void TransferAbilities([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Ability, bool> selector)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            Pawn_AbilityTracker abilities1 = pawn1.abilities;
+            Pawn_AbilityTracker abilities2 = pawn2.abilities;           
+            IEnumerable<Ability> tAbilities = abilities1.AllAbilitiesForReading.Where(selector);
+            //First purge any psycasts the new pawn will have
+            foreach (Ability ability in abilities2.AllAbilitiesForReading)
+            {
+                if (ability.def.abilityClass.IsAssignableFrom(typeof(Psycast)))
+                {
+                    abilities2.RemoveAbility(ability.def);
+                }  
+            }
+            foreach (Ability ability in tAbilities)
+            {
+                abilities2.GainAbility(ability.def);
+            }
+
+        }
+
+
+
+
 
         /// <summary>
         ///     Transfers all transferable aspects from pawn1 to pawn2
@@ -269,11 +301,43 @@ namespace Pawnmorph
                 if (otherRecord == null && hediff.Part != null)
                     continue;
 
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) 
-                    continue;
+                if (health2.hediffSet.HasHediff(hediff.def, otherRecord))
+                { 
+                    Hediff otherHediff = health2.hediffSet.GetFirstHediffOfDef(hediff.def);
+                    if (hediff.Severity == otherHediff.Severity)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        MatchSeverity(hediff,otherHediff);
+                    }
+                }
+                else 
+                {
+                    Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                    if (newHediff is Hediff_Psylink psyDiff)
+                        psyDiff.suppressPostAddLetter = true;
 
-                Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
-                health2.AddHediff(newHediff);
+                    health2.AddHediff(newHediff);
+                    //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
+                    MatchSeverity(hediff, newHediff);
+                }
+            }
+        }
+        private static void MatchSeverity(Hediff oldHediff, Hediff newHediff)
+        {
+            if (newHediff is Hediff_Psylink psylinkExitsting)
+            {
+                psylinkExitsting.ChangeLevel((int)(oldHediff.Severity - psylinkExitsting.Severity), false);
+            }
+            else if (newHediff is Hediff_Level newLevelExitsting)
+            {
+                newLevelExitsting.SetLevelTo((int)oldHediff.Severity);
+            }
+            else
+            {
+                newHediff.Severity = oldHediff.Severity;
             }
         }
 
