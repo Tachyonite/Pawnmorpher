@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Thoughts;
@@ -300,46 +301,47 @@ namespace Pawnmorph
 
                 if (otherRecord == null && hediff.Part != null)
                     continue;
-
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord))
+                //Here we check if the pawn has a hediff we can match to the currently copied hediff
+                Hediff otherHediff = TryMatchHediffByDefAndBodyPart(hediff.def,health2,otherRecord); 
+                if (otherHediff == null)
                 { 
-                    Hediff otherHediff = health2.hediffSet.GetFirstHediffOfDef(hediff.def);
-                    if (hediff.Severity == otherHediff.Severity)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        MatchSeverity(hediff,otherHediff);
-                    }
-                }
-                else 
-                {
-                    Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
-                    if (newHediff is Hediff_Psylink psyDiff)
+                    otherHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                    if (otherHediff is Hediff_Psylink psyDiff)
                         psyDiff.suppressPostAddLetter = true;
 
-                    health2.AddHediff(newHediff);
-                    //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
-                    MatchSeverity(hediff, newHediff);
+                    health2.AddHediff(otherHediff);
+                }
+                //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
+                if (hediff.Severity == otherHediff.Severity)
+                    continue;
+                if (otherHediff is Hediff_Psylink psylinkExitsting)
+                {
+                    psylinkExitsting.ChangeLevel((int)(hediff.Severity - psylinkExitsting.Severity), false);
+                }
+                else if (otherHediff is Hediff_Level newLevelExitsting)
+                {
+                    newLevelExitsting.SetLevelTo((int)hediff.Severity);
+                }
+                else
+                {
+                    otherHediff.Severity = hediff.Severity;
                 }
             }
         }
-        private static void MatchSeverity(Hediff oldHediff, Hediff newHediff)
+
+        private static Hediff TryMatchHediffByDefAndBodyPart(HediffDef hediff,Pawn_HealthTracker health, BodyPartRecord bodyPart)
         {
-            if (newHediff is Hediff_Psylink psylinkExitsting)
+            for (int i = 0; i < health.hediffSet.hediffs.Count; i++)
             {
-                psylinkExitsting.ChangeLevel((int)(oldHediff.Severity - psylinkExitsting.Severity), false);
+                var hediffChecked = health.hediffSet.hediffs[i];
+                if (hediffChecked.def == hediff && hediffChecked.Part == bodyPart)
+                {
+                    return hediffChecked;
+                }
             }
-            else if (newHediff is Hediff_Level newLevelExitsting)
-            {
-                newLevelExitsting.SetLevelTo((int)oldHediff.Severity);
-            }
-            else
-            {
-                newHediff.Severity = oldHediff.Severity;
-            }
+            return null;
         }
+
 
         /// <summary>
         ///     Transfers the hediffs from pawn1 onto pawn2
