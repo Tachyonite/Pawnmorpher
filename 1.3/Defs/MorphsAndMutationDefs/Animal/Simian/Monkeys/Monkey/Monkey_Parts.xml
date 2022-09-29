@@ -53,6 +53,7 @@
 		<classInfluence>MonkeyMorph</classInfluence>
 		<defName>EtherMonkeyTail</defName>
 		<label>monkey tail</label>
+		<description>A monkey tail. Bananas.</description>
 		<graphics>
 			<Tail>Parts/Monkey/Monkey_Tail</Tail>
 		</graphics>

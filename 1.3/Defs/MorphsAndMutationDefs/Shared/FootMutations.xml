@@ -514,7 +514,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphFootPart">
 		<defName>EtherReptillianClawFoot</defName>
 		<label>reptilian foot</label>
-		<description>The whole of [PAWN_nameDef]'s feet have become toes.</description>
+		<description>A reptilian foot, looks like a bunch of toes glued together.</description>
 		<classInfluence>Reptile</classInfluence>
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->

@@ -47,7 +47,7 @@
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
 		<classInfluence>IguanaMorph</classInfluence>
 		<defName>EtherIguanaHorns</defName>
-		<description>A series of spines drapes down [PAWN_nameDef]'s back.</description>
+		<description>A series of spines drapes down the back. Would look good with a spiky hairstyle</description>
 		<label>spines</label>
 		<graphics>
 			<Skullspike>Parts/Iguana/Iguana_Spines</Skullspike>
