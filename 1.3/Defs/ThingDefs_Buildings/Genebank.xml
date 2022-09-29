@@ -1,5 +1,4 @@
 <Defs>
-
   <ThingDef ParentName="BuildingBase">
     <defName>PM_Genebank</defName>
     <label>genebank</label>
