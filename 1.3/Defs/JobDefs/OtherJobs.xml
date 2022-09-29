@@ -1,0 +1,8 @@
+<Defs>
+    <JobDef>
+        <defName>PM_OperateSequencer</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_UseMutationScanner</driverClass>
+        <reportString>scanning at TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>
