@@ -1,0 +1,84 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="RatiteJawPart" ParentName="AvianJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>14</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<chanceFactor>1</chanceFactor>
+							<power>14</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.20</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="RatiteTailPart" ParentName="AvianTailPart" Abstract="true">
+		<defName>EtherRatiteTailfeathers</defName>
+		<description>A plume of coarse feathers sprouting from a bird tail above the gluteus maximus.</description>
+		<label>Tailfeathers</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MeleeDodgeChance>2.5</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<MeleeDodgeChance>5</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
