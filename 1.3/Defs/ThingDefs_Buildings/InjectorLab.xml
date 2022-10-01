@@ -1,5 +1,4 @@
-<Defs>
-    
+<Defs>   
 	<ThingDef ParentName="BenchBase">
 		<defName>PM_InjectorLab</defName>
 		<label>injector lab</label>
@@ -75,25 +74,4 @@
 			<li>Injectors</li>
 		</researchPrerequisites>
 	</ThingDef>
-
-	<WorkGiverDef>
-		<defName>DoBillsProduceSyringes</defName>
-		<label>making syringes</label>
-		<giverClass>WorkGiver_DoBill</giverClass>
-		<workType>Crafting</workType>
-		<workTags>
-			<li>Intellectual</li>
-		</workTags>
-		<priorityInType>95</priorityInType>
-		<fixedBillGiverDefs>
-			<li>PM_InjectorLab</li>
-		</fixedBillGiverDefs>
-		<verb>produce syringe</verb>
-		<gerund>producing syringe at</gerund>
-		<requiredCapacities>
-			<li>Manipulation</li>
-		</requiredCapacities>
-		<prioritizeSustains>true</prioritizeSustains>
-	</WorkGiverDef>
-
 </Defs>
