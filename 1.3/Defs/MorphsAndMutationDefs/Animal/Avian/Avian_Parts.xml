@@ -1,0 +1,110 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="AvianJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<mutationMemory>EtherAvianJaw</mutationMemory>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>beak</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>15</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>The skin on [PAWN_nameDef]'s lips has begun to harden and crack. What's happening here?</description>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw bones have begun to grow outwards and [PAWN_possessive] lips have stretched thin and turned hard. It's starting to look like... a beak?</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialBeak</Muzzle>
+					</graphics>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has been watching [PAWN_possessive] nose flatten and stretch as [PAWN_possessive] new beak continues to grow outwards.</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialBeak</Muzzle>
+					</graphics>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>8</power>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>12.7</power>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>12.7</power>
+							<chanceFactor>1</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>beak</label>
+							<power>12.7</power>
+							<chanceFactor>1</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="AvianTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<description>A plume of feathers sprouting out of the back.</description>
+		<mutationMemory>EtherAvianTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

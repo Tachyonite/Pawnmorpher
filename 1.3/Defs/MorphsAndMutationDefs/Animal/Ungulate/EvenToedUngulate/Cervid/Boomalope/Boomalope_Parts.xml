@@ -1,0 +1,114 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidJawPart">
+		<classInfluence>BoomalopeMorph</classInfluence>
+		<defName>EtherBoomalopeSnout</defName>
+		<label>boomasnout</label>
+		<graphics>
+			<Muzzle>Parts/Boomalope/Boomalope_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, snuffling and sniffing for the telltale scent of chemfuel. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CervidEarPart">
+		<classInfluence>BoomalopeMorph</classInfluence>
+		<defName>EtherBoomalopeEar</defName>
+		<label>boomalopic ear</label>
+		<graphics>
+			<LeftEar>Parts/Boomalope/Boomalope_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Boomalope/Boomalope_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Boomalope/Boomalope_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Boomalope/Boomalope_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Do boomalopes have ears? It seems so, seeing as [PAWN_nameDef] seems to have grown one.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherChemfuelUdder</defName>
+		<classInfluence>BoomalopeMorph</classInfluence>
+		<label>chemical cyst</label>
+		<description>A large cyst filled with chemfuel now covers the waist. It can be drained to produce chemfuel.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<graphics>
+			<Udders>Parts/Boomalope/Boomalope_Udder</Udders>
+		</graphics>
+		<parts>
+			<li>Waist</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ChemMilkedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_MilkSelf</jobGiver>
+				<etherBondThought>ChemMilkedMyselfBond</etherBondThought>
+				<etherBrokenThought>ChemMilkedMyselfBroken</etherBrokenThought>
+				<resource>Chemfuel</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>2</daysToProduce>
+						<amount>10</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>8</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>6</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>4</amount>
+						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
