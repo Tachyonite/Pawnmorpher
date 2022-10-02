@@ -4,8 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -31,18 +33,23 @@ namespace Pawnmorph.Thoughts
             if (mutTracker == null) 
                 return ThoughtState.Inactive;
             
-
+            
             if (!mutTracker.AllMutations.Any()) 
                 return ThoughtState.Inactive;
             
             var nInfluence = mutTracker.TotalNormalizedInfluence;
             
-            RaceMutationSettingsExtension racialMutations = p.def.TryGetRaceMutationSettings();
-            if (racialMutations != null)
+            var initGraphics = CompCacher<InitialGraphicsComp>.GetCompCached(p);
+            // Null for pawns spawned before this change. Will only work for new pawns since we'll never know what they were originally!
+            if (initGraphics.OriginalRace != null && initGraphics.OriginalRace != ThingDefOf.Human) // Don't bother checking for natural mutations for those originally human.
             {
-                foreach (var racialMutationGiver in racialMutations.mutationRetrievers.OfType<Hediffs.MutationRetrievers.AnimalClassRetriever>())
-                    nInfluence -= mutTracker.GetDirectNormalizedInfluence(racialMutationGiver.animalClass);
+                RaceMutationSettingsExtension racialMutations = initGraphics.OriginalRace.TryGetRaceMutationSettings();
+                if (racialMutations != null)
+                {
+                    foreach (var racialMutationGiver in racialMutations.mutationRetrievers.OfType<Hediffs.MutationRetrievers.AnimalClassRetriever>())
+                        nInfluence -= mutTracker.GetDirectNormalizedInfluence(racialMutationGiver.animalClass);
                 
+                }
             }
 
             var idx = Mathf.FloorToInt(Mathf.Clamp(nInfluence * def.stages.Count, 0, def.stages.Count - 1));
