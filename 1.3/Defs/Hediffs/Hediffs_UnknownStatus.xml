@@ -1,4 +1,5 @@
 <Defs>
+<!--Unused? It's not used by the mutagun or mutarifle-->
 	<HediffDef>
 		<defName>PawnmorphGunshotTF</defName>
 		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
