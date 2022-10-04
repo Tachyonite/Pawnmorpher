@@ -247,7 +247,23 @@ namespace Pawnmorph
                 else
                     Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
             }
+            // Patch Simple Sidearms mod if present.
+            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "petetimessix.simplesidearms"))
+            {
+                MethodInfo simpleSidearmsValidCarrierMethod = AccessTools.Method("PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier");
 
+                if (simpleSidearmsValidCarrierMethod != null)
+                    methodsToPatch.Add(simpleSidearmsValidCarrierMethod);
+                else
+                    Log.Warning("Pawnmorpher: Unable to simple sidearms Valid Carrier Method.");
+
+                MethodInfo simpleSidearmsMemoryCompMethod = AccessTools.Method("SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn");
+
+                if (simpleSidearmsMemoryCompMethod != null)
+                    methodsToPatch.Add(simpleSidearmsMemoryCompMethod);
+                else
+                    Log.Warning("Pawnmorpher: Unable to simple sidearms GetMemoryCompForPawn Method.");
+            }
 
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
