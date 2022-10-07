@@ -248,7 +248,6 @@ namespace Pawnmorph
                     Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
             }
 
-
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
@@ -372,7 +371,8 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(RitualOutcomeComp_ParticipantCount).GetMethod("Counts", INSTANCE_FLAGS));
 
 
-
+            methodsToPatch.Add(AccessTools.Method(typeof(JobDriver_Scarify), nameof(JobDriver_Scarify.AvailableOnNow)));
+            //methodsToPatch.Add(typeof(JobDriver_Scarify).GetMethod(nameof(JobDriver_Scarify.AvailableOnNow), STATIC_FLAGS));
             methodsToPatch.AddRange(methods.Select(m => (MethodInfoSt) m));
             methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.CanEverSpectate), INSTANCE_FLAGS));
 
@@ -381,16 +381,25 @@ namespace Pawnmorph
 
         private static void AddRolePatches([NotNull] List<MethodInfoSt> methodsToPatch)
         {
-            var types = new Type[]
+            
+            /*var types = new Type[]
             {
                 typeof(RitualRoleColonist),
                 typeof(RitualRoleWarden),
-                typeof(RitualRoleConvertee)
-            };
+                typeof(RitualRoleConvertee),
+                typeof(RitualRoleBlindingTarget),
+                typeof(RitualRoleScarificationTarget)
+            };*/
+            var types = new List<Type>();
+            types = typeof(RitualRole).AllSubclassesNonAbstract();
 
-            var methods = types.Select(t => t.GetMethod(nameof(RitualRole.AppliesToPawn), INSTANCE_FLAGS))
+
+            /*var methods = types.Select(t => t.GetMethod(nameof(RitualRole.AppliesToPawn), INSTANCE_FLAGS))
                                .Where(m => !m.IsAbstract)
-                               .Select(m => (MethodInfoSt) m);
+                               .Select(m => (MethodInfoSt) m);*/
+            var methods = types.Select(t => AccessTools.DeclaredMethod(t, nameof(RitualRole.AppliesToPawn)))
+                               .Where(m => m != null && !m.IsAbstract)
+                               .Select(m => (MethodInfoSt)m);
             methodsToPatch.AddRange(methods); 
 
         }
