@@ -398,7 +398,7 @@ namespace Pawnmorph
                                .Where(m => !m.IsAbstract)
                                .Select(m => (MethodInfoSt) m);*/
             var methods = types.Select(t => AccessTools.DeclaredMethod(t, nameof(RitualRole.AppliesToPawn)))
-                               .Where(m => m != null && !m.IsAbstract)
+                               .Where(m => m != null)
                                .Select(m => (MethodInfoSt)m);
             methodsToPatch.AddRange(methods); 
 
