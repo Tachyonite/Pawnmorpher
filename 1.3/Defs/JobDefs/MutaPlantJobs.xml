@@ -11,5 +11,4 @@
         <reportString>sowing TargetA.</reportString>
         <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     </JobDef>
-
 </Defs>
