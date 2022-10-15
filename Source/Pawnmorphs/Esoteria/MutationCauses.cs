@@ -31,7 +31,7 @@ namespace Pawnmorph
         /// <summary>
         ///     The mutagen cause prefix
         /// </summary>
-        public const string MUTAGEN_PREFIX = "mutagen";
+        public const string MUTAGEN_PREFIX = "mutagen_cause";
 
         /// <summary>
         /// The precept prefix
