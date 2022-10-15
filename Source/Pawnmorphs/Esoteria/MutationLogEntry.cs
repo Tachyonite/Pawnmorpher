@@ -198,7 +198,7 @@ namespace Pawnmorph
                 grammarRequest.Rules.AddRange(pawnR);
                 grammarRequest.Rules.AddRange(mutR);
                 grammarRequest.Rules.AddRange(partRules);
-                return GrammarResolver.Resolve(RP_ROOT_RULE, grammarRequest, "mutation log", true);
+                return GrammarResolver.Resolve(RP_ROOT_RULE, grammarRequest, "mutation log", forceLog);
             }
             catch (Exception exception)
             {
