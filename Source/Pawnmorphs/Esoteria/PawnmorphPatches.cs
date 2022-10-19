@@ -275,7 +275,9 @@ namespace Pawnmorph
             //incidents 
             PatchIncidents(methodsToPatch);
 
-            //interaction patch 
+            //interaction patch
+            methodsToPatch.Add(typeof(HealthCardUtility).GetMethod("CreateSurgeryBill", STATIC_FLAGS));
+            methodsToPatch.Add(AccessTools.Method("RimWorld.FloatMenuMakerMap+<>c__DisplayClass9_7:<AddHumanlikeOrders>b__5"));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
