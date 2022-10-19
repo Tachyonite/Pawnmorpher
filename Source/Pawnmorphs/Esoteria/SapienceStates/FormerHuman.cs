@@ -256,23 +256,22 @@ namespace Pawnmorph.SapienceStates
             Pawn.guilt = Pawn.guilt ?? new Pawn_GuiltTracker(Pawn);
             Pawn.foodRestriction = Pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(Pawn);
             Pawn.timetable = Pawn.timetable ?? new Pawn_TimetableTracker(Pawn);
-            Pawn.ideo = Pawn.ideo ?? new Pawn_IdeoTracker(Pawn);
             Pawn.style = Pawn.style ?? new Pawn_StyleTracker(Pawn);
             Pawn.styleObserver = Pawn.styleObserver ?? new Pawn_StyleObserverTracker(Pawn); 
             Comp_SapientAnimal nComp = Pawn.GetComp<Comp_SapientAnimal>();
-            bool addedComp = false;
+
+            if (Pawn.ideo == null && ModLister.IdeologyInstalled)
+            {
+                Pawn.ideo = new Pawn_IdeoTracker(Pawn);
+                Pawn.ideo.SetIdeo(Faction.OfPlayer.ideos.GetRandomIdeoForNewPawn());
+            }
+
 
             if (nComp == null)
             {
-                addedComp = true;
                 nComp = new Comp_SapientAnimal { parent = Pawn };
                 Pawn.AllComps.Add(nComp);
 
-            }
-
-            //now initialize the comp 
-            if (addedComp)
-            {
                 nComp.Initialize(new CompProperties());//just pass in empty props 
             }
 
