@@ -70,6 +70,8 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
         static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
         {
+			if (__instance.def.TryGetRaceMutationSettings()?.immuneToAll == true)
+				return true;
             var sTracker = __instance.GetSapienceTracker();
             if (sTracker?.CurrentState != null)
             {

@@ -1,0 +1,23 @@
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Zombieland</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[@Name="BaseZombie"]</xpath>
+                    <value>
+                        <li Class="Pawnmorph.RaceMutationSettingsExtension">
+                            <immuneToAll>true</immuneToAll>
+                        </li>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+
+
+
+</Patch>
