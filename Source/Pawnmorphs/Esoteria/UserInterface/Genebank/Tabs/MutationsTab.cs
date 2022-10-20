@@ -120,6 +120,8 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             TableColumn colStats = table.AddColumn(TAB_COLUMN_STATS, 0.5f);
             colStats.IsFixedWidth = false;
 
+            AddColumnHook(table);
+
             GeneRowItem item;
             int totalCapacity = _databank.TotalStorage;
             foreach (MutationDef mutation in _databank.StoredMutations)
@@ -164,10 +166,23 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                     }
                 }
 
+                AddedRowHook(item, searchText);
+
                 item.SearchString = searchText.ToLower();
                 table.AddRow(item);
             }
 
+        }
+
+
+        public override void AddedRowHook(GeneRowItem row, string searchText)
+        {
+            // Hook method.
+        }
+
+        public override void AddColumnHook(Table<GeneRowItem> table)
+        {
+            // Hook method.
         }
 
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)

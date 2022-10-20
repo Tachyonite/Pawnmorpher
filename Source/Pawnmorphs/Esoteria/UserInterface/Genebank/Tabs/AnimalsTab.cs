@@ -101,6 +101,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             var colMutations = table.AddColumn(TAB_COLUMN_MUTATIONS, TAB_COLUMN_MUTATIONS_SIZE);
             //Nutrition requirements?
 
+            // Call column hook
+            AddColumnHook(table);
+
             GeneRowItem row;
             int totalStorage = _databank.TotalStorage;
             foreach (PawnKindDef animal in _databank.TaggedAnimals)
@@ -139,12 +142,24 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                     int taggedMutations = animalMutations.Intersect(_databank.StoredMutations).Count();
                     row[colMutations] = $"{taggedMutations}/{totalMutations}";
                 }
-                
+
+                // Call any hooks
+                AddedRowHook(row, searchText);
 
                 // CompProperties_Milkable
                 row.SearchString = searchText.ToLower();
                 table.AddRow(row);
             }
+        }
+
+        public override void AddedRowHook(GeneRowItem row, string searchText)
+        {
+            // Hook method.
+        }
+
+        public override void AddColumnHook(Table<GeneRowItem> table)
+        {
+            // Hook method.
         }
 
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
