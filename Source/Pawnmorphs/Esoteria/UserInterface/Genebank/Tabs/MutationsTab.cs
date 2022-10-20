@@ -24,6 +24,12 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
         private static readonly string TAB_COLUMN_MUTATION = "PM_Genebank_MutationTab_Column_Mutation".Translate();
 
+        private static readonly string TAB_COLUMN_BODYPART = "PM_Genebank_MutationTab_Column_BodyPart".Translate();
+        private static readonly float TAB_COLUMN_BODYPART_SIZE;
+
+        private static readonly string TAB_COLUMN_ANIMAL = "PM_Genebank_MutationTab_Column_Animal".Translate();
+        private static readonly float TAB_COLUMN_ANIMAL_SIZE;
+
         private static readonly string TAB_COLUMN_PARAGON = "PM_Genebank_MutationTab_Column_Paragon".Translate();
         private static readonly float TAB_COLUMN_PARAGON_SIZE;
 
@@ -49,6 +55,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             Text.Font = GameFont.Small;
             TAB_COLUMN_PARAGON_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_PARAGON).x, 60f);
             TAB_COLUMN_ABILITIES_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ABILITIES).x, 100f);
+
+            TAB_COLUMN_BODYPART_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_BODYPART).x, 100f);
+            TAB_COLUMN_ANIMAL_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ANIMAL).x, 100f);
 
             Text.Font = GameFont.Medium;
             DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
@@ -115,6 +124,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                 });
             column.IsFixedWidth = false;
 
+            TableColumn colBodyPart = table.AddColumn(TAB_COLUMN_BODYPART, TAB_COLUMN_BODYPART_SIZE);
+            TableColumn colAnimal = table.AddColumn(TAB_COLUMN_ANIMAL, TAB_COLUMN_ANIMAL_SIZE);
+
             TableColumn colParagon = table.AddColumn(TAB_COLUMN_PARAGON, TAB_COLUMN_PARAGON_SIZE);
             TableColumn colAbilities = table.AddColumn(TAB_COLUMN_ABILITIES, TAB_COLUMN_ABILITIES_SIZE);
             TableColumn colStats = table.AddColumn(TAB_COLUMN_STATS, 0.5f);
@@ -128,6 +140,37 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             {
                 string searchText = mutation.label;
                 item = new GeneRowItem(mutation, totalCapacity, searchText);
+
+                string parts;
+                if (mutation.RemoveComp?.layer == MutationLayer.Skin)
+                {
+                    // Skin mutations cover all surface body parts.
+                    parts = "Skin";
+                    searchText += " " + parts;
+                }
+                else if (mutation.parts.Count < 3)
+                {
+                    // If at most 2 body parts, then list them.
+                    parts = String.Join(", ", mutation.parts.Select(x => x.LabelCap).Distinct());
+                    searchText += " " + parts;
+                }
+                else
+                {
+                    // If more than 2 body parts then show as multiple instead but still make them all searchable.
+                    parts = "Multiple";
+                    searchText += " " + String.Join(" ", mutation.parts.Select(x => x.label).Distinct());
+                }
+                item[colBodyPart] = parts;
+
+
+                string animal = "Multiple";
+                List<ThingDef> animals = mutation.AssociatedAnimals.ToList();
+                if (animals.Count == 1)
+                    animal = animals[0].LabelCap;
+
+                item[colAnimal] = animal;
+                searchText += " " + String.Join(" ", animals.Select(x => x.label));
+
 
                 if (mutation.stages != null)
                 {
@@ -148,7 +191,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                         if (lastStage.key == "paragon")
                         {
                             item[colParagon] = TAB_COLUMN_PARAGON.ToLower();
-                            lastStage = stages[stages.Count - 2];
+                            lastStage = stages[Math.Max(0, stages.Count - 2)];
                             searchText += " " + item[colParagon];
                         }
 
