@@ -277,7 +277,8 @@ namespace Pawnmorph
 
             //interaction patch
             methodsToPatch.Add(typeof(HealthCardUtility).GetMethod("CreateSurgeryBill", STATIC_FLAGS));
-            methodsToPatch.Add(AccessTools.Method("RimWorld.FloatMenuMakerMap+<>c__DisplayClass9_7:<AddHumanlikeOrders>b__5"));
+            PatchRescueMessage(methodsToPatch);
+
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
@@ -356,6 +357,18 @@ namespace Pawnmorph
             IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
                                                    .Where(m => m.HasSignature(typeof(Pawn)))
                                                    .Select(m => (MethodInfoSt) m);
+            methodsToPatch.AddRange(methods);
+        }
+
+        private static void PatchRescueMessage([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            IEnumerable<Type> tps = typeof(FloatMenuMakerMap)
+                                   .GetNestedTypes(ALL)
+                                   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
+
+            IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+                                                   .Where(m => m.HasSignature() && m.Name.Contains("<AddHumanlikeOrders>"))
+                                                   .Select(m => (MethodInfoSt)m);
             methodsToPatch.AddRange(methods);
         }
 
