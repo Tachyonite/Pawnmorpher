@@ -36,10 +36,10 @@
     <RulePackDef Name="CustomMutationRulePackBase" Abstract="true">
         <rulePack>
             <rulesStrings>
-                <li>mutation_log->[pname] [initial] [action_group] [modifier_group] [a_an] [label_group] caused by [mutagen_cause].</li>
+                <li>mutation_log->[pname] [initial] [action_group] [modifier_group] [a_an] [label_group] [caused_by] [mutagen_cause].</li>
                 <li>action_group->[action]</li>
                 <li>modifier_group->[modifier]</li>
-                <li>label_group->[label]</li>
+                <li>label_group->[label_text]</li>
             </rulesStrings>
         </rulePack>
     </RulePackDef>
@@ -51,7 +51,7 @@
         <rulePack>
             <rulesStrings>
                 <li>initial->[PART_label]</li>
-                <li>label->[MUTATION_label]</li>
+                <li>label_text->[MUTATION_label]</li>
                 <li>pname->[PAWN_nameDef]'s</li>
             </rulesStrings>
         </rulePack>
@@ -61,7 +61,7 @@
         <rulePack>
             <rulesStrings>
                 <li>initial-></li> <!-- empty -->
-                <li>label->[MUTATION_label]</li>
+                <li>label_text->[MUTATION_label]</li>
                 <li>action->grew</li>
                 <li>pname->[PAWN_nameDef]</li>
             </rulesStrings>

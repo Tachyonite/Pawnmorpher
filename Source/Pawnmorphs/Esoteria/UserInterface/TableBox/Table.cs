@@ -50,7 +50,7 @@ namespace Pawnmorph.UserInterface.TableBox
 
 
         /// <summary>Adds the column.</summary>
-        /// <param name="header">Column caption.</param>
+        /// <param name="header">Title of the column.</param>
         /// <param name="width">Column width.</param>
         /// <param name="orderByCallback">Optional callback to tell the column how to order rows.</param>
         public TableColumn<T> AddColumn(string header, float width, Action<ListFilter<T>, bool, TableColumn> orderByCallback = null)

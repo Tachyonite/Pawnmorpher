@@ -578,6 +578,7 @@
 									</bodyTypes>
 								</north>
 								<east>
+                                    <layerOffset>-0.29</layerOffset>
 									<bodyTypes>
 										<Male>(0.22,-0.24)</Male>
 										<Female>(0.18,-0.31)</Female>
