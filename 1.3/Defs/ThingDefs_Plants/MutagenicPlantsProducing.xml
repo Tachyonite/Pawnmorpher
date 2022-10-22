@@ -111,7 +111,6 @@ Antigen plants are delicate and sensitive to temperature. They take a long time 
             <growDays>15</growDays>
             <growMinGlow>0</growMinGlow>
             <growOptimalGlow>0</growOptimalGlow>
-            <dieIfNoSunlight>false</dieIfNoSunlight>
 			<harvestYield>2</harvestYield>
             <harvestWork>400</harvestWork>
             <harvestTag>Standard</harvestTag>
