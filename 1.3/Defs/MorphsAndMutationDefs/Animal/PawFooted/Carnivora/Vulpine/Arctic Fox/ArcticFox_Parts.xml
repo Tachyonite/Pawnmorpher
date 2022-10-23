@@ -4,7 +4,8 @@
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox muzzle</label>
 		<graphics>
-			<Muzzle>Parts/FoxArctic/ArcticFox_Muzzle</Muzzle>
+			<MuzzleMale>Parts/FoxArctic/ArcticFox_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/FoxArctic/ArcticFox_Muzzle_Female</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
@@ -14,9 +15,7 @@
 		<label>arctic fox ear</label>
 		<graphics>
 			<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/FoxArctic/ArcticFox_Ear_Left_Behind</LeftEarBehind>
 			<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/FoxArctic/ArcticFox_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
