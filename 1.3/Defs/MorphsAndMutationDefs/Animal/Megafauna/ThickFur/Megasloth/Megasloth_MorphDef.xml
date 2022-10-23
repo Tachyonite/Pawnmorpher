@@ -9,7 +9,8 @@
 		<partialTransformation>PawnmorphMegaslothTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(191,157,113)</skinColorOverride>
+				<skinColorOverride>(242,228,205)</skinColorOverride>
+				<hairColorOverride>(189,162,115)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 		<transformSettings>
