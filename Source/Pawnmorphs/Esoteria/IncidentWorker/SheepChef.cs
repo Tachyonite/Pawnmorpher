@@ -56,7 +56,7 @@ namespace Pawnmorph.IncidentWorkers
 
             if (pawn.story != null)
             {
-                pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
+                pawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef; 
             }
             
             if(pawn.skills != null)
@@ -130,7 +130,7 @@ namespace Pawnmorph.IncidentWorkers
             }
             else
             {
-                lPawn.story.adulthood = back; 
+                lPawn.story.Adulthood = back; 
             }
 
             AssignMutations(lPawn); 
