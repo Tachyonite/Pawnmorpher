@@ -423,7 +423,7 @@ namespace Pawnmorph.DebugUtils
         static void LogAllBackstoryInfo()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (var backstory in DefDatabase<AlienRace.BackstoryDef>.AllDefs)
+            foreach (var backstory in DefDatabase<BackstoryDef>.AllDefs)
             {
                 var ext = backstory.GetModExtension<MorphPawnKindExtension>(); 
                 if(ext == null) continue;
@@ -441,7 +441,7 @@ namespace Pawnmorph.DebugUtils
             var map = Find.CurrentMap;
             if (map == null) return;
             var designation =
-                map.designationManager.allDesignations.Where(d => d.def == PMDesignationDefOf.RecruitSapientFormerHuman).ToList();
+                map.designationManager.AllDesignations.Where(d => d.def == PMDesignationDefOf.RecruitSapientFormerHuman).ToList();
             if (designation.Count == 0)
             {
                 Log.Message($"No {nameof(PMDesignationDefOf.RecruitSapientFormerHuman)} on map");

@@ -283,8 +283,8 @@ namespace Pawnmorph.Hybrids
         {
             AlienPartGenerator gen = new AlienPartGenerator //TODO use reflection to copy these fields? 
             {
-                alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
-                aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
+                bodyTypes = human.bodyTypes.MakeSafe().ToList(),
+                headTypes = human.headTypes.MakeSafe().ToList(),
                 offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
                 headOffset = human.headOffset,
                 headOffsetDirectional = human.headOffsetDirectional,
@@ -378,7 +378,7 @@ namespace Pawnmorph.Hybrids
                 if (temp.ColorChannel != addon.ColorChannel)
                     colorChannel.SetValue(temp, addon.ColorChannel);
 
-                if (headParts.Contains(temp.bodyPart))
+                if (headParts.Contains(temp.bodyPartLabel))
                 {
                     if (headSize != null)
                         temp.drawSize = headSize.GetValueOrDefault();
@@ -399,7 +399,7 @@ namespace Pawnmorph.Hybrids
                     }
                 }
 
-                if (bodySize != null && bodyParts.Contains(temp.bodyPart))
+                if (bodySize != null && bodyParts.Contains(temp.bodyPartLabel))
                 {
                     temp.drawSize = bodySize.GetValueOrDefault();
                 }
@@ -429,8 +429,8 @@ namespace Pawnmorph.Hybrids
             AlienPartGenerator.RotationOffset returnValue = new AlienPartGenerator.RotationOffset()
             {
                 portraitBodyTypes = human.portraitBodyTypes,
-                portraitCrownTypes = human.portraitCrownTypes,
-                crownTypes = human.crownTypes,
+                portraitHeadTypes = human.portraitHeadTypes,
+                headTypes = human.headTypes,
                 layerOffset = human.layerOffset,
                 offset = human.offset
             };
@@ -479,21 +479,10 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
+        private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph)
         {
             GraphicPaths temp = new GraphicPaths();
-            var humanGPath = humanGraphicPaths.First(); 
-            Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
-            temp.customDrawSize = customSize ?? humanGPath.customDrawSize;
-            temp.customPortraitDrawSize = customSize ?? humanGPath.customPortraitDrawSize;
-            Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-            temp.customHeadDrawSize = customHeadSize ?? humanGPath.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = customHeadSize ?? humanGPath.customPortraitHeadDrawSize;
-            temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
-            temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
-            List<GraphicPaths> returnList = new List<GraphicPaths>();
-            returnList.Add(temp);
-            return returnList;
+            return temp;
         }
 
         static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)

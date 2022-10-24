@@ -692,7 +692,7 @@ namespace Pawnmorph.DebugUtils
 
         private static void AddBackstoryToPawn(Pawn pawn, BackstoryDef def)
         {
-            pawn.story.adulthood = def.backstory;
+            pawn.story.Adulthood = def;
         }
 
         private static List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)

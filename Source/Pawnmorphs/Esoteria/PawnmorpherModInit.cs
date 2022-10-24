@@ -17,7 +17,7 @@ using Pawnmorph.Utilities;
 using UnityEngine;
 
 //just a typedef to shorten long type name 
-using HediffGraphic = AlienRace.AlienPartGenerator.BodyAddonHediffGraphic; 
+using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic; 
 
 namespace Pawnmorph
 {
@@ -260,7 +260,7 @@ namespace Pawnmorph
                 Log.Warning($"No hediff graphics found at {hediffGraphic.path} for hediff {hediffGraphic.hediff} in");
 
             if (hediffGraphic.severity != null)
-                foreach (AlienPartGenerator.BodyAddonHediffSeverityGraphic bahsg in hediffGraphic.severity)
+                foreach (AlienPartGenerator.ExtendedHediffSeverityGraphic bahsg in hediffGraphic.severity)
                 {
                     while (
                         ContentFinder<Texture2D>
@@ -301,7 +301,7 @@ namespace Pawnmorph
             };
 
             var severityLst =
-                new List<AlienPartGenerator.BodyAddonHediffSeverityGraphic>();
+                new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
             for (var index = mutationStages.Count - 1; index >= 0; index--)
             {
                 MutationStage stage = mutationStages[index];
@@ -327,7 +327,7 @@ namespace Pawnmorph
 
                 // fill the severity graphics if they are present in descending order
                 if (string.IsNullOrWhiteSpace(path) == false)
-                    severityLst.Add(new AlienPartGenerator.BodyAddonHediffSeverityGraphic
+                    severityLst.Add(new AlienPartGenerator.ExtendedHediffSeverityGraphic
                     {
                         path = path,
                         severity = stage.minSeverity
@@ -569,7 +569,7 @@ namespace Pawnmorph
             };
 
             shaderField.SetValue(copy, addon.ShaderType);
-            prioritizationField.SetValue(copy, addon.Prioritization.ToList());
+            prioritizationField.SetValue(copy, prioritizationField.GetValue(addon));
             colorChannelField.SetValue(copy, addon.ColorChannel);
 
             

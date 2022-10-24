@@ -467,7 +467,7 @@ namespace Pawnmorph
             return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
                                              fixedBiologicalAge: convertedAge,
                                              fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
-                                             fixedGender: gender, fixedMelanin: null);
+                                             fixedGender: gender);
         }
         
         /// <summary>Gets the transformed gender.</summary>
@@ -559,7 +559,7 @@ namespace Pawnmorph
          
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             //remove any jobs the pawn may be doing 
             //if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null) this causes former humans to sometimes despawn and I don't know why 
@@ -644,7 +644,7 @@ namespace Pawnmorph
 
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             if (!tfdPawn.Spawned)
                 Log.Error($"tfdPawn no longer spawned A");

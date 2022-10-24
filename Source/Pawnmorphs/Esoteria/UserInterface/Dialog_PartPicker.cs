@@ -13,6 +13,7 @@ using Verse;
 using Verse.Sound;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs.MutationRetrievers;
+using UnityEngine.UIElements.Experimental;
 
 namespace Pawnmorph.UserInterface
 {
@@ -117,7 +118,7 @@ namespace Pawnmorph.UserInterface
         [NotNull]
         private static readonly List<BodyPartRecord> cachedMutableSkinParts = new List<BodyPartRecord>(); 
         private static BodyTypeDef initialBodyType;
-        private static string initialCrownType;
+        private static HeadTypeDef initialCrownType;
         private static string editButtonText = EDIT_PARAMS_LOC_STRING.Translate();
         private static float editButtonWidth = Text.CalcSize(editButtonText).x + 2 * BUTTON_HORIZONTAL_PADDING;
 
@@ -261,7 +262,7 @@ namespace Pawnmorph.UserInterface
             // Initial caching of the mutations currently affecting the pawn and their initial hediff list.
             cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
             initialBodyType = pawn.story.bodyType;
-            initialCrownType = alienComp.crownType;
+            initialCrownType = pawn.story.headType;
             RecachePawnMutations();
         }
 
@@ -374,20 +375,20 @@ namespace Pawnmorph.UserInterface
 
             // Then the crown and body type selectors...
             Rect crownLabelRect = new Rect(previewRect.x, curY, previewRect.width / 3, Text.CalcHeight(CROWN_LABEL_LOC_STRING.Translate(), previewRect.width / 3));
-            Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.GetComp<AlienPartGenerator.AlienComp>().crownType.Replace('_', ' '), previewRect.width * 2 / 3));
+            Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.story.headType.LabelCap.Replace("_", " "), previewRect.width * 2 / 3));
             Widgets.Label(crownLabelRect, CROWN_LABEL_LOC_STRING.Translate());
-            if (Widgets.ButtonText(crownButtonRect, alienComp.crownType.Replace('_', ' ')))
+            if (Widgets.ButtonText(crownButtonRect, pawn.story.headType.LabelCap.Replace("_", " ")))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 ThingDef_AlienRace pawnDef = pawn.def as ThingDef_AlienRace;
-                foreach (string crownType in pawnDef.alienRace.generalSettings.alienPartGenerator.aliencrowntypes)
+                foreach (HeadTypeDef headType in pawnDef.alienRace.generalSettings.alienPartGenerator.HeadTypes)
                 {
                     void changeHeadType()
                     {
-                        alienComp.crownType = crownType;
+                        pawn.story.headType = headType;
                         recachePreview = true;
                     }
-                    options.Add(new FloatMenuOption(crownType.Replace('_', ' '), changeHeadType));
+                    options.Add(new FloatMenuOption(headType.LabelCap.Replace("_", " "), changeHeadType));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
@@ -403,7 +404,7 @@ namespace Pawnmorph.UserInterface
                 // Get list of body types from alien race if possible otherwise list all.
                 IEnumerable<BodyTypeDef> bodyTypes;
                 if (pawn.def is ThingDef_AlienRace alien)
-                    bodyTypes = alien.GetPartGenerator().alienbodytypes;
+                    bodyTypes = alien.GetPartGenerator().bodyTypes;
                 else
                     bodyTypes = DefDatabase<BodyTypeDef>.AllDefs;
 
@@ -472,7 +473,7 @@ namespace Pawnmorph.UserInterface
             }
             RecachePawnMutations();
             pawn.story.bodyType = initialBodyType;
-            alienComp.crownType = initialCrownType;
+            pawn.story.headType = initialCrownType;
             recachePreview = true;
         }
 
@@ -900,10 +901,10 @@ namespace Pawnmorph.UserInterface
 
             Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
             
-            Mesh bodyMesh = alienComp.alienGraphics.bodySet.MeshAt(previewRot);
+            Mesh bodyMesh = HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(pawn).MeshAt(previewRot);
             Vector3 bodyOffset = new Vector3 (PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
 
-            foreach (Material mat in graphics.MatsBodyBaseAt(previewRot))
+            foreach (Material mat in graphics.MatsBodyBaseAt(previewRot, false))
             {
                 Material damagedMat = graphics.flasher.GetDamagedMat(mat);
                 GenDraw.DrawMeshNowOrLater(bodyMesh, bodyOffset, quaternion, damagedMat, false);
@@ -917,13 +918,13 @@ namespace Pawnmorph.UserInterface
             Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
             if (graphics.headGraphic != null)
             {
-                Mesh mesh2 = alienComp.alienGraphics.headSet.MeshAt(previewRot);
+                Mesh mesh2 = HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(previewRot);
                 Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
                 Material material = graphics.HeadMatAt(previewRot);
 
                 GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
 
-                Mesh hairMesh = alienComp.alienGraphics.hairSetAverage.MeshAt(previewRot);
+                Mesh hairMesh = HumanlikeMeshPoolUtility.GetHumanlikeHairSetForPawn(pawn).MeshAt(previewRot);
                 Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
                 bool isWearingHat = false;
                 if (toggleClothesEnabled)
