@@ -1,0 +1,90 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+    
+    <!-- Transformation -->
+
+    <PreceptDef Name="PM_TfPreceptBase" Abstract="true">
+        <issue>PM_Transformation</issue>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationAbhorrent</defName>
+        <label>abhorrent</label>
+        <description>Changing a person into an animal is a crime against nature and must be avoided at all costs. It is a truly despicable act that violates several human rights.</description>
+        <conflictingMemes>
+            <li>NaturePrimacy</li>
+        </conflictingMemes>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_FleshPuristTransformed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyTransformed</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>DefaultTransformationReaction</thought>
+            </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_FormerHuman_Disapprove_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationDisliked</defName>
+        <label>disliked</label>
+        <description>A person becoming an animal is undesirable and is a violation of bodily autonomy.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>DefaultTransformationReaction</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationNeutral</defName>
+        <label>neutral</label>
+        <impact>Low</impact>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <description>There are many trials on this world, and becoming an animal via mutagens is one of them. We should neither object to or venerate those whom this happens to.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_TfPreceptBase">
+        <defName>PM_TransformationLoved</defName>
+        <label>desirable</label>
+        <description>Nature claims those whom it needs. With the power of mutagens, we are able to become one with nature by becoming animals themselves.</description>
+        <conflictingMemes>
+            <li>FleshPurity</li>
+            <li>HumanPrimacy</li>
+            <li>Transhumanist</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_NaturePrimacyTransformed</thought>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Transformed</eventDef>
+                <thought>PM_TfLovedPrecept_TransformationReaction</thought>
+            </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_FormerHuman_Approve_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    
+</Defs>

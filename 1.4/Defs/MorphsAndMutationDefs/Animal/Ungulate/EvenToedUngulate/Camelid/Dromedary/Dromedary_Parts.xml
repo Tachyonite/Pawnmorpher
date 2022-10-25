@@ -1,0 +1,47 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidJawPart">
+		<classInfluence>DromedaryMorph</classInfluence>
+		<defName>EtherDromedarySnout</defName>
+		<label>dromedary snout</label>
+		<graphics>
+			<Muzzle>Parts/Dromedary/Dromedary_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
+		<classInfluence>DromedaryMorph</classInfluence>
+		<defName>EtherDromedaryEar</defName>
+		<label>dromedary ear</label>
+		<graphics>
+			<LeftEar>Parts/Dromedary/Dromedary_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Dromedary/Dromedary_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Dromedary/Dromedary_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Dromedary/Dromedary_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a dromedary's ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidTailPart">
+		<classInfluence>DromedaryMorph</classInfluence>
+		<defName>EtherDromedaryTail</defName>
+		<label>dromedary tail</label>
+		<graphics>
+			<Tail>Parts/Dromedary/Dromedary_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a long thin dromedary tail.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

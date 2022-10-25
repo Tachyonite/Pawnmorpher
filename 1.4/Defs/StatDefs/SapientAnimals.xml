@@ -1,0 +1,56 @@
+<Defs>
+    <StatDef>
+        <defName>SapientAnimalA</defName>
+        <label>sapience change</label>
+        <description>Controls the degree to which a pawn resists changes in instinct.</description>
+        <!-- higher values mean the pawn is less affected by a raise in instincts  -->
+        <category>BasicsPawn</category>
+        <defaultBaseValue>1.0</defaultBaseValue>
+        <minValue>0.0</minValue>
+        <maxValue>3</maxValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+        <alwaysHide>true</alwaysHide>
+    </StatDef>
+
+    <StatDef>
+        <defName>SapientAnimalResistance</defName>
+        <label>instinct resistance</label>
+        <description>Controls how much control a sapient animal has before going feral.</description>
+        <category>BasicsPawn</category>
+        <defaultBaseValue>1.0</defaultBaseValue>
+        <hideAtValue>1.0</hideAtValue>
+        <minValue>0</minValue>
+        <maxValue>3</maxValue>
+        <toStringStyle>FloatOne</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+
+    <StatDef>
+        <defName>SapienceRecoverFactor</defName>
+        <label>sapience recover factor</label>
+        <description>Controls how much sapience a pawn recovers over time.</description>
+        <category>BasicsPawn</category>
+        <defaultBaseValue>0.0</defaultBaseValue>
+        <hideAtValue>0</hideAtValue>
+        <minValue>-10</minValue>
+        <maxValue>10</maxValue>
+        <toStringStyle>FloatOne</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+
+    <StatDef>
+        <defName>SapienceLimit</defName>
+        <label>sapience limit</label>
+        <description>The maximum sapience this pawn can have.</description>
+        <category>BasicsPawn</category>
+        <defaultBaseValue>1</defaultBaseValue>
+        <hideAtValue>1</hideAtValue>
+        <minValue>0</minValue>
+        <maxValue>1</maxValue>
+        <toStringStyle>PercentZero</toStringStyle>
+        <displayPriorityInCategory>75</displayPriorityInCategory>
+    </StatDef>
+
+
+</Defs>

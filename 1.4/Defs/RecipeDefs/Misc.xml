@@ -1,0 +1,18 @@
+<Defs>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PM_TagAnimal</defName>
+        <label>tag animal</label>
+        <description>tag genetic material from an animal</description>
+        <workerClass>Pawnmorph.RecipeWorkers.TagAnimal</workerClass>
+        <jobString>tagging TargetA.</jobString>
+        <workAmount>300</workAmount>
+        <hideBodyPartNames>true</hideBodyPartNames>
+        <isViolation>false</isViolation>
+        <targetsBodyPart>false</targetsBodyPart>
+        <successfullyRemovedHediffMessage>{0} has successfully tagged {1}.</successfullyRemovedHediffMessage>
+        <surgeryIgnoreEnvironment>true</surgeryIgnoreEnvironment>
+        <skillRequirements>
+            <Medicine>2</Medicine>
+        </skillRequirements>
+    </RecipeDef>
+</Defs>

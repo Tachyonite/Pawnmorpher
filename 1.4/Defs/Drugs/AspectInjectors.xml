@@ -1,0 +1,52 @@
+<Defs>
+    <ThingDef ParentName="MechSerumBase" Name="PM_AspectInjectorBase" Abstract="True">
+        <defName>PM_ParagonInjector</defName>
+        <graphicData>
+            <texPath>Things/Item/Special/MechSerumHealer</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>10</stackLimit>
+        <thingCategories>
+            <li>Items</li>
+        </thingCategories>
+        <statBases>
+            <MarketValue>1500</MarketValue>
+        </statBases>
+        <tradeability>Sellable</tradeability>
+        <thingSetMakerTags>
+            <li>RewardSpecial</li>
+        </thingSetMakerTags>
+        <techLevel>Spacer</techLevel>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>HealerMutagen</mutagen>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+
+    <ThingDef ParentName="PM_AspectInjectorBase">
+        <defName>PM_ParagonInjector</defName>
+        <label>paragon injector</label>
+        <description>A special injector that tunes the mechanites within the user's body, causing their existing mutations to adapt much better then normal. "Paragon" mutations, as they're known, often combine the best aspects of human and animal anatomy to increase their benefits and minimize their downsides.
+
+Paragon injectors are more powerful than adaption cream, and so can produce even more powerful adapations than what adaption cream can.</description>
+        <graphicData>
+            <texPath>Things/Item/Drug/ParagonSerum</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <comps>
+            <li Class="CompProperties_Usable">
+                <useJob>UseItem</useJob>
+                <useLabel>Use a paragon injector</useLabel>
+                <useDuration>600</useDuration>
+            </li>
+            <li Class="Pawnmorph.ThingComps.AddAspectEffectProps">
+                <aspect>Paragon</aspect>
+            </li>
+            <li Class="CompProperties_UseEffect">
+                <compClass>CompUseEffect_DestroySelf</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+</Defs>

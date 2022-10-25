@@ -1,0 +1,268 @@
+<Defs>
+	<ResearchProjectDef Name="PMResearch" Abstract="True">
+		<tab>Pawnmorpher</tab>
+		<techLevel>Industrial</techLevel>
+		<baseCost>500</baseCost>
+	</ResearchProjectDef>
+
+
+	<ResearchProjectDef Name="PMSpaceResearch" ParentName="PMResearch" Abstract="True">
+		<techLevel>Spacer</techLevel>
+		<baseCost>1000</baseCost>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef Name="PMSpaceResearchExpensive" ParentName="PMSpaceResearch" Abstract="True">
+		<baseCost>2000</baseCost>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<!--=== Column 1 ===-->
+
+	<ResearchProjectDef>
+		<defName>MutagenExtraction</defName>
+		<label>Mutagen extraction</label>
+		<description>It should be possible to extract mechanites from eggs and milk produced by partially morphed pawns. This can be done at a drug lab.</description>
+		<baseCost>400</baseCost>
+		<techLevel>Industrial</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>0.00</researchViewX>
+		<researchViewY>1.40</researchViewY>
+		<prerequisites>
+			<li>DrugProduction</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<!--=== Column 2 ===-->
+	
+	<ResearchProjectDef>
+		<defName>MutagenicPlantSowing</defName>
+		<label>Mutagenic Plants</label>
+		<description>By exposing plants to mutagenic mechanites it's possible to grow new and 'improved' variants of them.</description>
+		<techLevel>Medieval</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>2.10</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>SerumSynthesis</defName>
+		<label>Serum synthesis</label>
+		<description>By careful recalibration of mechanite components, we may be able to make our own mutagenic serums. This costs mechanite slurry to do, and unlocks creation of basic mechanite serums. Also unlocks a bench for working with these mutagens, as the drug lab will not be suitable for further projects.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Industrial</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>1.00</researchViewX>
+		<researchViewY>1.40</researchViewY>
+		<prerequisites>
+			<li>MutagenExtraction</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<!--=== Column 3 ===-->
+
+	<ResearchProjectDef>
+		<defName>LozengeProduction</defName>
+		<label>Booster lozenges</label>
+		<description>We can now press some mutagen into booster pills that will enhance production for our chook/cowmorphs.</description>
+		<baseCost>800</baseCost>
+		<techLevel>Industrial</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>0.70</researchViewY>
+		<prerequisites>
+			<li>SerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>AdvancedSerumSynthesis</defName>
+		<label>Targeted serums</label>
+		<description>Using some more advanced techniques, we can target two distinct types of mutation — production and combat.  Production can be used to make pawns more useful, allowing them to produce milk, eggs and other items.</description>
+		<baseCost>1500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>1.40</researchViewY>
+		<prerequisites>
+			<li>SerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>Stabilisation</defName>
+		<label>Mutagen stabilisation</label>
+		<description>Interesting effects come into play when mutagen is introduced to neutroamine. Among other theorised things, it might be possible to halt and prevent pawns from undergoing further mutations.</description>
+		<baseCost>800</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>2.00</researchViewX>
+		<researchViewY>2.10</researchViewY>
+		<prerequisites>
+			<li>SerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<!--=== Column 4 ===-->
+
+	<ResearchProjectDef ParentName="PMSpaceResearch">
+		<defName>PM_MutagenStorage</defName>
+		<label>Mutagen Storage</label>
+		<description>Develop methods of large scale mutagenic slurry production, storage and transfer</description>
+		<baseCost>500</baseCost>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+		<prerequisites>
+			<li>MutagenExtraction</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>AdvancedExtraction</defName>
+		<label>Advanced synthesis</label>
+		<description>With a pawn skilled in crafting, it should be possible to repurpose the mutagenic mechanites into a variety of different configurations, that nullify their mutagenic effect. In this way, we will be able to create other non-mutagenic mechanite serums of our own such as healers and even resurrectors.</description>
+		<baseCost>3000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>0.70</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>AdvancedSerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>PowerfulSerumSynthesis</defName>
+		<label>Powerful serums</label>
+		<description>For now, serums only seem to keep the end size of the pawn roughly similar to nominal. Pursuing this path will allow the creation of serums where size can be increased, at the cost of huge hunger. It can be unstable.</description>
+		<baseCost>2000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>1.40</researchViewY>
+		<prerequisites>
+			<li>AdvancedSerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>Injectors</defName>
+		<label>Injectors</label>
+		<description>Isolating the actual genomes of the mechanites involved allows us to create distinct strains of mutagens for specific animals. However, in order to isolate the genome a given animal, the genetic structure of said animal will need to be sequenced from live specimens and stored in a database to cross-reference it. This can be done by refitting a bolt-action rifle to fire 'tagging' rounds, to add their genetic code to a morphsilk tape-based genebank.</description>
+		<baseCost>1500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>2.10</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>AdvancedSerumSynthesis</li>
+			<li>Stabilisation</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>Reversion</defName>
+		<label>Reversion</label>
+		<description>With this, it'll be possible to turn former humans back into humans again — ones made here, and ones we find elsewhere. This is only possible because mechanites seem to store everything about the pawn prior to their transformation. However, it will not help permanent ferals.</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>2.80</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>Stabilisation</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<!--=== Column 5 ===-->
+
+	<ResearchProjectDef>
+		<defName>MutagenCentrifuging</defName>
+		<label>Mutagen centrifuging</label>
+		<description>Develop plans to construct a centrifuge to refine slurry and chaobulbs back to mutanite by a process involving the straining of mechanites through morphsilk. This process will not be efficient and will use quite a bit of power, but if mutanite is otherwise unobtainable...this is one way to get it. It will also be possible to forgo safety protocols to speed up the process, though this may have unintended effects on anyone nearby.</description>
+		<baseCost>3000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>PM_MutagenStorage</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MutagenChambers</defName>
+		<label>Chambers</label>
+		<description>Unlocks a bath of mutagen which pawns can enter or be carried to. It can be used to selectively apply specific mutations to said pawn, or quickly transform them into an animal of our chosing. Reality can be whatever we want.</description>
+		<baseCost>1500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>1.40</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<prerequisites>
+			<li>Injectors</li>
+			<li>PowerfulSerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>PowerfulInjectors</defName>
+		<label>Powerful injectors</label>
+		<description>Fitting the amount of slurry into an injector required for this might be a difficult task, but it guarantees a specific strain of powerful beast if used correctly.</description>
+		<baseCost>1200</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>2.10</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<prerequisites>
+			<li>Injectors</li>
+			<li>PowerfulSerumSynthesis</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MutagenicWeapons</defName>
+		<label>Mutagenic weaponry</label>
+		<description>By infusing mutagenic rock into weapons, we may be able to make a host of weapons that transform a target instead of outright killing them...though the victim may not always be happy about it.</description>
+		<baseCost>1500</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>2.80</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<prerequisites>
+			<li>Injectors</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef ParentName="PMSpaceResearch">
+		<defName>PM_MutationSequencer</defName>
+		<label>Mutation sequencer</label>
+		<description>Decrypts information stored in animal genomes into usable mutations. Must be manned, but over time it will unlock and store mutations in genebanks, depending on the stored animals in your databases.</description>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>3.50</researchViewY>
+		<prerequisites>
+			<li>Injectors</li>
+		</prerequisites>
+	</ResearchProjectDef>
+</Defs>

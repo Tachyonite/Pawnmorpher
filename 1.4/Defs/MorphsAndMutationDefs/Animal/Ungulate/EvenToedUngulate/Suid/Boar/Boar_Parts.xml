@@ -1,0 +1,47 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SuidJawPart">
+		<classInfluence>BoarMorph</classInfluence>
+		<defName>EtherBoarSnout</defName>
+		<label>boar snout</label>
+		<graphics>
+			<Muzzle>Parts/Boar/Boar_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SuidEarPart">
+		<classInfluence>BoarMorph</classInfluence>
+		<defName>EtherBoarEar</defName>
+		<label>boar ear</label>
+		<graphics>
+			<LeftEar>Parts/Boar/Boar_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Boar/Boar_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Boar/Boar_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Boar/Boar_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large, boarlike ear covered in thick bristles sits atop [PAWN_nameDef]'s head.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SuidTailPart">
+		<classInfluence>BoarMorph</classInfluence>
+		<defName>EtherBoarTail</defName>
+		<label>boar tail</label>
+		<graphics>
+			<Tail>Parts/Boar/Boar_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A boar's curly tail, it twangs when a truffle is detected.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,0 +1,155 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>BearTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I'm a... giant bear? What do I even do about this situation?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>This is awesome, I'm a huge bear-person!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>No no no! I hate everything about being a hairy bear!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>This is cool and all, but what about being an even bigger bear with massive clawed paws?</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>BearRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more hibernating!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw man, but I was really enjoying those giant claws.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>No more fur! Oh, skin, how I missed seeing you.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherBearMuzzle</defName>
+        <stages>
+            <li>
+                <label>Bear face</label>
+                <description>Table manners are going to be hard like this.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bear face</label>
+                <description>ROAR! Awesome, time to raid the freezer!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bear face</label>
+                <description>I'm a hideous roaring monster!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherBearEar</defName>
+        <stages>
+            <li>
+                <label>Bear ears</label>
+                <description>They're not the worst thing ever. It's like built-in earmuffs.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bear ears</label>
+                <description>They're small and round, not all that impressive.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bear ears</label>
+                <description>Egh, they're so furry and awful.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherBearTail</defName>
+        <stages>
+            <li>
+                <label>Tiny tail</label>
+                <description>If I had to get a tail, why wasn't it something cool at least?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny tail</label>
+                <description>As far as tails go, this is not that impressive.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Tiny tail</label>
+                <description>At least I can hide it.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherBearPawHand</defName>
+		<stages>
+			<li>
+				<label>Giant paws</label>
+				<description>How am I supposed to do anything when I can't grab stuff?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant paws</label>
+				<description>Nice, I can claw people's eyes out!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant paws</label>
+				<description>These things are only good for hitting whoever did this to me.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

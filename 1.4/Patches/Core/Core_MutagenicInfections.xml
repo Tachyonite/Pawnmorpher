@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/HediffDef[defName="WoundInfection"]/comps</xpath>
+        <value>
+            <li Class="Pawnmorph.Hediffs.CompProps_MutagenicInfecter"></li>
+        </value>
+    </Operation>
+</Patch>

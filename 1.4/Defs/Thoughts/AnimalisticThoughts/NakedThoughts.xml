@@ -1,0 +1,61 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef Name="AnimalisticNakedThought" Abstract="true">
+		<workerClass>Pawnmorph.Thoughts.Worker_SapientNaked</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<nullifyingTraits>
+			<li>Nudist</li>
+		</nullifyingTraits>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.SapienceStateRestriction">
+				<state>Animalistic</state>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef Name="AnimalisticNakedThougthNudist" Abstract="true">
+		<workerClass>Pawnmorph.Thoughts.Worker_SapientNaked</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>Nudist</li>
+		</requiredTraits>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.SapienceStateRestriction">
+				<state>Animalistic</state>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+
+	<ThoughtDef ParentName="AnimalisticNakedThought">
+		<defName>AniamlisticAnimalNaked</defName>
+		<stages>
+			<li>
+				<label>naked</label>
+				<description>I'm naked. This is humiliating.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<!--  you can now add varients for different sapient levels like in the example -->
+			<li>
+				<label>naked</label>
+				<description>I'm naked. This is humiliating.</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Why do I feel weird out and about? Oh! Clothes!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>There's no other option right?</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>naked</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

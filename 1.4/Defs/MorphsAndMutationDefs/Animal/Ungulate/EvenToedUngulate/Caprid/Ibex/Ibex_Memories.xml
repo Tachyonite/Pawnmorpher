@@ -1,0 +1,119 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>IbexTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>At least my head is safe!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I feel great! No one’s going to mess with these horns of mine!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>My head’s so heavy and my neck is killing me!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>IbexRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>So I lost a killer rack, at least I can wear fresh shirts now!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I miss headbutting my problems already...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>My head feels ligher now! I will not miss those horns!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherIbexJaw</defName>
+		<stages>
+			<li>
+				<label>Goat face</label>
+				<description>This isn't what I was planning to wake up to this morning...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat face</label>
+				<description>Maaah! I want to ram something!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat face</label>
+				<description>My face...what's wrong with my face!?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherIbexEar</defName>
+		<stages>
+			<li>
+				<label>Goat ears</label>
+				<description>At least I can hear a bit better...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat ears</label>
+				<description>I can hear echoes so well now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat ears</label>
+				<description>If anyone mentions the story about the goats and that bridge, they're a dead man!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherIbexTail</defName>
+		<stages>
+			<li>
+				<label>Goat tail</label>
+				<description>What? What tail? I can't see it!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat tail</label>
+				<description>Fluffy and small, fun sized!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Goat tail</label>
+				<description>At least I can hide it...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

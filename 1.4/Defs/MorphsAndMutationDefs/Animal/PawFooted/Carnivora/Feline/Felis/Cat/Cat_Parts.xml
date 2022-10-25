@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FelisJawPart">
+		<classInfluence>CatMorph</classInfluence>
+		<defName>EtherCatMuzzle</defName>
+		<label>cat muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Cat/Cat_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FelisEarPart">
+		<classInfluence>CatMorph</classInfluence>
+		<defName>EtherCatEar</defName>
+		<label>cat ear</label>
+		<graphics>
+			<LeftEar>Parts/Cat/Cat_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Cat/Cat_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Cat/Cat_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Cat/Cat_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FelisTailPart">
+		<classInfluence>CatMorph</classInfluence>
+		<defName>EtherCatTail</defName>
+		<label>cat tail</label>
+		<graphics>
+			<Tail>Parts/Cat/Cat_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,0 +1,85 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridJawPart">
+		<classInfluence>IbexMorph</classInfluence>
+		<defName>EtherIbexSnout</defName>
+		<label>ibex snout</label>
+		<graphics>
+			<Muzzle>Parts/Ibex/Ibex_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
+		<classInfluence>IbexMorph</classInfluence>
+		<defName>EtherIbexEar</defName>
+		<label>ibex ear</label>
+		<graphics>
+			<LeftEar>Parts/Ibex/Ibex_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Ibex/Ibex_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Ibex/Ibex_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Ibex/Ibex_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy, caprine ear sits at the side of [PAWN_nameDef]'s head, like that of an ibex.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridTailPart">
+		<classInfluence>IbexMorph</classInfluence>
+		<defName>EtherIbexTail</defName>
+		<label>ibex tail</label>
+		<graphics>
+			<Tail>Parts/Ibex/Ibex_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A tail like that of an Ibex goat. It's very wooly but short and not very useful.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridHornPart">
+		<defName>EtherIbexHorns</defName>
+		<classInfluence>IbexMorph</classInfluence>
+		<label>ibex horns</label>
+		<description>The curved horns of an ibex. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horns_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Long, curved horns grows from [PAWN_nameDef]'s head. They are already larger than even most but still have a little more growing to do.</description>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horns_B</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Incredibly long Ibex horns crowns [PAWN_nameDef]'s head, moving through doors is difficult but they add great heft to any headbutt.</description>
+					<graphics>
+						<Horns>Parts/Ibex/Ibex_Horns_C</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

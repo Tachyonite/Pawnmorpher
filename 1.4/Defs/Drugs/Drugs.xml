@@ -1,0 +1,39 @@
+<Defs>
+	<ThingDef Name="InjectorBase" ParentName="PM_Injection" Abstract="True">
+		<graphicData>
+			<texPath>Things/Item/Drug/Specific</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<rotatable>false</rotatable>
+		<thingCategories>
+			<li>Injector</li>
+		</thingCategories>
+		<statBases>
+			<WorkToMake>4000</WorkToMake>
+			<MarketValue>400</MarketValue>
+			<Mass>0.01</Mass>
+		</statBases>
+		<techLevel>Ultra</techLevel>
+		<ingestible>
+			<drugCategory>None</drugCategory>
+		</ingestible>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<recipeMaker>
+			<researchPrerequisite>Injectors</researchPrerequisite>
+			<recipeUsers>
+				<li>PM_InjectorLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>3</MechaniteSlurry>
+			<Neutroamine>4</Neutroamine>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

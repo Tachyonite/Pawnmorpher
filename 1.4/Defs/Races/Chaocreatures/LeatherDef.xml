@@ -1,0 +1,23 @@
+<Defs>
+	<ThingDef ParentName="LeatherBase">
+		<defName>Leather_Chao</defName>
+		<label>chaopelt</label>
+		<description>The pelt of a chaomorph. Depending on the sourced morph, it can be scaled, furred, spiny, rough, smooth or anything in between (with plenty of overlap). It is a versatile material because of this, however, due to the many different materials composing it, it does not have very high durability.</description>
+		<graphicData>
+			<color>(178,100,34)</color>
+		</graphicData>
+		<statBases>
+			<MarketValue>2</MarketValue>
+			<StuffPower_Armor_Sharp>0.61</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Blunt>0.31</StuffPower_Armor_Blunt>
+			<StuffPower_Insulation_Cold>10</StuffPower_Insulation_Cold>
+		</statBases>
+		<stuffProps>
+			<color>(178,100,34)</color>
+			<commonality>0.075</commonality>
+			<statFactors>
+				<MaxHitPoints>0.8</MaxHitPoints>
+			</statFactors>
+		</stuffProps>
+	</ThingDef>
+</Defs>

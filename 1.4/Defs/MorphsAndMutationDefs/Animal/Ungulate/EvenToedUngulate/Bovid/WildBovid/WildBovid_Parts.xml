@@ -1,0 +1,62 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidJawPart" ParentName="BovidJawPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidEarPart" ParentName="BovidEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidTailPart" ParentName="BovidTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="WildBovidHornPart" ParentName="BovidHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>1</chanceFactor>
+							<power>14.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<verbOverrides>
+					<li>
+						<label>horns</label>
+						<chanceFactor>1</chanceFactor>
+						<power>14.5</power>
+					</li>
+				</verbOverrides>
+				<abilities>
+					<li>
+						<abilityClass>Pawnmorph.Abilities.Bullrush</abilityClass>
+						<label>Bullrush</label>
+						<description>A bit like berserker rage...</description>
+						<iconPath>UI/Buttons/PM_Icon_Bullrush</iconPath>
+						<cooldown>120000</cooldown>
+					</li>
+				</abilities>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

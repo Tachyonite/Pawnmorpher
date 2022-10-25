@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="RatiteMorph">
+		<defName>OstrichMorph</defName>
+		<label>ostrichmorph</label>
+		<description>A human who now shares many features with ostriches due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. They are capable of running very fast.</description>
+		<race>Ostrich</race>
+		<categories>
+			<li>Arid</li>
+		</categories>
+		<fullTransformation>PawnmorphOstrichTF</fullTransformation>
+		<partialTransformation>PawnmorphOstrichTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(103,86,76)</skinColorOverride>
+				<femaleSkinColorOverride>(103,86,76)</femaleSkinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>OstrichTransformationMemory</transformationMemory>
+			<revertedMemory>OstrichRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

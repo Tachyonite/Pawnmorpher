@@ -1,0 +1,391 @@
+<Defs>
+
+  
+
+  <PawnKindDef Name="PawnmorphEnclaveBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.05</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <inventoryOptions>
+      <skipChance>0.70</skipChance>
+      <subOptionsChooseOne>
+        <li>
+          <choiceChance>90</choiceChance>
+          <thingDef>Silver</thingDef>
+          <countRange>
+            <min>30</min>
+            <max>100</max>
+          </countRange>
+        </li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>0~1</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
+    <modExtensions>
+      <li Class="Pawnmorph.MorphPawnKindExtension">
+        <morphs>
+          <li>BoarMorph</li>
+          <li>CatMorph</li>
+          <li>FoxMorph</li>
+          <li>CowMorph</li>
+          <li>HuskyMorph</li>
+          <li>ChookMorph</li>
+          <li>RatMorph</li>
+          <li>PigMorph</li>
+          <li>DeerMorph</li>
+          <li>BearMorph</li>
+          <li>MonkeyMorph</li>
+          <li>WargMorph</li>
+          <li>AlpacaMorph</li>
+          <li>WolfMorph</li>
+          <li>SheepMorph</li>
+        </morphs>
+        <hediffRange>0~10</hediffRange>
+      </li>
+    </modExtensions>
+
+  </PawnKindDef>
+
+
+  <PawnKindDef>
+    <defName>PawnmorpherSlave</defName>
+    <label>slave</label>
+    <combatPower>30</combatPower>
+    <race>Human</race>
+    <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
+    <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
+    <itemQuality>Poor</itemQuality>
+    <backstoryCryptosleepCommonality>0.10</backstoryCryptosleepCommonality>
+    <isFighter>false</isFighter>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
+    <gearHealthRange>
+      <min>0.2</min>
+      <max>0.8</max>
+    </gearHealthRange>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>0</min>
+      <max>350</max>
+    </apparelMoney>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <techHediffsChance>0.03</techHediffsChance>
+    <techHediffsMoney>
+      <min>50</min>
+      <max>800</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+    </techHediffsTags>
+    <apparelIgnoreSeasons>true</apparelIgnoreSeasons>
+    <invNutrition>1</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <initialWillRange>0~1</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
+    <modExtensions>
+      <li Class="Pawnmorph.MorphPawnKindExtension">
+        <morphs>
+          <li>BoarMorph</li>
+          <li>CatMorph</li>
+          <li>FoxMorph</li>
+          <li>CowMorph</li>
+          <li>HuskyMorph</li>
+          <li>ChookMorph</li>
+          <li>RatMorph</li>
+          <li>PigMorph</li>
+          <li>DeerMorph</li>
+          <li>BearMorph</li>
+          <li>MonkeyMorph</li>
+          <li>WargMorph</li>
+          <li>AlpacaMorph</li>
+          <li>WolfMorph</li>
+        </morphs>
+        <hediffRange>0~10</hediffRange>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveVillager</defName>
+    <label>enclave villager</label>
+    <combatPower>35</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <isFighter>false</isFighter>
+    <gearHealthRange>
+      <min>0.2</min>
+      <max>2.0</max>
+    </gearHealthRange>
+    <weaponTags>
+      <li>Gun</li>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>
+      <min>65</min>
+      <max>250</max>
+    </weaponMoney>
+    <apparelMoney>
+      <min>200</min>
+      <max>400</max>
+    </apparelMoney>
+    <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+    <techHediffsChance>0.06</techHediffsChance>
+    <techHediffsMoney>
+      <min>50</min>
+      <max>600</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+    </techHediffsTags>
+
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveTown_Guard</defName>
+    <label>enclave guard</label>
+    <combatPower>55</combatPower>
+    <isFighter>true</isFighter>
+    <gearHealthRange>
+      <min>0.6</min>
+      <max>2</max>
+    </gearHealthRange>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelMoney>
+      <min>400</min>
+      <max>600</max>
+    </apparelMoney>
+    <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>
+      <min>250</min>
+      <max>400</max>
+    </weaponMoney>
+    <techHediffsChance>0.04</techHediffsChance>
+    <techHediffsMoney>
+      <min>200</min>
+      <max>700</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+    </techHediffsTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveTown_Trader</defName>
+    <label>enclave trader</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <gearHealthRange>
+      <min>1</min>
+      <max>1</max>
+    </gearHealthRange>
+    <itemQuality>Normal</itemQuality>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>
+      <min>200</min>
+      <max>200</max>
+    </weaponMoney>
+    <apparelMoney>
+      <min>400</min>
+      <max>600</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_BowlerHat</li>
+    </apparelRequired>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>
+      <min>600</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Poor</li>
+      <li>Simple</li>
+      <li>Advanced</li>
+    </techHediffsTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveTown_Councilman</defName>
+    <label>enclave councilman</label>
+    <labelPlural>enclave councilmen</labelPlural>
+    <combatPower>60</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>30</minGenerationAge>
+    <isFighter>false</isFighter>
+    <gearHealthRange>
+      <min>1</min>
+      <max>1</max>
+    </gearHealthRange>
+    <itemQuality>Good</itemQuality>
+    <weaponMoney>
+      <min>200</min>
+      <max>200</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <apparelMoney>
+      <min>700</min>
+      <max>1200</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_BowlerHat</li>
+    </apparelRequired>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>
+      <min>600</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>Advanced</li>
+    </techHediffsTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveMercenary</defName>
+    <label>enclave freedom fighter</label>
+    <labelPlural>enclave freedom fighters</labelPlural>
+    <combatPower>90</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>
+      <min>0.6</min>
+      <max>2</max>
+    </gearHealthRange>
+    <weaponMoney>
+      <min>350</min>
+      <max>650</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li>SniperRifle</li>
+    </weaponTags>
+    <apparelMoney>
+      <min>1000</min>
+      <max>1500</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <combatEnhancingDrugsChance>0.05</combatEnhancingDrugsChance>
+    <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>
+      <min>600</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>Advanced</li>
+    </techHediffsTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveHeavyMercenary</defName>
+    <label>enclave guerilla</label>
+    <labelPlural>enclave guerillas</labelPlural>
+    <combatPower>150</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>
+      <min>0.6</min>
+      <max>2</max>
+    </gearHealthRange>
+    <weaponMoney>
+      <min>350</min>
+      <max>650</max>
+    </weaponMoney>
+    <weaponTags>
+      <li>GunHeavy</li>
+      <li>GunSingleUse</li>
+      <li>GrenadeDestructive</li>
+      <li>GrenadeEMP</li>
+      <li>GrenadeSmoke</li>
+    </weaponTags>
+    <apparelMoney>
+      <min>300</min>
+      <max>400</max>
+    </apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <combatEnhancingDrugsChance>0.05</combatEnhancingDrugsChance>
+    <combatEnhancingDrugsCount>0~2</combatEnhancingDrugsCount>
+    <techHediffsChance>0.15</techHediffsChance>
+    <techHediffsMoney>
+      <min>600</min>
+      <max>1500</max>
+    </techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>Advanced</li>
+    </techHediffsTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="PawnmorphEnclaveBase">
+    <defName>PMEnclaveEliteMercenary</defName>
+    <label>enclave enforcer</label>
+    <labelPlural>enclave enforcers</labelPlural>
+    <combatPower>150</combatPower>
+    <gearHealthRange>
+      <min>1</min>
+      <max>1</max>
+    </gearHealthRange>
+    <weaponMoney>500~1400</weaponMoney>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <apparelMoney>2500~3500</apparelMoney>
+    <apparelAllowHeadgearChance>0.9</apparelAllowHeadgearChance>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>SpacerMilitary</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <techHediffsMoney>1000~1200</techHediffsMoney>
+    <techHediffsTags>
+      <li>Advanced</li>
+      <li>ImplantEmpireCommon</li>
+    </techHediffsTags>
+    <techHediffsChance>0.35</techHediffsChance>
+    <combatEnhancingDrugsChance>0.80</combatEnhancingDrugsChance>
+    <combatEnhancingDrugsCount>1~2</combatEnhancingDrugsCount>
+    <biocodeWeaponChance>0.3</biocodeWeaponChance>
+  </PawnKindDef>
+
+</Defs>

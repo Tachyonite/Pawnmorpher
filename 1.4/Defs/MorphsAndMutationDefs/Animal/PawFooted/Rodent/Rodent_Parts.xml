@@ -1,0 +1,45 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="RodentJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<mutationMemory>EtherRodentJaw</mutationMemory>	
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>It's obvious now that a rather rodent-like snout is making its way onto [PAWN_nameDef]'s face. Whiskers, long front teeth, and a pointed nose are still taking shape.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="RodentEarPart" ParentName="PawFootedEarPart" Abstract="true">
+		<mutationMemory>EtherRodentEar</mutationMemory>	
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="RodentTailPart" ParentName="PawFootedTailPart" Abstract="true">
+		<mutationMemory>EtherRodentTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

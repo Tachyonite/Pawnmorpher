@@ -1,0 +1,39 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/PawnKindDef.xsd">
+    <PawnKindDef Name="MorphPawnKindExampleDoNotUse" Abstract="true">
+        <!-- Regular pawnkind stuff-->
+
+        <!-- same mod extension is used for adding mutations to backstories  -->
+        <modExtensions>
+            <li Class="Pawnmorph.MorphPawnKindExtension">
+                <morphCategories>
+                    <li>Temperate</li> <!-- pick mutations from temperate  -->
+                </morphCategories>
+                <mutationCategories>
+                    <!-- pick combat mutations -->
+                    <li>Combat</li>
+                </mutationCategories>
+                <morphs>
+                    <li>HuskyMorph</li> <!-- pick all husky morph related mutatins  -->
+                </morphs> <!-- is redundant in example because huskyMorph is included in CanidMorph category -->
+
+                <!--add betwen 0 and 5 mutations chosen from all mutations found from the above options.
+                    the options are additive, so in this example the total mutation pool will include all Canid mutations, 
+                    all combat mutations, and all husky morph mutations. Duplicates are not added more then once, so 
+                    in this example the HuskyMorph entry in morphs is redundant. 
+                -->
+                <hediffRange>0~5</hediffRange>
+
+                <aspects>
+                    <!-- all possible aspects that can be added and at what stage -->
+                    <li>
+                        <aspect>EtherBroken</aspect> <!-- the aspect def-->
+                        <stage>0</stage> <!-- what stage to make the apsect at when added to the pawn -->
+                    </li>
+                </aspects>
+
+                <!-- add betwen 0 and 4 aspects from the above list -->
+                <aspectRange>0~4</aspectRange>
+            </li>
+        </modExtensions>
+    </PawnKindDef>
+</Defs>

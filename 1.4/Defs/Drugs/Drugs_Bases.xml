@@ -1,0 +1,104 @@
+<Defs>
+	<ThingDef Name="PM_DrugBase" ParentName="DrugBase" Abstract="True">
+		<thingCategories Inherit="False" />
+		<recipeMaker>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<effectWorking>Cook</effectWorking>
+			<soundWorking>Recipe_CookMeal</soundWorking>
+		</recipeMaker>
+	</ThingDef>
+
+	<ThingDef Name="PM_PillBase" ParentName="PM_DrugBase" Abstract="true">
+		<ingestible>
+			<drugCategory>Medical</drugCategory>
+			<foodType>Processed</foodType>
+			<baseIngestTicks>120</baseIngestTicks>
+			<chairSearchRadius>0</chairSearchRadius>
+			<ingestSound>Ingest_Pill</ingestSound>
+			<ingestHoldUsesTable>false</ingestHoldUsesTable>
+			<ingestCommandString>Take {0}</ingestCommandString>
+			<ingestReportString>Taking {0}.</ingestReportString>
+		</ingestible>
+		<thingCategories>
+			<li>Drugs</li>
+		</thingCategories>
+		<rotatable>false</rotatable>
+		<techLevel>Ultra</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.01</Mass>
+		</statBases>
+	</ThingDef>
+
+	<ThingDef Name="PM_Injection" ParentName="PM_DrugBase" Abstract="True">
+		<ingestible>
+			<foodType>Processed</foodType>
+			<drugCategory>Medical</drugCategory>
+			<baseIngestTicks>120</baseIngestTicks>
+			<chairSearchRadius>0</chairSearchRadius>
+			<ingestSound>Ingest_Inject</ingestSound>
+			<ingestHoldUsesTable>false</ingestHoldUsesTable>
+			<ingestCommandString>Inject {0}</ingestCommandString>
+			<ingestReportString>Injecting {0}.</ingestReportString>
+		</ingestible>
+		<socialPropernessMatters>true</socialPropernessMatters>
+	</ThingDef>
+
+	<ThingDef Name="SerumBase" ParentName="PM_Injection" Abstract="True">
+		<rotatable>false</rotatable>
+		<techLevel>Ultra</techLevel>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<Mass>0.01</Mass>
+		</statBases>
+		<thingCategories>
+			<li>Serum</li>
+		</thingCategories>
+		<tradeTags>
+			<li>ExoticMisc</li>
+		</tradeTags>
+		<ingestible>
+			<drugCategory>None</drugCategory>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef Name="PowerfulInjectorBase" ParentName="InjectorBase" Abstract="True">
+		<statBases>
+			<MarketValue>1000</MarketValue>
+			<WorkToMake>6000</WorkToMake>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>PowerfulInjectors</researchPrerequisite>
+			<recipeUsers>
+				<li>PM_InjectorLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>6</MechaniteSlurry>
+			<Mutanite>2</Mutanite>
+			<Neutroamine>10</Neutroamine>
+		</costList>
+	</ThingDef>
+	
+
+  <ThingDef ParentName="ResourceBase" Name="GenekitBase" Abstract="True">
+    <statBases>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Mass>0.2</Mass>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <Flammability>0.2</Flammability>
+    </statBases>
+    <thingCategories>
+      <li>Drugs</li>
+    </thingCategories>
+    <techLevel>Ultra</techLevel>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
+</Defs>

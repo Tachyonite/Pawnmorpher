@@ -1,0 +1,148 @@
+<Defs>
+    <ThoughtDef ParentName="OutlookMemoryBase" Name="PM_WitnessedTfBase" Abstract="true">
+        <icon>Things/Mote/ThoughtSymbol/Skull</icon>
+        <showBubble>true</showBubble>
+        <durationDays>2</durationDays>
+        <stackLimit>5</stackLimit>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedAllyTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed ally transformation</label>
+                <description>It's still them, but the change is slightly offputting.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed ally transformation</label>
+                <description>Yes, another one to join us...</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed ally transformation</label>
+                <description>That was horrific to watch, we're doing these insane experiments on our own people!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed ally transformation</label>
+                <description>God I wish that were me.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedNonAllyTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed outsider transformation</label>
+                <description>That was disturbing to watch.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed outsider transformation</label>
+                <description>I'm glad outsiders are so open to becoming animals.</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed outsider transformation</label>
+                <description>That was horrific to watch, doing insane experiments on people!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed outsider transformation</label>
+                <description>God I wish that were me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedRivalTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed rival transformation</label>
+                <description>As bad as it sounds, it was theraputic to see it.</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed rival transformation</label>
+                <description>People I don't like shouldn't get to experience it.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed rival transformation</label>
+                <description>However horrific it is to watch, I feel like they deserve it.</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed rival transformation</label>
+                <description>Why do they get all the fun?!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="PM_WitnessedTfBase">
+        <durationDays>1</durationDays>
+        <defName>PM_WitnessedFriendTf</defName>
+        <stages>
+            <li>
+                <!-- normal pawns -->
+                <label>witnessed friend transformation</label>
+                <description>My friend, subjected to that horrible change...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- mutation affinity -->
+                <label>witnessed friend transformation</label>
+                <description>Good for them, I hope they enjoy themselves!</description>
+                <visible>true</visible>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+            <li>
+                <!-- body purist -->
+                <label>witnessed friend transformation</label>
+                <description>That was absolutely horrific! A person I've known for so long becoming something they're not!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+            <li>
+                <!-- primal wish -->
+                <label>witnessed friend transformation</label>
+                <description>Good for them! Me next?</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

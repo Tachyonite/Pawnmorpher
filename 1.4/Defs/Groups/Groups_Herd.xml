@@ -1,0 +1,59 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+	<Pawnmorph.MorphGroupDef>
+		<defName>HerbivoreHerding</defName>
+		<label>herd</label>
+		<aspectDef>HerdMind</aspectDef>
+		<barrakThoughtReplacement>PM_HerdMindedBarrack</barrakThoughtReplacement>
+		<bedroomThoughtReplacement>PM_HerdMindedBedroom</bedroomThoughtReplacement>
+		<asceticRoomThought>PM_HerdMindedAscetic</asceticRoomThought>
+	</Pawnmorph.MorphGroupDef>
+	
+    <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">
+        <defName>HerdMind</defName>
+        <label>herd mentality</label>
+        <stages>
+            <li>
+                <modifier>alone</modifier>
+				<description>I'm the only one of my kind. I feel so unsafe being all alone.</description>
+            </li>
+            <li>
+                <modifier>lonely</modifier>
+				<description>There's another like me, but we're still only a small herd. I still don't feel very safe.</description>
+            </li>
+            <li>
+                <modifier>comfortable</modifier>
+				<description>There's a decent number of people in my herd. Safety in numbers!</description>
+            </li>
+            <li>
+                <modifier>happy</modifier>
+				<description>There's plenty of people in my herd. There's nothing to fear!</description>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+  
+	<ThoughtDef ParentName="GroupThoughtHBase">
+		<defName>HerdMinded</defName>
+		<stages>
+			<li>
+				<label>no herd</label>
+				<description>I'm the only one of my kind. I feel so unsafe being all alone.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>small herd</label>
+				<description>There's another like me, but we're still only a small herd. I still don't feel very safe.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>decent herd</label>
+				<description>There's a decent number of people in my herd. Safety in numbers!</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>huge herd</label>
+				<description>There's plenty of people in my herd. There's nothing to fear!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

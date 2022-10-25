@@ -1,0 +1,51 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
+		<mutationMemory>EtherSquirrelJaw</mutationMemory>
+		<classInfluence>SquirrelMorph</classInfluence>
+		<defName>EtherSquirrelJaw</defName>
+		<label>squirrel snout</label>
+		<graphics>
+			<Muzzle>Parts/Squirrel/Squirrel_Muzzle</Muzzle>
+		</graphics>
+
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
+		<mutationMemory>EtherSquirrelEar</mutationMemory>
+		<classInfluence>SquirrelMorph</classInfluence>
+		<defName>EtherSquirrelEar</defName>
+		<label>squirrel ear</label>
+		<graphics>
+			<LeftEar>Parts/Squirrel/Squirrel_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Squirrel/Squirrel_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Squirrel/Squirrel_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Squirrel/Squirrel_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a small wedge, flicking about to listen for the beating of wings.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
+		<mutationMemory>EtherSquirrelTail</mutationMemory>
+		<classInfluence>SquirrelMorph</classInfluence>
+		<defName>EtherSquirrelTail</defName>
+		<label>squirrel tail</label>
+		<graphics>
+			<Tail>Parts/Squirrel/Squirrel_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long fluffy tail curls up from [PAWN_nameDef]'s waist. [PAWN_pronoun] loves to curl it up around [PAWN_objective]self and use it as a pillow while sleeping.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

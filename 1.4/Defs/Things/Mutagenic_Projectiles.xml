@@ -1,0 +1,24 @@
+<Defs>
+    <ThingDef ParentName="BaseBullet">
+        <defName>Bullet_MutagenicRocket</defName>
+        <label>mutagenic rocket</label>
+        <graphicData>
+            <texPath>Things/Projectile/Rocket_Big</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <shaderType>TransparentPostLight</shaderType>
+        </graphicData>
+        <thingClass>Projectile_Explosive</thingClass>
+        <projectile>
+            <damageDef>MutagenCloud_Large</damageDef>
+            <explosionRadius>8.5</explosionRadius>
+            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            <damageAmountBase>12</damageAmountBase>
+            <speed>55</speed>
+            <explosionDamageFalloff>true</explosionDamageFalloff>
+            <explosionEffect>ExtinguisherExplosion</explosionEffect>
+            <postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+            <postExplosionSpawnChance>0.4</postExplosionSpawnChance>
+            <postExplosionSpawnThingCount>2</postExplosionSpawnThingCount>
+        </projectile>
+    </ThingDef>
+</Defs>

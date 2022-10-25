@@ -1,0 +1,16 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/AspectDef.xsd">
+	<Pawnmorph.AspectDef>
+		<defName>PridefulAspect</defName>
+		<label>prideful</label>
+		<description>This pawn is extremely vain and easily insulted.</description>
+		<labelColor>(140,98,196)</labelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<aspectType>Pawnmorph.Aspects.Prideful</aspectType>
+		<stages>
+			<li>
+				<label>prideful</label>
+				<description>[PAWN_nameDef]'s sees [PAWN_objective]self as the natural leader of [PAWN_possessive] pride and as a consequence looks down on others and is easily offended.</description>
+			</li>
+		</stages>
+	</Pawnmorph.AspectDef>
+</Defs>

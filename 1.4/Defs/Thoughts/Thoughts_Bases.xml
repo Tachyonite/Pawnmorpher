@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Abstract="true" Name="OutlookMemoryBase">
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <!-- 
+        <stages>
+            <li>
+                <label>Normal Pawns</label>
+            </li>
+            <li>
+                <label>Mutation Affinity Pawns</label>
+            </li>
+            <li>
+                <label>Body Purist</label>
+            </li>
+            <li>
+                <label>Primal Wish (if not used MA stage will be used)</label>
+            </li>
+        </stages>
+        -->
+    </ThoughtDef>
+
+
+    <ThoughtDef Abstract="true" Name="SleptThoughtBase">
+        <durationDays>1</durationDays>
+        <stackLimit>1</stackLimit>
+        
+      </ThoughtDef>
+    
+  
+</Defs>

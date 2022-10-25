@@ -1,0 +1,41 @@
+<Defs>
+    <Pawnmorph.Hediffs.MutationDef Abstract="true" ParentName="PantherineJawPart" Name="LeopardJawBase">
+        <label>pardine muzzle</label>
+        <graphics>
+			<Muzzle>Parts/Leopard/Leopard_Muzzle</Muzzle>
+		</graphics>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef  Abstract = "True" ParentName="PantherineEarPart" Name = "LeopardEarBase">
+        <label>pardine ear</label>
+        <graphics>
+			<LeftEar>Parts/Leopard/Leopard_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Leopard/Leopard_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Leopard/Leopard_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Leopard/Leopard_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A triangular, fuzzy ear graces [PAWN_nameDef]'s head. It coils back when [PAWN_pronoun] is getting ready to pounce.</description>
+				</values>
+			</li>
+		</stagePatches>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef  Abstract = "True" ParentName="PantherineTailPart"  Name = "LeopardTailBase">
+		<label>leopard tail</label>
+		<graphics>
+			<Tail>Parts/Leopard/Leopard_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, spotted tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
