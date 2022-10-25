@@ -1,6 +1,19 @@
 <Defs>
-	
-	<ThingDef ParentName="BaseGas">
+	<ThingDef Name="PM_BaseGas" Abstract="True">
+		<thingClass>RimWorld.Gas</thingClass>
+		<label>gas</label>
+		<category>Gas</category>
+		<altitudeLayer>Gas</altitudeLayer>
+		<useHitPoints>false</useHitPoints>
+		<tickerType>Normal</tickerType>
+		<graphicData>
+		  <graphicClass>Graphic_Gas</graphicClass>
+		  <shaderType>Transparent</shaderType>
+		</graphicData>
+	</ThingDef>
+
+
+	<ThingDef ParentName="PM_BaseGas">
 		<defName>Gas_Mutagen</defName>
 		<label>mutagen cloud</label>
 		<graphicData>

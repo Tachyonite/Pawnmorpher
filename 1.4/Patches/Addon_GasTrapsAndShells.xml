@@ -63,7 +63,7 @@
 							</projectile>
 						</ThingDef>
 						
-						<ThingDef Class="GasTrap.Thing_AddsHediffDef" ParentName="BaseGas">
+						<ThingDef Class="GasTrap.Thing_AddsHediffDef" ParentName="PM_BaseGas">
 							<defName>EtherMutagenicGas</defName>
 							<label>mutagenic gas</label>
 							<graphicData>
