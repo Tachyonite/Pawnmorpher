@@ -122,16 +122,8 @@ namespace Pawnmorph.IncidentWorkers
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
 
             var name = lPawn.Name as NameTriple;
-            lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last); 
-
-
-            if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))
-            {
-            }
-            else
-            {
-                lPawn.story.Adulthood = back; 
-            }
+            lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last);
+            lPawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef;
 
             AssignMutations(lPawn); 
             return lPawn; 
