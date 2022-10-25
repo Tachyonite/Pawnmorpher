@@ -224,7 +224,7 @@
 						<daysToProduce>0.5</daysToProduce>
 						<amount>4</amount>
 						<statOffsets>
-							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+							<hungerRateFactor>0.3</hungerRateFactor>
 						</statOffsets>
 					</li>
 					<li>
@@ -232,7 +232,7 @@
 						<daysToProduce>0.25</daysToProduce>
 						<amount>3</amount>
 						<statOffsets>
-							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+							<hungerRateFactor>0.6</hungerRateFactor>
 						</statOffsets>
 					</li>
 					<li>
@@ -241,7 +241,7 @@
 						<amount>2</amount>
 						<thought>ProductiveBliss</thought>
 						<statOffsets>
-							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+							<hungerRateFactor>1.0</hungerRateFactor>
 						</statOffsets>
 						<hediffGivers>
 							<li Class="HediffGiver_RandomDrugEffect">

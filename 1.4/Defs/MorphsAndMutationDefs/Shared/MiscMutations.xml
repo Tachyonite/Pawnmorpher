@@ -129,7 +129,7 @@
 						<amount>8</amount>
 						<chance>30</chance>
 						<statOffsets>
-							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+							<hungerRateFactor>0.3</hungerRateFactor>
 						</statOffsets>
 					</li>
 					<li>
@@ -138,7 +138,7 @@
 						<amount>6</amount>
 						<chance>15</chance>
 						<statOffsets>
-							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+							<hungerRateFactor>0.6</hungerRateFactor>
 						</statOffsets>
 					</li>
 					<li>
@@ -148,7 +148,7 @@
 						<chance>5</chance>
 						<thought>ProductiveBliss</thought>
 						<statOffsets>
-							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+							<hungerRateFactor>1.0</hungerRateFactor>
 						</statOffsets>
 						<hediffGivers>
 							<li Class="HediffGiver_RandomDrugEffect">
