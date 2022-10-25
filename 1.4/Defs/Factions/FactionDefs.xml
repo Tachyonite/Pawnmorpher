@@ -22,7 +22,6 @@
         <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
         <factionNameMaker>NamerFactionOutlander</factionNameMaker>
         <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
-        <geneticVariance>1</geneticVariance>
         <startingResearchTags>
             <li>ClassicStart</li>
         </startingResearchTags>
@@ -73,7 +72,6 @@
                 <commonality>0.05</commonality>
             </li>
         </backstoryFilters>
-        <geneticVariance>0.8</geneticVariance>
         <visitorTraderKinds>
             <li>Visitor_Outlander_Standard</li>
         </visitorTraderKinds>

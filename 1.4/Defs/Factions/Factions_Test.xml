@@ -58,7 +58,6 @@
     <label>slave</label>
     <combatPower>30</combatPower>
     <race>Human</race>
-    <baseRecruitDifficulty>0.30</baseRecruitDifficulty>
     <defaultFactionType>PawnmorpherEnclave</defaultFactionType>
     <itemQuality>Poor</itemQuality>
     <backstoryCryptosleepCommonality>0.10</backstoryCryptosleepCommonality>

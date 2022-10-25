@@ -121,7 +121,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftEar</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>left ear</bodyPart>
+				<bodyPart>Ear</bodyPart>
+				<bodyPartLabel>left ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -132,7 +133,8 @@
 				<!-- Left Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>left ear</bodyPart>
+				<bodyPart>Ear</bodyPart>
+				<bodyPartLabel>left ear</bodyPartLabel>
 				<anchorID>LeftEarBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
@@ -145,7 +147,8 @@
 				<!-- Right Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>right ear</bodyPart>
+				<bodyPart>Ear</bodyPart>
+				<bodyPartLabel>right ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<anchorID>RightEar</anchorID>
@@ -158,7 +161,8 @@
 				<!-- Right Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>right ear</bodyPart>
+				<bodyPart>Ear</bodyPart>
+				<bodyPartLabel>right ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<anchorID>RightEarBehindHead</anchorID>
 				<colorChannel>SkinHair</colorChannel>
@@ -173,7 +177,7 @@
 				<anchorID>Tail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>tail</bodyPart>
+				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -218,7 +222,7 @@
 				<anchorID>MaleTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>tail</bodyPart>
+				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -261,7 +265,7 @@
 				<anchorID>FemaleTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>tail</bodyPart>
+				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -304,7 +308,7 @@
 				<path>Parts/None/None</path>
 				<anchorID>BehindBodyTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>tail</bodyPart>
+				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -345,7 +349,7 @@
 				<!-- Body-extending tails -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>tail</bodyPart>
+				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
@@ -624,7 +628,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftArm</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>left arm</bodyPart>
+				<bodyPart>Arm</bodyPart>
+				<bodyPartLabel>left arm</bodyPartLabel>
 				<offsets>
 					<east>
 						<layerOffset>-0.1</layerOffset>
@@ -677,7 +682,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftArmBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>left arm</bodyPart>
+				<bodyPart>Arm</bodyPart>
+				<bodyPartLabel>left arm</bodyPartLabel>
 				<offsets>
 					<east>
 						<bodyTypes>
@@ -725,7 +731,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>RightArm</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>right arm</bodyPart>
+				<bodyPart>Arm</bodyPart>
+				<bodyPartLabel>right arm</bodyPartLabel>
 				<offsets>
 					<east>
 						<layerOffset>-0.1</layerOffset>
@@ -777,7 +784,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>RightArmBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>right arm</bodyPart>
+				<bodyPart>Arm</bodyPart>
+				<bodyPartLabel>right arm</bodyPartLabel>
 				<offsets>
 					<east>
 						<bodyTypes>
@@ -825,7 +833,8 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftEye</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>left eye</bodyPart>
+				<bodyPart>Eye</bodyPart>
+				<bodyPartLabel>left eye</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -835,7 +844,8 @@
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Eye -->
 				<path>Parts/None/None</path>
-				<bodyPart>right eye</bodyPart>
+				<bodyPart>Eye</bodyPart>
+				<bodyPartLabel>right eye</bodyPartLabel>
 				<anchorID>RightEye</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
