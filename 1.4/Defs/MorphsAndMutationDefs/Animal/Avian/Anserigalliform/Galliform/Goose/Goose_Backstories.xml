@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>GoosemorphPurist</defName>
 		<title>anatidaephobe</title>
 		<titleShort>goosemorph</titleShort>
-		<baseDescription>After having a lakeside picnic ruined by geese, [PAWN_nameDef]'s peck injuries were infected with mutagenic pollution in the lake.</baseDescription>
+		<baseDesc>After having a lakeside picnic ruined by geese, [PAWN_nameDef]'s peck injuries were infected with mutagenic pollution in the lake.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

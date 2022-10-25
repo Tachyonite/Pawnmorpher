@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>DuckmorphChef</defName>
 		<title>foodie</title>
 		<titleShort>duckmorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was a patron of a 5-star restaurant. After a mutagenic attack by an eco terrorist group, [PAWN_nameDef] was left looking like [PAWN_pronoun] should be served coated in an orange sauce.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was a patron of a 5-star restaurant. After a mutagenic attack by an eco terrorist group, [PAWN_nameDef] was left looking like [PAWN_pronoun] should be served coated in an orange sauce.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

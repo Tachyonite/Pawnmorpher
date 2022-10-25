@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>PigmorphGeneral</defName>
 		<title>farm pig</title>
 		<titleShort>pigmorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the pig herd. [PAWN_pronoun] escaped during a prize show, just before [PAWN_pronoun] was awarded first place.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the pig herd. [PAWN_pronoun] escaped during a prize show, just before [PAWN_pronoun] was awarded first place.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Fat</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

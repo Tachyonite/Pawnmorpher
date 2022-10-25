@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>OstrichmorphGeneral</defName>
 		<title>track runner</title>
 		<titleShort>ostrichmorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was a runner in desperate need of a 1st place trophy. Unfortunately, the performance enhancing drugs did more than just make [PAWN_nameDef] a better runner.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was a runner in desperate need of a 1st place trophy. Unfortunately, the performance enhancing drugs did more than just make [PAWN_nameDef] a better runner.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

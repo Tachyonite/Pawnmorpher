@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>TurkeymorphGeneral</defName>
 		<title>turkey</title>
 		<titleShort>turkeymorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was genetically modified against [PAWN_pronoun] will to be used in a fancy meal by a rich cannibal.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was genetically modified against [PAWN_pronoun] will to be used in a fancy meal by a rich cannibal.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

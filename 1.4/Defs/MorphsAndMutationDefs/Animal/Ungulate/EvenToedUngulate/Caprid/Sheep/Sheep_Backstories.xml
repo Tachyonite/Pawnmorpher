@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>SheepmorphGeneral</defName>
 		<title>farm sheep</title>
 		<titleShort>sheepmorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the sheep flock. [PAWN_pronoun] escaped before being shorn, and fled with [PAWN_possessive] fleece still on [PAWN_possessive] back.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the sheep flock. [PAWN_pronoun] escaped before being shorn, and fled with [PAWN_possessive] fleece still on [PAWN_possessive] back.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

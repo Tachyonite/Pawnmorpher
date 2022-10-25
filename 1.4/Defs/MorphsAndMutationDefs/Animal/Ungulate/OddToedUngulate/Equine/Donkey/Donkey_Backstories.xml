@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>DonkeymorphGeneral</defName>
 		<title>escaped donkey</title>
 		<titleShort>donkeymorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was mutated into a work-donkey at a less-than-reputable carnival, but was able to escape with some remnant of [PAWN_possessive] humanity intact.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was mutated into a work-donkey at a less-than-reputable carnival, but was able to escape with some remnant of [PAWN_possessive] humanity intact.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

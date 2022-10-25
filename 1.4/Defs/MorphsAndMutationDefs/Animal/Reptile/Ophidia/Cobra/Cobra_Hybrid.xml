@@ -526,14 +526,20 @@
             <generalSettings>
                 <humanRecipeImport>true</humanRecipeImport>
                 <alienPartGenerator>
-                    <aliencrowntypes>
-                        <li>Average_Normal</li>
-                        <li>Average_Wide</li>
-                        <li>Average_Pointy</li>
-                        <li>Narrow_Normal</li>
-                        <li>Narrow_Pointy</li>
-                        <li>Narrow_Wide</li>
-                    </aliencrowntypes>
+                    <headTypes>
+                        <li>Male_AverageNormal</li>
+                        <li>Male_AverageWide</li>
+                        <li>Male_AveragePointy</li>
+                        <li>Male_NarrowNormal</li>
+                        <li>Male_NarrowPointy</li>
+                        <li>Male_NarrowWide</li>
+                        <li>Female_AverageNormal</li>
+                        <li>Female_AverageWide</li>
+                        <li>Female_AveragePointy</li>
+                        <li>Female_NarrowNormal</li>
+                        <li>Female_NarrowPointy</li>
+                        <li>Female_NarrowWide</li>
+                    </headTypes>
                     <colorChannels>
                         <li>
                             <name>hair</name>

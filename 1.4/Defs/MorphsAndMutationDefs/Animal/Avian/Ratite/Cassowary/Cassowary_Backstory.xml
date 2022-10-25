@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>CassowarymorphGeneral</defName>
 		<title>manhunter victim</title>
 		<titleShort>cassowarymorph</titleShort>
-		<baseDescription>[PAWN_nameDef]'s previous colony was attacked by a group of manhunting cassowaries. After the attack, [PAWN_nameDef] woke up like this to a destroyed colony.</baseDescription>
+		<baseDesc>[PAWN_nameDef]'s previous colony was attacked by a group of manhunting cassowaries. After the attack, [PAWN_nameDef] woke up like this to a destroyed colony.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Female</bodyTypeFemale>
 		<bodyTypeMale>Male</bodyTypeMale>
@@ -19,5 +19,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>

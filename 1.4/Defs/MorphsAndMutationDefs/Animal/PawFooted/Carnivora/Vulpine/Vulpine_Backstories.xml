@@ -1,9 +1,9 @@
 <Defs>
-	<AlienRace.BackstoryDef>
+	<AlienRace.AlienBackstoryDef>
 		<defName>FoxmorphGeneral</defName>
 		<title>hunted fox</title>
 		<titleShort>foxmorph</titleShort>
-		<baseDescription>[PAWN_nameDef] was captured by a twisted hunting club that chased people down with dogs, and was looking for a new spin on it. Fortunately, [PAWN_nameDef] became cunning enough to escape again.</baseDescription>
+		<baseDesc>[PAWN_nameDef] was captured by a twisted hunting club that chased people down with dogs, and was looking for a new spin on it. Fortunately, [PAWN_nameDef] became cunning enough to escape again.</baseDesc>
 		<slot>Adulthood</slot>
 		<bodyTypeFemale>Thin</bodyTypeFemale>
 		<bodyTypeMale>Thin</bodyTypeMale>
@@ -31,5 +31,5 @@
 				</morphs>
 			</li>
 		</modExtensions>
-	</AlienRace.BackstoryDef>
+	</AlienRace.AlienBackstoryDef>
 </Defs>
