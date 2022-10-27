@@ -128,18 +128,14 @@
 						<daysToProduce>1</daysToProduce>
 						<amount>8</amount>
 						<chance>30</chance>
-						<statOffsets>
-							<hungerRateFactor>0.3</hungerRateFactor>
-						</statOffsets>
+						<hungerRateFactor>0.3</hungerRateFactor>
 					</li>
 					<li>
 						<minProductionBoost>0.6</minProductionBoost>
 						<daysToProduce>0.5</daysToProduce>
 						<amount>6</amount>
 						<chance>15</chance>
-						<statOffsets>
-							<hungerRateFactor>0.6</hungerRateFactor>
-						</statOffsets>
+						<hungerRateFactor>0.6</hungerRateFactor>
 					</li>
 					<li>
 						<minProductionBoost>0.9</minProductionBoost>
@@ -147,9 +143,7 @@
 						<amount>4</amount>
 						<chance>5</chance>
 						<thought>ProductiveBliss</thought>
-						<statOffsets>
-							<hungerRateFactor>1.0</hungerRateFactor>
-						</statOffsets>
+						<hungerRateFactor>1.0</hungerRateFactor>
 						<hediffGivers>
 							<li Class="HediffGiver_RandomDrugEffect">
 								<hediff>CatatonicBreakdown</hediff>

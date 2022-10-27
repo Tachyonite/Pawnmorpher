@@ -35,6 +35,7 @@ namespace Pawnmorph
         /// </summary>
         public float? minSeverity;
 
+        public float hungerRateFactor = 1f;
 
         /// <summary>
         /// all stat offsets that will be active during this stage 
