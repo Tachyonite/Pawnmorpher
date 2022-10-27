@@ -13,16 +13,16 @@
 		</spawnCategories>
 		<skillGains>
 			<li>
-				<defName>Melee</defName>
-				<amount>5</amount>
+				<key>Melee</key>
+				<value>5</value>
 			</li>
 			<li>
-				<defName>Social</defName>
-				<amount>3</amount>
+				<key>Social</key>
+				<value>3</value>
 			</li>
 			<li>
-				<defName>Intellectual</defName>
-				<amount>-2</amount>
+				<key>Intellectual</key>
+				<value>-2</value>
 			</li>
 		</skillGains>
 		<modExtensions>
@@ -50,16 +50,16 @@
 		</spawnCategories>
 		<skillGains>
 			<li>
-				<defName>Melee</defName>
-				<amount>2</amount>
+				<key>Melee</key>
+				<value>2</value>
 			</li>
 			<li>
-				<defName>Social</defName>
-				<amount>-2</amount>
+				<key>Social</key>
+				<value>-2</value>
 			</li>
 			<li>
-				<defName>Intellectual</defName>
-				<amount>2</amount>
+				<key>Intellectual</key>
+				<value>2</value>
 			</li>
 		</skillGains>
 		<modExtensions>

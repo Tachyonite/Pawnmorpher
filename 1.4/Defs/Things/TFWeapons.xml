@@ -189,11 +189,11 @@
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
 		<HediffToAdd>SyringeRifleHediff</HediffToAdd>
-		<raceBlackList>
-				<li>Mech_Centipede</li>
+		<!-- <raceBlackList>
+				<li>Pawn_Mech_Centipede</li>
 				<li>Mech_Lancer</li>
 				<li>Mech_Scyther</li>
-		</raceBlackList>
+		</raceBlackList> -->
 	</ThingDef>
 
 	<ThingDef ParentName="BaseBullet">
@@ -423,11 +423,11 @@
 				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
 				<AddHediffChance>0.7</AddHediffChance>
 				<HediffToAdd>PawnmorphGunshotTF</HediffToAdd>
-				<raceBlackList>
+				<!-- <raceBlackList>
 					<li>Mech_Centipede</li>
 					<li>Mech_Lancer</li>
 					<li>Mech_Scyther</li>
-				</raceBlackList>
+				</raceBlackList> -->
 			</li>
 		</comps>
 	</ThingDef>
@@ -450,11 +450,11 @@
 			<postExplosionSpawnThingCount>2</postExplosionSpawnThingCount>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
-		<raceBlackList>
-				<li>Mech_Centipede</li>
+		<!-- <raceBlackList>
+				<li>Pawn_Mech_Centipede</li>
 				<li>Mech_Lancer</li>
 				<li>Mech_Scyther</li>
-		</raceBlackList>
+		</raceBlackList> -->
 	</ThingDef>
 	
 	<ThingDef ParentName="MakeableShellBase">

@@ -13,12 +13,12 @@
 		</spawnCategories>
 		<skillGains>
 			<li>
-				<defName>Intellectual</defName>
-				<amount>3</amount>
+				<key>Intellectual</key>
+				<value>3</value>
 			</li>
 			<li>
-				<defName>Social</defName>
-				<amount>2</amount>
+				<key>Social</key>
+				<value>2</value>
 			</li>
 		</skillGains>
 		<modExtensions>

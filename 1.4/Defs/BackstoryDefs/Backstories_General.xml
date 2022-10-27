@@ -179,12 +179,12 @@
 		</spawnCategories>
 		<skillGains>
 			<li>
-				<defName>Shooting</defName>
-				<amount>3</amount>
+				<key>Shooting</key>
+				<value>3</value>
 			</li>
 			<li>
-				<defName>Melee</defName>
-				<amount>3</amount>
+				<key>Melee</key>
+				<value>3</value>
 			</li>
 		</skillGains>
 		<modExtensions>
@@ -211,12 +211,12 @@
 		</spawnCategories>
 		<skillGains>
 			<li>
-				<defName>Social</defName>
-				<amount>-2</amount>
+				<key>Social</key>
+				<value>-2</value>
 			</li>
 			<li>
-				<defName>Animals</defName>
-				<amount>2</amount>
+				<key>Animals</key>
+				<value>2</value>
 			</li>
 		</skillGains>
 		<modExtensions>
