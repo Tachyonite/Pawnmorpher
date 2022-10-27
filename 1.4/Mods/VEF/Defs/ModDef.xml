@@ -4,10 +4,10 @@
         <label>Pawnmorpher</label>
         <description>cross compatiblity</description>
         <ActivateFeatures>
-            <RangedAnimals>true</RangedAnimals>
-            <HediffVerbs>true</HediffVerbs>
-            <IntegratedToggle>true</IntegratedToggle>
-			<ExtraEquipmentVerbs>true</ExtraEquipmentVerbs>
+            <li>RangedAnimals</li>
+            <li>HediffVerbs</li>
+            <li>IntegratedToggle</li>
+            <li>ExtraEquipmentVerbs</li>
         </ActivateFeatures>
     </MVCF.ModDef>
 </Defs>
