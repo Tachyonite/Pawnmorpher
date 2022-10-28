@@ -895,6 +895,7 @@
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
+    <Compile Include="Utilities\HashGiverUtils.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />

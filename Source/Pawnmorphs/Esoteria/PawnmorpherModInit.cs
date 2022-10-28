@@ -42,8 +42,6 @@ namespace Pawnmorph
 
             try
             {
-                // GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
-
                 VerifyMorphDefDatabase();
 
                 InjectGraphics(); 
@@ -632,8 +630,7 @@ namespace Pawnmorph
                 tmpArr[1] = typeof(ThingDef); 
                 foreach (ThingDef thingDef in genRaces)
                 {
-                    tmpArr[0] = thingDef;
-                    // GiveHashMethod.Invoke(null, tmpArr); 
+                    HashGiverUtils.GiveShortHash(thingDef);
                 }
             }
             catch (MissingMethodException e)
@@ -643,10 +640,6 @@ namespace Pawnmorph
                                                e);
             }
         }
-
-
-        // private static readonly MethodInfo GiveHashMethod; 
-
 
         /// <summary>called when the settings are changed</summary>
         public static void NotifySettingsChanged()
