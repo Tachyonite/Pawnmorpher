@@ -396,7 +396,9 @@ namespace Pawnmorph.Hybrids
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
             var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
-            alienComp.headVariant = newGen.headTypes.IndexOf(TransferPawnPart(newGen.headTypes, oldGen.headTypes[alienComp.headVariant]));
+            story.headType = TransferPawnPart(newGen.headTypes.Where(x => x.gender == Gender.None || x.gender == pawn.gender).ToList(), story.headType);
+            
+            // alienComp.headVariant = newGen.headTypes.IndexOf();  oldGen.headTypes[alienComp.headVariant]
             story.bodyType = TransferPawnPart(newGen.bodyTypes, story.bodyType);
             
             // Transfer hair

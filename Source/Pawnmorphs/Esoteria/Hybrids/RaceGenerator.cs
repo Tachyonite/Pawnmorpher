@@ -78,6 +78,7 @@ namespace Pawnmorph.Hybrids
                 baseBodySize = human.baseBodySize,
                 baseHealthScale = human.baseHealthScale,
                 baseHungerRate = human.baseHungerRate,
+                hasGenders = human.hasGenders,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 wildness = animal.wildness/2,
@@ -468,10 +469,11 @@ namespace Pawnmorph.Hybrids
 
         private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
+            GeneralSettings generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace);
             return new ThingDef_AlienRace.AlienSettings
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
-                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
+                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph, generalSettings),
                 styleSettings = human.styleSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
@@ -479,9 +481,21 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph)
+        private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph, GeneralSettings generalSettings)
         {
             GraphicPaths temp = new GraphicPaths();
+
+            temp.head.headtypeGraphics = new List<AlienPartGenerator.ExtendedHeadtypeGraphic>();
+            foreach (HeadTypeDef item2 in generalSettings.alienPartGenerator.HeadTypes)
+            {
+                temp.head.headtypeGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
+                {
+                    headType = item2,
+                    path = item2.graphicPath,
+                });
+            }
+
+
             return temp;
         }
 
