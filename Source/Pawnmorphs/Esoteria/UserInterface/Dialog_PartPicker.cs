@@ -128,6 +128,7 @@ namespace Pawnmorph.UserInterface
 
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
+        private Dictionary<Def, string> _labelCache = new Dictionary<Def, string>();
 
         /// <summary>
         /// Gets the initial size.
@@ -374,21 +375,22 @@ namespace Pawnmorph.UserInterface
             curY += Math.Max(TOGGLE_CLOTHES_BUTTON_SIZE.y, Math.Max(ROTATE_CW_BUTTON_SIZE.y, ROTATE_CCW_BUTTON_SIZE.y));
 
             // Then the crown and body type selectors...
+            string currentHeadLabel = GetHeadtypeLabel(pawn.story.headType);
             Rect crownLabelRect = new Rect(previewRect.x, curY, previewRect.width / 3, Text.CalcHeight(CROWN_LABEL_LOC_STRING.Translate(), previewRect.width / 3));
-            Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(pawn.story.headType.LabelCap.Replace("_", " "), previewRect.width * 2 / 3));
+            Rect crownButtonRect = new Rect(previewRect.x + previewRect.width / 3, curY, previewRect.width * 2 / 3, Text.CalcHeight(currentHeadLabel, previewRect.width * 2 / 3));
             Widgets.Label(crownLabelRect, CROWN_LABEL_LOC_STRING.Translate());
-            if (Widgets.ButtonText(crownButtonRect, pawn.story.headType.LabelCap.Replace("_", " ")))
+            if (Widgets.ButtonText(crownButtonRect, currentHeadLabel))
             {
                 List<FloatMenuOption> options = new List<FloatMenuOption>();
                 ThingDef_AlienRace pawnDef = pawn.def as ThingDef_AlienRace;
-                foreach (HeadTypeDef headType in pawnDef.alienRace.generalSettings.alienPartGenerator.HeadTypes)
+                foreach (HeadTypeDef headType in pawnDef.alienRace.generalSettings.alienPartGenerator.HeadTypes.Where(x => x.gender == Gender.None || x.gender == pawn.gender))
                 {
                     void changeHeadType()
                     {
                         pawn.story.headType = headType;
                         recachePreview = true;
                     }
-                    options.Add(new FloatMenuOption(headType.LabelCap.Replace("_", " "), changeHeadType));
+                    options.Add(new FloatMenuOption(GetHeadtypeLabel(headType), changeHeadType));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
@@ -475,6 +477,24 @@ namespace Pawnmorph.UserInterface
             pawn.story.bodyType = initialBodyType;
             pawn.story.headType = initialCrownType;
             recachePreview = true;
+        }
+
+
+        private string GetHeadtypeLabel(HeadTypeDef headtype)
+        {
+            if (_labelCache.TryGetValue(headtype, out string value) == false)
+            {
+                value = headtype.LabelCap;
+                if (String.IsNullOrWhiteSpace(value))
+                    value = headtype.defName;
+
+                value = value.Replace("_", " ");
+                value = value.Replace(pawn.gender.ToString(), "").Trim();
+                value = value.Replace("Average", "");
+                _labelCache[headtype] = value;
+            }
+
+            return value;
         }
 
         private void RecachePawnMutations()
