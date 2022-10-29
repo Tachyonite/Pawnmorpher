@@ -18,7 +18,6 @@ namespace Pawnmorph.HPatches.Optional
     [HarmonyLib.HarmonyPatch]
     static class PawnScaling
     {
-        static Dictionary<float, AlienGraphicMeshSet> _meshCache;
         static bool _enabled = false;
 
         static bool Prepare(MethodBase original)
@@ -26,7 +25,6 @@ namespace Pawnmorph.HPatches.Optional
             if (original == null && _enabled)
             {
                 StatsUtility.GetEvents(PMStatDefOf.PM_BodySize).StatChanged += PawnScaling_StatChanged;
-                _meshCache = new Dictionary<float, AlienGraphicMeshSet>();
             }
 
             return _enabled;
@@ -74,27 +72,8 @@ namespace Pawnmorph.HPatches.Optional
             AlienComp comp = CompCacher<AlienComp>.GetCompCached(___pawn);
             if (comp != null)
             {
-                float size = GetScale(bodysize);
-
                 // Set draw sizes
                 SetCompScales(comp, ___pawn, bodysize);
-
-                // Generate new pawn textures of target size.
-                if (_meshCache.TryGetValue(size, out var mesh) == false)
-                {
-                    mesh = new AlienGraphicMeshSet()
-                    {
-                        bodySet = new GraphicMeshSet(1.5f * size, 1.5f * size),
-                        headSet = new GraphicMeshSet(1.5f * size, 1.5f * size),
-                        hairSetAverage = new GraphicMeshSet(1.5f * size, 1.5f * size)
-                    };
-                    _meshCache.Add(size, mesh);
-                }
-
-                comp.alienGraphics = mesh;
-                comp.alienHeadGraphics = mesh;
-                comp.alienPortraitGraphics = mesh;
-                comp.alienPortraitHeadGraphics = mesh;
             };
         }
 
