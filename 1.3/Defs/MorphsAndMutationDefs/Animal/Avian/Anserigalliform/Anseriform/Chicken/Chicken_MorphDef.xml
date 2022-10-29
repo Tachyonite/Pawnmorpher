@@ -11,7 +11,7 @@
 		<partialTransformation>PawnmorphChickenTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(200,150,85)</skinColorOverride>
+				<skinColorOverride>(178,100,28)</skinColorOverride>
 				<femaleSkinColorOverride>(255,255,255)</femaleSkinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
