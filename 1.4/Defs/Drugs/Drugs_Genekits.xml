@@ -21,9 +21,7 @@
 			<li Class="CompProperties_UseEffect">
 				<compClass>Pawnmorph.Comp_PlayerPickedRecoloration</compClass>
 			</li>
-			<li Class="CompProperties_UseEffect">
-				<compClass>CompUseEffect_DestroySelf</compClass>
-			</li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
 		<thingSetMakerTags>
 			<li>RewardSpecial</li>

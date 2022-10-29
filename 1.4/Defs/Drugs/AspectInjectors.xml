@@ -44,9 +44,7 @@ Paragon injectors are more powerful than adaption cream, and so can produce even
             <li Class="Pawnmorph.ThingComps.AddAspectEffectProps">
                 <aspect>Paragon</aspect>
             </li>
-            <li Class="CompProperties_UseEffect">
-                <compClass>CompUseEffect_DestroySelf</compClass>
-            </li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
         </comps>
     </ThingDef>
 </Defs>

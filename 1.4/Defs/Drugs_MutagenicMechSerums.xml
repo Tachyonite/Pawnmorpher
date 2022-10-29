@@ -24,9 +24,7 @@
 			<li Class="CompProperties_UseEffect">
 				<compClass>Pawnmorph.Comp_MutagenicFixWorstCondition</compClass>
 			</li>
-			<li Class="CompProperties_UseEffect">
-				<compClass>CompUseEffect_DestroySelf</compClass>
-			</li>
+            <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
 		<thingSetMakerTags>
 			<li>RewardSpecial</li>
