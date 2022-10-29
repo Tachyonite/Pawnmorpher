@@ -5,6 +5,7 @@
         <description>A single-use rocket launcher that fires a massive mutagenic explosive projectile. Good against large groups targets.\n\nVery rapidly mutates anyone caught in the blast radius which is a very painful situation to be in.</description>
         <tickerType>Normal</tickerType>
         <techLevel>Spacer</techLevel>
+        <smeltable>false</smeltable>
         <graphicData>
             <texPath>Things/Item/mutalauncher</texPath>
             <graphicClass>Graphic_Single</graphicClass>
