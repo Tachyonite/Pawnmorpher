@@ -284,7 +284,7 @@ namespace Pawnmorph
 
             //jobs and toils 
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
-            methodsToPatch.Add(typeof(GatheringWorker_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
+            methodsToPatch.Add(typeof(LordJob_Joinable_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
 
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
