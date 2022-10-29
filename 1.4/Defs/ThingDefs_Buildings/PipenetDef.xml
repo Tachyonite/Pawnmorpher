@@ -1,0 +1,47 @@
+<Defs>
+	<PipeSystem.PipeNetDef>
+		<defName>PM_SlurryNet</defName>
+		<resource>
+			<!-- This is the name used in all the comps inspect panels -->
+			<name>Slurry</name>
+			<!-- This is the unit, also used in all comps inspect panels -->
+			<unit>l</unit>
+			<!-- This is the resource color, it will be used by all storages of this net -->
+			<color>(0.31, 1, 0.33)</color>
+			<!-- If this is true, all things connected to net will have this line:
+				 {name} stored in network: {storedAmount} {unit} 
+			 Else: {name} excess (stored) in network: {production} {unit}/d ({storedAmount} {unit})
+			 The latter should only be used if you plan to use CompResourceTrader.-->
+			<onlyShowStored>True</onlyShowStored>
+			<!-- This is the texture that will be used to indicate a building is missing resource -->
+			<offTexPath>Things/Item/Drug/Slurry/Slurry_a</offTexPath>
+		</resource>
+		<!-- All the pipe defs that can be part of this net -->
+		<pipeDefs>
+			<li>PM_SlurryPipe</li>
+		</pipeDefs>
+		<!-- Automatically create a designator that will only deconstructs net pipe(s) -->
+		<designator>
+			<!-- Texture-->
+			<deconstructIconPath>UI/MutagenicHazardLow</deconstructIconPath>
+			<!-- Designation category -->
+			<designationCategoryDef>GR_GeneticsTab</designationCategoryDef>
+		</designator>
+		<!-- The overlay show up when you select any building that connect to the net -->
+		<overlayOptions>
+			<!-- <transmitterAtlas></transmitterAtlas> If you don't want to use the premade atlas -->
+			<!-- The color of the overlay -->
+			<overlayColor>(0.31, 1, 0.33)</overlayColor>
+		</overlayOptions>
+		<!-- If you want the net to automatically connect and refuel other buildings -->
+		<linkToRefuelables>
+			<!-- You can add as many as you want -->
+			<li>
+				<!-- Connect to all chemfuel building -->
+				<thing>MechaniteSlurry</thing>
+				<!-- 1 in pipenet: 1 when refueling -->
+				<ratio>1</ratio>
+			</li>
+		</linkToRefuelables>
+	</PipeSystem.PipeNetDef>
+</Defs>

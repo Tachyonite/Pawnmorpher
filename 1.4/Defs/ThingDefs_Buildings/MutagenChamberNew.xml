@@ -48,8 +48,8 @@
             </li>
             <li Class="CompProperties_Flickable" />
             <li Class="CompProperties_Explosive">
-                <explosiveRadius>2.66</explosiveRadius>
-                <explosiveDamageType>Flame</explosiveDamageType>
+                <explosiveRadius>3</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
             </li>
             <li Class="CompProperties_Refuelable">
                 <fuelConsumptionRate>1.7</fuelConsumptionRate>
@@ -112,8 +112,11 @@
 
 			<li Class="Pawnmorph.ThingComps.DrawStoredPawnProperties">
 				<offset>(0,0,0.25)</offset>
-    <layer>PawnRope</layer>
+                <layer>PawnRope</layer>
             </li>
+			<li Class="PipeSystem.CompProperties_Resource">
+				<pipeNet>PM_SlurryNet</pipeNet>
+			</li>
         </comps>
         <designationCategory>GR_GeneticsTab</designationCategory>
         <building>
