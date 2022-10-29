@@ -294,6 +294,7 @@ namespace Pawnmorph
 
             //interaction patch
             methodsToPatch.Add(typeof(HealthCardUtility).GetMethod("CreateSurgeryBill", STATIC_FLAGS));
+            methodsToPatch.Add(AccessTools.Method(typeof(RimWorld.FloatMenuMakerMap), nameof(RimWorld.FloatMenuMakerMap.ChoicesAtFor)));
             PatchRescueMessage(methodsToPatch);
 
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
