@@ -1,7 +1,7 @@
 <Defs>
 	<PipeSystem.PipeNetDef>
 		<defName>PM_SlurryNet</defName>
-        <transferAmount>0.5</transferAmount> <!-- Amount transferred per 100 ticks -->
+        <transferAmount>1</transferAmount> <!-- Amount transferred per 100 ticks -->
 		<resource>
 			<name>Slurry</name>
 			<unit>l</unit>
