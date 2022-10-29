@@ -35,9 +35,6 @@
                 <explosiveRadius>8</explosiveRadius>
                 <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
             </li>
-            <li Class="Pawnmorph.SlurryNet.SlurryNetDrawerProps">
-                <slurryDrawPerDay>30</slurryDrawPerDay>
-            </li>
 			<li Class="PipeSystem.CompProperties_Resource">
 				<pipeNet>PM_SlurryNet</pipeNet>
 			</li>
