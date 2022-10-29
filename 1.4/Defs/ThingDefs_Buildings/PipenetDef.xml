@@ -1,6 +1,7 @@
 <Defs>
 	<PipeSystem.PipeNetDef>
 		<defName>PM_SlurryNet</defName>
+        <transferAmount>0.1</transferAmount>
 		<resource>
 			<!-- This is the name used in all the comps inspect panels -->
 			<name>Slurry</name>
