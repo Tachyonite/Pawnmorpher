@@ -3,13 +3,13 @@
         <defName>PM_SlurryPipe</defName>
         <label>slurry pipe</label>
         <description>A pipe that transmits slurry.</description>
-        <thingClass>Building</thingClass>
+        <thingClass>PipeSystem.Building_Pipe</thingClass>
         <category>Building</category>
 		<tickerType>Normal</tickerType>
         <graphicData>
             <texPath>Things/Building/MutagenPipe_Atlas</texPath>
             <graphicClass>Graphic_Single</graphicClass>
-            <linkType>Transmitter</linkType>
+            <linkType>Basic</linkType>
             <linkFlags>
                 <li>PowerConduit</li>
             </linkFlags>
@@ -27,7 +27,8 @@
                 <texPath>Things/Building/MutagenPipe_Atlas</texPath>
             </blueprintGraphicData>
         </building>
-        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <drawerType>MapMeshOnly</drawerType>
+        <altitudeLayer>Conduits</altitudeLayer>
         <passability>Standable</passability>
         <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
         <statBases>
@@ -48,7 +49,7 @@
                 <glowRadius>1</glowRadius>
                 <glowColor>(0, 255, 0,0)</glowColor>
             </li>
-			<li Class="CompProperties_Explosive">
+			<!--<li Class="CompProperties_Explosive">
 				<explosiveRadius>0.5</explosiveRadius>
 				<explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
 				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
@@ -59,12 +60,15 @@
 					<min>30</min>
 					<max>60</max>
 				</wickTicks>
-			</li>
+			</li>-->
         </comps>
         <researchPrerequisites>
             <li>PM_MutagenStorage</li>
         </researchPrerequisites>
         <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <placeWorkers>
+          <li>PipeSystem.PlaceWorker_Pipe</li>
+        </placeWorkers>
         <rotatable>false</rotatable>
         <selectable>true</selectable>
         <neverMultiSelect>true</neverMultiSelect>
