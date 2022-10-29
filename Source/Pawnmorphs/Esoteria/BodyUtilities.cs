@@ -140,8 +140,7 @@ namespace Pawnmorph
         {
             if (record == null) throw new ArgumentNullException(nameof(record));
             if (p == null) throw new ArgumentNullException(nameof(p));
-			if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
-				return record.def.hitPoints;
+
             var mHealth = trueNormal ? GetPartMaxHealth( record, p) :  record.def.GetMaxHealth(p);
             var curHealth = p.health?.hediffSet?.GetPartHealth(record) ?? 0;
             return curHealth / mHealth;
@@ -159,6 +158,9 @@ namespace Pawnmorph
         {
             if (p == null) throw new ArgumentNullException(nameof(p));
             if (record == null) throw new ArgumentNullException(nameof(record));
+
+            if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
+                return record.def.hitPoints;
 
             MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
             if (mTracker == null) 

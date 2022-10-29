@@ -7,7 +7,8 @@
 		<partialTransformation>PawnmorphTerrierTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(200,165,65)</skinColorOverride>
+				<skinColorOverride>(114,114,114)</skinColorOverride>
+				<hairColorOverride>(229,166,89)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
