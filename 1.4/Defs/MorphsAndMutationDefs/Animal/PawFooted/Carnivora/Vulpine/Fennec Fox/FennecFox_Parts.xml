@@ -4,7 +4,8 @@
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox muzzle</label>
 		<graphics>
-			<Muzzle>Parts/FoxFennec/FennecFox_Muzzle</Muzzle>
+			<MuzzleMale>Parts/FoxFennec/FennecFox_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/FoxFennec/FennecFox_Muzzle_Female</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -14,9 +15,7 @@
 		<label>fennec fox ear</label>
 		<graphics>
 			<LeftEar>Parts/FoxFennec/FennecFox_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/FoxFennec/FennecFox_Ear_Left_Behind</LeftEarBehind>
 			<RightEar>Parts/FoxFennec/FennecFox_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/FoxFennec/FennecFox_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
