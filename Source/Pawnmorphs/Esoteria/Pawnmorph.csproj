@@ -642,7 +642,6 @@
     <Compile Include="PMResearchProjectDefOf.cs" />
     <Compile Include="PMSoundDefOf.cs" />
     <Compile Include="PMStatDefOf.cs" />
-    <Compile Include="PMTexButton.cs" />
     <Compile Include="PMTextures.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />

@@ -44,21 +44,21 @@ namespace Pawnmorph.ITabs
             if (BillUtility.Clipboard == null)
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegionByKey(rect2, "PasteBillTip");
             }
             else if (!SelTable.def.AllRecipes.Contains(BillUtility.Clipboard.recipe) || !BillUtility.Clipboard.recipe.AvailableNow || !BillUtility.Clipboard.recipe.AvailableOnNow(SelTable))
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegionByKey(rect2, "ClipboardBillNotAvailableHere");
             }
             else if (SelTable.billStack.Count >= 15)
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 if (Mouse.IsOver(rect2))
                 {
@@ -67,7 +67,7 @@ namespace Pawnmorph.ITabs
             }
             else
             {
-                if (Widgets.ButtonImageFitted(rect2, PMTexButton.Paste, Color.white))
+                if (Widgets.ButtonImageFitted(rect2, TexButton.Paste, Color.white))
                 {
                     Bill bill = BillUtility.Clipboard.Clone();
                     bill.InitializeAfterClone();
