@@ -532,8 +532,6 @@ namespace Pawnmorph
         {
             var pType = typeof(AlienPartGenerator.BodyAddon);
             var shaderField = pType.GetField("shaderType", BindingFlags.Instance | BindingFlags.NonPublic);
-            var prioritizationField = pType.GetField("prioritization", BindingFlags.Instance | BindingFlags.NonPublic);
-            var colorChannelField = pType.GetField("colorChannel", BindingFlags.Instance | BindingFlags.NonPublic);
             string aID = (addon as TaggedBodyAddon)?.anchorID; 
             var copy = new TaggedBodyAddon()
             { 
@@ -556,8 +554,16 @@ namespace Pawnmorph
                 layerInvert = addon.layerInvert,
                 variantCount = addon.variantCount,
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
+                ageGraphics = addon.ageGraphics.MakeSafe().ToList(),
+                damageGraphics = addon.damageGraphics.MakeSafe().ToList(),
+                bodytypeGraphics = addon.bodytypeGraphics.MakeSafe().ToList(),
+                genderGraphics = addon.genderGraphics.MakeSafe().ToList(),
+                headtypeGraphics = addon.headtypeGraphics.MakeSafe().ToList(),
+                traitGraphics = addon.traitGraphics.MakeSafe().ToList(),
                 alignWithHead = addon.alignWithHead,
                 
+                ColorChannel = addon.ColorChannel,
+
 
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
                 defaultOffsets = addon.defaultOffsets,
@@ -567,8 +573,6 @@ namespace Pawnmorph
             };
 
             shaderField.SetValue(copy, addon.ShaderType);
-            prioritizationField.SetValue(copy, prioritizationField.GetValue(addon));
-            colorChannelField.SetValue(copy, addon.ColorChannel);
 
             
             return copy;
