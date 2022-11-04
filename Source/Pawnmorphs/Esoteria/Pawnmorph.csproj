@@ -594,6 +594,7 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />

@@ -33,4 +33,5 @@
 	<PMOptionalPatchesButton>Toggle optional patches.</PMOptionalPatchesButton>
 	<PMOptionalPatchesHeader>Toggle optional patches.</PMOptionalPatchesHeader>
 	<PMOptionalPatchesText>Enable or disable patches that are not strictly necessary for the mod to function.\nHover over a patch to see description.</PMOptionalPatchesText>
+	<PMFailedToParse>Failed to parse.</PMFailedToParse>
 </LanguageData>
