@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
@@ -19,6 +20,8 @@ namespace Pawnmorph
     /// <seealso cref="Verse.HediffWithComps" />
     public class Hediff_AddedMutation : Hediff_StageChanges
     {
+        private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
+
         /// <summary>
         ///     The mutation description
         /// </summary>
@@ -37,8 +40,13 @@ namespace Pawnmorph
 
         private bool _waitingForUpdate;
 
-        private int _currentStageIndex = -1;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Hediff_AddedMutation()
+        {
+            TickBase = false;
+        }
 
         /// <summary>
         ///     Gets the definition.
@@ -148,17 +156,7 @@ namespace Pawnmorph
         ///     Gets a value indicating whether should be removed.
         /// </summary>
         /// <value><c>true</c> if should be removed; otherwise, <c>false</c>.</value>
-        public override bool ShouldRemove
-        {
-            get
-            {
-                foreach (HediffComp hediffComp in comps.MakeSafe())
-                    if (hediffComp.CompShouldRemove)
-                        return true;
-
-                return shouldRemove;
-            }
-        }
+        public override bool ShouldRemove => shouldRemove;
 
         /// <summary>Gets the extra tip string .</summary>
         /// <value>The extra tip string .</value>
@@ -207,7 +205,27 @@ namespace Pawnmorph
         /// </value>
         public bool ProgressionHalted => SeverityAdjust?.Halted == true;
 
+        /// <summary>
+        ///     called every tick
+        /// </summary>
+        public override void Tick()
+        {
+            // We don't use any of the vanilla functionality so there is no reason to propagate the tick further down
+            ageTicks++;
+            base.Tick();
 
+            foreach (Abilities.MutationAbility ability in abilities)
+            {
+                ability.Tick();
+            }
+
+            if (shouldRemove == false && pawn.IsHashIntervalTick(10))
+            {
+                foreach (HediffComp hediffComp in comps.MakeSafe())
+                    if (hediffComp.CompShouldRemove)
+                        shouldRemove = true;
+            }
+        }
 
         /// <summary>
         /// Called when the hediff stage changes.
@@ -216,11 +234,47 @@ namespace Pawnmorph
         {
             if (newStage is MutationStage mStage)
             {
+                GenerateAbilities(mStage);
+
                 //check for aspect skips 
                 if (mStage.SkipAspects.Any(e => e.Satisfied(pawn)))
                 {
                     SkipStage();
                     return;
+                }
+            }
+
+            if (newStage is IExecutableStage exeStage)
+                exeStage.EnteredStage(this);
+        }
+
+
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+
+            foreach (Abilities.MutationAbility item in abilities)
+                yield return item.Gizmo;
+        }
+
+        private void GenerateAbilities(HediffStage stage)
+        {
+            if (stage is MutationStage mutationStage)
+            {
+                abilities = new List<Abilities.MutationAbility>();
+                if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
+                    return;
+
+                //Abilities.MutationAbility ability;
+                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
+                {
+                    if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
+                    {
+                        Abilities.MutationAbility ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
+                        abilities.Add(ability);
+                        ability.Initialize(pawn);
+                    }
                 }
             }
         }
@@ -242,8 +296,8 @@ namespace Pawnmorph
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref _currentStageIndex, nameof(_currentStageIndex), -1);
             Scribe_Values.Look(ref shouldRemove, nameof(shouldRemove));
+            Scribe_Collections.Look(ref abilities, nameof(abilities));
 
             Scribe_Deep.Look(ref _causes, "causes");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && Part == null)
@@ -252,7 +306,16 @@ namespace Pawnmorph
                 pawn.health.hediffSet.hediffs.Remove(this);
                 return;
             }
-            
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                // Null if not previously saved.
+                if (abilities == null)
+                    abilities = new List<Abilities.MutationAbility>();
+
+                GenerateAbilities(base.CurStage);
+            }
+
             if (CurrentMutationStage != null)
                 CurrentMutationStage.OnLoad(this);
         }
@@ -372,37 +435,6 @@ namespace Pawnmorph
         public void ResumeAdaption()
         {
             SeverityAdjust?.Restart();
-        }
-
-        /// <summary>
-        ///     called every tick
-        /// </summary>
-        public override void Tick()
-        {
-            base.Tick();
-
-            if (_currentStageIndex != CurStageIndex)
-            {
-                _currentStageIndex = CurStageIndex;
-                OnStageChanges();
-            }
-        }
-
-        /// <summary>
-        ///     Called when the hediff stage changes.
-        /// </summary>
-        protected virtual void OnStageChanges()
-        {
-            if (CurStage is MutationStage mStage)
-                //check for aspect skips 
-                if (mStage.SkipAspects.Any(e => e.Satisfied(pawn)))
-                {
-                    SkipStage();
-                    return;
-                }
-
-
-            if (CurStage is IExecutableStage exeStage) exeStage.EnteredStage(this);
         }
 
         private void SkipStage()
