@@ -12,10 +12,10 @@
 		<pipeDefs>
 			<li>PM_SlurryPipe</li>
 		</pipeDefs>
-		<designator>
+		<!-- <designator>
 			<deconstructIconPath>UI/MutagenicHazardLow</deconstructIconPath>
 			<designationCategoryDef>GR_GeneticsTab</designationCategoryDef>
-		</designator>
+		</designator> -->
 		<overlayOptions>
 			<overlayColor>(0.31, 1, 0.33)</overlayColor>
 		</overlayOptions>
