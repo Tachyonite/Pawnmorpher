@@ -216,6 +216,13 @@ namespace Pawnmorph.Hybrids
 
 
 
+            ILookup<string, string> animalAssociationLookup = null;
+            if (PawnmorpherMod.Settings.animalAssociations != null)
+            {
+                animalAssociationLookup = PawnmorpherMod.Settings.animalAssociations.ToLookup(x => x.Value, x => x.Key);
+            }
+
+
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
@@ -234,7 +241,20 @@ namespace Pawnmorph.Hybrids
 
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
                 }
-                
+
+
+
+                if (animalAssociationLookup != null)
+                {
+                    if (animalAssociationLookup.Contains(morphDef.defName))
+                    {
+                        morphDef.associatedAnimals.AddRange(animalAssociationLookup[morphDef.defName].Select(x => DefDatabase<ThingDef>.GetNamed(x)));
+                    }
+                }
+
+
+
+
 
 
                 CreateImplicitMeshes(race);

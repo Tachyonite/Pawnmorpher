@@ -67,6 +67,9 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
                 ShowOptionalPatches();
 
+            if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
+                ShowAnimalAssociations();
+
 
             listingStandard.EndSection(checkBoxSection);
 
@@ -132,6 +135,16 @@ namespace Pawnmorph
 
             UserInterface.Settings.Dialog_OptionalPatches raceReplacements = new UserInterface.Settings.Dialog_OptionalPatches(settings.optionalPatches);
             Find.WindowStack.Add(raceReplacements);
+        }
+
+
+        private void ShowAnimalAssociations()
+        {
+            if (settings.animalAssociations == null)
+                settings.animalAssociations = new Dictionary<string, string>();
+
+            UserInterface.Settings.Dialog_AnimalAssociations animalAssociations = new UserInterface.Settings.Dialog_AnimalAssociations(settings.animalAssociations);
+            Find.WindowStack.Add(animalAssociations);
         }
 
         /// <summary>
