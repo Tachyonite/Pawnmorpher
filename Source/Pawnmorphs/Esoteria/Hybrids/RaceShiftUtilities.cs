@@ -340,7 +340,7 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
-            if (graphicsComp == null)
+            if (graphicsComp == null || graphicsComp.Scanned == false)
                 return;
 
             //story.bodyType = graphicsComp.BodyType;

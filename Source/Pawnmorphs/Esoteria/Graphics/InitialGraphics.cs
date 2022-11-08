@@ -226,6 +226,11 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="InitialGraphicsComp"/> is has scanned graphics that can be restored.
+        /// </summary>
+        public bool Scanned => _scanned;
+
         private Pawn Pawn => (Pawn) parent;
 
         /// <summary>Gets the debug string.</summary>
