@@ -249,6 +249,7 @@ namespace Pawnmorph.Hybrids
                     if (animalAssociationLookup.Contains(morphDef.defName))
                     {
                         morphDef.associatedAnimals.AddRange(animalAssociationLookup[morphDef.defName].Select(x => DefDatabase<ThingDef>.GetNamed(x)));
+                        morphDef.ResolveReferences();
                     }
                 }
 
