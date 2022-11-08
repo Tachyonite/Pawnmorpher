@@ -67,7 +67,7 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
                 ShowOptionalPatches();
 
-            if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
+            if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
                 ShowAnimalAssociations();
 
 

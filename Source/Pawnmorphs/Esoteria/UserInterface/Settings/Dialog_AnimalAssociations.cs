@@ -69,13 +69,13 @@ namespace Pawnmorph.UserInterface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMRaceReplacementHeader".Translate());
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMAnimalAssociationsHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "PMRaceReplacementText".Translate());
+            Widgets.Label(descriptionRect, "PMAnimalAssociationsText".Translate());
 
             curY += descriptionRect.height;
 
