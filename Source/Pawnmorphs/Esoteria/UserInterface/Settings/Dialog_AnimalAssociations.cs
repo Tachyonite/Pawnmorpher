@@ -1,4 +1,5 @@
 ﻿using HugsLib.Utils;
+using Pawnmorph.Chambers;
 using Pawnmorph.Utilities.Collections;
 using System;
 using System.Collections;
@@ -12,7 +13,7 @@ using Verse.Sound;
 
 namespace Pawnmorph.UserInterface.Settings
 {
-    internal class Dialog_RaceReplacements : Window
+    internal class Dialog_AnimalAssociations : Window
     {
         private const string APPLY_BUTTON_LOC_STRING = "ApplyButtonText";
         private const string RESET_BUTTON_LOC_STRING = "ResetButtonText";
@@ -24,19 +25,20 @@ namespace Pawnmorph.UserInterface.Settings
         private const float SPACER_SIZE = 17f;
 
 
-        private IEnumerable<AlienRace.ThingDef_AlienRace> _aliens;
-        private Dictionary<MorphDef, AlienRace.ThingDef_AlienRace> _selectedReplacements;
+        private IEnumerable<ThingDef> _animals;
         private Dictionary<string, string> _settingsReference;
-        private List<MorphDef> _patchedMorphs;
+        private Dictionary<string, string> _settingsReferenceCache;
+        private List<MorphDef> _morphs;
 
 
-        FilterListBox<MorphDef> _morphListBox;
+        FilterListBox<ThingDef> _animalListBox;
 
-        public Dialog_RaceReplacements(Dictionary<string, string> settingsReference)
+        public Dialog_AnimalAssociations(Dictionary<string, string> settingsReference)
         {
             _settingsReference = settingsReference;
-            _selectedReplacements = new Dictionary<MorphDef, AlienRace.ThingDef_AlienRace>();
-            _patchedMorphs = Hybrids.RaceGenerator.ExplicitPatchedRaces;
+            _settingsReferenceCache = settingsReference.ToDictionary(x => x.Key, x => x.Value);
+            resizeable = true;
+            draggable = true;
         }
 
         public override void PostOpen()
@@ -47,31 +49,19 @@ namespace Pawnmorph.UserInterface.Settings
 
         private void RefreshAliens()
         {
-            IEnumerable<AlienRace.ThingDef_AlienRace> aliens = DefDatabase<AlienRace.ThingDef_AlienRace>.AllDefsListForReading;
+            _settingsReferenceCache.Clear();
+            _settingsReferenceCache.AddRange(_settingsReference);
 
-            aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDef.Named("Human"));
+            _morphs = DefDatabase<MorphDef>.AllDefsListForReading;
 
-            // Exclude implicit and uninfectable morph races.
-            aliens = aliens.Except(Hybrids.RaceGenerator.ImplicitRaces);
-            aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
+            List<ThingDef> currentAssociated = _morphs.SelectMany(x => x.AllAssociatedAnimals)
+                                                      .Where(x => _settingsReferenceCache.ContainsKey(x.defName) == false)
+                                                      .ToList();
 
+            _animals = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsValidAnimal() && currentAssociated.Contains(x) == false).ToList();
 
-            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs.OrderBy<MorphDef, string>(x => x.LabelCap, StringComparer.CurrentCulture);
-
-            // Only include the existing options if they match current values (meaning they have not been patched by other mods)
-            _selectedReplacements = morphs.ToDictionary(x => x, x =>
-            {
-                if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && _patchedMorphs.Contains(x) == false)
-                {
-                    return x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace;
-                }
-
-                return null;
-            });
-            _aliens = aliens.Except(_patchedMorphs.Select(x => x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace));
-
-            var morphFiltered = new ListFilter<MorphDef>(morphs, (item, filterText) => item.LabelCap.ToString().ToLower().Contains(filterText));
-            _morphListBox = new FilterListBox<MorphDef>(morphFiltered);
+            var animalFilterList = new ListFilter<ThingDef>(_animals, (item, filterText) => (item.LabelCap.ToString() + item.modContentPack?.Name ?? "").ToLower().Contains(filterText));
+            _animalListBox = new FilterListBox<ThingDef>(animalFilterList);
         }
 
 
@@ -79,13 +69,13 @@ namespace Pawnmorph.UserInterface.Settings
         {
             float curY = 0;
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMRaceReplacementHeader".Translate());
+            Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), "PMAnimalAssociationsHeader".Translate());
 
             curY += Text.LineHeight;
 
             Text.Font = GameFont.Small;
             Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-            Widgets.Label(descriptionRect, "PMRaceReplacementText".Translate());
+            Widgets.Label(descriptionRect, "PMAnimalAssociationsText".Translate());
 
             curY += descriptionRect.height;
 
@@ -93,26 +83,25 @@ namespace Pawnmorph.UserInterface.Settings
 
             float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - SPACER_SIZE;
 
-
-            _morphListBox.Draw(inRect, 0, curY, totalHeight, (morph, listing) =>
+            MorphDef morphDef = null;
+            _animalListBox.Draw(inRect, 0, curY, totalHeight, (animal, listing) =>
             {
-                if (_patchedMorphs.Contains(morph))
-                {
-                    listing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack?.Name})", "PMRaceReplacementLocked".Translate());
-                    return;
-                }
+                morphDef = null;
 
-                ThingDef alien = _selectedReplacements[morph];
-                if (listing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack?.Name})"))
+                if (_settingsReferenceCache.TryGetValue(animal.defName, out string morph))
+                    morphDef = _morphs.FirstOrDefault(x => x.defName == morph);
+
+                if (listing.ButtonTextLabeled($"{animal.LabelCap} ({animal.modContentPack?.Name})", morphDef?.LabelCap ?? morph ))
                 {
                     List<FloatMenuOption> options = new List<FloatMenuOption>();
 
-                    if (alien != null)
-                        options.Add(new FloatMenuOption(" ", () => _selectedReplacements[morph] = null));
+                    // If something is already selected, add deselect option.
+                    if (morph != null)
+                        options.Add(new FloatMenuOption(" ", () => _settingsReferenceCache[animal.defName] = null));
 
-                    foreach (var alienItem in _aliens.Except(_selectedReplacements.Values))
+                    foreach (var morphItem in _morphs.Where(x => _settingsReferenceCache.Values.Contains(x.defName) == false))
                     {
-                        options.Add(new FloatMenuOption($"{alienItem.LabelCap} ({alienItem.modContentPack?.Name})", () => _selectedReplacements[morph] = alienItem));
+                        options.Add(new FloatMenuOption($"{morphItem.LabelCap}", () => _settingsReferenceCache[animal.defName] = morphItem.defName));
                     }
 
                     if (options.Count > 0)
@@ -150,7 +139,7 @@ namespace Pawnmorph.UserInterface.Settings
 
         private void ShowRawInput()
         {
-            Dictionary<string, string> currentValue = _selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName);
+            Dictionary<string, string> currentValue = _settingsReferenceCache.Where(x => x.Value != null).ToDictionary(x => x.Key, x => x.Value);
             string stringValue = string.Join(",", currentValue);
             Dialog_Textbox textBox = new Dialog_Textbox(stringValue, true, new Vector2(300, 100));
 
@@ -159,7 +148,7 @@ namespace Pawnmorph.UserInterface.Settings
                 try
                 {
                     string[] items = value.Split(new[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
-                    _settingsReference = items.Select(x => x.Split(',')).Where(x => x[1].Length > 0).ToDictionary(y => y[0], y => y[1]);
+                    _settingsReferenceCache = items.Select(x => x.Split(',')).Where(x => x[1].Length > 0).ToDictionary(y => y[0], y => y[1]);
                     RefreshAliens();
                 }
                 catch (Exception)
@@ -178,7 +167,7 @@ namespace Pawnmorph.UserInterface.Settings
         {
             Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
             _settingsReference.Clear();
-            _settingsReference.AddRange(_selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName));
+            _settingsReference.AddRange(_settingsReferenceCache);
         }
 
         public override void OnCancelKeyPressed()
