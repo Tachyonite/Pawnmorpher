@@ -594,6 +594,7 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
@@ -881,6 +882,7 @@
     <Compile Include="UserInterface\Preview\PawnPreview.cs" />
     <Compile Include="UserInterface\Preview\ThingPreview.cs" />
     <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_AnimalAssociations.cs" />
     <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
     <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
     <Compile Include="UserInterface\TableBox\ITableRow.cs" />
