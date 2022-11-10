@@ -84,7 +84,6 @@ namespace Pawnmorph.SapienceStates
                                                "LetterHediffFromPermanentTF".Translate(Pawn.LabelShort).CapitalizeFirst(),
                                                LetterDefOf.NegativeEvent, Pawn);
 
-            Pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
         }
 
         /// <summary>
