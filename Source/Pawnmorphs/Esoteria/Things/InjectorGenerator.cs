@@ -140,7 +140,10 @@ namespace Pawnmorph.Things
                 tradeTags = props.traderTags,
                 costList = props.CostList.ToList(),
                 recipeMaker = props.RecipeMaker,
+                smallVolume = true,
+                orderedTakeGroup = PMThingDefOf.MechaniteSlurry.orderedTakeGroup,
                 
+
                 socialPropernessMatters = true,
                 comps = comps
             };
@@ -190,6 +193,9 @@ namespace Pawnmorph.Things
                 cat.ResolveReferences();
             }
 
+
+            foreach (var item in DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.building?.fixedStorageSettings != null))
+                item.building.fixedStorageSettings.filter.ResolveReferences();
         }
 
         private static List<StatModifier> GetStatModifiers([NotNull] MorphInjectorProperties props)
