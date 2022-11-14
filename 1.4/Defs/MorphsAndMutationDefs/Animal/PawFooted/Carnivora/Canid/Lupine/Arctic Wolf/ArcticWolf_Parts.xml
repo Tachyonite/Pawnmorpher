@@ -4,8 +4,8 @@
 		<defName>EtherArcticWolfJaw</defName>
 		<label>arctic wolf muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/Wolf/Wolf_Muzzle</MuzzleMale>
-			<MuzzleFemale>Parts/Wolf/Wolf_Female_Muzzle</MuzzleFemale>
+			<MuzzleMale>Parts/WolfArctic/Awolf_Muzzle</MuzzleMale>
+			<MuzzleFemale>Parts/WolfArctic/Awolf_Female_Muzzle</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -14,10 +14,10 @@
 		<defName>EtherArcticWolfEar</defName>
 		<label>arctic wolf ear</label>
 		<graphics>
-			<LeftEar>Parts/Wolf/Wolf_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Wolf/Wolf_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Wolf/Wolf_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Wolf/Wolf_Ear_Right_Behind</RightEarBehindHead>
+			<LeftEar>Parts/WolfArctic/Awolf_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/WolfArctic/Awolf_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/WolfArctic/Awolf_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/WolfArctic/Awolf_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -26,7 +26,7 @@
 		<defName>EtherArcticWolfTail</defName>
 		<label>arctic wolf tail</label>
 		<graphics>
-			<Tail>Parts/Wolf/Wolf_Tail</Tail>
+			<Tail>Parts/WolfArctic/Awolf_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
