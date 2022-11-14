@@ -11,7 +11,7 @@
 		<fullTransformation>PawnmorphArcticFoxTF</fullTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(220,220,220)</skinColorOverride>
+				<skinColorOverride>(255,255,255)</skinColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>
