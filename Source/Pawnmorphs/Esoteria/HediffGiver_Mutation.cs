@@ -127,7 +127,7 @@ namespace Pawnmorph
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
             if (addLogEntry && added && partsToAffect != null)
             {
-                AddMutationLogFor(pawn);
+                AddMutationLogFor(pawn, mutagenDef);
             }
 
             if (added)
@@ -141,9 +141,9 @@ namespace Pawnmorph
             return added;
         }
 
-        private void AddMutationLogFor(Pawn pawn)
+        private void AddMutationLogFor(Pawn pawn, MutagenDef mutagenDef)
         {
-            var log = new MutationLogEntry(pawn, hediff, null, partsToAffect);
+            var log = new MutationLogEntry(pawn, hediff, mutagenDef, partsToAffect);
             Find.PlayLog.Add(log);
         }
 
@@ -177,7 +177,7 @@ namespace Pawnmorph
             var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
             pawn.health.AddHediff(hediffInst, recordToAdd);
             DoMutationAddedEffects(pawn);
-            AddMutationLogFor(pawn);
+            AddMutationLogFor(pawn, mutagen);
 
             return true; 
         }

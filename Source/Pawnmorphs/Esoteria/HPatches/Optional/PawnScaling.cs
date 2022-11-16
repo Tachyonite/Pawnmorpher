@@ -1,4 +1,5 @@
-﻿using Pawnmorph.Utilities;
+﻿using AlienRace;
+using Pawnmorph.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,19 +42,24 @@ namespace Pawnmorph.HPatches.Optional
         }
 
         // Updates all draw sizes on comp to specified size.
-        private static void SetCompScales(AlienComp comp, float size)
+        private static void SetCompScales(AlienComp comp, Pawn pawn, float bodysize)
         {
-            comp.customDrawSize = new Vector2(size, size);
-            comp.customHeadDrawSize = new Vector2(size, size);
-            comp.customPortraitDrawSize = new Vector2(size, size);
-            comp.customPortraitHeadDrawSize = new Vector2(size, size);
+            float sizeOffset = GetScale(bodysize) / pawn.RaceProps.baseBodySize;
+
+            var partGenerator = (pawn.def as ThingDef_AlienRace).alienRace.generalSettings.alienPartGenerator;
+            Vector2 sizeOffsetVector = new Vector2(sizeOffset, sizeOffset);
+
+            comp.customDrawSize = partGenerator.customDrawSize * sizeOffsetVector;
+            comp.customHeadDrawSize = partGenerator.customHeadDrawSize * sizeOffsetVector;
+            comp.customPortraitDrawSize = partGenerator.customPortraitDrawSize * sizeOffsetVector;
+            comp.customPortraitHeadDrawSize = partGenerator.customPortraitHeadDrawSize * sizeOffsetVector;
         }
 
         // Override HAR comp scales.
         [HarmonyLib.HarmonyPatch(typeof(AlienComp), nameof(AlienComp.PostSpawnSetup)), HarmonyLib.HarmonyPostfix]
         private static void PostSpawnSetup(bool respawningAfterLoad, AlienComp __instance)
         {
-            SetCompScales(__instance, GetScale(((Pawn)__instance.parent).BodySize));
+            SetCompScales(__instance, (Pawn)__instance.parent, ((Pawn)__instance.parent).BodySize);
         }
 
 
@@ -71,7 +77,7 @@ namespace Pawnmorph.HPatches.Optional
                 float size = GetScale(bodysize);
 
                 // Set draw sizes
-                SetCompScales(comp, size);
+                SetCompScales(comp, ___pawn, bodysize);
 
                 // Generate new pawn textures of target size.
                 if (_meshCache.TryGetValue(size, out var mesh) == false)
@@ -96,7 +102,7 @@ namespace Pawnmorph.HPatches.Optional
         [HarmonyLib.HarmonyPatch(typeof(AlienRace.HarmonyPatches), nameof(AlienRace.HarmonyPatches.DrawAddonsFinalHook)), HarmonyLib.HarmonyPostfix]
         private static void DrawAddonsFinalHook(Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, ref Graphic graphic, ref Vector3 offsetVector, ref float angle, ref Material mat)
         {
-            float value = GetScale(pawn.BodySize);
+            float value = GetScale(pawn.BodySize) / pawn.RaceProps.baseBodySize;
             offsetVector.x *= value;
             // Don't affect y layer
             offsetVector.z *= value;
@@ -109,7 +115,7 @@ namespace Pawnmorph.HPatches.Optional
         {
             if (portrait)
             {
-                cameraZoom = 1f / GetScale(pawn.BodySize);
+                cameraZoom *= 1f / GetScale(pawn.BodySize);
             }
         }
 
@@ -134,14 +140,15 @@ namespace Pawnmorph.HPatches.Optional
         [HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
         private static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
         {
+            float bodySize = __instance.BodySize;
             // Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
-            if (__instance.RaceProps.Humanlike && __instance.BodySize != 1)
+            if (__instance.RaceProps.Humanlike && bodySize != 1)
             {
                 // Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
                 // Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
                 // Only offset when standing.
                 if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
-                    drawLoc.z += (GetScale(__instance.BodySize) - 1) / 4f;
+                    drawLoc.z += (GetScale(bodySize) - 1) / 4f;
             }
         }
 
@@ -149,10 +156,11 @@ namespace Pawnmorph.HPatches.Optional
         [HarmonyLib.HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt)), HarmonyLib.HarmonyPostfix]
         private static void BaseHeadOffsetAt(Rot4 rotation, ref Vector3 __result, Pawn ___pawn)
         {
-            if (___pawn.BodySize == 1)
+            float bodySize = ___pawn.BodySize;
+            if (bodySize == 1)
                 return;
 
-            float size = Mathf.Floor(GetScale(___pawn.BodySize) * 10) / 10;
+            float size = Mathf.Floor(GetScale(bodySize) / ___pawn.RaceProps.baseBodySize * 10) / 10;
             __result.z = __result.z * size;
             __result.x = __result.x * size;
         }

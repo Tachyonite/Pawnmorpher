@@ -28,7 +28,7 @@ namespace Pawnmorph
             if (causes == null) throw new ArgumentNullException(nameof(causes));
             if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
 
-            causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen); 
+            causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen);
         }
 
 

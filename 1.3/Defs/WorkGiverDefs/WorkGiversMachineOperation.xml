@@ -1,0 +1,47 @@
+<Defs>
+    <WorkGiverDef>
+        <defName>PM_OperateMutationSequencer</defName>
+        <label>operate mutation sequencer scanner</label>
+        <giverClass>Pawnmorph.Work.Giver_WorkAtSequencer</giverClass>
+        <workType>Research</workType>
+        <priorityInType>50</priorityInType>
+        <verb>sequencing</verb>
+        <gerund>sequencing at</gerund>
+        <scannerDef>PM_MutationScanner</scannerDef>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+    </WorkGiverDef>
+    <WorkGiverDef>
+        <defName>PM_DeliverSpecialThingsToWaitingChamber</defName>
+        <label>delivering resources to muta chamber</label>
+        <giverClass>Pawnmorph.Work.Giver_DeliverSpecialThingsToChambers</giverClass>
+        <workType>Hauling</workType>
+        <verb>refuel</verb>
+        <gerund>refueling</gerund>
+        <priorityInType>140</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <prioritizeSustains>true</prioritizeSustains>
+    </WorkGiverDef>
+	<WorkGiverDef>
+		<defName>DoBillsProduceSyringes</defName>
+		<label>making syringes</label>
+		<giverClass>WorkGiver_DoBill</giverClass>
+		<workType>Crafting</workType>
+		<workTags>
+			<li>Intellectual</li>
+		</workTags>
+		<priorityInType>95</priorityInType>
+		<fixedBillGiverDefs>
+			<li>PM_InjectorLab</li>
+		</fixedBillGiverDefs>
+		<verb>produce syringe</verb>
+		<gerund>producing syringe at</gerund>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+</Defs>

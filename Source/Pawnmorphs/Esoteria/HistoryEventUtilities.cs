@@ -148,7 +148,7 @@ namespace Pawnmorph
         public static HistoryEvent SendEvent([NotNull] this HistoryEventDef def, NamedArgument arg1, NamedArgument arg2, NamedArgument arg3)
         {
             if (def == null) throw new ArgumentNullException(nameof(def));
-            var historyEvent = new HistoryEvent(def, arg1, arg3);
+            var historyEvent = new HistoryEvent(def, arg1, arg2, arg3);
             Find.HistoryEventsManager.RecordEvent(historyEvent);
             return historyEvent; 
         }

@@ -34,6 +34,7 @@ namespace Pawnmorph.GraphicSys
 
         private BodyTypeDef _body;
         private ThingDef _scannedRace;
+        private ThingDef _originalRace;
 
         /// <summary>Gets the draw size.</summary>
         /// <value>The size of the custom draw.</value>
@@ -53,6 +54,18 @@ namespace Pawnmorph.GraphicSys
             get
             {
                 return _scannedRace;
+            }
+        }
+
+        /// <summary>Gets the pawn scanned pawn race.</summary>
+        public ThingDef OriginalRace
+        {
+            get
+            {
+                if (!_scanned)
+                    ScanGraphics();
+
+                return _originalRace;
             }
         }
 
@@ -253,6 +266,7 @@ namespace Pawnmorph.GraphicSys
             Scribe_Defs.Look(ref _hairDef, nameof(_hairDef));
             Scribe_Deep.Look(ref _styleInfo, "styleInfo");
             Scribe_Defs.Look(ref _scannedRace, nameof(_scannedRace));
+            Scribe_Defs.Look(ref _originalRace, nameof(_originalRace));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -331,6 +345,9 @@ namespace Pawnmorph.GraphicSys
             _hairColor = Pawn.story.hairColor;
             _body = Pawn.story.bodyType;
             _scannedRace = Pawn.def;
+            
+            if (_originalRace == null)
+                _originalRace = Pawn.def;
 
 
             var styleTracker = Pawn.style;

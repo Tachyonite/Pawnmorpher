@@ -10,6 +10,8 @@
 	<!-- Mutations Tab -->
 	<PM_Genebank_MutationTab_Caption>Mutations</PM_Genebank_MutationTab_Caption>
 	<PM_Genebank_MutationTab_Column_Mutation>Mutation</PM_Genebank_MutationTab_Column_Mutation>
+	<PM_Genebank_MutationTab_Column_BodyPart>Part</PM_Genebank_MutationTab_Column_BodyPart>
+	<PM_Genebank_MutationTab_Column_Animal>Animal</PM_Genebank_MutationTab_Column_Animal>
 	<PM_Genebank_MutationTab_Column_Paragon>Paragon</PM_Genebank_MutationTab_Column_Paragon>
 	<PM_Genebank_MutationTab_Column_Abilities>Abilities</PM_Genebank_MutationTab_Column_Abilities>
 	<PM_Genebank_MutationTab_Column_Stats>Stats</PM_Genebank_MutationTab_Column_Stats>

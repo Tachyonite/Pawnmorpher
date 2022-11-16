@@ -34,23 +34,7 @@ namespace Pawnmorph
         private HediffDef _mutationDef;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
-        [CanBeNull] private MutagenDef _mutagenCause;
-        [CanBeNull] private MutationCauses _causes; 
-
-        
-        [NotNull] private MutagenDef BestMutagenCause
-        {
-            get
-            {
-                if (_mutagenCause == null)
-                {
-                    _mutagenCause = _causes?.GetAllCauses<MutagenDef>()?.FirstOrDefault()?.causeDef; 
-                    
-                }
-
-                return _mutagenCause ?? MutagenDefOf.defaultMutagen; 
-            }
-        }
+        private MutationCauses _causes; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
@@ -71,8 +55,6 @@ namespace Pawnmorph
         {
             get
             {
-                if(_causes == null) _causes = new MutationCauses();
-                
                 return _causes; 
             }
         }
@@ -90,6 +72,10 @@ namespace Pawnmorph
             _mutatedRecords = mutatedParts.ToList();
             _pawn = pawn;
             _mutationDef = mutationDef;
+            _causes = new MutationCauses();
+
+            if (mutagenCause != null)
+                _causes.AddMutagenCause(mutagenCause);
         }
 
         /// <summary>
@@ -194,9 +180,16 @@ namespace Pawnmorph
                     grammarRequest.Rules.AddRange(_causes.GenerateRules());
                 }
 
-                if (!grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
+                if (grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
                 {
-                    grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
+                    
+                    grammarRequest.Rules.Add(new Rule_String("caused_by", "caused by"));
+                    //grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
+                }
+                else
+                {
+                    grammarRequest.Rules.Add(new Rule_String("caused_by", ""));
+                    grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, ""));
                 }
 
 
