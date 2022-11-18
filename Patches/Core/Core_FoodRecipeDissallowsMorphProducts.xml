@@ -1,5 +1,7 @@
 <Patch>
 	<Operation Class="PatchOperationAdd">
+		<!-- We don't care if this fails, then for whatever reason the disallowedThingDefs was not available. Another mod may have nulled it. -->
+		<success>Always</success> 
 		<xpath>/Defs/RecipeDef[@Name="CookMealBase"]/defaultIngredientFilter/disallowedThingDefs</xpath>
 		<value>
 			  <li>TFEgg</li>
@@ -7,6 +9,8 @@
 		</value>
 	</Operation>
 	<Operation Class="PatchOperationAdd">
+		<!-- We don't care if this fails, then for whatever reason the disallowedThingDefs was not available. Another mod may have nulled it. -->
+		<success>Always</success> 
 		<xpath>/Defs/ThingDef[defName="Hopper"]/building/defaultStorageSettings/filter/disallowedThingDefs</xpath>
 		<value>
 			  <li>TFEgg</li>
