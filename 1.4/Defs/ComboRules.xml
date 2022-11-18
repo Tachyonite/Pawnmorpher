@@ -1,0 +1,62 @@
+<Defs>
+    <Pawnmorph.MutationRuleDef>
+        <!-- HORNBILL Combo Mutation -->
+        <defName>HornbillRule</defName>
+        <priority>10</priority>
+        <mtth>0</mtth>
+        <conditions>
+            <li>
+                <hediffs>
+                    <li>EtherChickenBeak</li>
+                </hediffs>
+                <partDef>Jaw</partDef>
+            </li>
+            <li>
+                <hediffs>
+                    <li>EtherHorns</li>
+                </hediffs>
+                <partDef>Skull</partDef>
+            </li>
+        </conditions>
+        <results>
+            <li>
+                <hediffDef>EtherComboHornbill</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </results>
+    </Pawnmorph.MutationRuleDef>
+    <Pawnmorph.MutationRuleDef>
+        <!-- WOLFSPIKE Combo Mutation -->
+        <defName>WolfSpikeRule</defName>
+        <priority>10</priority>
+        <mtth>0</mtth>
+        <conditions>
+            <li>
+                <hediffs>
+                    <li>EtherWolfMuzzle</li>
+                    <li>EtherArcticWolfJaw</li>
+                </hediffs>
+                <partDef>Jaw</partDef>
+            </li>
+            <li>
+                <hediffs>
+                    <li>EtherIguanaHorns</li>
+                </hediffs>
+                <partDef>Skull</partDef>
+            </li>
+        </conditions>
+        <results>
+            <li>
+                <hediffDef>EtherComboWolfSpike</hediffDef>
+                <partDef>Skull</partDef>
+            </li>
+        </results>
+    </Pawnmorph.MutationRuleDef>
+
+    <Pawnmorph.MutationRuleDef>
+        <defName>PM_HellhoundCombo</defName>
+        <priority>10</priority>
+        <mtth>0</mtth>
+        <ruleWorker>Pawnmorph.MutationRules.Worker_Hellhound</ruleWorker>
+    </Pawnmorph.MutationRuleDef>
+</Defs>

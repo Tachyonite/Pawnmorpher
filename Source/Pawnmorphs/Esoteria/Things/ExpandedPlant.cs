@@ -87,7 +87,7 @@ namespace Pawnmorph.Things
         /// </summary>
         public override void TickLong() //need this copy-paste nonsense because of hardcoded growth suppression in winter 
         {
-            CheckTemperatureMakeLeafless();
+            CheckMakeLeafless();
             if (Destroyed) return;
 
             // Have to tick comps manually here because we can't call base.base.TickLong()

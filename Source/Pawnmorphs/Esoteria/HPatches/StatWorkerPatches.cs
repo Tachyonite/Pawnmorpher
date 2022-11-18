@@ -80,7 +80,7 @@ namespace Pawnmorph.HPatches
 
                 if (pawn.health?.hediffSet != null)
                 {
-                    foreach (var hediffComps in pawn.health.hediffSet.GetHediffs<HediffWithComps>())
+                    foreach (var hediffComps in pawn.health.hediffSet.hediffs.OfType<HediffWithComps>())
                     {
                         HediffComp_Production productionComp = hediffComps.TryGetComp<HediffComp_Production>();
                         if (productionComp?.CurStage?.statOffsets == null)

@@ -144,7 +144,7 @@ namespace Pawnmorph.GraphicSys
                 var color = colorationAspect.ColorSet.hairColor;
                 if (color.HasValue)
                 {
-                    Pawn.story.hairColor = color.Value;
+                    Pawn.story.HairColor = color.Value;
                     return true;
                 }
             }
@@ -154,13 +154,13 @@ namespace Pawnmorph.GraphicSys
 
             if (highestInfluence == null)
             {
-                if (Pawn.story.hairColor == InitialGraphics.HairColor && !force)
+                if (Pawn.story.HairColor == InitialGraphics.HairColor && !force)
                 {
                     return false; // If there is not influence or if the highest influence is that of their current race do nothing.
                 }
                 else
                 {
-                    Pawn.story.hairColor = InitialGraphics.HairColor;
+                    Pawn.story.HairColor = InitialGraphics.HairColor;
                     return true;
                 }
             }
@@ -187,7 +187,7 @@ namespace Pawnmorph.GraphicSys
             else
                 col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
 
-            Pawn.story.hairColor = GComp.ColorChannels["hair"].first = col;
+            Pawn.story.HairColor = GComp.ColorChannels["hair"].first = col;
 
             return true;
         }

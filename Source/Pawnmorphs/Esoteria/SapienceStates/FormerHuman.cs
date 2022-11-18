@@ -35,8 +35,8 @@ namespace Pawnmorph.SapienceStates
         {
             if (_countdownStarted && Pawn.IsHashIntervalTick(60)  && RandUtilities.MtbDaysEventOccured(PERMANENTLY_FERAL_MTB))
             {
-                _countdownStarted = false; 
-                MakePermanentlyFeral();
+                _countdownStarted = false;
+                Tracker.MakePermanentlyFeral();
             }
         }
 
@@ -84,8 +84,6 @@ namespace Pawnmorph.SapienceStates
                                                "LetterHediffFromPermanentTF".Translate(Pawn.LabelShort).CapitalizeFirst(),
                                                LetterDefOf.NegativeEvent, Pawn);
 
-            Pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
         }
 
         /// <summary>
@@ -199,7 +197,7 @@ namespace Pawnmorph.SapienceStates
             Pawn.ownership?.UnclaimAll();
             Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             Pawn.workSettings?.DisableAll();
-            Pawn.ownership = null;
+            //Pawn.ownership = null;
             Pawn.drafter = null;
             Pawn.apparel = null;
             Pawn.foodRestriction = null;

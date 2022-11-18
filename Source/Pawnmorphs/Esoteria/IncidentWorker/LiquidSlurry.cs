@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.SlurryNet;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;

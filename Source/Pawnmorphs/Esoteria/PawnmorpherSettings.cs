@@ -83,6 +83,11 @@ namespace Pawnmorph
         public Dictionary<string, string> raceReplacements;
 
         /// <summary>
+        /// Dictionary of morphdef and selected replacement racedef
+        /// </summary>
+        public Dictionary<string, string> animalAssociations;
+
+        /// <summary>
         /// Dictionary of optional patches explicitly enabled or disabled.
         /// </summary>
         public Dictionary<string, bool> optionalPatches;
@@ -109,6 +114,7 @@ namespace Pawnmorph
             Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
+            Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

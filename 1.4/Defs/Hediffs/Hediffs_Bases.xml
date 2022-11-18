@@ -1,0 +1,59 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/HediffDef.xsd">
+	<HediffDef Abstract="true" Name="MorphParent">
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<defaultLabelColor>(77,68,179)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<isBad>false</isBad>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>1</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.1</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_CheckRace">
+				<triggerStage>1</triggerStage>
+				<!-- This is the index of the stage that will trigger the check when the hediff enters it -->
+			</li>
+			<li Class="HediffCompProperties_Immunizable" />
+			<li Class="Pawnmorph.Hediffs.CompProps_TfStageConfigChecker" />
+			<!-- This comp is just here to check for errors in transformation stages. -->
+		</comps>
+	</HediffDef>
+	<!-- Base of all Full TF hediffs -->
+	<HediffDef Abstract="true" ParentName="MorphParent" Name="NewAspectedMorphParent">
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>AspectGivingMutagen</mutagen>
+			</li>
+		</modExtensions>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProps_RemoveNonMorphPart">
+				<!-- chance to remove a part not of morph a pawn is currently transforming into  -->
+				<removeChance>0.5</removeChance>
+			</li>
+		</comps>
+	</HediffDef>
+	<!-- Base of all Partial hediffs -->
+	<HediffDef Abstract="true" ParentName="NewAspectedMorphParent" Name="NewPartialAspectedMorphParent">
+		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Single" />
+		</comps>
+	</HediffDef>
+	<!-- Specifically for herbaviours. -->
+	<HediffDef Abstract="true" ParentName="NewAspectedMorphParent" Name="NewHerbavourMorphTfBase">
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AspectGiverExtension">
+				<aspectGivers>
+					<li Class="Pawnmorph.Aspects.SkillBasedGiver">
+						<aspect>PlantAffinity</aspect>
+						<skillDef>Plants</skillDef>
+						<skillThreshold>5</skillThreshold>
+						<!-- The pawn must have the Plants skill above 5 to get this. -->
+						<chance>0.07</chance>
+					</li>
+				</aspectGivers>
+			</li>
+		</modExtensions>
+	</HediffDef>
+</Defs>

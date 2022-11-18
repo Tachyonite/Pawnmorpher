@@ -5,6 +5,7 @@ using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;

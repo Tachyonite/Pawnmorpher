@@ -78,6 +78,7 @@ namespace Pawnmorph.Hybrids
                 baseBodySize = human.baseBodySize,
                 baseHealthScale = human.baseHealthScale,
                 baseHungerRate = human.baseHungerRate,
+                hasGenders = human.hasGenders,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 wildness = animal.wildness/2,
@@ -215,6 +216,13 @@ namespace Pawnmorph.Hybrids
 
 
 
+            ILookup<string, string> animalAssociationLookup = null;
+            if (PawnmorpherMod.Settings.animalAssociations != null)
+            {
+                animalAssociationLookup = PawnmorpherMod.Settings.animalAssociations.ToLookup(x => x.Value, x => x.Key);
+            }
+
+
             IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
@@ -233,7 +241,21 @@ namespace Pawnmorph.Hybrids
 
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
                 }
-                
+
+
+
+                if (animalAssociationLookup != null)
+                {
+                    if (animalAssociationLookup.Contains(morphDef.defName))
+                    {
+                        morphDef.associatedAnimals.AddRange(animalAssociationLookup[morphDef.defName].Select(x => DefDatabase<ThingDef>.GetNamed(x)));
+                        morphDef.ResolveReferences();
+                    }
+                }
+
+
+
+
 
 
                 CreateImplicitMeshes(race);
@@ -283,8 +305,8 @@ namespace Pawnmorph.Hybrids
         {
             AlienPartGenerator gen = new AlienPartGenerator //TODO use reflection to copy these fields? 
             {
-                alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
-                aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
+                bodyTypes = human.bodyTypes.MakeSafe().ToList(),
+                headTypes = human.headTypes.MakeSafe().ToList(),
                 offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
                 headOffset = human.headOffset,
                 headOffsetDirectional = human.headOffsetDirectional,
@@ -378,7 +400,7 @@ namespace Pawnmorph.Hybrids
                 if (temp.ColorChannel != addon.ColorChannel)
                     colorChannel.SetValue(temp, addon.ColorChannel);
 
-                if (headParts.Contains(temp.bodyPart))
+                if (headParts.Contains(temp.bodyPartLabel))
                 {
                     if (headSize != null)
                         temp.drawSize = headSize.GetValueOrDefault();
@@ -399,7 +421,7 @@ namespace Pawnmorph.Hybrids
                     }
                 }
 
-                if (bodySize != null && bodyParts.Contains(temp.bodyPart))
+                if (bodySize != null && bodyParts.Contains(temp.bodyPartLabel))
                 {
                     temp.drawSize = bodySize.GetValueOrDefault();
                 }
@@ -429,8 +451,8 @@ namespace Pawnmorph.Hybrids
             AlienPartGenerator.RotationOffset returnValue = new AlienPartGenerator.RotationOffset()
             {
                 portraitBodyTypes = human.portraitBodyTypes,
-                portraitCrownTypes = human.portraitCrownTypes,
-                crownTypes = human.crownTypes,
+                portraitHeadTypes = human.portraitHeadTypes,
+                headTypes = human.headTypes,
                 layerOffset = human.layerOffset,
                 offset = human.offset
             };
@@ -468,10 +490,11 @@ namespace Pawnmorph.Hybrids
 
         private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
+            GeneralSettings generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace);
             return new ThingDef_AlienRace.AlienSettings
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
-                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
+                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph, generalSettings),
                 styleSettings = human.styleSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
@@ -479,21 +502,22 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
+        private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph, GeneralSettings generalSettings)
         {
             GraphicPaths temp = new GraphicPaths();
-            var humanGPath = humanGraphicPaths.First(); 
-            Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
-            temp.customDrawSize = customSize ?? humanGPath.customDrawSize;
-            temp.customPortraitDrawSize = customSize ?? humanGPath.customPortraitDrawSize;
-            Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-            temp.customHeadDrawSize = customHeadSize ?? humanGPath.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = customHeadSize ?? humanGPath.customPortraitHeadDrawSize;
-            temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
-            temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
-            List<GraphicPaths> returnList = new List<GraphicPaths>();
-            returnList.Add(temp);
-            return returnList;
+
+            temp.head.headtypeGraphics = new List<AlienPartGenerator.ExtendedHeadtypeGraphic>();
+            foreach (HeadTypeDef item2 in generalSettings.alienPartGenerator.HeadTypes)
+            {
+                temp.head.headtypeGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
+                {
+                    headType = item2,
+                    path = item2.graphicPath,
+                });
+            }
+
+
+            return temp;
         }
 
         static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)

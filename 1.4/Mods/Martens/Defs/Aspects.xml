@@ -1,0 +1,21 @@
+<Defs>
+    <Pawnmorph.AspectDef>
+        <defName>MartenAspect</defName>
+        <label>adorable assassin</label>
+        <description>Martenmorphs are widely known to be agile and intelligent hunters, capable of incredible feats of skill and agility. They are more than capable of taking on opponents several times their size in hand to hand combat.</description>
+        <stages>
+            <li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.15</offset>
+                    </li>
+                </capMods>
+                <statOffsets>
+                    <MeleeDodgeChance>35</MeleeDodgeChance>
+                    <HuntingStealth>0.35</HuntingStealth>
+                </statOffsets>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>

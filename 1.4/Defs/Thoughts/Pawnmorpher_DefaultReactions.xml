@@ -1,0 +1,149 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Abstract="true" Name="DefaultReactionBase">
+        <durationDays>10</durationDays>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+        </nullifyingTraits>
+
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="DefaultReactionBase">
+        <defName>DefaultTransformationReaction</defName>
+        <stages>
+            <li>
+                <label>transformed wild pawn</label>
+                <description>I'm not sure whether this is better or worse for them, but at least they're better equipped to survive.</description>
+            </li>
+            <li>
+                <label>transformed colonist</label>
+                <description>A colonist was turned into an animal. That's not right.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed prisoner</label>
+                <description>We turned a captive into an animal. I know they're our prisoner, but it seems wrong.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed guest</label>
+                <description>Someone came to our colony, and we betrayed that trust.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>A slave became an animal. They may be a slave, but this feels so wrong.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>This is bad to turn a prisonner into an animal, but I also feel like they deserved it.</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="DefaultReactionBase">
+        <defName>DefaultMergedThought</defName>
+        <stages>
+            <li>
+                <label>wild pawn merged</label>
+                <description>I really don't think they appreciated that at all.</description>
+            </li>
+            <li>
+				<label>colonist merged</label>
+				<description>We did mad science on one of our own, and now they're...horrifying.</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+
+            </li>
+            <li>
+				<label>prisoner merged</label>
+				<description>We did mad science on a captive. It's wrong to make them into a monster.</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+
+            </li>
+            <li>
+                <label>guest merged</label>
+                <description>Someone came to our colony for hospitality, and now they're an abomination.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>Being a slave does not mean it's ok to become a freak.</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>While it must be painful, I do not feel bad for them.</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="DefaultReactionBase">
+        <defName>DefaultRevertedPawnReaction</defName>
+        <stages>
+            <li>
+                <label>wild pawn reverted</label>
+                <description>A wild person is human again. We did a good deed.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist reverted</label>
+                <description>A colonist is human again. We did a good deed.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>prisoner reverted</label>
+                <description>At least it can be undone.</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>guest reverted</label>
+                <description>A guest is human again. Hopefully they'll trust us again, eventually.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>They are at least freed from animality.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>This is good for them, I guess?</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="DefaultReactionBase">
+        <defName>DefaultPermanentlyFeralReaction</defName>
+        <stages>
+            <li>
+                <label>wild pawn permanently feral</label>
+                <description>Wild forever more, I suppose.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist permanently feral</label>
+                <description>We knew it was coming...but now they can never be human again.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>prisoner permanently feral</label>
+                <description>Did we really expect to turn them back?</description>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>guest permanently feral</label>
+                <description>Uh, whoops...</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave guest</label>
+                <description>Let's wish they can be free in nature.</description>
+            </li>
+			<li>
+                <label>guilty prisoner guest</label>
+                <description>I guess this is a punishment for their crimes.</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

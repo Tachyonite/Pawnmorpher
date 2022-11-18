@@ -27,11 +27,13 @@ namespace Pawnmorph.GraphicSys
         private Color _hairColorSecond;
         private Color _hairColor;
         private Gender _initialGender;
-        private string _crownType;
         private StyleInfo _styleInfo = new StyleInfo();
 
         private HairDef _hairDef;
 
+        private int _headTypeVariant;
+        private int _bodyTypeVariant;
+        private HeadTypeDef _headType;
         private BodyTypeDef _body;
         private ThingDef _scannedRace;
         private ThingDef _originalRace;
@@ -114,7 +116,7 @@ namespace Pawnmorph.GraphicSys
             {
                 if (!_scanned) ScanGraphics();
                 if (_hairColor == default)
-                    _hairColor = Pawn.story.hairColor; //fix for hair color not being saved in previous saves 
+                    _hairColor = Pawn.story.HairColor; //fix for hair color not being saved in previous saves 
 
                 return _hairColor;
             }
@@ -159,13 +161,13 @@ namespace Pawnmorph.GraphicSys
 
         /// <summary>Gets the type of the crown.</summary>
         /// <value>The type of the crown.</value>
-        public string CrownType
+        public HeadTypeDef CrownType
         {
             get
             {
                 if (!_scanned) ScanGraphics();
 
-                return _crownType;
+                return _headType;
             }
         }
 
@@ -224,6 +226,11 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="InitialGraphicsComp"/> is has scanned graphics that can be restored.
+        /// </summary>
+        public bool Scanned => _scanned;
+
         private Pawn Pawn => (Pawn) parent;
 
         /// <summary>Gets the debug string.</summary>
@@ -258,19 +265,21 @@ namespace Pawnmorph.GraphicSys
             Scribe_Values.Look(ref _skinColor, "skinColor");
             Scribe_Values.Look(ref _skinColorSecond, "skinColorSecond");
             Scribe_Values.Look(ref _hairColorSecond, "hairColorSecond");
-            Scribe_Values.Look(ref _crownType, "initialCrownType");
             Scribe_Values.Look(ref _hairColor, nameof(HairColor));
             Scribe_Values.Look(ref _initialGender, nameof(_initialGender));
             Scribe_Values.Look(ref _scanned, nameof(_scanned));
+            Scribe_Values.Look(ref _headTypeVariant, nameof(_headTypeVariant));
+            Scribe_Values.Look(ref _bodyTypeVariant, nameof(_bodyTypeVariant));
             Scribe_Defs.Look(ref _body, nameof(_body));
             Scribe_Defs.Look(ref _hairDef, nameof(_hairDef));
+            Scribe_Defs.Look(ref _headType, "initialHeadType");
             Scribe_Deep.Look(ref _styleInfo, "styleInfo");
             Scribe_Defs.Look(ref _scannedRace, nameof(_scannedRace));
             Scribe_Defs.Look(ref _originalRace, nameof(_originalRace));
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (_skinColor == Color.clear) _skinColor = PawnSkinColors.GetSkinColor(Pawn.story.melanin);
+                if (_skinColor == Color.clear) _skinColor = Pawn.story.SkinColor;
                 if (_body == null) _body = Pawn.story.bodyType;
                 if(_styleInfo == null) _styleInfo = new StyleInfo();
                 
@@ -305,7 +314,7 @@ namespace Pawnmorph.GraphicSys
 
             var pawn = (Pawn) parent;
             Pawn_StoryTracker story = pawn.story;
-            story.hairColor = HairColor;
+            story.HairColor = HairColor;
             story.hairDef = HairDef;
 
             Pawn_StyleTracker styleTracker = pawn.style;
@@ -313,8 +322,10 @@ namespace Pawnmorph.GraphicSys
             // Restore head, body and beard if pawn is still the same gender or if forced.
             if (force || _initialGender == pawn.gender)
             {
-                comp.crownType = _crownType;
+                comp.headVariant = _headTypeVariant;
+                comp.bodyVariant = _bodyTypeVariant;
                 story.bodyType = _body;
+                story.headType = _headType;
                 _styleInfo?.Restore(styleTracker, true);
             }
             else
@@ -341,9 +352,11 @@ namespace Pawnmorph.GraphicSys
             _skinColorSecond = comp.GetSkinColor(false) ?? Color.white;
             _hairColorSecond = comp.ColorChannels.TryGetValue("hair")?.second ?? Color.white;
             _initialGender = Pawn.gender;
-            _crownType = comp.crownType;
-            _hairColor = Pawn.story.hairColor;
+            _headTypeVariant = comp.headVariant;
+            _bodyTypeVariant = comp.bodyVariant;
+            _hairColor = Pawn.story.HairColor;
             _body = Pawn.story.bodyType;
+            _headType = Pawn.story.headType;
             _scannedRace = Pawn.def;
             
             if (_originalRace == null)

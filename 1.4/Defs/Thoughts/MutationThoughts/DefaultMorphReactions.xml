@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>DefaultMorphTfMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>Not much seems to be different...</description>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Wait a minute, those things weren't there before.</description>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>What's happening to me? I barely even look human anymore!</description>
+                <visible>true</visible>
+            </li>
+        </stages>
+
+    </ThoughtDef>
+</Defs>

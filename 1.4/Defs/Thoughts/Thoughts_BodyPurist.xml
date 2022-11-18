@@ -1,0 +1,43 @@
+﻿<Defs>
+	<!-- This is the default thought for pawns that have mutations and the body purist trait. -->
+	<ThoughtDef>
+		<defName>BodyPuristMutationSad</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>BodyPurist</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>body purist squeamish</label>
+				<description>I hate these mutations.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>body purist disgusted</label>
+				<description>I'm a mutated freak.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>body purist violated</label>
+				<description>I feel grossed out looking at the changes! No more, please!</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+			<li>
+				<label>body purist horrified</label>
+				<description>I feel sick in my own skin. I want to be human again.</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+			<li>
+				<label>body purist nightmare</label>
+				<description>I look hardly anything like my old self, I'm terrfied!</description>
+				<baseMoodEffect>-25</baseMoodEffect>
+			</li>
+			<li>
+				<label>mutated abomination</label>
+				<description>There is nothing human left of me. I am an abomination.</description>
+				<baseMoodEffect>-30</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

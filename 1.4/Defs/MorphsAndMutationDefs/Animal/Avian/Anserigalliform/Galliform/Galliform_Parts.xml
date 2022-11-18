@@ -1,0 +1,10 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="GalliformJawPart" ParentName="AnserigalliformJawPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="GalliformTailPart" ParentName="AnserigalliformTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="GalliformEggLayerPart" ParentName="AnserigalliformEggLayer" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -56,7 +56,7 @@ namespace Pawnmorph
 
         float GetSeverityOffset(Pawn pawn)
         {
-            float toxicSensitivity = pawn.GetStatValue(StatDefOf.ToxicSensitivity);
+            float toxicSensitivity = 1f - pawn.GetStatValue(StatDefOf.ToxicResistance);
             return toxicSensitivity * _severityPerTicks;
         }
 

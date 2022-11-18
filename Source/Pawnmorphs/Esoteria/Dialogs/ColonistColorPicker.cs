@@ -179,7 +179,7 @@ namespace Pawnmorph.Dialogs
                 case PawnColorSlot.SkinSecond:
                     return initialGraphicsComp != null ? initialGraphicsComp.SkinColorSecond : targetPawn.Drawer.renderer.graphics.nakedGraphic.ColorTwo;
                 case PawnColorSlot.HairFirst:
-                    return initialGraphicsComp != null ? initialGraphicsComp.HairColor : targetPawn.story.hairColor;
+                    return initialGraphicsComp != null ? initialGraphicsComp.HairColor : targetPawn.story.HairColor;
                 case PawnColorSlot.HairSecond:
                     return initialGraphicsComp != null ? initialGraphicsComp.HairColorSecond : Color.white;
                 default: return Color.white;

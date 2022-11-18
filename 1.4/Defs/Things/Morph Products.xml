@@ -1,0 +1,100 @@
+<Defs>
+	<ThingDef Name="TFItemBase" ParentName="OrganicProductBase" Abstract="True">
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>20</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+		</comps>
+		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
+		<thingCategories>
+			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<ingestible>
+			<drugCategory>Social</drugCategory>
+			<preferability>DesperateOnly</preferability>
+			<foodType>AnimalProduct, Fluid</foodType>
+			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+		</ingestible>
+		<statBases>
+			<MarketValue>7</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
+			<MutaniteConcentration>0.1</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+
+	<!-- ========== CowMorph Milk ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFMilk</defName>
+		<label>mutagenic milk</label>
+		<description>This milk smells odd, but not off. Saturated with mutagenic mechanites that the original species can no longer be determined. Drinking this will probably cause unpredictable though milk-related mutations.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/Milk</texPath>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphCowTFPartial</li>
+						<li>PawnmorphGoatTFPartial</li>
+						<li>PawnmorphYakTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphCowTF</li>
+						<li>PawnmorphGoatTF</li>
+						<li>PawnmorphYakTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- ========== mutagenic Eggs ========== -->
+
+	<ThingDef ParentName="TFItemBase">
+		<defName>TFEgg</defName>
+		<label>mutagenic egg</label>
+		<description>A strange egg usually laid by some avian morphs. It's basically a normal egg, but saturated with enough mutagenic mechanites that the original species can no longer be determined. Eating it can cause unpredictable avian-based mutations unless properly cooked into a meal.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Resource/TFEgg</texPath>
+			<color>(245,245,245)</color>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>PawnmorphChickenTFPartial</li>
+						<li>PawnmorphDuckTFPartial</li>
+						<li>PawnmorphGooseTFPartial</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>PawnmorphChickenTF</li>
+						<li>PawnmorphDuckTF</li>
+						<li>PawnmorphGooseTF</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+</Defs>

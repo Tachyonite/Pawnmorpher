@@ -1,0 +1,32 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/IssueDef.xsd">
+    <IssueDef>
+        <defName>PM_Mutation</defName>
+        <label>mutation</label>
+        <iconPath>UI/Precepts/MutationPrecept</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>PM_Transformation</defName>
+        <label>transformation</label>
+        <iconPath>UI/Precepts/TransformationPrecept</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>PM_Reversion</defName>
+        <label>reversion</label>
+        <iconPath>UI/Precepts/ReversionPrecept</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>PM_FormerHuman_Nudity</defName>
+        <label>former human treatment</label>
+        <iconPath>UI/Precepts/FormerHumanTreatment</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>PM_SapienceLoss</defName>
+        <label>sapience loss</label>
+        <iconPath>UI/Precepts/SapiencePrecept</iconPath>
+    </IssueDef>
+
+</Defs>

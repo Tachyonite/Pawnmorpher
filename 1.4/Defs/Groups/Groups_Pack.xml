@@ -1,0 +1,59 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+	<Pawnmorph.MorphGroupDef>
+		<defName>Canines</defName>
+		<label>pack</label>
+		<aspectDef>CanidMind</aspectDef>
+		<barrakThoughtReplacement>PM_PackMindedBarrack</barrakThoughtReplacement>
+		<bedroomThoughtReplacement>PM_PackMindedBedroom</bedroomThoughtReplacement>
+		<asceticRoomThought>PM_PackMindedAscetic</asceticRoomThought>
+	</Pawnmorph.MorphGroupDef>
+	
+    <Pawnmorph.AspectDef ParentName="MorphGroupAspectBase">
+        <defName>CanidMind</defName>
+        <label>pack minded</label>
+        <stages>
+            <li>
+                <modifier>alone</modifier>
+				<description>I'm the only one of my kind. I feel so alone without a proper pack.</description>
+            </li>
+            <li>
+                <modifier>lonely</modifier>
+				<description>There's another like me, but we're still only a small pack. It's a bit lonely.</description>
+            </li>
+            <li>
+                <modifier>comfortable</modifier>
+				<description>There's a decent number people in my pack. I'm glad to have them.</description>
+            </li>
+            <li>
+                <modifier>happy</modifier>
+				<description>There's plenty of people in my pack. This is great!</description>
+            </li>
+        </stages>
+    </Pawnmorph.AspectDef>
+
+	<ThoughtDef ParentName="GroupThoughtHBase">
+		<defName>PackMinded</defName>
+		<stages>
+			<li>
+				<label>no pack</label>
+				<description>I'm the only one of my kind. I feel so alone without a proper pack.</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>small pack</label>
+				<description>There's another like me, but we're still only a small pack. It's a bit lonely.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>decent pack</label>
+				<description>There's a decent number people in my pack. I'm glad to have them.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>huge pack</label>
+				<description>There's plenty of people in my pack. This is great!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

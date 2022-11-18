@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Chao</defName>
+		<restrictedToMorphs>
+			<li>ChaocowMorph</li>
+			<li>ChaoboomMorph</li>
+			<li>ChaofoxMorph</li>
+			<li>ChaodinoMorph</li>
+		</restrictedToMorphs>
+		<!-- Chaomorphs have a flat 2 weight, meaning they are twice as like to make chaonoises rather than talk-->
+		<!-- TODO add some way to scale based on number of mutations without specifying the type -->
+		<morphWeights>
+			<li>
+				<key>ChaocowMorph</key>
+				<value>2</value>
+			</li>
+			<li>
+				<key>ChaoboomMorph</key>
+				<value>2</value>
+			</li>
+			<li>
+				<key>ChaofoxMorph</key>
+				<value>2</value>
+			</li>
+			<li>
+				<key>ChaodinoMorph</key>
+				<value>2</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMChao_Chitchat</defName>
+		<label>chaotalk</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao</symbol>
+		<initiatorThought>PMChao_ChitchatMemory</initiatorThought>
+		<recipientThought>PMChao_ChitchatMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+                <li>noisedat(p=2)->[animalnoised] at</li>
+                <li>noisedat->[animalnoise]-[animalnoised] at</li>
+
+				<li>animalnoise->bark</li>
+				<li>animalnoise->whuff</li>
+				<li>animalnoise->yip</li>
+				<li>animalnoise->yap</li>
+				<li>animalnoise->cluck</li>
+				<li>animalnoise->bok</li>
+				<li>animalnoise->moo</li>
+				<li>animalnoise->neigh</li>
+				<li>animalnoise->bleat</li>
+				<li>animalnoise->grunt</li>
+				<li>animalnoise->chatter</li>
+				<li>animalnoise->squeal</li>
+				<li>animalnoise->oink</li>
+				<li>animalnoise->whinny</li>
+				
+				<li>animalnoised->barked</li>
+				<li>animalnoised->whuffed</li>
+				<li>animalnoised->yipped</li>
+				<li>animalnoised->yapped</li>
+				<li>animalnoised->clucked</li>
+				<li>animalnoised->bokked</li>
+				<li>animalnoised->mooed</li>
+				<li>animalnoised->neighed</li>
+				<li>animalnoised->bleated</li>
+				<li>animalnoised->grunted</li>
+				<li>animalnoised->chattered</li>
+				<li>animalnoised->squealed</li>
+				<li>animalnoised->oinked</li>
+				<li>animalnoised->whinnied</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->[animalnoised] about</li>
+                <li>noisedabout->[animalnoise]-[animalnoised] about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+                <li>animaltopic->animals</li>
+                <li>animaltopic->chimeras</li>
+                <li>animaltopic->hybrids</li>
+                <li>animaltopic->chaobeasts</li>
+                <li>animaltopic->change</li>
+                <li>animaltopic->chaos theory</li>
+                <li>animaltopic->strange animal noises</li>
+                <li>animaltopic->DNA testing</li>
+                <li>animaltopic->conflicting instincts</li>
+                <li>animaltopic->different senses</li>
+                <li>animaltopic->sensory overload</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PMChao_ChitchatMemory</defName>
+		<stages>
+			<li>
+				<label>chaotalk</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMChao_DeepTalk</defName>
+		<label>deep chaotalk</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao_DeepTalk</symbol>
+		<initiatorThought>PMChao_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMChao_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->being a chaomorph</li>
+				<li>animallife->becoming a chaomorph</li>
+				<li>animallife->shedding and molting</li>
+				<li>animallife->headpats</li>
+				<li>animallife->ear scritches</li>
+				<li>animallife->different senses</li>
+				<li>animallife->conflicting mutations</li>
+				<li>animallife->incompatable biologies</li>
+                <li>animallife->awkward mutation combinations</li>
+				<li>animallife->confusing instincts</li>
+				<li>animallife->fur, feather, and scale cleaning</li>
+				<li>animallife->experimental mutagens</li>
+				<li>animallife->unstable mechanites</li>
+				<li>animallife->mad science</li>
+				<li>animallife->human experimentation</li>
+				<li>animallife->the ethics of mutation</li>
+				<li>animallife->the health risks of mutation</li>
+				<li>animallife->the different categories of chaomorphs</li>
+				<li>animallife->how many different animals [INITIATOR_nameDef] is</li>
+				<li>animallife->chaotaxonomy</li>
+				<li>animallife->chookcow ranching</li>
+				<li>animallife->what science has done</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMChao_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep chaotalk</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- An extra form of deep talk that only happens between two chaomorphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMChao_DeepTalkChao</defName>
+		<label>deep chaotalk with chao</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao_DeepTalk</symbol>
+		<initiatorThought>PMChao_DeepTalkChaoMemory</initiatorThought>
+		<recipientThought>PMChao_DeepTalkChaoMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->being chaomorphs</li>
+				<li>animallife->becoming chaomorphs</li>
+				<li>animallife->shedding and molting</li>
+				<li>animallife->headpats</li>
+				<li>animallife->ear scritches</li>
+				<li>animallife->different senses</li>
+				<li>animallife->conflicting mutations</li>
+				<li>animallife->incompatable biologies</li>
+                <li>animallife->awkward mutation combinations</li>
+				<li>animallife->confusing instincts</li>
+				<li>animallife->fur, feather, and scale cleaning</li>
+				<li>animallife->experimental mutagens</li>
+				<li>animallife->unstable mechanites</li>
+				<li>animallife->mad science</li>
+				<li>animallife->human experimentation</li>
+				<li>animallife->the ethics of mutation</li>
+				<li>animallife->the health risks of mutation</li>
+				<li>animallife->the different categories of chaomorphs</li>
+				<li>animallife->how many different animals they each are</li>
+				<li>animallife->chaotaxonomy</li>
+				<li>animallife->chookcow ranching</li>
+				<li>animallife->what science has done</li>
+				
+				<li>secretanimallife->brushy brushy</li>
+				<li>secretanimallife->comparing mutations</li>
+				<li>secretanimallife->being crimes against nature</li>
+				<li>secretanimallife->wondering what chaomeat tastes like</li>
+				<li>secretanimallife->the legend of chookcow gryphons</li>
+				<li>secretanimallife->how chaofoxes can secretly fly</li>
+				<li>secretanimallife->the land speed of an unladen chaodino</li>
+				<li>secretanimallife->hunting [prey]</li>
+				<li>secretanimallife->chasing [prey]</li>
+				<li>secretanimallife->running away from [pred]</li>
+				<li>secretanimallife->being eaten by [pred]</li>
+				<li>secretanimallife->the uncomfortable sensation of wanting to hunt yourself</li>
+				<li>secretanimallife->embracing change</li>
+				<li>secretanimallife->merging together</li>
+				<li>secretanimallife->forced evolution</li>
+				<li>secretanimallife->pouring slurry into the water supply</li>
+				<li>secretanimallife->worshipping the chao-gods</li>
+				<li>secretanimallife->chaocults</li>
+				<li>secretanimallife->the chao-god Yaaap, Herald of the Flock</li>
+				<li>secretanimallife->the chao-god Pheo, Shaper of Images</li>
+				<li>secretanimallife->the chao-god Iron, The Architect</li>
+				
+				<li>prey(p=10)->[preyanimal]</li>
+				<li>prey->[preymorph]</li>
+				
+				<li>preyanimal->mice</li>
+				<li>preyanimal->rats</li>
+				<li>preyanimal->rabbits</li>
+				<li>preyanimal->squirrels</li>
+				<li>preyanimal->chickens</li>
+				<li>preyanimal->pigs</li>
+				<li>preyanimal->cows</li>
+				<li>preyanimal->deer</li>
+				<li>preyanimal->bears</li>
+				<li>preyanimal->thrumbos</li>
+				
+				<li>preymorph->ratmorphs</li>
+				<li>preymorph->rabbitmorphs</li>
+				<li>preymorph->squirrelmorphs</li>
+				<li>preymorph->chookmorphs</li>
+				<li>preymorph->pigmorphs</li>
+				<li>preymorph->cowmorphs</li>
+				<li>preymorph->deermorphs</li>
+				<li>preymorph->bearmorphs</li>
+				<li>preymorph->thrumbomorphs</li>
+				
+				<li>pred(p=10)->[predanimal]</li>
+				<li>pred->[predmorph]</li>
+				
+				<li>predanimal->rats</li>
+				<li>predanimal->cats</li>
+				<li>predanimal->dogs</li>
+				<li>predanimal->cougars</li>
+				<li>predanimal->wolves</li>
+				<li>predanimal->bears</li>
+				<li>predanimal->thrumbos</li>
+				
+				<li>predmorph->ratmorphs</li>
+				<li>predmorph->catmorphs</li>
+				<li>predmorph->dogmorphs</li>
+				<li>predmorph->cougarmorphs</li>
+				<li>predmorph->wolfmorphs</li>
+				<li>predmorph->bearmorphs</li>
+				<li>predmorph->thrumbomorphs</li>
+				
+				<li>animalbehavior->exchanged sniffs with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] compared notes on mutations</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] shared understanding looks</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Chao</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMChao_DeepTalkChaoMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMChao_Slight</defName>
+		<label>chaoslight</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao_Slight</symbol>
+		<recipientThought>PMChao_Slight</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complained] at [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complained] about [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>complained(p=2)->[noised]</li>
+				<li>complained->[noise]-[noised]</li>
+				
+				<li>noise->growl</li>
+				<li>noise->bark</li>
+				<li>noise->cluck</li>
+				<li>noise->hiss</li>
+				<li>noise->squawk</li>
+				<li>noise->roar</li>
+				<li>noise->snort</li>
+				<li>noise->grunt</li>
+				<li>noise->whine</li>
+				<li>noise->huff</li>
+				<li>noise->gekker</li>
+				<li>noise->screech</li>
+				<li>noise->squeal</li>
+				
+				<li>noised->growled</li>
+				<li>noised->barked</li>
+				<li>noised->clucked</li>
+				<li>noised->hissed</li>
+				<li>noised->squawked</li>
+				<li>noised->roared</li>
+				<li>noised->snorted</li>
+				<li>noised->grunted</li>
+				<li>noised->whined</li>
+				<li>noised->huffed</li>
+				<li>noised->gekkered</li>
+				<li>noised->screeched</li>
+				<li>noised->squealed</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->lack of ethics</li>
+				<li>animalcharacteristic->penchant for mad science</li>
+				
+				<li>annoyingbehavior->made strange gurgling noises as some part of [INITIATOR_possessive] chaobiology settled down, grossing out [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->burped repeatedly as [INITIATOR_possessive] mismatched digestive system worked out some kinks, to the disgust of [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->began to groom [INITIATOR_possessive] own mutated biology like a [Animal] in front of [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMChao_Slight</defName>
+		<stages>
+			<li>
+				<label>chaoslight</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChao_Insult</defName>
+		<label>chaoinsult</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao_Insult</symbol>
+		<recipientThought>PMChao_Insult</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry(p=3)->[INITIATOR_nameDef] [complained] at [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [complained] about [target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [chaoscreech].</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>complained->[noised]</li>
+				<li>complained->[noise]-[noised]</li>
+				
+				<li>noise->growl</li>
+				<li>noise->snarl</li>
+				<li>noise->bukaww</li>
+				<li>noise->hiss</li>
+				<li>noise->squawk</li>
+				<li>noise->roar</li>
+				<li>noise->yelp</li>
+				<li>noise->screech</li>
+				<li>noise->scream</li>
+				
+				<li>noised->growled</li>
+				<li>noised->snarled</li>
+				<li>noised->bukawwed</li>
+				<li>noised->hissed</li>
+				<li>noised->squawked</li>
+				<li>noised->roared</li>
+				<li>noised->yelped</li>
+				<li>noised->screeched</li>
+				<li>noised->screamed</li>
+				
+				<li>noises->growls</li>
+				<li>noises->snarls</li>
+				<li>noises->bukawws</li>
+				<li>noises->hisses</li>
+				<li>noises->squawks</li>
+				<li>noises->roars</li>
+				<li>noises->yelps</li>
+				<li>noises->screeches</li>
+				<li>noises->screams</li>
+				
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->lack of ethics</li>
+				<li>animalcharacteristic->penchant for mad science</li>
+				
+				<li>chaoscreech->tried to [noise] at [RECIPIENT_nameDef] only to devolve into a series of [noises]</li>
+				<li>chaoscreech->made several rapid-fire [noises] at [RECIPIENT_nameDef]</li>
+				<li>chaoscreech->couldn't decide whether to [noise] or [noise] at [RECIPIENT_nameDef], so [INITIATOR_pronoun] did both to be safe</li>
+				<li>chaoscreech->made a horrifying noise at [RECIPIENT_nameDef] that sounded like a cross between a [noise] and a [noise] with some [noises] added in</li>
+				<li>chaoscreech->angrily ranted about [target]'s [characteristic], only to gradually devolve into a [noise]-[noise]</li>
+				<li>chaoscreech->[noised] repeatedly at [RECIPIENT_nameDef], punctuated with a few [noises] for emphasis</li>
+				<li>chaoscreech->[noise]-[noised] that [RECIPIENT_nameDef] is a mad scientist</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMChao_Insult</defName>
+		<stages>
+			<li>
+				<label>chaoinsult</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMChao_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMChao_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>chaoinsulted</label>
+				<description>I can't even describe the horrible sound that was made at me! What an awful chaomorph!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMChao_KindWords</defName>
+		<label>kind chaonoises</label>
+		<symbol>Things/Mote/SpeechSymbols/Chao_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMChao_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noised] that [RECIPIENT_nameDef] was</li>
+				<li>comparedtargetto->[noise]-[noised] that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				
+				<li>complimented->[MaybeKindAdv] [noised] at</li>
+				<li>complimented->[MaybeKindAdv] [noise]-[noised] at</li>
+				
+				<li>kindbehavior->[noised] at</li>
+				<li>kindbehavior->[noise]-[noised] at</li>
+				<li>kindbehavior->[behaviored]</li>
+				<li>kindbehavior->[behavior]-[behaviored]</li>
+				<li>kindbehavior->[noised] and [behaviored]</li>
+				<li>kindbehavior->[noise]-[noised] and [behaviored]</li>
+				<li>kindbehavior->[noised] and [behavior]-[behaviored]</li>
+				<li>kindbehavior->[noise]-[noised] and [behavior]-[behaviored]</li>
+				<li>kindbehavior->fluffed [INITIATOR_possessive] fur-feathers at</li>
+				
+				<li>noise->wuff</li>
+				<li>noise->purr</li>
+				<li>noise->chitter</li>
+				<li>noise->yip</li>
+				<li>noise->chirp</li>
+				<li>noise->baa</li>
+				<li>noise->oink</li>
+				<li>noise->mumble</li>
+				
+				<li>noised->wuffed</li>
+				<li>noised->purred</li>
+				<li>noised->chittered</li>
+				<li>noised->yipped</li>
+				<li>noised->chirped</li>
+				<li>noised->baa'd</li>
+				<li>noised->oinked</li>
+				<li>noised->mumbled</li>
+								
+				<li>behavior->lick</li>
+				<li>behavior->nuzzle</li>
+				<li>behavior->nose</li>
+				<li>behavior->rub</li>
+				<li>behavior->bunt</li>
+				<li>behavior->flutter</li>
+				<li>behavior->wag</li>
+				
+				<li>behaviored->licked</li>
+				<li>behaviored->nuzzled</li>
+				<li>behaviored->nosed</li>
+				<li>behaviored->rubbed</li>
+				<li>behaviored->bunted</li>
+				<li>behaviored->fluttered</li>
+				<li>behaviored->wagged</li>
+								
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->loud noises</li>
+				<li>animalcharacteristic->animal handling skill</li>
+				<li>animalcharacteristic->working organs</li>
+				<li>animalcharacteristic->normal body</li>
+				<li>animalcharacteristic->functioning biology</li>
+				<li>animalcharacteristic->matching limbs</li>
+				<li>animalcharacteristic->stable gait</li>
+				<li>animalcharacteristic->good sense of ethics</li>
+				<li>animalcharacteristic->restraint from mad science</li>
+				
+				<li>compliment->a [KindAdj] zookeeper</li>
+				<li>compliment->a [KindAdj] animal handler</li>
+				<li>compliment->a [KindAdj] scritcher</li>
+				<li>compliment->a [KindAdj] noserubber</li>
+				<li>compliment->a [KindAdj] headpatter</li>
+				<li>compliment->a [KindAdj] earscritcher</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Chao</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMChao_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind chaonoises</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMChao_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMChao_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind chaonoises</label>
+				<description>I've been given a kind, uh, animal noise! What a nice chaomorph!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at chaomorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChao_DirectedInsult</defName>
+		<label>directed chao insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->smell</li>
+				<li>animalcharacteristic->stench</li>
+				<li>animalcharacteristic->weird noises</li>
+				<li>animalcharacteristic->mismatched body</li>
+				<li>animalcharacteristic->warped body</li>
+				<li>animalcharacteristic->freakish appearance</li>
+				<li>animalcharacteristic->jumbled-up organs</li>
+
+				<li>insultcomparison->a zoo</li>
+				<li>insultcomparison->a one-[Man] biology exhibit</li>
+				<li>insultcomparison->a one-[Man] farm</li>
+				<li>insultcomparison->a walking see-n-say</li>
+				<li>insultcomparison->a frankenstein's monster</li>
+				<li>insultcomparison->a supermarket meat department</li>
+				<li>insultcomparison->an all-in-one breakfast dispenser</li>
+				<li>insultcomparison->a chimera</li>
+				<li>insultcomparison->a freak of nature</li>
+				<li>insultcomparison->a mutagen addict</li>
+				<li>insultcomparison->an evolutionary mistake</li>
+				<li>insultcomparison->a pile of animal parts</li>
+				<li>insultcomparison->an animal grab bag</li>
+				<li>insultcomparison->a [Man]-[Animal]-[Animal]</li>
+				
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->remarked that [RECIPIENT_nameDef] looks like a cross between a [Animal], a [Animal], and a [Animal]</li>
+				<li>insult->told [RECIPIENT_nameDef] to stop making so many different animal sounds</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaofox that they should put a saddle on [RECIPIENT_objective]</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaocow that they should put [RECIPIENT_objective] in a barn stall</li>
+				<li>insult->said [RECIPIENT_nameDef] looks so much like a chaodino that they should get an egg box ready</li>
+
+				<li>insultingjoketopics->an explosion in the taxonomy department</li>
+				<li>insultingjoketopics->leftover animal parts</li>
+				<li>insultingjoketopics->unlikely conceptions</li>
+				<li>insultingjoketopics->swimming in mutaslurry</li>
+				<li>insultingjoketopics->man-bear-pigs</li>
+				<li>insultingjoketopics->someone named Edward</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Chao</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+</Defs>

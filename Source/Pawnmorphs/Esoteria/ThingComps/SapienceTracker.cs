@@ -215,6 +215,7 @@ namespace Pawnmorph.ThingComps
                 _sapienceState.Exit();
                 _sapienceState = null;
                 PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
+                Pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
             }
             catch (InvalidCastException e)
             {

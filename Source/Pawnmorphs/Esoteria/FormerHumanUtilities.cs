@@ -887,9 +887,8 @@ namespace Pawnmorph
             if (workSettings == null) throw new ArgumentNullException(nameof(workSettings));
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
             BackstoryDef backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
-            Backstory bkStory = backstoryDef.backstory;
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
-                if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
+                if (backstoryDef.DisabledWorkTypes.Contains(workTypeDef))
                     workSettings.SetPriority(workTypeDef, 0);
                 else
                     workSettings.SetPriority(workTypeDef, 3);
@@ -1300,7 +1299,7 @@ namespace Pawnmorph
             BackstoryDef backstoryDef = backstoryOverride;
             if (backstoryDef != null)
             {
-                pawn.story.adulthood = backstoryDef.backstory;
+                pawn.story.Adulthood = backstoryDef;
                 return;
             }
 
@@ -1308,7 +1307,7 @@ namespace Pawnmorph
 
             backstoryDef = ext?.backstory ?? BackstoryDefOf.FormerHumanNormal;
 
-            pawn.story.adulthood = backstoryDef.backstory;
+            pawn.story.Adulthood = backstoryDef;
         }
 
         /// <summary>

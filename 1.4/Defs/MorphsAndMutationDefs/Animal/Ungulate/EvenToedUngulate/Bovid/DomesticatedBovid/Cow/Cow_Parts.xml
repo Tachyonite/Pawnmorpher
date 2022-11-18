@@ -1,0 +1,76 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidJawPart">
+		<mutationMemory>EtherCowSnout</mutationMemory>
+		<classInfluence>CowMorph</classInfluence>
+		<defName>EtherCowSnout</defName>
+		<label>cow snout</label>
+		<mutationTale>GrowCowMuzzle</mutationTale>
+		<graphics>
+			<Muzzle>Parts/Cow/Cow_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidEarPart">
+		<classInfluence>CowMorph</classInfluence>
+		<defName>EtherCowEar</defName>
+		<label>cow ear</label>
+		<graphics>
+			<LeftEar>Parts/Cow/Cow_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Cow/Cow_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Cow/Cow_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Cow/Cow_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large tan ear that belongs to a cow. It flicks idly. Maybe someone should tag it.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidTailPart">
+		<classInfluence>CowMorph</classInfluence>
+		<defName>EtherCowTail</defName>
+		<label>cow tail</label>
+		<graphics>
+			<Tail>Parts/Cow/Cow_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A cowlike tail. It swats at flies and hangs low at their legs.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidHornPart">
+		<defName>EtherHorns</defName>
+		<classInfluence>CowMorph</classInfluence>
+		<label>horns</label>
+		<description>A pair of cow horns.</description>
+		<graphics>
+			<Horns>Parts/Cow/Cow_Horns</Horns>
+		</graphics>
+		<mutationTale>GrowCowHorns</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>curved horns</label>
+					<description>Curved horns decorate [PAWN_nameDef]'s head, which can easily be used to stab and puncture anyone foolish enough to tussle with [PAWN_nameDef]. They have grown larger, but still have a little more growing to do.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Burly horns decorate [PAWN_nameDef]'s head. It'd be unfortunate to get too close when [PAWN_nameDef] is in a bad mood.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

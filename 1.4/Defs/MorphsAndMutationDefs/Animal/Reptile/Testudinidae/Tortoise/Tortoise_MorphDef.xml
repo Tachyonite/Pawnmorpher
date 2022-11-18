@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="TestudinidaeMorph">
+		<defName>TortoiseMorph</defName>
+		<label>tortoisemorph</label>
+		<description>Tortoisemorphs are defensive morphs characterised by their hard shell. While a shell does generally make them slower, conventional tortoises are slow due to energy conservation -- which is not necessarily an issue with morphs.</description>
+		<race>Tortoise</race>
+		<categories>
+			<li>Temperate</li>
+			<li>Tropical</li>
+		</categories>
+		<fullTransformation>PawnmorphTortoiseTF</fullTransformation>
+		<partialTransformation>PawnmorphTortoiseTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(108,115,104)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>TortoiseTransformationMemory</transformationMemory>
+			<revertedMemory>TortoiseRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

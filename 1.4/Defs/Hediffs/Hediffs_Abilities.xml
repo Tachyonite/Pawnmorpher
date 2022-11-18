@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/HediffDef.xsd">
+	<HediffDef>
+		<defName>Bullrush</defName>
+        <hediffClass>Pawnmorph.Hediffs.Hediff_Bullrush</hediffClass>
+		<description>This pawn is currently under the affect of bullrush.</description>
+		<label>Bullrush</label>
+		<defaultLabelColor>(255,0,255)</defaultLabelColor>
+		<scenarioCanAdd>false</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-24</severityPerDay>
+				<showHoursToRecover>true</showHoursToRecover>
+			</li>
+		</comps>
+		<stages>
+			<li>
+                <capMods>
+                    <li>
+                        <capacity>Moving</capacity>
+                        <offset>0.2</offset>
+                    </li>
+                </capMods>
+                <statOffsets>
+                    <MeleeWeapon_CooldownMultiplier>-0.25</MeleeWeapon_CooldownMultiplier>
+                </statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

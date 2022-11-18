@@ -1,0 +1,110 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfJawBase" ParentName="CanidJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
+					<hungerRateFactorOffset>0.05</hungerRateFactorOffset>
+					<statOffsets>
+						<MentalBreakThreshold>-0.04</MentalBreakThreshold>
+						<HuntingStealth>0.1</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<hungerRateFactorOffset>0.2</hungerRateFactorOffset>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
+						<HuntingStealth>0.15</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a wolf. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<hungerRateFactorOffset>0.2</hungerRateFactorOffset>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MentalBreakThreshold>-0.1</MentalBreakThreshold>
+						<HuntingStealth>0.2</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfEarPart" ParentName="CanidEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.0375</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A pointed and furred ear crown [PAWN_nameDef]'s head, flicking left and right, listening for the sounds of preys.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.075</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="WolfTailPart" ParentName="CanidTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MentalBreakThreshold>-0.0375</MentalBreakThreshold>
+						<HuntingStealth>+0.05</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.075</MentalBreakThreshold>
+						<HuntingStealth>+0.1</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>
