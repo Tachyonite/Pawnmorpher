@@ -33,7 +33,7 @@ namespace Pawnmorph.SapienceStates
         /// </summary>
         public override void Tick()
         {
-            if (_countdownStarted && Pawn.IsHashIntervalTick(60)  && RandUtilities.MtbDaysEventOccured(PERMANENTLY_FERAL_MTB))
+            if (_countdownStarted && Pawn.IsHashIntervalTick(60) && RandUtilities.MtbDaysEventOccured(PERMANENTLY_FERAL_MTB))
             {
                 _countdownStarted = false;
                 Tracker.MakePermanentlyFeral();
