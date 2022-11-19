@@ -40,9 +40,9 @@
 				<addStorageInfo>True</addStorageInfo>
 				<addTransferGizmo>True</addTransferGizmo>
 				<extractOptions>
-					<texPath>UI/MutagenicHazardLow</texPath>
-					<labelKey>VCHE_ExtractChemfuel</labelKey>
-					<descKey>VCHE_ExtractChemfuelDesc</descKey>
+					<texPath>Things/Item/Drug/Slurry/Slurry_a</texPath>
+					<labelKey>PMExtractSlurryLabel</labelKey>
+					<descKey>PMExtractSlurryDesc</descKey>
 					<extractAmount>1</extractAmount>
 					<extractTime>150</extractTime>
 					<thing>MechaniteSlurry</thing>

@@ -4,7 +4,7 @@
         <transferAmount>1</transferAmount> <!-- Amount transferred per 100 ticks -->
 		<resource>
 			<name>Slurry</name>
-			<unit>l</unit>
+			<unit></unit>
 			<color>(0.31, 1, 0.33)</color>
 			<onlyShowStored>True</onlyShowStored>
 			<offTexPath>Things/Item/Drug/Slurry/Slurry_a</offTexPath>
