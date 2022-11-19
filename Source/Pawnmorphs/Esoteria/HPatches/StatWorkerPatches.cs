@@ -26,24 +26,21 @@ namespace Pawnmorph.HPatches
         {
             static void Postfix(ref float __result, StatRequest req, bool applyPostProcess,  StatDef ___stat)
             {
+                if (___stat == PMStatDefOf.SapienceLimit)
+                    Log.Message(___stat.LabelCap + ": Calculating limit stat for " + req.Thing.LabelCap);
+
                 if (req.Thing is Pawn pawn)
                 {
                     ulong lookupID = (ulong)pawn.thingIDNumber << 32 | ___stat.index;
 
-                    if (_cache.TryGetValue(lookupID, out TimedCache<float> cachedStat))
+                    if (_cache.TryGetValue(lookupID, out TimedCache<float> cachedStat) == false)
                     {
-                        __result += cachedStat.GetValue(1000);
+                        cachedStat = _cache[lookupID] = new TimedCache<float>(() => CalculateOffsets(pawn, ___stat));
+                        cachedStat.Update();
+                        cachedStat.Offset(pawn.HashOffset());
                     }
-                    else
-                    {
-                        // This should prevent all the pawns from updating cache on same frame.
-                        if (pawn.IsHashIntervalTick(10))
-                        {
-                            cachedStat = _cache[lookupID] = new TimedCache<float>(() => CalculateOffsets(pawn, ___stat));
-                            cachedStat.QueueUpdate();
-                            return;
-                        }
-                    }
+
+                    __result += cachedStat.GetValue(1000);
                 }
             }
 
