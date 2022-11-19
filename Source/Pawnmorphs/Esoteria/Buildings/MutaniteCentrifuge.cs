@@ -54,7 +54,7 @@ namespace Pawnmorph.Buildings
         /// The danger radius
         /// </summary>
         public const int DANGER_RADIUS = 5;
-        private static float DEFAULT_GLOW_RADIUS = 1;
+        private const float DEFAULT_GLOW_RADIUS = 1;
 
         private const float MUTAGENIC_BUILDUP_RATE = 0.02f;
 
@@ -86,7 +86,6 @@ namespace Pawnmorph.Buildings
 
         private Command_Toggle _highYieldCommand;
 
-        private bool _enabled;
 
         /// <summary>
         ///     Gets or sets the current mode.
@@ -210,8 +209,6 @@ namespace Pawnmorph.Buildings
         {
             base.SpawnSetup(map, respawningAfterLoad);
             
-
-            DEFAULT_GLOW_RADIUS = 0;
             _flickable = GetComp<CompFlickable>();
             _initialColor = Glower?.Props?.glowColor ?? Clear;
             _glowRadius = GetGlowRadius(CurrentMode);
