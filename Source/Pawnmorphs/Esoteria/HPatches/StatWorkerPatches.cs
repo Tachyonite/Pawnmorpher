@@ -26,9 +26,6 @@ namespace Pawnmorph.HPatches
         {
             static void Postfix(ref float __result, StatRequest req, bool applyPostProcess,  StatDef ___stat)
             {
-                if (___stat == PMStatDefOf.SapienceLimit)
-                    Log.Message(___stat.LabelCap + ": Calculating limit stat for " + req.Thing.LabelCap);
-
                 if (req.Thing is Pawn pawn)
                 {
                     ulong lookupID = (ulong)pawn.thingIDNumber << 32 | ___stat.index;
