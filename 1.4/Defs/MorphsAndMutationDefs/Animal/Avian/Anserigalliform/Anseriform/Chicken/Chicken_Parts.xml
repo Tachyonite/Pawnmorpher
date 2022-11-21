@@ -17,7 +17,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. Adapting to it has made speaking less frustrating.</description>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. Adapting to it has made speaking less frustrating.</description>	
 				</values>
 			</li>
 			<li function="modify">

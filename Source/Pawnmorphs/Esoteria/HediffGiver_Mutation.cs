@@ -76,7 +76,7 @@ namespace Pawnmorph
                 var comp = singleComp;
 
                 // If we haven't already tried to apply this giver's hediff and the pawn either passes a percentile roll or are of the right gender, try and apply the hediff.
-                if (!_triggered.TryGetValue(cause) && (gender == pawn.gender || Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
+                if (!_triggered.TryGetValue(cause) && (gender == pawn.gender && Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
                 {
                     _triggered[cause] = true;
                     DoMutationAddedEffects(pawn);

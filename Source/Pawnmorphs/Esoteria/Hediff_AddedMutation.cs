@@ -211,7 +211,8 @@ namespace Pawnmorph
         public override void Tick()
         {
             // We don't use any of the vanilla functionality so there is no reason to propagate the tick further down
-            ageTicks++;
+            TickBase = Def.RunBaseLogic || (CurrentMutationStage?.RunBaseLogic ?? false);
+
             base.Tick();
 
             foreach (Abilities.MutationAbility ability in abilities)

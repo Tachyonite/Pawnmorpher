@@ -59,6 +59,11 @@ namespace Pawnmorph.Hediffs
         public bool isTaggable = true;
 
         /// <summary>
+        /// Indicates whether there is a reason to run vanilla hediff base logic or not.
+        /// </summary>
+        public bool RunBaseLogic = false;
+
+        /// <summary>
         /// optional field that will act as an explicit description for the mutations 'genome' object
         /// </summary>
         public string customGenomeDescription;
@@ -365,7 +370,8 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
-           
+            if (hediffGivers != null && hediffGivers.Count > 0)
+                RunBaseLogic = true;
         }
 
         [NotNull]

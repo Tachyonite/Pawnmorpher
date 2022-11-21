@@ -69,6 +69,8 @@ namespace Pawnmorph.Hediffs
         {
             if (TickBase)
                 base.Tick();
+            else
+                ageTicks++;
 
             int stageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
             if (stageIndex != cachedStageIndex)
