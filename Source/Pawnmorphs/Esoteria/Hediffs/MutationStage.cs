@@ -118,14 +118,13 @@ namespace Pawnmorph.Hediffs
                 hediff.pawn.TryAddMutationThought(memory);
             }
 
-            RunBaseLogic = ShouldRunBaseLogic();
-        }
+			RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
+		}
 
         public void OnLoad(Hediff hediff)
         {
             ApplyVerbOverrides(hediff);
-
-            RunBaseLogic = ShouldRunBaseLogic();
+            RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
         }
 
         /// <summary>
