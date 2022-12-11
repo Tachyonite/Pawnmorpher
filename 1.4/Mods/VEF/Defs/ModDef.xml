@@ -1,0 +1,13 @@
+<Defs>
+    <MVCF.ModDef>
+        <defName>PM_Pawnmorpher</defName>
+        <label>Pawnmorpher</label>
+        <description>cross compatiblity</description>
+        <ActivateFeatures>
+            <li>RangedAnimals</li>
+            <li>HediffVerbs</li>
+            <li>IntegratedToggle</li>
+            <li>ExtraEquipmentVerbs</li>
+        </ActivateFeatures>
+    </MVCF.ModDef>
+</Defs>

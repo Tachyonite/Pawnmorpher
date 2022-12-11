@@ -43,13 +43,6 @@ namespace Pawnmorph.Chambers
 
         [NotNull] private static readonly Dictionary<PawnKindDef, ThingDef> _genomeDict = new Dictionary<PawnKindDef, ThingDef>();
 
-        [NotNull] private static readonly object[] _tmpArr = {null, typeof(ThingDef)};
-
-        static GenomeDefGenerator()
-        {
-            GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
-        }
-
         /// <summary>
         ///     Gets all implied genomes.
         /// </summary>
@@ -158,7 +151,8 @@ namespace Pawnmorph.Chambers
 
         private static void Init(ThingDef allImplicitGenome)
         {
-            GiveShortHash(allImplicitGenome);
+            HashGiverUtils.GiveShortHash(allImplicitGenome);
+            // GiveShortHash(allImplicitGenome);
             allImplicitGenome.ResolveReferences();
             _configErrorCache.Clear();
             _configErrorCache.AddRange(allImplicitGenome.ConfigErrors().MakeSafe());
@@ -325,13 +319,6 @@ namespace Pawnmorph.Chambers
         private static float GetGenomeMarketValue([NotNull] PawnKindDef pkDef)
         {
             return Mathf.Max(100, 100 + pkDef.race.BaseMarketValue); //don't go below 100 silver for any pawnKindDef  
-        }
-
-        private static void GiveShortHash(ThingDef def)
-
-        {
-            _tmpArr[0] = def;
-            GiveHashMethod.Invoke(null, _tmpArr);
         }
 
         private static bool IsDepricated([NotNull] MutationDef def)

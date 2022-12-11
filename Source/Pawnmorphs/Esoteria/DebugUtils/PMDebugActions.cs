@@ -433,6 +433,22 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugAction("Pawnmorpher", "Make pawn alien.", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void MakePawnAlien(Pawn pawn)
+        {
+            if (pawn.def is ThingDef_AlienRace == false)
+                return;
+
+            List<DebugMenuOption> options = new List<DebugMenuOption>();
+
+            foreach (var alienRace in DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Except(RaceGenerator.ImplicitRaces))
+            {
+                options.Add(new DebugMenuOption(alienRace.LabelCap, DebugMenuOptionMode.Action, () => RaceShiftUtilities.ChangePawnRace(pawn, alienRace)));
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
 
         private static void MakePawnMorph([CanBeNull] MorphDef morph)
         {
@@ -692,7 +708,7 @@ namespace Pawnmorph.DebugUtils
 
         private static void AddBackstoryToPawn(Pawn pawn, BackstoryDef def)
         {
-            pawn.story.adulthood = def.backstory;
+            pawn.story.Adulthood = def;
         }
 
         private static List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)

@@ -20,7 +20,8 @@ namespace EtherGun
         /// called when this instance impacts the given thing 
         /// </summary>
         /// <param name="hitThing">The hit thing.</param>
-        protected override void Impact(Thing hitThing)
+        /// <param name="blockedByShield"></param>
+        protected override void Impact(Thing hitThing, bool blockedByShield = false)
         {
             base.Impact(hitThing);
             var pgc = Find.World.GetComponent<PawnmorphGameComp>();

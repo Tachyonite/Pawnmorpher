@@ -1,0 +1,8 @@
+<Defs>
+    <PrisonerInteractionModeDef>
+        <defName>PM_Transform</defName>
+        <label>transform</label>
+        <listOrder>35</listOrder>
+		<description>A warden will bring the prisonner to the nearest chamber.</description>
+    </PrisonerInteractionModeDef>
+</Defs>

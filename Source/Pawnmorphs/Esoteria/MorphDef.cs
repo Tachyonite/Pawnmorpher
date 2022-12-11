@@ -135,34 +135,20 @@ namespace Pawnmorph
 
 
         /// <summary>
-        /// Gets the pawnKindDefs for which the PawnKindDef.race field is equal to <see cref="race"/>
+        /// Gets the animal pawnkinds associated with this morph.
         /// </summary>
-        /// <value>
-        /// The primary feral pawn kinds.
-        /// </value>
         [NotNull]
-        public IReadOnlyList<PawnKindDef> PrimaryFeralPawnKinds {
+        public IEnumerable<PawnKindDef> FeralPawnKinds 
+        {
             get
             {
-                if (_primaryPawnKindDefs == null) return Array.Empty<PawnKindDef>();
-                return _primaryPawnKindDefs; 
-            } }
+                if (_primaryPawnKindDefs == null) 
+                    return Array.Empty<PawnKindDef>();
 
+                return _primaryPawnKindDefs.Concat(_secondaryPawnKindDefs); 
+            } 
+        }
 
-        /// <summary>
-        /// Gets the secondary pawnkind defs for which their race field is equal to <see cref="race"/> or one of <see cref="AllAssociatedAnimals"/>.
-        /// </summary>
-        /// <value>
-        /// The secondary primary pawn kinds.
-        /// </value>
-        [NotNull]
-        public IReadOnlyList<PawnKindDef> SecondaryPrimaryPawnKinds {
-            get
-            {
-                if (_secondaryPawnKindDefs == null) return Array.Empty<PawnKindDef>();
-                return _secondaryPawnKindDefs; 
-            } }
-        
         /// <summary>
         ///     Gets the children.
         /// </summary>
@@ -481,10 +467,8 @@ namespace Pawnmorph
             
 
             _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
-            _secondaryPawnKindDefs =
-                DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race || AllAssociatedAnimals.Contains(p.race)).ToList();
+            _secondaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => AllAssociatedAnimals.Contains(p.race)).ToList();
             injectorProperties?.ResolveReferences(race.label);
-            
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

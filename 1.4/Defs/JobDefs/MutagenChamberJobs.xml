@@ -1,0 +1,24 @@
+<Defs>
+	<JobDef>
+		<defName>EnterMutagenChamber</defName>
+		<driverClass>Pawnmorph.JobDriver_EnterMutagenChamber</driverClass>
+		<reportString>entering mutagen chamber.</reportString>
+		<taleOnCompletion>EnteredCryptosleep</taleOnCompletion>
+		<allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+	</JobDef>
+
+	<JobDef>
+		<defName>CarryToMutagenChamber</defName>
+		<driverClass>Pawnmorph.JobDriver_CarryToMutagenChamber</driverClass>
+		<reportString>carrying TargetA to mutagen chamber.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+		<taleOnCompletion>PutIntoCryptosleep</taleOnCompletion>
+	</JobDef>
+
+	<JobDef>
+		<defName>PM_CarrySpecialToMutagenChamber</defName>
+		<driverClass>Pawnmorph.Jobs.Driver_DeliverThingToChamber</driverClass>
+		<reportString>carrying TargetA to mutagen chamber.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+</Defs>

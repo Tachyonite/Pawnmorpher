@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="TestudinidaeJawPart">
+		<classInfluence>TortoiseMorph</classInfluence>
+		<defName>EtherTortoiseJaw</defName>
+		<label>tortoise beak</label>
+		<graphics>
+			<Muzzle>Parts/Tortoise/Tortoise_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="TestudinidaeTailPart">
+		<classInfluence>TortoiseMorph</classInfluence>
+		<defName>EtherTortoiseTail</defName>
+		<label>tortoise tail</label>
+		<graphics>
+			<Tail>Parts/Tortoise/Tortoise_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short tail has sprouted from the base of [PAWN_nameDef]'s spine. Long enough that it requires some clothing modifications, but too short to be useful for much else.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

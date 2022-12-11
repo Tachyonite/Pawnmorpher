@@ -1,0 +1,16 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Human"]/alienRace/generalSettings/alienPartGenerator/colorChannels</xpath>
+        <value>
+            <li>
+                <name>SkinHair</name>
+                <first Class="AlienRace.ColorGenerator_CustomAlienChannel">
+                    <colorChannel>skin_1</colorChannel>
+                </first>
+                <second Class="AlienRace.ColorGenerator_CustomAlienChannel">
+                    <colorChannel>hair_1</colorChannel>
+                </second>
+            </li>
+        </value>
+    </Operation>
+</Patch>

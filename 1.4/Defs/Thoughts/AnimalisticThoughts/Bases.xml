@@ -1,0 +1,6 @@
+<Defs>
+    <ThoughtDef Name="SapientMemoryBase" Abstract="true">
+        <thoughtClass>Pawnmorph.Thoughts.SapienceMemory</thoughtClass>
+        <durationDays>1</durationDays>
+    </ThoughtDef>
+</Defs>

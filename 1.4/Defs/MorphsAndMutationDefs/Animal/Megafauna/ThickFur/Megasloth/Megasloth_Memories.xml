@@ -1,0 +1,129 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>MegaslothTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I feel so... slow... and... tired.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Ahh... time to just stretch out and relax, I think... zzz...</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I don't want... to sleep...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>This is nice, but imagine the full-sized body... much better...</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>MegaslothRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I think I've had all the sleep I need for five years.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Sigh... back to work.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I actually have energy to do things now!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>This isn't what I wanted.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMegaslothSnout</defName>
+		<stages>
+			<li>
+				<label>Sloth face</label>
+				<description>Sooooo...slooooow...can barely speak...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sloth face</label>
+				<description>Eating trees sure is fun!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sloth face</label>
+				<description>I can...EAT TREES?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMegaslothTail</defName>
+		<stages>
+			<li>
+				<label>Fluff tuft</label>
+				<description>This tail is too heavy. Or is it just that I'm slower now?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluff tuft</label>
+				<description>I can't complain about a massive, fluffy tail!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluff tuft</label>
+				<description>God, this thing drags dirt everywhere...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherMegawoolly</defName>
+		<stages>
+			<li>
+				<label>Thick wool</label>
+				<description>I feel like I spend every waking minute shaving this stuff off...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thick wool</label>
+				<description>It's like a giant, fluffy blanket...and it goes wherever I go!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Thick wool</label>
+				<description>This wool is thick, hot and itchy...I don't like it one bit!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

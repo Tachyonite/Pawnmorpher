@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCanidMuzzle</defName>
+		<stages>
+			<li>
+				<label>Canid muzzle</label>
+				<description>I sound ridiculous trying to speak with this thing.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid muzzle</label>
+				<description>So many scents! This is incredible!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid muzzle</label>
+				<description>I'm smelling things I wish I couldn't. I want my old face back.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCanidEar</defName>
+		<stages>
+			<li>
+				<label>Canid ears</label>
+				<description>They're a bit too sensitive, everything's too loud for comfort.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid ears</label>
+				<description>My hearing is so clear now, I bet I could hear a pin drop on the other side of the colony!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid ears</label>
+				<description>I swear I can hear them talking about me. Why is this happening to me?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCanidTail</defName>
+		<stages>
+			<li>
+				<label>Canid tail</label>
+				<description>I hope making a tail-hole in my pants won't be too hard.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid tail</label>
+				<description>Whenever I think about it it just starts to wag!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Canid tail</label>
+				<description>I can't even sit on a chair without this damn thing getting in the way!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

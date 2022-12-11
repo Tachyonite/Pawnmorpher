@@ -1,0 +1,147 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Gas Traps And Shells</li>
+		</mods>
+
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs</xpath>
+					<value>
+						<ThingDef ParentName="MakeableShellBase">
+							<defName>Shell_GasTF</defName>
+							<label>mutagenic gas shell</label>
+							<description>A shell filled with aerosolized slurry. Can be fired from mortars.</description>
+							<graphicData>
+								<texPath>Things/Item/Resource/TFShell</texPath>
+								<graphicClass>Graphic_StackCount</graphicClass>
+							</graphicData>
+							<comps>
+								<li Class="CompProperties_Explosive">
+									<explosiveRadius>5.9</explosiveRadius>
+									<explosiveDamageType>Smoke</explosiveDamageType>
+									<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+									<startWickHitPointsPercent>0.333</startWickHitPointsPercent>
+									<postExplosionSpawnThingDef>EtherMutagenicGas</postExplosionSpawnThingDef>
+									<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+									<wickTicks>
+										<min>10</min>
+										<max>30</max>
+									</wickTicks>
+								</li>
+							</comps>
+							<projectileWhenLoaded>Bullet_Shell_GasMutagenic</projectileWhenLoaded>
+							<costList>
+								<Steel>20</Steel>
+								<Chemfuel>10</Chemfuel>
+								<MechaniteSlurry>1</MechaniteSlurry>
+							</costList>
+						</ThingDef>
+
+						<ThingDef ParentName="BaseBullet">
+							<defName>Bullet_Shell_GasMutagenic</defName>
+							<label>mutagen gas shell</label>
+							<graphicData>
+								<texPath>Things/Projectile/ShellHighExplosive</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<shaderType>TransparentPostLight</shaderType>
+							</graphicData>
+							<thingClass>Projectile_Explosive</thingClass>
+							<projectile>
+								<damageDef>Smoke</damageDef>
+								<damageAmountBase>0</damageAmountBase>
+								<speed>41</speed>
+								<explosionRadius>5.9</explosionRadius>
+								<flyOverhead>true</flyOverhead>
+								<postExplosionSpawnThingDef>EtherMutagenicGas</postExplosionSpawnThingDef>
+								<postExplosionSpawnChance>1.0</postExplosionSpawnChance>
+								<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+								<soundExplode>Explosion_Stun</soundExplode>
+								<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+								<soundAmbient>MortarRound_Ambient</soundAmbient>
+							</projectile>
+						</ThingDef>
+						
+						<ThingDef Class="GasTrap.Thing_AddsHediffDef" ParentName="PM_BaseGas">
+							<defName>EtherMutagenicGas</defName>
+							<label>mutagenic gas</label>
+							<graphicData>
+								<texPath>Things/Gas/Puff</texPath>
+								<drawSize>2.5</drawSize>
+								<color>(0.0,0.8,0.0,0.4)</color>
+							</graphicData>
+							<!--	<tickerType>Rare</tickerType> -->
+							<thingClass>GasTrap.Thing_AddsHediff</thingClass>
+							<addHediff>MutagenicBuildup</addHediff>
+							<hediffAddChance>1.0</hediffAddChance>
+							<hediffSeverity>0.05</hediffSeverity>
+							<ticksPerApplication>30</ticksPerApplication>
+							<!--
+							<affectLungs>true</affectLungs> 
+							<affectEyes>false</affectEyes>
+							<affectEars>false</affectEars>
+							<affectSkin>false</affectSkin>
+							<affectInsects>true</affectInsects>
+							<affectMechanoids>false</affectMechanoids>-->
+
+							<gas>
+								<expireSeconds>
+									<min>50</min>
+									<max>60</max>
+								</expireSeconds>
+								<blockTurretTracking>true</blockTurretTracking>
+								<accuracyPenalty>0.4</accuracyPenalty>
+								<rotationSpeed>5</rotationSpeed>
+
+							</gas>
+						</ThingDef>
+						<ThingDef Class="GasTrap.GasTrapDef" ParentName="BuildingBase">
+							<defName>GasTrapMutagenic</defName>
+							<label>gas trap (mutagenic)</label>
+							<thingClass>GasTrap.Building_GasTrap</thingClass>
+							<graphicData>
+								<texPath>Things/Building/tfIEDGas</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+								<damageData>
+									<rect>(0.1,0,0.8,0.3)</rect>
+								</damageData>
+							</graphicData>
+							<altitudeLayer>Building</altitudeLayer>
+							<drawerType>RealtimeOnly</drawerType>
+							<rotatable>false</rotatable>
+							<tickerType>Normal</tickerType>
+							<stealable>false</stealable>
+							<GasDef>EtherMutagenicGas</GasDef>
+							<damDef>Smoke</damDef>
+							<triggerChance>1</triggerChance>
+							<range>4.9</range>
+							<!-- Upcoming Item still need to implement -->
+							<triggerByNormal>true</triggerByNormal>
+							<triggerByInsects>true</triggerByInsects>
+							<triggerByMechanoids>false</triggerByMechanoids>
+							<statBases>
+								<MaxHitPoints>40</MaxHitPoints>
+								<WorkToBuild>2000</WorkToBuild>
+								<Beauty>-4</Beauty>
+								<!--	  <TrapSpringChance>0.8</TrapSpringChance> -->
+							</statBases>
+							<description>This trap releases mutagenic gas when a hapless human gets too close. They won't be human for too long after inhaling the aerosolised mechanites contained in this trap.</description>
+							<costList>
+								<Shell_GasTF>1</Shell_GasTF>
+								<ComponentIndustrial>1</ComponentIndustrial>
+								<Steel>10</Steel>
+							</costList>
+							<designationCategory>Security</designationCategory>
+							<researchPrerequisites><li>IEDs</li><li>MutagenicWeapons</li></researchPrerequisites>
+							<building>
+								<isTrap>true</isTrap>
+							</building>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

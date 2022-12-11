@@ -1,0 +1,83 @@
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+        <defName>PM_SlurryPipe</defName>
+        <label>slurry pipe</label>
+        <description>A pipe that transmits slurry.</description>
+        <thingClass>PipeSystem.Building_Pipe</thingClass>
+        <category>Building</category>
+		<tickerType>Normal</tickerType>
+        <graphicData>
+            <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <linkType>Basic</linkType>
+            <linkFlags>
+                <li>PowerConduit</li>
+            </linkFlags>
+            <damageData>
+                <rect>(0,0.35,1,0.3)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconScale>1</uiIconScale>
+        <building>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <isEdifice>false</isEdifice>
+            <blueprintGraphicData>
+                <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            </blueprintGraphicData>
+        </building>
+        <drawerType>MapMeshOnly</drawerType>
+        <altitudeLayer>Conduits</altitudeLayer>
+        <passability>Standable</passability>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>35</WorkToBuild>
+            <Flammability>0.7</Flammability>
+            <Beauty>-2</Beauty>
+        </statBases>
+        <placingDraggableDimensions>1</placingDraggableDimensions>
+        <costList>
+            <Steel>1</Steel>
+        </costList>
+        <comps>
+			<li Class="PipeSystem.CompProperties_Resource">
+				<pipeNet>PM_SlurryNet</pipeNet>
+			</li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+			<!--<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>-->
+        </comps>
+        <researchPrerequisites>
+            <li>PM_MutagenStorage</li>
+        </researchPrerequisites>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <placeWorkers>
+          <li>PipeSystem.PlaceWorker_Pipe</li>
+        </placeWorkers>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <constructEffect>ConstructMetal</constructEffect>
+        <clearBuildingArea>false</clearBuildingArea>
+        <designationHotKey>Misc1</designationHotKey>
+
+    </ThingDef>
+</Defs>

@@ -4,6 +4,7 @@
 using System;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.HPatches;
 using Pawnmorph.SapienceStates;
 using RimWorld;
 using Verse;
@@ -126,7 +127,7 @@ namespace Pawnmorph.ThingComps
             _sapienceState?.Tick();
         }
 
-
+        
         /// <summary>
         ///     enter the given sapience state
         /// </summary>
@@ -208,13 +209,17 @@ namespace Pawnmorph.ThingComps
             //need a better solution 
             try
             {
-                var fhState = (FormerHuman) _sapienceState;
+                var fhState = (FormerHuman)_sapienceState;
                 fhState.MakePermanentlyFeral();
                 SapienceLevel = SapienceLevel.PermanentlyFeral;
 
-                _sapienceState.Exit();
-                _sapienceState = null;
-                PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
+                PawnPatches.QueuePostTickAction(Pawn, () =>
+                {
+                    _sapienceState.AddOrRemoveDynamicComponents();
+                    _sapienceState.Exit();
+                    _sapienceState = null;
+                    Pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
+                });
             }
             catch (InvalidCastException e)
             {

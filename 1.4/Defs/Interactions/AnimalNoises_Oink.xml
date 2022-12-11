@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Suid</defName>
+		<requiredMutationsAny>
+			<li>EtherBoarSnout</li>
+			<li>EtherPigSnout</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherBoarSnout</key>
+				<value>0.5</value>
+			</li>
+			<li>
+				<key>EtherPigSnout</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherBoarTail</key>
+				<value>0.25</value>
+			</li>
+			<li>
+				<key>EtherPigTail</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+			<li>
+				<key>EtherBoarEar</key>
+				<value>0.125</value>
+			</li>
+			<li>
+				<key>EtherPigEar</key>
+				<value>0.125</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>BoarMorph</key>
+				<value>1</value>
+			</li>
+			<li>
+				<key>PigMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMOink_Chitchat</defName>
+		<label>oink</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink</symbol>
+		<initiatorThought>PMOink_ChitchatMemory</initiatorThought>
+		<recipientThought>PMOink_ChitchatMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+				<li>noisedat(p=4)->oinked at</li>
+				<li>noisedat->grunted at</li>
+				<li>noisedat->whined at</li>
+				<li>noisedat->squealed at</li>
+				<li>noisedat->snorted at</li>
+				<li>noisedat->twitched [INITIATOR_possessive] tail at</li>
+				
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout->squealed about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->pigs</li>
+				<li>animaltopic->boars</li>
+				<li>animaltopic->hogs</li>
+				<li>animaltopic->mud</li>
+				<li>animaltopic->stables</li>
+				<li>animaltopic->vegetables</li>
+				<li>animaltopic->oats</li>
+				<li>animaltopic->mushrooms</li>
+				<li>animaltopic->bristles</li>
+				<li>animaltopic->tusks</li>
+				<li>animaltopic->trotters</li>
+				<li>animaltopic->weight loss</li>
+				<li>animaltopic->medical research</li>
+				<li>animaltopic->organ xenotransplantation</li>
+                <li>animaltopic->factory farming</li>
+				<li>animaltopic->pig rights</li>
+				<li>animaltopic->meat subtitutes</li>
+				<li>animaltopic->cannibalism</li>
+				<li>animaltopic->bacon</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PMOink_ChitchatMemory</defName>
+		<stages>
+			<li>
+				<label>oink</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMOink_DeepTalk</defName>
+		<label>deep oink</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink_DeepTalk</symbol>
+		<initiatorThought>PMOink_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMOink_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming a suidmorph</li>
+				<li>animallife->being a suidmorph</li>
+				<li>animallife->having trotters</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->mudbaths</li>
+				<li>animallife->truffle hunting</li>
+				<li>animallife->trotting</li>
+				<li>animallife->bristle brushing</li>
+				<li>animallife->snout pats</li>
+				<li>animallife->trotter care</li>
+				<li>animallife->carrots</li>
+				<li>animallife->potatos</li>
+				<li>animallife->mushrooms</li>
+				<li>animallife->pig rights</li>
+				<li>animallife->whether eating pigmorph meat is cannibalism</li>
+				<li>animallife->living with trotters</li>
+				<li>animallife->peripheral vision</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMOink_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep oink</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two pig morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMOink_DeepTalkPig</defName>
+		<label>deep oink with pig</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink_DeepTalk</symbol>
+		<initiatorThought>PMOink_DeepTalkPigMemory</initiatorThought>
+		<recipientThought>PMOink_DeepTalkPigMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming suidmorphs</li>
+				<li>animallife->being suidmorphs</li>
+				<li>animallife->having trotters</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->mudbaths</li>
+				<li>animallife->truffle hunting</li>
+				<li>animallife->trotting</li>
+				<li>animallife->bristle brushing</li>
+				<li>animallife->snout pats</li>
+				<li>animallife->trotter care</li>
+				<li>animallife->carrots</li>
+				<li>animallife->potatos</li>
+				<li>animallife->mushrooms</li>
+				<li>animallife->pig rights</li>
+				<li>animallife->whether eating pigmorph meat is cannibalism</li>
+				<li>animallife->living with trotters</li>
+				<li>animallife->peripheral vision</li>
+				
+				<li>secretanimallife->oinking</li>
+				<li>secretanimallife->truffle hunting techniques</li>
+				<li>secretanimallife->bristle maintainance</li>
+				<li>secretanimallife->the uses of pig bristles</li>
+				<li>secretanimallife->rolling in mud</li>
+				<li>secretanimallife->weight loss techniques</li>
+				<li>secretanimallife->the merits and drawbacks of various construction materials</li>
+				<li>secretanimallife->house construction techniques</li>
+				<li>secretanimallife->how having four legs is good, but two legs are better</li>
+				<li>secretanimallife->how some morphs are more equal than others</li>
+				<li>secretanimallife->starting a revolution</li>
+				<li>secretanimallife->having a taste for pork</li>
+				<li>secretanimallife->having a taste for human flesh</li>
+				
+				<li>animalbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->oinked in unison with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] gave eachother a warming look</li>
+				<li>animalbehavior->hoof bumped with [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMOink_DeepTalkPigMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMOink_Slight</defName>
+		<label>pig slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink_Slight</symbol>
+		<recipientThought>PMOink_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>noisedat->oinked at</li>
+				<li>noisedat->squealed at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat->snorted annoyingly at</li>
+								
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->squealed about</li>
+				<li>noisedabout->snorted unhappily about</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sudden movement</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
+				
+				<li>annoyingbehavior->shook off some dried mud that landed on [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->oinked loudly in [RECIPIENT_nameDef] face</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMOink_Slight</defName>
+		<stages>
+			<li>
+				<label>snort</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMOink_Insult</defName>
+		<label>pig insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink_Insult</symbol>
+		<recipientThought>PMOink_InsultMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->oinked that [Target] was</li>
+				<li>noisedtargetwas->squealed that [Target] was</li>
+				<li>noisedtargetwas->snorted that [Target] was</li>
+
+				<li>noisedat->squealed aggressively at</li>
+				<li>noisedat->screached at</li>
+				<li>noisedat->screamed at</li>
+								
+				<li>noisedabout->oinked about</li>
+				<li>noisedabout->squealed about</li>
+				<li>noisedabout->screached about</li>
+				<li>noisedabout->squealed loudly because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sudden movement</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
+				
+				<li>insult->a hoghunter</li>
+				<li>insult->a sausage-eater</li>
+				<li>insult->long pork</li>
+				<li>insult->a wolf</li>
+				<li>insult->a cougar</li>
+				<li>insult->a bear</li>
+				<li>insult->a predator</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMOink_InsultMemory</defName>
+		<stages>
+			<li>
+				<label>squeal</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMOink_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMOink_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>squealed at</label>
+				<description>I've been squealed at! What an awful pig!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMOink_KindWords</defName>
+		<label>kind oinks</label>
+		<symbol>Things/Mote/SpeechSymbols/Oink_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMOink_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimented] [RECIPIENT_nameDef]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [adv] called [RECIPIENT_nameDef] a [pigcompliment].</li>
+				
+				<li>characteristic->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->brushing technique</li>
+				<li>animalcharacteristic->snout patting technique</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sugar cubes</li>
+				<li>animalcharacteristic->brushing technique</li>
+				
+				<li>complimentedtargets->oinked happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->oinked approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wiggled [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nosed [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->[KindAdverb] nosed</li>
+				<li>kindbehavior->[KindAdverb] oinked at</li>
+				<li>kindbehavior->wiggled [INITIATOR_possessive] tail at</li>
+				
+				<li>pigcompliment->a [KindAdj] carrot</li>
+				<li>pigcompliment->a [KindAdj] potato</li>
+				<li>pigcompliment->a [KindAdj] truffle</li>
+				<li>pigcompliment->a [KindAdj] mud puddle</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Suid</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMOink_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind oink</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMOink_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMOink_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind oink</label>
+				<description>I've been complimented! What a nice pig!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at suids -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMOink_DirectedInsult</defName>
+		<label>directed pig insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->smell</li>
+				<li>animalcharacteristic->bristles</li>
+				<li>animalcharacteristic->nose</li>
+				<li>animalcharacteristic->floppy ears</li>
+				<li>animalcharacteristic->snout</li>
+				<li>animalcharacteristic->tiny tail</li>
+				<li>animalcharacteristic->weight</li>
+
+				<li>insultcomparison->bacon</li>
+				<li>insultcomparison->sausage</li>
+				<li>insultcomparison->long pork</li>
+				<li>insultcomparison->a tub of lard</li>
+				<li>insultcomparison->a truffle-o-meter</li>
+				<li>insultcomparison->an organ doner</li>
+				<li>insultcomparison->a vegetable-to-meat factory</li>
+				<li>insultcomparison->a farm animal</li>
+				<li>insultcomparison->a slob</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->told [RECIPIENT_nameDef] to go roll in mud</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop squealing</li>
+
+				<li>insultingjoketopics->30-50 feral hogs</li>
+				<li>insultingjoketopics->overweight people</li>
+				<li>insultingjoketopics->big bad wolfmorphs</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Suid</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+</Defs>

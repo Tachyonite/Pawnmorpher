@@ -1,0 +1,32 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef>
+        <defName>BeastmasterThoughts</defName>
+        <workerClass>Pawnmorph.Thoughts.Worker_BeastMaster</workerClass>
+        <thoughtClass>Thought_Situational</thoughtClass>
+        <validWhileDespawned>true</validWhileDespawned>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <label>former human friend</label>
+                <description>It feels good being with a former human. It's easier, them being an animal.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>master of former humans</label>
+                <description>It's nice to be around animals that understand you. They were humans once.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries>
+                    <li>
+                        <aspectDef>Beastmaster</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+</Defs>

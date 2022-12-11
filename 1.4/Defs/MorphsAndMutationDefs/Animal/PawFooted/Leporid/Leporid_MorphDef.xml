@@ -1,0 +1,13 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="PawFootedMorph" Name="LeporidMorph">
+		<description>The result of a mad scientist's attempt to take over the world, these docile creatures were designed to breed an army. Unfortunately for the morphs, they proved too timid to serve as proper militia and were abandoned soon after.</description>
+		<classification>Leporid</classification>
+		<categories>
+			<li>Crafter</li>
+		</categories>
+		<transformSettings>
+			<transformationMemory>HareTransformationMemory</transformationMemory>
+			<revertedMemory>HareRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

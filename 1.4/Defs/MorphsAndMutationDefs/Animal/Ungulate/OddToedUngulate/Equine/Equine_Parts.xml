@@ -1,0 +1,58 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="EquineJawPart" ParentName="OddToedUngulateJawPart" Abstract="true">
+		<mutationMemory>EtherEquineMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has grown a sizable snout with wide nostrils and a small set of squared off teeth, giving [PAWN_objective] quite a long face. Don't ask why. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="EquineEarPart" ParentName="OddToedUngulateEarPart" Abstract="true">
+		<mutationMemory>EtherEquineEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="EquineTailPart" ParentName="OddToedUngulateTailPart" Abstract="true">
+		<mutationMemory>EtherEquineTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

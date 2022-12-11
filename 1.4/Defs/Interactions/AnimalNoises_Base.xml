@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef Name="PMAnimalNoise_Chitchat" Abstract="true">
+		<workerClass>Pawnmorph.Social.InteractionWorker_Chitchat</workerClass>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>4</initiatorXpGainAmount>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_ChitchatMemory" Abstract="true">
+		<thoughtClass>Thought_MemorySocialCumulative</thoughtClass>
+		<stackLimit>300</stackLimit>
+		<maxCumulatedOpinionOffset>10</maxCumulatedOpinionOffset>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef Name="PMAnimalNoise_DeepTalk" Abstract="true">
+		<workerClass>Pawnmorph.Social.InteractionWorker_DeepTalk</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/DeepTalk</symbol>
+		<initiatorXpGainSkill>Social</initiatorXpGainSkill>
+		<initiatorXpGainAmount>10</initiatorXpGainAmount>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_DeepTalkMemory" Abstract="true">
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>20</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef Name="PMAnimalNoise_Slight" Abstract="true">
+		<workerClass>Pawnmorph.Social.InteractionWorker_Slight</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Slight</symbol>
+		<socialFightBaseChance>0.005</socialFightBaseChance>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_SlightMemory" Abstract="true">
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>20</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+	</ThoughtDef>
+	
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef Name="PMAnimalNoise_Insult" Abstract="true">
+		<workerClass>Pawnmorph.Social.InteractionWorker_Insult</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/Insult</symbol>
+		<socialFightBaseChance>0.04</socialFightBaseChance>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_InsultMemory" Abstract="true">
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>20</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+	</ThoughtDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_InsultedMood" Abstract="true">
+		<durationDays>2</durationDays>
+		<stackLimit>10</stackLimit>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+	</ThoughtDef>
+	
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef Name="PMAnimalNoise_KindWords" Abstract="true">
+		<workerClass>InteractionWorker_KindWords</workerClass>
+		<symbol>Things/Mote/SpeechSymbols/KindWords</symbol>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_KindWordsMemory" Abstract="true">
+		<showBubble>true</showBubble>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>20</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+	</ThoughtDef>
+	
+	<ThoughtDef Name="PMAnimalNoise_KindWordsMood" Abstract="true">
+		<durationDays>2</durationDays>
+		<stackLimit>10</stackLimit>
+		<stackedEffectMultiplier>0.9</stackedEffectMultiplier>
+	</ThoughtDef>
+
+</Defs>

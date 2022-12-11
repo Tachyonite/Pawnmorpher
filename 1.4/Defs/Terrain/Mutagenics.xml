@@ -1,0 +1,270 @@
+<Defs>
+	<ThingDef ParentName="UglyRockBase">
+		<defName>Mutonite</defName>
+		<label>mutonite</label>
+		<thingClass>Pawnmorph.MutagenicStone</thingClass>
+		<description>A glowing rock of pure, radiant mechanites.</description>
+		<graphicData>
+			<texPath>Terrain/Muto_Atlas</texPath>
+		</graphicData>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>3</glowRadius>
+				<glowColor>(0, 255, 0,0)</glowColor>
+			</li>
+		</comps>
+		<statBases>
+			<MaxHitPoints>900</MaxHitPoints>
+		</statBases>
+		<tickerType>Rare</tickerType>
+		<building>
+			<claimable>false</claimable>
+			<mineableThing>Mutanite</mineableThing>
+			<mineableDropChance>1</mineableDropChance>
+			<mineableYield>1</mineableYield>
+			<mineableScatterCommonality>0.0</mineableScatterCommonality>
+			<isNaturalRock>false</isNaturalRock>
+		</building>
+	</ThingDef>
+
+	<ThingDef ParentName="ResourceBase">
+		<defName>Mutanite</defName>
+		<label>mutanite</label>
+		<description>A glowing green hunk of activated mechanites, whatever that means. The smaller lumps are safer to handle than the meteors they come from.</description>
+		<graphicData>
+			<texPath>Things/Item/Resource/Mutastone</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<useHitPoints>false</useHitPoints>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<soundInteract>Metal_Drop</soundInteract>
+		<soundDrop>Metal_Drop</soundDrop>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(0,255,0,0)</glowColor>
+			</li>
+		</comps>
+		<statBases>
+			<MarketValue>50</MarketValue>
+			<Mass>0.5</Mass>
+			<StuffPower_Armor_Sharp>0.9</StuffPower_Armor_Sharp>
+			<StuffPower_Armor_Blunt>0.45</StuffPower_Armor_Blunt>
+			<StuffPower_Armor_Heat>0.72</StuffPower_Armor_Heat>
+			<StuffPower_Insulation_Cold>3</StuffPower_Insulation_Cold>
+			<StuffPower_Insulation_Heat>0</StuffPower_Insulation_Heat>
+			<SharpDamageMultiplier>1</SharpDamageMultiplier>
+			<BluntDamageMultiplier>1</BluntDamageMultiplier>
+			<MutaniteConcentration>1</MutaniteConcentration>
+		</statBases>
+		<thingCategories>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<deepCommonality>0.125</deepCommonality>
+		<deepCountPerPortion>1</deepCountPerPortion>
+		<deepLumpSizeRange>1</deepLumpSizeRange>
+		<burnableByRecipe>false</burnableByRecipe>
+		<stuffProps>
+			<categories>
+				<li>Mutagenic</li>
+			</categories>
+			<commonality>0.05</commonality>
+			<constructEffect>ConstructMetal</constructEffect>
+			<color>(160,225,60)</color>
+			<soundImpactStuff>BulletImpact_Metal</soundImpactStuff>
+			<soundMeleeHitSharp>MeleeHit_Metal_Sharp</soundMeleeHitSharp>
+			<soundMeleeHitBlunt>MeleeHit_Metal_Blunt</soundMeleeHitBlunt>
+			<statFactors>
+				<MaxHitPoints>1.3</MaxHitPoints>
+				<Beauty>2</Beauty>
+				<Flammability>0.0</Flammability>
+			</statFactors>
+		</stuffProps>
+	</ThingDef>
+
+	<TerrainDef ParentName="WaterShallowBase">
+		<defName>MysteriousOoze</defName>
+		<label>ooze</label>
+		<texturePath>Terrain/Surfaces/Ooze</texturePath>
+		<edgeType>FadeRough</edgeType>
+		<renderPrecedence>300</renderPrecedence>
+		<statBases>
+			<Beauty>-2</Beauty>
+			<Cleanliness>-2</Cleanliness>
+		</statBases>
+		<generatedFilth>Filth_Dirt</generatedFilth>
+		<fertility>0</fertility>
+		<takeFootprints>True</takeFootprints>
+		<avoidWander>true</avoidWander>
+		<driesTo>MutagenSoil</driesTo>
+		<extinguishesFire>true</extinguishesFire>
+		<tools>
+			<li>
+				<label>ooze</label>
+				<capacities>
+					<li>KickMaterialInEyes</li>
+				</capacities>
+				<hediff>OozeInEyes</hediff>
+				<cooldownTime>1.5</cooldownTime>
+			</li>
+		</tools>
+	</TerrainDef>
+
+	<TerrainDef ParentName="NaturalTerrainBase">
+		<defName>MutagenSoil</defName>
+		<label>mutagenic soil</label>
+		<texturePath>Terrain/Surfaces/MutagenSoil</texturePath>
+		<edgeType>FadeRough</edgeType>
+		<renderPrecedence>340</renderPrecedence>
+		<pathCost>2</pathCost>
+		<statBases>
+			<Beauty>-1</Beauty>
+			<Cleanliness>-1</Cleanliness>
+		</statBases>
+		<scatterType>Rocky</scatterType>
+		<affordances>
+			<li>Light</li>
+			<li>Medium</li>
+			<li>Heavy</li>
+			<li>Diggable</li>
+		</affordances>
+		<generatedFilth>Filth_Dirt</generatedFilth>
+		<fertility>0.0</fertility>
+		<avoidWander>true</avoidWander>
+		<takeFootprints>True</takeFootprints>
+		<tools>
+			<li>
+				<label>mutagenic dirt</label>
+				<capacities>
+					<li>KickMaterialInEyes</li>
+				</capacities>
+				<hediff>TFDirtInEyes</hediff>
+				<cooldownTime>1.5</cooldownTime>
+			</li>
+		</tools>
+	</TerrainDef>
+
+	<HediffDef>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defName>TFDirtInEyes</defName>
+		<label>mutagenic dirt</label>
+		<description>This feature is unimplemented, so you probably shouldn't be seeeing this hediff.</description>
+		<labelNoun>mutagenic dirt</labelNoun>
+		<battleStateLabel>blind</battleStateLabel>
+		<maxSeverity>1</maxSeverity>
+		<stages>
+			<li>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_RandomList">
+						<hediff>PawnmorphFoxTF</hediff>
+						<hediffDefs>
+							<li>PawnmorphAlpacaTFPartial</li>
+							<li>PawnmorphBearTFPartial</li>
+							<li>PawnmorphBoarTFPartial</li>
+							<li>PawnmorphBoomalopeTFPartial</li>
+							<li>PawnmorphChickenTFPartial</li>
+							<li>PawnmorphCowTFPartial</li>
+							<li>PawnmorphDeerTFPartial</li>
+							<li>PawnmorphFoxTFPartial</li>
+							<li>PawnmorphHuskyTFPartial</li>
+							<li>PawnmorphPigTFPartial</li>
+							<li>PawnmorphRatTFPartial</li>
+							<li>PawnmorphWargTFPartial</li>
+							<li>PawnmorphWolfTFPartial</li>
+						</hediffDefs>
+						<hediffDefsComplete>
+							<li>PawnmorphAlpacaTF</li>
+							<li>PawnmorphBearTF</li>
+							<li>PawnmorphBoarTF</li>
+							<li>PawnmorphBoomalopeTF</li>
+							<li>PawnmorphChickenTF</li>
+							<li>PawnmorphCowTF</li>
+							<li>PawnmorphDeerTF</li>
+							<li>PawnmorphFoxTF</li>
+							<li>PawnmorphHuskyTF</li>
+							<li>PawnmorphPigTF</li>
+							<li>PawnmorphRatTF</li>
+							<li>PawnmorphWargTF</li>
+							<li>PawnmorphWolfTF</li>
+						</hediffDefsComplete>
+						<completeChance>30</completeChance>
+						<severity>1.00</severity>
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_SelfHeal">
+				<healAmount>0.05</healAmount>
+			</li>
+		</comps>
+	</HediffDef>
+
+	<HediffDef>
+		<hediffClass>HediffWithComps</hediffClass>
+		<defName>OozeInEyes</defName>
+		<label>oozed</label>
+		<description>This feature is unimplemented, so you probably shouldn't be seeeing this hediff.</description>
+		<labelNoun>oozed</labelNoun>
+		<battleStateLabel>blind</battleStateLabel>
+		<maxSeverity>1</maxSeverity>
+		<stages>
+			<li>
+				<partEfficiencyOffset>-0.8</partEfficiencyOffset>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_Esoteric_RandomList">
+						<hediff>PawnmorphFoxTF</hediff>
+						<hediffDefs>
+							<li>PawnmorphAlpacaTFPartial</li>
+							<li>PawnmorphBearTFPartial</li>
+							<li>PawnmorphBoarTFPartial</li>
+							<li>PawnmorphBoomalopeTFPartial</li>
+							<li>PawnmorphChickenTFPartial</li>
+							<li>PawnmorphCowTFPartial</li>
+							<li>PawnmorphDeerTFPartial</li>
+							<li>PawnmorphFoxTFPartial</li>
+							<li>PawnmorphHuskyTFPartial</li>
+							<li>PawnmorphPigTFPartial</li>
+							<li>PawnmorphRatTFPartial</li>
+							<li>PawnmorphWargTFPartial</li>
+							<li>PawnmorphWolfTFPartial</li>
+						</hediffDefs>
+						<hediffDefsComplete>
+							<li>PawnmorphAlpacaTF</li>
+							<li>PawnmorphBearTF</li>
+							<li>PawnmorphBoarTF</li>
+							<li>PawnmorphBoomalopeTF</li>
+							<li>PawnmorphChickenTF</li>
+							<li>PawnmorphCowTF</li>
+							<li>PawnmorphDeerTF</li>
+							<li>PawnmorphFoxTF</li>
+							<li>PawnmorphHuskyTF</li>
+							<li>PawnmorphPigTF</li>
+							<li>PawnmorphRatTF</li>
+							<li>PawnmorphWargTF</li>
+							<li>PawnmorphWolfTF</li>
+						</hediffDefsComplete>
+						<completeChance>30</completeChance>
+						<severity>1.00</severity>
+					</li>
+				</hediffGivers>
+			</li>
+		</stages>
+		<comps>
+			<li Class="HediffCompProperties_SelfHeal">
+				<healAmount>0.05</healAmount>
+			</li>
+		</comps>
+	</HediffDef>
+	
+	<StuffCategoryDef>
+		<defName>Mutagenic</defName>
+		<label>mutagenic</label>
+		<destroySoundSmall>BuildingDestroyed_Metal_Small</destroySoundSmall>
+		<destroySoundMedium>BuildingDestroyed_Metal_Medium</destroySoundMedium>
+		<destroySoundLarge>BuildingDestroyed_Metal_Big</destroySoundLarge>
+	</StuffCategoryDef>
+	
+</Defs>
+

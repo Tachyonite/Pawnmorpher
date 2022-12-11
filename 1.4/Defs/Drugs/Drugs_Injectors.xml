@@ -1,0 +1,73 @@
+<Defs>
+    <ThingDef ParentName="SerumBase">
+        <defName>PM_ExperimentalInjector</defName>
+        <label>experimental injector</label>
+        <description>A slightly more stable alternative to raw mechanite slurry, the experimental injector is used to give random mutations to pawns in a slightly less risky fashion. As an added feature, each injector comes equipped with a temporary genebank uplink microchip that logs and stores any and all mutations gained while under the effect of this serum.</description>
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/Drug/Experimental</texPath>
+        </graphicData>
+        <statBases>
+            <WorkToMake>200</WorkToMake>
+            <MarketValue>80</MarketValue>
+            <MutaniteConcentration>0.07</MutaniteConcentration>
+        </statBases>
+        <thingCategories>
+            <li>Injector</li>
+        </thingCategories>
+        <ingestible>
+            <drugCategory>Medical</drugCategory>
+            <outcomeDoers>
+                <li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+                    <hediffDefs>
+                        <li>PM_ExperimentalInjector</li>
+                    </hediffDefs>
+                    <severity>1.00</severity>
+                </li>
+            </outcomeDoers>
+        </ingestible>
+        <recipeMaker>
+            <effectWorking>Cook</effectWorking>
+            <soundWorking>Recipe_Brewing</soundWorking>
+            <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+            <recipeUsers>
+                <li>DrugLab</li>
+                <li>MutagenLab</li>
+            </recipeUsers>
+            <bulkRecipeCount>4</bulkRecipeCount>
+            <researchPrerequisite>Injectors</researchPrerequisite>
+        </recipeMaker>
+        <costList>
+            <MechaniteSlurry>
+                5
+            </MechaniteSlurry>
+        </costList>
+        <comps>
+            <li Class="CompProperties_Drug">
+                <listOrder>1010</listOrder>
+            </li>
+        </comps>
+    </ThingDef>
+    <ThingDef ParentName="ArtifactBase">
+        <defName>PM_ChaoThrumboGenome</defName>
+        <label>Unstable genome</label>
+        <description>A strange and corrupted genome. Having this interact with regular data storage would fry the system, and must be used directly in the chamber. Warning: Due to the extremely cryptic genome data contained within, the resulting animal may be far larger than the chambers can safely handle. Prepare accordingly.</description>
+        <stackLimit>1</stackLimit>
+        <tradeNeverStack>true</tradeNeverStack>
+        <statBases>
+            <MarketValue>1700</MarketValue>
+        </statBases>
+        <graphicData>
+            <graphicClass>Graphic_Single</graphicClass>
+            <texPath>Things/Item/GenecardCorrupted</texPath>
+        </graphicData>
+        <comps Inherit="false">
+			<li Class="CompProperties_Forbiddable" />
+            <li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps">
+                <consumedOnUse>false</consumedOnUse>
+                <animal>PM_Chaothrumbo</animal>
+                <scanFailReason>This data is too corrupted to even attempt to scan.</scanFailReason>
+            </li>
+        </comps>
+    </ThingDef>
+</Defs>

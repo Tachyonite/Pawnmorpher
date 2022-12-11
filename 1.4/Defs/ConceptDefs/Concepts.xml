@@ -1,0 +1,57 @@
+<Defs>
+	<ConceptDef>
+		<defName>SerumExtraction</defName>
+		<label>PM: Getting Started</label>
+		<priority>11</priority>
+		<needsOpportunity>true</needsOpportunity>
+		<helpText>Find, buy or loot two chookmorph eggs and five cowmorph milk, or find some chaobulbs. At a drug lab, you'll be able to create mutagenic slurry, which can then be made into specific mutagen types.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>MergingPawns</defName>
+		<label>PM: Merging Pawns</label>
+		<priority>11</priority>
+		<needsOpportunity>true</needsOpportunity>
+		<helpText>Once you have two chambers linked to a modulator, send two pawns inside them. On the modulator, select the newly unlocked option 'merge chambers' (which can still be picked if the two pawns are already mutating) and wait. This option won't show up if there aren't pawns in the chambers.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>Chaomorphs</defName>
+		<label>PM: Chaomorphs</label>
+		<priority>11</priority>
+		<needsOpportunity>false</needsOpportunity>
+		<helpText>Slurries should never be fed to pawns. Please don't do this, they're very genetically unstable and you may end up with a CHAOMORPH, a terrifying creature with a high production capacity.</helpText>
+	</ConceptDef>
+	
+	<ConceptDef>
+		<defName>Tagging</defName>
+		<label>PM: Tagging</label>
+		<priority>11</priority>
+		<needsOpportunity>true</needsOpportunity>
+		<helpText>In order to get started with creating Injectors and using Chambers, you'll need to acquire genomes. This can be done via the Tagging Rifle. With a drafted pawn and tagging rifle equipped, select the 'tag animal' widget, and then select the animal you wish to tag. You must have enough Genebank storage to log them. Tagging animals allows you to set them as the end result of a Chamber. You can also obtain genomes by buing Genecards from traders or from completing quests - these must be used at a Genebank to add them to your total storage.</helpText>
+	</ConceptDef>
+
+	<ConceptDef>
+		<defName>PM_Injectors</defName>
+		<label>PM: Injectors</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>To craft injectors, you will need to have the correct genome in your Genebank database. This can be done by collecting animal DNA with the Tagging Rifle's 'Tag' widget (NOT by shooting them with it). Once you have the genome, you will be able to create a bill for the animal at the Injector Workbench.</helpText>
+	</ConceptDef>
+
+	<ConceptDef>
+		<defName>PM_Genebanks</defName>
+		<label>PM: Genebanks</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>Genebanks are needed to store tagged animals and mutations for use in the Mutagenic chambers. Each Genebank building supplies a fixed amount of storage that is distributed across the whole system so long as it is installed. Genebanks can be safely removed or moved so long as you have at least one bank’s worth of free space, otherwise you will lose some tagged information.</helpText>
+	</ConceptDef>
+	<ConceptDef>
+		<defName>PM_PartPicker</defName>
+		<label>PM: Mutation Configuration Menu</label>
+		<needsOpportunity>true</needsOpportunity>
+		<priority>11</priority>
+		<helpText>You can use a muta chamber to specify exactly what mutations you want a pawn to have. In order to use a mutation in the part picker it must be first analyzed by either tagging the related animal or by using a genome acquired rarely from traders or as quest rewards. Once you select the mutations you want the pawn to have and hit ‘Accept’ the muta chamber will slowly add them over time, consuming slurry and power</helpText>
+	</ConceptDef>
+
+</Defs>

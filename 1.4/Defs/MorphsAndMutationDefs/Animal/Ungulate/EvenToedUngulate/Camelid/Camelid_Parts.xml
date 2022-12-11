@@ -1,0 +1,61 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="CamelidJawPart" ParentName="EvenToedUngulateJawPart" Abstract="true">
+		<mutationMemory>EtherCamelidMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long camel snout, with slit nostrils that can be closed to keep out sand and debris. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CamelidEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<mutationMemory>EtherCamelidEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.075</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<TrainAnimalChance>+0.15</TrainAnimalChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CamelidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
+		<mutationMemory>EtherCamelidTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>5</ComfyTemperatureMax>
+					</statOffsets>				
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

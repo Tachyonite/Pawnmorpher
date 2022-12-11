@@ -1,0 +1,13 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Royalty</li>
+        </mods>
+        <match Class="PatchOperationAddModExtension">
+            <xpath>/Defs/ThoughtDef[defName="PsychicHarmonization"]</xpath>
+                <value>
+                    <li Class="Pawnmorph.DefExtensions.HarmonizerTransferWorker"></li>
+                </value>
+        </match>
+    </Operation>
+</Patch>

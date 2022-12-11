@@ -1,0 +1,74 @@
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<defName>PM_MutagenTank</defName>
+		<thingClass>Pawnmorph.Buildings.MutagenTank</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<label>mutagen tank</label>
+			<tickerType>Normal</tickerType>
+		<description>Stores liquid slurry in quantities enough to supply a chamber. Can be filled via a network of mutagen conduits, supplied by either a mutagen hopper or a vent pump.</description>
+		<graphicData>
+			<texPath>Things/Building/MutagenTank/MutagenTank</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>Impassable</passability>
+		<fillPercent>0.6</fillPercent>
+		<rotatable>false</rotatable>
+		<statBases>
+			<MaxHitPoints>70</MaxHitPoints>
+			<WorkToBuild>100</WorkToBuild>
+			<Mass>5</Mass>
+			<Flammability>0.7</Flammability>
+		</statBases>
+		<size>(1,1)</size>
+		<costList>
+			<Steel>100</Steel>
+			<Plasteel>10</Plasteel>
+			<ComponentIndustrial>2</ComponentIndustrial>
+		</costList>
+		<designationCategory>GR_GeneticsTab</designationCategory>
+		<uiIconScale>1</uiIconScale>
+		<researchPrerequisites>
+			<li>PM_MutagenStorage</li>
+		</researchPrerequisites>
+		<comps>
+			<li Class="PipeSystem.CompProperties_ResourceStorage">
+				<pipeNet>PM_SlurryNet</pipeNet>
+				<storageCapacity>10.0</storageCapacity>
+				<drawStorageBar>False</drawStorageBar>
+				<addStorageInfo>True</addStorageInfo>
+				<addTransferGizmo>True</addTransferGizmo>
+				<extractOptions>
+					<texPath>Things/Item/Drug/Slurry/Slurry_a</texPath>
+					<labelKey>PMExtractSlurryLabel</labelKey>
+					<descKey>PMExtractSlurryDesc</descKey>
+					<extractAmount>1</extractAmount>
+					<extractTime>150</extractTime>
+					<thing>MechaniteSlurry</thing>
+					<ratio>1</ratio>
+				</extractOptions>
+				<refillOptions>
+					<!-- If true, will always be refilled by pawns. -->
+					<!-- If false, allow user to enable/disable tank refill -->
+					<alwaysRefill>false</alwaysRefill>
+					<refillTime>150</refillTime>
+					<thing>MechaniteSlurry</thing>
+					<ratio>1</ratio>
+				</refillOptions>
+			</li>
+			<li Class="PipeSystem.CompProperties_ExplosiveContent">
+				<explosiveMaxRadius>3</explosiveMaxRadius>
+				<explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

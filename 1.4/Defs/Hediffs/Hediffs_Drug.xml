@@ -1,0 +1,30 @@
+<Defs>
+    <HediffDef>
+        <defName>PM_Reverting</defName>
+        <description>This pawn is slowly reverting to human.</description>
+        <hediffClass>HediffWithComps</hediffClass>
+        <label>mutagen reversion</label>
+        <defaultLabelColor>(179,86,132)</defaultLabelColor>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <maxSeverity>1.0</maxSeverity>
+        <isBad>false</isBad>
+        <comps>
+            <li Class="HediffCompProperties_SeverityPerDay">
+                <severityPerDay>-0.4</severityPerDay>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+                <removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+            </li>
+
+        </comps>
+        <stages>
+            <li>
+                <statOffsets>
+                    <MutagenSensitivity>-1.5</MutagenSensitivity>
+                    <TransformationSensitivity>-1.5</TransformationSensitivity>
+                    <MutationHaltChance>1</MutationHaltChance>
+                </statOffsets>
+            </li>
+        </stages>
+    </HediffDef>
+</Defs>

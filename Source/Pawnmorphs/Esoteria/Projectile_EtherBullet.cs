@@ -18,9 +18,10 @@ namespace EtherGun
         /// called when this instance impacts the specified thing.
         /// </summary>
         /// <param name="hitThing">The hit thing.</param>
-        protected override void Impact(Thing hitThing)
+        /// <param name="blockedByShield"></param>
+        protected override void Impact(Thing hitThing, bool blockedByShield = false)
         {
-            base.Impact(hitThing);
+            base.Impact(hitThing, blockedByShield);
             Pawn hitPawn;
             if (Def != null && hitThing != null && hitThing is Pawn)
             {

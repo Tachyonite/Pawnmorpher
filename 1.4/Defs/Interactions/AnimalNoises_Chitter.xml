@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Raccoon</defName>
+		<requiredMutationsAny>
+			<li>EtherRaccoonJaw</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to chitter as a human with just a muzzle. A muzzled human will chitter half as often as chatting and a full morph will chitter twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherRaccoonJaw</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherRaccoonTail</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+			<li>
+				<key>EtherRaccoonEar</key>
+				<value>0.125</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>RaccoonMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMChitter_Chitchat</defName>
+		<label>chitter</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter</symbol>
+		<initiatorThought>PawnmorphChitter</initiatorThought>
+		<recipientThought>PawnmorphChitter</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [noisedat] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+				<li>noisedat(p=4)->chittered at</li>
+				<li>noisedat->chittered to</li>
+				<li>noisedat->chirped at</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->chittered at</li>
+				<li>noisedabout->chittered to</li>
+				<li>noisedabout->chirped at</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->cleaning [INITIATOR_possessive] hands</li>
+				<li>animaltopic->raccoons</li>
+				<li>animaltopic->crafting</li>
+				<li>animaltopic->night walks</li>
+				<li>animaltopic->trash</li>
+				<li>animaltopic->garbage</li>
+				<li>animaltopic->whiskers</li>
+				<li>animaltopic->striped tails</li>
+				<li>animaltopic->cleaning</li>
+				<li>animaltopic->something to chew on</li>
+				<li>animaltopic->gnawing habits</li>
+				<li>animaltopic->trees</li>
+				<li>animaltopic->leftovers</li>
+				<li>animaltopic->kibble</li>
+				<li>animaltopic->head pats</li>
+				<li>animaltopic->back pets</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphChitter</defName>
+		<stages>
+			<li>
+				<label>chitter</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMChitter_DeepTalk</defName>
+		<label>deep chitter</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter_DeepTalk</symbol>
+		<initiatorThought>PMChitter_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMChitter_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming a raccoon morph</li>
+				<li>animallife->being a raccoon morph</li>
+				<li>animallife->raccoon hands</li>
+				<li>animallife->raccoons</li>
+				<li>animallife->chittering</li>
+				<li>animallife->tree climbing</li>
+				<li>animallife->small morphs</li>
+				<li>animallife->leftovers</li>
+				<li>animallife->food cleaning</li>
+				<li>animallife->tail pets</li>
+				<li>animallife->striped tails</li>
+				<li>animallife->the tastiest leftovers</li>
+				<li>animallife->scavenging</li>
+				<li>animallife->hiding</li>
+				<li>animallife->crafting</li>
+				<li>animallife->colorblindness</li>
+				<li>animallife->night vision</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMChitter_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep chitter</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two raccoon morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMChitter_DeepTalkRaccoon</defName>
+		<label>deep chitter with raccoon</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter_DeepTalk</symbol>
+		<initiatorThought>PMChitter_DeepTalkRaccoonMemory</initiatorThought>
+		<recipientThought>PMChitter_DeepTalkRaccoonMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming a raccoonmorph</li>
+				<li>animallife->being a raccoonmorph</li>
+				<li>animallife->raccoon hands</li>
+				<li>animallife->raccoons</li>
+				<li>animallife->chittering</li>
+				<li>animallife->tree climbing</li>
+				<li>animallife->small morphs</li>
+				<li>animallife->leftovers</li>
+				<li>animallife->food cleaning</li>
+				<li>animallife->tail pets</li>
+				<li>animallife->striped tails</li>
+				<li>animallife->the tastiest leftovers</li>
+				<li>animallife->scavenging</li>
+				<li>animallife->hiding</li>
+				<li>animallife->crafting</li>
+				<li>animallife->colorblindness</li>
+				<li>animallife->night vision</li>
+				
+				<li>secretanimallife->sneaking</li>
+				<li>secretanimallife->swiping food</li>
+				<li>secretanimallife->midnight walks</li>
+				<li>secretanimallife->garbage identification</li>
+				<li>secretanimallife->rabies prevention</li>
+				<li>secretanimallife->food washing techniques</li>
+				<li>secretanimallife->tree climbing techniques</li>
+				<li>secretanimallife->running on all fours</li>
+				<li>secretanimallife->dumpster diving</li>
+				<li>secretanimallife->fur care</li>
+				<li>secretanimallife->humane animal trapping</li>
+				<li>secretanimallife->the best smelling trash</li>
+				<li>secretanimallife->the best hiding spots</li>
+				<li>secretanimallife->stealing eggs from chookmorphs</li>
+				<li>secretanimallife->street smarts</li>
+				<li>secretanimallife->tail care</li>
+				<li>secretanimallife->burglary</li>
+				<li>secretanimallife->mercenary work</li>
+				<li>secretanimallife->protecting the galaxy</li>
+				
+				<li>raccoonbehavior->chirped understandingly at [RECIPIENT_nameDef]</li>
+				<li>raccoonbehavior->chittered with [RECIPIENT_nameDef]</li>
+				<li>raccoonbehavior->and [RECIPIENT_nameDef] shook hands and nuzzled</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Raccoon</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMChitter_DeepTalkRaccoonMemory</defName>
+		<stages>
+			<li>
+				<label>trash buddies</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMChitter_Slight</defName>
+		<label>raccoon slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter_Slight</symbol>
+		<recipientThought>PMChitter_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>noisedat->hissed at</li>
+				<li>noisedat->growled at</li>
+				<li>noisedat->growled aggressively at</li>
+				<li>noisedat->chittered annoyingly at</li>
+				<li>noisedat->chittered aggressively at</li>
+				<li>noisedat->bared fangs at</li>
+								
+				<li>noisedabout->growled about</li>
+				<li>noisedabout->chittered about</li>
+				<li>noisedabout->chittered unhappily about</li>
+				<li>noisedabout->growled because of</li>
+				<li>noisedabout->chittered because of</li>
+				<li>noisedabout->bared fangs because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->implication that [INITIATOR_objective] is dirty</li>
+				<li>animalcharacteristic->opinion on animal trapping</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] some leftovers</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_possessive] tail</li>
+				
+				<li>annoyingbehavior->brushed up against [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->made a high pitched chitter at [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->made [RECIPIENT_nameDef] feel uncomfortable by grabbing and feeling [RECIPIENT_possessive] hand</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMChitter_Slight</defName>
+		<stages>
+			<li>
+				<label>chittered</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChitter_Insult</defName>
+		<label>raccoon insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter_Insult</symbol>
+		<recipientThought>PMChitter_Insult</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->chittered that [Target] was</li>
+
+				<li>noisedat->hissed at</li>
+				<li>noisedat->growled at</li>
+				<li>noisedat->growled aggressively at</li>
+				<li>noisedat->chittered annoyingly at</li>
+				<li>noisedat->chittered aggressively at</li>
+				<li>noisedat->bared fangs at</li>
+								
+				<li>noisedabout->growled about</li>
+				<li>noisedabout->chittered about</li>
+				<li>noisedabout->chittered unhappily about</li>
+				<li>noisedabout->growled because of</li>
+				<li>noisedabout->chittered because of</li>
+				<li>noisedabout->bared [INITIATOR_possessive] fangs because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->implication that [INITIATOR_objective] is dirty</li>
+				<li>animalcharacteristic->opinion on animal trapping</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] some leftovers</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_possessive] tail</li>
+				<li>animalcharacteristic->height</li>
+				
+				<li>insult->a dirty animal trap</li>
+				<li>insult->a wolf</li>
+				<li>insult->a lynx</li>
+				<li>insult->a strong spice</li>
+				<li>insult->an empty can</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMChitter_Insult</defName>
+		<stages>
+			<li>
+				<label>chittered at</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMChitter_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMChitter_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>chittered at</label>
+				<description>I've been rudely chittered at! What an awful raccoon!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMChitter_KindWords</defName>
+		<label>kind chitters</label>
+		<symbol>Things/Mote/SpeechSymbols/Chitter_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMChitter_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->ruffed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->yipped that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->woofed that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->hands</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->sheen</li>
+				<li>animalcharacteristic->appearance</li>
+				<li>animalcharacteristic->treats</li>
+				
+				<li>complimentedtargets->chittered happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->chittered approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->chirped happily because of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->[KindAdverb] rubbed their hands</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] chittered at</li>
+				<li>kindbehavior->shook [INITIATOR_possessive] tail at</li>
+				
+				<li>raccooncompliment->a [adj] dumpster</li>
+				<li>raccooncompliment->a [adj] wildberry</li>
+				<li>raccooncompliment->a [adj] picnic</li>
+				<li>raccooncompliment->a [adj] striped tail</li>
+				<li>raccooncompliment->a [adj] leftover</li>
+				
+				<li>adj(p=8)->[KindAdj]</li>
+				<li>adj->delicious</li>
+				<li>adj->tasty</li>
+				<li>adj->savory</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Raccoon</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMChitter_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind chitter</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMChitter_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMChitter_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind chitter</label>
+				<description>I've been complimented! What a nice raccoon!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults aimed at raccoonmorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMChitter_DirectedInsult</defName>
+		<label>directed raccoon insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->short stature</li>
+				<li>animalcharacteristic->bad breath</li>
+				<li>animalcharacteristic->bandit mask</li>
+				<li>animalcharacteristic->twitchy nose</li>
+				<li>animalcharacteristic->ring tail</li>
+				<li>animalcharacteristic->conniving hands</li>
+				<li>animalcharacteristic->ratty appearance</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->twitchy mannerisms</li>
+
+				<li>insultcomparison->a trash bandit</li>
+				<li>insultcomparison->a trash panda</li>
+				<li>insultcomparison->a garbage snatcher</li>
+				<li>insultcomparison->a fugitive</li>
+				<li>insultcomparison->a thief</li>
+				<li>insultcomparison->a pest</li>
+				<li>insultcomparison->a furry burglar</li>
+				<li>insultcomparison->a squeaky toy</li>
+				<li>insultcomparison->a fur cap</li>
+				<li>insultcomparison->a rocket</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->accused [RECIPIENT_nameDef] of stealing something</li>
+				<li>insult->called [RECIPIENT_nameDef] disgusting</li>
+				<li>insult->mockingly called [RECIPIENT_nameDef] cute</li>
+				<li>insult->pulled [RECIPIENT_nameDef] back by [RECIPIENT_possessive] tail</li>
+				
+				<li>insultingjoketopics->fugitives</li>
+				<li>insultingjoketopics->thieves</li>
+				<li>insultingjoketopics->dumpster diving</li>
+				<li>insultingjoketopics->feral raccoons</li>
+				<li>insultingjoketopics->rabies</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Raccoon</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+</Defs>

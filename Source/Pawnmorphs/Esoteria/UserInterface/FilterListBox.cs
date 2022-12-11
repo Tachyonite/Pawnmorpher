@@ -36,8 +36,8 @@ namespace Pawnmorph.UserInterface
         {
             float curY = y;
 
-            _searchText = Widgets.TextArea(new Rect(x, curY, 200f, 28f), _searchText);
-            if (Widgets.ButtonText(new Rect(205, curY, 28, 28), "X"))
+            _searchText = Widgets.TextArea(new Rect(x, curY, inRect.width - 38, 28f), _searchText);
+            if (Widgets.ButtonText(new Rect(inRect.width - 33, curY, 28, 28), "X"))
                 _searchText = "";
             _filteredList.Filter = _searchText;
 

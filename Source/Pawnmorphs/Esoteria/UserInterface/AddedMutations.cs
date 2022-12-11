@@ -146,7 +146,7 @@ namespace Pawnmorph.UserInterface
         /// <returns>The first entry whose part and layer matches the provied part and layer.</returns>
         public MutationData MutationsByPartAndLayer(BodyPartRecord part, MutationLayer layer)
         {
-            return mutationData.Where(m => m.part == part).FirstOrDefault();
+            return mutationData.Where(m => m.part == part && m.mutation.RemoveComp?.layer == layer).FirstOrDefault();
         }
 
 

@@ -1,0 +1,93 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutagenDef.xsd">
+    <!-- 
+		this mutagen is going to be used for the chaomorph mutation and mutagenic buildup from the fallout event 
+	-->
+    <Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase" Name="ChaoticMutagen">
+        <defName>ChaoticMutagen</defName>
+        <transformedSapienceDropMean>0.5</transformedSapienceDropMean>
+        <transformedSapienceDropStd>0.05</transformedSapienceDropStd>
+        <aspectGivers>
+            <li Class="Pawnmorph.Aspects.RandomGiver">
+                <entries>
+                    <li>
+                        <!-- on average this would require 20 mutations to give  -->
+                        <aspect>MutagenInfused</aspect>
+                        <chance>0.15</chance>
+                        <aspectStage>0</aspectStage>
+                    </li>
+                    <li>
+                        <aspect>MutagenInfused</aspect> <!-- this is the nueutralized varient -->
+                        <chance>0.15</chance>
+                        <aspectStage>1</aspectStage>
+                    </li>
+                    <li>
+                        <aspect>ColorationNatural</aspect>
+                        <chance>0.0015</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationAlbinism</aspect>
+                        <chance>0.00075</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationMelanism</aspect>
+                        <chance>0.00075</chance>
+                    </li>
+                    <li>
+                        <aspect>ColorationUnnatural</aspect>
+                        <chance>0.0005</chance>
+                    </li>
+                </entries>
+            </li>
+        </aspectGivers>
+        <damageProperties>
+            <!-- when a pawn turns into a chaomorph they should always destroy their clothing  -->
+            <apparelDamageOffset>100</apparelDamageOffset>
+        </damageProperties>
+    </Pawnmorph.MutagenDef>
+
+    <!-- 
+        weapons 
+    -->
+    <Pawnmorph.MutagenDef ParentName="ChaoticMutagen">
+        <defName>PM_WeaponChaoticMutagen</defName>
+        <causeRulePack>
+            <rulesStrings>
+                <li>mutagen_cause->bulidup from [weapon_label]</li>
+            </rulesStrings>
+        </causeRulePack>
+    </Pawnmorph.MutagenDef>
+
+
+    <Pawnmorph.MutagenDef ParentName="ChaoticMutagen">
+        <defName>PM_FalloutMutagen</defName>
+        <causeRulePack>
+            <rulesStrings>
+                <li>mutagen_cause->bulidup from mutagenic fallout</li>
+            </rulesStrings>
+        </causeRulePack>
+    </Pawnmorph.MutagenDef>
+
+    <Pawnmorph.MutagenDef ParentName="ChaoticMutagen">
+        <defName>PM_MutaniteMutagen</defName>
+        <causeRulePack>
+            <rulesStrings>
+                <li>mutagen_cause->standing too close to mutanite</li>
+                <li>mutagen_cause->licking weird glowing rocks</li>
+            </rulesStrings>
+        </causeRulePack>
+    </Pawnmorph.MutagenDef>
+
+    <!--
+        mutagen rule pack 
+        
+     -->
+    <Pawnmorph.MutagenDef ParentName="ChaoticMutagen">
+        <defName>PM_ChaobulbHarvest</defName>
+        <label>chaobulb harvest</label>
+        <causeRulePack>
+            <rulesStrings>
+                <li>mutagen_cause->failed chaobulb harvest</li>
+            </rulesStrings>
+        </causeRulePack>
+    </Pawnmorph.MutagenDef>
+</Defs>

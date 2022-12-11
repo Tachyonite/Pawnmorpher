@@ -1,0 +1,19 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Genetics Expanded</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationAddModExtension">
+                    <xpath>Defs/ThingDef[race/fleshType="GR_Mechanoid"]</xpath>
+                    <value>
+                        <li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+                            <neverFormerHuman>true</neverFormerHuman>
+                        </li>
+                    </value>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

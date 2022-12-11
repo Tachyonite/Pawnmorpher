@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HistoryEventDef>
+    <defName>MutationGained</defName>
+    <label>mutation gained</label>
+  </HistoryEventDef>
+  
+  <HistoryEventDef>
+    <defName>MutationLost</defName>
+    <label>mutation lost</label>
+  </HistoryEventDef>
+  
+  <HistoryEventDef>
+    <defName>Transformed</defName>
+    <label>transformed into former human</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>Reverted</defName>
+    <label>transformed from fromer human</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>Morphed</defName>
+    <label>transformed</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>DeMorphed</defName>
+    <label>reverted</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>SapienceLevelChanged</defName>
+    <label>sapience level changed</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>PermanentlyFeral</defName>
+    <label>permanently feral</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>FormerHumanHunted</defName>
+    <label>hunted</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>FormerHumanGrazed</defName>
+    <label>grazed</label>
+  </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>FormerHumanAteCorpse</defName>
+    <label>ate corpse</label>
+  </HistoryEventDef>
+
+  <!-- 
+    needs to be recorded when a pawn applies a mutagen on themselves or others 
+    needs to be checked when giving an order to apply a mutagen on themselves or others 
+  
+    Args: 
+      Doer - pawn applying the mutagen 
+      Victim - pawn receiving the mutagen 
+  -->
+  <HistoryEventDef>
+    <defName>ApplyMutagenicsOn</defName>
+    <label>apply mutagenics on</label>
+  </HistoryEventDef>
+
+  <!-- needs to be recorded when a pawn sows a mutganic plant 
+      needs to be checked when a pawn tries to plant a mutagenic plant
+      Doer(pawn) 
+      SUBJECT(plant)
+    -->
+  <HistoryEventDef>
+    <defName>SowMutagenicPlants</defName>
+    <label>Sow Mutagenic Plants</label>
+  </HistoryEventDef>
+
+  <!-- 
+    needs to be recorded when a pawn finishes a bill on a mutagenic weapon 
+    checked before a pawn starts working on a bill for a mutagenic weapon 
+  -->
+  <HistoryEventDef>
+    <defName>CreateMutagenicWeapon</defName>
+    <label>Create Mutagenic Weapon</label>
+  </HistoryEventDef>
+
+</Defs>

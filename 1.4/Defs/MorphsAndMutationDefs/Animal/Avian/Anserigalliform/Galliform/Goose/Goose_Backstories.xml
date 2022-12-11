@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>GoosemorphPurist</defName>
+		<title>anatidaephobe</title>
+		<titleShort>goosemorph</titleShort>
+		<baseDesc>After having a lakeside picnic ruined by geese, [PAWN_nameDef]'s peck injuries were infected with mutagenic pollution in the lake.</baseDesc>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>GooseMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

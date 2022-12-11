@@ -1,0 +1,14 @@
+<Defs>
+<ThingDef ParentName="MoteBase">
+		<defName>Mote_MagicPuff</defName>
+		<graphicData>
+			<texPath>Enviro/MagicPuff</texPath>
+		</graphicData>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>0.04</fadeInTime>
+			<solidTime>0.03</solidTime>
+			<fadeOutTime>5</fadeOutTime>
+		</mote>
+	</ThingDef>
+</Defs>

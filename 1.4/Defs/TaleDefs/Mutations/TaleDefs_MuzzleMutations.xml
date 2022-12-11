@@ -1,0 +1,51 @@
+<Defs>
+	<TaleDef Name="MuzzleTaleBase" Abstract="True" ParentName="MutationTaleBase">
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] face becoming a muzzle</li>
+				<li>image->[PAWN_nameFull] feeling [PAWN_possessive] face [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
+				<li>circumstance_phrase->as [PAWN_possessive] face pushes out into a muzzle</li>
+				<li>desc_sentence->[PAWN_pronoun] looks terrified at the change.</li>
+				<li>desc_sentence->[PAWN_pronoun] examines their new animal like face.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewMuzzleMisc</defName>
+		<label>grew a muzzle</label>
+	</TaleDef>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewCanidMuzzle</defName>
+		<label>grew a muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing an canine muzzle</li>
+				<li>tale_noun->[PAWN_nameDef] head taking the shape of a canine</li>
+				<li>image->[PAWN_nameFull] yells becoming barks [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] begins to sniff intensely at all the new smells [circumstance_group] </li>
+				<li>desc_sentence->[PAWN_pronoun] face becoming a canine muzzle.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins to pant once the changes stop.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins to sniff intensely at something.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins to pant happily.</li>
+				<li>desc_sentence->[PAWN_pronoun] whines in fright.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewFelineMuzzle</defName>
+		<label>grew a muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a feline muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming like that of a cat</li>
+				<li>image->[PAWN_nameFull] yells turn into yowls [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] nose begins turning pink [circumstance_group]</li>
+				<li>circumstance_phrase->while someone plays with [PAWN_pronoun] whiskers</li>
+				<li>desc_sentence->[PAWN_pronoun] begins purring contently.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins hissing angrily.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to talk but all that comes out is are meows.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>
