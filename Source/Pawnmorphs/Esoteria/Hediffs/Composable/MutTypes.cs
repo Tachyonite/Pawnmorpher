@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,11 +62,84 @@ namespace Pawnmorph.Hediffs.Composable
         }
     }
 
-    /// <summary>
-    /// A simple MutTypes that returns ALL THE MUTATIONS _O/
-    /// Good for chaotic mutations.
-    /// </summary>
-    public class MutTypes_All : MutTypes
+	/// <summary>
+	/// Picks a random morph def and returns all mutations associated with that.
+	/// </summary>
+	public class MutTypes_Grouped : MutTypes
+	{
+		/// <summary>
+		/// The chance any particular mutation will be added (as a multiplier of the default chance).
+		/// </summary>
+		[UsedImplicitly] public float chance = 1f; // Low chance by default since this is for chaotic mutations
+
+		/// <summary>
+		/// Whether or not restricted mutations can be selected
+		/// </summary>
+		[UsedImplicitly] public bool allowRestricted = false;
+
+        /// <summary>
+        /// Optional animal class or morph def to restrict mutations by.
+        /// </summary>
+        [UsedImplicitly, CanBeNull]
+        public AnimalClassBase animalClass;
+
+		IEnumerable<MutationEntry> _cache;
+
+		/// <summary>
+		/// Gets the list of available mutations.
+		/// </summary>
+		/// <returns>The mutations.</returns>
+		/// <param name="hediff">Hediff.</param>
+		public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
+		{
+            if (_cache == null)
+            {
+                MorphDef morph;
+                if (animalClass != null)
+                {
+                    if (animalClass is MorphDef def)
+                        morph = def;
+                    else
+                        morph = animalClass.GetAllMorphsInClass().RandomElement();
+                }
+                else
+                    morph = DefDatabase<MorphDef>.GetRandom();
+
+				_cache = morph.AllAssociatedMutations
+					.Where(m => allowRestricted || !m.IsRestricted)
+					.Select(m => MutationEntry.FromMutation(m, chance));
+			}
+
+            return _cache;
+		}
+
+
+
+		/// <summary>
+		/// Chechs whether this MutTypes is equivalent to another
+		/// (meaning they produce the same list of mutations)
+		/// </summary>
+		/// <returns><c>true</c>, if to was equivalented, <c>false</c> otherwise.</returns>
+		/// <param name="other">The other MutTypes.</param>
+		public override bool EquivalentTo(MutTypes other)
+		{
+			return other is MutTypes_Grouped otherTyped
+					&& Math.Abs(chance - otherTyped.chance) < EPSILON;
+		}
+
+		/// <summary>
+		/// A debug string printed out when inspecting the hediffs
+		/// </summary>
+		/// <param name="hediff">The parent hediff.</param>
+		/// <returns>The string.</returns>
+		public override string DebugString(Hediff_MutagenicBase hediff) => $"Chance: {chance.ToStringPercent()}";
+	}
+
+	/// <summary>
+	/// A simple MutTypes that returns ALL THE MUTATIONS _O/
+	/// Good for chaotic mutations.
+	/// </summary>
+	public class MutTypes_All : MutTypes
     {
         /// <summary>
         /// The chance any particular mutation will be added (as a multiplier of the default chance).
@@ -232,7 +306,7 @@ namespace Pawnmorph.Hediffs.Composable
         {
             return classDef.GetAllMutationIn()
                     .Select(m => MutationEntry.FromMutation(m, chance));
-        }
+		}
 
         /// <summary>
         /// Chechs whether this MutTypes is equivalent to another
