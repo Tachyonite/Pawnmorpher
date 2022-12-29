@@ -877,7 +877,7 @@
     <Compile Include="UserInterface\Dialog_PartPicker.cs" />
     <Compile Include="UserInterface\Dialog_Popup.cs" />
     <Compile Include="UserInterface\FilterListBox.cs" />
-    <Compile Include="UserInterface\MutationData.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationData.cs" />
     <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
     <Compile Include="UserInterface\Preview\Preview.cs" />
     <Compile Include="UserInterface\Preview\PawnPreview.cs" />
