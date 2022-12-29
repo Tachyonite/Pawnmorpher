@@ -872,7 +872,7 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
-    <Compile Include="UserInterface\AddedMutations.cs" />
+    <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
     <Compile Include="UserInterface\ButtonTexturesPM.cs" />
     <Compile Include="UserInterface\Dialog_PartPicker.cs" />
     <Compile Include="UserInterface\Dialog_Popup.cs" />
@@ -953,6 +953,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Chambers\NewFolder1\" />
     <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
