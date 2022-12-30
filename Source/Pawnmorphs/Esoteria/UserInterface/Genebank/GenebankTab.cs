@@ -71,6 +71,6 @@ namespace Pawnmorph.UserInterface.Genebank
         /// Called when user clicks the delete button.
         /// </summary>
         /// <param name="def">The def to be deleted.</param>
-        public abstract void Delete(Def def);
+        public abstract void Delete(object def);
     }
 }

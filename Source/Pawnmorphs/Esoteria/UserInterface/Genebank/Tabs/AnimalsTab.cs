@@ -271,7 +271,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             _previewSouth.Refresh();
         }
 
-        public override void Delete(Def def)
+        public override void Delete(object def)
         {
             _databank.RemoveFromDatabase(def as PawnKindDef);
         }

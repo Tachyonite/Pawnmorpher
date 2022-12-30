@@ -425,13 +425,15 @@ namespace Pawnmorph.Chambers
 
             Scribe_Collections.Look(ref _storedMutations, nameof(StoredMutations), LookMode.Def);
             Scribe_Collections.Look(ref _taggedSpecies, nameof(TaggedAnimals), LookMode.Def);
-            Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
+			Scribe_Collections.Look(ref _storedTemplates, nameof(_storedTemplates));
+			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
             Scribe_Values.Look(ref _migrated, "migrated");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 _storedMutations = _storedMutations ?? new List<MutationDef>();
                 _taggedSpecies = _taggedSpecies ?? new List<PawnKindDef>();
-                if (!_migrated)
+				_storedTemplates = _storedTemplates ?? new List<MutationTemplate>();
+				if (!_migrated)
                 {
                     _migrated = false;
                     //move any tagged animals from the previous system into the new one 

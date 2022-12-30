@@ -467,7 +467,7 @@ namespace Pawnmorph.UserInterface
             {
                 if (Widgets.ButtonText(buttonRect, "Save"))
                 {
-                    Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(100, 50));
+                    Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(300, 125));
                     textbox.ApplyAction = (value) => SaveTemplate(value);
                     Find.WindowStack.Add(textbox);
                 }
@@ -733,6 +733,8 @@ namespace Pawnmorph.UserInterface
 
         private void AddMutation(IEnumerable<Hediff_AddedMutation> mutations, IEnumerable<BodyPartRecord> parts, MutationLayer layer, MutationDef mutationDef, float? severity = null, bool halted = false)
         {
+            float severityValue = Mathf.Min(severity ?? mutationDef.initialSeverity, 1);
+
             foreach (Hediff_AddedMutation mutation in mutations)
             {
                 pawn.health.RemoveHediff(mutation);
@@ -760,11 +762,12 @@ namespace Pawnmorph.UserInterface
             foreach (BodyPartRecord part in parts)
             {
                 addedMutations.RemoveByPartAndLayer(part, layer);
-                addedMutations.AddData(mutationDef, part, severity ?? mutationDef.initialSeverity, halted, false);
+                addedMutations.AddData(mutationDef, part, severityValue, halted, false);
                 MutationResult result = MutationUtilities.AddMutation(pawn, mutationDef, part, ancillaryEffects: MutationUtilities.AncillaryMutationEffects.None); //don't give the green puffs
+                Log.Message("Added mutation " + mutationDef.LabelCap + " to part " + part.LabelCap);
                 if (result.Count > 0)
                 {
-                    result[0].Severity = severity ?? mutationDef.initialSeverity;
+                    result[0].Severity = severityValue;
                 }
 
 			}
@@ -1096,7 +1099,7 @@ namespace Pawnmorph.UserInterface
                 if (taggedMutations.Contains(templateMutation.Mutation) || debugMode)
                 {
 				    IEnumerable<Hediff_AddedMutation> mutations = pawnCurrentMutations.Where(m => m.Part == templateMutation.Part && m.Def.Layer == templateMutation.Mutation.Layer);
-                    IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m == templateMutation.Part);
+                    IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m.LabelCap == templateMutation.Part.LabelCap);
 
                     AddMutation(mutations, parts, templateMutation.Mutation.Layer ?? MutationLayer.Core, templateMutation.Mutation, templateMutation.Severity, templateMutation.IsHalted);
                 }

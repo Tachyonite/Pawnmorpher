@@ -94,8 +94,9 @@ namespace Pawnmorph.UserInterface
 
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
+			_tabs.Add(new TabRecord("Templates", () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
 
-            SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
+			SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
 
         public override void DoWindowContents(Rect inRect)

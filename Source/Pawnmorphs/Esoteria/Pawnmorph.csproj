@@ -600,6 +600,7 @@
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\MutationsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\TemplatesTab.cs" />
     <Compile Include="UserInterface\MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
