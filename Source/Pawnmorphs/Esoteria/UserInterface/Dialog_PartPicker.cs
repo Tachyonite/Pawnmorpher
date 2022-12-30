@@ -17,6 +17,7 @@ using UnityEngine.UIElements.Experimental;
 using Pawnmorph.UserInterface.PartPicker;
 using HarmonyLib;
 using UnityEngine.UIElements;
+using Pawnmorph.ThingComps;
 
 namespace Pawnmorph.UserInterface
 {
@@ -132,14 +133,15 @@ namespace Pawnmorph.UserInterface
         // Return data
         private AddedMutations addedMutations = new AddedMutations();
         private Dictionary<Def, string> _labelCache = new Dictionary<Def, string>();
+        private ChamberDatabase _database = Find.World.GetComponent<ChamberDatabase>();
 
-        /// <summary>
-        /// Gets the initial size.
-        /// </summary>
-        /// <value>
-        /// The initial size.
-        /// </value>
-        public override Vector2 InitialSize
+		/// <summary>
+		/// Gets the initial size.
+		/// </summary>
+		/// <value>
+		/// The initial size.
+		/// </value>
+		public override Vector2 InitialSize
         {
             get
             {
@@ -438,31 +440,44 @@ namespace Pawnmorph.UserInterface
             curY += symmetryToggleRect.height;
 
 
-            Rect buttonRect;
-			// Apply template
-			buttonRect = new Rect(columnWidth + SPACER_SIZE, curY, GenUI.SmallIconSize, GenUI.SmallIconSize);
-			if (Widgets.ButtonImage(buttonRect, TexButton.Paste))
+            Rect buttonLabelRect = new Rect(columnWidth + SPACER_SIZE, curY, previewRect.width / 3, Text.LineHeight);
+            Rect buttonRect = new Rect(buttonLabelRect.xMax, curY, previewRect.width - buttonLabelRect.width, Text.LineHeight);
+            // Apply template
+            Widgets.Label(buttonLabelRect, "Template:");
+            if (_database.MutationTemplates.Count > 0)
             {
-				List<FloatMenuOption> options = new List<FloatMenuOption>();
-                foreach (MutationTemplate template in _templates)
-                    options.Add(new FloatMenuOption(template.Caption, () => ApplyTemplate(template)));
+                if (Widgets.ButtonText(buttonRect, "Select"))
+                {
+                    List<FloatMenuOption> options = new List<FloatMenuOption>();
+                    foreach (MutationTemplate template in _database.MutationTemplates)
+                        options.Add(new FloatMenuOption(template.Caption, () => ApplyTemplate(template)));
 
-				Find.WindowStack.Add(new FloatMenu(options));
+                    Find.WindowStack.Add(new FloatMenu(options));
+                }
             }
+			else
+				Widgets.Label(buttonRect, "No templates.");
+
 			curY += buttonRect.height;
 
-			// Save template
-			buttonRect = new Rect(columnWidth + SPACER_SIZE, curY, GenUI.SmallIconSize, GenUI.SmallIconSize);
-			if (Widgets.ButtonImage(buttonRect, TexButton.Save))
-			{
-				Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(100, 50));
-                textbox.ApplyAction = (value) => SaveTemplate(value);
-				Find.WindowStack.Add(textbox);
-			}
-			curY += buttonRect.height;
 
-			// Then finally the Aspect selection list.
-			// Remember this needs scrolling, Brennen.
+            buttonRect.y = curY;
+            // Save template
+            if (_database.FreeStorage > (pawnCurrentMutations.Count * MutationTemplate.GENEBANK_COST_PER_MUTATION))
+            {
+                if (Widgets.ButtonText(buttonRect, "Save"))
+                {
+                    Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(100, 50));
+                    textbox.ApplyAction = (value) => SaveTemplate(value);
+                    Find.WindowStack.Add(textbox);
+                }
+            }
+            else
+                Widgets.Label(buttonRect, "Not enough capacity.");
+            curY += buttonRect.height;
+
+            // Then finally the Aspect selection list.
+            // Remember this needs scrolling, Brennen.
 
 
 
@@ -470,8 +485,8 @@ namespace Pawnmorph.UserInterface
 
 
 
-			// Draw the right column, consisting of the modification summary (top box) and the currently hovered over mutation description (bottom box).
-			DrawDescriptionBoxes(new Rect(inRect.width - columnWidth, titleHeight + SPACER_SIZE, columnWidth, columnHeight));
+            // Draw the right column, consisting of the modification summary (top box) and the currently hovered over mutation description (bottom box).
+            DrawDescriptionBoxes(new Rect(inRect.width - columnWidth, titleHeight + SPACER_SIZE, columnWidth, columnHeight));
 
             // Draw the apply, reset and cancel buttons.
             float buttonVertPos = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
@@ -1074,12 +1089,17 @@ namespace Pawnmorph.UserInterface
 
         private void ApplyTemplate(MutationTemplate template)
         {
-            foreach (var templateMutation in template.MutationData)
+            IReadOnlyList<MutationDef> taggedMutations = _database.StoredMutations;
+			foreach (var templateMutation in template.MutationData)
 			{
-				IEnumerable<Hediff_AddedMutation> mutations = pawnCurrentMutations.Where(m => m.Part == templateMutation.Part && m.Def.Layer == templateMutation.Mutation.Layer);
-                IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m == templateMutation.Part);
+                // Only add mutations if tagged or in debug mode.
+                if (taggedMutations.Contains(templateMutation.Mutation) || debugMode)
+                {
+				    IEnumerable<Hediff_AddedMutation> mutations = pawnCurrentMutations.Where(m => m.Part == templateMutation.Part && m.Def.Layer == templateMutation.Mutation.Layer);
+                    IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m == templateMutation.Part);
 
-                AddMutation(mutations, parts, templateMutation.Mutation.Layer ?? MutationLayer.Core, templateMutation.Mutation, templateMutation.Severity, templateMutation.IsHalted);
+                    AddMutation(mutations, parts, templateMutation.Mutation.Layer ?? MutationLayer.Core, templateMutation.Mutation, templateMutation.Severity, templateMutation.IsHalted);
+                }
 			}
 		}
 
@@ -1092,10 +1112,10 @@ namespace Pawnmorph.UserInterface
                 mutationData.Add(new MutationData(mutation.Def, mutation.Part, mutation.Severity, mutation.ProgressionHalted, false));
 			}
 
-			_templates.Add(new MutationTemplate(mutationData, name));
+            MutationTemplate template = new MutationTemplate(mutationData, name);
+            if (_database.CanAddToDatabase(template))
+                _database.AddToDatabase(template);
         }
-
-        private static List<MutationTemplate> _templates = new List<MutationTemplate>();
     }
 
 
