@@ -280,6 +280,10 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!HybridsAreEnabledFor(pawn.def)) return;
+            if (pawn.DevelopmentalStage != DevelopmentalStage.Adult)
+                return; // If pawn is not an adult, then don't shift race.
+                        // Would need to handle development stages across multiple races and potentially between different HAR races.
+
             if (pawn.ShouldBeConsideredHuman())
             {
                 if (pawn.def != ThingDefOf.Human)
