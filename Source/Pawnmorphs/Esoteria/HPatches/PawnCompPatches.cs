@@ -41,6 +41,7 @@ namespace Pawnmorph.HPatches
         static bool CheckNeed(Pawn pawn, NeedDef nd)
         {
             if ((pawn.IsPrisoner && nd.neverOnPrisoner) || (pawn.IsSlave && nd.neverOnSlave)) return false;
+            if (!nd.developmentalStageFilter.Has(pawn.DevelopmentalStage)) return false;
             if (nd.colonistsOnly && pawn.Faction != Faction.OfPlayer) return false; 
 
             if (nd.nullifyingPrecepts != null)
