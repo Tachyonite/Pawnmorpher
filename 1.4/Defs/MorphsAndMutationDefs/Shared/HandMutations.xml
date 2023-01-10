@@ -217,7 +217,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<partEfficiencyOffset>-0.15</partEfficiencyOffset>
+					<partEfficiencyOffset>-0.30</partEfficiencyOffset>
 				</values>
 			</li>
 		</stagePatches>
