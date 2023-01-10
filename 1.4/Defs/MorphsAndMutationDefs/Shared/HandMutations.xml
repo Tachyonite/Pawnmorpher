@@ -443,7 +443,6 @@
 					<label>changing</label>
 					<description>[PAWN_nameDef]'s fingers have shrunken down significantly, making manipulating things much harder.</description>
 					<partEfficiencyOffset>-0.50</partEfficiencyOffset>
-					</capMods>
 				</values>
 			</li>
 			<li function="modify">
