@@ -880,6 +880,7 @@
     <Compile Include="UserInterface\FilterListBox.cs" />
     <Compile Include="UserInterface\PartPicker\MutationData.cs" />
     <Compile Include="UserInterface\PartPicker\MutationTemplate.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplateData.cs" />
     <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
     <Compile Include="UserInterface\Preview\Preview.cs" />
     <Compile Include="UserInterface\Preview\PawnPreview.cs" />

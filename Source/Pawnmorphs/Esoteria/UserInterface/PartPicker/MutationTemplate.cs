@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Pawnmorph.Hediffs;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 		/// </summary>
 		public const int GENEBANK_COST_PER_MUTATION = 1;
 
-		List<MutationData> _mutationData;
+		List<MutationTemplateData> _mutationData;
 		string _caption;
 
 		/// <summary>
@@ -30,7 +31,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 		/// <summary>
 		/// Gets the template mutations data.
 		/// </summary>
-		public IEnumerable<IReadOnlyMutationData> MutationData => _mutationData;
+		public IEnumerable<MutationTemplateData> MutationData => _mutationData;
 
 		/// <summary>
 		/// Gets the size of the template when stored in the genebank.
@@ -42,7 +43,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 		/// </summary>
 		public MutationTemplate()
 		{
-			_mutationData = new List<MutationData>();
+			_mutationData = new List<MutationTemplateData>();
 			GenebankSize = 0;
 		}
 
@@ -51,7 +52,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 		/// </summary>
 		/// <param name="mutationData">Collection of mutations to include in template.</param>
 		/// <param name="caption">The caption of the template.</param>
-		public MutationTemplate(IEnumerable<MutationData> mutationData, string caption)
+		public MutationTemplate(IEnumerable<MutationTemplateData> mutationData, string caption)
 		{
 			_caption = caption;
 			_mutationData = mutationData.ToList();
@@ -82,5 +83,88 @@ namespace Pawnmorph.UserInterface.PartPicker
 
 		}
 
+		public string Serialize()
+		{
+			// MutationDef, Part name, severity, halted.
+			// Name:["","",0,0][][]
+			StringBuilder builder = new StringBuilder();
+			builder.Append(_caption);
+
+			foreach (MutationTemplateData data in _mutationData)
+			{
+				builder.Append("[");
+				builder.Append(data.MutationDef.defName);
+				builder.Append(",");
+				builder.Append(data.PartLabelCap);
+				builder.Append(",");
+				builder.Append(data.Severity);
+				builder.Append(",");
+				builder.Append(data.Halted);
+				builder.Append("]");
+			}
+
+			return builder.ToString();
+		}
+
+		/// <summary>
+		/// Attempts to deserializes the specified text.
+		/// </summary>
+		/// <param name="text">Text of a serialized mutation template.</param>
+		/// <param name="template">The deserialized mutation template.</param>
+		/// <returns></returns>
+		public static bool TryDeserialize(string text, out MutationTemplate template)
+		{
+			template = null;
+			if (String.IsNullOrWhiteSpace(text))
+				return false;
+
+
+			int startIndex = 0;
+			int endIndex = text.IndexOf("[");
+
+			if (endIndex == -1)
+				return false;
+
+			try
+			{
+				string caption = text.Substring(startIndex, endIndex);
+				List<MutationTemplateData> mutationData = new List<MutationTemplateData>();
+				do
+				{
+					startIndex = endIndex + 1;
+					endIndex = text.IndexOf("]", startIndex);
+					string data = text.Substring(startIndex, endIndex - startIndex - 1);
+
+					string[] dataParts = data.Split(',');
+
+					if (dataParts.Length != 4)
+						return false;
+
+					MutationDef mutation = DefDatabase<MutationDef>.GetNamedSilentFail(dataParts[0]);
+					if (mutation == null)
+						continue;
+
+					string partLabelCap = dataParts[1];
+
+					if (float.TryParse(dataParts[2], out float severity) == false)
+						continue;
+
+
+					if (bool.TryParse(dataParts[3], out bool halted) == false)
+						continue;
+
+
+					mutationData.Add(new MutationTemplateData(mutation, partLabelCap, severity, halted));
+				}
+				while (endIndex < text.Length);
+
+				template = new MutationTemplate(mutationData, caption);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 	}
 }

@@ -67,7 +67,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			var mutationsColumn = table.AddColumn("Mutations", 100);
 
-
+			AddColumnHook(table);
 
 			foreach (MutationTemplate template in _databank.MutationTemplates)
 			{
@@ -102,11 +102,11 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 
 				_stringBuilder.Clear();
-				foreach (MutationData mutation in _selectedTemplate.MutationData)
+				foreach (MutationTemplateData mutation in _selectedTemplate.MutationData)
 				{
-					_stringBuilder.Append(mutation.mutation.LabelCap);
+					_stringBuilder.Append(mutation.MutationDef.LabelCap);
 					_stringBuilder.Append(" (");
-					_stringBuilder.Append(mutation.part.LabelCap);
+					_stringBuilder.Append(mutation.PartLabelCap);
 					_stringBuilder.AppendLine(")");
 				}
 
@@ -165,7 +165,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 			{
 				foreach (var item in _selectedTemplate.MutationData)
 				{
-					MutationDef mutation = item.Mutation;
+					MutationDef mutation = item.MutationDef;
 					_previewNorth.AddMutation(mutation);
 					_previewEast.AddMutation(mutation);
 					_previewSouth.AddMutation(mutation);

@@ -1096,12 +1096,12 @@ namespace Pawnmorph.UserInterface
 			foreach (var templateMutation in template.MutationData)
 			{
                 // Only add mutations if tagged or in debug mode.
-                if (taggedMutations.Contains(templateMutation.Mutation) || debugMode)
+                if (taggedMutations.Contains(templateMutation.MutationDef) || debugMode)
                 {
-				    IEnumerable<Hediff_AddedMutation> mutations = pawnCurrentMutations.Where(m => m.Part == templateMutation.Part && m.Def.Layer == templateMutation.Mutation.Layer);
-                    IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m.LabelCap == templateMutation.Part.LabelCap);
+				    IEnumerable<Hediff_AddedMutation> mutations = pawnCurrentMutations.Where(m => m.Part.LabelCap == templateMutation.PartLabelCap && m.Def.Layer == templateMutation.MutationDef.Layer);
+                    IEnumerable<BodyPartRecord> parts = (skinSync ? cachedMutableCoreParts : cachedMutableParts).Where(m => m.LabelCap == templateMutation.PartLabelCap);
 
-                    AddMutation(mutations, parts, templateMutation.Mutation.Layer ?? MutationLayer.Core, templateMutation.Mutation, templateMutation.Severity, templateMutation.IsHalted);
+                    AddMutation(mutations, parts, templateMutation.MutationDef.Layer ?? MutationLayer.Core, templateMutation.MutationDef, templateMutation.Severity, templateMutation.Halted);
                 }
 			}
 		}
@@ -1109,10 +1109,10 @@ namespace Pawnmorph.UserInterface
 
         private void SaveTemplate(string name)
         {
-            List<MutationData> mutationData = new List<MutationData>(pawnCurrentMutations.Count);
+            List<MutationTemplateData> mutationData = new List<MutationTemplateData>(pawnCurrentMutations.Count);
             foreach (Hediff_AddedMutation mutation in pawnCurrentMutations)
             {
-                mutationData.Add(new MutationData(mutation.Def, mutation.Part, mutation.Severity, mutation.ProgressionHalted, false));
+                mutationData.Add(new MutationTemplateData(mutation.Def, mutation.Part.LabelCap, mutation.Severity, mutation.ProgressionHalted));
 			}
 
             MutationTemplate template = new MutationTemplate(mutationData, name);
