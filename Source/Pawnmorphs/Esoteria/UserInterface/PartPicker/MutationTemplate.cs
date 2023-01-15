@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,5 +81,6 @@ namespace Pawnmorph.UserInterface.PartPicker
 			GenebankSize = GENEBANK_COST_PER_MUTATION * _mutationData.Count;
 
 		}
+
 	}
 }
