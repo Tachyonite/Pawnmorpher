@@ -115,6 +115,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 		public static bool TryDeserialize(string text, out MutationTemplate template)
 		{
 			template = null;
+			text = text.Trim();
 			if (String.IsNullOrWhiteSpace(text))
 				return false;
 
@@ -131,10 +132,9 @@ namespace Pawnmorph.UserInterface.PartPicker
 				List<MutationTemplateData> mutationData = new List<MutationTemplateData>();
 				do
 				{
-					startIndex = endIndex + 1;
+					startIndex = text.IndexOf("[", endIndex) + 1;
 					endIndex = text.IndexOf("]", startIndex);
-					string data = text.Substring(startIndex, endIndex - startIndex - 1);
-
+					string data = text.Substring(startIndex, endIndex - startIndex);
 					string[] dataParts = data.Split(',');
 
 					if (dataParts.Length != 4)
@@ -156,7 +156,7 @@ namespace Pawnmorph.UserInterface.PartPicker
 
 					mutationData.Add(new MutationTemplateData(mutation, partLabelCap, severity, halted));
 				}
-				while (endIndex < text.Length);
+				while (endIndex < text.Length - 2);
 
 				template = new MutationTemplate(mutationData, caption);
 				return true;

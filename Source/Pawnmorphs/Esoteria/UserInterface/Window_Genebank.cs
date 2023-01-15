@@ -95,7 +95,7 @@ namespace Pawnmorph.UserInterface
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
 			_tabs.Add(new TabRecord("Templates", () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
-
+            
 			SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
 
@@ -135,6 +135,8 @@ namespace Pawnmorph.UserInterface
                 DeleteSelection();
             }
 
+            if (_currentTab != null)
+                _currentTab.DrawFooter(new Rect(footer.x + BUTTON_DELETE_SIZE + SPACING, footer.y, footer.width - BUTTON_DELETE_SIZE - SPACING, footer.height));
 
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
@@ -203,11 +205,12 @@ namespace Pawnmorph.UserInterface
         }
 
 
-        private void SelectTab(GenebankTab tab)
+        public void SelectTab(GenebankTab tab)
         {
             _currentTab = tab;
             _table.Clear();
 
+            tab.Parent = this;
             tab.Initialize(_chamberDatabase);
             tab.GenerateTable(_table);
 

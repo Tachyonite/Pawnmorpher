@@ -17,6 +17,7 @@ namespace Pawnmorph.UserInterface.Genebank
         protected const float PREVIEW_SIZE = 200f;
         protected readonly string FEMALE = "Female".Translate().CapitalizeFirst();
         protected readonly string MALE = "Male".Translate().CapitalizeFirst();
+        public Window_Genebank Parent;
 
         /// <summary>
         /// The very first method to be called. Only called once.
@@ -72,5 +73,13 @@ namespace Pawnmorph.UserInterface.Genebank
         /// </summary>
         /// <param name="def">The def to be deleted.</param>
         public abstract void Delete(object def);
+
+        /// <summary>
+        /// Called every frame to draw additional footer buttons.
+        /// </summary>
+        /// <param name="inRect">The footer bounding box.</param>
+        public virtual void DrawFooter(Rect inRect)
+        { }
+
     }
 }

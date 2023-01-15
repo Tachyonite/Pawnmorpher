@@ -25,6 +25,20 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		StringBuilder _stringBuilder;
 		Vector2 _detailsScrollPosition;
 
+
+
+		private static readonly string BUTTON_IMPORT = "PM_Genebank_TemplateTab_ImportButton".Translate();
+		private static readonly float BUTTON_IMPORT_SIZE;
+
+		private static readonly string BUTTON_EXPORT = "PM_Genebank_TemplateTab_ExportButton".Translate();
+		private static readonly float BUTTON_EXPORT_SIZE;
+
+		static TemplatesTab()
+		{
+			BUTTON_IMPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_IMPORT).x, 100f);
+			BUTTON_EXPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_EXPORT).x, 100f);
+		}
+
 		public override void Initialize(ChamberDatabase databank)
 		{
 			_databank = databank;
@@ -178,7 +192,50 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		}
 
 
+		public override void DrawFooter(Rect footer)
+		{
+			float currentX = footer.x;
+			if (Widgets.ButtonText(new Rect(currentX, footer.y, BUTTON_IMPORT_SIZE, footer.height), BUTTON_IMPORT))
+			{
+				if (_selectedTemplate != null)
+				{
+					string serialized = _selectedTemplate.Serialize();
+					Dialog_Textbox textbox = new Dialog_Textbox(serialized, true, new Vector2(300, 125));
+					Find.WindowStack.Add(textbox);
+				}
+			}
 
+			currentX += SPACING + BUTTON_IMPORT_SIZE;
+			if (Widgets.ButtonText(new Rect(currentX, footer.y, BUTTON_EXPORT_SIZE, footer.height), BUTTON_EXPORT))
+			{
+
+				Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(300, 125));
+				textbox.ApplyAction += Import;
+				Find.WindowStack.Add(textbox);
+			}
+		}
+
+		private void Import(string serializedTemplate)
+		{
+			if (MutationTemplate.TryDeserialize(serializedTemplate, out var template))
+			{
+				// Imported
+				if (_databank.CanAddToDatabase(template, out string reason))
+				{
+					_databank.AddToDatabase(template);
+					Parent.SelectTab(new TemplatesTab()); // Reload tab.
+					return;
+				}
+
+				Dialog_Popup messageBox = new Dialog_Popup(reason, new Vector2(300, 125));
+				Find.WindowStack.Add(messageBox);
+			}
+			else
+			{
+				Dialog_Popup messageBox = new Dialog_Popup("Failed to parse text.", new Vector2(300, 125));
+				Find.WindowStack.Add(messageBox);
+			}
+		}
 
 		public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
 		{
