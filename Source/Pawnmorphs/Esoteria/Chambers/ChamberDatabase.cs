@@ -8,6 +8,7 @@ using System.Net.Configuration;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
+using Pawnmorph.UserInterface.PartPicker;
 using Pawnmorph.Utilities;
 using RimWorld.Planet;
 using UnityEngine;
@@ -49,8 +50,9 @@ namespace Pawnmorph.Chambers
 
         private List<MutationDef> _storedMutations = new List<MutationDef>();
         private List<PawnKindDef> _taggedSpecies = new List<PawnKindDef>();
+		private List<MutationTemplate> _storedTemplates = new List<MutationTemplate>();
 
-        private bool _migrated;
+		private bool _migrated;
 
 
         private int _inactiveAmount;
@@ -107,7 +109,9 @@ namespace Pawnmorph.Chambers
 
                     foreach (PawnKindDef taggedSpecy in _taggedSpecies) v += taggedSpecy.GetRequiredStorage();
 
-                    _usedStorageCache = v;
+					foreach (MutationTemplate template in _storedTemplates) v += template.GenebankSize;
+
+					_usedStorageCache = v;
                 }
 
                 return _usedStorageCache.Value;
@@ -132,6 +136,7 @@ namespace Pawnmorph.Chambers
         [NotNull]
         public IReadOnlyList<PawnKindDef> TaggedAnimals => _taggedSpecies;
 
+        public IReadOnlyList<MutationTemplate> MutationTemplates => _storedTemplates;
 
         /// <summary>
         ///     Gets a value indicating whether this instance can tag.
@@ -171,18 +176,47 @@ namespace Pawnmorph.Chambers
         }
 
 
-        /// <summary>
-        /// Adds the pawnkind to the database directly.
-        /// </summary>
-        /// <param name="pawnKind">Kind of the pawn.</param>
-        /// <param name="failMode">The fail mode.</param>
-        /// <exception cref="ArgumentNullException">pawnKind</exception>
-        /// note: this function does
-        /// <b>not</b>
-        /// check if the database can store the given pawnKind, use
-        /// <see cref="CanAddToDatabase(PawnKindDef)" />
-        /// to safely add to the database
-        public void AddToDatabase([NotNull] PawnKindDef pawnKind, LogFailMode failMode= LogFailMode.Silent)
+
+		/// <summary>
+		/// Adds the template to the database
+		/// </summary>
+		/// <param name="template">The template to be added.</param>
+		/// <param name="failMode">The fail mode.</param>
+		/// <exception cref="ArgumentNullException">mutationDef</exception>
+		/// Note: this does
+		/// <b>not</b>
+		/// check if there is enough space to add the mutation or if it is restricted, use
+		/// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
+		/// to check
+		public void AddToDatabase([NotNull] MutationTemplate template, LogFailMode failMode = LogFailMode.Silent)
+		{
+			if (template == null) 
+                throw new ArgumentNullException(nameof(template));
+
+			if (_storedTemplates.Contains(template))
+			{
+				string message = $"unable to add the {template.Caption} template to the database as it is already stored";
+				failMode.LogFail(message);
+				return;
+			}
+			_storedTemplates.Add(template);
+
+			if (_usedStorageCache != null) 
+                _usedStorageCache += template.GenebankSize;
+		}
+
+		/// <summary>
+		/// Adds the pawnkind to the database directly.
+		/// </summary>
+		/// <param name="pawnKind">Kind of the pawn.</param>
+		/// <param name="failMode">The fail mode.</param>
+		/// <exception cref="ArgumentNullException">pawnKind</exception>
+		/// note: this function does
+		/// <b>not</b>
+		/// check if the database can store the given pawnKind, use
+		/// <see cref="CanAddToDatabase(PawnKindDef)" />
+		/// to safely add to the database
+		public void AddToDatabase([NotNull] PawnKindDef pawnKind, LogFailMode failMode= LogFailMode.Silent)
         {
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
             if (_taggedSpecies.Contains(pawnKind))
@@ -229,17 +263,29 @@ namespace Pawnmorph.Chambers
             return CanAddToDatabase(kindDef, out _);
         }
 
+		/// <summary>
+		///     Determines whether this instance can add the specified MutationTemplate to the database
+		/// </summary>
+		/// <param name="template">The template to add.</param>
+		/// <returns>
+		///     <c>true</c> if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">kindDef</exception>
+		public bool CanAddToDatabase([NotNull] MutationTemplate template)
+		{
+			return CanAddToDatabase(template, out _);
+		}
 
-        /// <summary>
-        ///     Determines whether this instance can add the specified PawnkindDef to the database
-        /// </summary>
-        /// <param name="pawnKind">Kind of the pawn.</param>
-        /// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
-        /// <returns>
-        ///     <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">pawnKind</exception>
-        public bool CanAddToDatabase([NotNull] PawnKindDef pawnKind, out string reason)
+		/// <summary>
+		///     Determines whether this instance can add the specified PawnkindDef to the database
+		/// </summary>
+		/// <param name="pawnKind">Kind of the pawn.</param>
+		/// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
+		/// <returns>
+		///     <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">pawnKind</exception>
+		public bool CanAddToDatabase([NotNull] PawnKindDef pawnKind, out string reason)
         {
             if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
 
@@ -260,16 +306,54 @@ namespace Pawnmorph.Chambers
             return string.IsNullOrEmpty(reason);
         }
 
-        /// <summary>
-        ///     Determines whether this instance with the specified mutation definition can be added to the database
-        /// </summary>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="reason">The reason.</param>
-        /// <returns>
-        ///     <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>
-        ///     .
-        /// </returns>
-        public bool CanAddToDatabase([NotNull] MutationDef mutationDef, out string reason)
+
+		/// <summary>
+		///     Determines whether this instance can add the specified MutationTemplate to the database
+		/// </summary>
+		/// <param name="template">Template to add.</param>
+		/// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
+		/// <returns>
+		///     <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
+		/// </returns>
+		/// <exception cref="ArgumentNullException">pawnKind</exception>
+		public bool CanAddToDatabase([NotNull] MutationTemplate template, out string reason)
+		{
+			if (template == null) 
+                throw new ArgumentNullException(nameof(template));
+
+
+			if (_storedTemplates.Contains(template))
+			{
+				reason = ALREADY_TAGGED_REASON.Translate(template.Caption);
+				return false;
+			}
+
+			if (FreeStorage < template.GenebankSize)
+			{
+				reason = NOT_ENOUGH_STORAGE_REASON.Translate(template.Caption, DatabaseUtilities.GetStorageString(template.GenebankSize), DatabaseUtilities.GetStorageString(FreeStorage));
+				return false;
+			}
+
+			if (!CanTag)
+			{
+				reason = NOT_ENOUGH_POWER.Translate();
+				return false;
+			}
+
+			reason = "";
+			return true;
+		}
+
+		/// <summary>
+		///     Determines whether this instance with the specified mutation definition can be added to the database
+		/// </summary>
+		/// <param name="mutationDef">The mutation definition.</param>
+		/// <param name="reason">The reason.</param>
+		/// <returns>
+		///     <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>
+		///     .
+		/// </returns>
+		public bool CanAddToDatabase([NotNull] MutationDef mutationDef, out string reason)
         {
             if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
 
@@ -341,13 +425,15 @@ namespace Pawnmorph.Chambers
 
             Scribe_Collections.Look(ref _storedMutations, nameof(StoredMutations), LookMode.Def);
             Scribe_Collections.Look(ref _taggedSpecies, nameof(TaggedAnimals), LookMode.Def);
-            Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
+			Scribe_Collections.Look(ref _storedTemplates, nameof(_storedTemplates));
+			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
             Scribe_Values.Look(ref _migrated, "migrated");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 _storedMutations = _storedMutations ?? new List<MutationDef>();
                 _taggedSpecies = _taggedSpecies ?? new List<PawnKindDef>();
-                if (!_migrated)
+				_storedTemplates = _storedTemplates ?? new List<MutationTemplate>();
+				if (!_migrated)
                 {
                     _migrated = false;
                     //move any tagged animals from the previous system into the new one 
@@ -414,7 +500,22 @@ namespace Pawnmorph.Chambers
             _taggedSpecies.Remove(pkDef);
         }
 
-        internal void ClearCache()
+
+		/// <summary>
+		///     Removes the given template from database.
+		/// </summary>
+		/// <param name="template">The m definition.</param>
+		public void RemoveFromDatabase(MutationTemplate template)
+		{
+			if (!_storedTemplates.Contains(template))
+				return;
+			_usedStorageCache = null;
+
+			_storedTemplates.Remove(template);
+		}
+
+
+		internal void ClearCache()
         {
             _usedStorageCache = null;
         }

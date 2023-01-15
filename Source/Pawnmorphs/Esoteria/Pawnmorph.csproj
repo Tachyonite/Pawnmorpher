@@ -600,6 +600,7 @@
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\MutationsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\TemplatesTab.cs" />
     <Compile Include="UserInterface\MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
@@ -872,12 +873,14 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
-    <Compile Include="UserInterface\AddedMutations.cs" />
+    <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
     <Compile Include="UserInterface\ButtonTexturesPM.cs" />
     <Compile Include="UserInterface\Dialog_PartPicker.cs" />
     <Compile Include="UserInterface\Dialog_Popup.cs" />
     <Compile Include="UserInterface\FilterListBox.cs" />
-    <Compile Include="UserInterface\MutationData.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationData.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplate.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplateData.cs" />
     <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
     <Compile Include="UserInterface\Preview\Preview.cs" />
     <Compile Include="UserInterface\Preview\PawnPreview.cs" />
@@ -953,6 +956,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Chambers\NewFolder1\" />
     <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>

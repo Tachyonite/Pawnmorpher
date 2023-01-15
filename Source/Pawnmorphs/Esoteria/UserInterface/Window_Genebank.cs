@@ -27,8 +27,9 @@ namespace Pawnmorph.UserInterface
 
         private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
         private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
+		private static readonly string TAB_TEMPLATES_HEADER = "PM_Genebank_TemplateTab_Caption".Translate();
 
-        private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
+		private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
         private static readonly float COLUMN_SIZE_SIZE;
 
         private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
@@ -94,8 +95,9 @@ namespace Pawnmorph.UserInterface
 
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
-
-            SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
+			_tabs.Add(new TabRecord(TAB_TEMPLATES_HEADER, () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
+            
+			SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -134,6 +136,8 @@ namespace Pawnmorph.UserInterface
                 DeleteSelection();
             }
 
+            if (_currentTab != null)
+                _currentTab.DrawFooter(new Rect(footer.x + BUTTON_DELETE_SIZE + SPACING, footer.y, footer.width - BUTTON_DELETE_SIZE - SPACING, footer.height));
 
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
@@ -202,11 +206,12 @@ namespace Pawnmorph.UserInterface
         }
 
 
-        private void SelectTab(GenebankTab tab)
+        public void SelectTab(GenebankTab tab)
         {
             _currentTab = tab;
             _table.Clear();
 
+            tab.Parent = this;
             tab.Initialize(_chamberDatabase);
             tab.GenerateTable(_table);
 
