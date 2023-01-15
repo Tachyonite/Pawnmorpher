@@ -27,8 +27,9 @@ namespace Pawnmorph.UserInterface
 
         private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
         private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
+		private static readonly string TAB_TEMPLATES_HEADER = "PM_Genebank_TemplateTab_Caption".Translate();
 
-        private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
+		private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
         private static readonly float COLUMN_SIZE_SIZE;
 
         private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
@@ -94,7 +95,7 @@ namespace Pawnmorph.UserInterface
 
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
-			_tabs.Add(new TabRecord("Templates", () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
+			_tabs.Add(new TabRecord(TAB_TEMPLATES_HEADER, () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
             
 			SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }

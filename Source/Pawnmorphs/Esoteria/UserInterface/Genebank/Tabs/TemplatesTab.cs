@@ -26,17 +26,23 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		Vector2 _detailsScrollPosition;
 
 
-
-		private static readonly string BUTTON_IMPORT = "PM_Genebank_TemplateTab_ImportButton".Translate();
+		private static readonly string BUTTON_IMPORT = "PM_Genebank_TemplateTab_Button_Import".Translate();
 		private static readonly float BUTTON_IMPORT_SIZE;
 
-		private static readonly string BUTTON_EXPORT = "PM_Genebank_TemplateTab_ExportButton".Translate();
+		private static readonly string BUTTON_EXPORT = "PM_Genebank_TemplateTab_Button_Export".Translate();
 		private static readonly float BUTTON_EXPORT_SIZE;
+
+		private static readonly string TAB_COLUMN_TEMPLATE = "PM_Genebank_TemplateTab_Column_Template".Translate();
+
+
+		private static readonly string TAB_COLUMN_MUTATIONS = "PM_Genebank_TemplateTab_Column_Mutations".Translate();
+		private static readonly float TAB_COLUMN_MUTATIONS_SIZE;
 
 		static TemplatesTab()
 		{
 			BUTTON_IMPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_IMPORT).x, 100f);
 			BUTTON_EXPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_EXPORT).x, 100f);
+			TAB_COLUMN_MUTATIONS_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_MUTATIONS).x, 100f);
 		}
 
 		public override void Initialize(ChamberDatabase databank)
@@ -68,7 +74,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 		public override void GenerateTable(Table<GeneRowItem> table)
 		{
-			var column = table.AddColumn("Template", 0.5f,
+			var column = table.AddColumn(TAB_COLUMN_TEMPLATE, 0.5f,
 				(ref Rect box, GeneRowItem item) => Widgets.Label(box, item.Label),
 				(collection, ascending, column) =>
 				{
@@ -79,7 +85,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 				});
 			column.IsFixedWidth = false;
 
-			var mutationsColumn = table.AddColumn("Mutations", 100);
+			var mutationsColumn = table.AddColumn(TAB_COLUMN_MUTATIONS, TAB_COLUMN_MUTATIONS_SIZE);
 
 			AddColumnHook(table);
 
@@ -197,21 +203,20 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 			float currentX = footer.x;
 			if (Widgets.ButtonText(new Rect(currentX, footer.y, BUTTON_IMPORT_SIZE, footer.height), BUTTON_IMPORT))
 			{
+				Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(300, 125));
+				textbox.ApplyAction += Import;
+				Find.WindowStack.Add(textbox);
+			}
+
+			currentX += SPACING + BUTTON_IMPORT_SIZE;
+			if (Widgets.ButtonText(new Rect(currentX, footer.y, BUTTON_EXPORT_SIZE, footer.height), BUTTON_EXPORT))
+			{
 				if (_selectedTemplate != null)
 				{
 					string serialized = _selectedTemplate.Serialize();
 					Dialog_Textbox textbox = new Dialog_Textbox(serialized, true, new Vector2(300, 125));
 					Find.WindowStack.Add(textbox);
 				}
-			}
-
-			currentX += SPACING + BUTTON_IMPORT_SIZE;
-			if (Widgets.ButtonText(new Rect(currentX, footer.y, BUTTON_EXPORT_SIZE, footer.height), BUTTON_EXPORT))
-			{
-
-				Dialog_Textbox textbox = new Dialog_Textbox(String.Empty, false, new Vector2(300, 125));
-				textbox.ApplyAction += Import;
-				Find.WindowStack.Add(textbox);
 			}
 		}
 
@@ -232,7 +237,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 			}
 			else
 			{
-				Dialog_Popup messageBox = new Dialog_Popup("Failed to parse text.", new Vector2(300, 125));
+				Dialog_Popup messageBox = new Dialog_Popup("PM_Genebank_TemplateTab_ParsingError".Translate(), new Vector2(300, 125));
 				Find.WindowStack.Add(messageBox);
 			}
 		}
