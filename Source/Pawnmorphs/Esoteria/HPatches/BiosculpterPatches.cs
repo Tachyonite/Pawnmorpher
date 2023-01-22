@@ -23,5 +23,14 @@ namespace Pawnmorph.HPatches
                 } 
             }
         }
+        
+        [HarmonyPatch(typeof(CompBiosculpterPod_HealingCycle), "WillHeal")]
+        static class DontHealMutations
+        {
+            static void Postfix(Pawn pawn, Hediff hediff, ref bool __result)
+            {
+                __result &= hediff is not Hediff_AddedMutation;
+            }
+        }
     }
 }
