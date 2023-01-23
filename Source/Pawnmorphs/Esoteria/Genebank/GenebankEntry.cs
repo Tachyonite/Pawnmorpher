@@ -46,9 +46,26 @@ namespace Pawnmorph.Genebank.Model
 
 		}
 
+		/// <summary>
+		/// Gets the required storage capacity needed to store this value in the genebank.
+		/// </summary>
+		/// <returns></returns>
 		public abstract int GetRequiredStorage();
+
+		/// <summary>
+		/// Additional requirements to check if this object can be added to the genebank.
+		/// </summary>
+		/// <param name="database">The genebank to be added to.</param>
+		/// <param name="reason">The reason if it fails.</param>
 		public abstract bool CanAddToDatabase(ChamberDatabase database, out string reason);
+
+		/// <summary>
+		/// Gets the caption.
+		/// </summary>
+		/// <returns></returns>
 		public abstract string GetCaption();
+
+		/// <inheritdoc/>
 		public abstract void ExposeData();
 
 		/// <inheritdoc/>

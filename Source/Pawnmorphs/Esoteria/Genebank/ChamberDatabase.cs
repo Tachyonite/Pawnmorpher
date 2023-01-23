@@ -37,7 +37,8 @@ namespace Pawnmorph.Chambers
         private const string NOT_TAGGABLE = "PMMutationNotTaggable";
         private const string RESTRICTED_MUTATION = "PMMutationRestricted";
 
-        private int? _usedStorageCache;
+		private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
+		private int? _usedStorageCache;
         private int _totalStorage = 0;
         private int _inactiveAmount;
 
@@ -128,7 +129,11 @@ namespace Pawnmorph.Chambers
 
 
 
-
+        /// <summary>
+        /// Gets a readonly list of values contained in genebank by type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Empty collection if no values.</returns>
         public IReadOnlyList<T> GetEntryValues<T>()
         {
             Type entryType = typeof(GenebankEntry<T>);
@@ -140,7 +145,12 @@ namespace Pawnmorph.Chambers
             return new List<T>();
 		}
 
-		public IReadOnlyList<GenebankEntry<T>> GetEntryItems<T>()
+        /// <summary>
+        /// Gets a readonly list of <see cref="GenebankEntry{T}"/> from genebank by type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Empty collection if no values.</returns>
+        public IReadOnlyList<GenebankEntry<T>> GetEntryItems<T>()
 		{
 			Type entryType = typeof(GenebankEntry<T>);
 
@@ -158,9 +168,6 @@ namespace Pawnmorph.Chambers
 		///     <c>true</c> if this instance can tag; otherwise, <c>false</c>.
 		/// </value>
 		public bool CanTag => FreeStorage > 0;
-
-
-        private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
 
 		/// <summary>
 		/// Adds the template to the database
@@ -196,6 +203,15 @@ namespace Pawnmorph.Chambers
             return true;
 		}
 
+		/// <summary>
+		/// Attempts to add the value into the genebank. Outputs reason if it fails.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="entry">The value to be added.</param>
+		/// <param name="reason">The reason if it didn't get added.</param>
+		/// <returns>
+		///     <c>true</c> if the provided value was added to the genebank; otherwise, <c>false</c>.
+		/// </returns>
 		public bool TryAddToDatabase<T>([NotNull] GenebankEntry<T> entry, out string reason)
         {
             if (CanAddToDatabase(entry, out reason) == false)
@@ -204,13 +220,18 @@ namespace Pawnmorph.Chambers
             return AddToDatabase(entry);
         }
 
-
-		public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry)
+        /// <summary>
+        /// Determines whether this the provided value can be added to the genebank.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entry">The entry.</param>
+        /// <returns>
+        ///   <c>true</c> if the value can be added to teh genebank; otherwise, <c>false</c>.
+        /// </returns>
+        public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry)
 		{
 			return CanAddToDatabase(entry, out _);
 		}
-
-
 
 		/// <summary>
 		///     Determines whether this instance with the specified mutation definition can be added to the database
