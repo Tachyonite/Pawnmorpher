@@ -29,7 +29,8 @@ namespace Pawnmorph.HPatches
         {
             static void Postfix(Pawn pawn, Hediff hediff, ref bool __result)
             {
-                __result &= hediff is not Hediff_AddedMutation;
+                // Always prevent mutations from being healed by the biosculptor
+                if (hediff is Hediff_AddedMutation) __result = false;
             }
         }
     }
