@@ -317,7 +317,11 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
-    <Compile Include="Genebank\Model\IGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
+    <Compile Include="Genebank\GenebankEntry.cs" />
+    <Compile Include="Genebank\IGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
@@ -895,6 +899,7 @@
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
     <Compile Include="Utilities\Cached.cs" />
+    <Compile Include="Utilities\Collections\ExposedList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />

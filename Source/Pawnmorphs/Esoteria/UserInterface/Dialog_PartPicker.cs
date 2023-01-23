@@ -18,6 +18,7 @@ using Pawnmorph.UserInterface.PartPicker;
 using HarmonyLib;
 using UnityEngine.UIElements;
 using Pawnmorph.ThingComps;
+using Pawnmorph.Genebank.Model;
 
 namespace Pawnmorph.UserInterface
 {
@@ -1116,8 +1117,7 @@ namespace Pawnmorph.UserInterface
 			}
 
             MutationTemplate template = new MutationTemplate(mutationData, name);
-            if (_database.CanAddToDatabase(template))
-                _database.AddToDatabase(template);
+            _database.AddToDatabase(new TemplateGenebankEntry(template));
         }
     }
 

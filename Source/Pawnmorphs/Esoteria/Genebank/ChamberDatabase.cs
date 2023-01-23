@@ -5,11 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Configuration;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
 using Pawnmorph.Utilities;
+using Pawnmorph.Utilities.Collections;
 using RimWorld.Planet;
 using UnityEngine;
 using Verse;
@@ -31,47 +34,52 @@ namespace Pawnmorph.Chambers
         ///     translation string for not enough free power
         /// </summary>
         public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
-
-        /// <summary>
-        ///     translation label for the animal not taggable reason 
-        /// </summary>
-        public const string ANIMAL_TOO_CHAOTIC_REASON = "AnimalNotTaggable";
-
-        private const string NOT_VALID_ANIMAL_REASON = "NotValidAnimal";
-
         private const string NOT_TAGGABLE = "PMMutationNotTaggable";
         private const string RESTRICTED_MUTATION = "PMMutationRestricted";
 
         private int? _usedStorageCache;
-
-
         private int _totalStorage = 0;
-
-
-        private List<MutationDef> _storedMutations = new List<MutationDef>();
-        private List<PawnKindDef> _taggedSpecies = new List<PawnKindDef>();
-		private List<MutationTemplate> _storedTemplates = new List<MutationTemplate>();
-
-		private bool _migrated;
-
-
         private int _inactiveAmount;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ChamberDatabase" /> class.
-        /// </summary>
-        /// <param name="world">The world.</param>
-        public ChamberDatabase(World world) : base(world)
+		Dictionary<Type, ExposedListContainer<IGenebankEntry>> _genebankDatabase = new Dictionary<Type, ExposedListContainer<IGenebankEntry>>();
+
+		/// <summary>
+		///     Initializes a new instance of the <see cref="ChamberDatabase" /> class.
+		/// </summary>
+		/// <param name="world">The world.</param>
+		public ChamberDatabase(World world) : base(world)
         {
         }
 
+
+
         /// <summary>
-        ///     Gets the free storage.
+        ///     Gets the stored mutations.
         /// </summary>
         /// <value>
-        ///     The free storage.
+        ///     The stored mutations.
         /// </value>
-        public int FreeStorage
+        [NotNull]
+        public IReadOnlyList<MutationDef> StoredMutations => GetEntryValues<MutationDef>();
+
+		/// <summary>
+		///     Gets the tagged animals.
+		/// </summary>
+		/// <value>
+		///     The tagged animals.
+		/// </value>
+		[NotNull]
+		public IReadOnlyList<PawnKindDef> TaggedAnimals => GetEntryValues<PawnKindDef>();
+
+        public IReadOnlyList<MutationTemplate> MutationTemplates => GetEntryValues<MutationTemplate>();
+
+		/// <summary>
+		///     Gets the free storage.
+		/// </summary>
+		/// <value>
+		///     The free storage.
+		/// </value>
+		public int FreeStorage
         {
             get
             {
@@ -105,11 +113,11 @@ namespace Pawnmorph.Chambers
                 if (_usedStorageCache == null)
                 {
                     var v = 0;
-                    foreach (MutationDef storedMutation in _storedMutations) v += storedMutation.GetRequiredStorage();
 
-                    foreach (PawnKindDef taggedSpecy in _taggedSpecies) v += taggedSpecy.GetRequiredStorage();
-
-					foreach (MutationTemplate template in _storedTemplates) v += template.GenebankSize;
+                    foreach (IList<IGenebankEntry> genebankEntries in _genebankDatabase.Values)
+                    {
+                        v += genebankEntries.Sum(x => x.GetRequiredStorage());
+                    }
 
 					_usedStorageCache = v;
                 }
@@ -118,69 +126,46 @@ namespace Pawnmorph.Chambers
             }
         }
 
-        /// <summary>
-        ///     Gets the stored mutations.
-        /// </summary>
-        /// <value>
-        ///     The stored mutations.
-        /// </value>
-        [NotNull]
-        public IReadOnlyList<MutationDef> StoredMutations => _storedMutations;
 
-        /// <summary>
-        ///     Gets the tagged animals.
-        /// </summary>
-        /// <value>
-        ///     The tagged animals.
-        /// </value>
-        [NotNull]
-        public IReadOnlyList<PawnKindDef> TaggedAnimals => _taggedSpecies;
 
-        public IReadOnlyList<MutationTemplate> MutationTemplates => _storedTemplates;
 
-        /// <summary>
-        ///     Gets a value indicating whether this instance can tag.
-        /// </summary>
-        /// <value>
-        ///     <c>true</c> if this instance can tag; otherwise, <c>false</c>.
-        /// </value>
-        public bool CanTag => FreeStorage > 0;
+        public IReadOnlyList<T> GetEntryValues<T>()
+        {
+            Type entryType = typeof(GenebankEntry<T>);
+
+			if (_genebankDatabase.ContainsKey(entryType))
+            {
+			    return _genebankDatabase[entryType].Select(x => (x as GenebankEntry<T>).Value).ToList();
+            }
+            return new List<T>();
+		}
+
+		public IReadOnlyList<GenebankEntry<T>> GetEntryItems<T>()
+		{
+			Type entryType = typeof(GenebankEntry<T>);
+
+			if (_genebankDatabase.ContainsKey(entryType))
+			{
+				return _genebankDatabase[entryType].Cast<GenebankEntry<T>>().ToList();
+			}
+            return new List<GenebankEntry<T>>();
+		}
+
+		/// <summary>
+		///     Gets a value indicating whether this instance can tag.
+		/// </summary>
+		/// <value>
+		///     <c>true</c> if this instance can tag; otherwise, <c>false</c>.
+		/// </value>
+		public bool CanTag => FreeStorage > 0;
 
 
         private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
 
-
-        /// <summary>
-        /// Adds the mutation to the database
-        /// </summary>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <param name="failMode">The fail mode.</param>
-        /// <exception cref="ArgumentNullException">mutationDef</exception>
-        /// Note: this does
-        /// <b>not</b>
-        /// check if there is enough space to add the mutation or if it is restricted, use
-        /// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
-        /// to check
-        public void AddToDatabase([NotNull] MutationDef mutationDef, LogFailMode failMode=LogFailMode.Silent)
-        {
-            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-            if (_storedMutations.Contains(mutationDef))
-            {
-                string message = $"unable to add {mutationDef.defName} to the database as it is already stored";
-                failMode.LogFail(message); 
-                return;
-            }
-            _storedMutations.Add(mutationDef);
-
-            if (_usedStorageCache != null) _usedStorageCache += mutationDef.GetRequiredStorage();
-        }
-
-
-
 		/// <summary>
 		/// Adds the template to the database
 		/// </summary>
-		/// <param name="template">The template to be added.</param>
+		/// <param name="entry">The entry to add.</param>
 		/// <param name="failMode">The fail mode.</param>
 		/// <exception cref="ArgumentNullException">mutationDef</exception>
 		/// Note: this does
@@ -188,149 +173,137 @@ namespace Pawnmorph.Chambers
 		/// check if there is enough space to add the mutation or if it is restricted, use
 		/// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
 		/// to check
-		public void AddToDatabase([NotNull] MutationTemplate template, LogFailMode failMode = LogFailMode.Silent)
+		public bool AddToDatabase<T>([NotNull] GenebankEntry<T> entry, LogFailMode failMode = LogFailMode.Silent)
 		{
-			if (template == null) 
-                throw new ArgumentNullException(nameof(template));
+			if (entry == null)
+				throw new ArgumentNullException(nameof(entry));
 
-			if (_storedTemplates.Contains(template))
-			{
-				string message = $"unable to add the {template.Caption} template to the database as it is already stored";
-				failMode.LogFail(message);
-				return;
-			}
-			_storedTemplates.Add(template);
+            if (CanAddToDatabase(entry, out string reason) == false)
+            {
+                failMode.LogFail(reason);
+                return false;
+            }
 
-			if (_usedStorageCache != null) 
-                _usedStorageCache += template.GenebankSize;
+            Type entryType = typeof(GenebankEntry<T>);
+            if (_genebankDatabase.ContainsKey(entryType) == false)
+                _genebankDatabase.Add(entryType, new ExposedListContainer<IGenebankEntry>());
+
+            _genebankDatabase[entryType].Add(entry);
+
+			if (_usedStorageCache != null)
+				_usedStorageCache += entry.GetRequiredStorage();
+
+            return true;
 		}
 
-		/// <summary>
-		/// Adds the pawnkind to the database directly.
-		/// </summary>
-		/// <param name="pawnKind">Kind of the pawn.</param>
-		/// <param name="failMode">The fail mode.</param>
-		/// <exception cref="ArgumentNullException">pawnKind</exception>
-		/// note: this function does
-		/// <b>not</b>
-		/// check if the database can store the given pawnKind, use
-		/// <see cref="CanAddToDatabase(PawnKindDef)" />
-		/// to safely add to the database
-		public void AddToDatabase([NotNull] PawnKindDef pawnKind, LogFailMode failMode= LogFailMode.Silent)
+		public bool TryAddToDatabase<T>([NotNull] GenebankEntry<T> entry, out string reason)
         {
-            if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
-            if (_taggedSpecies.Contains(pawnKind))
-            {
+            if (CanAddToDatabase(entry, out reason) == false)
+                return false;
 
-                string message = $"cannot store {pawnKind.label} as it is already stored in the database";
-                failMode.LogFail(message);
-                return;
-            }
-            if (!pawnKind.race.IsValidAnimal())
-            {
-                DebugLogUtils.Warning($"trying to enter invalid animal {pawnKind.defName} to the chamber database");
-                return;
-            }
-
-            _taggedSpecies.Add(pawnKind);
-            if (_usedStorageCache != null) _usedStorageCache += pawnKind.GetRequiredStorage();
+            return AddToDatabase(entry);
         }
 
 
-        /// <summary>
-        ///     Determines whether this instance can add the specified mutation def to the database
-        /// </summary>
-        /// <param name="mutationDef">The mutation definition.</param>
-        /// <returns>
-        ///     <c>true</c> if this instance can add the specified mutation def to the database  otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">mutationDef</exception>
-        public bool CanAddToDatabase([NotNull] MutationDef mutationDef)
-        {
-            return CanAddToDatabase(mutationDef, out _);
-        }
-
-        /// <summary>
-        ///     Determines whether this instance can add the specified PawnkindDef to the database
-        /// </summary>
-        /// <param name="kindDef">The kind definition.</param>
-        /// <returns>
-        ///     <c>true</c> if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
-        /// </returns>
-        /// <exception cref="ArgumentNullException">kindDef</exception>
-        public bool CanAddToDatabase([NotNull] PawnKindDef kindDef)
-        {
-            return CanAddToDatabase(kindDef, out _);
-        }
-
-		/// <summary>
-		///     Determines whether this instance can add the specified MutationTemplate to the database
-		/// </summary>
-		/// <param name="template">The template to add.</param>
-		/// <returns>
-		///     <c>true</c> if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
-		/// </returns>
-		/// <exception cref="ArgumentNullException">kindDef</exception>
-		public bool CanAddToDatabase([NotNull] MutationTemplate template)
+		public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry)
 		{
-			return CanAddToDatabase(template, out _);
+			return CanAddToDatabase(entry, out _);
 		}
 
-		/// <summary>
-		///     Determines whether this instance can add the specified PawnkindDef to the database
-		/// </summary>
-		/// <param name="pawnKind">Kind of the pawn.</param>
-		/// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
-		/// <returns>
-		///     <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
-		/// </returns>
-		/// <exception cref="ArgumentNullException">pawnKind</exception>
-		public bool CanAddToDatabase([NotNull] PawnKindDef pawnKind, out string reason)
-        {
-            if (pawnKind == null) throw new ArgumentNullException(nameof(pawnKind));
-
-            if (pawnKind.GetRequiredStorage() > FreeStorage)
-            {
-                reason = NOT_ENOUGH_STORAGE_REASON.Translate(pawnKind, DatabaseUtilities.GetStorageString(pawnKind.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
-            }
-            else if (!CanTag)
-                reason = NOT_ENOUGH_POWER.Translate();
-            else if (TaggedAnimals.Contains(pawnKind))
-                reason = ALREADY_TAGGED_REASON.Translate(pawnKind);
-            else if (DatabaseUtilities.IsChao(pawnKind.race))
-                reason = ANIMAL_TOO_CHAOTIC_REASON.Translate(pawnKind);
-            else if (!pawnKind.race.IsValidAnimal())
-                reason = NOT_VALID_ANIMAL_REASON.Translate(pawnKind);
-            else reason = "";
-
-            return string.IsNullOrEmpty(reason);
-        }
 
 
 		/// <summary>
-		///     Determines whether this instance can add the specified MutationTemplate to the database
+		///     Determines whether this instance with the specified mutation definition can be added to the database
 		/// </summary>
-		/// <param name="template">Template to add.</param>
-		/// <param name="reason">if the pawnkind cannot be added to the database, The reason why</param>
+		/// <param name="entry">The genebank entry to check.</param>
+		/// <param name="reason">The reason.</param>
 		/// <returns>
-		///     <c>true</c>  if this instance can add the specified PawnkindDef to the database otherwise, <c>false</c>.
+		///     <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>
+		///     .
 		/// </returns>
-		/// <exception cref="ArgumentNullException">pawnKind</exception>
-		public bool CanAddToDatabase([NotNull] MutationTemplate template, out string reason)
+		public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry, out string reason)
 		{
-			if (template == null) 
-                throw new ArgumentNullException(nameof(template));
+			if (entry == null) 
+                throw new ArgumentNullException(nameof(entry));
 
-
-			if (_storedTemplates.Contains(template))
+            Type entryType = typeof(GenebankEntry<T>);
+			if (_genebankDatabase.ContainsKey(entryType) && _genebankDatabase[entryType].Contains(entry))
 			{
-				reason = ALREADY_TAGGED_REASON.Translate(template.Caption);
+				reason = ALREADY_TAGGED_REASON.Translate(entry.GetCaption());
 				return false;
 			}
 
-			if (FreeStorage < template.GenebankSize)
+            int requiredStorage = entry.GetRequiredStorage();
+			if (FreeStorage < requiredStorage)
 			{
-				reason = NOT_ENOUGH_STORAGE_REASON.Translate(template.Caption, DatabaseUtilities.GetStorageString(template.GenebankSize), DatabaseUtilities.GetStorageString(FreeStorage));
+				reason = NOT_ENOUGH_STORAGE_REASON.Translate(entry.GetCaption(), DatabaseUtilities.GetStorageString(requiredStorage), DatabaseUtilities.GetStorageString(FreeStorage));
+				return false;
+			}
+
+			if (!CanTag)
+			{
+				reason = NOT_ENOUGH_POWER.Translate();
+				return false;
+			}
+
+            if (entry.CanAddToDatabase(this, out reason) == false)
+            {
+                return false;
+            }
+
+			reason = "";
+			return true;
+		}
+
+
+
+		/// <summary>
+		///     Determines whether any of the specified mutation definitions can be
+		///     added to the database, and outputs an error if not.
+		/// </summary>
+		/// <param name="mutationDefs">The mutation definitions.</param>
+		/// <param name="reason">The reason the mutation cannot be ad.</param>
+		/// <returns>
+		///     <c>true</c> if at least one mutation definition can be added to database, otherwise <c>false</c>.
+		/// </returns>
+		public bool CanAddAnyToDatabase([NotNull] IEnumerable<MutationDef> mutationDefs, out string reason)
+		{
+			if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
+
+            MutationGenebankEntry entry = new MutationGenebankEntry(mutationDefs.First());
+            _genebankDatabase.TryGetValue(typeof(GenebankEntry<MutationDef>), out ExposedListContainer<IGenebankEntry> mutationEntries);
+            int? minRequiredCapacity = null;
+            MutationDef smallestMutation = null;
+			int neededCapacity = 0;
+            if (mutationEntries != null)
+            {
+                bool hasValid = false;
+                foreach (MutationDef mutationDef in mutationDefs)
+                {
+                    entry.Value = mutationDef;
+                    if (mutationEntries.Contains(entry) == false)
+                    {
+                        hasValid = true;
+                        neededCapacity = entry.GetRequiredStorage();
+                        if (minRequiredCapacity == null || minRequiredCapacity > neededCapacity)
+                        {
+                            minRequiredCapacity = neededCapacity;
+                            smallestMutation = mutationDef;
+						}
+                    }
+				}
+
+                if (hasValid == false)
+                {
+				    // All already tagged.
+				    reason = ALREADY_TAGGED_MULTI_REASON.Translate();
+				    return true;
+                }
+            }
+
+			if (FreeStorage < minRequiredCapacity)
+			{
+				reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(smallestMutation.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
 				return false;
 			}
 
@@ -344,108 +317,37 @@ namespace Pawnmorph.Chambers
 			return true;
 		}
 
-		/// <summary>
-		///     Determines whether this instance with the specified mutation definition can be added to the database
-		/// </summary>
-		/// <param name="mutationDef">The mutation definition.</param>
-		/// <param name="reason">The reason.</param>
-		/// <returns>
-		///     <c>true</c> if this instance with the specified mutation definition  [can add to database]  otherwise, <c>false</c>
-		///     .
-		/// </returns>
-		public bool CanAddToDatabase([NotNull] MutationDef mutationDef, out string reason)
-        {
-            if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-
-            if (StoredMutations.Contains(mutationDef))
-            {
-                reason = ALREADY_TAGGED_REASON.Translate(mutationDef);
-                return false;
-            }
-
-            if (FreeStorage < mutationDef.GetRequiredStorage())
-            {
-                reason = NOT_ENOUGH_STORAGE_REASON.Translate(mutationDef, DatabaseUtilities.GetStorageString(mutationDef.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
-                return false;
-            }
-
-            if (!CanTag)
-            {
-                reason = NOT_ENOUGH_POWER.Translate();
-                return false;
-            }
-
-            reason = "";
-            return true;
-        }
-
-        /// <summary>
-        ///     Determines whether any of the specified mutation definitions can be
-        ///     added to the database, and outputs an error if not.
-        /// </summary>
-        /// <param name="mutationDefs">The mutation definitions.</param>
-        /// <param name="reason">The reason the mutation cannot be ad.</param>
-        /// <returns>
-        ///     <c>true</c> if at least one mutation definition can be added to database, otherwise <c>false</c>.
-        /// </returns>
-        public bool CanAddAnyToDatabase([NotNull] IEnumerable<MutationDef> mutationDefs, out string reason)
-        {
-            if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
-
-            List<MutationDef> validMutations = mutationDefs.Where(m => !StoredMutations.Contains(m)).ToList();
-            if (!validMutations.Any())
-            {
-                reason = ALREADY_TAGGED_MULTI_REASON.Translate();
-                return false;
-            }
-
-            var smallestMutation = validMutations.MinBy(m => m.GetRequiredStorage());
-            if (FreeStorage < smallestMutation.GetRequiredStorage())
-            {
-                reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(smallestMutation.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
-                return false;
-            }
-
-            if (!CanTag)
-            {
-                reason = NOT_ENOUGH_POWER.Translate();
-                return false;
-            }
-
-            reason = "";
-            return true;
-        }
-
         /// <summary>
         ///     Exposes the data.
         /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();
+            
+            Scribe_Collections.Look(ref _genebankDatabase, nameof(_genebankDatabase), LookMode.Value, LookMode.Deep);
 
-            Scribe_Collections.Look(ref _storedMutations, nameof(StoredMutations), LookMode.Def);
-            Scribe_Collections.Look(ref _taggedSpecies, nameof(TaggedAnimals), LookMode.Def);
-			Scribe_Collections.Look(ref _storedTemplates, nameof(_storedTemplates));
-			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
-            Scribe_Values.Look(ref _migrated, "migrated");
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+
+			if (Scribe.mode == LoadSaveMode.LoadingVars && _genebankDatabase == null)
             {
-                _storedMutations = _storedMutations ?? new List<MutationDef>();
-                _taggedSpecies = _taggedSpecies ?? new List<PawnKindDef>();
-				_storedTemplates = _storedTemplates ?? new List<MutationTemplate>();
-				if (!_migrated)
-                {
-                    _migrated = false;
-                    //move any tagged animals from the previous system into the new one 
-                    var oldWComp = Find.World.GetComponent<PawnmorphGameComp>();
-                    if (oldWComp == null) return;
-#pragma warning disable 618
-                    foreach (PawnKindDef taggedAnimal in oldWComp.taggedAnimals.MakeSafe())
-#pragma warning restore 618
-                        if (!_taggedSpecies.Contains(taggedAnimal))
-                            _taggedSpecies.Add(taggedAnimal);
-                }
-            }
+                _genebankDatabase = new Dictionary<Type, ExposedListContainer<IGenebankEntry>>();
+
+				List<MutationDef> mutationDefs = null;
+                Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
+                if (mutationDefs != null)
+                    _genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposedListContainer<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
+
+				List<PawnKindDef> taggedAnimalDefs = null;
+				Scribe_Collections.Look(ref taggedAnimalDefs, "TaggedAnimals", LookMode.Def);
+				if (taggedAnimalDefs != null)
+					_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposedListContainer<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
+				
+                List<MutationTemplate> templates = null;
+				Scribe_Collections.Look(ref templates, "_storedTemplates");
+				if (templates != null)
+					_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposedListContainer<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
+			}
+
+			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
         }
 
         /// <summary>
@@ -475,44 +377,21 @@ namespace Pawnmorph.Chambers
             _inactiveAmount = Mathf.Max(_inactiveAmount - storageAmount, 0);
         }
 
-        /// <summary>
-        ///     Removes the given mutation def from database.
-        /// </summary>
-        /// <param name="mDef">The m definition.</param>
-        public void RemoveFromDatabase(MutationDef mDef)
-        {
-            if (!_storedMutations.Contains(mDef))
-                return;
-            _usedStorageCache = null;
-
-            _storedMutations.Remove(mDef);
-        }
-
-        /// <summary>
-        ///     Removes the given pawnkind def from the database.
-        /// </summary>
-        /// <param name="pkDef">The pk definition.</param>
-        public void RemoveFromDatabase(PawnKindDef pkDef)
-        {
-            if (!_taggedSpecies.Contains(pkDef)) return;
-
-            _usedStorageCache = null;
-            _taggedSpecies.Remove(pkDef);
-        }
-
-
 		/// <summary>
-		///     Removes the given template from database.
+		///     Removes the given mutation def from database.
 		/// </summary>
-		/// <param name="template">The m definition.</param>
-		public void RemoveFromDatabase(MutationTemplate template)
-		{
-			if (!_storedTemplates.Contains(template))
-				return;
-			_usedStorageCache = null;
-
-			_storedTemplates.Remove(template);
-		}
+		/// <param name="entry">The entry to remove.</param>
+		public void RemoveFromDatabase<T>(GenebankEntry<T> entry)
+        {
+            if (_genebankDatabase.TryGetValue(typeof(GenebankEntry<T>), out ExposedListContainer<IGenebankEntry> genebankEntries))
+            {
+				if (genebankEntries.Contains(entry))
+                {
+                    genebankEntries.Remove(entry);
+                    ClearCache();
+                }
+			}
+        }
 
 
 		internal void ClearCache()

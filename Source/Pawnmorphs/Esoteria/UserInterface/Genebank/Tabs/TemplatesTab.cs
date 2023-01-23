@@ -1,4 +1,5 @@
 ﻿using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface.PartPicker;
@@ -89,13 +90,13 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			AddColumnHook(table);
 
-			foreach (MutationTemplate template in _databank.MutationTemplates)
+			foreach (GenebankEntry<MutationTemplate> template in _databank.GetEntryItems<MutationTemplate>())
 			{
-				string searchText = template.Caption;
+				string searchText = template.GetCaption();
 				GeneRowItem row = new GeneRowItem(template, _databank.TotalStorage, searchText);
 
 
-				row[mutationsColumn] = template.MutationData.Count().ToString();
+				row[mutationsColumn] = template.Value.MutationData.Count().ToString();
 
 
 				AddedRowHook(row, searchText);
@@ -185,6 +186,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 			{
 				foreach (var item in _selectedTemplate.MutationData)
 				{
+					if (item.MutationDef == null)
+						continue;
+
 					MutationDef mutation = item.MutationDef;
 					_previewNorth.AddMutation(mutation);
 					_previewEast.AddMutation(mutation);
@@ -225,9 +229,10 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 			if (MutationTemplate.TryDeserialize(serializedTemplate, out var template))
 			{
 				// Imported
-				if (_databank.CanAddToDatabase(template, out string reason))
+				TemplateGenebankEntry genebankEntry = new TemplateGenebankEntry(template);
+				if (_databank.CanAddToDatabase(genebankEntry, out string reason))
 				{
-					_databank.AddToDatabase(template);
+					_databank.AddToDatabase(genebankEntry);
 					Parent.SelectTab(new TemplatesTab()); // Reload tab.
 					return;
 				}
@@ -248,16 +253,16 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			if (selectedRows.Count == 1)
 			{
-				_selectedTemplate = selectedRows[0].Def as MutationTemplate;
+				_selectedTemplate = (selectedRows[0].Def as GenebankEntry<MutationTemplate>).Value;
 			}
 
 
 			UpdatePreviews();
 		}
 
-		public override void Delete(object def)
+		public override void Delete(IGenebankEntry def)
 		{
-			_databank.RemoveFromDatabase(def as MutationTemplate);
+			_databank.RemoveFromDatabase(def as GenebankEntry<MutationTemplate>);
 		}
 
 		public override void AddColumnHook(Table<GeneRowItem> table)
