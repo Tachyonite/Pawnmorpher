@@ -58,13 +58,11 @@ namespace Pawnmorph.Hediffs
 
                 if (CanTag(mutationDef))
                 {
-                    if (!DB.CanAddToDatabase(bankEntry, out string reason))
+                    if (!DB.TryAddToDatabase(bankEntry, out string reason))
                     {
                         Messages.Message(reason, MessageTypeDefOf.RejectInput);
                         return; 
                     }
-                    
-                    DB.TryAddToDatabase(bankEntry);
                 }
             }
             catch (InvalidCastException e)
