@@ -899,7 +899,7 @@
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
     <Compile Include="Utilities\Cached.cs" />
-    <Compile Include="Utilities\Collections\ExposedList.cs" />
+    <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />

@@ -8,7 +8,7 @@ using Verse;
 
 namespace Pawnmorph.Utilities.Collections
 {
-	internal class ExposedListContainer<T> : IExposable, IEnumerable<T>, IList<T>
+	internal class ExposableList<T> : IExposable, IEnumerable<T>, IList<T>
 	{
 		private List<T> _list;
 
@@ -20,12 +20,12 @@ namespace Pawnmorph.Utilities.Collections
 
 		public T this[int index] { get => ((IList<T>)_list)[index]; set => ((IList<T>)_list)[index] = value; }
 
-		public ExposedListContainer()
+		public ExposableList()
 		{
 			_list = new List<T>();
 		}
 
-		public ExposedListContainer(IEnumerable<T> collection)
+		public ExposableList(IEnumerable<T> collection)
 		{
 			_list = new List<T>(collection);
 		}
