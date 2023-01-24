@@ -42,7 +42,7 @@ namespace Pawnmorph.Chambers
         private int _totalStorage = 0;
         private int _inactiveAmount;
 
-		Dictionary<Type, ExposedListContainer<IGenebankEntry>> _genebankDatabase = new Dictionary<Type, ExposedListContainer<IGenebankEntry>>();
+		Dictionary<Type, ExposableList<IGenebankEntry>> _genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
 
 		/// <summary>
 		///     Initializes a new instance of the <see cref="ChamberDatabase" /> class.
@@ -193,7 +193,7 @@ namespace Pawnmorph.Chambers
 
             Type entryType = typeof(GenebankEntry<T>);
             if (_genebankDatabase.ContainsKey(entryType) == false)
-                _genebankDatabase.Add(entryType, new ExposedListContainer<IGenebankEntry>());
+                _genebankDatabase.Add(entryType, new ExposableList<IGenebankEntry>());
 
             _genebankDatabase[entryType].Add(entry);
 
@@ -291,40 +291,23 @@ namespace Pawnmorph.Chambers
 		{
 			if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
 
-            MutationGenebankEntry entry = new MutationGenebankEntry(mutationDefs.First());
-            _genebankDatabase.TryGetValue(typeof(GenebankEntry<MutationDef>), out ExposedListContainer<IGenebankEntry> mutationEntries);
-            int? minRequiredCapacity = null;
-            MutationDef smallestMutation = null;
-			int neededCapacity = 0;
-            if (mutationEntries != null)
-            {
-                bool hasValid = false;
-                foreach (MutationDef mutationDef in mutationDefs)
-                {
-                    entry.Value = mutationDef;
-                    if (mutationEntries.Contains(entry) == false)
-                    {
-                        hasValid = true;
-                        neededCapacity = entry.GetRequiredStorage();
-                        if (minRequiredCapacity == null || minRequiredCapacity > neededCapacity)
-                        {
-                            minRequiredCapacity = neededCapacity;
-                            smallestMutation = mutationDef;
-						}
-                    }
-				}
+            // Gets the smallest mutation not already logged.
+            IReadOnlyList<MutationDef> taggedMutations = GetEntryValues<MutationDef>();
+			var smallestMutation = mutationDefs.Except(taggedMutations)
+                                               .MinBy(x => x.GetRequiredStorage());
 
-                if (hasValid == false)
-                {
-				    // All already tagged.
-				    reason = ALREADY_TAGGED_MULTI_REASON.Translate();
-				    return true;
-                }
-            }
+			if (smallestMutation == null)
+			{
+				// All already tagged.
+				reason = ALREADY_TAGGED_MULTI_REASON.Translate();
+				return true;
+			}
 
+            int minRequiredCapacity = smallestMutation.GetRequiredStorage();
 			if (FreeStorage < minRequiredCapacity)
 			{
-				reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(smallestMutation.GetRequiredStorage()), DatabaseUtilities.GetStorageString(FreeStorage));
+                // Smallest untagged mutation doesn't fit. Insufficient capacity.
+				reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(minRequiredCapacity), DatabaseUtilities.GetStorageString(FreeStorage));
 				return false;
 			}
 
@@ -350,22 +333,22 @@ namespace Pawnmorph.Chambers
 
 			if (Scribe.mode == LoadSaveMode.LoadingVars && _genebankDatabase == null)
             {
-                _genebankDatabase = new Dictionary<Type, ExposedListContainer<IGenebankEntry>>();
+                _genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
 
 				List<MutationDef> mutationDefs = null;
                 Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
                 if (mutationDefs != null)
-                    _genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposedListContainer<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
+                    _genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposableList<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
 
 				List<PawnKindDef> taggedAnimalDefs = null;
 				Scribe_Collections.Look(ref taggedAnimalDefs, "TaggedAnimals", LookMode.Def);
 				if (taggedAnimalDefs != null)
-					_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposedListContainer<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
+					_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposableList<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
 				
                 List<MutationTemplate> templates = null;
 				Scribe_Collections.Look(ref templates, "_storedTemplates");
 				if (templates != null)
-					_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposedListContainer<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
+					_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposableList<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
 			}
 
 			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
@@ -404,7 +387,7 @@ namespace Pawnmorph.Chambers
 		/// <param name="entry">The entry to remove.</param>
 		public void RemoveFromDatabase<T>(GenebankEntry<T> entry)
         {
-            if (_genebankDatabase.TryGetValue(typeof(GenebankEntry<T>), out ExposedListContainer<IGenebankEntry> genebankEntries))
+            if (_genebankDatabase.TryGetValue(typeof(GenebankEntry<T>), out ExposableList<IGenebankEntry> genebankEntries))
             {
 				if (genebankEntries.Contains(entry))
                 {

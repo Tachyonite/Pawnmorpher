@@ -20,13 +20,9 @@ namespace Pawnmorph.Genebank.Model
 		protected T _value;
 
 		/// <summary>
-		/// Gets or sets the wrapped object for this genebank entry.
+		/// Gets the wrapped object for this genebank entry.
 		/// </summary>
-		public T Value
-		{
-			get => _value;
-			set => _value = value;
-		}
+		public T Value => _value;
 
 
 		/// <summary>
