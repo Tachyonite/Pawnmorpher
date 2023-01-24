@@ -29,7 +29,7 @@ namespace Pawnmorph.RecipeWorkers
         public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
         {
             if (pawn?.kindDef == null) return; 
-            DB.AddToDatabase(new AnimalGenebankEntry(pawn.kindDef));
+            DB.TryAddToDatabase(new AnimalGenebankEntry(pawn.kindDef));
         }
 
         /// <summary>

@@ -232,7 +232,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 				TemplateGenebankEntry genebankEntry = new TemplateGenebankEntry(template);
 				if (_databank.CanAddToDatabase(genebankEntry, out string reason))
 				{
-					_databank.AddToDatabase(genebankEntry);
+					_databank.TryAddToDatabase(genebankEntry);
 					Parent.SelectTab(new TemplatesTab()); // Reload tab.
 					return;
 				}

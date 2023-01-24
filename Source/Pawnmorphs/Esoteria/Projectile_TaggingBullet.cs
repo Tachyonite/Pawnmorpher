@@ -114,7 +114,7 @@ namespace EtherGun
             {
                 var mut = node.Value; 
                 if(database.FreeStorage < mut.GetRequiredStorage()) break;
-                database.AddToDatabase(new MutationGenebankEntry(mut));
+                database.TryAddToDatabase(new MutationGenebankEntry(mut));
                 node = node.Next;
                 c++; 
             }

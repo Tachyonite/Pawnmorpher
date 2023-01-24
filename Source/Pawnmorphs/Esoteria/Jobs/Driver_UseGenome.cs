@@ -94,7 +94,7 @@ namespace Pawnmorph.Jobs
                     return;
                 }
 
-                bool added = db.AddToDatabase(new AnimalGenebankEntry(animalComp.Animal));
+                bool added = db.TryAddToDatabase(new AnimalGenebankEntry(animalComp.Animal));
                 if (animalComp.ConsumedOnUse && added)
                     Genome.Destroy();
             }
@@ -122,7 +122,7 @@ namespace Pawnmorph.Jobs
                 }
 
 
-                bool added = db.AddToDatabase(new MutationGenebankEntry(validMutations.RandomElement()));
+                bool added = db.TryAddToDatabase(new MutationGenebankEntry(validMutations.RandomElement()));
                 if (mutationComp.Mutation.genomeConsumedOnUse && added)
                     Genome.Destroy();
             }

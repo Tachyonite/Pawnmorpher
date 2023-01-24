@@ -64,7 +64,7 @@ namespace Pawnmorph.Hediffs
                         return; 
                     }
                     
-                    DB.AddToDatabase(bankEntry);
+                    DB.TryAddToDatabase(bankEntry);
                 }
             }
             catch (InvalidCastException e)

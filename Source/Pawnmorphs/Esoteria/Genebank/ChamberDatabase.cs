@@ -170,17 +170,12 @@ namespace Pawnmorph.Chambers
 		public bool CanTag => FreeStorage > 0;
 
 		/// <summary>
-		/// Adds the template to the database
+		/// Attempts to add the template to the database
 		/// </summary>
 		/// <param name="entry">The entry to add.</param>
 		/// <param name="failMode">The fail mode.</param>
 		/// <exception cref="ArgumentNullException">mutationDef</exception>
-		/// Note: this does
-		/// <b>not</b>
-		/// check if there is enough space to add the mutation or if it is restricted, use
-		/// <see cref="CanAddToDatabase(Pawnmorph.Hediffs.MutationDef)" />
-		/// to check
-		public bool AddToDatabase<T>([NotNull] GenebankEntry<T> entry, LogFailMode failMode = LogFailMode.Silent)
+		public bool TryAddToDatabase<T>([NotNull] GenebankEntry<T> entry, LogFailMode failMode = LogFailMode.Silent)
 		{
 			if (entry == null)
 				throw new ArgumentNullException(nameof(entry));
@@ -191,17 +186,11 @@ namespace Pawnmorph.Chambers
                 return false;
             }
 
-            Type entryType = typeof(GenebankEntry<T>);
-            if (_genebankDatabase.ContainsKey(entryType) == false)
-                _genebankDatabase.Add(entryType, new ExposableList<IGenebankEntry>());
-
-            _genebankDatabase[entryType].Add(entry);
-
-			if (_usedStorageCache != null)
-				_usedStorageCache += entry.GetRequiredStorage();
-
+            AddToDatabaseInternal(entry);
             return true;
 		}
+
+
 
 		/// <summary>
 		/// Attempts to add the value into the genebank. Outputs reason if it fails.
@@ -213,12 +202,27 @@ namespace Pawnmorph.Chambers
 		///     <c>true</c> if the provided value was added to the genebank; otherwise, <c>false</c>.
 		/// </returns>
 		public bool TryAddToDatabase<T>([NotNull] GenebankEntry<T> entry, out string reason)
-        {
-            if (CanAddToDatabase(entry, out reason) == false)
-                return false;
+		{
+			if (CanAddToDatabase(entry, out reason) == false)
+				return false;
 
-            return AddToDatabase(entry);
-        }
+			AddToDatabaseInternal(entry);
+			return true;
+		}
+
+
+
+		private void AddToDatabaseInternal<T>([NotNull] GenebankEntry<T> entry)
+        {
+			Type entryType = typeof(GenebankEntry<T>);
+			if (_genebankDatabase.ContainsKey(entryType) == false)
+				_genebankDatabase.Add(entryType, new ExposableList<IGenebankEntry>());
+
+			_genebankDatabase[entryType].Add(entry);
+
+			if (_usedStorageCache != null)
+				_usedStorageCache += entry.GetRequiredStorage();
+		}
 
         /// <summary>
         /// Determines whether this the provided value can be added to the genebank.

@@ -1117,7 +1117,7 @@ namespace Pawnmorph.UserInterface
 			}
 
             MutationTemplate template = new MutationTemplate(mutationData, name);
-            _database.AddToDatabase(new TemplateGenebankEntry(template));
+            _database.TryAddToDatabase(new TemplateGenebankEntry(template));
         }
     }
 

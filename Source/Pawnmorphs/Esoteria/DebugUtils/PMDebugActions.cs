@@ -40,7 +40,7 @@ namespace Pawnmorph.DebugUtils
             var mutations = DefDatabase<MutationDef>.AllDefs.Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                cd.AddToDatabase(new MutationGenebankEntry(mutationDef));
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -54,7 +54,7 @@ namespace Pawnmorph.DebugUtils
                                                             .Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                cd.AddToDatabase(new MutationGenebankEntry(mutationDef));
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -235,7 +235,7 @@ namespace Pawnmorph.DebugUtils
                 if (!pawnKindDef.race.IsValidAnimal() || db.TaggedAnimals.Contains(pawnKindDef)) continue;
                 var tmpPk = pawnKindDef;
                 yield return new DebugMenuOption(pawnKindDef.label, DebugMenuOptionMode.Action,
-                                                 () => db.AddToDatabase(new AnimalGenebankEntry(tmpPk)));
+                                                 () => db.TryAddToDatabase(new AnimalGenebankEntry(tmpPk)));
             }
         }
 

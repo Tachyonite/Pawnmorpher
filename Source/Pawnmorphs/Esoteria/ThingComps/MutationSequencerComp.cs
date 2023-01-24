@@ -132,7 +132,7 @@ namespace Pawnmorph.ThingComps
 
             MutationDef mutation = _scratchList.RandomElement();
 
-            DB.AddToDatabase(new MutationGenebankEntry(mutation)); 
+            DB.TryAddToDatabase(new MutationGenebankEntry(mutation)); 
 
             TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
                                                                  chosenKind.Named("animal")
