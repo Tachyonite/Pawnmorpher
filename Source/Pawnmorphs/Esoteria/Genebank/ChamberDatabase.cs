@@ -334,7 +334,8 @@ namespace Pawnmorph.Chambers
             
             Scribe_Collections.Look(ref _genebankDatabase, nameof(_genebankDatabase), LookMode.Value, LookMode.Deep);
 
-
+            // Save compatibility for migrating from old collections to new dictionary.
+            // These collections are not saved when the save is next saved.
 			if (Scribe.mode == LoadSaveMode.LoadingVars && _genebankDatabase == null)
             {
                 _genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
