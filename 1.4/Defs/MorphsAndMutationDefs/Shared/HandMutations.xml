@@ -205,34 +205,19 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.10</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.25</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.50</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.15</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.30</partEfficiencyOffset>
 				</values>
 			</li>
 		</stagePatches>
@@ -247,23 +232,13 @@
 			<li function="modify">
 				<stageKey>unfamiliar</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapting</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.10</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
 					<statOffsets>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
@@ -272,12 +247,7 @@
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
 					<statOffsets>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
@@ -316,12 +286,7 @@
 						<DrugCookingSpeed>0.05</DrugCookingSpeed>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.05</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
@@ -469,12 +434,7 @@
 				<stageKey>unfamiliar</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s fingers have started shrinking alarmingly.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
@@ -482,24 +442,14 @@
 				<values>
 					<label>changing</label>
 					<description>[PAWN_nameDef]'s fingers have shrunken down significantly, making manipulating things much harder.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.25</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.50</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>adapted</stageKey>
 				<values>
-					<description>[PAWN_nameDef]'s fingers have mostly disappeared into a lump of bird-skinned flesh, with many feathers protruding from the nub.</description>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.5</offset>
-						</li>
-					</capMods>
+					<description>[PAWN_nameDef]'s fingers have mostly disappeared into an almost-useless lump of bird-skinned flesh, with many feathers protruding from the nub.  </description>
+					<partEfficiencyOffset>-0.90</partEfficiencyOffset>
 					<!-- almost useless nub -->
 				</values>
 			</li>
@@ -863,12 +813,7 @@
 					<statOffsets>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.2</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.40</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
@@ -879,12 +824,7 @@
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.15</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.30</partEfficiencyOffset>
 				</values>
 			</li>
 			<li function="modify">
@@ -895,12 +835,7 @@
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
 					</statOffsets>
-					<capMods>
-						<li>
-							<capacity>Manipulation</capacity>
-							<offset>-0.1</offset>
-						</li>
-					</capMods>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
 				</values>
 			</li>
 		</stagePatches>

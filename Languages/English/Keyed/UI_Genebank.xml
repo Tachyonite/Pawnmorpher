@@ -33,4 +33,16 @@
 	<PM_Genebank_AnimalsTab_Column_Mutations>Mutations</PM_Genebank_AnimalsTab_Column_Mutations>
 
 	<PM_Genebank_AnimalsTab_Details_Mutations>Sequenced mutations:</PM_Genebank_AnimalsTab_Details_Mutations>
+
+	<!-- Template Tab -->
+	<PM_Genebank_TemplateTab_Caption>Templates</PM_Genebank_TemplateTab_Caption>
+	<PM_Genebank_TemplateTab_Column_Template>Template</PM_Genebank_TemplateTab_Column_Template>
+	<PM_Genebank_TemplateTab_Column_Mutations>Mutations</PM_Genebank_TemplateTab_Column_Mutations>
+
+
+	<PM_Genebank_TemplateTab_Button_Import>Import</PM_Genebank_TemplateTab_Button_Import>
+	<PM_Genebank_TemplateTab_Button_Export>Export</PM_Genebank_TemplateTab_Button_Export>
+
+	<PM_Genebank_TemplateTab_ParsingError>Failed to parse text.</PM_Genebank_TemplateTab_ParsingError>
+
 </LanguageData>
