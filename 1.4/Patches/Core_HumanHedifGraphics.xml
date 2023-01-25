@@ -234,6 +234,7 @@
 					<south>
 						<bodyTypes>
 							<Male>(0,-0.02)</Male>
+							<Female>(0,-0.06)</Female>
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
 							<Hulk>(0,-0.06)</Hulk>
@@ -242,14 +243,17 @@
 					<north>
 						<bodyTypes>
 							<Male>(0,-0.35)</Male>
+							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
 						</bodyTypes>
 					</north>
 					<east>
+						<layerOffset>-0.29</layerOffset>
 						<bodyTypes>
 							<Male>(0.2,-0.26)</Male>
+							<Female>(0.31,-0.28)</Female>
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
@@ -276,6 +280,7 @@
 				<offsets>
 					<south>
 						<bodyTypes>
+							<Male>(0,-0.02)</Male>
 							<Female>(0,-0.06)</Female>
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
@@ -284,6 +289,7 @@
 					</south>
 					<north>
 						<bodyTypes>
+							<Male>(0,-0.35)</Male>
 							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
@@ -292,6 +298,7 @@
 					</north>
 					<east>
 						<bodyTypes>
+							<Male>(0.2,-0.26)</Male>
 							<Female>(0.31,-0.28)</Female>
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
