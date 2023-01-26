@@ -115,14 +115,15 @@ namespace Pawnmorph.HPatches.Optional
         }
 
 
-        // Calculate the rendered size based on body size
+        // Calculate the scale multiplier based on Pawnmorpher's BodySize multiplier
+        // TODO: Add a toggle to allow scaling by any body size difference compared to normal instead
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static float GetScale(Pawn pawn)
         {
             if (_currentPawn != pawn)
             {
                 _currentPawn = pawn;
-                _currentScaledBodySize = Mathf.Sqrt(pawn.BodySize / pawn.RaceProps.baseBodySize);
+                _currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
             }
             
             return _currentScaledBodySize;
