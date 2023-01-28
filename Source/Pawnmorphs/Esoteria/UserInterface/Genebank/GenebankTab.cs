@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.UserInterface.TableBox;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace Pawnmorph.UserInterface.Genebank
         /// Called when user clicks the delete button.
         /// </summary>
         /// <param name="def">The def to be deleted.</param>
-        public abstract void Delete(object def);
+        public abstract void Delete(IGenebankEntry def);
 
         /// <summary>
         /// Called every frame to draw additional footer buttons.

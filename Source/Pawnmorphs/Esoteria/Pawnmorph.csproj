@@ -317,6 +317,11 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
+    <Compile Include="Genebank\GenebankEntry.cs" />
+    <Compile Include="Genebank\IGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
@@ -356,12 +361,12 @@
     <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
     <Compile Include="Chambers\AnimalTfControllers\ChaoThrumbo.cs" />
     <Compile Include="Chambers\ChamberAnimalTfController.cs" />
-    <Compile Include="Chambers\ChamberDatabase.cs" />
+    <Compile Include="Genebank\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\ChamberTfInitiationReport.cs" />
     <Compile Include="Chambers\ChamberUse.cs" />
-    <Compile Include="Chambers\DatabaseUtilities.cs" />
+    <Compile Include="Genebank\DatabaseUtilities.cs" />
     <Compile Include="Chambers\GenomeDefGenerator.cs" />
     <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
@@ -894,6 +899,7 @@
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
     <Compile Include="Utilities\Cached.cs" />
+    <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
