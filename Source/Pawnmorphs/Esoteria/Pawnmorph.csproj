@@ -323,6 +323,7 @@
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
+    <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
