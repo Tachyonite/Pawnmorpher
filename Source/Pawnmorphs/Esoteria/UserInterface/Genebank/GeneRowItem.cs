@@ -1,4 +1,5 @@
 ﻿using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
 using Pawnmorph.UserInterface.TableBox;
@@ -13,7 +14,7 @@ namespace Pawnmorph.UserInterface.Genebank
 {
     internal class GeneRowItem : ITableRow
     {
-        public readonly object Def;
+        public readonly IGenebankEntry Def;
         public readonly string Label;
         public readonly string StorageSpaceUsed;
         public readonly string StorageSpaceUsedPercentage;
@@ -35,45 +36,20 @@ namespace Pawnmorph.UserInterface.Genebank
             }
         }
 
-        private GeneRowItem(object def)
-        {
-            _rowData = new Dictionary<TableColumn, string>();
-            Def = def;
-            StorageSpaceUsedPercentage = "0%";
-        }
+        public GeneRowItem(IGenebankEntry def, int totalCapacity, string searchString)
+		{
+			_rowData = new Dictionary<TableColumn, string>();
+			Def = def;
 
-        public GeneRowItem(MutationDef def, int totalCapacity, string searchString)
-            : this(def)
-        {
-            SearchString = searchString.ToLower();
-			Label = def.LabelCap;
+			SearchString = searchString.ToLower();
+			Label = def.GetCaption();
 			Size = def.GetRequiredStorage();
             StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
-            if (totalCapacity > 0)
+			StorageSpaceUsedPercentage = "0%";
+			if (totalCapacity > 0)
                 StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
         }
 
-        public GeneRowItem(PawnKindDef def, int totalCapacity, string searchString)
-            : this(def)
-        {
-            SearchString = searchString.ToLower();
-            Size = def.GetRequiredStorage();
-			Label = def.LabelCap;
-			StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
-            if (totalCapacity > 0)
-                StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
-		}
-
-		public GeneRowItem(MutationTemplate def, int totalCapacity, string searchString)
-			: this(def)
-		{
-			SearchString = searchString.ToLower();
-			Label = def.Caption;
-			Size = def.GenebankSize;
-			StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
-			if (totalCapacity > 0)
-				StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
-		}
         public bool HasColumn(TableColumn column)
         {
             return _rowData.ContainsKey(column);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
@@ -93,7 +94,7 @@ namespace Pawnmorph.Jobs
                     return;
                 }
 
-                bool added = db.TryAddToDatabase(animalComp.Animal);
+                bool added = db.TryAddToDatabase(new AnimalGenebankEntry(animalComp.Animal));
                 if (animalComp.ConsumedOnUse && added)
                     Genome.Destroy();
             }
@@ -121,7 +122,7 @@ namespace Pawnmorph.Jobs
                 }
 
 
-                bool added = db.TryAddToDatabase(validMutations.RandomElement());
+                bool added = db.TryAddToDatabase(new MutationGenebankEntry(validMutations.RandomElement()));
                 if (mutationComp.Mutation.genomeConsumedOnUse && added)
                     Genome.Destroy();
             }

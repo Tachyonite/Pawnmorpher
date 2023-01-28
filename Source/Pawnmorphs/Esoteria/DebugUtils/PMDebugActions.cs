@@ -23,6 +23,7 @@ using Verse.AI;
 using HarmonyLib;
 using AlienRace;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.Genebank.Model;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -39,8 +40,7 @@ namespace Pawnmorph.DebugUtils
             var mutations = DefDatabase<MutationDef>.AllDefs.Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if (cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef);
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -54,8 +54,7 @@ namespace Pawnmorph.DebugUtils
                                                             .Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if (cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef);
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -166,7 +165,7 @@ namespace Pawnmorph.DebugUtils
                 var thingDef = kindDef.race;
                 if (thingDef.race?.Animal != true) continue;
 
-                if (!database.TryAddToDatabase(kindDef, out string reason))
+                if (!database.TryAddToDatabase(new AnimalGenebankEntry(kindDef), out string reason))
                 {
                     sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
                 }
@@ -236,7 +235,7 @@ namespace Pawnmorph.DebugUtils
                 if (!pawnKindDef.race.IsValidAnimal() || db.TaggedAnimals.Contains(pawnKindDef)) continue;
                 var tmpPk = pawnKindDef;
                 yield return new DebugMenuOption(pawnKindDef.label, DebugMenuOptionMode.Action,
-                                                 () => db.AddToDatabase(tmpPk));
+                                                 () => db.TryAddToDatabase(new AnimalGenebankEntry(tmpPk)));
             }
         }
 
