@@ -120,7 +120,9 @@ namespace Pawnmorph.GraphicSys
 
                 // If no mutation influence then reset skin color to either gene override or natural skin color (assign null);
                 Pawn.story.skinColorOverride = GeneOverrideColor;
-                Pawn.story.SkinColorBase = InitialGraphics.SkinColor;
+
+                // If we never touch SkinColorBase, then there is actually no reason to reassign with initial.
+                Pawn.story.SkinColorBase = InitialGraphics.SkinColor; 
 
                 // HAR (at the time of this comment) postfixes Pawn.Story.SkinColor.
 				GComp.SetSkinColor(GeneOverrideColor ?? InitialGraphics.SkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
