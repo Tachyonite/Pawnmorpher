@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     name: Compile
+    run-name: $env:Branch.replace("refs/heads/", "")
     runs-on: windows-latest
 
     env:
