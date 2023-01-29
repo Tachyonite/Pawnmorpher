@@ -548,7 +548,7 @@ namespace Pawnmorph
                 drawSize = addon.drawSize,
                 hiddenUnderApparelFor = addon.hiddenUnderApparelFor.MakeSafe().ToList(),
                 path = addon.path,
-                offsets = addon.offsets ?? new AlienPartGenerator.BodyAddonOffsets(),
+                offsets = addon.offsets ?? new AlienPartGenerator.DirectionalOffset(),
                 linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
                 inFrontOfBody = addon.inFrontOfBody,
                 layerInvert = addon.layerInvert,
