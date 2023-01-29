@@ -1,5 +1,5 @@
 name: 'Compile'
-run-name: ${{ env.Branch.replace("refs/heads/", "") }}
+run-name: ${{ github.ref_name }}
 on: 
   workflow_dispatch:
     inputs:
