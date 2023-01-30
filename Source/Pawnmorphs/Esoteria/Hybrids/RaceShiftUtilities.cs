@@ -295,6 +295,8 @@ namespace Pawnmorph.Hybrids
             if (pawn.Faction != faction) 
                 pawn.SetFaction(faction);
 
+            pawn.VerbTracker?.InitVerbsFromZero();
+
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
                 raceChangeEventReceiver.OnRaceChange(oldRace);

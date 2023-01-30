@@ -2,6 +2,7 @@
 // last updated 08/29/2020  2:31 PM
 
 using System.Collections.Generic;
+using Pawnmorph.Genebank.Model;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -38,7 +39,7 @@ namespace Pawnmorph.Chambers
             get
             {
                 var db = Find.World.GetComponent<ChamberDatabase>();
-                return db.CanAddToDatabase(Props.animal); 
+                return db.CanAddToDatabase(new AnimalGenebankEntry(Props.animal));
             }
         }
 
@@ -78,7 +79,7 @@ namespace Pawnmorph.Chambers
                 else
                     JobFailReason.Is("Reserved".Translate());
             }
-            else if (!wComp.CanAddToDatabase(Props.animal, out string reason))
+            else if (!wComp.CanAddToDatabase(new AnimalGenebankEntry(Props.animal), out string reason))
             {
                 JobFailReason.Is(reason);
             }

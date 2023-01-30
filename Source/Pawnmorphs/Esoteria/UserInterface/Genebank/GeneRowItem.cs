@@ -1,5 +1,7 @@
 ﻿using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
+using Pawnmorph.UserInterface.PartPicker;
 using Pawnmorph.UserInterface.TableBox;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace Pawnmorph.UserInterface.Genebank
 {
     internal class GeneRowItem : ITableRow
     {
-        public readonly Def Def;
+        public readonly IGenebankEntry Def;
         public readonly string Label;
         public readonly string StorageSpaceUsed;
         public readonly string StorageSpaceUsedPercentage;
@@ -34,31 +36,17 @@ namespace Pawnmorph.UserInterface.Genebank
             }
         }
 
-        private GeneRowItem(Def def)
-        {
-            _rowData = new Dictionary<TableColumn, string>();
-            Label = def.LabelCap;
-            Def = def;
-            StorageSpaceUsedPercentage = "0%";
-        }
+        public GeneRowItem(IGenebankEntry def, int totalCapacity, string searchString)
+		{
+			_rowData = new Dictionary<TableColumn, string>();
+			Def = def;
 
-        public GeneRowItem(MutationDef def, int totalCapacity, string searchString)
-            : this(def)
-        {
-            SearchString = searchString.ToLower();
-            Size = def.GetRequiredStorage();
+			SearchString = searchString.ToLower();
+			Label = def.GetCaption();
+			Size = def.GetRequiredStorage();
             StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
-            if (totalCapacity > 0)
-                StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
-        }
-
-        public GeneRowItem(PawnKindDef def, int totalCapacity, string searchString)
-            : this(def)
-        {
-            SearchString = searchString.ToLower();
-            Size = def.GetRequiredStorage();
-            StorageSpaceUsed = DatabaseUtilities.GetStorageString(Size);
-            if (totalCapacity > 0)
+			StorageSpaceUsedPercentage = "0%";
+			if (totalCapacity > 0)
                 StorageSpaceUsedPercentage = ((float)Size / totalCapacity).ToStringPercent();
         }
 

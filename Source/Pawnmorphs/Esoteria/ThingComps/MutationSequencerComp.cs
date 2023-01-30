@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
@@ -131,7 +132,7 @@ namespace Pawnmorph.ThingComps
 
             MutationDef mutation = _scratchList.RandomElement();
 
-            DB.AddToDatabase(mutation); 
+            DB.TryAddToDatabase(new MutationGenebankEntry(mutation)); 
 
             TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
                                                                  chosenKind.Named("animal")

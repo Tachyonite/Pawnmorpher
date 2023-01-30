@@ -243,7 +243,8 @@ namespace Pawnmorph.SapienceStates
             Pawn.ownership = Pawn.ownership ?? new Pawn_Ownership(Pawn);
             Pawn.equipment = Pawn.equipment ?? new Pawn_EquipmentTracker(Pawn);
             Pawn.story = Pawn.story ?? new Pawn_StoryTracker(Pawn); //need to add story component to not break hospitality 
-            Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn); //need this to not break thoughts and stuff 
+			Pawn.genes = Pawn.genes ?? new Pawn_GeneTracker(Pawn);
+			Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn); //need this to not break thoughts and stuff 
             Pawn.skills = Pawn.skills ?? new Pawn_SkillTracker(Pawn); //need this for thoughts 
             Pawn.royalty = Pawn.royalty ?? new Pawn_RoyaltyTracker(Pawn);// former humans can be royalty  
             Pawn.abilities = Pawn.abilities ?? new Pawn_AbilityTracker(Pawn);
