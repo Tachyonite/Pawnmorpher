@@ -83,36 +83,28 @@ namespace Pawnmorph.Hediffs.Composable
         [UsedImplicitly, CanBeNull]
         public AnimalClassBase animalClass;
 
-		IEnumerable<MutationEntry> _cache;
-
-		/// <summary>
-		/// Gets the list of available mutations.
-		/// </summary>
-		/// <returns>The mutations.</returns>
-		/// <param name="hediff">Hediff.</param>
-		public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
-		{
-            if (_cache == null)
+        /// <summary>
+        /// Gets the list of available mutations.
+        /// </summary>
+        /// <returns>The mutations.</returns>
+        /// <param name="hediff">Hediff.</param>
+        public override IEnumerable<MutationEntry> GetMutations(Hediff_MutagenicBase hediff)
+        {
+            MorphDef morph;
+            if (animalClass != null)
             {
-                MorphDef morph;
-                if (animalClass != null)
-                {
-                    if (animalClass is MorphDef def)
-                        morph = def;
-                    else
-                        morph = animalClass.GetAllMorphsInClass().RandomElement();
-                }
+                if (animalClass is MorphDef def)
+                    morph = def;
                 else
-                    morph = DefDatabase<MorphDef>.GetRandom();
+                    morph = animalClass.GetAllMorphsInClass().RandomElement();
+            }
+            else
+                morph = DefDatabase<MorphDef>.GetRandom();
 
-				_cache = morph.AllAssociatedMutations
-					.Where(m => allowRestricted || !m.IsRestricted)
-					.Select(m => MutationEntry.FromMutation(m, chance));
-			}
-
-            return _cache;
-		}
-
+            return morph.AllAssociatedMutations
+                    .Where(m => allowRestricted || !m.IsRestricted)
+                    .Select(m => MutationEntry.FromMutation(m, chance));
+        }
 
 
 		/// <summary>
