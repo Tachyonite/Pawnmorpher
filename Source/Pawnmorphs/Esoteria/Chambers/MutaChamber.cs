@@ -701,8 +701,7 @@ namespace Pawnmorph.Chambers
             if (comp == null)
                 return;
 
-            comp.IsDirty = true;
-            comp.CompTick();
+            comp.RefreshGraphics();
         }
 
         private void CheckMutationProgress([NotNull] Pawn pawn)

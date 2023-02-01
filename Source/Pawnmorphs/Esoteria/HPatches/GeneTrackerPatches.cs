@@ -20,8 +20,7 @@ namespace Pawnmorph.HPatches
 			if (graphicsComp != null)
 			{
 				graphicsComp.GeneOverrideColor = ___pawn.story.skinColorOverride;
-				graphicsComp.IsDirty = true;
-				graphicsComp.CompTick();
+				graphicsComp.RefreshGraphics();
 			} 
 		}
 
