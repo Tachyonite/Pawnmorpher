@@ -14,7 +14,7 @@ using Pawnmorph.Jobs;
 using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -22,6 +22,8 @@ using Verse;
 using Verse.AI;
 using HarmonyLib;
 using AlienRace;
+using Pawnmorph.FormerHumans;
+using Pawnmorph.Genebank.Model;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -35,15 +37,25 @@ namespace Pawnmorph.DebugUtils
         {
             var cd = Find.World.GetComponent<ChamberDatabase>();
 
+            var mutations = DefDatabase<MutationDef>.AllDefs.Distinct();
+            foreach (MutationDef mutationDef in mutations)
+            {
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
+            }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
+        static void TagAllGenomeMutations()
+        {
+            var cd = Find.World.GetComponent<ChamberDatabase>();
+
             var mutations = DefDatabase<MutationCategoryDef>.AllDefs.Where(d => d.genomeProvider)
                                                             .SelectMany(d => d.AllMutations)
                                                             .Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if (cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef);
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
-
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
@@ -72,6 +84,20 @@ namespace Pawnmorph.DebugUtils
             {
                 ForceTransformation(pawn); 
             }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        private static void TransformPawnIntoRandomAnimal(Pawn p)
+        {
+            MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+            if (p == null || !mutagen.CanTransform(p)) return;
+
+            PawnKindDef rPK = FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs.RandomElement();
+            var newRequest = new TransformationRequest(rPK, p, SapienceLevel.Sapient);
+            var tfPawn = mutagen.MutagenCached.Transform(newRequest);
+            if (tfPawn == null) return; 
+            var wComp = Find.World.GetComponent<PawnmorphGameComp>();
+            wComp.AddTransformedPawn(tfPawn); 
         }
 
         [DebugAction(category=PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
@@ -112,6 +138,21 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void AdaptAllMutations(Pawn p)
+        {
+            var mTracker = p?.GetMutationTracker();
+            if (mTracker == null) return;
+            foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
+            {
+                var sevAdj = mutation.SeverityAdjust; 
+                if(sevAdj == null) continue;
+                mutation.Severity = sevAdj.NaturalSeverityLimit; 
+            }
+
+            p.health?.capacities?.Notify_CapacityLevelsDirty();
+        }
+
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.Action)]
         static void TagAllAnimals()
         {
@@ -124,7 +165,7 @@ namespace Pawnmorph.DebugUtils
                 var thingDef = kindDef.race;
                 if (thingDef.race?.Animal != true) continue;
 
-                if (!database.TryAddToDatabase(kindDef, out string reason))
+                if (!database.TryAddToDatabase(new AnimalGenebankEntry(kindDef), out string reason))
                 {
                     sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
                 }
@@ -194,7 +235,7 @@ namespace Pawnmorph.DebugUtils
                 if (!pawnKindDef.race.IsValidAnimal() || db.TaggedAnimals.Contains(pawnKindDef)) continue;
                 var tmpPk = pawnKindDef;
                 yield return new DebugMenuOption(pawnKindDef.label, DebugMenuOptionMode.Action,
-                                                 () => db.AddToDatabase(tmpPk));
+                                                 () => db.TryAddToDatabase(new AnimalGenebankEntry(tmpPk)));
             }
         }
 
@@ -243,7 +284,7 @@ namespace Pawnmorph.DebugUtils
             var sapienceState = pawn?.GetSapienceState();
             if (sapienceState?.IsFormerHuman == true)
             {
-                Worker_FormerHumanRecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn, 1f);
+                InteractionWorker_RecruitAttempt.DoRecruit(pawn.Map.mapPawns.FreeColonists.FirstOrDefault(), pawn);
                 DebugActionsUtility.DustPuffFrom(pawn);
             }
         }
@@ -289,14 +330,51 @@ namespace Pawnmorph.DebugUtils
         }
 
         [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
+        static void MakeAnimalRelatedFormerHuman(Pawn pawn)
+        {
+            if (pawn == null) return;
+            if (pawn.GetSapienceState() != null) return;
+            if (!pawn.RaceProps.Animal) return;
+
+            var fhRequest = new FHGenerationSettings
+            {
+                ColonistRelationChanceFactor = 99999,
+            };
+
+            var oPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(pawn, fhRequest); //sloppy but good enough for testing 
+            FormerHumanUtilities.MakeAnimalSapient(oPawn, pawn, 0.2f);
+            var inst = new TransformedPawnSingle
+            {
+                original = oPawn,
+                animal = pawn,
+                mutagenDef = MutagenDefOf.defaultMutagen
+            };
+
+            var gameComp = Find.World.GetComponent<PawnmorphGameComp>();
+            gameComp.AddTransformedPawn(inst);
+            if (pawn.Faction == null && pawn.GetCorrectMap() != null)
+            {
+                RelatedFormerHumanUtilities.OfferJoinColonyIfRelated(pawn);
+            }
+        }
+
+        [DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
         static void TryRevertTransformedPawn(Pawn pawn)
         {
             if (pawn == null) return;
             var gComp = Find.World.GetComponent<PawnmorphGameComp>();
             (TransformedPawn pawn, TransformedStatus status)? tfPawn = gComp?.GetTransformedPawnContaining(pawn);
+
             TransformedPawn transformedPawn = tfPawn?.pawn;
+
             if (transformedPawn == null || tfPawn?.status != TransformedStatus.Transformed) return;
-            MutagenDef mut = transformedPawn.mutagenDef ?? MutagenDefOf.defaultMutagen;
+
+            MutagenDef mut = null;
+            if (transformedPawn is MergedPawns)
+                mut = MutagenDefOf.MergeMutagen;
+            else
+                mut = MutagenDefOf.defaultMutagen;
+
             mut.MutagenCached.TryRevert(transformedPawn);
         }
 
@@ -353,6 +431,53 @@ namespace Pawnmorph.DebugUtils
             Find.WindowStack.Add(new Dialog_DebugOptionListLister(GetRaceChangeOptions()));
         }
 
+
+        [DebugAction("Pawnmorpher", "Make pawn alien.", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void MakePawnAlien(Pawn pawn)
+        {
+            if (pawn.def is ThingDef_AlienRace == false)
+                return;
+
+            List<DebugMenuOption> options = new List<DebugMenuOption>();
+
+            foreach (var alienRace in DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Except(RaceGenerator.ImplicitRaces))
+            {
+                options.Add(new DebugMenuOption(alienRace.LabelCap, DebugMenuOptionMode.Action, () => RaceShiftUtilities.ChangePawnRace(pawn, alienRace)));
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
+
+        private static void MakePawnMorph([CanBeNull] MorphDef morph)
+        {
+            Pawn pawn = Find.CurrentMap.thingGrid
+                            .ThingsAt(UI.MouseCell())
+                            .OfType<Pawn>()
+                            .FirstOrDefault();
+            if (pawn == null) return;
+
+
+            IEnumerable<MutationDef> mutations = morph?.AllAssociatedMutations;
+            if (mutations == null)
+                return;
+
+
+            var mutList = mutations.ToList();
+            if (mutList.Count == 0) 
+                return;
+
+            var i = 0;
+            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
+            List<MutationDef> triedGive = new List<MutationDef>();
+
+            foreach (MutationDef mutation in mutations)
+                MutationUtilities.AddMutation(pawn, mutation);
+
+            AdaptAllMutations(pawn);
+            RaceShiftUtilities.ChangePawnToMorph(pawn, morph);
+        }
+
         private static void GivePawnRandomMutations([CanBeNull] MorphDef morph)
         {
             Pawn pawn = Find.CurrentMap.thingGrid
@@ -407,6 +532,24 @@ namespace Pawnmorph.DebugUtils
             {
                 var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
                                                  () => GivePawnRandomMutations(morphDef));
+                options.Add(option);
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
+
+        [DebugAction("Pawnmorpher", "Make morph", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void MakeMorph()
+        {
+            var options = new List<DebugMenuOption>
+                {new DebugMenuOption("none", DebugMenuOptionMode.Tool, () => GivePawnRandomMutations(null))};
+
+
+            foreach (MorphDef morphDef in MorphDef.AllDefs)
+            {
+                var option = new DebugMenuOption(morphDef.label, DebugMenuOptionMode.Tool,
+                                                 () => MakePawnMorph(morphDef));
                 options.Add(option);
             }
 
@@ -507,18 +650,45 @@ namespace Pawnmorph.DebugUtils
         [DebugAction("Pawnmorpher", "Force full transformation", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void ForceTransformation(Pawn pawn)
         {
-            var allHediffs = pawn.health.hediffSet.hediffs;
-            if (allHediffs == null) return;
+            if (pawn == null)
+                return;
 
+            var allHediffs = pawn.health.hediffSet.hediffs;
+            if (allHediffs == null) 
+                return;
+
+            MutagenDef mutagen = MutagenDefOf.defaultMutagen;
+            if (!mutagen.CanTransform(pawn))
+                return;
+
+            Hediff_MutagenicBase transformHediff = null;
+            HediffStage_Transformation transformStage = null;
             foreach (Hediff hediff in allHediffs)
             {
-                var transformer = hediff.def.GetAllTransformers().FirstOrDefault();
-                if (transformer != null)
+                if (hediff is Hediff_MutagenicBase mutagenic)
                 {
-                    transformer.TransformPawn(pawn, hediff);
-                    return;
+                    transformStage = mutagenic.def.stages.FirstOrDefault(x => x is HediffStage_Transformation) as HediffStage_Transformation;
+
+                    if (transformStage != null)
+                    {
+                        transformHediff = mutagenic;
+                        break;
+                    }
                 }
             }
+
+            if (transformHediff == null)
+                return;
+
+            PawnKindDef pawnDef = transformStage.tfTypes.GetTF(transformHediff);
+            
+            var newRequest = new TransformationRequest(pawnDef, pawn, SapienceLevel.Sapient);
+            var tfPawn = mutagen.MutagenCached.Transform(newRequest);
+            if (tfPawn == null)
+                return;
+
+            var wComp = Find.World.GetComponent<PawnmorphGameComp>();
+            wComp.AddTransformedPawn(tfPawn);
         }
 
         [DebugAction("Pawnmorpher", "Get initial graphics", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
@@ -537,7 +707,7 @@ namespace Pawnmorph.DebugUtils
 
         private static void AddBackstoryToPawn(Pawn pawn, BackstoryDef def)
         {
-            pawn.story.adulthood = def.backstory;
+            pawn.story.Adulthood = def;
         }
 
         private static List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)

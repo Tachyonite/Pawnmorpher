@@ -1,4 +1,5 @@
 ﻿using Verse;
+using System.Linq;
 
 namespace Pawnmorph.Jobs
 {
@@ -10,10 +11,11 @@ namespace Pawnmorph.Jobs
         /// </summary>
         public override void Produce()
         {
-            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(MutationsDefOf.EtherEggLayer);
-            var comp = hediff?.TryGetComp<HediffComp_Production>();
-
-            comp?.Produce();
+            if (job.jobGiver is Giver_Producer giver)
+            {
+                HediffComp_Production comp = giver.ProductionComp;
+                comp.Produce();
+            }
         }
     }
 }

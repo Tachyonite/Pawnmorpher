@@ -116,7 +116,7 @@
 
     <xs:complexType name="AbstractType">
         <xs:sequence>
-            <xs:any />
+            <xs:any processContents="lax" maxOccurs="unbounded" />
         </xs:sequence>
         <xs:attribute name="Class" type="xs:string" use="required" />
     </xs:complexType>
@@ -124,7 +124,7 @@
     <xs:complexType name="RitualSpectorFilter">
         <xs:sequence>
             <xs:element name="description" type="xs:string" />
-            <xs:any />
+            <xs:any processContents="lax" maxOccurs="unbounded" />
         </xs:sequence>
         <xs:attribute name="Class" type="xs:string" use="required" />
     </xs:complexType>

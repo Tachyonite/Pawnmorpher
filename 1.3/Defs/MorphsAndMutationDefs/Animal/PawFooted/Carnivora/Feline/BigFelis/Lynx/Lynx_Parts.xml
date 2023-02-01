@@ -1,0 +1,47 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigFelisJawPart">
+		<classInfluence>LynxMorph</classInfluence>
+		<defName>EtherLynxJaw</defName>
+		<label>lynx snout</label>
+		<graphics>
+			<Muzzle>Parts/Lynx/Lynx_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigFelisEarPart">
+		<classInfluence>LynxMorph</classInfluence>
+		<defName>EtherLynxEar</defName>
+		<label>lynx ear</label>
+		<graphics>
+			<LeftEar>Parts/Lynx/Lynx_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Lynx/Lynx_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Lynx/Lynx_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Lynx/Lynx_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>With a pointed tip and fluff of fur at the end, this ear has grown into what looks like a lynx's style of auditory apparatus.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigFelisTailPart">
+		<classInfluence>LynxMorph</classInfluence>
+		<defName>EtherLynxTail</defName>
+		<label>lynx tail</label>
+		<graphics>
+			<Tail>Parts/Lynx/Lynx_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Unlike most felines, the tail of a lynx is short and stubby. [PAWN_nameDef] has one of them now.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

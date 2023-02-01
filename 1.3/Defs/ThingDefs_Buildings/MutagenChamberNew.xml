@@ -1,0 +1,133 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_NewMutagenicChamber</defName>
+        <label>mutagenic chamber</label>
+        <description>A chamber full of mutagenic liquid, capable of transforming pawns into animals in a much shorter period of time. However, it can only make things up to a certain size. A thrumbo does not fit in here.</description>
+        <thingClass>Pawnmorph.Chambers.MutaChamber</thingClass>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <graphicData>
+            <texPath>Things/Building/MutagenChamber/TFChamber_Glass</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(7,7)</drawSize>
+            <shadowData>
+                <volume>(0.83, 0.3, 1.7)</volume>
+            </shadowData>
+            <drawRotated>false</drawRotated>
+        </graphicData>
+        <rotatable>false</rotatable>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <researchPrerequisites>
+            <li>MutagenChambers</li>
+        </researchPrerequisites>
+        <altitudeLayer>Pawn</altitudeLayer>
+        <passability>PassThroughOnly</passability>
+        <pathCost>70</pathCost>
+        <blockWind>true</blockWind>
+        <fillPercent>0.5</fillPercent>
+        <canOverlapZones>false</canOverlapZones>
+		<inspectorTabs>
+		  <li>ITab_ContentsCasket</li>
+		</inspectorTabs>
+        <thingCategories>
+            <li>BuildingsProduction</li>
+        </thingCategories>
+        <statBases>
+            <WorkToBuild>8000</WorkToBuild>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Flammability>0</Flammability>
+            <Mass>200</Mass>
+        </statBases>
+        <tickerType>Normal</tickerType>
+        <size>(3,3)</size>
+        <hasInteractionCell>true</hasInteractionCell>
+        <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+        <comps>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>300</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Flickable" />
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>2.66</explosiveRadius>
+                <explosiveDamageType>Flame</explosiveDamageType>
+            </li>
+            <li Class="CompProperties_Refuelable">
+                <fuelConsumptionRate>1.7</fuelConsumptionRate>
+                <fuelCapacity>1</fuelCapacity>
+                <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+                <fuelFilter>
+                    <thingDefs>
+                        <li>MechaniteSlurry</li>
+                    </thingDefs>
+                </fuelFilter>
+                <initialFuelPercent>0</initialFuelPercent>
+            </li>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SimpleSlurryRefillerComp</compClass>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>4</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+            <li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
+                <requiresTag>true</requiresTag>
+                <labelKey>PMAnimalPickerGizmo_Chamber</labelKey>
+                <descriptionKey>PMAnimalPickerGizmoDescription_Chamber</descriptionKey>
+                <alwaysAvailable>
+                    <li>Chaocow</li>
+                    <li>Chaofox</li>
+                    <li>Chaoboom</li>
+                    <li>Chaoboar</li>
+                    <li>Chaodino</li>
+                    <li>PM_Chaothrumbo</li>
+                </alwaysAvailable>
+            </li>
+            <li Class="Pawnmorph.ThingComps.FillableBarDrawerProps">
+                <barSize>(2.3, 2.3)</barSize>
+                <period>10.0</period>
+                <barOffset>(0,-0.5,0.2)</barOffset>
+                <barColor>50,200,50,70</barColor>
+            </li>
+            <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
+                <graphicData>
+                    <texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(7,7)</drawSize>
+                    <drawRotated>false</drawRotated>
+                </graphicData>
+                <offset>(0,0,0)</offset>
+                <altitudeLayer>LayingPawn</altitudeLayer>
+            </li>
+            <li Class="Pawnmorph.ThingComps.DrawSecondChamberProperties">
+                <graphicData>
+                    <texPath>Things/Building/MutagenChamber/TFChamber_Glass_Front</texPath>
+                    <graphicClass>Graphic_Single</graphicClass>
+                    <drawSize>(7,7)</drawSize>
+                    <drawRotated>false</drawRotated>
+					<shaderType>Transparent</shaderType>
+                </graphicData>
+                <offset>(0,0,0)</offset>
+                <altitudeLayer>MoteOverhead</altitudeLayer>
+            </li>
+
+			<li Class="Pawnmorph.ThingComps.DrawStoredPawnProperties">
+				<offset>(0,0,0.25)</offset>
+    <layer>PawnRope</layer>
+            </li>
+        </comps>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <building>
+            <isPlayerEjectable>false</isPlayerEjectable>
+        </building>
+        <costList>
+            <Steel>120</Steel>
+            <Mutanite>14</Mutanite>
+            <MechaniteSlurry>3</MechaniteSlurry>
+            <ComponentIndustrial>3</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <designationHotKey>Misc2</designationHotKey>
+        <constructionSkillPrerequisite>10</constructionSkillPrerequisite>
+    </ThingDef>
+</Defs>

@@ -13,7 +13,7 @@ using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
-using Pawnmorph.User_Interface;
+using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -78,24 +78,16 @@ namespace Pawnmorph
             if (anyWarnings) Log.Warning(warningBuilder.ToString());
             BuildLookupDicts();
 
-
-            //check for parts with 'Animal' influence, these might be because of a mistake 
-
+            //Check for parts with null influence.
             var mutationDefs =
-                MutationDef.AllMutations.Where(m => m.classInfluence == null || m.classInfluence == AnimalClassDefOf.Animal)
-                           .ToList();
+                MutationDef.AllMutations.Where(m => m.ClassInfluences == null).ToList();
             if (mutationDefs.Count > 0)
             {
                 warningBuilder.Clear();
-
-                warningBuilder.AppendLine($"found {mutationDefs.Count} mutations with null or animal influence");
+                warningBuilder.AppendLine($"found {mutationDefs.Count} mutations with null influence");
                 warningBuilder.AppendLine(mutationDefs.Join(d => d.defName, "\n"));
                 Log.Warning(warningBuilder.ToString()); 
-            } 
-
-            
-
-
+            }
         }
 
         [NotNull]
@@ -201,7 +193,7 @@ namespace Pawnmorph
             if (!dict.TryGetValue(mutation, out bool val))
             {
                 val = ideo.VeneratedAnimals.MakeSafe()
-                          .Any(a => a.TryGetBestMorphOfAnimal()?.IsAnAssociatedMutation(mutation) == true);
+                          .Any(a => mutation.ClassInfluences.Contains(a.TryGetBestMorphOfAnimal()));
                 dict[mutation] = val;
             }
 
@@ -718,11 +710,6 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
                 TaleRecorder.RecordTale(mutation.mutationTale, pawn);
 
-            if (aEffects.AddLogEntry && !addedParts.NullOrEmpty())
-            {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.MakeSafe().Where(p => p?.Part != null).Select(p => p.Part.def).Distinct());
-                Find.PlayLog?.Add(logEntry);
-            }
 
             if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
@@ -738,12 +725,7 @@ namespace Pawnmorph
             if (PawnUtility.ShouldSendNotificationAbout(pawn) && mutation.mutationTale != null && aEffects.AddTale)
                 TaleRecorder.RecordTale(mutation.mutationTale, pawn);
 
-            if (aEffects.AddLogEntry && addedParts?.Part != null)
-            {
-                var logEntry = new MutationLogEntry(pawn, mutation, addedParts.Part.def);
-                Find.PlayLog?.Add(logEntry);
-            }
-
+         
             if (pawn.MapHeld != null && aEffects.ThrowMagicPuff)
                 IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.MapHeld);
         }
@@ -988,7 +970,7 @@ namespace Pawnmorph
         public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn, bool warnOnFail = true)
         {
             var comp = CompCacher<MutationTracker>.GetCompCached(pawn); 
-            if (comp == null && warnOnFail) Warning($"pawn {pawn.Name} does not have a mutation tracker comp");
+            if (comp == null && warnOnFail) WarningOnce($"pawn {pawn.Name} does not have a mutation tracker comp", pawn.thingIDNumber);
             return comp;
         }
 
@@ -1146,7 +1128,7 @@ namespace Pawnmorph
             List<AlienPartGenerator.BodyAddon> bodyAddons =
                 ((ThingDef_AlienRace) ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons;
             var hediffDefs =
-                bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.BodyAddonHediffGraphic>())
+                bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.ExtendedHediffGraphic>())
                           .Select(h => h.hediff);
 
             return hediffDefs; 

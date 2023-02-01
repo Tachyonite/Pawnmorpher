@@ -26,10 +26,20 @@ namespace Pawnmorph.PreceptComps
         {
             ThingDef animal = null;
             var mut = historyEvent.GetArg<Hediff_AddedMutation>(PMHistoryEventArgsNames.MUTATION);
-            foreach (ThingDef thingDef in ideo.VeneratedAnimals.MakeSafe())
-                if (mut.Def.AssociatedAnimals.Contains(thingDef))
-                    animal = thingDef;
-            return animal; 
+
+
+            foreach (AnimalClassBase animalClass in mut.Def.ClassInfluences)
+            {
+                if (animalClass is MorphDef morph)
+                {
+                    foreach (ThingDef ideoA in ideo.VeneratedAnimals)
+                        if (morph.AllAssociatedAnimals.Contains(ideoA))
+                            return ideoA;
+                }
+            }
+
+
+            return null; 
         }
     }
 

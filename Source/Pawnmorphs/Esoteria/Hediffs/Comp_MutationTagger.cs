@@ -2,8 +2,10 @@
 // last updated 02/12/2021  7:12 AM
 
 using System;
+using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using RimWorld;
 using Verse;
 
@@ -23,6 +25,9 @@ namespace Pawnmorph.Hediffs
 
         bool CanTag(MutationDef mDef)
         {
+            if (mDef.IsRestricted) return false;
+            if (DB.StoredMutations.Contains(mDef)) return false;
+
             var curve = Curve;
             float chance; 
             if (curve != null)
@@ -49,17 +54,15 @@ namespace Pawnmorph.Hediffs
             try
             {
                 var mutationDef = (MutationDef) mutation.def;
-
+                MutationGenebankEntry bankEntry = new MutationGenebankEntry(mutationDef);
 
                 if (CanTag(mutationDef))
                 {
-                    if (!DB.CanAddToDatabase(mutationDef, out string reason))
+                    if (!DB.TryAddToDatabase(bankEntry, out string reason))
                     {
                         Messages.Message(reason, MessageTypeDefOf.RejectInput);
                         return; 
                     }
-                    
-                    DB.TryAddToDatabase(mutationDef);
                 }
             }
             catch (InvalidCastException e)

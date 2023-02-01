@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Thoughts;
@@ -75,7 +76,7 @@ namespace Pawnmorph
         static PawnTransferUtilities()
         {
             _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
-            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certainty", BindingFlags.NonPublic | BindingFlags.Instance);
+            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certaintyInt", BindingFlags.NonPublic | BindingFlags.Instance);
             if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
             if (_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
         }
@@ -96,8 +97,7 @@ namespace Pawnmorph
         {
             if (record == null) throw new ArgumentNullException(nameof(record));
             if (otherDef == null) throw new ArgumentNullException(nameof(otherDef));
-            PartAddress pAddr = record.GetAddress();
-            return otherDef.GetRecordAt(pAddr);
+            return otherDef.GetRecord(record);
         }
 
         /// <summary>
@@ -109,15 +109,23 @@ namespace Pawnmorph
         {
             if (originals == null) throw new ArgumentNullException(nameof(originals));
             if (meld == null) throw new ArgumentNullException(nameof(meld));
+
             Pawn_SkillTracker mSkills = meld.skills;
-            if (mSkills == null) return;
+            if (mSkills == null)
+            {
+                Log.Warning($"sapient animal meld does not have a skill tracker");
+                return;
+            }
+
             var tmpDict = new Dictionary<SkillDef, int>();
             var passionDict = new Dictionary<SkillDef, int>();
             var count = 0;
             foreach (Pawn original in originals)
             {
                 Pawn_SkillTracker skills = original.skills;
-                if (skills == null) continue;
+                if (skills == null) 
+                    continue;
+
                 foreach (SkillRecord skill in skills.skills)
                 {
                     tmpDict[skill.def] = tmpDict.TryGetValue(skill.def) + skill.Level;
@@ -134,11 +142,43 @@ namespace Pawnmorph
             {
                 int skVal = Mathf.Min(10, Mathf.RoundToInt(keyValuePair.Value * scaleVal));
                 var passion = (Passion) Mathf.Min(passionDict.TryGetValue(keyValuePair.Key) / count, 2);
-                SkillRecord sk = mSkills.GetSkill(keyValuePair.Key);
+                SkillRecord sk = TryGetSkill(mSkills, keyValuePair.Key);
                 sk.Level = skVal;
                 sk.passion = passion;
             }
         }
+
+        /// <summary>
+        ///     Transfers all transferable abilities from pawn1 to pawn2. Due to how Psycasts work, they first need to be all removed
+        /// </summary>
+        /// <param name="pawn1">The source pawn.</param>
+        /// <param name="pawn2">The destination pawn.</param>
+        /// <param name="selector">The selector.</param>
+        public static void TransferAbilities([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Ability, bool> selector)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            Pawn_AbilityTracker abilities1 = pawn1.abilities;
+            Pawn_AbilityTracker abilities2 = pawn2.abilities;           
+            IEnumerable<Ability> tAbilities = abilities1.AllAbilitiesForReading.Where(selector);
+            //First purge any psycasts the new pawn will have
+            foreach (Ability ability in abilities2.AllAbilitiesForReading)
+            {
+                if (ability.def.abilityClass.IsAssignableFrom(typeof(Psycast)))
+                {
+                    abilities2.RemoveAbility(ability.def);
+                }  
+            }
+            foreach (Ability ability in tAbilities)
+            {
+                abilities2.GainAbility(ability.def);
+            }
+
+        }
+
+
+
 
 
         /// <summary>
@@ -254,18 +294,54 @@ namespace Pawnmorph
             foreach (Hediff hediff in tHediffs.MakeSafe())
             {
                 BodyPartRecord otherRecord;
-                if (hediff.Part == null) otherRecord = null;
+                if (hediff.Part == null) 
+                    otherRecord = null;
                 else
                     otherRecord = transferFunc(hediff.Part);
 
-                if (otherRecord == null && hediff.Part != null) continue;
+                if (otherRecord == null && hediff.Part != null)
+                    continue;
+                //Here we check if the pawn has a hediff we can match to the currently copied hediff
+                Hediff otherHediff = TryMatchHediffByDefAndBodyPart(hediff.def,health2,otherRecord); 
+                if (otherHediff == null)
+                { 
+                    otherHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                    if (otherHediff is Hediff_Psylink psyDiff)
+                        psyDiff.suppressPostAddLetter = true;
 
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) continue;
-
-                Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
-                health2.AddHediff(newHediff);
+                    health2.AddHediff(otherHediff);
+                }
+                //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
+                if (hediff.Severity == otherHediff.Severity)
+                    continue;
+                if (otherHediff is Hediff_Psylink psylinkExitsting)
+                {
+                    psylinkExitsting.ChangeLevel((int)(hediff.Severity - psylinkExitsting.Severity), false);
+                }
+                else if (otherHediff is Hediff_Level newLevelExitsting)
+                {
+                    newLevelExitsting.SetLevelTo((int)hediff.Severity);
+                }
+                else
+                {
+                    otherHediff.Severity = hediff.Severity;
+                }
             }
         }
+
+        private static Hediff TryMatchHediffByDefAndBodyPart(HediffDef hediff,Pawn_HealthTracker health, BodyPartRecord bodyPart)
+        {
+            for (int i = 0; i < health.hediffSet.hediffs.Count; i++)
+            {
+                var hediffChecked = health.hediffSet.hediffs[i];
+                if (hediffChecked.def == hediff && hediffChecked.Part == bodyPart)
+                {
+                    return hediffChecked;
+                }
+            }
+            return null;
+        }
+
 
         /// <summary>
         ///     Transfers the hediffs from pawn1 onto pawn2
@@ -400,25 +476,32 @@ namespace Pawnmorph
         public static void TransferRelations([NotNull] Pawn pawn1, [NotNull] Pawn pawn2,
                                              Predicate<PawnRelationDef> predicate = null)
         {
-            if (pawn1.relations == null) return;
+            if (pawn1.relations == null) 
+                return;
+
             List<DirectPawnRelation> enumerator = pawn1.relations.DirectRelations.MakeSafe().ToList();
             predicate = predicate ?? (r => true); //if no filter is set, have it pass everything 
+
             foreach (DirectPawnRelation directPawnRelation in enumerator.Where(d => predicate(d.def)))
             {
-                if (directPawnRelation.def.implied) continue;
-                pawn1.relations?.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
+                if (directPawnRelation.def == null || directPawnRelation.def.implied) 
+                    continue;
+
+                pawn1.relations.RemoveDirectRelation(directPawnRelation); //make sure we remove the relations first 
                 pawn2.relations?.AddDirectRelation(directPawnRelation.def,
                                                    directPawnRelation.otherPawn); //TODO restrict these to special relationships? 
             }
 
-            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.ToList()
-            ) //make copies so we don't  invalidate the enumerator mid way through 
-            foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
-            {
-                if (pawnRelationDef.implied) continue;
-                pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
-                pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
-            }
+            //make copies so we don't  invalidate the enumerator mid way through 
+            foreach (Pawn pRelatedPawns in pawn1.relations.PotentiallyRelatedPawns.MakeSafe().ToList())
+                foreach (PawnRelationDef pawnRelationDef in pRelatedPawns.GetRelations(pawn1).Where(d => predicate(d)).ToList())
+                {
+                    if (pawnRelationDef.implied) 
+                        continue;
+                    
+                    pRelatedPawns.relations.RemoveDirectRelation(pawnRelationDef, pawn1);
+                    pRelatedPawns.relations.AddDirectRelation(pawnRelationDef, pawn2);
+                }
         }
 
         /// <summary>
@@ -600,12 +683,41 @@ namespace Pawnmorph
                 }
 
 
-                if (memory.otherPawn == null)
-                    thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
+                thoughtHandler2.memories.TryGainMemory(newMemory, memory.otherPawn);
 
                 newMemory.age = memory.age;
                 newMemory.moodPowerFactor = memory.moodPowerFactor;
             }
+
+            // For each pawn with an opinion of the original, update their memories to point at the transformed pawn.
+            IEnumerable<Pawn> distinctOtherPawns = thoughtHandler1.memories.Memories.Where(x => x.otherPawn != null).Select(x => x.otherPawn).Distinct();
+            foreach (Pawn otherPawn in distinctOtherPawns)
+            {
+                TransferRemoteSocialThoughts(pawn1, pawn2, otherPawn);
+            }
+
+        }
+
+
+        private static void TransferRemoteSocialThoughts(Pawn original, Pawn transformed, Pawn otherPawn)
+        {
+            if (original == null)
+                throw new ArgumentNullException(nameof(original));
+            if (transformed == null)
+                throw new ArgumentNullException(nameof(transformed));
+            if (otherPawn == null)
+                throw new ArgumentNullException(nameof(otherPawn));
+
+
+            ThoughtHandler otherPawnThoughts = otherPawn.needs?.mood?.thoughts;
+            if (otherPawnThoughts == null)
+                return;
+
+
+            List<ISocialThought> outThoughts = new List<ISocialThought>();
+            otherPawnThoughts.GetSocialThoughts(original, outThoughts);
+            foreach (Thought_MemorySocial item in outThoughts.OfType<Thought_MemorySocial>())
+                item.otherPawn = transformed;
         }
 
         /// <summary>
@@ -657,6 +769,34 @@ namespace Pawnmorph
                     return skillRecord;
 
             return null;
+        }
+
+        internal static void TransferInteractions(Pawn originalPawn, Pawn transformedPawn)
+        {
+            if (originalPawn == null)
+                throw new ArgumentNullException(nameof(originalPawn));
+
+            if (transformedPawn == null)
+                throw new ArgumentNullException(nameof(transformedPawn));
+
+
+
+            FieldInfo initiatorField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "initiator");
+            FieldInfo recipientField = HarmonyLib.AccessTools.Field(typeof(PlayLogEntry_Interaction), "recipient");
+            foreach (PlayLogEntry_Interaction item in Find.PlayLog.AllEntries.OfType<PlayLogEntry_Interaction>())
+            {
+                if (item.Concerns(originalPawn))
+                {
+
+                    Pawn initiator = initiatorField.GetValue(item) as Pawn;
+                    if (initiator == originalPawn)
+                        initiatorField.SetValue(item, transformedPawn);
+
+                    Pawn recipient = recipientField.GetValue(item) as Pawn;
+                    if (recipient == originalPawn)
+                        recipientField.SetValue(item, transformedPawn);
+                }
+            }
         }
     }
 }

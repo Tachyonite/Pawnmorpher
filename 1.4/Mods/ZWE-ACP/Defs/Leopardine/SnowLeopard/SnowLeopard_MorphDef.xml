@@ -1,0 +1,20 @@
+<Defs>
+    <Pawnmorph.MorphDef ParentName="LeopardMorphBase">
+        <defName>SnowLeopardMorph</defName>
+        <label>snepmorph</label>
+        <race />
+        <categories>
+            <li>Cold</li>
+        </categories>
+        <fullTransformation>PawnmorphSnowLeopardTF</fullTransformation>
+        <partialTransformation>PawnmorphSnowLeopardTFPartial</partialTransformation>
+        <raceSettings>
+            <graphicsSettings>
+                <skinColorOverride>(204,204,204)</skinColorOverride>
+            </graphicsSettings>
+        </raceSettings>
+        <transformSettings>
+            <transformationMemory>SnowLeopardMorphTranformationMemory</transformationMemory>
+        </transformSettings>
+    </Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,35 @@
+<Defs>
+	<AlienRace.BackstoryDef>
+		<defName>FoxmorphGeneral</defName>
+		<title>hunted fox</title>
+		<titleShort>foxmorph</titleShort>
+		<baseDescription>[PAWN_nameDef] was captured by a twisted hunting club that chased people down with dogs, and was looking for a new spin on it. Fortunately, [PAWN_nameDef] became cunning enough to escape again.</baseDescription>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Thin</bodyTypeFemale>
+		<bodyTypeMale>Thin</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<skillGains>
+			<li>
+				<defName>Intellectual</defName>
+				<amount>3</amount>
+			</li>
+			<li>
+				<defName>Social</defName>
+				<amount>2</amount>
+			</li>
+		</skillGains>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>ArcticFoxMorph</li>
+					<li>FennecFoxMorph</li>
+					<li>FoxMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.BackstoryDef>
+</Defs>

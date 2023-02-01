@@ -1,0 +1,14 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/HediffDef[defName="PsychicAmplifier"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.TFTransferable"/>
+        </value>        
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/AbilityDef[@Name="PsycastBase"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.TFTransferable"/>
+        </value>    
+    </Operation>
+</Patch>

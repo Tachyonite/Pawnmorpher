@@ -165,7 +165,7 @@ namespace Pawnmorph
             return oldRace != Pawn.def; 
         }
 
-        private bool CanRaceCheckNow => !Pawn.health.hediffSet.hediffs.OfType<TransformationBase>().Any(t => t.BlocksRaceCheck); 
+        private bool CanRaceCheckNow => !Pawn.health.hediffSet.hediffs.OfType<IMutagenicHediff>().Any(t => t.BlocksRaceCheck); 
 
         /// <summary>
         ///     Gets the normalized direct influence of the given morph

@@ -67,6 +67,9 @@ namespace Pawnmorph.TfSys
         [CanBeNull]
         public abstract Faction FactionResponsible { get; }
 
+        //using enumerable for these was for planned features of insects that never happend 
+        //these should be changed for efficiency 
+        
         /// <summary>
         ///     Gets the original pawns.
         /// </summary>
@@ -75,6 +78,7 @@ namespace Pawnmorph.TfSys
         /// </value>
         [NotNull]
         public abstract IEnumerable<Pawn> OriginalPawns { get; }
+
 
         /// <summary>
         ///     Gets the transformed pawns.

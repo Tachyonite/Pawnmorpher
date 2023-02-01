@@ -27,7 +27,12 @@ namespace Pawnmorph.IngestionEffects
         /// <summary>
         /// The initial severity
         /// </summary>
-        public float severity = 1; 
+        public float severity = 1;
+
+        /// <summary>
+        /// Whether or not to allow restricted morphs.
+        /// </summary>
+        public bool allowRestricted = false;
 
         [Unsaved] private List<HediffDef> _allHediffs;
         
@@ -45,9 +50,10 @@ namespace Pawnmorph.IngestionEffects
                     }
                     else
                     {
+                        // If morph is not restricted, serum permits restricted or category itself is restricted.
                         _allHediffs =
                             morphCategory.AllMorphsInCategories
-                                         .Where(m => !m.Restricted)
+                                         .Where(m => !m.Restricted || allowRestricted || morphCategory.restricted)
                                          .Select(m => fullTf
                                                                                 ? m.fullTransformation
                                                                                 : m.partialTransformation)
@@ -66,9 +72,17 @@ namespace Pawnmorph.IngestionEffects
         /// <param name="ingested">The ingested.</param>
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            if (pawn?.health == null) return;
+            if (pawn?.health == null) 
+                return;
+
             var hediff = AllHediffs.RandElement();
-            if (hediff == null) return;
+
+            if (hediff == null)
+            {
+                Log.Error($"No morphs were found in category {morphCategory.defName}. Allow restricted: {allowRestricted}");
+                return;
+            }
+
             var h = pawn.health.AddHediff(hediff);
             h.Severity = severity; 
         }

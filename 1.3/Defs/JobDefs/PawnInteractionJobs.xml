@@ -1,0 +1,16 @@
+<Defs>
+    <JobDef>
+        <defName>PM_TransformPrisoner</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_TransformPrisoner</driverClass>
+        <reportString>transforming TargetA.</reportString>
+        <alwaysShowWeapon>true</alwaysShowWeapon>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>RecruitSapientFormerHuman</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_RecruitSapientFormerHuman</driverClass>
+        <reportString>recruiting TargetA</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>

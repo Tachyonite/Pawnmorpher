@@ -1,0 +1,81 @@
+name: 'Compile'
+on: 
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  build:
+    name: Compile
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: "Source/Pawnmorphs/Pawnmorph.sln"
+      Name: Pawnmorpher
+      #Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set configuration
+      run: | 
+        if ($env:Branch -eq "refs/heads/master") {
+          echo "Configuration=Release" >> $env:GITHUB_ENV
+        } else {
+          echo "Configuration=Debug" >> $env:GITHUB_ENV
+        }
+      env:
+        Branch: "${{ github.ref }}"
+      
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.6
+     
+    - name: Restore NuGet Packages
+      run: nuget restore $env:Solution_Name
+      
+    # Execute all unit tests in the solution
+    #- name: Execute unit tests
+    #  run: dotnet test
+
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    #- name: Restore the application
+    #  run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+    #  env:
+    #    Configuration: ${{ matrix.configuration }}
+
+    - name: Build
+      run: msbuild $env:Solution_Name /p:Configuration=${{ env.Configuration }}
+
+    # Remove unnecesary directories
+    - name: Cleanup
+      run: | 
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Source"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Textures (raw)"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Scripts"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Morphs"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Examples"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "Documentation"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.md"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue "*.ps1"
+        Remove-Item -Force -Recurse -ErrorAction SilentlyContinue ".*"
+
+    - name: Generate artifact name
+      run: |
+        $branch = ""
+        if ("${{ env.Configuration }}" -ne "Release") {
+            $branch = $env:Branch.replace("refs/heads/", "") + "_"
+        }
+        echo ArtifactName="$env:Name-${{ env.Configuration }}_$branch$(get-date -f MM-dd)" >> $env:GITHUB_ENV
+      env:
+        Branch: "${{ github.ref }}"
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.ArtifactName }}
+        path: ${{ github.workspace }}/**/*

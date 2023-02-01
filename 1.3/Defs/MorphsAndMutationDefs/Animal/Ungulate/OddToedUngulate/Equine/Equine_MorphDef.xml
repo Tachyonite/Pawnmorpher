@@ -1,0 +1,9 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="OddToedUngulateMorph" Name="EquineMorph">
+		<classification>Equine</classification>
+		<categories>
+			<li>Crafter</li>
+		</categories>
+		<group>HerbivoreHerding</group>
+	</Pawnmorph.MorphDef>
+</Defs>

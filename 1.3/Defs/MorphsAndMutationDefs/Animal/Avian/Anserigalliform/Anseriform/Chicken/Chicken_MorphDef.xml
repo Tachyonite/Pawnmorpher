@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="AnseriformMorph">
+		<defName>ChookMorph</defName>
+		<label>chookmorph</label>
+		<description>A human who now shares many features with chickens due to exposure to mechanite mutagens. Usually found covered in feathers, and arms more resembling wings. For odd reasons, both genders are capable of producing eggs.</description>
+		<race>Chicken</race>
+		<categories>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphChickenTF</fullTransformation>
+		<partialTransformation>PawnmorphChickenTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(178,100,28)</skinColorOverride>
+				<femaleSkinColorOverride>(255,255,255)</femaleSkinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ChickenTransformationMemory</transformationMemory>
+			<revertedMemory>ChickenRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

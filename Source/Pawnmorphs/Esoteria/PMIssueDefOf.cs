@@ -7,16 +7,21 @@ using RimWorld;
 namespace Pawnmorph
 {
     /// <summary>
-    /// static class containing commonly used issue defs 
+    ///     static class containing commonly used issue defs
     /// </summary>
     [DefOf]
     public static class PMIssueDefOf
     {
         /// <summary>
-        /// The pm sapience loss issue 
+        ///     The pm sapience loss issue
         /// </summary>
-        [NotNull]
-        public static IssueDef PM_SapienceLoss;
+        [CanBeNull] [MayRequireIdeology] public static IssueDef PM_SapienceLoss;
+
+
+        /// <summary>
+        ///     issue for former human behaviour
+        /// </summary>
+        [CanBeNull] [MayRequireIdeology] public static IssueDef PM_FormerHuman_Nudity;
 
         static PMIssueDefOf()
         {

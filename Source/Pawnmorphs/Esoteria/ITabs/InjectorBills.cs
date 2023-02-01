@@ -26,31 +26,6 @@ namespace Pawnmorph.ITabs
         private Bill mouseoverBill;
 
         private static readonly Vector2 WinSize = new Vector2(420f, 480f);
-
-        [CanBeNull]
-        MorphDef MorphFromSyringeRecipe([NotNull] RecipeDef rDef)
-        {
-            var ingestible = rDef.ProducedThingDef?.ingestible;
-            if (ingestible == null) return null;
-            var fOutcomeDoer = ingestible.outcomeDoers?.OfType<IngestionOutcomeDoer_GiveHediffRandom>().FirstOrDefault();
-            var morphHDef = fOutcomeDoer?.hediffDefs?.FirstOrDefault();
-            if (morphHDef == null) return null;
-            return MorphDef.AllDefs.FirstOrDefault(m => m.fullTransformation == morphHDef
-                                                     || m.partialTransformation == morphHDef); 
-        }
-
-
-        bool CanUseRecipe(RecipeDef recipe)
-        {
-            if(!(recipe.AvailableNow && recipe.AvailableOnNow(SelTable))) return false;
-            if (!LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>().injectorsRequireTagging)
-                return true; 
-            
-            
-            var mDef = MorphFromSyringeRecipe(recipe);
-            return mDef?.IsTagged() != false; 
-        }
-
         [TweakValue("PMInterface", 0f, 128f)]
         private static float PasteX = 48f;
 
@@ -69,21 +44,21 @@ namespace Pawnmorph.ITabs
             if (BillUtility.Clipboard == null)
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegionByKey(rect2, "PasteBillTip");
             }
             else if (!SelTable.def.AllRecipes.Contains(BillUtility.Clipboard.recipe) || !BillUtility.Clipboard.recipe.AvailableNow || !BillUtility.Clipboard.recipe.AvailableOnNow(SelTable))
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegionByKey(rect2, "ClipboardBillNotAvailableHere");
             }
             else if (SelTable.billStack.Count >= 15)
             {
                 GUI.color = Color.gray;
-                Widgets.DrawTextureFitted(rect2, PMTexButton.Paste, 1f);
+                Widgets.DrawTextureFitted(rect2, TexButton.Paste, 1f);
                 GUI.color = Color.white;
                 if (Mouse.IsOver(rect2))
                 {
@@ -92,7 +67,7 @@ namespace Pawnmorph.ITabs
             }
             else
             {
-                if (Widgets.ButtonImageFitted(rect2, PMTexButton.Paste, Color.white))
+                if (Widgets.ButtonImageFitted(rect2, TexButton.Paste, Color.white))
                 {
                     Bill bill = BillUtility.Clipboard.Clone();
                     bill.InitializeAfterClone();
@@ -109,7 +84,7 @@ namespace Pawnmorph.ITabs
                 for (int i = 0; i < SelTable.def.AllRecipes.Count; i++)
                 {
                     RecipeDef recipe = SelTable.def.AllRecipes[i];
-                    if (CanUseRecipe(recipe))
+                    if (recipe.AvailableNow)
                     {
                         var tempRecipe = recipe;
                         list.Add(new FloatMenuOption(recipe.LabelCap, delegate
@@ -128,7 +103,7 @@ namespace Pawnmorph.ITabs
                             {
                                 TutorSystem.Notify_Event("AddBill-" + recipe.LabelCap.Resolve());
                             }
-                        }, recipe.UIIconThing, MenuOptionPriority.Default, null, null, 29f, (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, recipe)));
+                        }, recipe.UIIconThing, null, false, MenuOptionPriority.Default, null, null, 29f, (Rect rect) => Widgets.InfoCardButton(rect.x + 5f, rect.y + (rect.height - 24f) / 2f, recipe)));
                     }
                 }
                 if (!list.Any())

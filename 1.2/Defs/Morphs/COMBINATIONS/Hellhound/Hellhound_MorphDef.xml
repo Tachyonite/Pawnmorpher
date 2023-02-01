@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
+		<categories>
+			<li>Combo</li>
+		</categories>
+		<defName>PM_HellhoundMorph</defName>
+		<label>hellhoundmorph</label>
+		<race>EtherHellhound</race>
+		<classification>Canid</classification>
+		<description>A large, heavily mutated canid morph resembling a warg morph but significantly larger and usually with additional mutations.</description>
+		<transformSettings>
+			<transformationMemory>PM_HellhoundTransformationMemory</transformationMemory>
+			<revertedMemory>PM_HellhoundRevertedMemory</revertedMemory>
+		</transformSettings>
+		<fullTransformation>PM_HellhoundTf</fullTransformation>
+		<partialTransformation>PM_HellhoundTfPartial</partialTransformation>
+	</Pawnmorph.MorphDef>
+</Defs>

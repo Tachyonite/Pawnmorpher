@@ -403,7 +403,7 @@ namespace Pawnmorph
             if (originalPawn?.RaceProps == null) throw new ArgumentNullException(nameof(originalPawn));
             if (race == null) throw new ArgumentNullException(nameof(race));
 
-            return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYears);
+            return ConvertAge(originalPawn.RaceProps, race, originalPawn.ageTracker.AgeBiologicalYearsFloat);
         }
 
         
@@ -467,7 +467,7 @@ namespace Pawnmorph
             return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
                                              fixedBiologicalAge: convertedAge,
                                              fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
-                                             fixedGender: gender, fixedMelanin: null);
+                                             fixedGender: gender);
         }
         
         /// <summary>Gets the transformed gender.</summary>
@@ -513,16 +513,26 @@ namespace Pawnmorph
         /// <param name="originalPawn">The original pawn.</param>
         /// <param name="cause">The cause.</param>
         /// <param name="removeMentalStates">if set to <c>true</c> [remove mental states].</param>
+        /// <param name="tendInjuries">if set to injuries and diseases are tended.</param>
         /// <exception cref="ArgumentNullException">originalPawn</exception>
-        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true)
+        public static void CleanUpHumanPawnPostTf([NotNull] Pawn originalPawn,  [CanBeNull] Hediff cause, bool removeMentalStates=true, bool tendInjuries=true)
         {
             if (originalPawn == null) throw new ArgumentNullException(nameof(originalPawn));
-            
-            
+
+            Thing fireThing = originalPawn.GetAttachment(ThingDefOf.Fire);
+            if (fireThing != null && !fireThing.Destroyed) fireThing.Destroy();
+
             Caravan caravan = originalPawn.GetCaravan();
             caravan?.RemovePawn(originalPawn);
             caravan?.Notify_PawnRemoved(originalPawn);
 
+            HediffSet hSet = originalPawn.health?.hediffSet;
+            if (tendInjuries && hSet != null && originalPawn.health.HasHediffsNeedingTend())
+                foreach (Hediff hediff in hSet.hediffs)
+                {
+                    var tendComp = hediff?.TryGetComp<HediffComp_TendDuration>();
+                    if (tendComp != null) hediff.Tended(1.3f, 1.3f, -1); //1.3 is glitterworld quality 
+                }
 
 
             if (originalPawn.InMentalState)
@@ -532,7 +542,7 @@ namespace Pawnmorph
 
 
 
-            //HandleApparelAndEquipment(originalPawn, caravan); 
+            HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -542,14 +552,6 @@ namespace Pawnmorph
             if (originalPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
                 originalPawn.ownership.UnclaimBed(); // ...unclaim it.
 
-            if (originalPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
-            {
-                Pawn carryingPawn = originalPawn.CarriedBy;
-                Thing outPawn;
-               // carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
-               //                                               out outPawn); // ...drop them so they can be removed.
-            }
-
             if (originalPawn.IsPrisoner)
                 HandlePrisoner(originalPawn);
 
@@ -557,7 +559,7 @@ namespace Pawnmorph
          
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             //remove any jobs the pawn may be doing 
             //if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null) this causes former humans to sometimes despawn and I don't know why 
@@ -642,7 +644,7 @@ namespace Pawnmorph
 
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             if (!tfdPawn.Spawned)
                 Log.Error($"tfdPawn no longer spawned A");
@@ -697,8 +699,9 @@ namespace Pawnmorph
             
             if (originalPawn.Spawned)
             {
-                apparelTracker?.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+                apparelTracker?.DropAll(originalPawn.PositionHeld); // Drop all apparel
+                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // Drop all equipment (i.e. guns).
+                originalPawn.inventory.DropAllNearPawn(originalPawn.PositionHeld); // Drop anything else being carried.
             }
             else if (caravan != null)
             {

@@ -1,0 +1,84 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
+	<HediffDef Name="PM_RandomTfBase" ParentName="MorphParent">
+		<defName>FullRandomTFAnyOutcome</defName>
+		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
+		<label>chaomorph</label>
+		<description>This person has raw, unfocused mechanites simultaniously mutating them into every animal imaginable. Pray to Randy they don't come out the other end on all fours.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+				<label>reeling</label>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_Chao" />
+				<tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_BySetting">
+					<mult>1.25</mult>
+					<offset>0.1</offset>
+				</tfChance>
+				<tfSettings>
+					<tfTale>TransformationMisc</tfTale>
+				</tfSettings>
+				<tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+					<chance>0.25</chance>
+				</tfGenderSelector>
+			</li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_MutagenicBase">
+				<label>transforming</label>
+				<minSeverity>0.6</minSeverity>
+				<painOffset>0.5</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<alert />
+			</li>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+				<label>changing</label>
+				<minSeverity>0.65</minSeverity>
+				<painOffset>0.3</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerDay">
+					<meanMutationsPerDay>15</meanMutationsPerDay>
+				</mutationRate>
+			</li>
+		</stages>
+		<!-- add the mutagen source to make this morph give aspects to  -->
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>ChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</HediffDef>
+</Defs>

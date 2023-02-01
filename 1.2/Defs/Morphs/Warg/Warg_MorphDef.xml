@@ -1,0 +1,34 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CanineMorph">
+		<defName>WargMorph</defName>
+		<label>wargmorph</label>
+		<description>A large humanoid canine resulting from a human that has been exposed to warg specific mutagens. Much like feral wargs, they are exceptionally dangerous in combat, and easily upset if there aren't other canines around.</description>
+		<race>Warg</race>
+		<classification>Canid</classification>
+		<categories>
+			<li>Canid</li>
+			<li>Combat</li>
+		</categories>
+		<fullTransformation>PawnmorphWargTF</fullTransformation>
+		<partialTransformation>PawnmorphWargTFPartial</partialTransformation>
+		<raceSettings>
+			<thoughtSettings>
+				<replacerList>
+					<li>
+						<original>AteCorpse</original>
+						<replacer>WargMorphAteCorpse</replacer>
+					</li>
+				</replacerList>
+				<suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
+				<canEatRaw>true</canEatRaw>
+			</thoughtSettings>
+			<graphicsSettings>
+				<skinColorOverride>(123,104,89)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>WargTransformationMemory</transformationMemory>
+			<revertedMemory>WargRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

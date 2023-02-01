@@ -26,6 +26,11 @@ namespace Pawnmorph
         public List<MorphCategoryDef> categories = new List<MorphCategoryDef>();
 
         /// <summary>
+        /// The adjective for this morph. ex. wolf morph should be "wolfish" or "lupine"
+        /// </summary>
+        public string adjective; 
+
+        /// <summary>
         ///     The creature this race is a morph of.<br />
         ///     For example, a Wargmorph's race should be Warg.
         /// </summary>
@@ -83,9 +88,37 @@ namespace Pawnmorph
         [CanBeNull] public HediffDef fullTransformation;
 
         /// <summary>
+        /// properties for the generated full tf hediff 
+        /// </summary>
+        [CanBeNull] public MorphHediffProperties fullTfHediffProps;  
+        
+
+        /// <summary>
         ///     The partial transformation chain
         /// </summary>
         [CanBeNull] public HediffDef partialTransformation;
+
+        /// <summary>
+        /// properties for the generated partial tf hediff 
+        /// </summary>
+        [CanBeNull] public MorphHediffProperties partialTfHediffProps; 
+
+        /// <summary>
+        /// The injector definition
+        /// </summary>
+        [CanBeNull] public ThingDef injectorDef;
+
+
+        /// <summary>
+        /// if this morph should have no injector or hediff specific for it 
+        /// </summary>
+        /// Note: this is for suppressing warnings about missing injectors 
+        public bool noInjector; 
+
+        /// <summary>
+        /// The properties for the generated injector def 
+        /// </summary>
+        [CanBeNull] public MorphInjectorProperties injectorProperties; 
 
         /// <summary> The morph's implicit race.</summary>
         [Unsaved] public ThingDef hybridRaceDef;
@@ -96,6 +129,25 @@ namespace Pawnmorph
         [Unsaved] private Dictionary<BodyPartDef, List<MutationDef>> _mutationsByParts;
 
         [Unsaved] private List<MutationDef> _allAssociatedMutations;
+
+        [Unsaved] private List<PawnKindDef> _primaryPawnKindDefs;
+        [Unsaved] private List<PawnKindDef> _secondaryPawnKindDefs;
+
+
+        /// <summary>
+        /// Gets the animal pawnkinds associated with this morph.
+        /// </summary>
+        [NotNull]
+        public IEnumerable<PawnKindDef> FeralPawnKinds 
+        {
+            get
+            {
+                if (_primaryPawnKindDefs == null) 
+                    return Array.Empty<PawnKindDef>();
+
+                return _primaryPawnKindDefs.Concat(_secondaryPawnKindDefs); 
+            } 
+        }
 
         /// <summary>
         ///     Gets the children.
@@ -200,11 +252,12 @@ namespace Pawnmorph
         IEnumerable<MutationDef> GetAllAssociatedMutations()
         {
             var restrictionSet = new HashSet<MutationDef>(); 
-
+            
             var set = new HashSet<(BodyPartDef bodyPart, MutationLayer layer)>();
             AnimalClassBase curNode = this;
             List<MutationDef> tmpList = new List<MutationDef>();
             var tmpSiteLst = new List<(BodyPartDef bodyPart, MutationLayer layer)>();
+
             while (curNode != null)
             {
                 restrictionSet.AddRange(curNode.MutationExclusionList); 
@@ -212,17 +265,30 @@ namespace Pawnmorph
                 tmpList.Clear();
                 foreach (MutationDef mutation in MutationDef.AllMutations) //grab all mutations that give the current influence directly 
                 {
-                    if(restrictionSet.Contains(mutation)) continue;
-                    if (curNode != this && mutation.IsRestricted && !allowAllRestrictedParts)
+                    if (restrictionSet.Contains(mutation))
+                        continue;
+
+                    if (mutation.ClassInfluences.Contains(curNode) == false)
+                        continue;
+
+                    if (curNode != this && allowAllRestrictedParts == false && mutation.IsRestricted)
                     {
-                        continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
-                    }
-                    
-                    if (mutation.classInfluence == curNode)
-                    {
-                        tmpList.Add(mutation);
+                        if (categories == null)
+                            continue;
+
+                        List<MutationCategoryDef> rCategories = mutation
+                                                               .categories.Where(c => c.restrictionLevel
+                                                                                    >= RestrictionLevel.CategoryOnly)
+                                                               .ToList();
+
+                        bool allowed = rCategories.All(cat => categories.Any(c => c.associatedMutationCategory == cat) == true)
+                                    == true; //make sure all restricted mutation categories are from one of the associated morph categories this morph is a part of 
+
+                        if (!allowed)
+                            continue; //do not allow restricted parts for higher up in the hierarchy to show up unless allowAllRestrictedParts is set to true
                     }
 
+                    tmpList.Add(mutation);
                 }
 
                 foreach (MutationDef mutationDef in tmpList)
@@ -250,7 +316,6 @@ namespace Pawnmorph
 
                 curNode = curNode.ParentClass; //move up one in the hierarchy 
             }
-
         }
 
         /// <summary>
@@ -260,6 +325,7 @@ namespace Pawnmorph
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string configError in base.ConfigErrors()) yield return configError;
+
 
             if (race == null)
                 yield return "No race def found!";
@@ -392,6 +458,17 @@ namespace Pawnmorph
             {
                 _allAssociatedMutations = GetAllAssociatedMutations().Distinct().ToList(); 
             }
+
+            if (associatedAnimals == null)
+            {
+
+            }
+
+            
+
+            _primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
+            _secondaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => AllAssociatedAnimals.Contains(p.race)).ToList();
+            injectorProperties?.ResolveReferences(race.label);
         }
 
         /// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

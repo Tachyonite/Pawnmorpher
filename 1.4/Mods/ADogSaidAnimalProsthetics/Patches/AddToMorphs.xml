@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!--we check if our base has the recipes tag. If not, we add it before anything-->
+	<Operation Class = "PatchOperationConditional">
+		<xpath>Defs/ThingDef[@Name="PMChaocreatureBase"]/recipes</xpath>
+		<nomatch Class = "PatchOperationAdd">
+			<xpath>Defs/ThingDef[@Name="PMChaocreatureBase" or 
+			@ParentName="PMChaocreatureBase" or 
+			@ParentName="PMChaomorphBase" or
+			@ParentName="PMSpecialChaomorphBase" or
+			@ParentName="PMChaomeldBase"]</xpath>
+			<value>	
+				<recipes></recipes>
+			</value>
+		</nomatch>
+	</Operation>
+	
+	<Operation Class = "PatchOperationSequence">
+		<operations>
+		<!--Generic body parts, added to base Chaocreature def-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[@Name="PMChaocreatureBase"]/recipes</xpath>
+				<value>
+					<li>InstallBionicAnimalStomach</li>
+					<li>InstallBionicAnimalKidney</li>
+					<li>InstallBionicAnimalLiver</li>
+					<li>InstallBionicAnimalLung</li>
+					<li>InstallBionicAnimalHeart</li>
+					<li>InstallAnimalBrainStimulator</li>
+					<li>InstallSpineAnimalBionic</li>
+					<li>InstallSpineAnimalSimple</li>
+					<li>InstallJawAnimalBionic</li>
+					<li>InstallJawAnimalSimple</li>
+					<li>InstallNoseAnimalSimple</li>
+					<li>InstallBionicEyeAnimal</li>
+					<li>InstallEarAnimalSimple</li>
+					<li>InstallEarAnimalBionic</li>
+					<li>InstallPegLegAnimal</li>
+					<li>InstallSimpleProstheticLegAnimal</li>
+					<li>InstallBionicLegAnimal</li>
+				</value>
+			</li>
+			<!--Tail, only added to creatures with a tail-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Chaodino"]/recipes</xpath>
+				<value>
+					<li>InstallSimpleProstheticTailAnimal</li>
+				</value>
+			</li>
+			<!--Arm, only added to creatures with a tail-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="Chaoboar" 
+				or defName="Chaodino"]/recipes</xpath>
+				<value>
+					<li>InstallSimpleProstheticArmAnimal</li>
+					<li>InstallBionicArmAnimal</li>
+				</value>
+			</li>
+			<!--This should fix Transhumanists and Body purists not recognizing A Dog Said Bionics-->
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/HediffDef[@Name="addedPartAnimal"]</xpath>
+				<value>
+				    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

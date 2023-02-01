@@ -72,7 +72,23 @@ namespace Pawnmorph
         {
             base.FinalizeInit();
 
-            AddSurgeriesToMorphs(); 
+            AddSurgeriesToMorphs();
+
+            CheckForBadDrugPolicies(); 
+        }
+
+        private void CheckForBadDrugPolicies()
+        {
+            var drugDB = Current.Game?.drugPolicyDatabase;
+            if (drugDB == null)
+            {
+                return; 
+            }
+
+            foreach (DrugPolicy drugPolicy in drugDB.AllPolicies.MakeSafe())
+            {
+                drugPolicy.InitializeIfNeeded(true); 
+            }
         }
 
         private void AddSurgeriesToMorphs()
@@ -150,6 +166,7 @@ namespace Pawnmorph
                 // Now clear.
                 pawnmorphs.Clear();
                 mergedpawnmorphs.Clear();
+                StatsUtility.Clear();
 
                 // Make sure they're all valid.
                 ValidateTransformedPawns();
@@ -229,7 +246,7 @@ namespace Pawnmorph
 
         /// <summary>add the given pawnkind to the mutagen chamber database</summary>
         /// <param name="pawnkind">The pawnkind.</param>
-        [Obsolete("use " +nameof(Chambers.ChamberDatabase) + "." + nameof(Chambers.ChamberDatabase.AddToDatabase) + " instead")]
+        [Obsolete("use " +nameof(Chambers.ChamberDatabase) + "." + nameof(Chambers.ChamberDatabase.TryAddToDatabase) + " instead")]
         public void TagPawn(PawnKindDef pawnkind)
         {
             if (!taggedAnimals.Contains(pawnkind)) taggedAnimals.Add(pawnkind);

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HarmonyLib;
+using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -211,8 +212,106 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        //debug output for visualizing all mutation classification info
+        //writes to a 
+
+        [DebugOutput(MAIN_CATEGORY_NAME)]
+        static void PrintGpzPartClassificationInfo()
+        {
+            var root = AnimalClassDefOf.Animal;
+
+            var mClassRoot = new MClassificationInfo(root);
+            foreach (MutationDef mut in MutationDef.AllMutations)
+            {
+                if (mut.ClassInfluences.Contains(root)) mClassRoot.mutations.Add(mut); 
+
+            }
+
+            int i = 0; 
+            foreach (AnimalClassBase child in root.Children)
+            {
+                mClassRoot.children.Add(BuildClassInfo(child, mClassRoot, i));
+                i++; 
+            }
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("graph G {");
+            builder.AppendLine(mClassRoot.ConvertToStringRecursive());
+            builder.AppendLine("}"); 
+            Log.Message(builder.ToString());
+
+        }
+
+        static MClassificationInfo BuildClassInfo([NotNull] AnimalClassBase cBase, [NotNull] MClassificationInfo parent, int counter)
+        {
+            MClassificationInfo retVal = new MClassificationInfo(cBase)
+            {
+                hCounter = counter,
+                vCounter = parent.vCounter + 1
+            };
+
+            foreach (MutationDef allMutation in MutationDef.AllMutations)
+            {
+                if (allMutation.ClassInfluences.Contains(cBase))
+                {
+                    retVal.mutations.Add(allMutation);
+                }
+            }
+
+            int i = 0; 
+            foreach (AnimalClassBase child in cBase.Children)
+            {
+
+                retVal.children.Add(BuildClassInfo(child, retVal, i));
+                i++; 
+            }
+
+            return retVal; 
+
+        }
 
 
+
+        class MClassificationInfo
+        {
+            private static int cntr = 0; 
+            public MClassificationInfo([NotNull] AnimalClassBase mClass)
+            {
+                this.mClass = mClass;
+                internalCount = cntr;
+                cntr++; 
+            }
+            public int hCounter;
+            public int vCounter;
+            private readonly int internalCount; 
+            
+            [NotNull]
+            public readonly AnimalClassBase mClass;
+            [NotNull]
+            public readonly List<MutationDef> mutations = new List<MutationDef>();
+            [NotNull]
+            public readonly List<MClassificationInfo> children = new List<MClassificationInfo>();
+            private const string HEADER = "subgraph cluster";
+            public string ConvertToStringRecursive()
+            {
+                StringBuilder builder = new StringBuilder(); 
+                var header = HEADER + hCounter + "_" + vCounter + "_" + internalCount;
+                builder.AppendLine(header);
+                builder.AppendLine("{");
+                var label = "label = \"" + mClass.defName + "\"";
+                builder.AppendLine(label);
+                builder.AppendLine(mutations.Select(m => m.defName).Join(","));
+
+                foreach (MClassificationInfo child in children.MakeSafe())
+                {
+                    builder.AppendLine(child.ConvertToStringRecursive()); 
+                }
+
+                builder.AppendLine("}");
+                return builder.ToString(); 
+
+            }
+        }
 
 
 
@@ -316,6 +415,17 @@ namespace Pawnmorph.DebugUtils
 
         }
 
+        [DebugOutput(category = MAIN_CATEGORY_NAME)]
+        static void ListMutationsPerCategory()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (MutationCategoryDef def in DefDatabase<MutationCategoryDef>.AllDefsListForReading)
+            {
+                builder.AppendLine($"{def.defName}:[{string.Join(",", def.AllMutations.Select(m => m.defName))}]"); 
+            }
+
+            Log.Message(builder.ToString()); 
+        }
 
         [DebugOutput(category = MAIN_CATEGORY_NAME)]
         private static void LogMutationValue()

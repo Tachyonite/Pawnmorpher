@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
@@ -17,11 +18,58 @@ namespace Pawnmorph
     [StaticConstructorOnStartup]
     public static class PMFoodUtilities
     {
+        private const float HUMANOID_PLANT_SEARCH = 2f;
         [NotNull] private static readonly List<Pawn> tmpPredatorCandidates = new List<Pawn>();
 
 
         [NotNull] private static readonly HashSet<Thing> filtered = new HashSet<Thing>();
 
+        [NotNull]
+        private static readonly Dictionary<Ideo, List<IFoodPreferenceAdjustor>> _ideoAdjustorCache =
+            new Dictionary<Ideo, List<IFoodPreferenceAdjustor>>();
+
+        /// <summary>
+        /// Clears the caches used to find food preferability 
+        /// </summary>
+        public static void ClearCaches()
+        {
+            _ideoAdjustorCache.Clear();
+            
+        }
+
+        [NotNull]
+        private static IReadOnlyList<IFoodPreferenceAdjustor> GetAdjustors([NotNull] Ideo ideo)
+        {
+            if (ideo == null) throw new ArgumentNullException(nameof(ideo));
+            if (_ideoAdjustorCache.TryGetValue(ideo, out List<IFoodPreferenceAdjustor> lst)) return lst;
+
+            List<IFoodPreferenceAdjustor> newList = ideo.PreceptsListForReading
+                                                        .SelectMany(p => p.def.comps.OfType<IFoodPreferenceAdjustor>())
+                                                        .Distinct()
+                                                        .OrderBy(p => p.Priority) 
+                                                        .ToList();
+            
+            
+            _ideoAdjustorCache[ideo] = newList;
+            return newList;
+        }
+
+
+        /// <summary>
+        /// Gets the adjustors for the given eater 
+        /// </summary>
+        /// <param name="eater">The eater.</param>
+        /// <returns></returns>
+        public static IReadOnlyList<IFoodPreferenceAdjustor> GetAdjustorsFor(Pawn eater)
+        {
+            Ideo ideo = eater.Ideo;
+
+            if (ideo == null)
+                return
+                    Array.Empty<IFoodPreferenceAdjustor>(); //only precepts can give this for now, change later if more are added 
+
+            return GetAdjustors(ideo);
+        }
 
         static PMFoodUtilities()
         {
@@ -32,21 +80,35 @@ namespace Pawnmorph
 
         static FoodPreferability GetAdjustedPreferability(Pawn pawn, [NotNull] Thing food)
         {
-            var rawPref = food.def.ingestible?.preferability;
+            //first check for adjustors 
+            Ideo ideo = pawn.Ideo;
+            if (ideo != null)
+            {
+                IReadOnlyList<IFoodPreferenceAdjustor> adjustors = GetAdjustors(ideo);
+                foreach (IFoodPreferenceAdjustor foodPreferenceAdjustor in adjustors)
+                {
+                    FoodPreferability? pref = foodPreferenceAdjustor.AdjustPreferability(pawn, food);
+                    if (pref != null) return pref.Value;
+                }
+            }
+
+
+            FoodPreferability? rawPref = food.def.ingestible?.preferability;
             if (rawPref == null) return FoodPreferability.Undefined;
-            var rPrefVal = rawPref.Value; 
+            FoodPreferability rPrefVal = rawPref.Value;
             FoodTypeFlags plantOrTree = FoodTypeFlags.Plant | FoodTypeFlags.Tree;
-            if((food.def.ingestible.foodType & plantOrTree) != 0 && (pawn.RaceProps.foodType & plantOrTree) != 0 )
+            if ((food.def.ingestible.foodType & plantOrTree) != 0 && (pawn.RaceProps.foodType & plantOrTree) != 0)
             {
-                var nx = ((int) rPrefVal) + 1; //make plants appear better then they actually are 
+                int nx = (int) rPrefVal + 1; //make plants appear better then they actually are 
                 nx = Mathf.Clamp(nx, 0, 9);
-                rPrefVal = (FoodPreferability) nx; 
-            }else if (pawn.RaceProps.foodType == FoodTypeFlags.CarnivoreAnimalStrict
-                   && (food.def.ingestible.foodType & FoodTypeFlags.CarnivoreAnimalStrict) != 0)
+                rPrefVal = (FoodPreferability) nx;
+            }
+            else if (pawn.RaceProps.foodType == FoodTypeFlags.CarnivoreAnimalStrict
+                  && (food.def.ingestible.foodType & FoodTypeFlags.CarnivoreAnimalStrict) != 0)
             {
-                var nx = ((int)rPrefVal) + 2; //make meat appear better then they actually are for strict carnivorous 
+                int nx = (int) rPrefVal + 2; //make meat appear better then they actually are for strict carnivorous 
                 nx = Mathf.Clamp(nx, 0, 9);
-                rPrefVal = (FoodPreferability)nx;
+                rPrefVal = (FoodPreferability) nx;
             }
 
             return rPrefVal; 
@@ -171,21 +233,33 @@ namespace Pawnmorph
             bool isDesperatePlantEater = IsDesperateHumanoidPlantEater(eater, foodCurCategory); 
 
             ThingRequest thingRequest;
-            if (!CanEatPlants(eater, allowPlant, foodCurCategory))
+            bool canEatPlants = CanEatPlants(eater, allowPlant, foodCurCategory);
+            if (!canEatPlants)
                 thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree);
             else
                 thingRequest = ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
             Thing bestThing = null;
             if (getter.IsHumanlike())
             {
-                //TODO split up search for hungry humanlike into 2 phases 
-                //whole map search for good food 
-                //small search for good plants 
+               
 
-                
 
-                bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position,
-                                                       getter.Map.listerThings.ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)),
+                if (canEatPlants)
+                {
+                    bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position,
+                                                           getter.Map.listerThings
+                                                                 .ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup
+                                                                                                          .FoodSource)),
+                                                           PathEndMode.ClosestTouch, TraverseParms.For(getter), HUMANOID_PLANT_SEARCH, FoodValidator);
+                }
+
+
+
+                if(bestThing == null)
+                    bestThing = SpawnedFoodSearchInnerScan(eater, getter.Position,
+                                                       getter.Map.listerThings
+                                                             .ThingsMatching(ThingRequest.ForGroup(ThingRequestGroup
+                                                                                                      .FoodSourceNotPlantOrTree)),
                                                        PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, FoodValidator);
 
                
@@ -373,10 +447,30 @@ namespace Pawnmorph
             int num9 = forceScanWholeMap ? 1 : 0;
             int num10 = ignoreReservations ? 1 : 0;
             var num11 = (int) minPrefOverride;
+            bool getterCanHunt = getter == eater && (getter.RaceProps.predator || getter.IsWildMan() && !getter.IsPrisoner);
+            bool willHuntLiberally = false; //if the eater will hunt even if there is regular food around depending on preferability
+            FoodPreferability huntPreferability = FoodPreferability.Undefined ; 
+
+            if (getterCanHunt)
+            {
+                var adjustors = GetAdjustorsFor(eater);
+                foreach (IFoodPreferenceAdjustor adjustor in adjustors)
+                {
+                    var hCategory = adjustor.MinHungerToHunt(eater);
+                    if (hCategory != null && hCategory.Value > HungerCategory.UrgentlyHungry)
+                    {
+                        huntPreferability = adjustor.AdjustPreferability(eater, FoodTypeFlags.Corpse) ?? FoodPreferability.DesperateOnly; 
+                    }
+                }
+            }
+
+
+
             Thing foodSource1 = BestFoodSourceOnMapOptimized(getter1, eater1, num1 != 0, out local,
                                                              FoodPreferability.MealLavish, num2 != 0, num3 != 0, num4 != 0,
                                                              true, num5 != 0, num6 != 0, num7 != 0, num8 != 0, num9 != 0,
                                                              num10 != 0, (FoodPreferability) num11);
+              
             if (thing1 != null || foodSource1 != null)
             {
                 if (thing1 == null && foodSource1 != null)
@@ -420,7 +514,8 @@ namespace Pawnmorph
                 }
             }
 
-            if (foodSource1 == null && getter == eater && (getter.RaceProps.predator || getter.IsWildMan() && !getter.IsPrisoner))
+            if ((foodSource1 == null || willHuntLiberally && GetAdjustedPreferability(eater, foodSource1) > huntPreferability)
+             && getterCanHunt)
             {
                 Pawn huntForPredator = BestPawnToHuntForPredator(getter, forceScanWholeMap);
                 if (huntForPredator != null)
@@ -496,12 +591,37 @@ namespace Pawnmorph
 
         private static bool CanEatPlants(Pawn eater, bool allowPlant, HungerCategory category)
         {
+            //check if the preferability of plants is changing due to an adjustor 
+            FoodTypeFlags plantType = FoodTypeFlags.Plant | FoodTypeFlags.Tree;
+
+            bool isHumanlike = eater.IsHumanlike();
+            if (ModsConfig.IdeologyActive && isHumanlike) //only humanlikes care about ideology here 
+            {
+                var ideo = eater.Ideo;
+                if (ideo != null)
+                {
+                    var adjustors = GetAdjustors(ideo);
+                    foreach (IFoodPreferenceAdjustor adjustor in adjustors)
+                    {
+                        var pref = adjustor.AdjustPreferability(eater, plantType); 
+                        if(pref == null) continue;
+                        if (pref.Value >= FoodPreferability.RawTasty)
+                        {
+                            if (category <= HungerCategory.Hungry) return true; 
+                        }
+                    }
+                }
+            }
+
+
             bool retval;
             //humanlikes will never eat plants unless they are urgently hungry or starving
-            if (eater.IsHumanlike() && category < HungerCategory.UrgentlyHungry)
+            if (isHumanlike && category <= HungerCategory.UrgentlyHungry)
                 retval = false;
             else
-                retval = ((uint) (eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) > 0U) & allowPlant;
+            {
+                retval = ((uint) (eater.RaceProps.foodType & plantType) > 0U) & allowPlant;
+            }
 
             return retval;
         }

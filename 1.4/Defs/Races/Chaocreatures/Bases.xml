@@ -1,0 +1,128 @@
+<Defs>
+	<ThingDef ParentName="AnimalThingBase" Name="PMChaocreatureBase" Abstract="True">
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<backstory>FormerHumanChaomorph</backstory>
+			</li>
+		</modExtensions>
+		<race>
+			<fleshType>Chaomorph</fleshType>
+			<lifeExpectancy>22</lifeExpectancy>
+			<gestationPeriodDays>20000</gestationPeriodDays>
+			<mateMtbHours>99999999</mateMtbHours>
+			<trainability>Advanced</trainability>
+			<lifeStageAges>
+				<li>
+					<def>AnimalBaby</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>AnimalJuvenile</def>
+					<minAge>0.2</minAge>
+				</li>
+				<li>
+					<def>AnimalAdult</def>
+					<minAge>0.45</minAge>
+				</li>
+			</lifeStageAges>
+			<leatherDef>Leather_Chao</leatherDef>
+			<soundMeleeHitPawn>Pawn_Melee_BigBash_HitPawn</soundMeleeHitPawn>
+			<soundMeleeHitBuilding>Pawn_Melee_BigBash_HitBuilding</soundMeleeHitBuilding>
+			<soundMeleeMiss>Pawn_Melee_BigBash_Miss</soundMeleeMiss>
+		</race>
+		<tradeTags>
+			<li>Chaomorph</li>
+		</tradeTags>
+	</ThingDef>
+	<ThingDef ParentName="PMChaocreatureBase" Name="PMChaomorphBase" Abstract="True">
+		<comps>
+			<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman">
+				<always>true</always>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Chaomorph</chaoType>
+				<selectionWeight>10</selectionWeight>
+			</li>
+		</modExtensions>
+		<race>
+			<baseBodySize>2.9</baseBodySize>
+			<baseHungerRate>0.85</baseHungerRate>
+		</race>
+		<tradeTags>
+			<li>AnimalChaotic</li>
+		</tradeTags>
+	</ThingDef>
+	
+	<ThingDef ParentName="PMChaomorphBase" Name="PMSpecialChaomorphBase" Abstract="True">
+
+		<race>
+			<lifeStageAges Inherit = "False">
+				<li>
+					<def>AnimalBaby</def>
+					<minAge>0</minAge>
+				</li>
+				<li>
+					<def>AnimalJuvenile</def>
+					<minAge>2.0</minAge>
+				</li>
+				<li>
+					<def>AnimalAdult</def>
+					<minAge>4.0</minAge>
+					<soundCall>Pawn_Thrumbo_Call</soundCall>
+					<soundAngry>Pawn_Thrumbo_Angry</soundAngry>
+					<soundWounded>Pawn_Thrumbo_Pain</soundWounded>
+					<soundDeath>Pawn_Thrumbo_Death</soundDeath>
+				</li>
+			</lifeStageAges>
+			<herdMigrationAllowed>false</herdMigrationAllowed>
+			<baseBodySize>7</baseBodySize>
+			<baseHungerRate>3.5</baseHungerRate>
+			<lifeExpectancy>220</lifeExpectancy>
+			<manhunterOnDamageChance>1.00</manhunterOnDamageChance>
+		</race>
+		<tradeTags>
+			<li>AnimalExotic</li>
+		</tradeTags>
+		<modExtensions Inherit = "False">
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Special</chaoType>
+				<selectionWeight>-1</selectionWeight>
+			</li>
+			<li Class="Pawnmorph.DefExtensions.FormerHumanSettings">
+				<transformedThought>PM_CThrumboTfThought</transformedThought>
+				<backstory>PM_ChaothrumboBackstory</backstory>
+			</li>
+		</modExtensions>
+	</ThingDef>
+	
+	<ThingDef ParentName="PMChaocreatureBase" Name="PMChaomeldBase" Abstract="True">
+		<comps>
+			<li>
+				<compClass>Pawnmorph.ThingComps.AlwaysMergedPawn</compClass>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.ChaomorphExtension">
+				<chaoType>Merge</chaoType>
+				<selectionWeight>10</selectionWeight>
+			</li>
+		</modExtensions>
+		<race>
+			<body>Chaomeld</body>
+			<herdAnimal>true</herdAnimal>
+			<baseBodySize>2</baseBodySize>
+			<foodType>OmnivoreAnimal</foodType>
+			<wildness>0.1</wildness>
+			<baseHungerRate>1.7</baseHungerRate>
+			<baseHealthScale>1.5</baseHealthScale>
+			<manhunterOnDamageChance>0.10</manhunterOnDamageChance>
+			<manhunterOnTameFailChance>0.02</manhunterOnTameFailChance>
+			<useMeatFrom>Chaocow</useMeatFrom>
+		</race>
+		<tradeTags>
+			<li>AnimalChaoticMerged</li>
+		</tradeTags>
+	</ThingDef>
+</Defs>

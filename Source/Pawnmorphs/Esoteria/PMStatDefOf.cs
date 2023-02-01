@@ -1,6 +1,7 @@
 ﻿// PMStatDefOf.cs modified by Iron Wolf for Pawnmorph on 12/01/2019 9:01 AM
 // last updated 12/01/2019  9:01 AM
 
+using System.Security.Policy;
 using JetBrains.Annotations;
 using RimWorld;
 
@@ -67,8 +68,17 @@ namespace Pawnmorph
         /// <summary>
         /// the concentration of mutanite in a thing, this is used by refineries to determine how much of a thing is required to make mutanite 
         /// </summary>
-        public static StatDef MutaniteConcentration; 
+        public static StatDef MutaniteConcentration;
 
+        /// <summary>
+        /// how good the pawn is at using natural weapons 
+        /// </summary>
+        [UsedImplicitly, NotNull] public static StatDef PM_NaturalMeleeEffectiveness;
+
+        /// <summary>
+        /// how fast the pawn is at using natural weapons 
+        /// </summary>
+        [UsedImplicitly, NotNull] public static StatDef PM_NaturalMeleeSpeed;
 
         /// <summary>
         /// stat that affects the likely hood that a pawn fully transforms
@@ -81,10 +91,36 @@ namespace Pawnmorph
         /// </summary>
         [NotNull]
         public static StatDef SapienceRecoverFactor;
+
+
+        /// <summary>
+        ///     how much pain a pawn receives from mutations and transformations. percentage from [0,)
+        /// </summary>
+        [NotNull] [UsedImplicitly] public static StatDef PM_MutagenPainSensitivity; 
+
+        /// <summary>
+        ///     Multiplier on the total pawn body size.
+        /// </summary>
+        public static StatDef PM_BodySize;
+
+
+        /// <summary>
+        ///     Controls whether or not the pawn can use the flight ability.
+        /// </summary>
+        /// use the inverse of this value to get the multiplier
+        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [NotNull]
+        public static StatDef PM_Lift;
+
+
         // ReSharper disable once NotNullMemberIsNotInitialized
         static PMStatDefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(PMStatDefOf));
         }
+        /// <summary>
+        /// The drug synthesis speed stat 
+        /// </summary>
+        public static StatDef DrugSynthesisSpeed; 
     }
 }

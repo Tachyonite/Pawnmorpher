@@ -1,0 +1,71 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerJawPart">
+		<mutationMemory>EtherWargMuzzle</mutationMemory>
+		<classInfluence>WargMorph</classInfluence>
+		<defName>EtherWargMuzzle</defName>
+		<label>warg muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Warg/Warg_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a warg. [PAWN_possessive] teeth are pointed to suit. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a warg. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a warg. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerEarPart">
+		<mutationMemory>EtherWargEar</mutationMemory>
+		<classInfluence>WargMorph</classInfluence>
+		<defName>EtherWargEar</defName>
+		<label>warg ear</label>
+		<graphics>
+			<LeftEar>Parts/Warg/Warg_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Warg/Warg_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Warg/Warg_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Warg/Warg_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The rugged, pointed ear of a hungry warg.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ScavengerTailPart">
+		<mutationMemory>EtherWargTail</mutationMemory>
+		<classInfluence>WargMorph</classInfluence>
+		<defName>EtherWargTail</defName>
+		<label>tufted tail</label>
+		<graphics>
+			<Tail>Parts/Warg/Warg_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A thin tail with a tuft of fur at the end.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

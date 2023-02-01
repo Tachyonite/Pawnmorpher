@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
@@ -22,11 +23,34 @@ namespace Pawnmorph
         /// <summary>The thought to add when the resource is produced</summary>
         public ThoughtDef thought = null;
 
+        public List<HediffGiver> hediffGivers;
+
+        /// <summary>
+        /// The minimum production boost needed to trigger this stage. Provided by Production Aspect.
+        /// </summary>
+        public float minProductionBoost;
+
+        /// <summary>
+        /// The minimum mutation severity needed to trigger this stage if any.
+        /// </summary>
+        public float? minSeverity;
+
+        public float hungerRateFactor = 1f;
+
+        /// <summary>
+        /// all stat offsets that will be active during this stage 
+        /// </summary>
+        [CanBeNull] public List<StatModifier> statOffsets;
+
         /// <summary>Gets the resource.</summary>
         /// <value>The resource.</value>
         public ThingDef Resource
         {
-            get { return ThingDef.Named(resource); }
+            get
+            {
+                if (string.IsNullOrEmpty(resource)) return null;
+                return ThingDef.Named(resource);
+            }
         }
 
         /// <summary>Gets the rare resource.</summary>

@@ -1,0 +1,31 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewBearMuzzle</defName>
+		<label>grew a bear muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing an ursine muzzle</li>
+				<li>tale_noun->[PAWN_nameDef] growing an bear muzzle</li>
+				<li>image->[PAWN_nameFull] face pushing out into a ursine muzzle [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] yells becoming ursine growls [circumstance_group]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomeUrsinePaws</defName>
+		<label>hands become paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] hands becoming bear like paws</li>
+				<li>tale_noun->[PAWN_nameDef] hands turning into ursine paws</li>
+				<li>image->[PAWN_nameFull] palms start turning black, becoming paw pads [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] thumb starts shrinking, but stops before going away entirely [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] nails lengthen into sharp claws [circumstance_group]</li>
+				<li>circumstance_phrase->while someone rubs [PAWN_possessive] paw pads</li>
+				<li>desc_sentence->[PAWN_pronoun] is grateful they still have thumbs.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins scratching a nearby wall with [PAWN_possessive] new claws.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

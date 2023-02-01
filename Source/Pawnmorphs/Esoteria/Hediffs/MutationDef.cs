@@ -21,6 +21,9 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Verse.HediffDef" />
     public class MutationDef : HediffDef, IDebugString
     {
+        [Unsaved()]
+        private MutationStage[] _cachedMutationStages;
+
         /// <summary>
         ///     list of body parts this mutation can be added to
         /// </summary>
@@ -36,6 +39,11 @@ namespace Pawnmorph.Hediffs
         public List<MutationCategoryDef> categories = new List<MutationCategoryDef>();
 
         /// <summary>
+        ///     The stage patches that are applied once the object has been deserialized.
+        /// </summary>
+        public List<MutationStagePatch> stagePatches = new List<MutationStagePatch>();
+
+        /// <summary>
         ///     The default chance to add this mutation
         /// </summary>
         public float defaultAddChance = 1f;
@@ -49,6 +57,11 @@ namespace Pawnmorph.Hediffs
         /// if this mutation can be tagged and stored 
         /// </summary>
         public bool isTaggable = true;
+
+        /// <summary>
+        /// Indicates whether there is a reason to run vanilla hediff base logic or not.
+        /// </summary>
+        public bool RunBaseLogic = false;
 
         /// <summary>
         /// optional field that will act as an explicit description for the mutations 'genome' object
@@ -70,12 +83,12 @@ namespace Pawnmorph.Hediffs
         /// The graphics for this mutation 
         /// </summary>
         [CanBeNull]
-        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>(); 
+        public List<MutationGraphicsData> graphics = new List<MutationGraphicsData>();
 
         /// <summary>
         /// The abstract 'value' of this mutation, can be negative or zero if the mutation is in general negative 
         /// </summary>
-        public int value; 
+        public int value;
 
         /// <summary>
         ///     the rule pack to use when generating mutation logs for this mutation
@@ -89,14 +102,20 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// if this mutation should be removed instantly by a reverter
         /// </summary>
-        public bool removeInstantly; 
-        
+        public bool removeInstantly;
+
         /// <summary>
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
-        [NotNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [CanBeNull][UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public AnimalClassBase classInfluence;
+
+        /// <summary>
+        /// The class influences if multiple.
+        /// </summary>
+        [CanBeNull][UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        public List<AnimalClassBase> classInfluences;
 
         /// <summary>The mutation memory</summary>
         [CanBeNull] public ThoughtDef mutationMemory;
@@ -106,14 +125,19 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public bool memoryIgnoresLimit;
 
+        [Unsaved] private RestrictionLevel? _restrictionLevel;
 
         [Unsaved] private RemoveFromPartCompProperties _rmComp;
 
-        [Unsaved] private bool? _isRestricted;
-
         [Unsaved] private List<ThingDef> _associatedAnimals;
+        [Unsaved] private List<AnimalClassBase> _classInfluencesCache;
 
-        
+		/// <summary>
+		/// Gets a cached mutation layer from any remover RemoveFromPartCompProperties component. Null if none.
+		/// </summary>
+		public MutationLayer? Layer { get; private set; } = null;
+
+
         /// <summary>
         ///     Gets the animals associated with this mutation animals.
         /// </summary>
@@ -130,6 +154,16 @@ namespace Pawnmorph.Hediffs
                                                      .ToList());
             }
         }
+
+        /// <summary>
+        /// Gets the cached mutation stages. this is the same size as stages but pre cast to <see cref="MutationStage"/> if a particular stage is not
+        /// a MutationsStage then the corresponding entry in this list is null 
+        /// </summary>
+        /// <value>
+        /// The cached mutation stages.
+        /// </value>
+        [NotNull]
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
@@ -172,13 +206,46 @@ namespace Pawnmorph.Hediffs
         /// </value>
         public bool IsRestricted
         {
+            get { return RestrictionLevel > RestrictionLevel.UnRestricted; }
+        }
+
+        /// <summary>
+        /// Gets the finalized collection of class influences regardless of how it was defined in the XML.
+        /// </summary>
+        [NotNull]
+        public List<AnimalClassBase> ClassInfluences
+        {
             get
             {
-                if (_isRestricted == null)
-                    _isRestricted =
-                        categories.Any(c => c.restricted); //if any of the categories are restricted the whole mutation is restricted 
+                if (_classInfluencesCache == null)
+                    _classInfluencesCache = classInfluences ?? new List<AnimalClassBase>() { classInfluence ?? AnimalClassDefOf.Animal };
 
-                return _isRestricted.Value;
+                return _classInfluencesCache;
+            }
+        }
+
+        /// <summary>
+        /// Gets the restriction level of this mutation
+        /// </summary>
+        /// <value>
+        /// The restriction level.
+        /// </value>
+        public RestrictionLevel RestrictionLevel
+        {
+            get
+            {
+                if (_restrictionLevel == null)
+                {
+                    _restrictionLevel = RestrictionLevel.UnRestricted;
+                    foreach (MutationCategoryDef cat in categories.MakeSafe())
+                    {
+                        if (_restrictionLevel == RestrictionLevel.Always) break;
+                        if (cat.restrictionLevel > _restrictionLevel) _restrictionLevel = cat.restrictionLevel;
+                    }
+
+                }
+
+                return _restrictionLevel.Value;
             }
         }
 
@@ -194,7 +261,7 @@ namespace Pawnmorph.Hediffs
         public bool BlocksMutation([NotNull] MutationDef otherMutation, [CanBeNull] BodyPartRecord thisPart,
                                    [CanBeNull] BodyPartRecord addPart)
         {
-            if (blockSites?.Contains(addPart?.def) == true) return true; 
+            if (blockSites?.Contains(addPart?.def) == true) return true;
             BlockEntry entry = blockList?.FirstOrDefault(e => e.mutation == otherMutation);
             if (entry == null) return false;
             return thisPart == addPart || entry.blockOnAnyPart;
@@ -220,6 +287,17 @@ namespace Pawnmorph.Hediffs
             foreach (BlockEntry entry in blockList.MakeSafe())
                 if (entry.mutation == null)
                     yield return "block entry has missing mutation def!";
+
+
+            if (classInfluence != null && (classInfluences != null && classInfluences.Count > 0))
+            {
+                yield return "both classInfluence and classInfluences are set. only 1 should be set in any mutation";
+            }
+
+            if (classInfluence == null && (classInfluences == null || classInfluences.Count == 0))
+            {
+                yield return "No classInfluence has been assigned.";
+            }
         }
 
 
@@ -232,8 +310,8 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] AnimalClassDef classDef)
         {
             if (classDef == null) throw new ArgumentNullException(nameof(classDef));
-            if (classInfluence == null) return false;
-            return classDef.Contains(classInfluence);
+            if (ClassInfluences == null) return false;
+            return ClassInfluences.Any(x => classDef.Contains(x));
         }
 
         /// <summary>
@@ -245,8 +323,8 @@ namespace Pawnmorph.Hediffs
         public bool GivesInfluence([NotNull] MorphDef morph)
         {
             if (morph == null) throw new ArgumentNullException(nameof(morph));
-            if (classInfluence == null) return false;
-            return classInfluence.Contains(morph);
+            if (ClassInfluences == null) return false;
+            return ClassInfluences.Any(x => x.Contains(morph));
         }
 
         /// <summary>
@@ -255,7 +333,6 @@ namespace Pawnmorph.Hediffs
         public override void ResolveReferences()
         {
             base.ResolveReferences();
-            classInfluence = classInfluence ?? AnimalClassDefOf.Animal;
 
             if (mutationMemory == null)
             {
@@ -266,6 +343,13 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+
+            foreach (MutationStagePatch stagePatch in stagePatches)
+            {
+                stagePatch.Apply(this);
+            }
+
+
             if (parts != null)
             {
                 //get rid of any duplicates 
@@ -275,7 +359,27 @@ namespace Pawnmorph.Hediffs
                 parts.AddRange(_tmpPartLst);
 
             }
-        }
+
+
+            if (stages.NullOrEmpty())
+            {
+                _cachedMutationStages = Array.Empty<MutationStage>();
+            }
+            else
+            {
+                int count = stages.Count;
+                _cachedMutationStages = new MutationStage[count];
+                for (int i = 0; i < stages.Count; i++)
+                {
+                    _cachedMutationStages[i] = stages[i] as MutationStage; 
+                }
+            }
+
+            if (hediffGivers != null && hediffGivers.Count > 0)
+                RunBaseLogic = true;
+
+            Layer = RemoveComp?.layer;
+		}
 
         [NotNull]
         private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>();

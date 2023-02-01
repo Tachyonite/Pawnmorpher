@@ -6,6 +6,21 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="ListOfDefs">
+        <xs:sequence>
+            <xs:element name="li" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="MayRequire" type="xs:string" use="optional" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Inherit" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
     <xs:complexType name="StatModifier">
         <xs:all>
             <xs:element name="stat" type="xs:string" />
@@ -47,4 +62,197 @@
             <xs:element name="despised" type="xs:string" />
         </xs:all>
     </xs:complexType>
+    <xs:simpleType name="Rect">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ShadowData">
+        <xs:all>
+            <xs:element name="volume" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="offset" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="DamageGraphicData">
+        <xs:all>
+            <xs:element name="enabled" type="xs:boolean" minOccurs="0" />
+
+            <xs:element name="rectN" type="Rect" minOccurs="0" />
+            <xs:element name="rectE" type="Rect" minOccurs="0" />
+            <xs:element name="rectS" type="Rect" minOccurs="0" />
+            <xs:element name="rectW" type="Rect" minOccurs="0" />
+            <xs:element name="rect" type="Rect" minOccurs="0" />
+
+            <xs:element name="scratches" type="ListOfStrings" minOccurs="0" />
+
+            <xs:element name="cornerTL" type="xs:string" minOccurs="0" />
+            <xs:element name="cornerTR" type="xs:string" minOccurs="0" />
+            <xs:element name="cornerBL" type="xs:string" minOccurs="0" />
+            <xs:element name="cornerBR" type="xs:string" minOccurs="0" />
+            <xs:element name="edgeLeft" type="xs:string" minOccurs="0" />
+            <xs:element name="edgeRight" type="xs:string" minOccurs="0" />
+            <xs:element name="edgeTop" type="xs:string" minOccurs="0" />
+            <xs:element name="edgeBot" type="xs:string" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="LinkDrawerType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None" />
+            <xs:enumeration value="Basic" />
+            <xs:enumeration value="CornerFiller" />
+            <xs:enumeration value="Transmitter" />
+            <xs:enumeration value="TransmitterOverlay" />
+            <xs:enumeration value="Asymmetric" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AsymBoarderData">
+        <xs:all>
+            <xs:element name="color" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\(0\.[0-9]+,0\.[0-9]+,0\.[0-9]+(,0\.[0-9]+)?\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="size" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="offset" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="AsymmetricLinkData">
+        <xs:all>
+            <xs:element name="linkFlags" type="xs:string" minOccurs="0" />
+            <xs:element name="linkToDoors" type="xs:boolean" minOccurs="0" />
+            <xs:element name="drawDoorBorderEast" type="AsymBoarderData" minOccurs="0" />
+            <xs:element name="drawDoorBorderWest" type="AsymBoarderData" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="GraphicData">
+        <xs:all>
+            <xs:element name="texPath" type="xs:string" minOccurs="0" />
+            <xs:element name="graphicClass" type="xs:string" minOccurs="0" />
+            <xs:element name="shaderType" type="xs:string" minOccurs="0" />
+
+            <xs:element name="shaderParameters" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any maxOccurs="unbounded" processContents="lax" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+
+            <xs:element name="color" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\(0\.[0-9]+,0\.[0-9]+,0\.[0-9]+(,0\.[0-9]+)?\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="colorTwo" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\(0\.[0-9]+,0\.[0-9]+,0\.[0-9]+(,0\.[0-9]+)?\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawSize" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawOffset" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawOffsetNorth" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawOffsetEast" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawOffsetSouth" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="drawOffsetWest" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+,[+-]?([0-9]*[.])?[0-9]+\)" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+
+            <xs:element name="onGroundRandomRotateAngle" type="xs:float" minOccurs="0" />
+            <xs:element name="drawRotated" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowFlip" type="xs:boolean" minOccurs="0" />
+            <xs:element name="flipExtraRotation" type="xs:float" minOccurs="0" />
+            <xs:element name="renderInstanced" type="xs:boolean" minOccurs="0" />
+            <xs:element name="allowAtlasing" type="xs:boolean" minOccurs="0" />
+            <xs:element name="renderQueue" type="xs:int" minOccurs="0" />
+
+            <xs:element name="shadowData" type="ShadowData" minOccurs="0" />
+            <xs:element name="damageData" type="DamageGraphicData" minOccurs="0" />
+            <xs:element name="linkType" type="LinkDrawerType" minOccurs="0" />
+            <xs:element name="linkFlags" type="xs:string" minOccurs="0" />
+
+            <xs:element name="asymmetricLink" type="AsymmetricLinkData" minOccurs="0" />
+
+        </xs:all>
+    </xs:complexType>
+
 </xs:schema>

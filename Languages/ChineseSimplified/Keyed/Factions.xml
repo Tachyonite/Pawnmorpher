@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <GoodwillChangedReason_PawnTransformed>{memberLabel} 转变成了一个 {species}</GoodwillChangedReason_PawnTransformed>
+  <FactionLeaderTransformedLabel>{factionName}的{leaderTitle} 转变成了一个 {species}</FactionLeaderTransformedLabel>
+  <FactionLeaderTransformedContent>TODO</FactionLeaderTransformedContent>
+  <GoodwillChangedReason_PawnReverted>{memberLabel} 不再是一个 {species}</GoodwillChangedReason_PawnReverted>
+</LanguageData>

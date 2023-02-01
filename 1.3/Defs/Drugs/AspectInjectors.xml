@@ -17,9 +17,6 @@
             <li>RewardSpecial</li>
         </thingSetMakerTags>
         <techLevel>Spacer</techLevel>
-        <tradeTags>
-            <li>AspectInjectors</li>
-        </tradeTags>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.MutagenExtension">
                 <mutagen>HealerMutagen</mutagen>
@@ -31,7 +28,9 @@
     <ThingDef ParentName="PM_AspectInjectorBase">
         <defName>PM_ParagonInjector</defName>
         <label>paragon injector</label>
-        <description>A special injector that causes mutations to adapt much better then normal.</description>
+        <description>A special injector that tunes the mechanites within the user's body, causing their existing mutations to adapt much better then normal. "Paragon" mutations, as they're known, often combine the best aspects of human and animal anatomy to increase their benefits and minimize their downsides.
+
+Paragon injectors are more powerful than adaption cream, and so can produce even more powerful adapations than what adaption cream can.</description>
         <graphicData>
             <texPath>Things/Item/Drug/ParagonSerum</texPath>
             <graphicClass>Graphic_Single</graphicClass>

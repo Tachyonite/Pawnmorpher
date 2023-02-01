@@ -71,8 +71,13 @@ namespace Pawnmorph.TfSys
 
             Pawn pawnTf = PawnGenerator.GeneratePawn(request);
 
-            pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurLevel;
-            pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
+
+            if (pawnTf.needs.food != null)
+                pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurLevel ?? pawnTf.needs.food.MaxLevel;
+
+            if (pawnTf.needs.rest != null)
+                pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
+
             Log.Message($"going to spawn {pawnTf.Name} {pawnTf.KindLabel}");
             var spawned = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.GetCorrectPosition(), transformedPawn.GetCorrectMap());
             spawned.equipment.DestroyAllEquipment();
@@ -133,6 +138,10 @@ namespace Pawnmorph.TfSys
         {
             Pawn original = request.originals[0];
 
+            // Drop the pawn if being carried to allow correctly despawning.
+            if (original.CarriedBy != null)
+                original.CarriedBy.carryTracker.TryDropCarriedThing(original.CarriedBy.Position, ThingPlaceMode.Direct, out _);
+
             if (request.addMutationToOriginal)
                 TryAddMutationsToPawn(original, request.cause, request.outputDef);
 
@@ -152,13 +161,21 @@ namespace Pawnmorph.TfSys
             Pawn animalToSpawn = PawnGenerator.GeneratePawn(pRequest); //make the temp pawn 
 
 
+            // Copies the original pawn's food need to the animal's.
+            if (animalToSpawn.needs.food != null)
+                animalToSpawn.needs.food.CurLevel = original.needs.food?.CurLevel ?? animalToSpawn.needs.food.MaxLevel;
 
-            animalToSpawn.needs.food.CurLevel =
-                original.needs.food.CurLevel; // Copies the original pawn's food need to the animal's.
-            animalToSpawn.needs.rest.CurLevel =
-                original.needs.rest.CurLevel; // Copies the original pawn's rest need to the animal's.
+            // Copies the original pawn's rest need to the animal's.
+            if (animalToSpawn.needs.rest != null)
+                animalToSpawn.needs.rest.CurLevel = original.needs.rest?.CurLevel ?? animalToSpawn.needs.rest.MaxLevel;
+            
             animalToSpawn.Name = original.Name; // Copies the original pawn's name to the animal's.
-            float sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
+
+            float sapienceLevel;
+            if (original.health?.hediffSet?.HasHediff(TfHediffDefOf.SapienceLimiterHediff) == true)
+                sapienceLevel = original.GetSapienceLevel() ?? 1;
+            else
+                sapienceLevel = request.forcedSapienceLevel ?? GetSapienceLevel(original, animalToSpawn);
 
             GiveTransformedPawnSapienceState(animalToSpawn, sapienceLevel);
 
@@ -311,7 +328,12 @@ namespace Pawnmorph.TfSys
             if (animal == null) return false; 
             var rFaction = transformedPawn.FactionResponsible;
 
+            float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.animal, transformedPawn.original.RaceProps);
+            float originalAge = transformedPawn.original.ageTracker.AgeBiologicalYearsFloat;
 
+            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
+            long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
+            transformedPawn.original.ageTracker.AgeBiologicalTicks += agedTicksDelta; 
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 
             if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
@@ -338,7 +360,12 @@ namespace Pawnmorph.TfSys
 
             ReactionsHelper.OnPawnReverted(spawned, animal, transformedPawn.reactionStatus);
             DoPostReversionEffects(spawned, animal);
+            if (animal.IsWorldPawn())
+            {
+                Find.World.worldPawns.RemovePawn(animal);
 
+            }
+            animal.ideo = null;
             animal.Destroy();
             return true;
         }

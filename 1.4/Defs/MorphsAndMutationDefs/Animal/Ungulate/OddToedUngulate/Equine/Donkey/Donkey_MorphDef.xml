@@ -1,0 +1,24 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="EquineMorph">
+		<defName>DonkeyMorph</defName>
+		<label>donkeymorph</label>
+		<description>Donkeymorphs are strong pack morphs that often have hoofed feet and a broad snout that snorts when they get upset. They're very good haulers, but often rather stubborn.</description>
+		<race>Donkey</race>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphDonkeyTF</fullTransformation>
+		<partialTransformation>PawnmorphDonkeyTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(180,180,180)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>DonkeyTransformationMemory</transformationMemory>
+			<revertedMemory>DonkeyRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

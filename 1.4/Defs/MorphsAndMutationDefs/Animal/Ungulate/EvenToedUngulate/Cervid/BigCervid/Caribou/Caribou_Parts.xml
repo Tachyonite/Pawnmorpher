@@ -1,0 +1,104 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidJawPart">
+		<classInfluence>CaribouMorph</classInfluence>
+		<defName>EtherCaribouJaw</defName>
+		<label>caribou snout</label>
+		<graphics>
+			<Muzzle>Parts/Caribou/Caribou_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long caribou muzzle. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long caribou muzzle. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into a long caribou muzzle. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidEarPart">
+		<classInfluence>CaribouMorph</classInfluence>
+		<defName>EtherCaribouEar</defName>
+		<label>caribou ear</label>
+		<graphics>
+			<LeftEar>Parts/Caribou/Caribou_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Caribou/Caribou_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Caribou/Caribou_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Caribou/Caribou_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a large caribou ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidTailPart">
+		<classInfluence>CaribouMorph</classInfluence>
+		<defName>EtherCaribouTail</defName>
+		<label>caribou tail</label>
+		<graphics>
+			<Tail>Parts/Caribou/Caribou_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a small caribou tail.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="BigCervidHornPart">
+		<defName>EtherCaribouAntlers</defName>
+		<label>caribou antlers</label>
+		<description>large caribou antlers.</description>
+		<classInfluence>CaribouMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<mutationMemory>EtherAntlers</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>From [PAWN_nameDef]'s head a large pair of antlers is growing under a soft felt of velvet skin. While still not fully grown they're already dangerous for being so hard.</description>
+					<!-- 
+					<graphics>
+						<Horns></Horns>
+					</graphics> 
+					-->
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s head now sports an impressive rack with many nasty-looking spikes. Shirts are especially at risk.</description>
+					<graphics>
+						<Horns>Parts/Caribou/Caribou_Horns</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

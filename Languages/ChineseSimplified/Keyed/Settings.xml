@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <PawnmorpherModName>变体科技</PawnmorpherModName>
+  <enableFalloutCheckboxLabel>Enable Mutagenic Fallout (Work In Progress)</enableFalloutCheckboxLabel>
+  <enableFalloutCheckboxTooltip>激活后，一个诱变辐射尘事件会出现。</enableFalloutCheckboxTooltip>
+  <enableMutagenLeakCheckboxLabel>启用诱变剂泄漏</enableMutagenLeakCheckboxLabel>
+  <enableMutagenLeakCheckboxTooltip>启用泥浆管道可能爆炸并泄漏泥浆的特殊事件。</enableMutagenLeakCheckboxTooltip>
+  <enableMutagenCheckboxLabel>启用诱变飞船部件</enableMutagenCheckboxLabel>
+  <enableMutagenCheckboxTooltip>激活后，会出现一种新的、会不断扩大影响范围的诱变飞船部件。</enableMutagenCheckboxTooltip>
+  <enableMutagenDiseasesCheckboxLabel>启用变异疾病</enableMutagenDiseasesCheckboxLabel>
+  <enableMutagenDiseasesCheckboxTooltip>激活后，诱变疾病事件中小人会被传染突变</enableMutagenDiseasesCheckboxTooltip>
+  <enableMutagenMeteorCheckboxLabel>启用诱变陨石影响范围</enableMutagenMeteorCheckboxLabel>
+  <enableMutagenMeteorCheckboxTooltip>激活后，诱变陨石会诱发附近小人突变。</enableMutagenMeteorCheckboxTooltip>
+  <enableWildFormersCheckboxLabel>启用野生的前人类</enableWildFormersCheckboxLabel>
+  <enableWildFormersCheckboxTooltip>激活后，野生的变体动物会出现在地图上，可被逆转回人类。</enableWildFormersCheckboxTooltip>
+  <PMHazardousChaobulbs>启用危险的超音波</PMHazardousChaobulbs>
+  <PMHazardousChaobulbsTooltip>如果失败，会产生诱变积累。</PMHazardousChaobulbsTooltip>
+  <transformChanceSliderLabel>诱变物使小人完全变形的几率</transformChanceSliderLabel>
+  <formerChanceSliderLabel>野生变体动物带有前人类属性的几率</formerChanceSliderLabel>
+  <partialChanceSliderLabel>变体蛋和变体奶完全转化（而非单一突变）小人的几率</partialChanceSliderLabel>
+  <maxMutationThoughtsSliderLabel>控制小人能同时拥有突变相关的心情和想法的最大数目。</maxMutationThoughtsSliderLabel>
+  <friendlyManhunterTfChance>友方在变异后有机率会去猎杀人类</friendlyManhunterTfChance>
+  <manhunterTfChance>变异后，友方有机率会去猎杀人类</manhunterTfChance>
+  <PMInjectorsRequireTagging>注射器需要标记</PMInjectorsRequireTagging>
+  <PMInjectorsRequireTaggingTooltip>如果为启用，则需要标记动物来制作注射器。</PMInjectorsRequireTaggingTooltip>
+</LanguageData>

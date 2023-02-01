@@ -98,15 +98,47 @@ namespace Pawnmorph.TfSys
         /// </returns>
         public virtual bool CanInfect(Pawn pawn)
         {
-            if (!def.canInfectAnimals && pawn.RaceProps.Animal) return false;
-            if (!def.canInfectMechanoids && pawn.RaceProps.FleshType != FleshTypeDefOf.Normal) return false;
-            var ext = pawn.def.GetModExtension<RaceMutationSettingsExtension>();
+            return CanInfect(pawn.def) && !HasAnyImmunizingHediffs(pawn); 
+        }
+
+        /// <summary>
+        /// Determines whether this instance can infect the specified race definition.
+        /// </summary>
+        /// <param name="raceDef">The race definition.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance can infect the specified race definition; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool CanInfect(ThingDef raceDef)
+        {
+            var race = raceDef.race;
+            if (race == null)
+                return false;
+
+            if (!def.canInfectAnimals && race.Animal)
+                return false;
+
+            if (!def.canInfectMechanoids && race.FleshType == FleshTypeDefOf.Mechanoid)
+                return false;
+
+            if (race.FleshType != FleshTypeDefOf.Normal && race.FleshType != FleshTypeDefOf.Insectoid)
+            {
+                if (raceDef is AlienRace.ThingDef_AlienRace alien)
+                {
+                    if (alien.alienRace.compatibility.IsFlesh == false)
+                        return false;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            var ext = raceDef.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null)
             {
                 return !ext.immuneToAll;
             }
-
-            return !HasAnyImmunizingHediffs(pawn); 
+            return true;
         }
 
 
@@ -127,15 +159,27 @@ namespace Pawnmorph.TfSys
             if (!def.canInfectAnimals && race.race.Animal)
             {
                 builder.AppendLine($"{race.defName} is an animal and {def.defName} cannot infect animals");
-                return ;
-            }
-
-            if (!def.canInfectMechanoids && race.race.FleshType != FleshTypeDefOf.Normal)
-            {
-
-                builder.AppendLine($"{race.defName} has a custom flesh type");
                 return;
             }
+
+
+            if (def.canInfectMechanoids == false && race.race.FleshType != FleshTypeDefOf.Normal)
+            {
+                if (race is AlienRace.ThingDef_AlienRace alien)
+                {
+                    if (alien.alienRace.compatibility.IsFlesh == false)
+                    {
+                        builder.AppendLine($"alien {race.defName} has a custom fleh type and is not flesh compatible");
+                        return;
+                    }
+                }
+                else
+                {
+                    builder.AppendLine($"{race.defName} has a custom flesh type");
+                    return;
+                }
+            }
+                
             var ext = race.GetModExtension<RaceMutationSettingsExtension>();
             if (ext != null&& ext.immuneToAll)
             {
@@ -227,9 +271,9 @@ namespace Pawnmorph.TfSys
             if (factionResponsible != null)
                 PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
-                                                                                                     .FACTION_RESPONSIBLE));
+                                                                                                     .FACTION_RESPONSIBLE), def.Named(PMHistoryEventArgsNames.SOURCE));
             else
-                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg);
+                PMHistoryEventDefOf.Reverted.SendEvent(pArg, aArg, def.Named(PMHistoryEventArgsNames.SOURCE));
 
 
         }
@@ -248,9 +292,9 @@ namespace Pawnmorph.TfSys
             if (factionResponsible != null)
                 PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg,
                                                                          factionResponsible.Named(PMHistoryEventArgsNames
-                                                                                                     .FACTION_RESPONSIBLE));
+                                                                                                     .FACTION_RESPONSIBLE), def.Named(PMHistoryEventArgsNames.SOURCE));
             else
-                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg); 
+                PMHistoryEventDefOf.Transformed.SendEvent(pArg, aArg, def.Named(PMHistoryEventArgsNames.SOURCE)); 
         }
 
         /// <summary>
@@ -270,29 +314,6 @@ namespace Pawnmorph.TfSys
                         ?? request.outputDef.race.GetModExtension<FormerHumanSettings>()?.manhunterSettings
                         ?? ManhunterTfSettings.Default;
             return settings.ManhunterChance(isFriendly); 
-        }
-
-
-
-        /// <summary>
-        /// Determines whether this instance can infect the specified race definition.
-        /// </summary>
-        /// <param name="raceDef">The race definition.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance can infect the specified race definition; otherwise, <c>false</c>.
-        /// </returns>
-        public virtual bool CanInfect(ThingDef raceDef)
-        {
-            if (raceDef.race == null) return false; 
-            if (!def.canInfectAnimals && raceDef.race.Animal) return false;
-            if (!def.canInfectMechanoids && raceDef.race.IsMechanoid) return false;
-            var ext = raceDef.GetModExtension<RaceMutationSettingsExtension>();
-            if (ext != null)
-            {
-                return !ext.immuneToAll;
-            }
-
-            return true;
         }
 
         /// <summary>

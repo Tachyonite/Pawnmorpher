@@ -1,4 +1,5 @@
 ﻿using Pawnmorph.DebugUtils;
+using System.Collections.Generic;
 using Verse;
 
 namespace Pawnmorph
@@ -32,7 +33,7 @@ namespace Pawnmorph
         /// <summary>the chance for a transforming pawn to turn into an animal</summary>
         public float transformChance = 50f;
         /// <summary>the chance for new animals to be former humans</summary>
-        public float formerChance = 2f;
+        public float formerChance = 0.02f;
         /// <summary>The partial chance</summary>
         public float partialChance = 5f;
 
@@ -69,7 +70,27 @@ namespace Pawnmorph
         /// <summary>
         /// The current log level
         /// </summary>
-        public LogLevel logLevel = LogLevel.Warnings; 
+        public LogLevel logLevel = LogLevel.Warnings;
+
+        /// <summary>
+        /// List of races whitelisted to have visible mutations.
+        /// </summary>
+        public List<string> visibleRaces;
+
+        /// <summary>
+        /// Dictionary of morphdef and selected replacement racedef
+        /// </summary>
+        public Dictionary<string, string> raceReplacements;
+
+        /// <summary>
+        /// Dictionary of morphdef and selected replacement racedef
+        /// </summary>
+        public Dictionary<string, string> animalAssociations;
+
+        /// <summary>
+        /// Dictionary of optional patches explicitly enabled or disabled.
+        /// </summary>
+        public Dictionary<string, bool> optionalPatches;
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
@@ -89,7 +110,17 @@ namespace Pawnmorph
             Scribe_Values.Look(ref manhunterTfChance, nameof(manhunterTfChance));
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
-            Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true); 
+            Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
+            Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
+            Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
+            Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
+            Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (formerChance > 1) formerChance /= 100f; 
+            }
+
             base.ExposeData();
         }
     }

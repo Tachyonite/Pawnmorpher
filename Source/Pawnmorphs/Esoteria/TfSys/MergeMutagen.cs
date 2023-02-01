@@ -100,8 +100,13 @@ namespace Pawnmorph.TfSys
             meldToSpawn.health.AddHediff(hediff);
 
             Pawn_NeedsTracker needs = meldToSpawn.needs;
-            needs.food.CurLevel = firstPawn.needs.food.CurLevel;
-            needs.rest.CurLevel = firstPawn.needs.rest.CurLevel;
+
+            if (needs.food != null)
+                needs.food.CurLevel = firstPawn.needs.food?.CurLevel ?? needs.food.MaxLevel;
+
+            if (needs.rest != null)
+                needs.rest.CurLevel = firstPawn.needs.rest?.CurLevel ?? needs.rest.MaxLevel;
+
             meldToSpawn.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
             meldToSpawn.training.Train(TrainableDefOf.Obedience, null, true);
             meldToSpawn.Name = firstPawn.Name;
@@ -173,12 +178,19 @@ namespace Pawnmorph.TfSys
             PawnRelationDef mergeMateEx = DefDatabase<PawnRelationDef>.GetNamed("ExMerged"); //TODO put these in a DefOf 
 
 
+
+            foreach (Pawn originalPawn in transformedPawn.originals)
+            {
+                float currentConvertedAge = TransformerUtility.ConvertAge(transformedPawn.meld, originalPawn.RaceProps);
+                float originalAge = originalPawn.ageTracker.AgeBiologicalYearsFloat;
+
+                long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
+                originalPawn.ageTracker.AgeBiologicalTicks += agedTicksDelta;
+            }
+
+
             var firstO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[0], meld.PositionHeld, meld.MapHeld);
             var secondO = (Pawn) GenSpawn.Spawn(transformedPawn.originals[1], meld.PositionHeld, meld.MapHeld);
-
-            var thoughtDef = AddRandomThought(firstO, formerHumanHediff.CurStageIndex);
-
-            AddRandomThought(secondO, formerHumanHediff.CurStageIndex); 
 
             for (var i = 0; i < 10; i++)
             {
@@ -186,11 +198,21 @@ namespace Pawnmorph.TfSys
                 IntermittentMagicSprayer.ThrowMagicPuffUp(meld.Position.ToVector3(), meld.MapHeld);
             }
 
+            var traits = firstO.story.traits;
+            bool relationIsMergeMate = false;
+            if (traits.HasTrait(PMTraitDefOf.MutationAffinity))
+            {
+                relationIsMergeMate = true;
+            }
+            else if (traits.HasTrait(TraitDefOf.BodyPurist))
+            {
+                relationIsMergeMate = false;
+            }
+            else
+                relationIsMergeMate = Rand.Value < 0.5;
 
-            PawnRelationDef addDef;
 
-            bool relationIsMergeMate = thoughtDef == def.revertedThoughtGood;
-            addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
+            PawnRelationDef addDef = relationIsMergeMate ? mergMateDef : mergeMateEx; //first element is "WasMerged"
 
             firstO.relations.AddDirectRelation(addDef, secondO);
 
@@ -285,8 +307,12 @@ namespace Pawnmorph.TfSys
                 {
                     PawnGenerationRequest request = TransformerUtility.GenerateRandomPawnFromAnimal(transformedPawn);
                     Pawn pawnTf = PawnGenerator.GeneratePawn(request);
-                    pawnTf.needs.food.CurLevel = transformedPawn.needs.food.CurInstantLevel;
-                    pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest.CurLevel;
+
+                    if (pawnTf.needs.food != null)
+                        pawnTf.needs.food.CurLevel = transformedPawn.needs.food?.CurInstantLevel ?? pawnTf.needs.food.MaxLevel;
+
+                    if (pawnTf.needs.rest != null)
+                        pawnTf.needs.rest.CurLevel = transformedPawn.needs.rest?.CurLevel ?? pawnTf.needs.rest.MaxLevel;
 
                     var spawnedPawn = (Pawn) GenSpawn.Spawn(pawnTf, transformedPawn.PositionHeld, transformedPawn.MapHeld);
                     spawnedPawn.apparel.DestroyAll();

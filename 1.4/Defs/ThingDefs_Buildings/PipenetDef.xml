@@ -1,0 +1,29 @@
+<Defs>
+	<PipeSystem.PipeNetDef>
+		<defName>PM_SlurryNet</defName>
+        <transferAmount>1</transferAmount> <!-- Amount transferred per 100 ticks -->
+		<resource>
+			<name>Slurry</name>
+			<unit></unit>
+			<color>(0.31, 1, 0.33)</color>
+			<onlyShowStored>True</onlyShowStored>
+			<offTexPath>Things/Item/Drug/Slurry/Slurry_a</offTexPath>
+		</resource>
+		<pipeDefs>
+			<li>PM_SlurryPipe</li>
+		</pipeDefs>
+		<!-- <designator>
+			<deconstructIconPath>UI/MutagenicHazardLow</deconstructIconPath>
+			<designationCategoryDef>GR_GeneticsTab</designationCategoryDef>
+		</designator> -->
+		<overlayOptions>
+			<overlayColor>(0.31, 1, 0.33)</overlayColor>
+		</overlayOptions>
+		<linkToRefuelables>
+			<li>
+				<thing>MechaniteSlurry</thing>
+				<ratio>1</ratio>
+			</li>
+		</linkToRefuelables>
+	</PipeSystem.PipeNetDef>
+</Defs>

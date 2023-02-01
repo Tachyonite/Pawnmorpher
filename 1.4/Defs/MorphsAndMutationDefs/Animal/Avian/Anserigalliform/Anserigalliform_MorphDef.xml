@@ -1,0 +1,8 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="AvianMorph" Name="AnserigalliformMorph">
+		<classification>Anserigalliform</classification>
+		<categories>
+			<li>Production</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

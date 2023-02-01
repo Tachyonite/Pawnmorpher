@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherTestudinidaeJaw</defName>
+		<stages>
+			<li>
+				<label>Tortoise face</label>
+				<description>There goes my skin routine.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tortoise face</label>
+				<description>I look so wise and ancient!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tortoise face</label>
+				<description>I look like I'm 300 years old! I don't want this at all!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherTestudinidaeTail</defName>
+		<stages>
+			<li>
+				<label>Tortoise tail</label>
+				<description>It's short, stubby, and in the way.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tortoise tail</label>
+				<description>I can wiggle it, but that's about it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Tortoise tail</label>
+				<description>I have to cut a hole in my pants for THIS?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherTestudinidaeShell</defName>
+		<stages>
+			<li>
+				<label>Half-shell</label>
+				<description>Ugh, this thing is pretty awkward. Armored, but heavy.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Half-shell</label>
+				<description>It's heavy, but a natural suit of armor, awesome!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Half-shell</label>
+				<description>So slow and...heavy...and I can't take it off!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

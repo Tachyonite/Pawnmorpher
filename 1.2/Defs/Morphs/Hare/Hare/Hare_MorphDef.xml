@@ -1,0 +1,19 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="HareMorphBase">
+		<defName>HareMorph</defName>
+		<label>haremorph</label>
+		<race>Hare</race>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Farm</li>
+		</categories>
+		<fullTransformation>PawnmorphHareTF</fullTransformation>
+		<partialTransformation>PawnmorphHareTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(130,127,106)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

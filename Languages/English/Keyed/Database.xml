@@ -1,0 +1,12 @@
+<LanguageData>
+    <NotEnoughStorageSpaceToTagPK>There is not enough storage to tag {0}. Requires {1} but only have {2}</NotEnoughStorageSpaceToTagPK>
+    <PMDatabaseWithoutPower>Genebanks have lost power, cannot record new data.</PMDatabaseWithoutPower>
+    <AlreadyTaggedAnimal>{0} is already in genetic database.</AlreadyTaggedAnimal>
+    <PMAlreadyTaggedMulti>All mutations are already in genetic database.</PMAlreadyTaggedMulti>
+    <AnimalNotTaggable>{0} is too genetically corrupted to be added.</AnimalNotTaggable>
+    <NotValidAnimal>{0} is not a taggable animal.</NotValidAnimal>
+    <PMMutationNotTaggable>{0} is not taggable.</PMMutationNotTaggable>
+    <PMMutationRestricted>{0} is a restricted mutation.</PMMutationRestricted>
+    <AnimalAddedToDatabase>{0} added to database.</AnimalAddedToDatabase>
+    <PMNoMoreMutations>All {0} mutations have already been tagged.</PMNoMoreMutations>
+</LanguageData>

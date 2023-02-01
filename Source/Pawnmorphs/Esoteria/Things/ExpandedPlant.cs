@@ -31,8 +31,8 @@ namespace Pawnmorph.Things
             get
             {
                 if (Blighted) return 0f;
-                if (Spawned && !PlantUtility.GrowthSeasonNow(Position, Map)) return 0f;
-                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature;
+                if (Spawned && !GrowthSeasonNow(Position, Map)) return 0f;
+                return GrowthRateFactor_Fertility * DynGrowthRateFactor_Temperature * GrowthRateFactor_Light;
             }
         }
 
@@ -69,8 +69,7 @@ namespace Pawnmorph.Things
 
         private float DynMaxGrowthTemperature => Info?.maxGrowthTemperature ?? MaxGrowthTemperature;
 
-
-        private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? MinGrowthForAnimalIngestion;
+        private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? MinGrowthTemperature;
 
         private float DynMaxLeaflessTemperature => Info?.maxLeaflessTemperature ?? MaxLeaflessTemperature;
 
@@ -83,49 +82,34 @@ namespace Pawnmorph.Things
             }
         }
 
-        private List<ThingComp> _newComps;
-
-        List<ThingComp> NewComps
-        {
-            get
-            {
-                if (_newComps == null)
-                {
-                    //need to do this reflection horribleness because of hard coded growth suppression in winter 
-                    var fld = typeof(ThingWithComps).GetField("comps", BindingFlags.Instance | BindingFlags.NonPublic);
-                    _newComps = (List<ThingComp>) fld.GetValue(this); 
-                }
-
-                return _newComps;
-            }
-        }
-
         /// <summary>
         /// performs a long tick.
         /// </summary>
         public override void TickLong() //need this copy-paste nonsense because of hardcoded growth suppression in winter 
         {
-            CheckTemperatureMakeLeafless();
+            CheckMakeLeafless();
             if (Destroyed) return;
 
-            if (NewComps != null)
+            // Have to tick comps manually here because we can't call base.base.TickLong()
+            foreach (var comp in AllComps)
+                comp.CompTickLong();
+
+            // Use the modified growth season check here
+            if (GrowthSeasonNow(Position, Map))
             {
-                int i = 0;
-                for (int count = NewComps.Count; i < count; i++)
-                {
-                    NewComps[i].CompTickLong();
-                }
+                float oldGrowthInt = growthInt;
+                bool wasMature = LifeStage == PlantLifeStage.Mature;
+                growthInt += GrowthPerTick * 2000f;
+                if (growthInt > 1f) growthInt = 1f;
+                if ((!wasMature && LifeStage == PlantLifeStage.Mature || (int)(oldGrowthInt * 10f) != (int)(growthInt * 10f))
+                 && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
             }
 
-            float num = growthInt;
-            bool num2 = LifeStage == PlantLifeStage.Mature;
-            growthInt += GrowthPerTick * 2000f;
-            if (growthInt > 1f) growthInt = 1f;
-            if ((!num2 && LifeStage == PlantLifeStage.Mature || (int) (num * 10f) != (int) (growthInt * 10f))
-             && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
+            if (!HasEnoughLightToGrow)
+                unlitTicks += 2000;
+            else
+                unlitTicks = 0;
 
-
-            unlitTicks = 0;
             ageInt += 2000;
             if (Dying)
             {
@@ -212,20 +196,25 @@ namespace Pawnmorph.Things
                     stringBuilder.AppendLine("GrowthRate".Translate() + ": " + GrowthRate.ToStringPercent());
                     if (!Blighted)
                     {
-                        if (Resting) stringBuilder.AppendLine("PlantResting".Translate());
+                        if (Resting)
+                            stringBuilder.AppendLine("PlantResting".Translate());
+
+                        if (!HasEnoughLightToGrow)
+                            stringBuilder.AppendLine("PlantNeedsLightLevel".Translate() + ": " + def.plant.growMinGlow.ToStringPercent());
+
+                        // Apply the dynamic temperature check here instead of vanilla's
                         float growthRateFactor_Temperature = DynGrowthRateFactor_Temperature;
                         if (growthRateFactor_Temperature < 0.99f)
                         {
-                            if (Mathf.Approximately(growthRateFactor_Temperature, 0f)
-                             || !PlantUtility.GrowthSeasonNow(Position, Map))
+                            if (Mathf.Approximately(growthRateFactor_Temperature, 0f) || !GrowthSeasonNow(Position, Map))
+                            {
                                 stringBuilder.AppendLine("OutOfIdealTemperatureRangeNotGrowing".Translate());
+                            }
                             else
-                                stringBuilder.AppendLine("OutOfIdealTemperatureRange".Translate(Mathf
-                                                                                               .Max(1,
-                                                                                                    Mathf
-                                                                                                       .RoundToInt(growthRateFactor_Temperature
-                                                                                                                 * 100f))
-                                                                                               .ToString()));
+                            {
+                               int growthPercent = Mathf.Max(1, Mathf.RoundToInt(growthRateFactor_Temperature * 100f));
+                               stringBuilder.AppendLine("OutOfIdealTemperatureRange".Translate(growthPercent.ToString()));
+                            }
                         }
                     }
                 }
@@ -237,8 +226,11 @@ namespace Pawnmorph.Things
                         stringBuilder.AppendLine("Mature".Translate());
                 }
 
-                if (DyingBecauseExposedToLight) stringBuilder.AppendLine("DyingBecauseExposedToLight".Translate());
-                if (Blighted) stringBuilder.AppendLine("Blighted".Translate() + " (" + Blight.Severity.ToStringPercent() + ")");
+                if (DyingBecauseExposedToLight)
+                    stringBuilder.AppendLine("DyingBecauseExposedToLight".Translate());
+
+                if (Blighted)
+                    stringBuilder.AppendLine("Blighted".Translate() + " (" + Blight.Severity.ToStringPercent() + ")");
             }
 
             string text = InspectStringPartsFromComps();
@@ -258,6 +250,27 @@ namespace Pawnmorph.Things
             if (cellTemp > DynMaxOptimalGrowthTemperature)
                 return Mathf.InverseLerp(DynMaxGrowthTemperature, DynMaxOptimalGrowthTemperature, cellTemp);
             return 1f;
+        }
+
+        /// <summary>
+        /// Growth season check that's aware of this plant's temperature tolerance
+        /// </summary>
+        /// <returns><c>true</c>, if the plant can grow now based on temperature, <c>false</c> otherwise.</returns>
+        /// <param name="c">Cell.</param>
+        /// <param name="map">Map.</param>
+        public bool GrowthSeasonNow(IntVec3 c, Map map)
+        {
+            Room roomOrAdjacent = c.GetRoomOrAdjacent(map, RegionType.Set_All);
+            if (roomOrAdjacent == null)
+                return false;
+
+            float temperature;
+            if (roomOrAdjacent.UsesOutdoorTemperature)
+                temperature = map.mapTemperature.OutdoorTemp;
+            else
+                temperature = c.GetTemperature(map);
+
+            return temperature > DynMinGrowthTemperature && temperature < DynMaxGrowthTemperature;
         }
     }
 }

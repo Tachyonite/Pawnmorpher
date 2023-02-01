@@ -27,8 +27,9 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="pawn"></param>
-        /// <param name="sapienceLevel"></param>
-        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel sapienceLevel);
+        /// <param name="oldLevel"></param>
+        /// <param name="currentLevel"></param>
+        public delegate void SapienceLevelChangedHandle(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel);
 
         private static HashSet<ThingDef> _enabledRaces;
 
@@ -130,7 +131,7 @@ namespace Pawnmorph
         public float SeekerLevel => _seekerLevel;
 
         [NotNull]
-        private static HashSet<ThingDef> EnabledRaces
+        public static HashSet<ThingDef> EnabledRaces
         {
             get
             {
@@ -182,9 +183,8 @@ namespace Pawnmorph
         /// <param name="drawArrows">if set to <c>true</c> [draw arrows].</param>
         /// <param name="doTooltip">if set to <c>true</c> [do tooltip].</param>
         /// <param name="rectForTooltip">The rect for tooltip.</param>
-        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1f,
-                                       bool drawArrows = true,
-                                       bool doTooltip = true, Rect? rectForTooltip = null)
+        /// <param name="drawLabel">Whether or not to draw need label.</param>
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1, bool drawArrows = true, bool doTooltip = true, Rect? rectForTooltip = null, bool drawLabel = true)
         {
             if (threshPercents == null || _maxLevelCached == null)
             {
@@ -202,7 +202,7 @@ namespace Pawnmorph
                 }
             }
 
-            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip);
+            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip, drawLabel);
         }
 
         /// <summary>
@@ -371,9 +371,11 @@ namespace Pawnmorph
 
             PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
 
-            if (pawn.Faction == Faction.OfPlayer) Find.ColonistBar?.MarkColonistsDirty();
+            SapienceLevelChanged?.Invoke(this, pawn, oldLevel, newLevel);
 
-            SapienceLevelChanged?.Invoke(this, pawn, _currentLevel);
+            if (pawn.Faction == Faction.OfPlayer) 
+                Find.ColonistBar?.MarkColonistsDirty();
+
             Find.HistoryEventsManager.RecordEvent(new HistoryEvent(PMHistoryEventDefOf.SapienceLevelChanged, pawn.Named(HistoryEventArgsNames.Doer), oldLevel.Named(OLD_SAPIENCE_LEVEL), newLevel.Named(NEW_SAPIENCE_LEVEL)));
             if (_currentLevel == SapienceLevel.PermanentlyFeral)
             {

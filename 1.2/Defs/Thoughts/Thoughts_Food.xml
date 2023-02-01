@@ -1,0 +1,83 @@
+﻿<Defs>
+	<ThoughtDef>
+		<defName>MorphAteAnimalMeatDirect</defName>
+		<showBubble>true</showBubble>
+		<durationDays>0.7</durationDays>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate kin-animal</label>
+				<description>I ate the raw flesh of an animal that I look a lot like I do now...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>MorphAteAnimalMeatAsIngredient</defName>
+		<showBubble>true</showBubble>
+		<durationDays>0.7</durationDays>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate kinsman</label>
+				<description>I ate meat from an animal that looked a lot like I do now...</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>WargMorphAteCorpse</defName>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<showBubble>true</showBubble>
+		<durationDays>0.5</durationDays>
+		<stages>
+			<li>
+				<label>ate corpse</label>
+				<description>I gave in to my beastly thoughts and ate the raw corpse of a fresh kill. Eugh.</description>
+				<baseMoodEffect>-6</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>AteChaoMeatDirect</defName>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<showBubble>true</showBubble>
+		<durationDays>0.5</durationDays>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate chaomeat</label>
+				<description>It's slimy, raw meat...and didn't these things used to be human?!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>AteChaoMeatAsIngredient</defName>
+		<icon>Things/Mote/ThoughtSymbol/Food</icon>
+		<showBubble>true</showBubble>
+		<durationDays>0.3</durationDays>
+		<nullifyingTraits>
+			<li>Cannibal</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>ate chaomeat</label>
+				<description>It tastes alright, but didn't these things used to be human?!</description>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

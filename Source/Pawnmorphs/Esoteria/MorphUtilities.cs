@@ -42,7 +42,6 @@ namespace Pawnmorph
         static MorphUtilities()
         {
             //check for mod incompatibilities here 
-
             if (ThingDefOf.Human.race.body != BodyDefOf.Human)
             {
                 Log.Error($"human ThingDef is using {ThingDefOf.Human.race.body.defName} not {BodyDefOf.Human.defName}!\nmost likely cause is mod incompatibilities please check mod list");
@@ -281,6 +280,10 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!HybridsAreEnabledFor(pawn.def)) return;
+            if (pawn.DevelopmentalStage != DevelopmentalStage.Adult)
+                return; // If pawn is not an adult, then don't shift race.
+                        // Would need to handle development stages across multiple races and potentially between different HAR races.
+
             if (pawn.ShouldBeConsideredHuman())
             {
                 if (pawn.def != ThingDefOf.Human)
@@ -399,11 +402,15 @@ namespace Pawnmorph
 
             foreach (MutationDef mutationDef in enumerable)
             {
-                if (mutationDef.classInfluence is MorphDef morph)
+                foreach (AnimalClassBase animalClass in mutationDef.ClassInfluences)
                 {
-                    if (!lst.Contains(morph))
+                    if (animalClass is MorphDef morph)
                     {
-                        lst.Add(morph);
+                        if (!lst.Contains(morph))
+                        {
+                            lst.Add(morph);
+                            break;
+                        }
                     }
                 }
             }
@@ -451,7 +458,7 @@ namespace Pawnmorph
         public static MorphTransformationTypes GetTransformationType([NotNull] this HediffDef inst)
         {
             if (inst == null) throw new ArgumentNullException(nameof(inst));
-            if (!typeof(TransformationBase).IsAssignableFrom(inst.hediffClass)) return 0;
+            if (!(inst.hediffClass is IMutagenicHediff)) return 0;
 
             var comp = inst.CompProps<HediffCompProperties_Single>();
             return comp == null ? MorphTransformationTypes.Full : MorphTransformationTypes.Partial;
@@ -461,7 +468,7 @@ namespace Pawnmorph
         /// <summary>checks if the hybrid system is enabled for the given race def.</summary>
         /// <param name="raceDef">The race definition.</param>
         /// <returns></returns>
-        public static bool HybridsAreEnabledFor(ThingDef raceDef)
+        public static bool HybridsAreEnabledFor(this ThingDef raceDef)
         {
             if (raceDef == ThingDefOf.Human) return true;
             return raceDef.IsHybridRace();
@@ -507,11 +514,7 @@ namespace Pawnmorph
         /// </returns>
         public static bool IsHybridRace([NotNull] this ThingDef raceDef)
         {
-            foreach (MorphDef morphDef in DefDatabase<MorphDef>.AllDefs)
-                if (raceDef == morphDef.hybridRaceDef)
-                    return true;
-
-            return false;
+            return raceDef.GetMorphOfRace() != null;
         }
 
         /// <summary> Get whether or not the given pawn should still be considered 'human'. </summary>
@@ -541,9 +544,9 @@ namespace Pawnmorph
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
-            if (morph.categories.Contains(MorphCategoryDefOf.Canid)) //TODO Generalize this or just pick randomly, 
+            if (morph.classification.Contains(AnimalClassDefOf.Canid)) //TODO Generalize this or just pick randomly, 
                 return MorphDefOfs.ChaofoxMorph;
-            if (morph.categories.Contains(MorphCategoryDefOf.Reptile))
+            if (morph.classification.Contains(AnimalClassDefOf.Reptile))
                 return MorphDefOfs.ChaodinoMorph;
             if (morph == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
             if (morph == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;

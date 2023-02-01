@@ -4,6 +4,7 @@
 using System;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace Pawnmorph.Thoughts
 {
@@ -21,9 +22,22 @@ namespace Pawnmorph.Thoughts
                 try
                 {
 
+                    
+
                     int maxStage = def.stages.Count - 1;
 
-                    MutationOutlook mutationOutlook = pawn.GetMutationOutlook();
+                    MutationOutlook mutationOutlook;
+
+                    if (pawn != null)
+                    {
+                        mutationOutlook = pawn.GetMutationOutlook();
+                    }
+                    else
+                    {
+                        mutationOutlook = MutationOutlook.Neutral; 
+                        Log.Warning($"{def?.defName?? "NULL"} encountered a null pawn while getting the current stage");
+                    }
+                        
 
                     if (mutationOutlook == MutationOutlook.PrimalWish && maxStage < (int) MutationOutlook.PrimalWish)
                         mutationOutlook = MutationOutlook.Furry; //use the furry stage if the primal wish stage isn't there 

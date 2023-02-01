@@ -69,5 +69,15 @@ namespace Pawnmorph
         public static ThoughtDef PM_WitnessedRivalTf;
         public static ThoughtDef PM_WitnessedFriendTf;
 
+        // Accepting and rejecting related former humans
+        public static ThoughtDef PMFormerHumanAccepted_VeryClose;
+        public static ThoughtDef PMFormerHumanAccepted_Close;
+        public static ThoughtDef PMFormerHumanAccepted_Moderate;
+        public static ThoughtDef PMFormerHumanAccepted_Distant;
+
+        public static ThoughtDef PMFormerHumanRejected_VeryClose;
+        public static ThoughtDef PMFormerHumanRejected_Close;
+        public static ThoughtDef PMFormerHumanRejected_Moderate;
+        public static ThoughtDef PMFormerHumanRejected_Distant;
     }
 }

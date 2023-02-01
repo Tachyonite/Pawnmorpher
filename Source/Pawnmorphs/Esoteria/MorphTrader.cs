@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 using Verse;
 using Pawnmorph.Utilities;
 using UnityEngine;
+using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -42,7 +43,7 @@ namespace Pawnmorph
                     break;
                 }
                 PawnKindDef slave = PawnKindDef.Named("PawnmorpherSlave");
-                PawnGenerationRequest request = new PawnGenerationRequest(slave, slaveFaction, PawnGenerationContext.NonPlayer, forTile, forceGenerateNewPawn: false, newborn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, !trader.orbital);
+                PawnGenerationRequest request = new PawnGenerationRequest(slave, slaveFaction, PawnGenerationContext.NonPlayer, forTile, forceGenerateNewPawn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, !trader.orbital);
                 yield return PawnGenerator.GeneratePawn(request);
             }
         }
@@ -110,7 +111,7 @@ namespace Pawnmorph
                 PawnKindDef kind2 = kind;
                 int tile = forTile;
 
-                Pawn pawnOriginal = Find.WorldPawns.AllPawnsAlive.Where(p => !p.IsPlayerControlledCaravanMember() && (PawnUtility.ForSaleBySettlement(p) || p.kindDef == PawnKindDefOf.Slave || (PawnUtility.IsKidnappedPawn(p) && p.RaceProps.Humanlike) && !PawnUtility.IsFactionLeader(p))).RandomElement();
+                Pawn pawnOriginal = Find.WorldPawns.AllPawnsAlive.Where(p => !p.IsPlayerControlledCaravanMember() && (PawnUtility.ForSaleBySettlement(p) || p.kindDef == PawnKindDefOf.Slave || (PawnUtility.IsKidnappedPawn(p) && p.RaceProps.Humanlike) && !PawnUtility.IsFactionLeader(p))).RandomElementWithFallback();
 
                 PawnGenerationRequest request = new PawnGenerationRequest(kind2, null, PawnGenerationContext.NonPlayer, tile);
                 Pawn pawn = PawnGenerator.GeneratePawn(request); //Generate the animal!
@@ -120,52 +121,7 @@ namespace Pawnmorph
 
                 if (pawnOriginal == null)
                 {
-                    Gender newGender = pawn.gender;
-
-                    if (Rand.RangeInclusive(0, 100) <= 25)
-                    {
-                        switch (pawn.gender)
-                        {
-                            case (Gender.Male):
-                                newGender = Gender.Female;
-                                break;
-                            case (Gender.Female):
-                                newGender = Gender.Male;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-
-                    float animalAge = pawn.ageTracker.AgeBiologicalYearsFloat;
-                    float animalLifeExpectancy = pawn.def.race.lifeExpectancy;
-                    float humanLifeExpectancy = 80f;
-
-
-                    float age = animalAge * humanLifeExpectancy / animalLifeExpectancy;
-                    age = Mathf.Max(age, 17); //make sure the human is at least 17 years old 
-                    float chronoAge = pawn.ageTracker.AgeChronologicalYears * age / animalAge;
-                    var pkds = new List<PawnKindDef>
-                    {
-                        PawnKindDefOf.Slave,
-                        PawnKindDefOf.Colonist,
-                        PawnKindDefOf.SpaceRefugee,
-                        PawnKindDefOf.Villager,
-                        PawnKindDefOf.Drifter,
-                        PawnKindDefOf.AncientSoldier
-                    };
-
-
-                    PawnKindDef rKind = pkds.RandElement();
-
-                    var hRequest = new PawnGenerationRequest(rKind, Faction.OfPlayer,
-                                                             PawnGenerationContext.NonPlayer, fixedBiologicalAge: age,
-                                                             fixedChronologicalAge: chronoAge, fixedGender: newGender);
-
-
-                    pawnOriginal = PawnGenerator.GeneratePawn(hRequest);
-                    
-                    
+                    pawnOriginal = FormerHumanPawnGenerator.GenerateRandomHumanForm(pawn);
                     pawn.Name = pawnOriginal.Name;
                 }
                 else
@@ -195,8 +151,7 @@ namespace Pawnmorph
             foreach (Pawn pawn in enumer.OfType<Pawn>())
             {
                 if (!pawn.IsFormerHuman()) continue;
-                FormerHumanUtilities.NotifyRelatedPawnsFormerHuman(pawn, FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER,
-                                                                   FormerHumanUtilities.RELATED_SOLD_FORMER_HUMAN_LETTER_LABEL);
+                RelatedFormerHumanUtilities.ForSaleNotifyIfRelated(pawn);
             }
             return enumer;
 

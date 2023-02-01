@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!-- Common rules for all chitchats -->
+	<RulePackDef>
+		<defName>PMInteractionRules_Chitchat</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>TalkedAbout(p=4)->chatted about</li>
+				<li>TalkedAbout->shared a word about</li>
+				<li>TalkedAbout->spoke about</li>
+				<li>TalkedAbout->gabbed about</li>
+				<li>TalkedAbout->talked about</li>
+				<li>TalkedAbout->joked about</li>
+				<li>TalkedAbout->quipped about</li>
+
+				<li>CommentedAbout->said something about</li>
+				<li>CommentedAbout->said a word about</li>
+				<li>CommentedAbout->made a comment about</li>
+				<li>CommentedAbout->commented about</li>
+				<li>CommentedAbout->told a joke about</li>
+
+				<li>MorphTopic->mutations</li>
+				<li>MorphTopic->transformation</li>
+				<li>MorphTopic->mutagen</li>
+				<li>MorphTopic->antigen</li>
+				<li>MorphTopic->stabilizer</li>
+				<li>MorphTopic->reverter serum</li>
+				<li>MorphTopic->sapience</li>
+				<li>MorphTopic->production mutations</li>
+				<li>MorphTopic->alternative livestock</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- Common rules for all deep talks -->
+	<RulePackDef>
+		<defName>PMInteractionRules_DeepTalk</defName>
+		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
+			<rulesStrings>
+				<li>DeepTalkedAbout->talked in depth about</li>
+				<li>DeepTalkedAbout->shared [INITIATOR_possessive] experiences with</li>
+				<li>DeepTalkedAbout->discussed the topic of</li>
+				<li>DeepTalkedAbout->had a heartfelt conversation about</li>
+				<li>DeepTalkedAbout->talked quietly about</li>
+				<li>DeepTalkedAbout->talked deeply about</li>
+				<li>DeepTalkedAbout->told a heartfelt story about</li>
+				<li>DeepTalkedAbout->shared an embarassing story about</li>
+
+				<li>DeepMorphTopic->living with mutations</li>
+				<li>DeepMorphTopic->living as an animal</li>
+				<li>DeepMorphTopic->mutagenic autonomy</li>
+				<li>DeepMorphTopic->maintaining sapience</li>
+				<li>DeepMorphTopic->resisting instinct</li>
+				<li>DeepMorphTopic->giving into instinct</li>
+				<li>DeepMorphTopic->going permanantly feral</li>
+				<li>DeepMorphTopic->reversion serum</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Common rules for slights -->
+	<RulePackDef>
+		<defName>PMInteractionRules_Slight</defName>
+		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
+			<rulesStrings>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Common rules for insults -->
+	<RulePackDef>
+		<defName>PMInteractionRules_Insult</defName>
+		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
+			<rulesStrings>
+				<li>Insulted(p=3)->insulted</li>
+				<li>Insulted->openly insulted</li>
+				<li>Insulted->loudly insulted</li>
+				<li>Insulted->flagrantly insulted</li>
+				<li>Insulted->directly insulted</li>
+				<li>Insulted->viciously insulted</li>
+				<li>Insulted->flagrantly disrespected</li>
+				<li>Insulted->slandered</li>
+				<li>Insulted->hurled invective about</li>
+				<li>Insulted->derided</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	<!-- Common rules for kind words -->
+	<RulePackDef>
+		<defName>PMInteractionRules_KindWords</defName>
+		<rulePack>
+			<include>
+				<li>PMInteractionRules_Misc</li>
+			</include>
+			<rulesStrings>
+				<li>KindAdverb->kindly</li>
+				<li>KindAdverb->affectionately</li>
+				<li>KindAdverb->appreciatively</li>
+				<li>KindAdverb->happily</li>
+
+				<li>MaybeKindAdv-></li>
+				<li>MaybeKindAdv->[KindAdverb]</li>
+
+				<li>KindAdj->wonderful</li>
+				<li>KindAdj->delightful</li>
+				<li>KindAdj->amazing</li>
+				<li>KindAdj->sweet</li>
+				<li>KindAdj->lovely</li>
+				<li>KindAdj->great</li>
+
+				<li>MaybeKindAdj-></li>
+				<li>MaybeKindAdj->[KindAdj]</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+	<!-- Common miscellaneous rules -->
+	<RulePackDef>
+		<defName>PMInteractionRules_Misc</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>ComparedRecipientTo->called [Target]</li>
+				<li>ComparedRecipientTo->compared [Target] to</li>
+
+				<li>ComparedTargetTo->called [Target]</li>
+				<li>ComparedTargetTo->compared [Target] to</li>
+
+				<li>Target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>Target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+
+				<li>Refusal->refusal</li>
+				<li>Refusal->unwillingness</li>
+
+				<li>Man(initiator_gender==Male)->man</li>
+				<li>Man(initiator_gender==Female)->woman</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+
+</Defs>

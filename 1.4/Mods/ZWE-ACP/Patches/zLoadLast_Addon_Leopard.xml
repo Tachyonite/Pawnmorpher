@@ -1,0 +1,40 @@
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationSequence" MayRequire="acpteam.acpvanillastyle">
+				<operations>
+					<!-- Update the MorphDef race -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+						<value>
+							<race>ACPAmurLeopard</race>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+						<value>
+							<race>ACPSnowLeopard</race>
+						</value>
+					</li>
+				</operations>
+			</li>
+			<li Class="PatchOperationSequence" MayRequire="zmodw.zwanimals">
+				<operations>
+					<!-- Update the MorphDef race -->
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+						<value>
+							<race>Leopard</race>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+						<value>
+							<race>SnowLeopard</race>
+						</value>
+					</li>
+				</operations>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

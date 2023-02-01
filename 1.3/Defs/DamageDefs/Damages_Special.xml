@@ -37,6 +37,7 @@
                 <severityPerDamage>0.025</severityPerDamage>
                 <reduceValue>0.4</reduceValue>
                 <mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
+                <mutagen>PM_WeaponChaoticMutagen</mutagen>
             </li>
         </modExtensions>
     </DamageDef>

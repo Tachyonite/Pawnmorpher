@@ -2,6 +2,7 @@
 // last updated 11/27/2019  1:16 PM
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -40,6 +41,7 @@ namespace Pawnmorph.HPatches
         static bool CheckNeed(Pawn pawn, NeedDef nd)
         {
             if ((pawn.IsPrisoner && nd.neverOnPrisoner) || (pawn.IsSlave && nd.neverOnSlave)) return false;
+            if (!nd.developmentalStageFilter.Has(pawn.DevelopmentalStage)) return false;
             if (nd.colonistsOnly && pawn.Faction != Faction.OfPlayer) return false; 
 
             if (nd.nullifyingPrecepts != null)
@@ -103,11 +105,11 @@ namespace Pawnmorph.HPatches
                     __result = Need_Control.IsEnabledFor(___pawn);
                     return;
                 }
+                else if(!Need_Control.EnabledRaces.Contains(___pawn.def))
+                    return;
 
                 bool isColonist = (___pawn.Faction?.IsPlayer == true);
-                
 
-                
                 if (nd == PMNeedDefOf.Joy && isColonist && IsSapientOrAnimilistic(___pawn))
                     __result = CheckNeed(___pawn, PMNeedDefOf.Joy);
 
@@ -121,20 +123,6 @@ namespace Pawnmorph.HPatches
                 }
 
                 if (__result) __result = nd.IsValidFor(___pawn);
-            }
-
-            [HarmonyPatch(nameof(Pawn_NeedsTracker.NeedsTrackerTick)), HarmonyPrefix]
-            static bool DisableIfInChamberPatch(Pawn ___pawn)
-            {
-                if (___pawn?.IsHashIntervalTick(150) != true)
-                {
-                    return true; 
-                }
-
-                //needs should not tick while in the chamber 
-                IThingHolder owner = ___pawn.holdingOwner?.Owner;
-                if (owner == null) return true; 
-                return !(owner is MutaChamber);
             }
         }
         
@@ -157,6 +145,23 @@ namespace Pawnmorph.HPatches
                 return true;
             }
         }
+
+
+		[HarmonyPatch(typeof(PawnRenderer), "DrawBodyGenes")]
+		private static class PawnRenderBodyGenesPrefix
+		{
+            // Disable rendering Biotech genes for pawns with animal race.
+			private static bool Prefix([NotNull] Pawn ___pawn)
+			{
+                if (___pawn.RaceProps.Animal && Hybrids.RaceGenerator.IsMorphRace(___pawn.def) == false)
+                {
+                    // pawn is animal type and not a hybrid.
+                    return false;                    
+                }
+
+                return true;
+			}
+		}
 
 
         [HarmonyPatch(typeof(Pawn_FilthTracker), nameof(Pawn_FilthTracker.Notify_EnteredNewCell))]

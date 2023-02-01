@@ -18,7 +18,7 @@
 	<LetterHediffFromEtherBond>Constant production has caused {0} to accept change, and for some reason will now enjoy producing.</LetterHediffFromEtherBond>
 	<LetterHediffFromEtherBrokenLabel>Etherbroken: {0}</LetterHediffFromEtherBrokenLabel>
 	<LetterHediffFromEtherBroken>Constant production has caused {0} to become numb and submit to their fate.</LetterHediffFromEtherBroken>
-	<RaceChangeMessage>{0} is no longer considered human!</RaceChangeMessage>
+	<RaceChangeMessage>{0} is no longer considered {1}!</RaceChangeMessage>
 	<HumanAgainMessage>{0} is human again!</HumanAgainMessage>
 	<TransformationStageWarningLabel>{0} is at risk of fully changing very soon.</TransformationStageWarningLabel>
 	<TransformationStageWarningContent>{0} is at risk of transforming into an animal soon. You can use stabilizer to prevent this.</TransformationStageWarningContent>
@@ -38,5 +38,16 @@
 		animalKind - the kind of animal they were turned into 
 	 -->
 	<MessagePawnResurrectedTransformed>{0} was resurrected, but the mechanite infusion in the serum brought them back as a {2}!</MessagePawnResurrectedTransformed>
+
+	<PMReelingLabel>reeling</PMReelingLabel>
+	<PMTransformingLabel>transforming</PMTransformingLabel>
+	<PMChangingLabel>changing</PMChangingLabel>
+	<PMFullMorphTfDescription>This person has mechanites in their blood that are slowly mutating them into a {Morph}. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more {MorphAdjective} than human.</PMFullMorphTfDescription>
+	<PMPartialMorphTfDescription>
+		This person has mechanites in their blood that are slowly mutating them into a {Morph}. Keep an eye on them, as leaving the mechanites unattended could lead to them becoming far more {MorphAdjective} than human.
+	</PMPartialMorphTfDescription>
+	<PMInjectorLabel>mutasyringe, {Animal}</PMInjectorLabel>
+	<PMInjectorIngestCommand>Inject &lt;0&gt;</PMInjectorIngestCommand>
+	<PMInjectorReport>Injecting &lt;0&gt;</PMInjectorReport>
 
 </LanguageData>

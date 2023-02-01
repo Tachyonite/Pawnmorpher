@@ -1,0 +1,184 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherThickHideLimb</defName>
+        <stages>
+            <li>
+                <label>Thick hide</label>
+                <description>My skin feels like hard leather, it's a little uncomfortable.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Thick hide</label>
+                <description>Nobody will be able to hurt me like this! Except emotionally...</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Thick hide</label>
+                <description>Eww, it's so dense and wrinkled, like a giant callous...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherScaledLimb</defName>
+		<stages>
+			<li>
+				<label>Scales</label>
+				<description>I wish I didn't ssssshed sssso much...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Scales</label>
+				<description>Built-in armor isss alwayssss handy...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Scales</label>
+				<description>They're coarse and rough and irritating and they're EVERYWHERE!!!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherColdBlooded</defName>
+		<stages>
+			<li>
+				<label>Cold blooded</label>
+				<description>I just can't ever get myself warm enough.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cold blooded</label>
+				<description>Nothing feels quite like sunning myself on a warm rock.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cold blooded</label>
+				<description>I'm freaking c-c-c-cold all the time now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFeatheredLimb</defName>
+		<stages>
+			<li>
+				<label>Feathers</label>
+				<description>They're itchy as hell and get in the way of clothes...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Feathers</label>
+				<description>I could preen them all day.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Feathers</label>
+				<description>I keep pulling them out but they keep regrowing! They're so itchy, aaghhh!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherWing</defName>
+		<stages>
+			<li>
+				<label>Wings</label>
+				<description>How am I supposed to do anything with wings for arms?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wings</label>
+				<description>Wait, I can't fly with these, AND I lose my hands...? I'm starting to rethink this now...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Wings</label>
+				<description>Why, Randy, why?! I'm completely useless without my arms!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherAvianFoot</defName>
+		<stages>
+			<li>
+				<label>Talons</label>
+				<description>They're so...animal, and I leave scratches on wooden floors.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Talons</label>
+				<description>I can be really quick on these, and maybe do some damage!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Talons</label>
+				<description>No, not bird feet! Eugh!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherPawFoot</defName>
+		<stages>
+			<li>
+				<label>Giant feet</label>
+				<description>It's not too different, I suppose I can get used to standing on it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant feet</label>
+				<description>They're so soft, and I can run barefoot on gravel!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant feet</label>
+				<description>No no no, I want my regular, non-animal feet back!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Giant feet</label>
+				<description>They look just like an animal's feet, this is exactly what I want!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

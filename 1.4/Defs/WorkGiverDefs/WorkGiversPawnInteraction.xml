@@ -1,0 +1,29 @@
+<Defs>
+    <WorkGiverDef>
+        <defName>RecruitSapientFormerHuman</defName>
+        <label>recruit former human</label>
+        <giverClass>Pawnmorph.Work.Giver_RecruitSapientAnimal</giverClass>
+        <workType>Warden</workType>
+        <verb>recruit</verb>
+        <gerund>recruiting</gerund>
+        <priorityInType>80</priorityInType>
+        <tagToGive>Fieldwork</tagToGive>
+        <requiredCapacities>
+          <li>Talking</li>
+          <li>Manipulation</li>
+        </requiredCapacities>
+      </WorkGiverDef>
+	  <WorkGiverDef>
+        <defName>PM_TransformPrisoner</defName>
+        <label>transform prisoners</label>
+        <giverClass>Pawnmorph.Work.Giver_TransformPrisoner</giverClass>
+        <workType>Warden</workType>
+        <verb>transform</verb>
+        <gerund>transforming</gerund>
+        <priorityInType>100</priorityInType>
+        <requiredCapacities>
+            <li>Manipulation</li>
+        </requiredCapacities>
+        <equivalenceGroup>ReleasePrisoner</equivalenceGroup>
+    </WorkGiverDef>
+</Defs>

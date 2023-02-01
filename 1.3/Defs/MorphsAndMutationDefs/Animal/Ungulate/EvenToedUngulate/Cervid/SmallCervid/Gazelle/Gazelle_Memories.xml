@@ -1,0 +1,144 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocateion="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GazelleTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>What was that? Nothing? Better keep watching just in case...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Wow! I’m so fast and graceful!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I’m scared all the time and I can’t change my shirt! I hate it!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GazelleRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Maybe now I won’t need to run anymore?</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I miss the thrill! Everything’s dull and drab now!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Finally I can relax!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+	    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherGazelleJaw</defName>
+        <stages>
+            <li>
+                <label>Gazelle face</label>
+                <description>It's long, but it's got an interesting marking at least...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Gazelle face</label>
+                <description>So cool! Give me that grass!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Gazelle face</label>
+                <description>I'm a dirty grass eater...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherGazelleEar</defName>
+        <stages>
+            <li>
+                <label>Gazelle ears</label>
+                <description>Why do they have to have interesting markings? I'm so going to get shot by a raider.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Gazelle ears</label>
+                <description>Cooler! I can hear everything! Even the grass growing!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Gazelle ears</label>
+                <description>I'm going to get skinned for these...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherGazelleTail</defName>
+        <stages>
+            <li>
+                <label>Little tail</label>
+                <description>It's fine, I guess, and easy enough to hide.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Little tail</label>
+                <description>Cuter and cuter!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Little tail</label>
+                <description>Why do even need this tail...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherGazelleAntlers</defName>
+        <stages>
+            <li>
+                <label>Antlers</label>
+                <description>Hope I won’t have to use these!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Antlers</label>
+                <description>Oh, they are so elegant!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Antlers</label>
+                <description>They are all I get to defend myself with?!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+</Defs>

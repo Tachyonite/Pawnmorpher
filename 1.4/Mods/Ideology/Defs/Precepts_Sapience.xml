@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+
+    <PreceptDef Name="PM_SapienceLossPreceptBase" Abstract="true">
+        <issue>PM_SapienceLoss</issue>
+        <impact>Low</impact>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_SapienceLossPreceptBase">
+        <defName>SapienceLossNeutral</defName>
+        <label>neutral</label>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+        </conflictingMemes>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_SapienceLossPreceptBase">
+        <defName>SapienceLossLiked</defName>
+        <label>liked</label>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>PermanentlyFeral</eventDef>
+                <thought>PM_SapienceLossLikedPrecept_PermanentlyFeralReaction</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_SapienceLossPreceptBase">
+        <defName>SapienceLossAbhorrent</defName>
+        <label>abhorrent</label>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>NaturePrimacy</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>PermanentlyFeral</eventDef>
+                <thought>PM_SapienceLossAbhorrentPrecept_PermanentlyFeralReaction</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+</Defs>

@@ -1,0 +1,7 @@
+<LanguageData>
+    <PMFailedChaobulbHarvest>{PAWN} failed at harvesting a Chaobulb and was contaminated with mutagenic buildup.</PMFailedChaobulbHarvest>
+	<MinOptimalGrowthTemperature>Min optimal growth temperature</MinOptimalGrowthTemperature>
+	<MaxOptimalGrowthTemperature>Max optimal growth temperature</MaxOptimalGrowthTemperature>
+	<MinOptimalGrowthTemperature_Desc>The minimum temperature at which this plant will grow the fastest.</MinOptimalGrowthTemperature_Desc>
+	<MaxOptimalGrowthTemperature_Desc>The maximum temperature at which this plant will grow the fastest.</MaxOptimalGrowthTemperature_Desc>
+</LanguageData>

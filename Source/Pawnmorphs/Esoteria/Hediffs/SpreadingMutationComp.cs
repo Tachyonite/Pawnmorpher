@@ -1,12 +1,12 @@
 ﻿// SpreadingMutationComp.cs modified by Iron Wolf for Pawnmorph on 09/25/2019 6:47 PM
 // last updated 09/25/2019  6:47 PM
 
-using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
+
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
@@ -19,22 +19,6 @@ namespace Pawnmorph.Hediffs
         private const int RECHECK_PART_PERIOD = 1000;
         private int _doneTick = 0;
 
-        private float? _statAdjust;
-
-        float StatAdjust
-        {
-            get
-            {
-                if (_statAdjust == null)
-                {
-                    _statAdjust = Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity); //have the mutagen sensitivity value affect the spread rate 
-                }
-
-                return _statAdjust.Value; 
-            }
-        }
-
-        private const float EPSILON = 0.001f; 
         /// <summary>called after its parent has been updated.</summary>
         /// <param name="severityAdjustment">The severity adjustment.</param>
         public override void CompPostTick(ref float severityAdjustment)
@@ -48,20 +32,22 @@ namespace Pawnmorph.Hediffs
                 return;
             }
 
+            // This whole operation is somewhat performance intensive, so only do it once a second
             if (Pawn.IsHashIntervalTick(60))
-                _statAdjust = null; //only check one every second or so, getting the stat value is expensive
+            {
+                // Have the mutagen sensitivity stat affect the rate of spread
+                // This stat is expensive to calculate, but we're only checking once a second
+                // Don't worry about division by zero, MTBEventOccurs handles infinity correctly
+                var mtb = Props.mtb / Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
 
-            if(StatAdjust <= EPSILON) return; //prevent division by zero 
+                if (!Rand.MTBEventOccurs(mtb, 60000f, 60f)) return;
 
-            var mtb = Props.mtb / StatAdjust; //have the mutagen sensitivity stat affect the rate of spread  
-            if (!Rand.MTBEventOccurs(mtb, 60000f, 30f)) return;
+                if (TryInfectPart(parent.Part, false)) return; //try infecting downward first 
+                if (TryInfectPart(parent.Part)) return; //try infecting upward
 
-
-            if (TryInfectPart(parent.Part, false)) return; //try infecting downward first 
-            if (TryInfectPart(parent.Part)) return; //try infecting upward
-
-            _finishedSearching = true; //searched all available parts, don't bother looking anymore 
-            _doneTick = Find.TickManager.TicksGame;
+                _finishedSearching = true; //searched all available parts, don't bother looking anymore 
+                _doneTick = Find.TickManager.TicksGame;
+            }
         }
 
 
@@ -182,7 +168,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// setting this too high can cause lag 
         public int maxTreeSearchDepth = 2;
-        /// <summary>The mean time between (units?) spread checks</summary>
-        public float mtb = 160; 
+        /// <summary>
+        /// The mean time between spread checks, in days
+        /// </summary>
+        public float mtb = 2f;
     }
 }

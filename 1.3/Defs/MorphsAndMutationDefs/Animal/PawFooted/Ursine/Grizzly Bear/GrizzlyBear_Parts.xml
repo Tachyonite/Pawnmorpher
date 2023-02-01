@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineJawPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearMuzzle</defName>
+		<label>grizzly bear muzzle</label>
+		<graphics>
+			<Muzzle>Parts/Bear/Bear_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineEarPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearEar</defName>
+		<label>grizzly bear ear</label>
+		<graphics>
+			<LeftEar>Parts/Bear/Bear_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Bear/Bear_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Bear/Bear_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Bear/Bear_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="UrsineTailPart">
+		<classInfluence>BearMorph</classInfluence>
+		<defName>EtherGrizzlyBearTail</defName>
+		<label>grizzly bear tail</label>
+		<graphics>
+			<Tail>Parts/Bear/Bear_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

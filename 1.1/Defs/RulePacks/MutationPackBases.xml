@@ -1,0 +1,100 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
+    <RulePackDef>
+        <defName>MutationTaleRulePack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>mutation_log->on [DATE] [images]. [sentence_group]</li>
+                <li>images->[image]</li>
+                <li>sentence_group->[desc_sentence]</li>
+                <li>circumstance_group->[circumstance_phrase]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MutationRulePackTaleless</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>mutation_log->[PAWN_nameDef] [MUTATION_label]</li> <!-- test entry, should be removed-->
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <!-- 
+        base rulepack all mutation rulepacks should inherit from 
+        defined symbols (these are predefined and can be used) 
+            MUTATION - hediffDef of the mutation {label, defName} 
+            PAWN - pawn that mutated {nameDef} 
+            PART - the part that mutated 
+        
+        symbols to define 
+            initial (required) - the initial start, should usually just be the part label 
+            label (required) - the mutation label, usually the mutation def label 
+            action (required) (multiple) - the action of the mutation 
+                should be something like 'turned into a', 'became a', 'grew', 'grew a' ect. 
+            modifier (optional) (multiple) 
+    -->
+    <RulePackDef Name="CustomMutationRulePackBase" Abstract="true">
+        <rulePack>
+            <rulesStrings>
+                <li>mutation_log->[pname] [initial] [action_group] [modifier_group] [a_an] [label_group].</li>
+                <li>action_group->[action]</li>
+                <li>modifier_group->[modifier]</li>
+                <li>label_group->[label]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <!-- simpler rulePack to inherit from to make mutation log rue packs 
+        just need to define action strings 
+    -->
+    <RulePackDef Name="SimpleMutationRulePackBase" ParentName="CustomMutationRulePackBase" Abstract="true">
+        <rulePack>
+            <rulesStrings>
+                <li>initial->[PART_label]</li>
+                <li>label->[MUTATION_label]</li>
+                <li>pname->[PAWN_nameDef]'s</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef Name="AddedPartLogBase" ParentName="CustomMutationRulePackBase" Abstract="true">
+        <rulePack>
+            <rulesStrings>
+                <li>initial-></li> <!-- empty -->
+                <li>label->[MUTATION_label]</li>
+                <li>action->grew</li>
+                <li>pname->[PAWN_nameDef]</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef ParentName="AddedPartLogBase">
+        <defName>DefaultTailMutationLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>a_an->a</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef ParentName="AddedPartLogBase">
+        <defName>DefaultHornMutationLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>a_an-></li> <!-- empty -->
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <!-- 
+        a default log rule pack 
+    -->
+    <RulePackDef ParentName="SimpleMutationRulePackBase">
+        <defName>DefaultMutationLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>action->became</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>

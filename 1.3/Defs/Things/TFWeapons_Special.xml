@@ -1,0 +1,115 @@
+<Defs>
+    <ThingDef ParentName="BaseGun">
+        <defName>Gun_MutagenicRocketLauncher</defName>
+        <label>mutagenic rocket launcher</label>
+        <description>A single-use rocket launcher that fires a massive mutagenic explosive projectile. Good against large groups targets.\n\nVery rapidly mutates anyone caught in the blast radius which is a very painful situation to be in.</description>
+        <tickerType>Normal</tickerType>
+        <techLevel>Spacer</techLevel>
+        <graphicData>
+            <texPath>Things/Item/mutalauncher</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <statBases>
+            <MarketValue>1200</MarketValue>
+            <Mass>8</Mass>
+            <RangedWeapon_Cooldown>4.5</RangedWeapon_Cooldown>
+        </statBases>
+        <weaponTags>
+            <li>PMMutaRocket</li>
+        </weaponTags>
+        <tradeTags>
+            <li>ExoticMisc</li>
+        </tradeTags>
+        <thingSetMakerTags>
+            <li>SingleUseWeapon</li>
+        </thingSetMakerTags>
+        <verbs>
+            <li>
+                <verbClass>Verb_ShootOneUse</verbClass>
+                <hasStandardCommand>true</hasStandardCommand>
+                <defaultProjectile>Bullet_MutagenicRocket</defaultProjectile>
+                <forcedMissRadius>1.9</forcedMissRadius>
+                <warmupTime>4.5</warmupTime>
+                <ai_AvoidFriendlyFireRadius>8</ai_AvoidFriendlyFireRadius>
+                <range>35.9</range>
+                <burstShotCount>1</burstShotCount>
+                <soundCast>InfernoCannon_Fire</soundCast>
+                <soundCastTail>GunTail_Heavy</soundCastTail>
+                <onlyManualCast>true</onlyManualCast>
+                <targetParams>
+                    <canTargetLocations>true</canTargetLocations>
+                </targetParams>
+                <muzzleFlashScale>14</muzzleFlashScale>
+            </li>
+        </verbs>
+        <tools>
+            <li>
+                <label>barrel</label>
+                <capacities>
+                    <li>Blunt</li>
+                </capacities>
+                <power>11.7</power>
+                <cooldownTime>2.6</cooldownTime>
+            </li>
+        </tools>
+        <comps>
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>7.8</explosiveRadius>
+                <explosiveDamageType>Bomb</explosiveDamageType>
+                <requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+            </li>
+        </comps>
+    </ThingDef>
+
+    <ThingDef ParentName="BaseMeleeWeapon_Blunt_Quality">
+        <defName>MeleeWeapon_MutagenicStunStick</defName>
+        <label>mutagenic stun stick</label>
+        <description>Electricity hums through a machined crystalline form of mutanite, causing mutations in anyone struck by it as well as stunning them with a shock.</description>
+        <graphicData>
+            <texPath>Things/Item/mutaprod</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <techLevel>Medieval</techLevel>
+        <costStuffCount>50</costStuffCount>
+        <statBases>
+            <WorkToMake>6000</WorkToMake>
+            <Mass>1.25</Mass>
+        </statBases>
+        <equippedAngleOffset>-65</equippedAngleOffset>
+        <recipeMaker>
+            <skillRequirements>
+                <Crafting>3</Crafting>
+            </skillRequirements>
+            <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+        </recipeMaker>
+        <stuffCategories>
+            <li>Metallic</li>
+            <li>Woody</li>
+        </stuffCategories>
+        <costList>
+            <Mutanite>2</Mutanite>
+        </costList>
+        <weaponTags>
+            <li>MutagenicMeleeAdvanced</li>
+        </weaponTags>
+        <tools>
+            <li>
+                <label>handle</label>
+                <capacities>
+                    <li>Poke</li>
+                </capacities>
+                <power>3</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+            <li>
+                <label>head</label>
+                <labelUsedInLogging>false</labelUsedInLogging>
+                <capacities>
+                    <li>MutagenicStun</li>
+                </capacities>
+                <power>8</power>
+                <cooldownTime>2</cooldownTime>
+            </li>
+        </tools>
+    </ThingDef>
+</Defs>

@@ -46,4 +46,9 @@
             <xs:pattern value="\S+"></xs:pattern>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="NonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

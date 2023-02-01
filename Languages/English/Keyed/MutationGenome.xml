@@ -1,8 +1,8 @@
 <LanguageData>
-    <GenomeLabel>{MUTATION} genome</GenomeLabel>
+    <GenomeLabel>{MUTATION_label} genome</GenomeLabel>
     <!-- TODO -->
-    <GenomeDesc>Genome that provides information for {MUTATION}.</GenomeDesc>
-    <PMApplyGenome>Use {0} genome.</PMApplyGenome>
+    <GenomeDesc>Genome that provides information for {MUTATION} mutation.</GenomeDesc>
+    <PMApplyGenome>download {0}</PMApplyGenome>
     <PMNoMutationBenchAvailable>No mutation bench is available.</PMNoMutationBenchAvailable>
 
     <PMNoStorageAvailableForGenome>Not enough space for {0} in the chamber database.</PMNoStorageAvailableForGenome>

@@ -1,0 +1,8 @@
+<Defs>
+  <BeardDef>
+    <defName>PM_BeardHidden</defName>
+    <label>no beard</label>
+    <texPath>Things/Mote/Transparent</texPath>
+    <iconPath>Things/Mote/Transparent</iconPath>
+  </BeardDef>
+</Defs>

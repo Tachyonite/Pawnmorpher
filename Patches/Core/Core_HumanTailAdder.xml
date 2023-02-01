@@ -2,9 +2,9 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationConditional">
-				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li/def[text()="Tail"]</xpath>
+				<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Tail"]</xpath>
 				<match Class="PatchOperationAdd">
-					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[defName="Tail"]</xpath>
+					<xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Tail"]/</xpath>
 					<value>
 						<customLabel>tail</customLabel>
 					</value>

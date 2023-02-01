@@ -1,0 +1,46 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeJawPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosJaw</defName>
+		<graphics>
+			<Muzzle>Parts/Rhinoceros/Rhinoceros_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeEarPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosEar</defName>
+		<label>rhinoceros ear</label>
+		<graphics>
+			<LeftEar>Parts/Rhinoceros/Rhinoceros_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Rhinoceros/Rhinoceros_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Rhinoceros/Rhinoceros_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Rhinoceros/Rhinoceros_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The large and curved ear of a rhinoceros.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RhinocerotidaeTailPart">
+		<classInfluence>RhinocerosMorph</classInfluence>
+		<defName>EtherRhinocerosTail</defName>
+		<label>rhinoceros tail</label>
+		<graphics>
+			<Tail>Parts/Rhinoceros/Rhinoceros_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short, leathery rhinoceros tail, complete with tuft.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

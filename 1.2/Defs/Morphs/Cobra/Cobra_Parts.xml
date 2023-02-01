@@ -7,9 +7,6 @@
 		<label>fanged snout</label>
 		<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. This allows for both a toxic, and a mutagenic bite.</description>
 		<initialSeverity>0</initialSeverity>
-		<graphics>
-			<Muzzle>Parts/Cobra/Cobra_Jaw</Muzzle>
-		</graphics>
 		<parts>
 			<li>Jaw</li>
 		</parts>

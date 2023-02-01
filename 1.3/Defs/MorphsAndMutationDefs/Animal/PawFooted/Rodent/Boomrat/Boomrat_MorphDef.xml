@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="RodentMorph">
+		<defName>BoomratMorph</defName>
+		<label>boomratmorph</label>
+		<description>A rat like humanoid covered with chemfuel boils as a result of exposure to boomrat specific mutagens. Keep them away from fire!</description>
+		<race>Boomrat</race>
+		<categories>
+			<li>Temperate</li>
+			<li>Production</li>
+		</categories>
+		<fullTransformation>PawnmorphBoomratTF</fullTransformation>
+		<partialTransformation>PawnmorphBoomratTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(105,78,68)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>BoomratTransformationMemory</transformationMemory>
+			<revertedMemory>BoomratRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

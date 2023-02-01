@@ -128,37 +128,45 @@ namespace Pawnmorph
         }
    
 #endif
-        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor), typeof(Vector3), typeof(Pawn), typeof(bool))]
-        static class AddHumanlikeOrdersToSA
+
+        [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders", typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>))]
+        static class AddHumanlikeOrders
         {
+            [NotNull]
+            private static readonly MethodInfo originalMethod = AccessTools.DeclaredPropertyGetter(typeof(Thing), nameof(Thing.IngestibleNow));
 
             [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
+            private static readonly MethodInfo proxyMethod = typeof(AddHumanlikeOrders).GetMethod(nameof(IngestibleNowProxy));
 
-            [NotNull] private static readonly MethodInfo _targetMethodSig =
-                typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 
+            public static bool IngestibleNowProxy(Thing thing, Pawn pawn)
+            {
+                bool result = thing.IngestibleNow;
+                if (result && thing is Corpse corpse)
+                {
+                    if (corpse.IsNotFresh() && StatsUtility.GetStat(pawn, PMStatDefOf.RottenFoodSensitivity, 300) >= 1.0f)
+                        return false;
+                }
+
+                return result;
+            }
+
             [HarmonyTranspiler]
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
-                var codes = instructions.ToList(); //convert the code instructions to a list so we can do 2 at a time 
+                var codes = instructions.ToList();
 
-                for (var i = 0; i < codes.Count - 1; i++)
+                for (var i = 3; i < codes.Count - 1; i++)
                 {
-                    int j = i + 1;
-                    CodeInstruction instI = codes[i];
-                    //need to be more specific because the patched method is longer, don't want to patch stuff we don't intend to 
-                    if (instI.opcode == OpCodes.Callvirt  && (MethodInfo) codes[i].operand == _targetMethodSig  && codes[j].opcode == OpCodes.Callvirt)
+                    if (codes[i].opcode == OpCodes.Callvirt && (MethodInfo)codes[i].operand == originalMethod)
                     {
-                        instI.opcode =
-                            OpCodes.Call; //replace the callVirt to get_RaceProps with call to FormerHumanUtilities.IsToolUser 
-                        instI.operand = _isToolUser; //set the method that the call op is going to call 
-                        codes[j].opcode = OpCodes.Nop; //replace the second  callVirt to a No op so we don't fuck up the stack 
+                        codes[i].opcode = OpCodes.Call;
+                        codes[i].operand = proxyMethod;
+                        codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_1));
+                        break;
                     }
                 }
-
                 return codes;
             }
         }
-
     }
 }

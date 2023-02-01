@@ -28,6 +28,11 @@ namespace Pawnmorph.Hybrids
         private const float HUNGER_LERP_VALUE = 0.3f;
         private static List<ThingDef_AlienRace> _lst;
 
+        /// <summary>
+        /// Gets the list of explicite race morphs patched externally.
+        /// </summary>
+        public static List<MorphDef> ExplicitPatchedRaces { get; private set; } = new List<MorphDef>();
+
         [NotNull]
         private static readonly Dictionary<ThingDef, MorphDef> _raceLookupTable = new Dictionary<ThingDef, MorphDef>();
 
@@ -70,9 +75,10 @@ namespace Pawnmorph.Hybrids
                 leatherDef = animal.leatherDef,
                 nameCategory = human.nameCategory,
                 body = human.body,
-                baseBodySize = hSize,
-                baseHealthScale = Mathf.Lerp(human.baseHealthScale, animal.baseHealthScale, HEALTH_SCALE_LERP_VALUE),
-                baseHungerRate = hHRate,
+                baseBodySize = human.baseBodySize,
+                baseHealthScale = human.baseHealthScale,
+                baseHungerRate = human.baseHungerRate,
+                hasGenders = human.hasGenders,
                 foodType = GenerateFoodFlags(animal.foodType),
                 gestationPeriodDays = human.gestationPeriodDays,
                 wildness = animal.wildness/2,
@@ -176,7 +182,6 @@ namespace Pawnmorph.Hybrids
         [NotNull]
         private static IEnumerable<ThingDef_AlienRace> GenerateAllImpliedRaces()
         {
-            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             ThingDef_AlienRace human;
 
             try
@@ -189,7 +194,36 @@ namespace Pawnmorph.Hybrids
                     ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?",e);
             }
 
+            if (PawnmorpherMod.Settings.raceReplacements != null)
+            {
+                foreach (var item in PawnmorpherMod.Settings.raceReplacements)
+                {
+                    MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
+                    if (morph != null)
+                    {
+                        if (morph.ExplicitHybridRace == null)
+                        {
+                            ThingDef race = DefDatabase<ThingDef>.GetNamed(item.Value, false);
+                            if (race != null && race is ThingDef_AlienRace alien)
+                            {
+                                morph.raceSettings.explicitHybridRace = alien;
+                                morph.hybridRaceDef = alien;
+                            }
+                        }
+                    }
+                }
+            }
 
+
+
+            ILookup<string, string> animalAssociationLookup = null;
+            if (PawnmorpherMod.Settings.animalAssociations != null)
+            {
+                animalAssociationLookup = PawnmorpherMod.Settings.animalAssociations.ToLookup(x => x.Value, x => x.Key);
+            }
+
+
+            IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
             // ReSharper disable once PossibleNullReferenceException
             foreach (MorphDef morphDef in morphs)
             {
@@ -202,9 +236,26 @@ namespace Pawnmorph.Hybrids
                 }
                 else
                 {
+                    if (PawnmorpherMod.Settings.raceReplacements?.ContainsKey(morphDef.defName) == false)
+                        ExplicitPatchedRaces.Add(morphDef);
+
                     _raceLookupTable[morphDef.ExplicitHybridRace] = morphDef;
                 }
-                
+
+
+
+                if (animalAssociationLookup != null)
+                {
+                    if (animalAssociationLookup.Contains(morphDef.defName))
+                    {
+                        morphDef.associatedAnimals.AddRange(animalAssociationLookup[morphDef.defName].Select(x => DefDatabase<ThingDef>.GetNamed(x)));
+                        morphDef.ResolveReferences();
+                    }
+                }
+
+
+
+
 
 
                 CreateImplicitMeshes(race);
@@ -254,12 +305,13 @@ namespace Pawnmorph.Hybrids
         {
             AlienPartGenerator gen = new AlienPartGenerator //TODO use reflection to copy these fields? 
             {
-                alienbodytypes = human.alienbodytypes.MakeSafe().ToList(),
-                aliencrowntypes = human.aliencrowntypes.MakeSafe().ToList(),
+                bodyTypes = human.bodyTypes.MakeSafe().ToList(),
+                headTypes = human.headTypes.MakeSafe().ToList(),
                 offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
                 headOffset = human.headOffset,
                 headOffsetDirectional = human.headOffsetDirectional,
                 bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
+                colorChannels = human.colorChannels,
                 alienProps = impliedRace
             };
 
@@ -313,8 +365,11 @@ namespace Pawnmorph.Hybrids
             bodyParts.Add("Tail");
             bodyParts.Add("Waist");
 
+            FieldInfo colorChannel = HarmonyLib.AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "colorChannel");
             foreach (AlienPartGenerator.BodyAddon addon in human)
             {
+                addon.scaleWithPawnDrawsize = true;
+
                 AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
                 {
                     path = addon.path,
@@ -342,8 +397,10 @@ namespace Pawnmorph.Hybrids
                     scaleWithPawnDrawsize = addon.scaleWithPawnDrawsize,
                     alignWithHead = addon.alignWithHead
                 };
+                if (temp.ColorChannel != addon.ColorChannel)
+                    colorChannel.SetValue(temp, addon.ColorChannel);
 
-                if (headParts.Contains(temp.bodyPart))
+                if (headParts.Contains(temp.bodyPartLabel))
                 {
                     if (headSize != null)
                         temp.drawSize = headSize.GetValueOrDefault();
@@ -364,7 +421,7 @@ namespace Pawnmorph.Hybrids
                     }
                 }
 
-                if (bodySize != null && bodyParts.Contains(temp.bodyPart))
+                if (bodySize != null && bodyParts.Contains(temp.bodyPartLabel))
                 {
                     temp.drawSize = bodySize.GetValueOrDefault();
                 }
@@ -394,8 +451,8 @@ namespace Pawnmorph.Hybrids
             AlienPartGenerator.RotationOffset returnValue = new AlienPartGenerator.RotationOffset()
             {
                 portraitBodyTypes = human.portraitBodyTypes,
-                portraitCrownTypes = human.portraitCrownTypes,
-                crownTypes = human.crownTypes,
+                portraitHeadTypes = human.portraitHeadTypes,
+                headTypes = human.headTypes,
                 layerOffset = human.layerOffset,
                 offset = human.offset
             };
@@ -433,10 +490,11 @@ namespace Pawnmorph.Hybrids
 
         private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
         {
+            GeneralSettings generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace);
             return new ThingDef_AlienRace.AlienSettings
             {
                 generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
-                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph),
+                graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph, generalSettings),
                 styleSettings = human.styleSettings,
                 raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
                 relationSettings = human.relationSettings,
@@ -444,21 +502,22 @@ namespace Pawnmorph.Hybrids
             };
         }
 
-        private static List<GraphicPaths> GenerateGraphicPaths(List<GraphicPaths> humanGraphicPaths, MorphDef morph)
+        private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph, GeneralSettings generalSettings)
         {
             GraphicPaths temp = new GraphicPaths();
-            var humanGPath = humanGraphicPaths.First(); 
-            Vector2? customSize = morph?.raceSettings?.graphicsSettings?.customDrawSize;
-            temp.customDrawSize = customSize ?? humanGPath.customDrawSize;
-            temp.customPortraitDrawSize = customSize ?? humanGPath.customPortraitDrawSize;
-            Vector2? customHeadSize = morph?.raceSettings?.graphicsSettings?.customHeadDrawSize;
-            temp.customHeadDrawSize = customHeadSize ?? humanGPath.customHeadDrawSize;
-            temp.customPortraitHeadDrawSize = customHeadSize ?? humanGPath.customPortraitHeadDrawSize;
-            temp.headOffset = customSize != null ? new Vector2(0f, 0.34f * (morph.raceSettings.graphicsSettings.customDrawSize.GetValueOrDefault().y - 1)) : temp.headOffset;
-            temp.headOffsetDirectional = humanGraphicPaths.First().headOffsetDirectional; 
-            List<GraphicPaths> returnList = new List<GraphicPaths>();
-            returnList.Add(temp);
-            return returnList;
+
+            temp.head.headtypeGraphics = new List<AlienPartGenerator.ExtendedHeadtypeGraphic>();
+            foreach (HeadTypeDef item2 in generalSettings.alienPartGenerator.HeadTypes)
+            {
+                temp.head.headtypeGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
+                {
+                    headType = item2,
+                    path = item2.graphicPath,
+                });
+            }
+
+
+            return temp;
         }
 
         static List<StatModifier> GenerateHybridStatModifiers(List<StatModifier> humanModifiers, List<StatModifier> animalModifiers, List<StatModifier> statMods)
@@ -555,13 +614,12 @@ namespace Pawnmorph.Hybrids
                 tradeability = humanDef.tradeability,
                 fillPercent = morph.raceSettings.coverPercent
             };
-            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe().Concat(animal.tools.MakeSafe()));
-            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance); 
+
+            // Verbs from animals are provided by mutations.
+            impliedRace.tools = new List<Tool>(humanDef.tools.MakeSafe()); //.Concat(animal.tools.MakeSafe())
+            var verbField = typeof(ThingDef).GetField("verbs", BindingFlags.NonPublic | BindingFlags.Instance);
             var vLst = impliedRace.Verbs.MakeSafe().Concat(animal.Verbs.MakeSafe()).ToList();
-
-            verbField.SetValue(impliedRace, vLst); 
-
-
+            verbField.SetValue(impliedRace, vLst);
             impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace); 
 
             return impliedRace; 

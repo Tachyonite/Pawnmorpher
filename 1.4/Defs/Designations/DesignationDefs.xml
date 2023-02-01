@@ -1,0 +1,8 @@
+<Defs>
+    <DesignationDef>
+        <defName>RecruitSapientFormerHuman</defName>
+        <texturePath>Designations/Tame</texturePath>
+        <targetType>Thing</targetType>
+      </DesignationDef>
+      
+</Defs>

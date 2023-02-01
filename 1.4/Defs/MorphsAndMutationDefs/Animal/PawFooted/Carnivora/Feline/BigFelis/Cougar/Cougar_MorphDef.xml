@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="BigFelisMorph">
+		<defName>CougarMorph</defName>
+		<label>cougarmorph</label>
+		<description>A human variant with feline-like features. They have a similar appearance to cats, but are bigger and have larger jowls. They are faster and more dexterous than regular humans, and they have an advantage in melee. Some of them prefer the terms "pumamorph" or "mountain-lionmorph."</description>
+		<race>Cougar</race>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+		</categories>
+		<fullTransformation>PawnmorphCougarTF</fullTransformation>
+		<partialTransformation>PawnmorphCougarTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(163,130,104)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CougarTransformationMemory</transformationMemory>
+			<revertedMemory>CougarRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,50 @@
+<Defs>
+    <RecipeDef Name="PM_AspectInjectorRecipeBase" Abstract="True">
+
+        <jobString>make injector</jobString>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_Brewing</soundWorking>
+        <workAmount>2000</workAmount>
+        <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>MechaniteSlurry</li>
+                    </thingDefs>
+                </filter>
+                <count>5</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Neutroamine</li>
+                    </thingDefs>
+                </filter>
+                <count>50</count>
+            </li>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mutanite</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>MechaniteSlurry</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <recipeUsers>
+            <li>MutagenLab</li>
+        </recipeUsers>
+        <researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+        <skillRequirements>
+            <Crafting>13</Crafting>
+        </skillRequirements>
+        <workSkill>Intellectual</workSkill>
+    </RecipeDef>
+	
+</Defs>

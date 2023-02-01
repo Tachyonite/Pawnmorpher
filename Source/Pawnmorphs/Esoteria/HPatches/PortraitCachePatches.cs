@@ -21,7 +21,7 @@ namespace Pawnmorph.HPatches
 
             static float GetZoomMultiplier([NotNull] Pawn pawn)
             {
-                var sz = pawn.ageTracker.CurKindLifeStage.bodyGraphicData.drawSize.x;  //assume x & y are the same 
+                var sz = pawn.kindDef.lifeStages[pawn.ageTracker.CurLifeStageIndex].bodyGraphicData.drawSize.x;  //assume x & y are the same 
                 
                 var mult =  1 / sz; 
                 //pow brings the multiplier closer to 1, 'dampening' the effect of the sapient humans draw size

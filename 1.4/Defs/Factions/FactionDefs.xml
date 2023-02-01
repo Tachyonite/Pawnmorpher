@@ -1,0 +1,155 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/FactionDef.xsd">
+    <FactionDef ParentName="PlayerFactionBase">
+        <defName>PawnmorpherPlayerColony</defName>
+        <label>Free Morphs</label>
+        <description>A colony of recently-escaped morphs.</description>
+        <isPlayer>true</isPlayer>
+        <basicMemberKind>Morph</basicMemberKind>
+        <pawnSingular>morph</pawnSingular>
+        <pawnsPlural>morphs</pawnsPlural>
+        <techLevel>Industrial</techLevel>
+        <allowedCultures><li>Astropolitan</li></allowedCultures>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <li>MutantWanderer</li>
+                    <li>FreeMutant</li>
+                    <li>Outlander</li>
+                </categories>
+            </li>
+        </backstoryFilters>
+        <factionIconPath>World/WorldObjects/Expanding/Town</factionIconPath>
+        <playerInitialSettlementNameMaker>NamerInitialSettlementColony</playerInitialSettlementNameMaker>
+        <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+        <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+        <startingResearchTags>
+            <li>ClassicStart</li>
+        </startingResearchTags>
+        <apparelStuffFilter>
+            <thingDefs>
+                <li>Synthread</li>
+                <li>Cloth</li>
+                <li>Morphsilk</li>
+            </thingDefs>
+        </apparelStuffFilter>
+        <disallowedMemes>
+            <li MayRequire="Ludeon.RimWorld.Ideology">HumanPrimacy</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
+        </disallowedMemes>
+    </FactionDef>
+
+
+    <FactionDef ParentName="OutlanderFactionBase" Name="PawnmorpherEnclaveBase" Abstract="true">
+        <pawnSingular>morph</pawnSingular>
+        <pawnsPlural>morphs</pawnsPlural>
+        <listOrderPriority>30</listOrderPriority>
+        <settlementGenerationWeight>0.2</settlementGenerationWeight>
+        <requiredCountAtGameStart>1</requiredCountAtGameStart>
+        <canMakeRandomly>true</canMakeRandomly>
+        <canSiege>true</canSiege>
+        <canStageAttacks>true</canStageAttacks>
+        <leaderTitle>magistrate</leaderTitle>
+        <factionIconPath>UI/Icons/FreeMorphs</factionIconPath>
+        <factionNameMaker>NamerFactionOutlander</factionNameMaker>
+        <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
+        <techLevel>Industrial</techLevel>
+        <backstoryFilters>
+            <li>
+                <categories>
+                    <!-- these 2 don't have childhood backstories -->
+                    <li>MutantWanderer</li>
+                    <li>FreeMutant</li>
+
+                    <li>Offworld</li>
+                </categories>
+                <commonality>0.95</commonality>
+            </li>
+            <li>
+                <categories>
+                    <li>Outlander</li>
+                    <li>Offworld</li>
+                </categories>
+                <commonality>0.05</commonality>
+            </li>
+        </backstoryFilters>
+        <visitorTraderKinds>
+            <li>Visitor_Outlander_Standard</li>
+        </visitorTraderKinds>
+        <baseTraderKinds>
+            <li>Base_Outlander_Standard</li>
+        </baseTraderKinds>
+        <allowedArrivalTemperatureRange>-40~45</allowedArrivalTemperatureRange>
+        <maxPawnCostPerTotalPointsCurve>
+            <points>
+                <li>(0,35)</li>
+                <li>(70,50)</li>
+                <li>(700,100)</li>
+                <li>(1300,150)</li>
+                <li>(100000,10000)</li>
+            </points>
+        </maxPawnCostPerTotalPointsCurve>
+        <pawnGroupMakers>
+            <li>
+                <kindDef>Combat</kindDef>
+                <options>
+                    <PMEnclaveVillager>5</PMEnclaveVillager>
+                    <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+                    <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+                    <PMEnclaveMercenary>15</PMEnclaveMercenary>
+                    <PMEnclaveHeavyMercenary>10</PMEnclaveHeavyMercenary>
+                    <PMEnclaveEliteMercenary>10</PMEnclaveEliteMercenary>
+                </options>
+            </li>
+            <li>
+                <kindDef>Peaceful</kindDef>
+                <options>
+                    <PMEnclaveVillager>20</PMEnclaveVillager>
+                    <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+                    <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+                </options>
+            </li>
+            <li>
+                <kindDef>Trader</kindDef>
+                <traders>
+                    <PMEnclaveTown_Trader>1</PMEnclaveTown_Trader>
+                </traders>
+                <carriers>
+                    <Muffalo>6</Muffalo>
+                    <Dromedary>5</Dromedary>
+                    <Alpaca>2</Alpaca>
+                    <Elephant>1</Elephant>
+                </carriers>
+                <guards>
+                    <PMEnclaveVillager>3</PMEnclaveVillager>
+                    <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+                </guards>
+            </li>
+            <li>
+                <kindDef>Settlement</kindDef>
+                <options>
+                    <PMEnclaveVillager>10</PMEnclaveVillager>
+                    <PMEnclaveTown_Guard>10</PMEnclaveTown_Guard>
+                    <PMEnclaveTown_Councilman>10</PMEnclaveTown_Councilman>
+                </options>
+            </li>
+        </pawnGroupMakers>
+        <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
+        <disallowedMemes>
+            <li MayRequire="Ludeon.RimWorld.Ideology">HumanPrimacy</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
+        </disallowedMemes>
+    </FactionDef>
+
+    <FactionDef ParentName="PawnmorpherEnclaveBase">
+        <defName>PawnmorpherEnclave</defName>
+        <label>free morph enclave</label>
+        <description>These people are outcasts, mutation victims and cult escapees who have banded together to be a safe haven for morphs and mutants worldwide.</description>
+        <colorSpectrum>
+            <li>(0.35,0.30,0.60)</li>
+            <li>(0.45,0.40,0.90)</li>
+        </colorSpectrum>
+        <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+        <configurationListOrderPriority>100</configurationListOrderPriority>
+    </FactionDef>
+
+</Defs>

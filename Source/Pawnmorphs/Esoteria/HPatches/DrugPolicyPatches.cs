@@ -31,7 +31,8 @@ namespace Pawnmorph.HPatches
                         if (record?.drug == null) //remove any null records or records with null drugs 
                         {
                             ___drugTakeRecords.RemoveAt(i); 
-                        }
+                        }else if (!record.drug.IsDrug)
+                            ___drugTakeRecords.RemoveAt(i);
                     }
                 }
             }

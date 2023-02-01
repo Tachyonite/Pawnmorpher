@@ -1,0 +1,45 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
+		<defName>EtherEmuBeak</defName>
+		<classInfluence>EmuMorph</classInfluence>
+		<label>emu beak</label>
+		<graphics>
+			<Muzzle>Parts/Emu/Emu_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an emu. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteTailPart">
+		<defName>EtherEmuTailfeathers</defName>
+		<classInfluence>EmuMorph</classInfluence>
+		<label>emu tailfeathers</label>
+		<graphics>
+			<Tail>Parts/Emu/Emu_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
+		<defName>EtherEmuFoot</defName>
+		<classInfluence>EmuMorph</classInfluence>
+		<description>A scary emu foot.</description>
+	</Pawnmorph.Hediffs.MutationDef> -->
+</Defs>

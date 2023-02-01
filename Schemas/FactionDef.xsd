@@ -81,10 +81,10 @@
             <xs:element name="royalImplantRules" type="ListOfStrings" minOccurs="0" />
             <xs:element name="renounceTitleMessage" type="xs:string" minOccurs="0" />
             <xs:element name="allowedCultures" type="ListOfStrings" minOccurs="0" />
-            <xs:element name="requiredMemes" type="ListOfStrings" minOccurs="0" />
-            <xs:element name="allowedMemes" type="ListOfStrings" minOccurs="0" />
-            <xs:element name="disallowedMemes" type="ListOfStrings" minOccurs="0" />
-            <xs:element name="disallowedPrecepts" type="ListOfStrings" minOccurs="0" />
+            <xs:element name="requiredMemes" type="ListOfDefs" minOccurs="0" />
+            <xs:element name="allowedMemes" type="ListOfDefs" minOccurs="0" />
+            <xs:element name="disallowedMemes" type="ListOfDefs" minOccurs="0" />
+            <xs:element name="disallowedPrecepts" type="ListOfDefs" minOccurs="0" />
 
             <xs:element name="backstoryFilters" minOccurs="0">
                 <xs:complexType>

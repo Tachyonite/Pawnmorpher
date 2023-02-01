@@ -98,12 +98,17 @@ namespace Pawnmorph.Hediffs
             if (CurStage is IExecutableStage exStage) exStage.EnteredStage(this);
         }
 
-        private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel sapiencelevel)
+        private void SapienceLevelChanged(Need_Control sender, Pawn pawn1, SapienceLevel oldLevel, SapienceLevel currentLevel)
         {
-            var idx = (int) sapiencelevel;
+            var idx = (int)currentLevel;
             if (idx < def.stages.Count) SetStage(idx);
 
-            SetLabel(sapiencelevel);
+            if (pawn.IsHumanlike())
+            {
+                FormerHumanUtilities.ResetTraining(pawn);
+            }
+
+            SetLabel(currentLevel);
         }
 
         private void SetLabel(SapienceLevel level)

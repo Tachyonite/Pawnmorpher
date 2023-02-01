@@ -1,4 +1,6 @@
 ﻿using Pawnmorph.DebugUtils;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -11,6 +13,13 @@ namespace Pawnmorph
     public class PawnmorpherMod : Mod
     {
         PawnmorpherSettings settings;
+
+        /// <summary>
+        /// A convenience property to get the settings statically
+        /// </summary>
+        /// <value>The settings.</value>
+        public static PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PawnmorpherMod"/> class.
         /// </summary>
@@ -32,25 +41,43 @@ namespace Pawnmorph
         {
             Listing_Standard listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
-            listingStandard.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
+
+            Listing_Standard checkBoxSection = listingStandard.BeginSection(10 * Text.LineHeight);
+            checkBoxSection.ColumnWidth = inRect.width / 2;
+            checkBoxSection.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenDiseasesCheckboxLabel".Translate(), ref settings.enableMutagenDiseases, "enableMutagenDiseasesCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableMutagenMeteorCheckboxLabel".Translate(), ref settings.enableMutagenMeteor, "enableMutagenMeteorCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("enableWildFormersCheckboxLabel".Translate(), ref settings.enableWildFormers, "enableWildFormersCheckboxTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("ChamberDatabaseIgnoresDataLimit".Translate(),
                                             ref settings.chamberDatabaseIgnoreStorageLimit,
                                             "ChamberDatabaseIgnoresDataLimitTooltip".Translate());
-            listingStandard.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
-                                            "PMInjectorsRequireTaggingTooltip".Translate()); 
+            checkBoxSection.CheckboxLabeled("PMInjectorsRequireTagging".Translate(), ref settings.injectorsRequireTagging,
+                                            "PMInjectorsRequireTaggingTooltip".Translate());
 
-            listingStandard.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
+            checkBoxSection.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
 
-            listingStandard.GapLine();
+            if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
+                ShowVisibleRaceSelection();
+
+            if (checkBoxSection.ButtonText("PMRaceReplacementButton".Translate()))
+                ShowRaceReplacements();
+
+            if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
+                ShowOptionalPatches();
+
+            if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
+                ShowAnimalAssociations();
+
+
+            listingStandard.EndSection(checkBoxSection);
+
+
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
             settings.transformChance = listingStandard.Slider(settings.transformChance, 0f, 100f);
-            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToString("F1")}%");
-            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 100f);
+            listingStandard.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)}");
+            settings.formerChance = listingStandard.Slider(settings.formerChance, 0f, 1f);
             listingStandard.Label($"{"partialChanceSliderLabel".Translate()}: {settings.partialChance.ToString("F1")}%");
             settings.partialChance = listingStandard.Slider(settings.partialChance, 0f, 100f);
             listingStandard.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
@@ -63,7 +90,7 @@ namespace Pawnmorph
             if (settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON)
             {
                 listingStandard
-                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+                   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.friendlyManhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
                 settings.friendlyManhunterTfChance = listingStandard.Slider(settings.friendlyManhunterTfChance, 0, 1f);
 
             }
@@ -75,11 +102,49 @@ namespace Pawnmorph
                 float f = (float) ((int) settings.logLevel);
                 var maxLevel = (int) LogLevel.Pedantic;
                 f = listingStandard.Slider(maxLevel - f, 0, maxLevel);
-                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(f, 0, maxLevel));
+                settings.logLevel = (LogLevel) Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
             }
 
             listingStandard.End();
+
             base.DoSettingsWindowContents(inRect);
+        }
+
+        private void ShowVisibleRaceSelection()
+        {
+            if (settings.visibleRaces == null)
+                settings.visibleRaces = new List<string>();
+
+            UserInterface.Settings.Dialog_VisibleRaceSelection raceSelection = new UserInterface.Settings.Dialog_VisibleRaceSelection(settings.visibleRaces);
+            Find.WindowStack.Add(raceSelection);
+        }
+
+        private void ShowRaceReplacements()
+        {
+            if (settings.raceReplacements == null)
+                settings.raceReplacements = new Dictionary<string, string>();
+
+            UserInterface.Settings.Dialog_RaceReplacements raceReplacements = new UserInterface.Settings.Dialog_RaceReplacements(settings.raceReplacements);
+            Find.WindowStack.Add(raceReplacements);
+        }
+
+        private void ShowOptionalPatches()
+        {
+            if (settings.optionalPatches == null)
+                settings.optionalPatches = new Dictionary<string, bool>();
+
+            UserInterface.Settings.Dialog_OptionalPatches raceReplacements = new UserInterface.Settings.Dialog_OptionalPatches(settings.optionalPatches);
+            Find.WindowStack.Add(raceReplacements);
+        }
+
+
+        private void ShowAnimalAssociations()
+        {
+            if (settings.animalAssociations == null)
+                settings.animalAssociations = new Dictionary<string, string>();
+
+            UserInterface.Settings.Dialog_AnimalAssociations animalAssociations = new UserInterface.Settings.Dialog_AnimalAssociations(settings.animalAssociations);
+            Find.WindowStack.Add(animalAssociations);
         }
 
         /// <summary>

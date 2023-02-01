@@ -1,0 +1,152 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GuineaPigTransformationMemory</defName>
+				<stages>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>I'm literally being used as a guinea pig!</description>
+								<visible>true</visible>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>This is so cool, I might break into squeak!</description>
+								<visible>true</visible>
+								<baseMoodEffect>3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became guinea pig morph</label>
+								<description>I don't want to be used for any more experiments!</description>
+								<visible>true</visible>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GuineaPigRevertedMemory</defName>
+		<stages>
+						<li>
+								<label>Reverted</label>
+								<description>Back to normal. I have my face back!</description>
+								<baseMoodEffect>+3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>No one calls me cute anymore.</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>Finally! It was so humiliating!</description>
+								<baseMoodEffect>+10</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>But I liked being cute and fluffy!</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherGuineaPigJaw</defName>
+		<stages>
+			<li>
+				<label>Guinea pig face</label>
+				<description>I don't like these chubby cheeks.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig face</label>
+				<description>Now everyone wants to give me a boop. I like it!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig face</label>
+				<description>How am I supposed to eat with only four teeth?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherGuineaPigEar</defName>
+		<stages>
+			<li>
+				<label>Guinea pig ears</label>
+				<description>I guess I can hear a little better.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig ears</label>
+				<description>Hey, they're kind of cute.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig ears</label>
+				<description>Can't these things stay up at least? They keep folding over.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherGuineaPigHand</defName>
+		<stages>
+			<li>
+				<label>Rodent hands</label>
+				<description>These paws aren't the worst thing that's happened to me. They're almost useful.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rodent hands</label>
+				<description>They're so dainty and dextrous, I can do fine work with these.</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rodent hands</label>
+				<description>They're too small and delicate. They look rediculous!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherGuineaPigFoot</defName>
+		<stages>
+			<li>
+				<label>Guinea pig feet</label>
+				<description>Didn't I have five toes?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig feet</label>
+				<description>I like these feet. They're cute.</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Guinea pig feet</label>
+				<description>These tiny delicate feet are useless!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

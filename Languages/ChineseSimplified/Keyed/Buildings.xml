@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MutaniteCentrifugeRunModeDesc>启用或禁用“高产”模式。这使得离心机效率更高，速度更快，但在周围很危险。</MutaniteCentrifugeRunModeDesc>
+  <MutaniteCentrifugeRunModeLabel>切换运行模式</MutaniteCentrifugeRunModeLabel>
+  <CentrifugeHighYield>高产</CentrifugeHighYield>
+  <CentrifugeNormalYield>正常产量</CentrifugeNormalYield>
+  <CentrifugeRunningText>{0} 完成。</CentrifugeRunningText>
+  <MutaniteCentrifugeNotActive>无效，需要:{0}更多{1}</MutaniteCentrifugeNotActive>
+  <PMMutaniteCentrifugeNotActive>无效，{0}填充</PMMutaniteCentrifugeNotActive>
+  <MutaniteCentrifugeReadyToStart>准备启动</MutaniteCentrifugeReadyToStart>
+</LanguageData>

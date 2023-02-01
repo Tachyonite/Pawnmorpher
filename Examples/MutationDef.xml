@@ -7,12 +7,26 @@
         the hediff class must be Hediff_AddedMutation or a subclass 
         <hediffClass>Hediff_AddedMutation</hediffClass>  
 
+        this is houw you add custom graphics to this mutation        <graphics>
+            each entry should be an anchorID and texture path as shown below 
+            the given texture will render on the pawn at  the corresponding 'anchor' (see Human Graphics Patch) when a pawn has that mutation on that part
+            see Gazelle_Parts.xml for a concrete example 
+            <AnchorID>TexturePath/ToMutation</AnchorID>
+        </graphics>
+
         <stages>
             this is a special hediff stage used specifically to give more functionality to mutations 
             <li Class="Pawnmorph.Hediffs.MutationStage">
                 <description>text here will override the hediff's normal description</description>
                 <labelOverride>text here will override the hediff's normal label</labelOverride>
                 
+                mutations can also have graphics visible only at certain stages, if present these graphics will be shown 
+                if the mutation is at this stage or higher and there is no other graphics on a higher stage                <graphics>
+                    each entry should be an anchorID and texture path as shown below 
+                    the given texture will render on the pawn at  the corresponding 'anchor' (see Human Graphics Patch) when a pawn has that mutation on that part
+                    <AnchorID>TexturePath/ToMutation</AnchorID>
+                </graphics>
+
                 this element is a list of aspect givers that will trigger only once when the pawn enters this stage
                 see GivingAspects Examples for more information on AspectGivers  
                 <aspectGivers>

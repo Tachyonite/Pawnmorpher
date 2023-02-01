@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -75,6 +77,18 @@ namespace Pawnmorph
             return curRecord;
         }
 
+
+
+        [CanBeNull]
+        public static BodyPartRecord GetRecord([NotNull] this BodyDef bodyDef, [NotNull] BodyPartRecord partRecord)
+        {
+            if (bodyDef == null) throw new ArgumentNullException(nameof(bodyDef));
+            if (partRecord == null) throw new ArgumentNullException(nameof(partRecord));
+
+
+            return bodyDef.GetPartsWithDef(partRecord.def).FirstOrDefault(x => x.Label == partRecord.Label);
+        }
+
         /// <summary>
         /// Gets all non missing parts of the given part defs 
         /// </summary>
@@ -93,6 +107,86 @@ namespace Pawnmorph
                     yield return record; 
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the part health multiplier that is applied to negative things on this part.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="record">The record.</param>
+        /// <returns></returns>
+        public static float GetPartHealthMultiplier([NotNull] Pawn p, [NotNull] BodyPartRecord record)
+        {
+            const float e0 = 0.4f;
+            const float e1 = 1.5f;
+            float nHealth = GetPartNormalizedHealth(record, p);
+            nHealth = 1 - Mathf.Clamp01((nHealth - e0) / (e1 - e0));
+            return MathUtilities.SmoothStep(0, 1, nHealth); 
+        }
+
+
+        /// <summary>
+        /// Gets the normalized part health.
+        /// </summary>
+        /// <param name="record">The record.</param>
+        /// <param name="p">The p.</param>
+        /// <param name="trueNormal">if set to <c>true</c> take mutations into account with 1 being completely healed, otherwise mutations that add health can push this value beyond 1.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">record
+        /// or
+        /// p</exception>
+        /// this is usually a value between 0-1, where 1 is full health, some mutations can push this value beyond 1
+        public static float GetPartNormalizedHealth([NotNull] BodyPartRecord record, [NotNull] Pawn p, bool trueNormal=false)
+        {
+            if (record == null) throw new ArgumentNullException(nameof(record));
+            if (p == null) throw new ArgumentNullException(nameof(p));
+
+            var mHealth = trueNormal ? GetPartMaxHealth( record, p) :  record.def.GetMaxHealth(p);
+            var curHealth = p.health?.hediffSet?.GetPartHealth(record) ?? 0;
+            return curHealth / mHealth;
+        }
+
+     
+        /// <summary>
+        /// Gets the maximum health of the given record for the given pawn 
+        /// </summary>
+        /// Note: this is used by a transpiler, do not re order arguments without fixing HediffSetPatches.GetPartHealthTranspiler as well
+        /// <param name="p">The p.</param>
+        /// <param name="record">The record.</param>
+        /// <returns></returns>
+        public static float GetPartMaxHealth([NotNull] BodyPartRecord record, [NotNull] Pawn p)
+        {
+            if (p == null) throw new ArgumentNullException(nameof(p));
+            if (record == null) throw new ArgumentNullException(nameof(record));
+
+            if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
+                return record.def.hitPoints;
+
+            MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
+            if (mTracker == null) 
+                return record.def.hitPoints;
+
+            float offset = 0;
+            float maxPartHealth = record.def.GetMaxHealth(p);
+            float multiplier = 0;
+            foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
+            {
+                MutationStage mStage = mutation.CurrentMutationStage;
+
+                if (mStage == null)
+                    continue;
+
+                if (mStage.globalHealthMultiplier != 0)
+                    multiplier += mStage.globalHealthMultiplier;
+
+                if (mutation.Part != record) 
+                    continue;
+
+                offset += mStage.healthOffset;
+            }
+
+            return Mathf.Ceil((offset * p.HealthScale
+              + maxPartHealth) * (multiplier > 0 ? multiplier : 1)); //multiplying out health scale like this in case any mods patch BodyPartDef.GetMaxHealth
         }
 
 

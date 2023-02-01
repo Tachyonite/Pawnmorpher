@@ -1,0 +1,58 @@
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/PreceptDef[defName="AnimalVenerated"]/comps</xpath>
+				<value>
+					<li Class="Pawnmorph.PreceptComps.VeneratedMutation">
+						<thoughtDef>PM_GainedVeneratedMutation</thoughtDef>
+						<historyEvent>MutationGained</historyEvent>
+					</li>
+					<li Class="Pawnmorph.PreceptComps.VeneratedMorph">
+						<reversion>true</reversion>
+						<thoughtDef>PM_VeneratedAnimalMorphedReverted</thoughtDef>
+						<historyEvent>DeMorphed</historyEvent>
+					</li>
+					<li Class="Pawnmorph.PreceptComps.VeneratedMorph">
+						<reversion>false</reversion>
+						<thoughtDef>PM_VeneratedAnimalMorphed</thoughtDef>
+						<historyEvent>Morphed</historyEvent>
+					</li>
+					<li Class="Pawnmorph.PreceptComps.VeneratedAnimalTransformation">
+						<thoughtDef>PM_VeneratedAnimalReverted</thoughtDef>
+						<historyEvent>Reverted</historyEvent>
+					</li>
+					<li Class="PreceptComp_SituationalThought">
+						<thought>PM_FormerHuman_Venerated_Social</thought>
+					</li>
+					<li Class="PreceptComp_SituationalThought">
+						<thought>PM_HasMutation_Venerated_Approved_Social</thought>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>/Defs/MemeDef[defName="Transhumanist" or defName="FleshPurity"]/disagreeableTraits</xpath>
+				<value>
+					<li>MutationAffinity</li>
+				</value>
+			</li>
+			<li Class="PatchOperationConditional">
+				<xpath>/Defs/MemeDef[defName="HumanPrimacy"]/disagreeableTraits</xpath>
+				<nomatch Class="PatchOperationAdd">
+					<xpath>/Defs/MemeDef[defName="HumanPrimacy"]</xpath>
+					<value>
+						<disagreeableTraits>
+							<li>MutationAffinity</li>
+						</disagreeableTraits>
+					</value>
+				</nomatch>
+				<match Class="PatchOperationAdd">
+					<xpath>/Defs/MemeDef[defName="HumanPrimacy"]/disagreeableTraits</xpath>
+					<value>
+						<li>MutationAffinity</li>
+					</value>
+				</match>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

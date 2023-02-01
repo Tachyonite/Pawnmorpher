@@ -28,6 +28,8 @@ namespace Pawnmorph
         [NotNull]
         public static HediffDef SapienceLimiterHediff;
 
-        public static HediffDef LuciferiumHigh; 
+        public static HediffDef LuciferiumHigh;
+
+        public static HediffDef Bullrush;
     }
 }

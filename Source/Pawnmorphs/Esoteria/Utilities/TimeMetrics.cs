@@ -28,5 +28,10 @@ namespace Pawnmorph.Utilities
         ///     The tick period in (real) seconds
         /// </summary>
         public const float TICK_PERIOD = 1f / TICKS_PER_REAL_SECOND;
+
+        /// <summary>
+        /// The ticks per game year
+        /// </summary>
+        public const long TICKS_PER_YEAR = 3600000L;
     }
 }

@@ -1,0 +1,128 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherDextrousPawHand</defName>
+		<stages>
+			<li>
+				<label>Rodent hands</label>
+				<description>These paws sure are good at picking up little things off the ground.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rodent hands</label>
+				<description>They're so dainty and dextrous, these are better than my old hands!</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rodent hands</label>
+				<description>Ahhhhh! They're so wrinkly! Get them off me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<!-- <ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRatFoot</defName>
+		<stages>
+			<li>
+				<label>Rat feet</label>
+				<description>Didn't I have five toes?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat feet</label>
+				<description>Perfect for stealing and getting out fast!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat feet</label>
+				<description>I have the feet of a sewer beast!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef> -->
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherRodentJaw</defName>
+        <stages>
+            <li>
+                <label>rodent face</label>
+                <description>What's up with these teeth?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>rodent face</label>
+                <description>I can eat whatever I want!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>rodent face</label>
+                <description>God, I look so ugly with this thing...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherRodentEar</defName>
+        <stages>
+            <li>
+                <label>rodent ears</label>
+                <description>Why are my ears so small?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>rodent ears</label>
+                <description>These tiny ears are so cute!</description>
+                <visible>True</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>rodent ears</label>
+                <description>Does anyone have a hat I can hide these things under?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRodentTail</defName>
+		<stages>
+			<li>
+				<label>rodent tail</label>
+				<description>It trails behind me uselessly...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>rodent tail</label>
+				<description>I wish it was better at something...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>rodent tail</label>
+				<description>I feel dirty and like a thief, like this is a punishment...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

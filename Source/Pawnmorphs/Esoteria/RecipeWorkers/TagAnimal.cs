@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Chambers;
 using Verse;
+using Pawnmorph.Genebank.Model;
 
 namespace Pawnmorph.RecipeWorkers
 {
@@ -28,7 +29,7 @@ namespace Pawnmorph.RecipeWorkers
         public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
         {
             if (pawn?.kindDef == null) return; 
-            DB.TryAddToDatabase(pawn.kindDef);
+            DB.TryAddToDatabase(new AnimalGenebankEntry(pawn.kindDef));
         }
 
         /// <summary>

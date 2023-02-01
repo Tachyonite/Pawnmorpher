@@ -1,0 +1,144 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>CaribouTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>Well at least I won’t get cold in the winter...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I can’t wait to see the shape of my antlers!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>They would not leave me outside in winter, would they?</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>CaribouRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Much better, these antlers were pretty heavy...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I feel defenseless without my antlers...</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Finally, I had enough of sowing these antlers!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCaribouJaw</defName>
+        <stages>
+            <li>
+                <label>Reindeer face</label>
+                <description>Oh deer, this is going to be tough to get used to.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer face</label>
+                <description>Where's my red nose?</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer face</label>
+                <description>STOP SINGING JINGLE BELLS TO ME!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCaribouEar</defName>
+        <stages>
+            <li>
+                <label>Reindeer ears</label>
+                <description>At least they keep the flies off themselves...?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer ears</label>
+                <description>I can hear everything!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Reindeer ears</label>
+                <description>These things are so twitchy, get them off me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCaribouTail</defName>
+        <stages>
+            <li>
+                <label>Short tail</label>
+                <description>Is this thing... a tail?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Short tail</label>
+                <description>It's so fluffy!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Short tail</label>
+                <description>Just big enough to be hard to hide... great...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherCaribouAntlers</defName>
+        <stages>
+            <li>
+                <label>Short tail</label>
+                <description>Is this thing... a tail?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Short tail</label>
+                <description>It's so fluffy!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Short tail</label>
+                <description>Just big enough to be hard to hide... great...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

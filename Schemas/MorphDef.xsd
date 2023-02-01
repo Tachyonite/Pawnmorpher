@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<xs:include schemaLocation="include/Enums.xsd" />
-	<xs:include schemaLocation="include/CommonComplex.xsd" />
+	<xs:include schemaLocation="include/Recipe.xsd" />
 	<xs:element name="Defs">
 		<xs:complexType>
 			<xs:sequence>
@@ -50,6 +49,8 @@
 									</xs:all>
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="noInjector" type="xs:boolean" minOccurs="0" />
+							<xs:element name="injectorDef" type="xs:string" minOccurs="0" />
 							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />
 							<xs:element name="fullTransformation" type="xs:string" minOccurs="0" />
 							<xs:element name="partialTransformation" type="xs:string" minOccurs="0"/>
@@ -61,6 +62,9 @@
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="classification" type="AnimalClassification" minOccurs="0"/>
+							<xs:element name="injectorProperties" type="MorphInjectorProperties" minOccurs="0" nillable="true" />
+							<xs:element name="fullTfHediffProps" type="MorphHediffProperties" minOccurs="0" nillable="true" />
+							<xs:element name="partialTfHediffProps" type="MorphHediffProperties" minOccurs="0" nillable="true" />
 						</xs:all>
 						<xs:attribute name="ParentName" type="xs:string" use="optional" />
 						<xs:attribute name="Name" type="xs:string" use="optional" />
@@ -76,12 +80,7 @@
 			<xs:element name="li" type="StatModifier" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="StatModifier">
-		<xs:sequence>
-			<xs:element name="stat" type="xs:string" />
-			<xs:element name="value" type="xs:float" />
-		</xs:sequence>
-	</xs:complexType>
+
 	<xs:complexType name="HybridThoughtSettings">
 		<xs:sequence>
 			<xs:element name="replacerList" minOccurs="0" maxOccurs="1">
@@ -190,5 +189,104 @@
 			<xs:element name="def" type="xs:string" minOccurs="1" maxOccurs="1" />
 			<xs:element name="keepOnReversion" type="xs:boolean" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StageAlert">
+		<xs:all>
+			<xs:element name="letterLabelText" type="xs:string" minOccurs="0" />
+			<xs:element name="letterContentText" type="xs:string" minOccurs="0" />
+			<xs:element name="letterDef" type="xs:string" minOccurs="0" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="TFMiscSettings">
+		<xs:all>
+			<xs:element name="tfTale" type="xs:string" minOccurs="0" />
+			<xs:element name="warningLabelOverride" type="xs:string" minOccurs="0" />
+			<xs:element name="warningContentOverride" type="xs:string" minOccurs="0" />
+			<xs:element name="warningLetterDef" type="xs:string" minOccurs="0" />
+			<xs:element name="displayWarning" type="xs:boolean" minOccurs="0" />
+			<xs:element name="forcedSapience" type="xs:float" minOccurs="0" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="MorphHediffProperties">
+		<xs:all>
+			<xs:element name="label" type="xs:string" minOccurs="0" />
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="labelColor" type="Color" minOccurs="0" />
+			<xs:element name="MutagenDef" type="xs:string" minOccurs="0" />
+			<xs:element name="tfAlert" type="StageAlert" minOccurs="0" />
+			<xs:element name="removeNonMorphPartChance" type="xs:float" minOccurs="0" />
+			<xs:element name="tfSettings" type="TFMiscSettings" minOccurs="0" />
+			<xs:element name="hungerRateFactor" type="xs:float" minOccurs="0" />
+			<xs:element name="capMods" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any processContents="lax" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="aspectGivers" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any processContents="lax" maxOccurs="unbounded" />
+								</xs:sequence>
+								<xs:attribute name="Class" use="required" type="xs:string" />
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="MorphInjectorProperties">
+		<xs:all>
+			<xs:element name="label" type="xs:string" minOccurs="0" />
+			<xs:element name="statBases" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any processContents="lax" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="workAmount" type="xs:positiveInteger" minOccurs="0" />
+			<xs:element name="techLevel" type="TechLevel" minOccurs="0" />
+			<xs:element name="traderTags" type="ListOfStrings" minOccurs="0" />
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="useDefaultTags" type="xs:boolean" minOccurs="0" />
+			<xs:element name="costList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any processContents="lax" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="slurryCost" type="xs:positiveInteger" minOccurs="0" />
+			<xs:element name="neutroamineCost" type="xs:positiveInteger" minOccurs="0" />
+			<xs:element name="mutaniteCost" type="xs:positiveInteger" minOccurs="0" />
+			<xs:element name="outcomeDoers" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any processContents="lax" maxOccurs="unbounded" />
+								</xs:sequence>
+								<xs:attribute name="Class" use="required" type="xs:string" />
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="graphicData" type="GraphicData" minOccurs="0" />
+
+			<xs:element name="recipeMaker" type="RecipeMaker" minOccurs="0" />
+		</xs:all>
 	</xs:complexType>
 </xs:schema>

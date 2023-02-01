@@ -14,11 +14,5 @@ namespace Pawnmorph
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(MutationsDefOf));
         }
-
-        public static HediffDef EtherEggLayer;
-        public static HediffDef EtherUdder;
-        public static HediffDef EtherChemfuelUdder;
-        public static HediffDef EtherWooly;
-        public static HediffDef EtherMegawoolly;
     }
 }

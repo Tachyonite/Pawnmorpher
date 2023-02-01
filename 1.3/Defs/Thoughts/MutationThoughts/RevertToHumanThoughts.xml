@@ -1,0 +1,19 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+
+
+
+    <!-- these are thoughts for when a pawn is reverted from a morph back to being human  -->
+    <ThoughtDef ParentName="OutlookMemoryBase" > <!-- default for pawns that have neither trait  -->
+        <defName>DefaultMorphRevertsToHuman</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>That was...an experience, to say the least. I'm glad to be back to my old self again, though.</description>
+                <visible>true</visible>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+
+</Defs>

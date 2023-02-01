@@ -1,0 +1,170 @@
+<Defs>
+	<PawnRelationDef>
+		<workerClass>Pawnmorph.PawnRelationWorker_MergeMate</workerClass>
+		<defName>MergeMate</defName>
+		<label>meldmate</label>
+		<importance>200</importance>
+		<diedThought>MyMergeMateDied</diedThought>
+		<killedThought>KilledMyMergeMate</killedThought>
+		<soldThoughts>
+			<li>SoldMyMergeMate</li>
+		</soldThoughts>
+		<opinionOffset>35</opinionOffset>
+		<generationChanceFactor>0</generationChanceFactor>
+		<implied>false</implied>
+		<reflexive>true</reflexive>
+	</PawnRelationDef>
+
+	<PawnRelationDef>
+		<workerClass>Pawnmorph.PawnRelationWorker_ExMerged</workerClass>
+		<defName>ExMerged</defName>
+		<label>ex-melded</label>
+		<importance>200</importance>
+		<diedThought>MyExMergeDied</diedThought>
+		<killedThought>KilledMyExMerge</killedThought>
+		<soldThoughts>
+			<li>SoldMyExMerge</li>
+		</soldThoughts>
+		<opinionOffset>-35</opinionOffset>
+		<generationChanceFactor>0</generationChanceFactor>
+		<implied>false</implied>
+		<reflexive>true</reflexive>
+	</PawnRelationDef>
+
+	<ThoughtDef ParentName="DeathMemoryFamily">
+		<defName>MyMergeMateDied</defName>
+		<stages>
+			<li>
+				<label>my meldmate {0} died</label>
+				<description>My meldmate died. It feels a bit like dying myself.</description>
+				<baseMoodEffect>-16</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>KilledMyMergeMate</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>120</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>killed my meldmate</label>
+				<baseOpinionOffset>-50</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>SoldMyMergeMate</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>120</durationDays>
+		<stackLimit>10</stackLimit>
+		<stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>meldmate sold</label>
+				<labelSocial>sold my meldmate</labelSocial>
+				<description>My other half was sold to a trader! It was like I was sold too!</description>
+				<baseOpinionOffset>-10</baseOpinionOffset>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="DeathMemoryFamily">
+		<defName>MyExMergeDied</defName>
+		<stages>
+			<li>
+				<label>ex-meld {0} died</label>
+				<description>The person I was melded to died. It feels sort of good that my darkest secrets are now only mine.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>KilledMyExMerge</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>120</durationDays>
+		<stackLimit>300</stackLimit>
+		<stackLimitForSameOtherPawn>10</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>killed my ex-meld</label>
+				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>SoldMyExMerge</defName>
+		<thoughtClass>Thought_MemorySocial</thoughtClass>
+		<durationDays>120</durationDays>
+		<stackLimit>10</stackLimit>
+		<stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+		<stages>
+			<li>
+				<label>ex-meld sold</label>
+				<labelSocial>sold my ex-meld</labelSocial>
+				<description>We're better off apart, with all that we know about each other.</description>
+				<baseOpinionOffset>10</baseOpinionOffset>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasMerged</defName>
+		<stages>
+			<li>
+				<label>was melded and permanently feral</label>
+				<description>This thought should like, never happen.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>was melded and feral</label>
+				<description>It was surreal...I was merged with another person and left with the combined minds of two animals. I feel like we know each other better.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>was melded and sapient</label>
+				<description>I'm glad to be human again, yet I have to say the experience was enlightening. I feel closer to my meldmate than ever!</description>
+				<baseMoodEffect>8</baseMoodEffect>
+			</li>
+			<li>
+				<label>was melded and mad</label>
+				<description>It felt great to let out all that anger with another person!</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="RevertedThoughtBase">
+		<defName>WasMergedRelieved</defName>
+		<stages>
+
+			<li>
+				<label>was melded and permanently feral</label>
+				<description>This thought should like, never happen.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>was melded and feral</label>
+				<description>I was trapped as a beast in the same body as another! It was horribly uncomfortable to forget my humanity and I can't look them in the eyes for the things they made us do!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a sapient animal</label>
+				<description>I was trapped in the body of a beast with another person right next to me! I knew what they were thinking and they knew everything about me. I'm almost traumatised!</description>
+				<baseMoodEffect>15</baseMoodEffect>
+			</li>
+			<li>
+				<label>was a mad animal</label>
+				<description>I'm sorry! It was the other guy, I swear!</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

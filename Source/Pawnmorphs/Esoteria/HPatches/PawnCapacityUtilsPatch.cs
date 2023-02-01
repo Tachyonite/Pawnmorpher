@@ -3,104 +3,173 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
+using Pawnmorph.DebugUtils;
 using UnityEngine;
 using Verse;
+using static HarmonyLib.Code;
+using static Pawnmorph.Utilities.PatchUtilities;
+
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches
 {
     
     public static class PawnCapacityUtilsPatch
     {
-        [HarmonyPatch(typeof(PawnCapacityUtility))]
-        [HarmonyPatch(nameof(PawnCapacityUtility.CalculateCapacityLevel), new Type[]
+		[HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculateCapacityLevel), new Type[]
         {
             typeof(HediffSet), typeof(PawnCapacityDef), typeof(List<PawnCapacityUtility.CapacityImpactor>), typeof(bool) 
         })]
         public static class GetCapacityLvPatch
         {
-
-            static void Postfix(ref float __result, HediffSet diffSet, PawnCapacityDef capacity,
-                                List<PawnCapacityUtility.CapacityImpactor> impactors, bool forTradePrice)
+			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
             {
-                var pawn = diffSet.pawn;
-                var aspectTracker = pawn.GetAspectTracker();
-                if (aspectTracker != null && __result > 0)
+                LinkedList<CodeInstruction> instructions = new LinkedList<CodeInstruction>(insts);
+
+                MethodInfo insertOperandLocation = AccessTools.PropertyGetter(typeof(ModsConfig), nameof(ModsConfig.BiotechActive));
+				MethodInfo hookMethodInfo = AccessTools.Method(typeof(PawnCapacityUtilsPatch), nameof(CalculateCapacityLevelHook));
+
+
+				CodeInstruction instruction = null;
+                for (LinkedListNode<CodeInstruction> node = instructions.First; node != null; node = node.Next)
                 {
-                    float offset = 0;
-                    float postFix = 1;
-                    float setMax = float.PositiveInfinity; 
-                    foreach (Aspect aspect in aspectTracker.Aspects)
+                    instruction = node.Value;
+					
+					if (instruction.Calls(insertOperandLocation))
                     {
-                        if(!aspect.HasCapMods) continue;
-                        foreach (PawnCapacityModifier capMod in aspect.CapMods)
-                        {
-                            if(capMod.capacity != capacity) continue;
+                        // Load "num" offset value
+                        instructions.AddBefore(node, new CodeInstruction(OpCodes.Ldloca_S, (byte)0));
 
-                            offset += capMod.offset;
-                            postFix *= capMod.postFactor;
-                            if (capMod.SetMaxDefined && (capMod.setMax < setMax))
-                            {
-                                setMax = capMod.setMax; 
-                            }
-                        }
+						// Load "num3" postFactor value
+						instructions.AddBefore(node, new CodeInstruction(OpCodes.Ldloca_S, (byte)2));
 
+						// Load diffset argument
+						instructions.AddBefore(node, new CodeInstruction(OpCodes.Ldarg_0));
 
-                        impactors?.Add(new AspectCapacityImpactor(aspect));
+						// Load capacity argument
+						instructions.AddBefore(node, new CodeInstruction(OpCodes.Ldarg_1));
 
-                    }
+						// Load capacity impactors argument
+						instructions.AddBefore(node, new CodeInstruction(OpCodes.Ldarg_2));
 
-
-                    
-
-                    offset += GetTotalCapacityOffset(diffSet, capacity); //need to start with the uncapped offset value 
-                    offset = Mathf.Min(offset * postFix, setMax); 
-                    
-
-                    GenMath.RoundedHundredth(Mathf.Max(offset, capacity.minValue));
-                    __result = Mathf.Min(__result, offset); //take the min of the aspect modified value and the capped value from Rimworld's calculation 
-
+						// Call hook method
+						instructions.AddBefore(node, new CodeInstruction(OpCodes.Call, hookMethodInfo));
+                        
+                        break;
+					}
                 }
 
+				return instructions.ToArray();
+			}
+		}
 
-
-
-            }
-        }
-
-
-        /// <summary>
-        /// find the original offset without setMax 
-        /// </summary>
-        /// <param name="hSet"></param>
-        /// <param name="capacity"></param>
-        /// <returns></returns>
-        static float GetTotalCapacityOffset(HediffSet hSet, PawnCapacityDef capacity)
+		static void CalculateCapacityLevelHook(ref float offset, ref float postFactor, HediffSet diffSet, PawnCapacityDef capacity, List<PawnCapacityUtility.CapacityImpactor> impactors)
         {
-            float num = capacity.Worker.CalculateCapacityLevel(hSet);  
-            float num3 = 1f;
-            for (int i = 0; i < hSet.hediffs.Count; i++)
+			var pawn = diffSet.pawn;
+			var aspectTracker = pawn.GetAspectTracker();
+            if (aspectTracker != null)
             {
-                Hediff hediff = hSet.hediffs[i];
-                List<PawnCapacityModifier> capMods = hediff.CapMods;
-                if (capMods != null)
+                float setMax = float.PositiveInfinity;
+                foreach (Aspect aspect in aspectTracker.Aspects)
                 {
-                    for (int j = 0; j < capMods.Count; j++)
+                    if (!aspect.HasCapMods) continue;
+                    foreach (PawnCapacityModifier capMod in aspect.CapMods)
                     {
-                        PawnCapacityModifier pawnCapacityModifier = capMods[j];
-                        if (pawnCapacityModifier.capacity == capacity)
+                        if (capMod.capacity != capacity) continue;
+
+                        offset += capMod.offset;
+                        postFactor *= capMod.postFactor;
+                        if (capMod.SetMaxDefined && (capMod.setMax < setMax))
                         {
-                            num += pawnCapacityModifier.offset;
-                            num3 *= pawnCapacityModifier.postFactor;
-                          
-                            
+                            setMax = capMod.setMax;
                         }
                     }
+
+                    impactors?.Add(new AspectCapacityImpactor(aspect));
                 }
             }
-            num *= num3;
-            return num; 
+		}
+
+
+
+        [HarmonyPatch(typeof(PawnCapacityUtility), nameof(PawnCapacityUtility.CalculatePartEfficiency))]
+        static class GetPartEfficiencyFix
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
+            {
+                var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
+                {
+                    (OpCodes.Ldarg_1, null), //part 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(BodyPartRecord).GetField(nameof(BodyPartRecord.def),
+                                                                       BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldarg_0, null), //hediff set 
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(HediffSet).GetField(nameof(HediffSet.pawn),
+                                                                  BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Callvirt,
+                     new OpCodeOperand(typeof(BodyPartDef).GetMethod(nameof(BodyPartDef.GetMaxHealth),
+                                                                     BindingFlags.Public | BindingFlags.Instance)))
+                };
+
+                return PatchMaxHealthReference(insts, pattern, 1);
+            }
         }
 
+        [HarmonyPatch(typeof(PawnCapacityUtility.CapacityImpactorBodyPartHealth), nameof(PawnCapacityUtility.CapacityImpactorBodyPartHealth.Readable))]
+        static class CapacityImpactorBodyPartHealth
+        {
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insts)
+            {
+                var pattern = new ValueTuple<OpCode, OpCodeOperand?>[]
+                {
+                    (OpCodes.Ldarg_0, null), //part 
+                    (OpCodes.Ldfld, new OpCodeOperand(typeof(PawnCapacityUtility.CapacityImpactorBodyPartHealth).GetField(nameof(PawnCapacityUtility.CapacityImpactorBodyPartHealth.bodyPart),
+                                                                        BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldfld,
+                     new OpCodeOperand(typeof(BodyPartRecord).GetField(nameof(BodyPartRecord.def),
+                                                                       BindingFlags.Public | BindingFlags.Instance))),
+                    (OpCodes.Ldarg_1, null), //pawn 
+                    (OpCodes.Callvirt,
+                     new OpCodeOperand(typeof(BodyPartDef).GetMethod(nameof(BodyPartDef.GetMaxHealth),
+                                                                     BindingFlags.Public | BindingFlags.Instance)))
+                };
+
+                return PatchMaxHealthReference(insts, pattern, 2);
+            }
+        }
+
+        private static IEnumerable<CodeInstruction> PatchMaxHealthReference(IEnumerable<CodeInstruction> insts, ValueTuple<OpCode, OpCodeOperand?>[] pattern, int nullifyPatternIndex)
+        {
+
+            List<CodeInstruction> lst = insts.ToList();
+
+            int len = pattern.Length;
+            var subArr = new CodeInstruction[len];
+
+            MethodInfo subMethod =
+                typeof(BodyUtilities).GetMethod(nameof(BodyUtilities.GetPartMaxHealth),
+                                                BindingFlags.Public | BindingFlags.Static);
+
+            for (var i = 0; i < lst.Count - len; i++)
+            {
+                for (var j = 0; j < len; j++) subArr[j] = lst[i + j];
+
+                if (!subArr.MatchesPattern(pattern)) continue;
+
+                lst[i + nullifyPatternIndex].opcode = OpCodes.Nop;
+                lst[i + nullifyPatternIndex].operand = null;
+                lst[i + pattern.Length - 1].opcode = OpCodes.Call;
+                lst[i + pattern.Length - 1].operand = subMethod;
+
+                break;
+            }
+
+
+            return lst;
+        }
     }
 }

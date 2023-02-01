@@ -53,7 +53,8 @@
             <RangedWeapon_Cooldown>1.65</RangedWeapon_Cooldown>
         </statBases>
 		<weaponTags>
-            <li>NeolithicRangedBasic</li>
+			<li>PawnmorpherGun</li>
+            <li>PMTribalRangedMutagenic</li>
         </weaponTags>
         <recipeMaker>
             <recipeUsers>
@@ -109,6 +110,10 @@
             <AccuracyLong>0.35</AccuracyLong>
             <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
         </statBases>
+        <weaponTags>
+            <li>PawnmorpherGun</li>
+            <li>PMGunMutagenic</li>
+        </weaponTags>
         <recipeMaker>
             <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
             <skillRequirements>
@@ -167,7 +172,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>1</damageAmountBase>
 			<stoppingPower>10</stoppingPower>
-			<speed>15</speed>
+			<speed>50</speed>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
 		<HediffToAdd>SyringeRifleHediff</HediffToAdd>
@@ -191,7 +196,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>1</damageAmountBase>
 			<stoppingPower>10</stoppingPower>
-			<speed>15</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 
@@ -262,6 +267,8 @@
 		<comps>
 			<li Class="Pawnmorph.ThingComps.AnimalSelectorCompProperties">
 				<requiresTag>true</requiresTag>
+				<labelKey>PMAnimalPickerGizmo_Mutagun</labelKey>
+				<descriptionKey>PMAnimalPickerGizmoDescription_Mutagun</descriptionKey>
 				<raceFilter>
 					<filterList>
 						<li>PM_Chaothrumbo</li>
@@ -369,6 +376,7 @@
 		</statBases>
 		<weaponTags>
 			<li>PawnmorpherGun</li>
+            <li>PMGrenadeMutagenic</li>
 		</weaponTags>
 		<costList>
 			<Steel>20</Steel>

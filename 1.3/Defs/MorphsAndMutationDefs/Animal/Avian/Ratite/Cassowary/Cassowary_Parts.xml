@@ -1,0 +1,46 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
+		<defName>EtherCassowaryBeak</defName>
+		<classInfluence>CassowaryMorph</classInfluence>
+		<label>cassowary beak</label>
+		<graphics>
+			<Muzzle>Parts/Cassowary/Cassowary_Muzzle</Muzzle>
+			<BirdJawOrnament>Parts/Cassowary/Cassowary_Ornament</BirdJawOrnament>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a cassowary. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a cassowary. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a cassowary. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteTailPart">
+		<defName>EtherCassowaryTailfeathers</defName>
+		<classInfluence>CassowaryMorph</classInfluence>
+		<label>cassowary tailfeathers</label>
+		<graphics>
+			<Tail>Parts/Cassowary/Cassowary_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
+		<defName>EtherCassowaryFoot</defName>
+		<classInfluence>CassowaryMorph</classInfluence>
+		<description>A scary cassowary foot.</description>
+	</Pawnmorph.Hediffs.MutationDef> -->
+</Defs>

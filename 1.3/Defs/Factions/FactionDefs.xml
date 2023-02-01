@@ -8,6 +8,7 @@
         <pawnSingular>morph</pawnSingular>
         <pawnsPlural>morphs</pawnsPlural>
         <techLevel>Industrial</techLevel>
+        <allowedCultures><li>Astropolitan</li></allowedCultures>
         <backstoryFilters>
             <li>
                 <categories>
@@ -33,8 +34,8 @@
             </thingDefs>
         </apparelStuffFilter>
         <disallowedMemes>
-            <li>HumanPrimacy</li>
-            <li>FleshPurity</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">HumanPrimacy</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
         </disallowedMemes>
     </FactionDef>
 
@@ -73,11 +74,6 @@
             </li>
         </backstoryFilters>
         <geneticVariance>0.8</geneticVariance>
-        <caravanTraderKinds>
-            <li>Caravan_Outlander_BulkGoods</li>
-            <li>Caravan_Outlander_CombatSupplier</li>
-            <li>Caravan_Outlander_Exotic</li>
-        </caravanTraderKinds>
         <visitorTraderKinds>
             <li>Visitor_Outlander_Standard</li>
         </visitorTraderKinds>
@@ -141,8 +137,8 @@
         </pawnGroupMakers>
         <settlementTexturePath>World/WorldObjects/DefaultSettlement</settlementTexturePath>
         <disallowedMemes>
-            <li>HumanPrimacy</li>
-            <li>FleshPurity</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">HumanPrimacy</li>
+            <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
         </disallowedMemes>
     </FactionDef>
 

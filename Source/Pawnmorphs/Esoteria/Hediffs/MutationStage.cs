@@ -3,9 +3,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using RimWorld;
+using RimWorld.IO;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -17,6 +19,12 @@ namespace Pawnmorph.Hediffs
     public class MutationStage : HediffStage, IDescriptiveStage, IExecutableStage
     {
         /// <summary>
+        /// Optional key that can be used to reference back to this specific stage.
+        /// </summary>
+        [CanBeNull]
+        public string key;
+
+        /// <summary>
         /// list of all aspect givers in this stage 
         /// </summary>
         [CanBeNull]
@@ -26,6 +34,16 @@ namespace Pawnmorph.Hediffs
         /// optional description override for a hediff in this stage 
         /// </summary>
         public string description;
+
+        /// <summary>
+        /// the max health offset of this particular part 
+        /// </summary>
+        public float healthOffset = 0;
+
+        /// <summary>
+        /// the max health modifier of this pawn's bodyparts.
+        /// </summary>
+        public float globalHealthMultiplier = 0;
 
         /// <summary>
         /// The label override
@@ -51,7 +69,16 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The graphic for this stage 
         /// </summary>
-        public List<MutationGraphicsData> graphics; 
+        public List<MutationGraphicsData> graphics;
+
+        /// <summary>
+        /// Overrides to allow changing values of mutation verbs.
+        /// </summary>
+        [CanBeNull]
+        public List<VerbToolOverride> verbOverrides;
+
+        [CanBeNull]
+        public List<Abilities.MutationAbilityDef> abilities;
 
         /// <summary>
         /// Gets the skip aspects.
@@ -61,6 +88,12 @@ namespace Pawnmorph.Hediffs
         /// </value>
         [NotNull]
         public IReadOnlyList<AspectEntry> SkipAspects => ((IReadOnlyList<AspectEntry>) skipAspects) ?? Array.Empty<AspectEntry>();
+
+
+        /// <summary>
+        /// Indicates whether there is a reason to run vanilla hediff base logic or not.
+        /// </summary>
+        public bool RunBaseLogic = false;
 
 
         string IDescriptiveStage.DescriptionOverride => description;
@@ -78,10 +111,104 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+            ApplyVerbOverrides(hediff);
+
             if (memory != null)
             {
-                hediff.pawn.TryAddMutationThought(memory); 
+                hediff.pawn.TryAddMutationThought(memory);
             }
+
+			RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
+		}
+
+        public void OnLoad(Hediff hediff)
+        {
+            ApplyVerbOverrides(hediff);
+            RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
+        }
+
+        /// <summary>
+        /// Called during initialization when deciding if rimworld hediff base logic should be executed on tick.
+        /// </summary>
+        protected virtual bool ShouldRunBaseLogic()
+        {
+            if (hediffGivers != null && hediffGivers.Count > 0)
+                return true;
+
+            if (mentalStateGivers != null && mentalStateGivers.Count > 0)
+                return true;
+
+            if (mentalBreakMtbDays > 0)
+                return true;
+
+            if (vomitMtbDays > 0)
+                return true;
+
+            if (forgetMemoryThoughtMtbDays > 0)
+                return true;
+
+            if (destroyPart)
+                return true;
+
+            if (deathMtbDays > 0)
+                return true;
+
+            return false;
+        }
+
+
+        private void ApplyVerbOverrides(Hediff hediff)
+        {
+
+            var verbGiver = hediff.TryGetComp<HediffComp_VerbGiver>();
+            if (verbGiver != null && verbOverrides != null)
+            {
+                foreach (Tool tool in verbGiver.Tools)
+                {
+                    foreach (VerbToolOverride toolOverride in verbOverrides)
+                    {
+                        if (tool.label == toolOverride.label)
+                        {
+                            if (toolOverride.power.HasValue)
+                                tool.power = toolOverride.power.Value;
+
+                            if (toolOverride.cooldownTime.HasValue)
+                                tool.cooldownTime = toolOverride.cooldownTime.Value;
+
+                            if (toolOverride.chanceFactor.HasValue)
+                                tool.chanceFactor = toolOverride.chanceFactor.Value;
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public class VerbToolOverride
+        {
+            /// <summary>
+            /// The label of the verb to override.
+            /// </summary>
+            public string label;
+
+            /// <summary>
+            /// Value to set verb power to.
+            /// </summary>
+            public float? power;
+
+            /// <summary>
+            /// Value to set verb cooldown time to.
+            /// </summary>
+            public float? cooldownTime;
+
+            /// <summary>
+            /// Value to set verb chance factor to. Verb chance is multiplied by this value. Default is 1.
+            /// </summary>
+            public float? chanceFactor;
         }
 
         /// <summary>

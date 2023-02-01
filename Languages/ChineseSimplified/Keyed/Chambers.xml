@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <NotEnoughStorageSpaceToTagPK>没有足够的存储空间来存放{0}。要求{1}，但只有{2}</NotEnoughStorageSpaceToTagPK>
+  <AlreadyTaggedAnimal>{0}已经在基因数据库中。</AlreadyTaggedAnimal>
+  <AnimalNotTaggable>{0}的基因已损坏，无法添加。</AnimalNotTaggable>
+  <NotValidAnimal>{0}不是有效动物。</NotValidAnimal>
+  <AnimalAddedToDatabase>{0}已添加到数据库。</AnimalAddedToDatabase>
+  <ChamberDatabaseIgnoresDataLimit>分室数据库忽略数据限制。</ChamberDatabaseIgnoresDataLimit>
+  <ChamberDatabaseIgnoresDataLimitTooltip>如果为启用，向分室数据库添加内容将不需要数据存储，这对调试很有用。</ChamberDatabaseIgnoresDataLimitTooltip>
+  <PMStorageSpaceMessage>提供</PMStorageSpaceMessage>
+  <PMAnimalGenomeDescription>存储{ANIMAL}的遗传信息。</PMAnimalGenomeDescription>
+  <PMChamberAddingMutations>添加变异</PMChamberAddingMutations>
+  <PMChamberTransforming>-将{0}转换为{1}</PMChamberTransforming>
+  <PMMergeGizmo>合并</PMMergeGizmo>
+  <PMCannotTransformPrisoner>无法转换{0}。</PMCannotTransformPrisoner>
+  <PMWaitingForPawn>等待。</PMWaitingForPawn>
+  <PMWaitingForPawnMerging>等待。</PMWaitingForPawnMerging>
+  <PMIdle>闲置。</PMIdle>
+  <PMActive>活跃。</PMActive>
+  <PMDatabaseWithoutPower>基因数据库已经断电，无法记录新的数据。</PMDatabaseWithoutPower>
+  <PMWaitingForSpecialThing>正在等待{0}</PMWaitingForSpecialThing>
+  <PMChamberMissingSpecialThing>{0}是必需的。</PMChamberMissingSpecialThing>
+</LanguageData>

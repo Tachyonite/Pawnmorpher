@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <MutagenChamberProgress>变异进展</MutagenChamberProgress>
+  <EnterMutagenChamber>进入诱变室</EnterMutagenChamber>
+  <PMEnterMutagenChamberMerge>进入诱变室合并</PMEnterMutagenChamberMerge>
+  <LetterLabelChaomorphPasses>游荡的{0}</LetterLabelChaomorphPasses>
+  <LetterChaomorphPasses>一群{0}已经游荡到这个地区。它们会停留一段时间，然后离开。如果你有足够的血清，你可以选择猎杀、驯服或恢复它们。</LetterChaomorphPasses>
+  <LetterHediffFromTransformationLabel>{0} -&gt; {1}</LetterHediffFromTransformationLabel>
+  <LetterHediffFromTransformation>{0}已经变成了{1}!</LetterHediffFromTransformation>
+  <LetterHediffFromTransformationBondLabel>{0} -&gt; {1}</LetterHediffFromTransformationBondLabel>
+  <LetterHediffFromTransformationBond>{0}已变成{1}！\n\n{0}已与{2}建立了联系，因为它们关系良好。</LetterHediffFromTransformationBond>
+  <LetterHediffFromTransformationMergeLabel>{0} + {1} -&gt; {2}</LetterHediffFromTransformationMergeLabel>
+  <LetterHediffFromTransformationMerge>{0}和{1}已经融合成{2}!</LetterHediffFromTransformationMerge>
+  <LetterHediffFromPermanentTFLabel>永久野性的{0}</LetterHediffFromPermanentTFLabel>
+  <LetterHediffFromPermanentTF>{0}体内没有明显的变化，因为其系统中的诱变机制同时清除了其对原始形态的记忆。{0}不能再用逆转血清变成人类了，他们将永远是动物。</LetterHediffFromPermanentTF>
+  <LetterHediffFromDietChangeLabel>{0}现在是{1}</LetterHediffFromDietChangeLabel>
+  <LetterHediffFromDietChange>{0}的饮食现在变成了{1}!记住要正确地喂养它们。</LetterHediffFromDietChange>
+  <LetterHediffFromEtherBondLabel>以太结合：{0}</LetterHediffFromEtherBondLabel>
+  <LetterHediffFromEtherBond>持续的生产已经使{0}接受了变化，并且由于某种原因现在将喜欢生产。</LetterHediffFromEtherBond>
+  <LetterHediffFromEtherBrokenLabel>以太中断：{0}</LetterHediffFromEtherBrokenLabel>
+  <LetterHediffFromEtherBroken>不断的生产使{0}变得麻木，屈服于自己的命运。</LetterHediffFromEtherBroken>
+  <RaceChangeMessage>{0}不再被认为是人类!</RaceChangeMessage>
+  <HumanAgainMessage>{0}又是人类了!</HumanAgainMessage>
+  <TransformationStageWarningLabel>{0}面临着很快完全改变的风险。</TransformationStageWarningLabel>
+  <TransformationStageWarningContent>{0}有很快变成动物的危险。你可以使用稳定剂来防止这种情况发生。</TransformationStageWarningContent>
+  <CarryToChamber>将{1_label}带入诱变室。</CarryToChamber>
+  <PMCarryToChamberMerge>将{1_label}运到诱变室进行合并。</PMCarryToChamberMerge>
+  <CannotCarryToChamber>不能携带到诱变室。</CannotCarryToChamber>
+  <PawnmorphTooltipShe>她</PawnmorphTooltipShe>
+  <PawnmorphTooltipHe>他</PawnmorphTooltipHe>
+  <PawnmorphTooltipHer>她</PawnmorphTooltipHer>
+  <PawnmorphTooltipHim>他</PawnmorphTooltipHim>
+  <PawnmorphTooltipHis>它</PawnmorphTooltipHis>
+  <MessagePawnResurrectedTransformed>{0}被复活了，但是机械化的血清灌注使它们变成了{2}!</MessagePawnResurrectedTransformed>
+</LanguageData>

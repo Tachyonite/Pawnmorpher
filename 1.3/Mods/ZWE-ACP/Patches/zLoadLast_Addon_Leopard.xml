@@ -1,0 +1,47 @@
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Animal Collab Project Vanilla-Style</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+					<value>
+						<race>ACPAmurLeopard</race>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+					<value>
+						<race>ACPSnowLeopard</race>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ZWAnimals</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Update the MorphDef race -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="LeopardMorph"]/race</xpath>
+					<value>
+						<race>Leopard</race>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/Pawnmorph.MorphDef[defName="SnowLeopardMorph"]/race</xpath>
+					<value>
+						<race>SnowLeopard</race>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

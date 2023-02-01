@@ -1,0 +1,69 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="BigFelisJawPart" ParentName="FelineJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A powerful feline muzzle rests prominently on [PAWN_nameDef]'s face. The occasional yawn reveals a row of dangeously sharp teeth. [PAWN_nameDef] is still figuring out how to speak with these new features.</description>
+					<statOffsets>
+						<HuntingStealth>0.05</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A powerful feline muzzle rests prominently on [PAWN_nameDef]'s face. The occasional yawn reveals a row of dangeously sharp teeth. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<HuntingStealth>0.2</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A powerful feline muzzle rests prominently on [PAWN_nameDef]'s face. The occasional yawn reveals a row of dangeously sharp teeth. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<HuntingStealth>0.25</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="BigFelisEarPart" ParentName="FelineEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="BigFelisTailPart" ParentName="FelineTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.1</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.2</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

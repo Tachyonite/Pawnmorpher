@@ -1,0 +1,316 @@
+<Defs>
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Animal</defName>
+        <label>animal</label>
+    </Pawnmorph.AnimalClassDef>
+
+	<!-- Avian -->
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Avian</defName>
+		<label>avian</label>
+		<parent>Animal</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Anserigalliform</defName>
+		<label>anserigalliform</label>
+		<parent>Avian</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Anseriform</defName>
+		<label>anseriform</label>
+		<parent>Anserigalliform</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Galliform</defName>
+		<label>galliform</label>
+		<parent>Anserigalliform</parent>
+	</Pawnmorph.AnimalClassDef>
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Ratite</defName>
+		<label>ratite</label>
+		<parent>Avian</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Megafauna -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Powerful</defName>
+		<label>powerful</label>
+		<parent>Animal</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>ThickFur</defName>
+		<label>thickly furred</label>
+		<parent>Powerful</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>ThickHide</defName>
+		<label>thick hide</label>
+		<parent>Powerful</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Elephantidae</defName>
+		<label>Elephantidae</label>
+		<parent>ThickHide</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Rhinocerotidae</defName>
+		<label>rhinocerotidae</label>
+		<parent>ThickHide</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- PawFooted -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>PawFooted</defName>
+		<label>paw footed</label>
+		<parent>Animal</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Carnivora -->
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Carnivora</defName>
+		<label>carnivora</label>
+		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Canid</defName>
+		<label>canid</label>
+		<parent>Carnivora</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Familiaris</defName>
+		<label>canid</label>
+		<parent>Canid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Wolf</defName>
+		<label>wolf</label>
+		<parent>Canid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Scavenger</defName>
+		<label>scavenger</label>
+		<parent>Canid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Feline</defName>
+		<label>feline</label>
+		<parent>Carnivora</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>BigFelis</defName>
+		<label>big felis</label>
+		<parent>Feline</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Felis</defName>
+		<label>felis</label>
+		<parent>Feline</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Pantherine</defName>
+		<label>pantherine</label>
+		<parent>Feline</parent>
+	</Pawnmorph.AnimalClassDef>
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Fox</defName>
+		<label>fox</label>
+		<parent>Carnivora</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Exotic -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Exotic</defName>
+		<label>exotic</label>
+		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Leporid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Leporid</defName>
+		<label>leporid</label>
+		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Rodent -->
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Rodent</defName>
+		<label>rodent</label>
+		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Arboreal</defName>
+		<label>arboreal</label>
+		<parent>Rodent</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Cerebral</defName>
+		<label>cerebral</label>
+		<parent>Rodent</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Ursine -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Ursine</defName>
+		<label>ursine</label>
+		<parent>PawFooted</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Reptile -->
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Reptile</defName>
+        <label>reptile</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Lacertilia</defName>
+		<label>lacertilia</label>
+		<parent>Reptile</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Ophidia</defName>
+		<label>ophidia</label>
+		<parent>Reptile</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Testudinidae</defName>
+		<label>testudinidae</label>
+		<parent>Reptile</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Simian -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Simian</defName>
+		<label>simian</label>
+		<parent>Animal</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Monkeys</defName>
+		<label>monkeys</label>
+		<parent>Simian</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Ungulate -->
+
+    <Pawnmorph.AnimalClassDef>
+        <defName>Ungulate</defName>
+        <label>ungulate</label>
+        <parent>Animal</parent>
+    </Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>EvenToedUngulate</defName>
+		<label>even-toed ungulate</label>
+		<parent>Ungulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Bovid -->
+	
+	<Pawnmorph.AnimalClassDef>
+		<defName>Bovid</defName>
+		<label>bovid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>DomesticatedBovid</defName>
+		<label>domesticated bovid</label>
+		<parent>Bovid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>WildBovid</defName>
+		<label>wild bovid</label>
+		<parent>Bovid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Camelid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Camelid</defName>
+		<label>camelid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Caprid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Caprid</defName>
+		<label>caprid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<!-- Sub - Cervid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Cervid</defName>
+		<label>cervid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>BigCervid</defName>
+		<label>big cervid</label>
+		<parent>Cervid</parent>
+	</Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>SmallCervid</defName>
+		<label>small cervid</label>
+		<parent>Cervid</parent>
+	</Pawnmorph.AnimalClassDef>
+	
+	<!-- Sub - Suid -->
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Suid</defName>
+		<label>suid</label>
+		<parent>EvenToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+	
+    <Pawnmorph.AnimalClassDef>
+        <defName>OddToedUngulate</defName>
+        <label>odd-toed ungulate</label>
+        <parent>Ungulate</parent>
+    </Pawnmorph.AnimalClassDef>
+
+	<Pawnmorph.AnimalClassDef>
+		<defName>Equine</defName>
+		<label>equine</label>
+		<parent>OddToedUngulate</parent>
+	</Pawnmorph.AnimalClassDef>
+
+</Defs>

@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
+
+    <!-- these rules will be mixed into those of the train interaction's based on the sapiency 'level' of the pawn -->
+
+    <!--
+    <RulePackDef>
+        <defName>SapientAnimalTameAttempt</defName>
+        <rulePack>
+            <rulesStrings></rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MostlySapientAnimalTameAttempt</defName>
+        <rulePack>
+            <rulesStrings></rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>ConflictedAnimalTameAttempt</defName>
+        <rulePack>
+            <rulesStrings></rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MostlyFeralAnimalTameAttempt</defName>
+        <rulePack>
+            <rulesStrings></rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    -->
+</Defs>

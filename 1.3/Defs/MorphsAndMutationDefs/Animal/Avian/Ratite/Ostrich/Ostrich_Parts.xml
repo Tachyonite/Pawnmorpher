@@ -1,0 +1,45 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteJawPart">
+		<defName>EtherOstrichBeak</defName>
+		<classInfluence>OstrichMorph</classInfluence>
+		<label>ostrich beak</label>
+		<graphics>
+			<Muzzle>Parts/Ostrich/Ostrich_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an ostrich. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteTailPart">
+		<defName>EtherOstrichTailfeathers</defName>
+		<classInfluence>OstrichMorph</classInfluence>
+		<label>ostrich tailfeathers</label>
+		<graphics>
+			<Tail>Parts/Ostrich/Ostrich_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+<!-- 
+	<Pawnmorph.Hediffs.MutationDef ParentName="RatiteFootPart">
+		<defName>EtherOstrichFoot</defName>
+		<classInfluence>OstrichMorph</classInfluence>
+		<description>A scary ostrich foot.</description>
+	</Pawnmorph.Hediffs.MutationDef> -->
+</Defs>

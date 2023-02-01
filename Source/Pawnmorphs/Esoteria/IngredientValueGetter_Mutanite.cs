@@ -26,7 +26,7 @@ namespace Pawnmorph
 		/// <returns>The description</returns>
 		public override string BillRequirementsDescription(RecipeDef r, IngredientCount ing)
 		{
-			return "BillRequiresMutanite".Translate(ing.GetBaseCount()) + " (" + ing.filter.Summary + ")";
+			return "BillRequiresMutanite".Translate(ing.GetBaseCount().ToStringPercent());
 		}
 	}
 }

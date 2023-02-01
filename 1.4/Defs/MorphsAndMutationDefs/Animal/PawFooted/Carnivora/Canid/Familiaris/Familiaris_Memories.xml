@@ -1,0 +1,129 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>FamiliarisTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>So I'm the pet dog now? ...arf?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>Did somebody say 'belly rub'?</description>
+				<baseMoodEffect>+3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>They keep telling me 'fetch'...but I'm not a damn dog!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>Fetch?! Where!?</description>
+				<baseMoodEffect>+1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>FamiliarisRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>Phew... I was having a bit too much fun.</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I'm not as peppy as I used to be.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>I'm not a stinky dog anymore!</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>No more napping on laps for me.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFamiliarisJaw</defName>
+		<stages>
+			<li>
+				<label>dog face</label>
+				<description>I just need to pant all the time...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog face</label>
+				<description>BARK BARK BARK!</description>
+				<visible>true</visible>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog face</label>
+				<description>I can't be sad with this smile...</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFamiliarisEar</defName>
+		<stages>
+			<li>
+				<label>dog ears</label>
+				<description>They're pretty cute, I gotta say.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog ears</label>
+				<description>They look cute, and I can hear better than before. A win-win!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog ears</label>
+				<description>I want my own ears back, give them BARK!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFamiliarisTail</defName>
+		<stages>
+			<li>
+				<label>dog tail</label>
+				<description>I gotta calm down, it keeps wagging...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog tail</label>
+				<description>I'm so excited, it's wagging so fast!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>dog tail</label>
+				<description>Why do I have to ruin all my pants for a tail that won't stop wagging?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

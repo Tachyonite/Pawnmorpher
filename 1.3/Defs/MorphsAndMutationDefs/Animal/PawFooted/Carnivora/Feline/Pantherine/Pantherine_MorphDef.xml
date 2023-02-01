@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="FelineMorph" Name="PantherineMorph">
+		<classification>Pantherine</classification>
+		<categories>
+			<li>Combat</li>
+		</categories>
+		<addedAspects>
+			<li>
+				<def>PridefulAspect</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+			<li>
+				<def>MeatLover</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+		</addedAspects>
+	</Pawnmorph.MorphDef>
+</Defs>

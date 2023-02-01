@@ -1,0 +1,103 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformJawPart">
+		<defName>EtherDuckBeak</defName>
+		<classInfluence>DuckMorph</classInfluence>
+		<label>duck beak</label>
+		<mutationTale>GrewDuckBeak</mutationTale>
+		<graphics>
+			<Muzzle>Parts/Duck/Duck_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A flat beak graces [PAWN_nameDef]'s face, like that of a duck. They may quack about bread or ponds. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformTailPart">
+		<defName>EtherDuckTailfeathers</defName>
+		<classInfluence>DuckMorph</classInfluence>
+		<label>duck tailfeathers</label>
+		<graphics>
+			<Tail>Parts/Duck/Duck_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="GalliformEggLayerPart">
+		<defName>EtherDuckEggLayer</defName>
+		<classInfluence>DuckMorph</classInfluence>
+		<label>duck egglayer</label>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production" Name="EggLayerProductionComp">
+				<thought>LaidEgg</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_LayEgg</jobGiver>
+				<genderAversion>Male</genderAversion>
+				<wrongGenderThought>LaidEggMale</wrongGenderThought>
+				<etherBondThought>LaidEggBond</etherBondThought>
+				<etherBrokenThought>LaidEggBroken</etherBrokenThought>
+				<resource>EggDuckUnfertilized</resource>
+				<rareResource>TFEgg</rareResource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>1</amount>
+						<chance>50</chance>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>1</amount>
+						<chance>70</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.2</daysToProduce>
+						<amount>1</amount>
+						<chance>90</chance>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>1</amount>
+						<chance>99</chance>
+						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

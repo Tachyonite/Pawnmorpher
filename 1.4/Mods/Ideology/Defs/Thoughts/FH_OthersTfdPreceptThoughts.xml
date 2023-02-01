@@ -1,0 +1,188 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Name="PM_Precept_GuestTfBase" Abstract="true">
+        <durationDays>10</durationDays>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_GuestTfBase">
+        <defName>PM_TfLovedPrecept_TransformationReaction</defName>
+        <stages>
+            <li>
+                <label>transformed wild pawn</label>
+                <description>Now they have truly returned to nature.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed colonist</label>
+                <description>They are closer to nature now.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed prisoner</label>
+                <description>Our prisoners should bend the knee to the natural world in their own form.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed guest</label>
+                <description>Our guests are guests of the natural world, and they should look the part.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed slave</label>
+                <description>A gift to the natural world.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed guilty prisoner</label>
+                <description>Those that wrong us will serve the natural world once more.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_GuestTfBase">
+        <defName>PM_TfLovedPrecept_MergedThought</defName>
+        <stages>
+            <li>
+                <label>wild pawn merged</label>
+                <description>They will feel less lonely now.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist merged</label>
+                <description>One of our own colonist participated into a successful science experiment!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+
+            </li>
+            <li>
+                <label>prisoner merged</label>
+                <description>They were not punished, but blessed by science!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+
+            </li>
+            <li>
+                <label>guest merged</label>
+                <description>We welcome heartily guests to our experiments.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave merged</label>
+                <description>Slaves make perfect test subjects!</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner merged</label>
+                <description>They were wrong, but they redeem themselves by helping science!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="PM_Precept_GuestTfBase">
+        <defName>PM_ReversionHatedPrecept_RevertedPawnReaction</defName>
+        <stages>
+            <li>
+                <label>wild pawn reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>prisoner reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>guest reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+			<li>
+                <label>slave reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+			<li>
+                <label>guilty prisoner reverted</label>
+                <description>They should remain as they were.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_GuestTfBase">
+        <defName>PM_SapienceLossLikedPrecept_PermanentlyFeralReaction</defName>
+        <stages>
+			<li>
+				<label>wild pawn permanently feral</label>
+                <description>They are one with the natural world now.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist permanently feral</label>
+                <description>They are now forever freed from responsabilities.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>prisoner permanently feral</label>
+                <description>Our prisoners now understand the greatness of the natural world.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>guest permanently feral</label>
+                <description>We welcomed our guests to the natural world, and now they feel home.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>slave permanently feral</label>
+                <description>Being one with the natural world made them totally free.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>guilty prisoner permanently feral</label>
+                <description>They took the wrong path, but now they will follow the path of the natural world.</description>
+				<baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_GuestTfBase">
+        <defName>PM_SapienceLossAbhorrentPrecept_PermanentlyFeralReaction</defName>
+        <stages>
+			<li>
+				<label>wild pawn permanently feral</label>
+                <description>Alone in the wild, how can they survive now?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>colonist permanently feral</label>
+                <description>We did everything we could... I am sorry.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>prisoner permanently feral</label>
+                <description>Letting our captives lose their humanity is a crime we should feel guilty of.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>guest permanently feral</label>
+                <description>What their friends will think of us now? This is horrible.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>slave permanently feral</label>
+                <description>They are now forever enslaved in anto animal form... This is inhumane.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>guilty prisoner permanently feral</label>
+                <description>They needed to be punished for their crimes, NOT to be deprived from their humanity.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+            </li>        
+		</stages>
+    </ThoughtDef>
+</Defs>

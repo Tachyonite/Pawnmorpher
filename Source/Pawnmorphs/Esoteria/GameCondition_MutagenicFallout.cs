@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -54,7 +55,7 @@ namespace Pawnmorph
         private void DoPawnsMutagenicDamage(Map map)
         {
             List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
-            var mutagen = MutagenDefOf.defaultMutagen;
+            var mutagen = def.GetModExtension<MutagenExtension>()?.mutagen ?? MutagenDefOf.defaultMutagen; 
             for (int i = 0; i < allPawnsSpawned.Count; i++)
             {
                 Pawn pawn = allPawnsSpawned[i];
@@ -63,12 +64,12 @@ namespace Pawnmorph
                 {
                     float num = 0.028758334f;
                     num *= pawn.GetMutagenicBuildupMultiplier();
-                    if (num != 0f)
+                    if (num > 0.01f)
                     {
                         float num2 = Mathf.Lerp(0.85f, 1.15f, Rand.ValueSeeded(pawn.thingIDNumber ^ 0x46EDC5D)); //should be ok
                         num *= num2;                                                //what's the magic number? 
-                        MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, num); 
-                   
+                        MutagenicBuildupUtilities.AdjustMutagenicBuildup(def, pawn, num, mutagen); 
+
                     }
                 }
             }
