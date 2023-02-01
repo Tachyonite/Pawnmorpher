@@ -432,9 +432,9 @@ namespace Pawnmorph.Hybrids
             return returnList;
         }
 
-        private static AlienPartGenerator.BodyAddonOffsets GenerateBodyAddonOffsets(AlienPartGenerator.BodyAddonOffsets human, MorphDef morph)
+        private static AlienPartGenerator.DirectionalOffset GenerateBodyAddonOffsets(AlienPartGenerator.DirectionalOffset human, MorphDef morph)
         {
-            AlienPartGenerator.BodyAddonOffsets returnValue = new AlienPartGenerator.BodyAddonOffsets();
+            AlienPartGenerator.DirectionalOffset returnValue = new AlienPartGenerator.DirectionalOffset();
             if (human.south != null)
                 returnValue.south = GenerateRotationOffsets(human.south, morph);
             if (human.north != null)
