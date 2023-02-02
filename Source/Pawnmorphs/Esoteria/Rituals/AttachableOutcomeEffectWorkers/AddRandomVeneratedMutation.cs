@@ -126,6 +126,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
         /// <param name="target">The target.</param>
         /// <param name="jobRitual">The job ritual.</param>
         /// <param name="outcome">The outcome.</param>
+        /// <param name="chosenAnimal">The venerated animal that was chosen</param>
         /// <returns></returns>
         [NotNull]
         protected virtual IEnumerable<MutationDef> GetMutationsToAdd([NotNull] Pawn target, [NotNull] LordJob_Ritual jobRitual,

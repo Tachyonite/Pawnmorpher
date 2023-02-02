@@ -1,7 +1,6 @@
 ﻿// InteractionGroupExtension.cs modified by Iron Wolf for Pawnmorph on 12/11/2019 5:47 PM
 // last updated 12/11/2019  5:47 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;

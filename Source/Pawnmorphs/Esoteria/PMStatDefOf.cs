@@ -1,7 +1,6 @@
 ﻿// PMStatDefOf.cs modified by Iron Wolf for Pawnmorph on 12/01/2019 9:01 AM
 // last updated 12/01/2019  9:01 AM
 
-using System.Security.Policy;
 using JetBrains.Annotations;
 using RimWorld;
 

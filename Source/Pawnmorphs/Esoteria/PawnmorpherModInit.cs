@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
-using Verse;
-using RimWorld;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
+using RimWorld;
 using UnityEngine;
-
+using Verse;
 //just a typedef to shorten long type name 
 using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic; 
 

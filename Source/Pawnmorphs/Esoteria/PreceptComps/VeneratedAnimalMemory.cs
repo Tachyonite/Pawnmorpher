@@ -2,10 +2,8 @@
 // last updated 07/22/2021  7:05 AM
 
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Thoughts.Precept;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 

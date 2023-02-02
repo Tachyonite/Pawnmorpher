@@ -1,7 +1,7 @@
 ﻿using System;
+using RimWorld;
 using UnityEngine;
 using Verse;
-using RimWorld;
 
 namespace Pawnmorph
 {

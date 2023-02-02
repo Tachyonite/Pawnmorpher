@@ -1,12 +1,7 @@
-﻿using Pawnmorph.Utilities.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pawnmorph.Utilities.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph.UserInterface.TableBox

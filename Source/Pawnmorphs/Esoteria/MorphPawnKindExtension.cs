@@ -1,7 +1,6 @@
 ﻿// MorphPawnKindExtension.cs created by Iron Wolf for Pawnmorph on 09/15/2019 9:43 PM
 // last updated 09/15/2019  9:43 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +9,6 @@ using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph

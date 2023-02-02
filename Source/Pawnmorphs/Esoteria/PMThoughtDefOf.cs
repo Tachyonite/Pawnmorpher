@@ -1,8 +1,8 @@
 ﻿// PMThoughtDefOf.cs modified by Iron Wolf for Pawnmorph on 09/28/2019 8:35 AM
 // last updated 09/28/2019  8:35 AM
 
-using System;
 using RimWorld;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {

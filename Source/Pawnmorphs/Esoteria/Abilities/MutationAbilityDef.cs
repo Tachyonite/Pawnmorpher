@@ -1,9 +1,4 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using UnityEngine;
 using Verse;
 
@@ -42,6 +37,9 @@ namespace Pawnmorph.Abilities
 
         private Texture2D _iconTextureCache;
 
+        /// <summary>
+        /// The texture for the ability icon
+        /// </summary>
         public Texture2D IconTexture
         {
             get 
@@ -51,6 +49,9 @@ namespace Pawnmorph.Abilities
             }
         }
 
+        /// <summary>
+        /// Loads the icon texture into the texture cache
+        /// </summary>
         public void CacheTexture()
         {
             if (_iconTextureCache == null)

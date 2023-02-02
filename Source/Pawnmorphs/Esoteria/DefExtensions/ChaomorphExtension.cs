@@ -1,7 +1,6 @@
 ﻿// ChaomorphExtension.cs created by Iron Wolf for Pawnmorph on 09/26/2020 5:27 PM
 // last updated 09/26/2020  5:27 PM
 
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;

@@ -1,11 +1,9 @@
 ﻿// IngestionOutcomeDooer_Productive.cs modified by Iron Wolf for Pawnmorph on 10/05/2019 1:04 PM
 // last updated 10/05/2019  1:04 PM
 
+using System.Collections.Generic;
 using Pawnmorph.Aspects;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Verse;
 using static Pawnmorph.Aspects.RandomGiver;
 

@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using Verse.Noise;
 
 namespace Pawnmorph.DefExtensions
 {

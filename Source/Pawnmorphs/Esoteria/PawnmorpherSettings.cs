@@ -1,5 +1,5 @@
-﻿using Pawnmorph.DebugUtils;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pawnmorph.DebugUtils;
 using Verse;
 
 namespace Pawnmorph

@@ -3,7 +3,6 @@
 
 using RimWorld;
 using Verse;
-using Verse.AI;
 
 namespace Pawnmorph.Chambers.AnimalTfControllers
 {

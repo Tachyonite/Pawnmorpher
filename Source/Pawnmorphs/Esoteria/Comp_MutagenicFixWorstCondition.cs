@@ -7,8 +7,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
-using Pawnmorph.TfSys;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 

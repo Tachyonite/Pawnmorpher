@@ -1,10 +1,8 @@
-﻿using Pawnmorph.Hediffs;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Pawnmorph.Hediffs;
 using Verse;
 
 namespace Pawnmorph.UserInterface.PartPicker
@@ -83,6 +81,10 @@ namespace Pawnmorph.UserInterface.PartPicker
 
 		}
 
+		/// <summary>
+		/// Returns a string describing all the mutations in this template  
+		/// </summary>
+		/// <returns>A string describing the template</returns>
 		public string Serialize()
 		{
 			// MutationDef, Part name, severity, halted.

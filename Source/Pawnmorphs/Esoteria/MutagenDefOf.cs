@@ -3,6 +3,7 @@
 
 using JetBrains.Annotations;
 using RimWorld;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {

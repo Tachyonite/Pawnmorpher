@@ -1,12 +1,9 @@
 ﻿// Worker_HasMutations.cs created by Iron Wolf for Pawnmorph on 09/18/2019 2:14 PM
 // last updated 09/18/2019  2:14 PM
 
-using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;

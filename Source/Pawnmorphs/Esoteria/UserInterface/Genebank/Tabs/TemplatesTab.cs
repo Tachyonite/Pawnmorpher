@@ -1,16 +1,14 @@
-﻿using Pawnmorph.Chambers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Pawnmorph.Chambers;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface.PartPicker;
 using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 

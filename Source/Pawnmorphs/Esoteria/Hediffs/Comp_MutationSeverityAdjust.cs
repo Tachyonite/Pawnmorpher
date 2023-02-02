@@ -14,10 +14,11 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    ///     hediff comp that acts like severity per day but if affected by the 'Mutation Adaptability Stat'
-    ///     Replicates the behavior of HediffComp_SeverityPerDay instead of inheriting from it for performance reasons
+    /// Hediff comp that acts like severity per day but if affected by the 'Mutation Adaptability Stat'
+    /// Replicates the behavior of <see cref="HediffComp_SeverityPerDay"/> instead of inheriting from it for performance reasons
     /// </summary>
     /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{T}" />
+    [UsedImplicitly]
     public class Comp_MutationSeverityAdjust : HediffComp, IStageChangeObserverComp
     {
         private const float EPSILON = 0.001f;
@@ -25,6 +26,9 @@ namespace Pawnmorph.Hediffs
 
         private float _offset; 
 
+        /// <summary>
+        /// An additional offset on the maximum severity, for when things such as adaption cream increase it
+        /// </summary>
         public float SeverityOffset
         {
             get => _offset;
@@ -310,7 +314,7 @@ namespace Pawnmorph.Hediffs
         private static float GenerateRandomReversionSpeed()
         {
             // Clamp between 0.81 and 1.3 to ensure mutations aren't disappearing too quickly or too slowly
-            // The absoulute minimum is 0.8, but making it slightly higher here to avoid mutations surviving reversion due to rounding errors
+            // The absolute minimum is 0.8, but making it slightly higher here to avoid mutations surviving reversion due to rounding errors
             return -Mathf.Clamp(RandUtilities.generateSkewNormalRandom(1.2f, 0.12f, -4f), 0.81f, 1.3f);
         }
     }

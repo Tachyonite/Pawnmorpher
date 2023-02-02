@@ -1,8 +1,6 @@
 ﻿// ExpandedPlant.cs created by Iron Wolf for Pawnmorph on 07/25/2021 6:39 PM
 // last updated 07/25/2021  6:39 PM
 
-using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;

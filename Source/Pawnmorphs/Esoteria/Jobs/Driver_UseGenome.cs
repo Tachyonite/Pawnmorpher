@@ -4,15 +4,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Chambers;
-using Pawnmorph.DebugUtils;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 using Verse.AI;
-using Verse.Sound;
 
 namespace Pawnmorph.Jobs
 {

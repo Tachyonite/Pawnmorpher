@@ -1,7 +1,6 @@
 ﻿// Giver_WorkAtSequencer.cs created by Iron Wolf for Pawnmorph on 11/14/2020 8:54 AM
 // last updated 11/14/2020  8:54 AM
 
-using System.Collections.Generic;
 using Pawnmorph.ThingComps;
 using RimWorld;
 using Verse;

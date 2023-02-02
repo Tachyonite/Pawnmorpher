@@ -1,16 +1,12 @@
 ﻿using HarmonyLib;
 using JetBrains.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace Pawnmorph.HPatches
 {
+    [UsedImplicitly]
     [HarmonyPatch(typeof(Pawn_HealthTracker))]
-    public static class PawnHealthTrackerPatches
+    internal static class PawnHealthTrackerPatches
     {
         [HarmonyPatch(nameof(Pawn_HealthTracker.LethalDamageThreshold), MethodType.Getter), HarmonyPostfix]
         static float LethalDamageThresholdPostfix(float __result, [NotNull] Pawn ___pawn)

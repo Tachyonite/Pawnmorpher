@@ -14,6 +14,9 @@ namespace Pawnmorph
     {
         static PMEffecterDefOf() {  DefOfHelper.EnsureInitializedInCtor(typeof(PMEffecterDefOf));}
 
+        /// <summary>
+        /// The EffectorDef for cooking
+        /// </summary>
         public static EffecterDef Cook; 
     }
 

@@ -5,7 +5,6 @@ using System;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
-using Verse.Noise;
 
 namespace Pawnmorph.DefExtensions
 {

@@ -2,7 +2,6 @@
 // last updated 09/05/2021  5:24 PM
 
 using JetBrains.Annotations;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -15,7 +14,7 @@ namespace Pawnmorph.Hediffs.Composable
     {
         
         [UsedImplicitly]
-        float a, b,c;
+        float a, b, c;
 
         /// <summary>
         /// Whether or not the mutation rate is affected by mutagen sensitivity

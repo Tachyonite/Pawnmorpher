@@ -7,10 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
-using Pawnmorph.DebugUtils;
-using UnityEngine;
 using Verse;
-using static HarmonyLib.Code;
 using static Pawnmorph.Utilities.PatchUtilities;
 
 #pragma warning disable 1591

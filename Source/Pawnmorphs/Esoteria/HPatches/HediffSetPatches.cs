@@ -1,13 +1,11 @@
 ﻿// HediffSetPatches.cs created by Iron Wolf for Pawnmorph on 08/25/2021 6:13 PM
 // last updated 08/25/2021  6:14 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
-using UnityEngine.SocialPlatforms;
 using Verse;
 
 namespace Pawnmorph.HPatches

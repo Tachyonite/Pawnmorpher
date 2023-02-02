@@ -5,13 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.FormerHumans;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
-using Pawnmorph.Jobs;
-using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.UserInterface;
@@ -20,10 +22,6 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using HarmonyLib;
-using AlienRace;
-using Pawnmorph.FormerHumans;
-using Pawnmorph.Genebank.Model;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -466,10 +464,6 @@ namespace Pawnmorph.DebugUtils
             var mutList = mutations.ToList();
             if (mutList.Count == 0) 
                 return;
-
-            var i = 0;
-            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
-            List<MutationDef> triedGive = new List<MutationDef>();
 
             foreach (MutationDef mutation in mutations)
                 MutationUtilities.AddMutation(pawn, mutation);

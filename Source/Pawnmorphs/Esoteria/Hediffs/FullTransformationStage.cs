@@ -1,12 +1,8 @@
 ﻿// FullTransformationStage.cs modified by Iron Wolf for Pawnmorph on 01/13/2020 5:26 PM
 // last updated 01/13/2020  5:26 PM
 
-using System;
 using System.Collections.Generic;
-using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
-using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs

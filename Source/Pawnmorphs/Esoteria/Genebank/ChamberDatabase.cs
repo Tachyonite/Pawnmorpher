@@ -4,14 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Configuration;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
-using Pawnmorph.Utilities;
 using Pawnmorph.Utilities.Collections;
 using RimWorld.Planet;
 using UnityEngine;
@@ -66,12 +63,14 @@ namespace Pawnmorph.Chambers
 		/// <summary>
 		///     Gets the tagged animals.
 		/// </summary>
-		/// <value>
-		///     The tagged animals.
-		/// </value>
+		/// <value>The tagged animals.</value>
 		[NotNull]
 		public IReadOnlyList<PawnKindDef> TaggedAnimals => GetEntryValues<PawnKindDef>();
 
+        /// <summary>
+        /// Gets the saved mutation templates.
+        /// </summary>
+        /// <value>The saved mutation templates.</value>
         public IReadOnlyList<MutationTemplate> MutationTemplates => GetEntryValues<MutationTemplate>();
 
 		/// <summary>

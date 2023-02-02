@@ -6,12 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
-using Verse.Noise;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
@@ -65,6 +63,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="mutagenCause">The cause for this mutation (optional)</param>
         /// <param name="mutatedParts">The mutated parts.</param>
         public MutationLogEntry(Pawn pawn, HediffDef mutationDef, [CanBeNull] MutagenDef mutagenCause, 
                                 IEnumerable<BodyPartDef> mutatedParts)

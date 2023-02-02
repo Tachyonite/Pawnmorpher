@@ -5,7 +5,6 @@ using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
 
-
 namespace EtherGun
 {
     /// <summary>

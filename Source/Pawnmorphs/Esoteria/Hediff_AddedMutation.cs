@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
-using Pawnmorph.HPatches;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -127,6 +125,7 @@ namespace Pawnmorph
             }
         }
 
+        /// <inheritdoc />
         public override string DebugString()
         {
             string debugString = base.DebugString();
@@ -250,7 +249,7 @@ namespace Pawnmorph
         }
 
 
-
+        /// <inheritdoc />
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
@@ -280,6 +279,7 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
         ///     checks if this mutation blocks the addition of a new mutation at the given part
         /// </summary>
         /// <param name="otherMutation">The other mutation.</param>

@@ -6,16 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
-using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hybrids
 {

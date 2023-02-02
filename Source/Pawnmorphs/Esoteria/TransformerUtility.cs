@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
@@ -10,11 +8,10 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
-using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
-using Verse.AI;
 using Verse.AI.Group;
 
 namespace Pawnmorph

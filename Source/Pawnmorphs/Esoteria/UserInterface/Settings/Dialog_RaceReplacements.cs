@@ -1,11 +1,7 @@
-﻿using HugsLib.Utils;
-using Pawnmorph.Utilities.Collections;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pawnmorph.Utilities.Collections;
 using UnityEngine;
 using Verse;
 using Verse.Sound;

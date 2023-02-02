@@ -1,11 +1,4 @@
 ﻿using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.UserInterface.PartPicker
@@ -21,9 +14,24 @@ namespace Pawnmorph.UserInterface.PartPicker
 		private float _severity;
 		private bool _halted;
 
+		/// <summary>
+		/// The saved mutation def
+		/// </summary>
 		public MutationDef MutationDef => _mutationDef;
+		
+		/// <summary>
+		/// The name of the body part the mutation is attached to.
+		/// </summary>
 		public string PartLabelCap => _partLabelCap;
+		
+		/// <summary>
+		/// The severity of the mutation
+		/// </summary>
 		public float Severity => _severity;
+		
+		/// <summary>
+		/// Whether the mutation is halted or not
+		/// </summary>
 		public bool Halted => _halted;
 
 		/// <summary>

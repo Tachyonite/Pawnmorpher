@@ -2,11 +2,9 @@
 // last updated 09/13/2019  8:14 AM
 
 #pragma warning disable 1591
-using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
