@@ -78,7 +78,13 @@ namespace Pawnmorph
         }
 
 
-
+        /// <summary>
+        /// Gets a body part that is equivalent to partRecord from the given bodyDef, if one exists.
+        /// </summary>
+        /// <param name="bodyDef">The body def to check</param>
+        /// <param name="partRecord">The body part to search for</param>
+        /// <returns>The matching <see cref="BodyPartRecord"/> from bodyDef, if one exists, or null otherwise</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         [CanBeNull]
         public static BodyPartRecord GetRecord([NotNull] this BodyDef bodyDef, [NotNull] BodyPartRecord partRecord)
         {

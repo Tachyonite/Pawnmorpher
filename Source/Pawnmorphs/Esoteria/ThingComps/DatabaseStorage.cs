@@ -21,6 +21,7 @@ namespace Pawnmorph.ThingComps
 
         private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
+        /// <inheritdoc />
         public override void ReceiveCompSignal(string signal)
         {
             if (signal == CompPowerTrader.PowerTurnedOnSignal && _powered == false)

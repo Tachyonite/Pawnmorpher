@@ -23,6 +23,9 @@ namespace Pawnmorph
         /// <summary>The thought to add when the resource is produced</summary>
         public ThoughtDef thought = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public List<HediffGiver> hediffGivers;
 
         /// <summary>
@@ -35,6 +38,9 @@ namespace Pawnmorph
         /// </summary>
         public float? minSeverity;
 
+        /// <summary>
+        /// An additional factor for hunger rate
+        /// </summary>
         public float hungerRateFactor = 1f;
 
         /// <summary>

@@ -14,6 +14,7 @@ namespace Pawnmorph.Aspects
     /// <seealso cref="Pawnmorph.Aspect" />
     public class Prideful : Aspect 
     {
+        /// <inheritdoc />
         protected override void PostAdd()
         {
             TraitSet traitSet = Pawn.story?.traits;
@@ -22,6 +23,7 @@ namespace Pawnmorph.Aspects
             base.PostAdd();
         }
 
+        /// <inheritdoc />
         public override void PostRemove()
         {
             TraitSet traitSet = Pawn.story?.traits;

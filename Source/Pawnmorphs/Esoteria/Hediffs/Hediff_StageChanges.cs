@@ -8,7 +8,7 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// An abstracty class for hediffs that need to do things on stage changes.
+    /// An abstract class for hediffs that need to do things on stage changes.
     /// Also implements the IDescriptiveHediff interface
     /// </summary>
     public abstract class Hediff_StageChanges : Hediff_Descriptive
@@ -18,6 +18,10 @@ namespace Pawnmorph.Hediffs
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
 
+        /// <summary>
+        /// Whether the base Hediff tick is called.  Should be false for anything that doesn't need the vanilla tick behavior for
+        /// performance reasons.
+        /// </summary>
         protected bool TickBase = true;
 
         private List<IStageChangeObserverComp> observerComps;

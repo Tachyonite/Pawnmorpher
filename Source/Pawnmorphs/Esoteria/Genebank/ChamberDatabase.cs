@@ -66,12 +66,14 @@ namespace Pawnmorph.Chambers
 		/// <summary>
 		///     Gets the tagged animals.
 		/// </summary>
-		/// <value>
-		///     The tagged animals.
-		/// </value>
+		/// <value>The tagged animals.</value>
 		[NotNull]
 		public IReadOnlyList<PawnKindDef> TaggedAnimals => GetEntryValues<PawnKindDef>();
 
+        /// <summary>
+        /// Gets the saved mutation templates.
+        /// </summary>
+        /// <value>The saved mutation templates.</value>
         public IReadOnlyList<MutationTemplate> MutationTemplates => GetEntryValues<MutationTemplate>();
 
 		/// <summary>

@@ -20,7 +20,7 @@ namespace Pawnmorph
     /// <seealso cref="RimWorld.MainTabWindow" />
     public partial class MainTabWindow_ChamberDatabase : MainTabWindow
     {
-
+        /// <inheritdoc />
         public override void PostOpen()
         {
             base.PostOpen();
@@ -31,6 +31,7 @@ namespace Pawnmorph
             this.Close();
         }
 
+        /// <inheritdoc />
         public override void DoWindowContents(Rect inRect)
         {
 

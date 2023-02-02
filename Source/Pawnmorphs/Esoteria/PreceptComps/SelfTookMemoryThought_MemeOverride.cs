@@ -140,7 +140,8 @@ namespace Pawnmorph.PreceptComps
             }
 
             /// <summary>
-            ///     Performs an explicit conversion from <see cref="MemeThoughtEntry" /> to <see cref="(T1, T2)" />.
+            ///     Performs an explicit conversion from <see cref="MemeThoughtEntry" /> to
+            ///     <see cref="ValueTuple{MemeDef, ThoughtDef}" />.
             /// </summary>
             /// <param name="entry">The entry.</param>
             /// <returns>

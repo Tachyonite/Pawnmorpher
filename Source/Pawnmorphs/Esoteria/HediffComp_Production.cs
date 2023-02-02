@@ -41,15 +41,20 @@ namespace Pawnmorph
         private HediffComp_Staged _currentStage;
         private ThinkNode_JobGiver _jobGiverCached;
 
-
+        /// <summary>
+        /// Gets a value indicating whether this instance is dry (forbidden from producing).
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is dry; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDry => _isDry.Value;
+        
         /// <summary>
         /// Gets a value indicating whether this instance can produce.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance can produce; otherwise, <c>false</c>.
         /// </value>
-        public bool IsDry => _isDry.Value;
-
         public bool CanProduce => _canProduce.Value;
 
         /// <summary>
@@ -433,6 +438,7 @@ namespace Pawnmorph
             return description;
         }
 
+        /// <inheritdoc />
         public string ToStringFull()
         {
             StringBuilder debugString = new StringBuilder();

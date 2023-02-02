@@ -83,6 +83,10 @@ namespace Pawnmorph.UserInterface.PartPicker
 
 		}
 
+		/// <summary>
+		/// Returns a string describing all the mutations in this template  
+		/// </summary>
+		/// <returns>A string describing the template</returns>
 		public string Serialize()
 		{
 			// MutationDef, Part name, severity, halted.

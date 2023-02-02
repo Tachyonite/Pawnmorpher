@@ -9,8 +9,9 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
+    [UsedImplicitly]
     [HarmonyPatch(typeof(Pawn_HealthTracker))]
-    public static class PawnHealthTrackerPatches
+    internal static class PawnHealthTrackerPatches
     {
         [HarmonyPatch(nameof(Pawn_HealthTracker.LethalDamageThreshold), MethodType.Getter), HarmonyPostfix]
         static float LethalDamageThresholdPostfix(float __result, [NotNull] Pawn ___pawn)

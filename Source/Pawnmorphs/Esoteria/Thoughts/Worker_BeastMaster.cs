@@ -31,6 +31,7 @@ namespace Pawnmorph.Thoughts
             return false;
         }
 
+        /// <inheritdoc />
         protected override bool AnimalMasterCheck(Pawn p, Pawn animal)
         {
             return base.AnimalMasterCheck(p,animal) && animal.IsFormerHuman();
