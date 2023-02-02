@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Verse;
-using System;
 
 namespace Pawnmorph.Utilities
 {

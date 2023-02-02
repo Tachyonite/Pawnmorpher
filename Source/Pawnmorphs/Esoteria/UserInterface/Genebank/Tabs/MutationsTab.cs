@@ -1,18 +1,15 @@
-﻿using Pawnmorph.Abilities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Pawnmorph.Abilities;
 using Pawnmorph.Chambers;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 

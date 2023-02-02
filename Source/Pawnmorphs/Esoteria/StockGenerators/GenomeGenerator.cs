@@ -3,12 +3,10 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using Verse.Noise;
 
 namespace Pawnmorph.StockGenerators
 {

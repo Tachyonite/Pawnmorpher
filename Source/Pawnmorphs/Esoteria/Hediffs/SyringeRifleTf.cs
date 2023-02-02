@@ -1,7 +1,6 @@
 ﻿// SyringeRifleTf.cs created by Iron Wolf for Pawnmorph on 05/17/2020 7:39 PM
 // last updated 05/17/2020  7:39 PM
 
-using System.Linq;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Verse;

@@ -1,10 +1,7 @@
 ﻿// SplitMind.cs created by Iron Wolf for Pawnmorph on 05/09/2020 1:18 PM
 // last updated 05/09/2020  1:18 PM
 
-using System;
-using Pawnmorph.Utilities;
 using RimWorld;
-using Verse;
 
 namespace Pawnmorph.Aspects
 {

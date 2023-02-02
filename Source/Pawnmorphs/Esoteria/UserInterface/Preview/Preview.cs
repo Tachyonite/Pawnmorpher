@@ -1,15 +1,5 @@
-﻿using AlienRace;
-using Pawnmorph.GraphicSys;
-using Pawnmorph.Hediffs;
-using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph.UserInterface.Preview

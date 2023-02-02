@@ -2,7 +2,6 @@
 // last updated 09/05/2021  5:24 PM
 
 using JetBrains.Annotations;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable

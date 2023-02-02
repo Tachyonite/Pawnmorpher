@@ -1,18 +1,11 @@
-﻿using AlienRace;
-using Pawnmorph.GraphicSys;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using AlienRace;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
-using static RimWorld.PawnUtility;
 
 namespace Pawnmorph.HPatches.Optional
 {

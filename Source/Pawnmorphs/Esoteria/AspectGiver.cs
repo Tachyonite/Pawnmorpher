@@ -2,7 +2,6 @@
 // last updated 12/16/2019  11:53 AM
 
 using System.Collections.Generic;
-using System.Security.Policy;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;

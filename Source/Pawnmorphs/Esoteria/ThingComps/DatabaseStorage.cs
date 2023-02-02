@@ -1,7 +1,6 @@
 ﻿// DatabaseStorageComp.cs created by Iron Wolf for Pawnmorph on 08/03/2020 4:57 PM
 // last updated 08/03/2020  4:57 PM
 
-using System.Diagnostics;
 using System.Text;
 using Pawnmorph.Chambers;
 using RimWorld;

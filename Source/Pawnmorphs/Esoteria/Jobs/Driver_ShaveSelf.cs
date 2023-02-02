@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Verse;
-
-namespace Pawnmorph.Jobs
+﻿namespace Pawnmorph.Jobs
 {
     class Driver_ShaveSelf : Driver_ProduceThing
     {

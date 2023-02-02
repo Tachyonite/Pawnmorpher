@@ -1,7 +1,6 @@
 ﻿// MergedPawn.cs created by Iron Wolf for Pawnmorph on 05/08/2020 10:33 AM
 // last updated 05/08/2020  10:33 AM
 
-using Pawnmorph.Hediffs;
 using Verse;
 
 namespace Pawnmorph.SapienceStates

@@ -4,7 +4,6 @@
 using System;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 

@@ -1,10 +1,7 @@
 ﻿// RemoveFromPartComp.cs modified by Iron Wolf for Pawnmorph on 09/25/2019 5:42 PM
 // last updated 09/25/2019  5:42 PM
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;
 

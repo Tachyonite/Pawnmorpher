@@ -4,14 +4,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Configuration;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
-using Pawnmorph.Utilities;
 using Pawnmorph.Utilities.Collections;
 using RimWorld.Planet;
 using UnityEngine;

@@ -1,7 +1,6 @@
 ﻿// DebugLogUtils.ThoughtListing.cs created by Iron Wolf for Pawnmorph on //2020 
 // last updated 02/29/2020  1:42 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,7 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.Thoughts;
 using RimWorld;
 using Verse;
+
 #pragma warning disable 1591
 namespace Pawnmorph.DebugUtils
 {

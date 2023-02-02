@@ -10,10 +10,8 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
-using RimWorld.Planet;
 using UnityEngine;
 using Verse;
-using Verse.AI;
 
 namespace Pawnmorph.DebugUtils
 {

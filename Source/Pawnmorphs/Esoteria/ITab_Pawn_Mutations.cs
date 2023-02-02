@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 using RimWorld;
+using UnityEngine;
 using Verse;
-using Pawnmorph.Utilities;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
 {

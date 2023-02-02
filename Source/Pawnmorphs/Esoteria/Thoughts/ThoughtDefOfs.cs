@@ -2,6 +2,7 @@
 // last updated 07/31/2019  4:39 PM
 
 using RimWorld;
+
 #pragma warning disable 1591
 namespace Pawnmorph.Thoughts
 {

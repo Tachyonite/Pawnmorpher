@@ -4,15 +4,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using HarmonyLib;
-using HugsLib.Logs;
-using Pawnmorph.DefExtensions;
 using static Pawnmorph.PMHistoryEventArgsNames;
 
 namespace Pawnmorph

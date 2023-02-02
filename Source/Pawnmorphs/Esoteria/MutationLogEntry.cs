@@ -6,12 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
-using Verse.Noise;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph

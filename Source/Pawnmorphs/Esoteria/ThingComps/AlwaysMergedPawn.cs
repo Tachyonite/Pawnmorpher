@@ -8,7 +8,6 @@ using Pawnmorph.DebugUtils;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 
 namespace Pawnmorph.ThingComps

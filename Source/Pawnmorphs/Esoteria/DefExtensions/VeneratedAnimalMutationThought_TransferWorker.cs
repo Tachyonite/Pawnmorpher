@@ -2,7 +2,6 @@
 // last updated 08/03/2021  4:09 PM
 
 using System;
-using Pawnmorph.PreceptComps;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Thoughts.Precept;
 using RimWorld;

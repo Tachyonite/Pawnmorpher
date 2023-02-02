@@ -2,13 +2,11 @@
 // last updated 11/27/2019  1:16 PM
 
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using JetBrains.Annotations;
-using Pawnmorph.Chambers;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;

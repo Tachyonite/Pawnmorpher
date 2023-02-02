@@ -1,7 +1,6 @@
 ﻿// FormerHumanSituationalWorkerBase.cs modified by Iron Wolf for Pawnmorph on 01/21/2020 8:46 PM
 // last updated 01/21/2020  8:46 PM
 
-using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 

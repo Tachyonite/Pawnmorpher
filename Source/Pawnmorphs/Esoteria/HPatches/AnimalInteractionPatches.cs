@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Hybrids;
 using RimWorld;
 using Verse;
 using Verse.AI;

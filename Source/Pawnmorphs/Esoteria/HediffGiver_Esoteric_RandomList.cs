@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Pawnmorph.Utilities;
+﻿using System.Collections.Generic;
 using RimWorld;
 using Verse;
+
 #pragma warning disable 01591
 
 namespace Pawnmorph

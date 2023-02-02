@@ -1,11 +1,4 @@
-﻿using JetBrains.Annotations;
-using Pawnmorph.Chambers;
-using Pawnmorph.UserInterface.PartPicker;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pawnmorph.Chambers;
 
 namespace Pawnmorph.Genebank.Model
 {

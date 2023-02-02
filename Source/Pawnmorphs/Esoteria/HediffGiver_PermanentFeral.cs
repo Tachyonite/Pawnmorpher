@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
-using Verse;
 using RimWorld;
+using Verse;
 
 namespace Pawnmorph
 {

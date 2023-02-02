@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using RimWorld;
-using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 

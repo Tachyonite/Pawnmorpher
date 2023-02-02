@@ -2,7 +2,6 @@
 // last updated 08/15/2021  12:52 PM
 
 using System.Xml;
-using System.Xml.Serialization;
 using JetBrains.Annotations;
 
 namespace Pawnmorph.GraphicSys

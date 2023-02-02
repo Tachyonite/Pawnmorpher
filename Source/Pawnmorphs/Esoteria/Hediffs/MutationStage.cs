@@ -3,11 +3,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using RimWorld;
-using RimWorld.IO;
 using Verse;
 
 namespace Pawnmorph.Hediffs

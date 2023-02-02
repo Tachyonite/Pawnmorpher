@@ -1,10 +1,8 @@
 ﻿// TransformationRequest.cs modified by Iron Wolf for Pawnmorph on 08/18/2019 8:55 AM
 // last updated 08/18/2019  8:55 AM
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;

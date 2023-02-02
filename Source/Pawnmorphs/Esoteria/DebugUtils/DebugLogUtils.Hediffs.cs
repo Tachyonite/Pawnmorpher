@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HarmonyLib;
-using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 #pragma warning disable 1591

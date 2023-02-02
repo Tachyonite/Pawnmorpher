@@ -1,13 +1,6 @@
-﻿using Pawnmorph.Utilities.Collections;
-using RimWorld;
-using Steamworks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Pawnmorph.Utilities.Collections;
 using UnityEngine;
-using Verse;
 
 namespace Pawnmorph.UserInterface.TableBox
 {

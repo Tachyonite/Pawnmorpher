@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
@@ -15,7 +14,6 @@ using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
-using UnityEngine.Windows.WebCam;
 using Verse;
 
 #pragma warning disable 1591

@@ -2,8 +2,6 @@
 // last updated 09/13/2019  9:51 AM
 
 using System;
-using System.Linq;
-using System.Runtime.InteropServices;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
