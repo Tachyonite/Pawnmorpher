@@ -24,7 +24,7 @@ namespace Pawnmorph
         public ThoughtDef thought = null;
 
         /// <summary>
-        /// 
+        /// The hediff givers on this stage, if any
         /// </summary>
         public List<HediffGiver> hediffGivers;
 
