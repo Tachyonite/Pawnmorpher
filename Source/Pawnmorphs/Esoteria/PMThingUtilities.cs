@@ -46,7 +46,6 @@ namespace Pawnmorph
         {
             if (thing == null) throw new ArgumentNullException(nameof(thing));
             return thing.Map ?? thing.MapHeld; 
-            return thing.holdingOwner == null ? thing.Map : thing.MapHeld;
         }
     }
 }

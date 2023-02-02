@@ -24,7 +24,6 @@ namespace Pawnmorph.PreceptComps
         /// </returns>
         protected override ThingDef GetAnimal(in HistoryEvent historyEvent, Ideo ideo)
         {
-            ThingDef animal = null;
             var mut = historyEvent.GetArg<Hediff_AddedMutation>(PMHistoryEventArgsNames.MUTATION);
 
 

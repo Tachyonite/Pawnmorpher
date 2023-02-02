@@ -467,10 +467,6 @@ namespace Pawnmorph.DebugUtils
             if (mutList.Count == 0) 
                 return;
 
-            var i = 0;
-            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
-            List<MutationDef> triedGive = new List<MutationDef>();
-
             foreach (MutationDef mutation in mutations)
                 MutationUtilities.AddMutation(pawn, mutation);
 

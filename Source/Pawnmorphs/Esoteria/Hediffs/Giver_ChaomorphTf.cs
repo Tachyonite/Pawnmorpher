@@ -36,7 +36,8 @@ namespace Pawnmorph.Hediffs
         private readonly float changeChance = -1;
 
 
-        //for backwards compability, unused but don't remove for now 
+        //for backwards compability, unused but don't remove for now
+        [UsedImplicitly]
         private List<PawnKindDef> pawnkinds;
 
 

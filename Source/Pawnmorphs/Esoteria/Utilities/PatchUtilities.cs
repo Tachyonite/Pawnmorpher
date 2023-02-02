@@ -37,7 +37,6 @@ namespace Pawnmorph.Utilities
             Type fhUtilType = typeof(FormerHumanUtilities);
             Type racePropType = typeof(RaceProperties);
             const BindingFlags publicInstance = BindingFlags.Public | BindingFlags.Instance;
-            const BindingFlags allFlags = publicInstance | BindingFlags.NonPublic | BindingFlags.Static;
 
             IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] {typeof(Pawn)});
 

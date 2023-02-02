@@ -46,7 +46,7 @@ namespace Pawnmorph.DefExtensions
                 newThought.veneratedAnimalLabel = oThought.veneratedAnimalLabel;
                 return newThought;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Log.Error($"unable to create new thought of {originalThought.def.defName}! unable to cast {originalThought.GetType().Name} to {nameof(MutationMemory_VeneratedAnimal)}");
                 throw; 
