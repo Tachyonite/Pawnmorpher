@@ -295,8 +295,7 @@ namespace Pawnmorph.UserInterface
                 if (comp != null)
                 {
                     // If pawn has visible graphics, then refresh.
-                    comp.IsDirty = true;
-                    comp.CompTick();
+                    comp.RefreshGraphics();
                     PortraitsCache.SetDirty(pawn);
                 }
                 pawn.health?.capacities?.Notify_CapacityLevelsDirty();
