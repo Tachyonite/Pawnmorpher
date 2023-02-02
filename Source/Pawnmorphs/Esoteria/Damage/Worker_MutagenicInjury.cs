@@ -151,7 +151,7 @@ namespace Pawnmorph.Damage
                 new BattleLogEntry_ExplosionImpact(explosion.instigator, t, explosion.weapon, explosion.projectile, def);
             Find.BattleLog.Add(battleLogEntry_ExplosionImpact);
 
-            pawn.stances?.StaggerFor(95);
+            pawn.stances?.stagger?.StaggerFor(95);
         }
 
 
