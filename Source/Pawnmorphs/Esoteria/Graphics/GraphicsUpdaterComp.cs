@@ -21,7 +21,6 @@ namespace Pawnmorph.GraphicSys
     public class GraphicsUpdaterComp : ThingComp, IMutationEventReceiver
     {
         private bool _subOnce;
-        private Color _effectiveSkinColor;
         private Color _effectiveHairColor;
 
         /// <summary>
@@ -116,32 +115,33 @@ namespace Pawnmorph.GraphicSys
 
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null)
-            {
+            if (highestInfluence != null)
+			{
+                // This may cause issues if a pawn's color is changed by outside influences like other mods and end up fighting over it.
 
-                // If no mutation influence then reset skin color to either gene override or natural skin color (assign null);
-                Pawn.story.skinColorOverride = GeneOverrideColor;
 
-                // If we never touch SkinColorBase, then there is actually no reason to reassign with initial.
-                Pawn.story.SkinColorBase = InitialGraphics.SkinColor; 
 
-                // HAR (at the time of this comment) postfixes Pawn.Story.SkinColor.
-				GComp.SetSkinColor(GeneOverrideColor ?? InitialGraphics.SkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
-				return;
+				// Calculate skin color based on mutation influences.
+				float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
+				var baseColor = GeneOverrideColor ?? curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+				var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+
+				Color effectiveSkinColor = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
+				Pawn.story.skinColorOverride = effectiveSkinColor;
+				GComp.SetSkinColor(effectiveSkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
             }
+            else
+			{
+				// If no mutation influence then reset skin color to either gene override or natural skin color (assign null);
+				Pawn.story.skinColorOverride = GeneOverrideColor;
 
-            // Apply PM color if no override is defined or override is PM's
-            if (force || Pawn.story.skinColorOverride == null || Pawn.story.skinColorOverride == _effectiveSkinColor)
-            {
-                float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
-                var baseColor = GeneOverrideColor ?? curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
-                var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+				// If we never touch SkinColorBase, then there is actually no reason to reassign with initial.
+				Pawn.story.SkinColorBase = InitialGraphics.SkinColor;
 
-                _effectiveSkinColor = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
-                Pawn.story.skinColorOverride = _effectiveSkinColor;
-			    GComp.SetSkinColor(_effectiveSkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
+				// HAR (at the time of this comment) postfixes Pawn.Story.SkinColor.
+				GComp.SetSkinColor(GeneOverrideColor ?? InitialGraphics.SkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
 			}
-        }
+		}
 
         bool UpdateHairColor([NotNull] MutationTracker tracker, bool force = false)
         {
