@@ -214,10 +214,10 @@ namespace Pawnmorph
 
             base.Tick();
 
-            foreach (Abilities.MutationAbility ability in abilities)
-            {
-                ability.Tick();
-            }
+            // Use a for loop here because this is a hot path and creating enumerators is causing too much overhead
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < abilities.Count; i++)
+                abilities[i].Tick();
 
             if (shouldRemove == false && pawn.IsHashIntervalTick(10))
             {
