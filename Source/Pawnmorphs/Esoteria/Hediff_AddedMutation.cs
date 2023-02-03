@@ -209,9 +209,6 @@ namespace Pawnmorph
         /// </summary>
         public override void Tick()
         {
-            // We don't use any of the vanilla functionality so there is no reason to propagate the tick further down
-            TickBase = Def.RunBaseLogic || (CurrentMutationStage?.RunBaseLogic ?? false);
-
             base.Tick();
 
             // Use a for loop here because this is a hot path and creating enumerators is causing too much overhead
@@ -234,6 +231,11 @@ namespace Pawnmorph
         {
             if (newStage is MutationStage mStage)
             {
+                
+                // We don't normally use any of the vanilla functionality so there is no reason to propagate the tick further down
+                // unless the hediff specifically requests it
+                TickBase = Def.RunBaseLogic || mStage.RunBaseLogic;
+                
                 GenerateAbilities(mStage);
 
                 //check for aspect skips 
