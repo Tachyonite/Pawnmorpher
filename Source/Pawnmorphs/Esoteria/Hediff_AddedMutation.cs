@@ -419,7 +419,7 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Posts the tick.
+        ///     Called after Tick().  The base class ticks Comps here.
         /// </summary>
         public override void PostTick()
         {

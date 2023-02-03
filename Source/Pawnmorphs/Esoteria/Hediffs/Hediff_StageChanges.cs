@@ -19,14 +19,6 @@ namespace Pawnmorph.Hediffs
         // If the severity is within these bounds, we are still in the same stage.  Otherwise we've had a stage change.
         [Unsaved] private float minStageSeverity = float.NegativeInfinity;
         [Unsaved] private float maxStageSeverity = float.PositiveInfinity;
-
-        [Unsaved] private bool? _hasStages;
-        
-        /// <summary>
-        /// Whether or not this hediff has stages.  Is usually going to be true, but in rare cases a hediff may inherit from this
-        /// class yet have no stages.
-        /// </summary>
-        public bool HasStages => _hasStages ??= def?.stages != null;
         
 
         /// <summary>
