@@ -16,6 +16,18 @@ namespace Pawnmorph.Hediffs
         // calculate it every time they're called and it can get expensive
         private int cachedStageIndex = -1;
         [Unsaved] private HediffStage cachedStage;
+        // If the severity is within these bounds, we are still in the same stage.  Otherwise we've had a stage change.
+        [Unsaved] private float minStageSeverity = float.NegativeInfinity;
+        [Unsaved] private float maxStageSeverity = float.PositiveInfinity;
+
+        [Unsaved] private bool? _hasStages;
+        
+        /// <summary>
+        /// Whether or not this hediff has stages.  Is usually going to be true, but in rare cases a hediff may inherit from this
+        /// class yet have no stages.
+        /// </summary>
+        public bool HasStages => _hasStages ??= def?.stages != null;
+        
 
         /// <summary>
         /// Whether the base Hediff tick is called.  Should be false for anything that doesn't need the vanilla tick behavior for
@@ -51,10 +63,7 @@ namespace Pawnmorph.Hediffs
         /// The current stage.
         /// </value>
         [CanBeNull]
-        public override HediffStage CurStage
-        {
-            get { return cachedStage ?? (cachedStage = def?.stages?[base.CurStageIndex]); }
-        }
+        public override HediffStage CurStage => cachedStage;
 
         /// <summary>
         /// Called after the hediff is created, but before it's added to a pawn
@@ -75,11 +84,12 @@ namespace Pawnmorph.Hediffs
             else
                 ageTicks++;
 
-            int stageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
-            if (stageIndex != cachedStageIndex)
+            // As long as we're within these bounds, the stage hasn't changed yet
+            if (Severity <= minStageSeverity || Severity >= maxStageSeverity)
             {
+                int newStageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
                 var oldStage = cachedStage;
-                RecacheStage(stageIndex);
+                RecacheStage(newStageIndex);
                 OnStageChanged(oldStage, cachedStage);
 
                 foreach (var comp in ObserverComps)
@@ -94,7 +104,17 @@ namespace Pawnmorph.Hediffs
         private void RecacheStage(int stageIndex)
         {
             cachedStageIndex = stageIndex;
-            cachedStage = def?.stages?[cachedStageIndex];
+            if (def?.stages != null)
+            {
+                var stages = def.stages;
+                cachedStage = stages[cachedStageIndex];
+                minStageSeverity = cachedStage?.minSeverity ?? float.NegativeInfinity;
+
+                if (stages.Count > stageIndex + 1)
+                    maxStageSeverity = stages[stageIndex + 1]?.minSeverity ?? float.PositiveInfinity;
+                else
+                    maxStageSeverity = float.PositiveInfinity;
+            }
         }
 
         /// <summary>
