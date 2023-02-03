@@ -584,6 +584,7 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="SlurryNetDefOf.cs" />
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
