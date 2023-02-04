@@ -36,12 +36,12 @@ namespace Pawnmorph.Hediffs
                                                                       + $" Hediff_PM but was instead a {parent?.GetType().Name}");
 
         /// <summary>
-        /// Called once a game tick.  This is sealed because it does not normally get called at all.  It exists only for backwards
-        /// compatibility when used as a regular comp instead of a PM comp.  If you need to do something every tick, you should
-        /// create a normal <see cref="Verse.HediffComp"/> instead.
+        /// Called once a game tick, but only if this PMComp is attached as a regular comp. All this method does is replicate the
+        /// behavior <see cref="Hediff_PM{THediff,TDef}.PostTick()"/> when this is used as a regular comp.
         /// <br />
-        /// This method is not normally called because <see cref="Hediff_PM{THediff,TDef}.PostTick()"/> does the same thing this
-        /// does, but more efficiently when multiple PMComps exist.
+        /// This method is sealed because it does not normally get called at all.  It exists only for backwards compatibility if a
+        /// PMComp is used as a regular comp instead of a PM comp.  If you need to do something every tick, you should create a
+        /// normal <see cref="Verse.HediffComp"/> instead.
         /// </summary>
         /// <param name="severityAdjustment"></param>
         public sealed override void CompPostTick(ref float severityAdjustment)
@@ -49,7 +49,7 @@ namespace Pawnmorph.Hediffs
             Log.WarningOnce($"[Pawnmorpher] Comp {GetType().Name} is a PMComp but is still being used as a regular Comp on"
                           + $" Hediff {parent?.def?.defName}. It should be set as a PMComp for improved performance.",
                             Gen.HashCombineInt(4444, parent?.loadID ?? 0));
-            
+
             int hashOffsetTick = Find.TickManager!.TicksGame + Pawn?.HashOffset() ?? 0;
 
             if (hashOffsetTick % 60 == 0) // Every real-life second
@@ -116,7 +116,7 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private TProps? _props;
 
         /// <summary>
-        /// The <see cref="HediffCompProps_PM{TComp, TProps}"/> of this hediff comp, cast to the correct type 
+        /// The <see cref="HediffCompProps_PM{TComp, TProps}"/> of this hediff comp, cast to the correct type
         /// </summary>
         /// <exception cref="InvalidCastException">If the comp properties object were not of the correct type</exception>
         public TProps Props => _props ??= props as TProps

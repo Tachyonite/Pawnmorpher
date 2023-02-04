@@ -41,8 +41,8 @@ namespace Pawnmorph.Hediffs
         /// The hash offset, used for deciding when to run the long ticks 
         /// </summary>
         protected int HashOffset => _hashOffset ??= pawn?.HashOffset() ?? 0; // Vanilla just sets Hediff.pawn directly -w-
-                                                                             // we can't know when it is set, so we just have to
-                                                                             // compute the offset the first time we use it
+        // we can't know when it is set, so we just have to
+        // compute the offset the first time we use it
 
         // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
@@ -65,7 +65,7 @@ namespace Pawnmorph.Hediffs
                 return stringBuilder.ToString();
             }
         }
-        
+
         // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
         public override string LabelInBrackets
@@ -224,8 +224,8 @@ namespace Pawnmorph.Hediffs
             if (_hasComps && comps != null)
             {
                 int compCount = comps.Count; // Not caching this genuinely has a noticeable performance impact for hediffs that
-                                             // have multiple comps.  We can't cache it beyond the tick, however, because
-                                             // exceptions in certain places can cause comps to be removed.
+                // have multiple comps.  We can't cache it beyond the tick, however, because
+                // exceptions in certain places can cause comps to be removed.
                 // ReSharper disable once ForCanBeConvertedToForeach
                 for (var index = 0; index < compCount; ++index)
                     comps[index]?.CompPostTick(ref severityAdjustment);
@@ -424,7 +424,7 @@ namespace Pawnmorph.Hediffs
         [Unsaved] private TDef? _def; // Cache this so we're not constantly typechecking it every time Def is called
 
         /// <summary>
-        /// The Def of this hediff, cast to the correct type 
+        /// The Def of this hediff, cast to the correct type
         /// </summary>
         /// <exception cref="InvalidCastException">If the def was not of the expected type</exception>
         public TDef Def => _def ??= def as TDef

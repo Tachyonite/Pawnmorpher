@@ -56,7 +56,10 @@ namespace Pawnmorph.Hediffs
             return default;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called once during loading, while Defs are being finalized.
+        /// Any special initialization behavior for a Def should be done here.
+        /// </summary>
         public override void ResolveReferences()
         {
             base.ResolveReferences();
@@ -66,7 +69,11 @@ namespace Pawnmorph.Hediffs
                 compProps.ResolveReferences(this);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called once during loading, to check Defs for any configuration errors.
+        /// Any error checking of Defs should be done here.
+        /// </summary>
+        /// <returns>An enumerable of any configuration errors detected during loading</returns>
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (string str in base.ConfigErrors()!)
@@ -100,12 +107,21 @@ namespace Pawnmorph.Hediffs
         where THediff : Hediff_PM<THediff, TDef>
         where TDef : HediffDef_PM<THediff, TDef>
     {
-        /// <summary>
-        /// Creates a new instance of this class
-        /// </summary>
-        protected HediffDef_PM()
+        /// <inheritdoc />
+        public override void ResolveReferences()
         {
-            hediffClass = typeof(THediff);
+            base.ResolveReferences();
+            hediffClass ??= typeof(THediff); // Only assign hediff class here if the def didn't manually specify one
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (string error in base.ConfigErrors())
+                yield return error;
+            if (hediffClass != null && !hediffClass.IsAssignableFrom(typeof(THediff)))
+                yield return $"HediffDef {defName} had an invalid hediffClass.  Was {hediffClass.Name} but should have been a"
+                           + $"{typeof(THediff).Name} or subclass.";
         }
     }
 }
