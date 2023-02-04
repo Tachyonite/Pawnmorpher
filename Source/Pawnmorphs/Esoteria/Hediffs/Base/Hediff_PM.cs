@@ -421,7 +421,7 @@ namespace Pawnmorph.Hediffs
         where THediff : Hediff_PM<THediff, TDef>
         where TDef : HediffDef_PM<THediff, TDef>
     {
-        private TDef? _def; // Cache this so we're not constantly typechecking it every time Def is called
+        [Unsaved] private TDef? _def; // Cache this so we're not constantly typechecking it every time Def is called
 
         /// <summary>
         /// The Def of this hediff, cast to the correct type 

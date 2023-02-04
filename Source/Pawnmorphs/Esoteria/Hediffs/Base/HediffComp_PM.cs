@@ -48,7 +48,8 @@ namespace Pawnmorph.Hediffs
         {
             Log.WarningOnce($"[Pawnmorpher] Comp {GetType().Name} is a PMComp but is still being used as a regular Comp on"
                           + $" Hediff {parent?.def?.defName}. It should be set as a PMComp for improved performance.",
-                            parent?.loadID ?? 4444);
+                            Gen.HashCombineInt(4444, parent?.loadID ?? 0));
+            
             int hashOffsetTick = Find.TickManager!.TicksGame + Pawn?.HashOffset() ?? 0;
 
             if (hashOffsetTick % 60 == 0) // Every real-life second
@@ -112,7 +113,7 @@ namespace Pawnmorph.Hediffs
         where TComp : HediffComp_PM<TComp, TProps>
         where TProps : HediffCompProps_PM<TComp, TProps>
     {
-        private TProps? _props;
+        [Unsaved] private TProps? _props;
 
         /// <summary>
         /// The <see cref="HediffCompProps_PM{TComp, TProps}"/> of this hediff comp, cast to the correct type 
