@@ -543,6 +543,11 @@ namespace Pawnmorph
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+            
+            // This can happen if the AnimalClassDef doesn't have any associated morphs
+            if (morph == null)
+                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            
             if (morph.classification.Contains(AnimalClassDefOf.Canid)) //TODO Generalize this or just pick randomly, 
                 return MorphDefOfs.ChaofoxMorph;
             if (morph.classification.Contains(AnimalClassDefOf.Reptile))

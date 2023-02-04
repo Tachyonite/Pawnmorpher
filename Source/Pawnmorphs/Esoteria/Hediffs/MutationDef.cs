@@ -163,7 +163,7 @@ namespace Pawnmorph.Hediffs
         /// The cached mutation stages.
         /// </value>
         [NotNull]
-        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ??= Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form

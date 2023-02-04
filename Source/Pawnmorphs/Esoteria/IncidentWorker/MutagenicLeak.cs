@@ -65,6 +65,9 @@ namespace Pawnmorph.IncidentWorkers
             List<PipeNet> nets = netManager.pipeNets;
             for (int i = 0; i < nets.Count; i++)
             {
+                if (nets[i].def != SlurryNetDefOf.PM_SlurryNet)
+                    continue;
+
                 if (nets[i].Stored == 0)
                     continue;
 
