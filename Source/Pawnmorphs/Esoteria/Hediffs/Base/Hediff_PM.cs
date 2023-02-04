@@ -40,9 +40,11 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The hash offset, used for deciding when to run the long ticks 
         /// </summary>
-        /// <returns></returns>
-        protected int HashOffset => _hashOffset ??= pawn?.HashOffset() ?? 0;
+        protected int HashOffset => _hashOffset ??= pawn?.HashOffset() ?? 0; // Vanilla just sets Hediff.pawn directly -w-
+                                                                             // we can't know when it is set, so we just have to
+                                                                             // compute the offset the first time we use it
 
+        // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
         public override string LabelBase
         {
@@ -63,7 +65,8 @@ namespace Pawnmorph.Hediffs
                 return stringBuilder.ToString();
             }
         }
-
+        
+        // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
         public override string LabelInBrackets
         {
@@ -86,6 +89,7 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
         public override string TipStringExtra
         {
@@ -104,6 +108,7 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        // TODO - Optimize, see if we can incorporate Hediff_Descriptive's changes
         /// <inheritdoc />
         public override string Description
         {
@@ -213,14 +218,14 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public override void PostTick()
         {
-            // We're not calling base.PostTick() here because we're using a slightly optimized version here instead
+            // We're not calling base.PostTick() here because we're manually replicating it in a slightly more optimized way
             var severityAdjustment = 0f;
 
             if (_hasComps && comps != null)
             {
                 int compCount = comps.Count; // Not caching this genuinely has a noticeable performance impact for hediffs that
-                // have multiple comps.  We can't cache it beyond the tick, however, because
-                // exceptions in certain places can cause comps to be removed.
+                                             // have multiple comps.  We can't cache it beyond the tick, however, because
+                                             // exceptions in certain places can cause comps to be removed.
                 // ReSharper disable once ForCanBeConvertedToForeach
                 for (var index = 0; index < compCount; ++index)
                     comps[index]?.CompPostTick(ref severityAdjustment);
@@ -372,7 +377,7 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
-            _hasComps = _pmComps.Count > 0;
+            _hasPMComps = _pmComps.Count > 0;
         }
 
         /// <inheritdoc />

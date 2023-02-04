@@ -46,6 +46,9 @@ namespace Pawnmorph.Hediffs
         /// <param name="severityAdjustment"></param>
         public sealed override void CompPostTick(ref float severityAdjustment)
         {
+            Log.WarningOnce($"[Pawnmorpher] Comp {GetType().Name} is a PMComp but is still being used as a regular Comp on"
+                          + $" Hediff {parent?.def?.defName}. It should be set as a PMComp for improved performance.",
+                            parent?.loadID ?? 4444);
             int hashOffsetTick = Find.TickManager!.TicksGame + Pawn?.HashOffset() ?? 0;
 
             if (hashOffsetTick % 60 == 0) // Every real-life second
