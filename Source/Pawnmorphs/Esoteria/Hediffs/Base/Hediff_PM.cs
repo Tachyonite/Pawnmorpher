@@ -22,7 +22,6 @@ namespace Pawnmorph.Hediffs
     /// <seealso cref="Hediff_PM{THediff,TDef}"/>
     public abstract class Hediff_PM : HediffWithComps
     {
-        
         private readonly List<HediffComp_PM> _pmComps = new();
 
         /// <summary>
@@ -31,130 +30,86 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public IEnumerable<HediffComp_PM> PMComps => _pmComps;
 
-        // TODO
-        // public override string LabelBase
-        // {
-        //     get
-        //     {
-        //         StringBuilder stringBuilder = new StringBuilder();
-        //         int index = 0;
-        //         while (true)
-        //         {
-        //             int num = index;
-        //             int? count = this.comps?.Count;
-        //             int valueOrDefault = count.GetValueOrDefault();
-        //             if (num < valueOrDefault & count.HasValue)
-        //             {
-        //                 string compLabelPrefix = this.comps[index].CompLabelPrefix;
-        //                 if (!compLabelPrefix.NullOrEmpty())
-        //                 {
-        //                     stringBuilder.Append(compLabelPrefix);
-        //                     stringBuilder.Append(" ");
-        //                 }
-        //
-        //                 ++index;
-        //             }
-        //             else
-        //                 break;
-        //         }
-        //
-        //         stringBuilder.Append(base.LabelBase);
-        //         return stringBuilder.ToString();
-        //     }
-        // }
-
-        // TODO
-        // public override string LabelInBrackets
-        // {
-        //     get
-        //     {
-        //         StringBuilder stringBuilder = new StringBuilder();
-        //         stringBuilder.Append(base.LabelInBrackets);
-        //         int index = 0;
-        //         while (true)
-        //         {
-        //             int num = index;
-        //             int? count = this.comps?.Count;
-        //             int valueOrDefault = count.GetValueOrDefault();
-        //             if (num < valueOrDefault & count.HasValue)
-        //             {
-        //                 string labelInBracketsExtra = this.comps[index].CompLabelInBracketsExtra;
-        //                 if (!labelInBracketsExtra.NullOrEmpty())
-        //                 {
-        //                     if (stringBuilder.Length != 0)
-        //                         stringBuilder.Append(", ");
-        //                     stringBuilder.Append(labelInBracketsExtra);
-        //                 }
-        //
-        //                 ++index;
-        //             }
-        //             else
-        //                 break;
-        //         }
-        //
-        //         return stringBuilder.ToString();
-        //     }
-        // }
-
-        // TODO - Optimize this
         /// <inheritdoc />
-        public override bool ShouldRemove => PMComps.Any(t => t.CompShouldRemove) || base.ShouldRemove;
+        public override string LabelBase
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder();
+                foreach (HediffComp_PM pmComp in PMComps)
+                {
+                    string? prefix = pmComp.CompLabelPrefix;
+                    if (!prefix!.NullOrEmpty())
+                    {
+                        stringBuilder.Append(prefix!);
+                        stringBuilder.Append(" ");
+                    }
+                }
 
-        // TODO - Optimize this
+                stringBuilder.Append(base.LabelBase!);
+                return stringBuilder.ToString();
+            }
+        }
+
         /// <inheritdoc />
-        public override bool Visible => !PMComps.Any(t => t.CompDisallowVisible()) && base.Visible;
+        public override string LabelInBrackets
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder(base.LabelInBrackets!);
 
-        // TODO
-        // public override string TipStringExtra
-        // {
-        //     get
-        //     {
-        //         StringBuilder stringBuilder = new StringBuilder();
-        //         stringBuilder.Append(base.TipStringExtra);
-        //         if (this.comps != null)
-        //         {
-        //             for (int index = 0; index < this.comps.Count; ++index)
-        //             {
-        //                 string compTipStringExtra = this.comps[index].CompTipStringExtra;
-        //                 if (!compTipStringExtra.NullOrEmpty())
-        //                     stringBuilder.AppendLine(compTipStringExtra);
-        //             }
-        //         }
-        //
-        //         return stringBuilder.ToString();
-        //     }
-        // }
-        
-        // TODO
-        // public override string Description
-        // {
-        //     get
-        //     {
-        //         StringBuilder stringBuilder = new StringBuilder(base.Description);
-        //         int index = 0;
-        //         while (true)
-        //         {
-        //             int num = index;
-        //             int? count = this.comps?.Count;
-        //             int valueOrDefault = count.GetValueOrDefault();
-        //             if (num < valueOrDefault & count.HasValue)
-        //             {
-        //                 string descriptionExtra = this.comps[index].CompDescriptionExtra;
-        //                 if (!descriptionExtra.NullOrEmpty())
-        //                 {
-        //                     stringBuilder.Append(" ");
-        //                     stringBuilder.Append(descriptionExtra);
-        //                 }
-        //
-        //                 ++index;
-        //             }
-        //             else
-        //                 break;
-        //         }
-        //
-        //         return stringBuilder.ToString();
-        //     }
-        // }
+                foreach (HediffComp_PM pmComp in PMComps)
+                {
+                    string? labelExtra = pmComp.CompLabelInBracketsExtra;
+                    if (!labelExtra!.NullOrEmpty())
+                    {
+                        if (stringBuilder.Length != 0)
+                            stringBuilder.Append(", ");
+                        stringBuilder.Append(labelExtra!);
+                    }
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
+
+        /// <inheritdoc />
+        public override string TipStringExtra
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder(base.TipStringExtra!);
+
+                foreach (HediffComp_PM pmComp in PMComps)
+                {
+                    string? tipStringExtra = pmComp.CompTipStringExtra;
+                    if (!tipStringExtra!.NullOrEmpty())
+                        stringBuilder.AppendLine(tipStringExtra!);
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
+
+        /// <inheritdoc />
+        public override string Description
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder(base.Description!);
+                foreach (HediffComp_PM pmComp in PMComps)
+                {
+                    string? descriptionExtra = pmComp.CompDescriptionExtra;
+                    if (!descriptionExtra!.NullOrEmpty())
+                    {
+                        stringBuilder.Append(" ");
+                        stringBuilder.Append(descriptionExtra!);
+                    }
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
 
         // TODO - Optimize
         /// <inheritdoc/>
@@ -173,7 +128,15 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        // TODO - optimize
+        // TODO - Optimize this
+        /// <inheritdoc />
+        public override bool ShouldRemove => PMComps.Any(t => t.CompShouldRemove) || base.ShouldRemove;
+
+        // TODO - Optimize this
+        /// <inheritdoc />
+        public override bool Visible => !PMComps.Any(t => t.CompDisallowVisible()) && base.Visible;
+
+
         /// <inheritdoc />
         public override IEnumerable<Gizmo> GetGizmos()
         {
@@ -181,7 +144,7 @@ namespace Pawnmorph.Hediffs
             if (baseGizmos != null)
                 foreach (Gizmo gizmo in baseGizmos.Where(g => g != null))
                     yield return gizmo;
-            
+
             foreach (HediffComp_PM pmComp in PMComps)
             {
                 IEnumerable<Gizmo>? gizmos = pmComp.CompGetGizmos();
@@ -190,7 +153,7 @@ namespace Pawnmorph.Hediffs
                         yield return gizmo;
             }
         }
-        
+
         /// <inheritdoc />
         public override void PostMake()
         {
@@ -217,7 +180,7 @@ namespace Pawnmorph.Hediffs
             foreach (HediffComp_PM pmComp in PMComps)
                 pmComp.CompPostPostAdd(dInfo);
         }
-        
+
         /// <inheritdoc />
         public override void PostRemoved()
         {
@@ -227,7 +190,7 @@ namespace Pawnmorph.Hediffs
         }
 
         //TODO - override Tick() the same way Hediff_StageChanges does
-        
+
         /// <inheritdoc />
         public override void PostTick()
         {
@@ -345,7 +308,7 @@ namespace Pawnmorph.Hediffs
 
             if (pmDef.pmComps == null)
                 return;
-            
+
             foreach (HediffCompProps_PM compProp in pmDef.pmComps)
             {
                 HediffComp_PM? pmComp = null;
