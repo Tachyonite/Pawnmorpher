@@ -694,7 +694,13 @@ namespace Pawnmorph.DebugUtils
             Log.Message(initialComp.GetDebugStr());
         }
 
-        private static void AddAspectAtStage(AspectDef def, Pawn p, int i)
+		[DebugAction("Pawnmorpher", "Get pawn stats cache", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void GetPawnCachedStats(Pawn pawn)
+		{
+			Log.Message(StatsUtility.GetPawnDebugString(pawn));
+		}
+
+		private static void AddAspectAtStage(AspectDef def, Pawn p, int i)
         {
             p.GetAspectTracker()?.Add(def, i);
         }

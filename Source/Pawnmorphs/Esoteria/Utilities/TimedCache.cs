@@ -27,7 +27,7 @@ namespace Pawnmorph.Utilities
             if (_requestedUpdate == false)
             {
                 // If stat is older than age limit, recalculate.
-                if (_tickManager.TicksGame - Timestamp > maxAge)
+                if (_tickManager.TicksGame - _timestamp > maxAge)
                 {
                     QueueUpdate();
                 }

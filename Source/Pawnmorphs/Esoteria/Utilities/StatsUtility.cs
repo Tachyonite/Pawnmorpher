@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using RimWorld;
 using Verse;
 
@@ -101,6 +103,43 @@ namespace Pawnmorph.Utilities
             if (_events.TryGetValue(statDef.index, out var events))
                 ((IInvokable)events).Invoke(pawn, statDef, oldValue, newValue);
         }
+
+        /// <summary>
+        /// Gets string with all cached stat values for a given pawn..
+        /// </summary>
+        /// <param name="pawn">The pawn.</param>
+        public static string GetPawnDebugString(Pawn pawn)
+        {
+			StringBuilder stringBuilder = new StringBuilder();
+            Dictionary<ushort, StatDef> statDefs = DefDatabase<StatDef>.AllDefs.ToDictionary(x => x.index);
+
+			foreach (ulong cacheId in _statCache.Keys)
+            {
+                int pawnId = (int)((cacheId & 0xFFFFFFFF00000000) >> 32);
+				ushort statDefIndex = (ushort)(cacheId & 0x000000000000FFFF);
+
+                if (pawn.thingIDNumber != pawnId)
+                    continue;
+
+                string defName;
+                float value = 0;
+                if (statDefs.TryGetValue(statDefIndex, out StatDef statDef))
+                {
+                    defName = statDef.LabelCap;
+				}
+                else
+                    defName = statDefIndex.ToString();
+
+                if (_statCache.TryGetValue(cacheId, out TimedCache<float> valueCache))
+                {
+                    value = valueCache.GetValue(10000);
+				}
+
+                stringBuilder.AppendLine($"{defName}: {value}");
+			}
+
+			return stringBuilder.ToString();
+		}
 
         internal static void Clear()
         {
