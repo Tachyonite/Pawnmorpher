@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Verse;
@@ -25,6 +26,36 @@ namespace Pawnmorph.Hediffs
         [UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public List<HediffCompProps_PM>? pmComps;
 
+        /// <summary>
+        /// Checks if this Def has a Comp or PMComp of the given type
+        /// </summary>
+        /// <param name="compClass">The class of the comp</param>
+        /// <returns><c>true</c> if the given PMComp is attached to this hediff, or false otherwise</returns>
+        public bool HasPMComp(Type compClass)
+        {
+            return HasComp(compClass) || (pmComps?.Any(comp => comp.compClass == compClass) ?? false);
+        }
+
+        /// <summary>
+        /// Gets the <see cref="HediffCompProps_PM" /> the given type, if one is attached to this Hediff as a Comp or PMComp
+        /// </summary>
+        /// <typeparam name="T">The type of the PMComp properties</typeparam>
+        /// <returns>
+        /// The requested PMComp properties, or <c>null</c> if this def does not have the requested properties
+        /// </returns>
+        public T? PMCompProps<T>() where T : HediffCompProps_PM
+        {
+            var props = CompProps<T>();
+            if (props != null)
+                return props;
+
+            if (pmComps != null)
+                foreach (HediffCompProps_PM pmComp in pmComps)
+                    if (pmComp is T comp)
+                        return comp;
+            return default;
+        }
+
         /// <inheritdoc />
         public override void ResolveReferences()
         {
@@ -43,8 +74,8 @@ namespace Pawnmorph.Hediffs
 
             if (pmComps != null)
                 foreach (HediffCompProps_PM t in pmComps)
-                    foreach (string configError in t.ConfigErrors(this)!)
-                        yield return t + ": " + configError;
+                foreach (string configError in t.ConfigErrors(this)!)
+                    yield return t + ": " + configError;
         }
     }
 
