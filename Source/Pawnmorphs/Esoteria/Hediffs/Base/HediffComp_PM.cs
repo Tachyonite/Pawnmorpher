@@ -30,19 +30,32 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <exception cref="InvalidCastException">If the parent hediff is not a subclass of Hediff_PM</exception>
         public Hediff_PM Parent => _parent ??= parent as Hediff_PM
-                                            ?? throw new InvalidCastException($"{Def?.defName} was not attached to a Pawnmorpher hediff!"
-                                                                         + $" Hediff {parent?.def?.defName} should have been a subclass of"
-                                                                         + $" Hediff_PM but was instead a {parent?.GetType().Name}");
+                                            ?? throw new
+                                                   InvalidCastException($"{Def?.defName} was not attached to a Pawnmorpher hediff!"
+                                                                      + $" Hediff {parent?.def?.defName} should have been a subclass of"
+                                                                      + $" Hediff_PM but was instead a {parent?.GetType().Name}");
 
         /// <summary>
         /// Called once a game tick.  This is sealed because it does not normally get called at all.  It exists only for backwards
         /// compatibility when used as a regular comp instead of a PM comp.  If you need to do something every tick, you should
         /// create a normal <see cref="Verse.HediffComp"/> instead.
+        /// <br />
+        /// This method is not normally called because <see cref="Hediff_PM{THediff,TDef}.PostTick()"/> does the same thing this
+        /// does, but more efficiently when multiple PMComps exist.
         /// </summary>
         /// <param name="severityAdjustment"></param>
         public sealed override void CompPostTick(ref float severityAdjustment)
         {
-            // TODO
+            int hashOffsetTick = Find.TickManager!.TicksGame + Pawn?.HashOffset() ?? 0;
+
+            if (hashOffsetTick % 60 == 0) // Every real-life second
+                TickSecond(ref severityAdjustment);
+
+            if (hashOffsetTick % 2500 == 0) // Once an in-game hour
+                TickHour(ref severityAdjustment);
+
+            if (hashOffsetTick % 60000 == 0) // Once an in-game day
+                TickDay(ref severityAdjustment);
         }
 
         /// <summary>
@@ -103,8 +116,8 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         /// <exception cref="InvalidCastException">If the comp properties object were not of the correct type</exception>
         public TProps Props => _props ??= props as TProps
-                                     ?? throw new InvalidCastException($"HediffCompProps for {GetType().Name} had"
-                                                                     + $" incorrect type! Should have been {typeof(TProps).Name}"
-                                                                     + $" but was instead {props?.GetType().Name}");
+                                       ?? throw new InvalidCastException($"HediffCompProps for {GetType().Name} had"
+                                                                       + $" incorrect type! Should have been {typeof(TProps).Name}"
+                                                                       + $" but was instead {props?.GetType().Name}");
     }
 }

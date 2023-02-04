@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -24,11 +25,23 @@ namespace Pawnmorph.Hediffs
     {
         private readonly List<HediffComp_PM> _pmComps = new();
 
+        [Unsaved] private int? _hashOffset;
+
+        // Used to skip ticking comps or PMComps entirely if none exist
+        [Unsaved] private bool _hasComps = false;
+        [Unsaved] private bool _hasPMComps = false;
+
         /// <summary>
         /// A list of all Pawnmorpher-specific HediffComps attached to this hediff.  <see cref="HediffComp_PM"/> hediffs are
         /// ticked less often than ordinary comps for performance reasons.
         /// </summary>
         public IEnumerable<HediffComp_PM> PMComps => _pmComps;
+
+        /// <summary>
+        /// The hash offset, used for deciding when to run the long ticks 
+        /// </summary>
+        /// <returns></returns>
+        protected int HashOffset => _hashOffset ??= pawn?.HashOffset() ?? 0;
 
         /// <inheritdoc />
         public override string LabelBase
@@ -158,9 +171,10 @@ namespace Pawnmorph.Hediffs
         public override void PostMake()
         {
             base.PostMake();
+            _hasComps = comps.IsNonNullAndNonEmpty();
+
             InitializePMComps();
             for (int index = _pmComps.Count - 1; index >= 0; --index)
-            {
                 try
                 {
                     _pmComps[index]!.CompPostMake();
@@ -170,7 +184,6 @@ namespace Pawnmorph.Hediffs
                     Log.Error("Error in HediffComp_PM.CompPostMake(): " + ex);
                     _pmComps.RemoveAt(index);
                 }
-            }
         }
 
         /// <inheritdoc />
@@ -191,19 +204,51 @@ namespace Pawnmorph.Hediffs
 
         //TODO - override Tick() the same way Hediff_StageChanges does
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called after the main Hediff tick.  Comps and PMComps are ticked in this method.
+        /// <br />
+        /// Note that this method is a MAJOR hot path -- it should be optimized as much as possible because it potentially gets
+        /// called tens of thousands of times per second. For this reason, foreach loops should be avoided because the iterator
+        /// object creation is a notable source of slowdown.
+        /// </summary>
         public override void PostTick()
         {
-            base.PostTick();
-            //TODO - Do the magic stuff here
-            // if (this.comps == null)
-            //     return;
-            // float severityAdjustment = 0.0f;
-            // for (int index = 0; index < this.comps.Count; ++index)
-            //     this.comps[index].CompPostTick(ref severityAdjustment);
-            // if ((double)severityAdjustment == 0.0)
-            //     return;
-            // this.Severity += severityAdjustment;
+            // We're not calling base.PostTick() here because we're using a slightly optimized version here instead
+            var severityAdjustment = 0f;
+
+            if (_hasComps && comps != null)
+            {
+                int compCount = comps.Count; // Not caching this genuinely has a noticeable performance impact for hediffs that
+                // have multiple comps.  We can't cache it beyond the tick, however, because
+                // exceptions in certain places can cause comps to be removed.
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (var index = 0; index < compCount; ++index)
+                    comps[index]?.CompPostTick(ref severityAdjustment);
+            }
+
+            if (_hasPMComps)
+            {
+                int compCount = _pmComps.Count; // Same as above
+                int hashOffsetTick = Find.TickManager!.TicksGame + HashOffset;
+
+                // Note that PMComps.CompPostTick() is never called.  This is because that method exists only for legacy support.
+                // That method cannot be overridden and only does exactly what we're doing here (but slightly less efficiently)
+
+                if (hashOffsetTick % 60 == 0) // Every real-life second
+                    for (var index = 0; index < compCount; ++index)
+                        _pmComps[index]?.TickSecond(ref severityAdjustment);
+
+                if (hashOffsetTick % 2500 == 0) // Once an in-game hour
+                    for (var index = 0; index < compCount; ++index)
+                        _pmComps[index]?.TickHour(ref severityAdjustment);
+
+                if (hashOffsetTick % 60000 == 0) // Once an in-game day
+                    for (var index = 0; index < compCount; ++index)
+                        _pmComps[index]?.TickDay(ref severityAdjustment);
+            }
+
+            if (severityAdjustment != 0.0f)
+                Severity += severityAdjustment;
         }
 
         /// <inheritdoc />
@@ -295,6 +340,7 @@ namespace Pawnmorph.Hediffs
         public override void ExposeData()
         {
             base.ExposeData();
+            _hasComps = comps.IsNonNullAndNonEmpty();
             if (Scribe.mode == LoadSaveMode.LoadingVars)
                 InitializePMComps();
             foreach (HediffComp_PM pmComp in PMComps)
@@ -325,6 +371,8 @@ namespace Pawnmorph.Hediffs
                     _pmComps.Remove(pmComp!);
                 }
             }
+
+            _hasComps = _pmComps.Count > 0;
         }
 
         /// <inheritdoc />
@@ -333,7 +381,6 @@ namespace Pawnmorph.Hediffs
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(base.DebugString() ?? string.Empty);
             if (comps != null)
-            {
                 foreach (HediffComp_PM pmComp in PMComps)
                 {
                     var compName = pmComp.ToString();
@@ -344,7 +391,6 @@ namespace Pawnmorph.Hediffs
                     if (!debug!.NullOrEmpty())
                         stringBuilder.AppendLine(debug!.TrimEnd().Indented()!);
                 }
-            }
 
             return stringBuilder.ToString();
         }
@@ -366,8 +412,9 @@ namespace Pawnmorph.Hediffs
     /// </example>
     /// <typeparam name="THediff">The concrete type of the Hediff_PM</typeparam>
     /// <typeparam name="TDef">The concrete type of the HediffDef_PM</typeparam>
-    public abstract class Hediff_PM<THediff, TDef> : HediffWithComps where THediff : Hediff_PM<THediff, TDef>
-                                                                     where TDef : HediffDef_PM<THediff, TDef>
+    public abstract class Hediff_PM<THediff, TDef> : Hediff_PM
+        where THediff : Hediff_PM<THediff, TDef>
+        where TDef : HediffDef_PM<THediff, TDef>
     {
         private TDef? _def; // Cache this so we're not constantly typechecking it every time Def is called
 

@@ -14,8 +14,10 @@ namespace Pawnmorph.Hediffs
     /// properties. 
     /// </summary>
     /// <seealso cref="HediffComp_PM{TComp,TProps}"/>
-    public abstract class HediffCompProps_PM : HediffCompProperties { }
-    
+    public abstract class HediffCompProps_PM : HediffCompProperties
+    {
+    }
+
     /// <summary>
     /// Properties for <see cref="HediffComp_PM{TComp,TProps}"/>.  This is the same as HediffCompProperties but additionally
     /// is able to perform compile-time verification to ensure that it's only used with the correct HediffComp_PM.

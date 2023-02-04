@@ -42,14 +42,12 @@ namespace Pawnmorph.Hediffs
                 yield return str;
 
             if (pmComps != null)
-            {
                 foreach (HediffCompProps_PM t in pmComps)
                     foreach (string configError in t.ConfigErrors(this)!)
                         yield return t + ": " + configError;
-            }
         }
     }
-    
+
     /// <summary>
     /// A subclass of <see cref="HediffDef_PM"/> that knows its own type and its hediff's type and can automatically initialize
     /// its hediff to the correct type.
