@@ -77,7 +77,7 @@ namespace Pawnmorph.Utilities
         /// <param name="pawn">The pawn.</param>
         /// <param name="statDef">The stat definition.</param>
         /// <param name="maxAge">Max amount of ticks since stat was last updated.</param>
-        /// <returns></returns>
+        /// <returns>Null if no value is cached and pawn isn't spawned because GetStatValueForPawn throws error in that case.</returns>
         public static float? GetStat(Pawn pawn, StatDef statDef, int maxAge)
         {
             ulong lookupID = (ulong)pawn.thingIDNumber << 32 | statDef.index;
