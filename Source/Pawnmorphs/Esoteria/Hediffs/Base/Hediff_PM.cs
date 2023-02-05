@@ -25,8 +25,6 @@ namespace Pawnmorph.Hediffs
     {
         private readonly List<HediffComp_PM> _pmComps = new();
 
-        [Unsaved] private int? _hashOffset;
-
         // Used to skip ticking comps or PMComps entirely if none exist
         [Unsaved] private bool _hasComps = false;
         [Unsaved] private bool _hasPMComps = false;
@@ -40,12 +38,13 @@ namespace Pawnmorph.Hediffs
         /// <summary>
         /// The hash offset, used for deciding when to run the long ticks 
         /// </summary>
-        protected int HashOffset => _hashOffset ??= pawn?.HashOffset() ?? 0; // Vanilla just sets Hediff.pawn directly -w-
-        // we can't know when it is set, so we just have to
-        // compute the offset the first time we use it
+        [field: Unsaved]
+        protected int HashOffset { get; private set; }
 
         // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
-        /// <inheritdoc />
+        /// <summary>
+        /// The base portion of the label shown in the health screen.  Is the "Fur" part of "Fur (growing)"
+        /// </summary>
         public override string LabelBase
         {
             get
@@ -67,7 +66,9 @@ namespace Pawnmorph.Hediffs
         }
 
         // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
-        /// <inheritdoc />
+        /// <summary>
+        /// The portion of the label in parentheses shown in the health screen.  Is the "growing" part of "Fur (growing)"
+        /// </summary>
         public override string LabelInBrackets
         {
             get
@@ -89,27 +90,10 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
-        /// <inheritdoc />
-        public override string TipStringExtra
-        {
-            get
-            {
-                var stringBuilder = new StringBuilder(base.TipStringExtra!);
-
-                foreach (HediffComp_PM pmComp in PMComps)
-                {
-                    string? tipStringExtra = pmComp.CompTipStringExtra;
-                    if (!tipStringExtra!.NullOrEmpty())
-                        stringBuilder.AppendLine(tipStringExtra!);
-                }
-
-                return stringBuilder.ToString();
-            }
-        }
-
         // TODO - Optimize, see if we can incorporate Hediff_Descriptive's changes
-        /// <inheritdoc />
+        /// <summary>
+        /// A description of the hediff, shown in the tooltip when hovering over it.
+        /// </summary>
         public override string Description
         {
             get
@@ -129,8 +113,31 @@ namespace Pawnmorph.Hediffs
             }
         }
 
+        // TODO - Optimize, see if we can/should incorporate Hediff_Descriptive's changes
+        /// <summary>
+        /// Extra information shown at the bottom of the tooltip, after the description
+        /// </summary>
+        public override string TipStringExtra
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder(base.TipStringExtra!);
+
+                foreach (HediffComp_PM pmComp in PMComps)
+                {
+                    string? tipStringExtra = pmComp.CompTipStringExtra;
+                    if (!tipStringExtra!.NullOrEmpty())
+                        stringBuilder.AppendLine(tipStringExtra!);
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
+
         // TODO - Optimize
-        /// <inheritdoc/>
+        /// <summary>
+        /// An icon shown in the health screen next to the hediff, such as vanilla's bleeding icons.
+        /// </summary>
         public override TextureAndColor StateIcon
         {
             get
@@ -147,15 +154,23 @@ namespace Pawnmorph.Hediffs
         }
 
         // TODO - Optimize this
-        /// <inheritdoc />
+        /// <summary>
+        /// The hediff will be removed from the pawn if this ever returns true during the health tick
+        /// </summary>
         public override bool ShouldRemove => PMComps.Any(t => t.CompShouldRemove) || base.ShouldRemove;
 
         // TODO - Optimize this
-        /// <inheritdoc />
+        /// <summary>
+        /// If the hediff is currently invisible, it will turn visible the first time this returns true.
+        /// Note that setting it to false again will not make the hediff invisible again.
+        /// </summary>
         public override bool Visible => !PMComps.Any(t => t.CompDisallowVisible()) && base.Visible;
 
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns the list of Gizmos (toolbar buttons) that this hediff adds to the pawn, if any
+        /// </summary>
+        /// <returns>The gizmos this hediff adds</returns>
         public override IEnumerable<Gizmo> GetGizmos()
         {
             IEnumerable<Gizmo>? baseGizmos = base.GetGizmos();
@@ -172,11 +187,13 @@ namespace Pawnmorph.Hediffs
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called after the hediff is initialized but before it is added to the pawn.
+        /// Any object construction should happen here. 
+        /// </summary>
         public override void PostMake()
         {
             base.PostMake();
-            _hasComps = comps.IsNonNullAndNonEmpty();
 
             InitializePMComps();
             for (int index = _pmComps.Count - 1; index >= 0; --index)
@@ -191,15 +208,34 @@ namespace Pawnmorph.Hediffs
                 }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called after the hediff is first added to the pawn.
+        /// Any initialization that requires the pawn to be set should be done here.
+        /// <br />
+        /// Note that this is not called during loading, only when the hediff is initially added.
+        /// </summary>
         public override void PostAdd(DamageInfo? dInfo)
         {
             base.PostAdd(dInfo);
             foreach (HediffComp_PM pmComp in PMComps)
                 pmComp.CompPostPostAdd(dInfo);
+            PostAddOrLoad();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called after the hediff is first added to the pawn, and any time the game is loaded (during the
+        /// <see cref="LoadSaveMode.PostLoadInit" /> phase).
+        /// <br />
+        /// Any initialization that needs to be repeated after every load can be done here.
+        /// </summary>
+        protected virtual void PostAddOrLoad()
+        {
+            HashOffset = pawn?.HashOffset() ?? 0;
+        }
+
+        /// <summary>
+        /// Called after the hediff is removed from the pawn.
+        /// </summary>
         public override void PostRemoved()
         {
             base.PostRemoved();
@@ -256,7 +292,10 @@ namespace Pawnmorph.Hediffs
                 Severity += severityAdjustment;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when attempting to merge this hediff with another hediff.
+        /// CompPostMerge is called on all comps if the merge succeeds.
+        /// </summary>
         public override bool TryMergeWith(Hediff other)
         {
             if (!base.TryMergeWith(other))
@@ -266,7 +305,14 @@ namespace Pawnmorph.Hediffs
             return true;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when this hediff is tended by a doctor
+        /// </summary>
+        /// <param name="quality">The base quality of the tend, before randomization</param>
+        /// <param name="maxQuality">The cap on tend quality based on the medicine used</param>
+        /// <param name="batchPosition">
+        /// The position in the batch the hediff was tended, if multiple hediffs were tended at the same time
+        /// </param>
         public override void Tended(float quality, float maxQuality, int batchPosition = 0)
         {
             base.Tended(quality, maxQuality, batchPosition);
@@ -274,7 +320,10 @@ namespace Pawnmorph.Hediffs
                 pmComp.CompTended(quality, maxQuality, batchPosition);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Called when the pawn is about to die, but is not yet dead.
+        /// Any cleanup that requires a living pawn should go here.
+        /// </summary>
         public override void Notify_PawnDied()
         {
             base.Notify_PawnDied();
@@ -282,7 +331,10 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_PawnDied();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called just after the pawn is killed.
+        /// Any post-death effects should go here.
+        /// </summary>
         public override void Notify_PawnKilled()
         {
             base.Notify_PawnKilled();
@@ -290,7 +342,11 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_PawnKilled();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when this pawn kills another pawn. This is called after the victim is already dead.
+        /// </summary>
+        /// <param name="victim">The unfortunate victim.</param>
+        /// <param name="dInfo">Info about the attack that killed the victim, if there was one.</param>
         public override void Notify_KilledPawn(Pawn victim, DamageInfo? dInfo)
         {
             base.Notify_KilledPawn(victim, dInfo);
@@ -298,7 +354,11 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_KilledPawn(victim, dInfo);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called after this pawn takes damage.
+        /// </summary>
+        /// <param name="dInfo">Info about the attack that caused the damage.</param>
+        /// <param name="totalDamageDealt">The total amount of damage applied to the pawn.</param>
         public override void Notify_PawnPostApplyDamage(DamageInfo dInfo, float totalDamageDealt)
         {
             base.Notify_PawnPostApplyDamage(dInfo, totalDamageDealt);
@@ -306,7 +366,15 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_PawnPostApplyDamage(dInfo, totalDamageDealt);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when a chemical is applying any of its effects to the pawn.  The strength of the effect can be controlled
+        /// by modifying the effect parameter.
+        /// <br />
+        /// "Effect" could be the hediff severity, amount of chemical tolerance, or a need change, and should not be assumed to
+        /// have any particular meaning or limits to its value.  Any changes should be made relative to the initial value.
+        /// </summary>
+        /// <param name="chem">The chemical applying the effect</param>
+        /// <param name="effect">A float representing the severity of the effect</param>
         public override void ModifyChemicalEffect(ChemicalDef chem, ref float effect)
         {
             base.ModifyChemicalEffect(chem, ref effect);
@@ -314,7 +382,11 @@ namespace Pawnmorph.Hediffs
                 pmComp.CompModifyChemicalEffect(chem, ref effect);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when the pawn uses a verb.
+        /// </summary>
+        /// <param name="verb">The verb that was used.</param>
+        /// <param name="target">Information about the target of the verb.</param>
         public override void Notify_PawnUsedVerb(Verb verb, LocalTargetInfo target)
         {
             base.Notify_PawnUsedVerb(verb, target);
@@ -322,7 +394,12 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_PawnUsedVerb(verb, target);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Called when the pawn gains neural heat.
+        /// </summary>
+        /// <param name="baseAmount">The base amount of entropy that would have been gained.</param>
+        /// <param name="finalAmount">The actual amount of entropy gained, after accounting for the pawn's stats.</param>
+        /// <param name="src">The source of the heat, if one exists.</param>
         public override void Notify_EntropyGained(float baseAmount, float finalAmount, Thing? src = null)
         {
             base.Notify_EntropyGained(baseAmount, finalAmount, src!);
@@ -330,7 +407,11 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_EntropyGained(baseAmount, finalAmount, src!);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Was presumably related to the old Royalty effect where the empire could get upset if you used implants.
+        /// Vanilla does not appear to call it any longer and it should be presumed obsolete.
+        /// </summary>
+        [Obsolete("This method is no longer called anywhere by vanilla code")]
         public override void Notify_ImplantUsed(
             string violationSourceName,
             float detectionChance,
@@ -341,13 +422,34 @@ namespace Pawnmorph.Hediffs
                 pmComp.Notify_ImplantUsed(violationSourceName, detectionChance, violationSourceLevel);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Called when saving and several times during loading, to read/write the save data from XML.  Saving and loading of
+        /// simple values can be done with the <see cref="Scribe_Values" /> and related classes.  If you need to perform more
+        /// complex initialization, you can determine the current mode by checking the value of
+        /// <see cref="Scribe.mode">Scribe.mode</see>.
+        /// <br />
+        /// Loading is somewhat more complex than saving, and happens in three phases: <br />
+        /// - <see cref="LoadSaveMode.LoadingVars" /> is for initializing the objects to prepare them for loading data.
+        /// Any object construction should happen during this mode. References to other objects are not yet valid.<br />
+        /// - <see cref="LoadSaveMode.ResolvingCrossRefs" /> happens once all objects have been initialized, and is when object
+        /// cross-references are resolved.<br />
+        /// - <see cref="LoadSaveMode.PostLoadInit" /> happens last, after all cross references have been resolved.
+        /// Any one-time initialization that requires the object to be fully loaded should be done here. <br />
+        /// </summary>
         public override void ExposeData()
         {
             base.ExposeData();
-            _hasComps = comps.IsNonNullAndNonEmpty();
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-                InitializePMComps();
+
+            switch (Scribe.mode)
+            {
+                case LoadSaveMode.LoadingVars:
+                    InitializePMComps();
+                    break;
+                case LoadSaveMode.PostLoadInit:
+                    PostAddOrLoad();
+                    break;
+            }
+
             foreach (HediffComp_PM pmComp in PMComps)
                 pmComp.CompExposeData();
         }
@@ -377,10 +479,16 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
+            // Cache whether or not we have comps and PMComps.
+            // This is used to skip attempting to iterate over them if we do not, for performance reasons
+            _hasComps = comps.IsNonNullAndNonEmpty();
             _hasPMComps = _pmComps.Count > 0;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Generates a string for debugging that describes the hediff, including any debug strings from attached comps.
+        /// </summary>
+        /// <returns>A debugging string describing the Hediff</returns>
         public override string DebugString()
         {
             var stringBuilder = new StringBuilder();
