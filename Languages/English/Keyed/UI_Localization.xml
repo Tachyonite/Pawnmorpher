@@ -6,6 +6,8 @@
 	<MutationLogButtonText>Log</MutationLogButtonText>
 	<MutationLogHeader>Mutation Log</MutationLogHeader>
 
+	<TableControlSearchPlaceholder>Search...</TableControlSearchPlaceholder>
+
 	<!-- Part Picker Stuff -->
 	<PPRemivingMutationDesc>Removing {MUTATION} mutation from {PAWN_nameDef}'s {PART}.</PPRemivingMutationDesc>
 	<PPAddingMutationDesc>Adding {MUTATION} mutation to {PAWN_nameDef}'s {PART} at a severity of {SEVERITY}.</PPAddingMutationDesc>

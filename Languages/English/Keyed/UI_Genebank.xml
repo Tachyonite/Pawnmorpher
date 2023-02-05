@@ -4,6 +4,10 @@
     <PM_Genebank_AvailableHeader>Available Storage</PM_Genebank_AvailableHeader>
     <PM_Genebank_TotalHeader>Total Storage</PM_Genebank_TotalHeader>
     <PM_Genebank_DeleteButton>Delete</PM_Genebank_DeleteButton>
+    <PM_Genebank_FontButton>Font</PM_Genebank_FontButton>
+    <PM_Genebank_FontButtonTiny>Tiny</PM_Genebank_FontButtonTiny>
+    <PM_Genebank_FontButtonSmall>Small</PM_Genebank_FontButtonSmall>
+    <PM_Genebank_FontButtonMedium>Medium</PM_Genebank_FontButtonMedium>
 	
 	<PM_Column_Stats_Size>Size</PM_Column_Stats_Size>
 

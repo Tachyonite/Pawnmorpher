@@ -7,8 +7,19 @@ using Verse;
 namespace Pawnmorph.UserInterface.TableBox
 {
     internal class Table<T> where T : ITableRow
-    {
-        private const float CELL_SPACING = 5;
+	{
+		private static readonly string SEARCH_PLACEHOLDER = "TableControlSearchPlaceholder".Translate();
+		private static readonly float SEARCH_PLACEHOLDER_SIZE;
+
+
+		static Table()
+		{
+			Text.Font = GameFont.Small;
+            SEARCH_PLACEHOLDER_SIZE = Text.CalcSize(SEARCH_PLACEHOLDER).x;
+		}
+
+
+		private const float CELL_SPACING = 5;
         private const float ROW_SPACING = 3;
 
         private List<TableColumn<T>> _columns;
@@ -189,9 +200,10 @@ namespace Pawnmorph.UserInterface.TableBox
             _searchText = Widgets.TextField(searchBox, _searchText);
             if (Widgets.ButtonText(new Rect(boundingBox.xMax - clearButtonSize, boundingBox.y, clearButtonSize, clearButtonSize), "X"))
                 _searchText = "";
-            
-            if (_searchText == String.Empty)
-                Widgets.NoneLabelCenteredVertically(searchBox, "Search...");
+
+			
+			if (_searchText == String.Empty)
+                Widgets.NoneLabelCenteredVertically(new Rect(searchBox.x + CELL_SPACING, searchBox.y, SEARCH_PLACEHOLDER_SIZE, Text.LineHeight), SEARCH_PLACEHOLDER);
             
             _rows.Filter = _searchText;
             
@@ -228,7 +240,7 @@ namespace Pawnmorph.UserInterface.TableBox
             boundingBox.y += Text.LineHeight + ROW_SPACING;
             boundingBox.height -= Text.LineHeight + ROW_SPACING;
 
-            Text.Font = GameFont.Tiny;
+            Text.Font = _lineFont;
 
 
             Rect rowRect = new Rect(0, 0, tableWidth, Text.LineHeight + ROW_SPACING);
