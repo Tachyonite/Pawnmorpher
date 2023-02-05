@@ -181,11 +181,6 @@ namespace Pawnmorph.Hediffs
         {
             if (Pawn.IsHashIntervalTick(200))
             {
-                //StatAdjust.Recalculate();
-                //MutationAdaptability.Recalculate();
-                //IsReverting.Recalculate();
-                //ShouldRemove.Recalculate();
-
                 severityAdjustment += SeverityChangePerDay() / 300f; // 60000 / 200
             }
         }
@@ -204,11 +199,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public void RecalcAdjustSpeed()
         {
-            //StatAdjust.Recalculate();
-            //MutationAdaptability.Recalculate();
-            //IsReverting.Recalculate();
-            //ShouldRemove.Recalculate();
-        }
+            IsReverting.QueueUpdate();
+            ShouldRemove.QueueUpdate();
+		}
 
         /// <summary>
         ///     restarts adjustment for this mutation if it was halted
