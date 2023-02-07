@@ -895,6 +895,7 @@
     <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="UserInterface\Settings\Dialog_AnimalAssociations.cs" />
     <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_BlacklistAnimal.cs" />
     <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
     <Compile Include="UserInterface\TableBox\ITableRow.cs" />
     <Compile Include="UserInterface\TableBox\Table.cs" />

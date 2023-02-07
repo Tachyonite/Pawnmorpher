@@ -37,4 +37,7 @@
 	<PMAnimalAssociationsButton>Associate animals.</PMAnimalAssociationsButton>
 	<PMAnimalAssociationsHeader>Associate animals.</PMAnimalAssociationsHeader>
 	<PMAnimalAssociationsText>Associate additional animals with morphs that will act as both additional outcomes, source of sequencing morph mutations and unlocking the injector.</PMAnimalAssociationsText>
+	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
+	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
+	<PMBlacklistFormerHumansText>Enable or disable individual animals from being selectable by the game for completely transformation.\nOnly animals not associated with a morph type can be disabled.</PMBlacklistFormerHumansText>
 </LanguageData>

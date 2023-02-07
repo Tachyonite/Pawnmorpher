@@ -87,10 +87,15 @@ namespace Pawnmorph
         /// </summary>
         public Dictionary<string, string> animalAssociations;
 
-        /// <summary>
-        /// Dictionary of optional patches explicitly enabled or disabled.
-        /// </summary>
-        public Dictionary<string, bool> optionalPatches;
+		/// <summary>
+		/// List of blacklisted animal types.
+		/// </summary>
+		public List<string> animalBlacklist;
+
+		/// <summary>
+		/// Dictionary of optional patches explicitly enabled or disabled.
+		/// </summary>
+		public Dictionary<string, bool> optionalPatches;
 
         /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
         public override void ExposeData()
@@ -115,8 +120,9 @@ namespace Pawnmorph
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
             Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
+			Scribe_Collections.Look(ref animalBlacklist, nameof(animalBlacklist));
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (formerChance > 1) formerChance /= 100f; 
             }
