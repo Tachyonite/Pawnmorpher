@@ -33,6 +33,7 @@ namespace Pawnmorph
 
         /// <summary>
         /// The minimum biological age for a former human's human form
+        /// TODO - Support children if biotech is installed
         /// </summary>
         public const float MIN_FORMER_HUMAN_AGE = 17f;
 

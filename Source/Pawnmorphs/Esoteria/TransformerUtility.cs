@@ -440,13 +440,12 @@ namespace Pawnmorph
         /// <param name="animal"> The animal. </param>
         public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
         {
-            var convertedAge = Mathf.Max(ConvertAge(animal, ThingDefOf.Human.race),17);
+            var convertedAge = Mathf.Max(ConvertAge(animal, ThingDefOf.Human.race),FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             var gender = animal.gender;
             if (Rand.RangeInclusive(0, 100) <= 50)
             {
                 switch (gender)
                 {
-                    
                     case Gender.Male:
                         gender = Gender.Female; 
                         break;
