@@ -37,30 +37,34 @@
     <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
+  <!-- Base Dependencies -->
   <ItemGroup>
-    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MultiplayerAPI">
-      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="PipeSystem">
-      <HintPath>..\..\Dependencies\PipeSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PipeSystem">
+      <HintPath>..\..\Dependencies\PipeSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MultiplayerAPI">
+      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
+  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')"> 
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>$(RimworldFolder)\Managed\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
@@ -84,9 +88,6 @@
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ARModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
@@ -968,13 +969,16 @@
     <Folder Include="Events\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.4.3525</Version>
-    </PackageReference>
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
       <Version>10.0.1</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <!--Only use the Krafs stub if we can't access the real assembly -->
+  <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')"> 
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.4.3525</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
