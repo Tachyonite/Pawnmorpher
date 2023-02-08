@@ -284,7 +284,7 @@ namespace Pawnmorph.Hediffs
             stringBuilder.Append(base.CompDebugString());
             if (!Pawn.Dead)
             {
-                stringBuilder.Append($"severity/day: {SeverityChangePerDay().ToString("F3")}");
+                stringBuilder.Append($"severity/day: {SeverityChangePerDay().ToString("F3")}, effective max: {EffectiveMax:F3}");
 
                 if (_halted)
                     stringBuilder.Append(" (halted)");
