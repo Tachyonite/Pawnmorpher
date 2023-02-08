@@ -213,8 +213,6 @@ namespace Pawnmorph.Hybrids
 
             float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
 
-            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
-
             pawn.def = race;
             pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
 
