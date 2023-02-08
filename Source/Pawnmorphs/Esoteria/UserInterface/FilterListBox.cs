@@ -32,19 +32,20 @@ namespace Pawnmorph.UserInterface
         {
             float curY = y;
 
-            _searchText = Widgets.TextArea(new Rect(x, curY, inRect.width - 38, 28f), _searchText);
-            if (Widgets.ButtonText(new Rect(inRect.width - 33, curY, 28, 28), "X"))
+            float clearButtonSize = Text.LineHeight;
+			_searchText = Widgets.TextArea(new Rect(x, curY, inRect.width - clearButtonSize - 10, clearButtonSize), _searchText);
+            if (Widgets.ButtonText(new Rect(inRect.width - clearButtonSize - 5, curY, clearButtonSize, clearButtonSize), "X"))
                 _searchText = "";
             _filteredList.Filter = _searchText;
 
-            curY += 35;
-            height -= 35;
-
+            curY += clearButtonSize + 7;
+            height -= clearButtonSize + 7;
+            
             Text.Font = GameFont.Tiny;
             Listing_Standard lineListing = new Listing_Standard();
-            float lineHeight = 30f + lineListing.verticalSpacing;
-
-            Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count + 1) * lineHeight);
+            float lineHeight = Text.LineHeight + lineListing.verticalSpacing;
+			
+			Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count + 1) * lineHeight);
             Widgets.BeginScrollView(new Rect(x, curY, inRect.width, height), ref _scrollPosition, listbox);
 
 
