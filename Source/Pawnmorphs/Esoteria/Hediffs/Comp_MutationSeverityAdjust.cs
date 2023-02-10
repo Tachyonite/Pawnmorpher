@@ -24,7 +24,7 @@ namespace Pawnmorph.Hediffs
         private const float EPSILON = 0.001f;
         private bool _halted;
 
-        private float _offset; 
+        private float _offset;
 
         /// <summary>
         /// An additional offset on the maximum severity, for when things such as adaption cream increase it
@@ -102,7 +102,7 @@ namespace Pawnmorph.Hediffs
         /// <value>
         ///     <c>true</c> if [comp should remove]; otherwise, <c>false</c>.
         /// </value>
-        public override bool CompShouldRemove => ShouldRemove.Value;
+        public override bool CompShouldRemove => ShouldRemove.GetValue(300);
 
         /// <summary>
         ///     Gets the change per day.
@@ -135,10 +135,8 @@ namespace Pawnmorph.Hediffs
 
         // These values only get recalculated every so often because of how expensive they are to calculate
         //TODO make some sort of unified caching system for stat lookups, easy way to cause lots of lag 
-        private readonly Cached<float> StatAdjust;
-        private readonly Cached<float> MutationAdaptability;
-        private readonly Cached<bool> IsReverting;
-        private readonly Cached<bool> ShouldRemove;
+        private readonly TimedCache<bool> IsReverting;
+        private readonly TimedCache<bool> ShouldRemove;
 
         // The speed at which this particular mutation will revert, in severity-per-day.
         // Only generated once so that it doesn't fluctuate during reversion
@@ -149,10 +147,8 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public Comp_MutationSeverityAdjust()
         {
-            StatAdjust = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity));
-            MutationAdaptability = new Cached<float>(() => Pawn.GetStatValue(PMStatDefOf.MutationAdaptability));
-            IsReverting = new Cached<bool>(() => Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true);
-            ShouldRemove = new Cached<bool>(() => IsReverting.Value && parent.Severity <= 0);
+            IsReverting = new TimedCache<bool>(() => Pawn.health?.hediffSet?.HasHediff(MorphTransformationDefOf.PM_Reverting) == true);
+            ShouldRemove = new TimedCache<bool>(() => IsReverting.GetValue(300) && parent.Severity <= 0);
 
             RandReversionSpeed = new Lazy<float>(GenerateRandomReversionSpeed);
         }
@@ -185,11 +181,6 @@ namespace Pawnmorph.Hediffs
         {
             if (Pawn.IsHashIntervalTick(200))
             {
-                StatAdjust.Recalculate();
-                MutationAdaptability.Recalculate();
-                IsReverting.Recalculate();
-                ShouldRemove.Recalculate();
-
                 severityAdjustment += SeverityChangePerDay() / 300f; // 60000 / 200
             }
         }
@@ -208,11 +199,9 @@ namespace Pawnmorph.Hediffs
         /// </summary>
         public void RecalcAdjustSpeed()
         {
-            StatAdjust.Recalculate();
-            MutationAdaptability.Recalculate();
-            IsReverting.Recalculate();
-            ShouldRemove.Recalculate();
-        }
+            IsReverting.QueueUpdate();
+            ShouldRemove.QueueUpdate();
+		}
 
         /// <summary>
         ///     restarts adjustment for this mutation if it was halted
@@ -229,7 +218,7 @@ namespace Pawnmorph.Hediffs
         /// <returns></returns>
         public virtual float SeverityChangePerDay()
         {
-            if (IsReverting.Value)
+            if (IsReverting.GetValue(300))
             {
                 return RandReversionSpeed.Value;
             }
@@ -244,17 +233,17 @@ namespace Pawnmorph.Hediffs
             if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay);
 
 
-            return sevPerDay * Mathf.Max(StatAdjust.Value, 0); //take the mutagen sensitivity stat into account 
+            return sevPerDay * Mathf.Max(StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 300) ?? 1, 0); //take the mutagen sensitivity stat into account 
         }
 
 
-        internal float EffectiveMax => Mathf.Max(MutationAdaptability.Value, 1) + SeverityOffset;
+        internal float EffectiveMax => Mathf.Max(StatsUtility.GetStat(Pawn, PMStatDefOf.MutationAdaptability, 300) ?? 0, 1) + SeverityOffset;
 
         private void CheckIfHalted()
         {
             if (parent.CurStage is MutationStage mStage)
             {
-                float stopChance = mStage.stopChance * GetChanceMult() * Pawn.GetStatValue(PMStatDefOf.MutationHaltChance);
+                float stopChance = mStage.stopChance * GetChanceMult() * StatsUtility.GetStat(Pawn, PMStatDefOf.MutationHaltChance, 300) ?? 0;
 
                 if (stopChance < 0.01f) return;
                 if (Rand.Value < stopChance) Halted = true;
@@ -272,7 +261,7 @@ namespace Pawnmorph.Hediffs
 
         private float GetChanceMult()
         {
-            float sVal = MutationAdaptability.Value;
+            float sVal = StatsUtility.GetStat(Pawn, PMStatDefOf.MutationAdaptability, 300) ?? 0;
 
             float r = MutationUtilities.MaxMutationAdaptabilityValue - MutationUtilities.MinMutationAdaptabilityValue;
             sVal = Mathf.Abs(MutationUtilities.AverageMutationAdaptabilityValue - sVal)
@@ -295,7 +284,10 @@ namespace Pawnmorph.Hediffs
             stringBuilder.Append(base.CompDebugString());
             if (!Pawn.Dead)
             {
-                stringBuilder.AppendLine("severity/day: " + SeverityChangePerDay().ToString("F3"));
+                stringBuilder.Append($"severity/day: {SeverityChangePerDay().ToString("F3")}, effective max: {EffectiveMax:F3}");
+
+                if (_halted)
+                    stringBuilder.Append(" (halted)");
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }

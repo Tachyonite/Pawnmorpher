@@ -20,7 +20,14 @@ namespace Pawnmorph
             base.PostOpen();
 
             if (Find.WindowStack.TryRemove(typeof(Window_Genebank)) == false)
-                Find.WindowStack.Add(new Window_Genebank());
+            {
+                Window_Genebank genebankWindow = new Window_Genebank();
+
+                if (Event.current.control)
+                    genebankWindow.ResetToDefaults();
+
+				Find.WindowStack.Add(genebankWindow);
+            }
 
             this.Close();
         }
