@@ -133,21 +133,9 @@
     </Operation>
 
     <Operation Class="PatchOperationReplace">
-        <xpath>/Defs/ThinkTreeDef[defName="AnimalConstant"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow"]/subNodes/li</xpath>
+        <xpath>/Defs/ThingDef/race[thinkTreeConstant="AnimalConstant"]/thinkTreeConstant</xpath>
         <value>
-            <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
-                <filter>
-                    <isBlackList>false</isBlackList>
-                    <filterList>
-                        <li>MostlyFeral</li>
-                        <li>Feral</li>
-                        <li>PermanentlyFeral</li>
-                    </filterList>
-                </filter>
-                <subNodes>
-                    <li Class="JobGiver_AnimalFlee" />
-                </subNodes>
-            </li>
+            <thinkTreeConstant>PM_AnimalConstant</thinkTreeConstant>
         </value>
     </Operation>
 
