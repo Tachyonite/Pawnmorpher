@@ -24,7 +24,9 @@ namespace Pawnmorph
 
         public static AnimalClassDef Canid;
         public static AnimalClassDef Reptile;
+		public static AnimalClassDef Bovid;
+		public static AnimalClassDef Cervid;
 
-        public static AnimalClassDef Powerful;
+		public static AnimalClassDef Powerful;
     }
 }
