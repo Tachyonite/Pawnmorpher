@@ -24,14 +24,14 @@ namespace Pawnmorph.UserInterface.Settings
 		private static Vector2 RAW_BUTTON_SIZE = new Vector2(28, 28f);
 		private const float SPACER_SIZE = 17f;
 
-		private Dictionary<ThingDef, bool> _blacklistedAnimalDictonary;
+		private Dictionary<ThingDef, bool> _canBeFormerHumanDictonary;
 		List<string> _settingsReference;
 		FilterListBox<ThingDef> _animalListBox;
 
 		public Dialog_BlacklistAnimal(List<string> settingsReference)
 		{
 			_settingsReference = settingsReference;
-			_blacklistedAnimalDictonary = new Dictionary<ThingDef, bool>();
+			_canBeFormerHumanDictonary = new Dictionary<ThingDef, bool>();
 		}
 
 		public override void PostOpen()
@@ -42,12 +42,22 @@ namespace Pawnmorph.UserInterface.Settings
 
 		private void RefreshList()
 		{
-			// Get all animal ThingDefs that are not dryads.
+			// Get all animal ThingDefs that are not dryads or associated with a morph.
 			IEnumerable<ThingDef> animals = DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.race?.Animal == true && x.race?.Dryad != true);
 			animals = animals.Except(MorphDef.AllDefs.SelectMany(x => x.AllAssociatedAnimals));
 
-			_blacklistedAnimalDictonary = animals.ToDictionary(x => x, x => _settingsReference.Contains(x.defName) == false);
-			
+			_canBeFormerHumanDictonary = animals.ToDictionary(x => x, x => _settingsReference.Contains(x.defName) == false);
+
+			// Remove XML banned.
+			foreach (var item in _canBeFormerHumanDictonary.Keys.ToArray())
+			{
+				if (item.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
+				{
+					// If banned but not explicitly, then remove from options window
+					if (_settingsReference.Contains(item.defName) == false)
+						_canBeFormerHumanDictonary.Remove(item);
+				}
+			}
 
 			var filterList = new ListFilter<ThingDef>(animals, (animal, filterText) => animal.LabelCap.ToString().ToLower().Contains(filterText));
 			_animalListBox = new FilterListBox<ThingDef>(filterList);
@@ -72,9 +82,9 @@ namespace Pawnmorph.UserInterface.Settings
 			float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - SPACER_SIZE;
 			_animalListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
 			{
-				bool current = _blacklistedAnimalDictonary.TryGetValue(item, false);
+				bool current = _canBeFormerHumanDictonary.TryGetValue(item, false);
 				listing.CheckboxLabeled(item.LabelCap, ref current, item.modContentPack.ModMetaData.Name);
-				_blacklistedAnimalDictonary[item] = current;
+				_canBeFormerHumanDictonary[item] = current;
 			});
 
 			// Draw the apply, reset and cancel buttons.
@@ -106,7 +116,7 @@ namespace Pawnmorph.UserInterface.Settings
 		private void ShowRawInput()
 		{
 			List<string> exportCollection = new List<string>();
-			exportCollection.AddRange(_blacklistedAnimalDictonary.Where(x => x.Value == false).Select(x => x.Key.defName).ToList());
+			exportCollection.AddRange(_canBeFormerHumanDictonary.Where(x => x.Value == false).Select(x => x.Key.defName).ToList());
 			exportCollection = exportCollection.Distinct().ToList();
 
 			string stringValue = string.Join(",", exportCollection);
@@ -131,13 +141,16 @@ namespace Pawnmorph.UserInterface.Settings
 
 		private void ApplyChanges()
 		{
-			// We want to persist any definitions assigned for defnames that could not be loaded into the game at present time.
-			// Like animals from currently disabled mods.
-			// Take the old list, add all disabled animals (this will cause duplicates) and then apply distinct.
-			_settingsReference.AddRange(_blacklistedAnimalDictonary.Where(x => x.Value == false).Select(x => x.Key.defName).ToList());
-			_settingsReference = _settingsReference.Distinct().ToList();
+			var existingBlacklist = _settingsReference.ToHashSet();
+			var blacklist = _canBeFormerHumanDictonary.Where(x => x.Value == false).Select(x => x.Key.defName);
+			var whitelist = _canBeFormerHumanDictonary.Where(x => x.Value == true).Select(x => x.Key.defName);
 
-			foreach (var animal in _blacklistedAnimalDictonary)
+			// Ensure existing blacklist entries are only removed if they are explicitly un-blacklisted
+			// That way defs that may not exist (i.e. because they're from an unloaded mod) will be persisted
+			_settingsReference.Clear();
+			_settingsReference.AddRange(existingBlacklist.Union(blacklist).Except(whitelist));
+
+			foreach (var animal in _canBeFormerHumanDictonary)
 			{
 				FormerHumanSettings formerHumanConfig = animal.Key.GetModExtension<FormerHumanSettings>();
 
