@@ -5,15 +5,15 @@ using Verse;
 
 namespace Pawnmorph.DefExtensions
 {
-    /// <summary>
-    /// mod extension for adding mutagens to defs to make them mutagenic 
-    /// </summary>
-    /// <seealso cref="Verse.DefModExtension" />
-    public class MutagenExtension : DefModExtension
-    {
-        /// <summary>
-        /// The mutagen
-        /// </summary>
-        public MutagenDef mutagen; 
-    }
+	/// <summary>
+	/// mod extension for adding mutagens to defs to make them mutagenic 
+	/// </summary>
+	/// <seealso cref="Verse.DefModExtension" />
+	public class MutagenExtension : DefModExtension
+	{
+		/// <summary>
+		/// The mutagen
+		/// </summary>
+		public MutagenDef mutagen;
+	}
 }

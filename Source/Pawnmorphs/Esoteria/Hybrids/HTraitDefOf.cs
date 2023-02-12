@@ -5,12 +5,12 @@ using RimWorld;
 
 namespace Pawnmorph.Hybrids
 {
-    /// <summary>
-    /// static container for various hybrid race related traits 
-    /// </summary>
-    [DefOf]
-    public static class HTraitDefOf
-    {
-        
-    }
+	/// <summary>
+	/// static container for various hybrid race related traits 
+	/// </summary>
+	[DefOf]
+	public static class HTraitDefOf
+	{
+
+	}
 }

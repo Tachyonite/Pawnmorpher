@@ -7,27 +7,27 @@ using Verse;
 
 namespace Pawnmorph.DefExtensions
 {
-    /// <summary>
-    /// def extension that adds information about changing the instinct level of a sapient animal 
-    /// </summary>
-    /// <seealso cref="Verse.DefModExtension" />
-    /// exactly what this does depends on what kind of def it is attached to 
-    public class InstinctInfluenceExtension : DefModExtension
-    {
-        /// <summary>
-        /// The instinct offset to add 
-        /// </summary>
-        public int instinctOffset; 
+	/// <summary>
+	/// def extension that adds information about changing the instinct level of a sapient animal 
+	/// </summary>
+	/// <seealso cref="Verse.DefModExtension" />
+	/// exactly what this does depends on what kind of def it is attached to 
+	public class InstinctInfluenceExtension : DefModExtension
+	{
+		/// <summary>
+		/// The instinct offset to add 
+		/// </summary>
+		public int instinctOffset;
 
-        /// <summary>
-        /// The tale to add for the sapient animal 
-        /// </summary>
-        [CanBeNull]
-        public TaleDef tale;
+		/// <summary>
+		/// The tale to add for the sapient animal 
+		/// </summary>
+		[CanBeNull]
+		public TaleDef tale;
 
-        /// <summary>
-        /// The thought to add 
-        /// </summary>
-        public ThoughtDef thought; 
-    }
+		/// <summary>
+		/// The thought to add 
+		/// </summary>
+		public ThoughtDef thought;
+	}
 }

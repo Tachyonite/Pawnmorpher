@@ -7,15 +7,15 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class StylePatches
-    {
-        [HarmonyPatch(typeof(Pawn_StyleTracker), nameof(Pawn_StyleTracker.CanDesireLookChange), MethodType.Getter)]
-        static class DisableStyleTrackerForFH
-        {
-            static void Postfix(Pawn ___pawn, ref bool __result)
-            {
-                if (__result) __result = !(___pawn?.IsFormerHuman() ?? true);
-            }
-        }
-    }
+	static class StylePatches
+	{
+		[HarmonyPatch(typeof(Pawn_StyleTracker), nameof(Pawn_StyleTracker.CanDesireLookChange), MethodType.Getter)]
+		static class DisableStyleTrackerForFH
+		{
+			static void Postfix(Pawn ___pawn, ref bool __result)
+			{
+				if (__result) __result = !(___pawn?.IsFormerHuman() ?? true);
+			}
+		}
+	}
 }

@@ -7,27 +7,27 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    [HarmonyPatch(typeof(Building_Door))]
-    static class DoorPatches
-    {
+	[HarmonyPatch(typeof(Building_Door))]
+	static class DoorPatches
+	{
 
-        [HarmonyPatch(nameof(Building_Door.PawnCanOpen)), HarmonyPostfix]
-        static void FixFormerHumanDoorPatch(ref bool __result, Pawn p, Building_Door __instance)
-        {
-            if (__result)
-            {
-                // Block former humans from passing through door if the pawn's faction is hostile to the door's faction.
-                if (p.Faction == null || p.Faction.HostileTo(__instance.Faction))
-                {
-                    if (p.IsFormerHuman())
-                    {
-                        __result = false;
-                        return;
-                    }
-                }
-            }
+		[HarmonyPatch(nameof(Building_Door.PawnCanOpen)), HarmonyPostfix]
+		static void FixFormerHumanDoorPatch(ref bool __result, Pawn p, Building_Door __instance)
+		{
+			if (__result)
+			{
+				// Block former humans from passing through door if the pawn's faction is hostile to the door's faction.
+				if (p.Faction == null || p.Faction.HostileTo(__instance.Faction))
+				{
+					if (p.IsFormerHuman())
+					{
+						__result = false;
+						return;
+					}
+				}
+			}
 
-            return; 
-        }
-    }
+			return;
+		}
+	}
 }

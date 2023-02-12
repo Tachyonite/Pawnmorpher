@@ -6,22 +6,22 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class PMNeedDefOf
-    {
-        public static NeedDef SapientAnimalControl;
+	[DefOf]
+	public static class PMNeedDefOf
+	{
+		public static NeedDef SapientAnimalControl;
 
-        public static NeedDef Beauty;
+		public static NeedDef Beauty;
 
-        public static NeedDef Joy;
+		public static NeedDef Joy;
 
-        public static NeedDef Comfort;
+		public static NeedDef Comfort;
 
-        public static NeedDef Mood; 
+		public static NeedDef Mood;
 
-        static PMNeedDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMNeedDefOf));
-        }
-    }
+		static PMNeedDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMNeedDefOf));
+		}
+	}
 }

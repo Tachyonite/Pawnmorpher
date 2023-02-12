@@ -7,27 +7,27 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class MutagenDefOf
-    {
-        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static MutagenDef defaultMutagen;
-        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static MutagenDef MergeMutagen;
+	[DefOf]
+	public static class MutagenDefOf
+	{
+		[NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		public static MutagenDef defaultMutagen;
+		[NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		public static MutagenDef MergeMutagen;
 
-        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static MutagenDef PM_ChamberMutagen;
+		[NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		public static MutagenDef PM_ChamberMutagen;
 
-        [NotNull] [UsedImplicitly] public static MutagenDef PM_ChaobulbHarvest;
+		[NotNull][UsedImplicitly] public static MutagenDef PM_ChaobulbHarvest;
 
-        [NotNull] [UsedImplicitly] public static MutagenDef PM_FalloutMutagen;
+		[NotNull][UsedImplicitly] public static MutagenDef PM_FalloutMutagen;
 
-        [NotNull] [UsedImplicitly] public static MutagenDef PM_MutaniteMutagen; 
+		[NotNull][UsedImplicitly] public static MutagenDef PM_MutaniteMutagen;
 
-        // ReSharper disable once NotNullMemberIsNotInitialized
-        static MutagenDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MutagenDefOf)); 
-        }
-    }
+		// ReSharper disable once NotNullMemberIsNotInitialized
+		static MutagenDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(MutagenDefOf));
+		}
+	}
 }
