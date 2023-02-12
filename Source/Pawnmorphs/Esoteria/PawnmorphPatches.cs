@@ -338,7 +338,6 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
             methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
 
-			methodsToPatch.Add(typeof(Pawn_MindState).GetMethod("CanStartFleeingBecauseOfPawnAction", staticFlags));
 			
 
 			//now patch them 

@@ -8,6 +8,7 @@
                     <filter>
                         <isBlackList>false</isBlackList>
                         <filterList>
+                            <li>Conflicted</li>
                             <li>MostlyFeral</li>
                             <li>Feral</li>
                             <li>PermanentlyFeral</li>
@@ -23,6 +24,7 @@
                     <filter>
                         <isBlackList>true</isBlackList>
                         <filterList>
+                            <li>Conflicted</li>
                             <li>MostlyFeral</li>
                             <li>Feral</li>
                             <li>PermanentlyFeral</li>
