@@ -181,6 +181,7 @@ namespace Pawnmorph.UserInterface
 			PawnmorpherMod.Settings.GenebankWindowSize = base.windowRect.size;
 			PawnmorpherMod.Settings.GenebankWindowFont = _table.LineFont;
 
+            PawnmorpherMod.Settings.Mod.WriteSettings();
 			base.PreClose();
         }
 
