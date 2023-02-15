@@ -69,8 +69,10 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
                 ShowAnimalAssociations();
 
+			if (checkBoxSection.ButtonText("PMBlacklistFormerHumansButton".Translate()))
+				ShowAnimalBlacklist();
 
-            listingStandard.EndSection(checkBoxSection);
+			listingStandard.EndSection(checkBoxSection);
 
 
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
@@ -146,12 +148,22 @@ namespace Pawnmorph
             Find.WindowStack.Add(animalAssociations);
         }
 
-        /// <summary>
-        /// Override SettingsCategory to show up in the list of settings. <br />
-        /// Using .Translate() is optional, but does allow for localisation.
-        /// </summary>
-        /// <returns> The (translated) mod name. </returns>
-        public override string SettingsCategory()
+
+		private void ShowAnimalBlacklist()
+		{
+			if (settings.animalBlacklist == null)
+				settings.animalBlacklist = new List<string>();
+
+			UserInterface.Settings.Dialog_BlacklistAnimal animalAssociations = new UserInterface.Settings.Dialog_BlacklistAnimal(settings.animalBlacklist);
+			Find.WindowStack.Add(animalAssociations);
+		}
+
+		/// <summary>
+		/// Override SettingsCategory to show up in the list of settings. <br />
+		/// Using .Translate() is optional, but does allow for localisation.
+		/// </summary>
+		/// <returns> The (translated) mod name. </returns>
+		public override string SettingsCategory()
         {
             return "PawnmorpherModName".Translate();
         }
