@@ -1,5 +1,46 @@
 <Defs>
     <ThinkTreeDef>
+        <!-- Animal constant replacer to support switching to humanlike combat response for sapient former humans. -->
+        <defName>PM_AnimalConstant</defName>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+                <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
+                    <filter>
+                        <isBlackList>false</isBlackList>
+                        <filterList>
+                            <li>Conflicted</li>
+                            <li>MostlyFeral</li>
+                            <li>Feral</li>
+                            <li>PermanentlyFeral</li>
+                        </filterList>
+                    </filter>
+                    <subNodes>
+                        <li Class="ThinkNode_Subtree">
+                          <treeDef>AnimalConstant</treeDef>
+                        </li>
+                    </subNodes>
+                </li>
+                <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
+                    <filter>
+                        <isBlackList>true</isBlackList>
+                        <filterList>
+                            <li>Conflicted</li>
+                            <li>MostlyFeral</li>
+                            <li>Feral</li>
+                            <li>PermanentlyFeral</li>
+                        </filterList>
+                    </filter>
+                    <subNodes>
+                        <li Class="ThinkNode_Subtree">
+                          <treeDef>HumanlikeConstant</treeDef>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
         <!-- this is going to be injected into the animal think tree -->
         <defName>FormerHumanThinkTreeSegment</defName>
         <insertTag>Animal_PreWander</insertTag>
