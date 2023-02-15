@@ -195,11 +195,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                         }
 
                         List<StatDef> stats = new List<StatDef>();
-                        if (lastStage.statFactors != null)
-                            stats.AddRange(lastStage.statFactors.Where(x => x.value > 1).Select(x => x.stat));
 
                         if (lastStage.statOffsets != null)
-                            stats.AddRange(lastStage.statOffsets.Where(x => x.value > 0).Select(x => x.stat));
+                            stats.AddRange(lastStage.statOffsets.Select(x => x.stat));
 
                         string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
                         searchText += " " + statsImpact;
