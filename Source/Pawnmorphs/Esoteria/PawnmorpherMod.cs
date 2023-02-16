@@ -151,9 +151,6 @@ namespace Pawnmorph
 
 		private void ShowAnimalBlacklist()
 		{
-			if (settings.animalBlacklist == null)
-				settings.animalBlacklist = new List<string>();
-
 			UserInterface.Settings.Dialog_BlacklistAnimal animalAssociations = new UserInterface.Settings.Dialog_BlacklistAnimal(settings.animalBlacklist);
 			Find.WindowStack.Add(animalAssociations);
 		}

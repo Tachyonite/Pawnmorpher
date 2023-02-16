@@ -123,15 +123,74 @@ namespace Pawnmorph
 
             Giver_RecruitSapientAnimal.ResetStaticData();
 
+            _allRegularFormerHumanPawnKinds = new List<PawnKindDef>();
 
-            _allRegularFormerHumanPawnKinds =
-                DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.RaceProps?.Animal == true
-                                                                       && p.race.GetModExtension<ChaomorphExtension>() == null
-                                                                       && p.race.GetModExtension<FormerHumanSettings>()
-                                                                          ?.neverFormerHuman
-                                                                       != true)
-                                        .ToList(); 
-        }
+            if (PawnmorpherMod.Settings.animalBlacklist == null)
+                PawnmorpherMod.Settings.animalBlacklist = GetDefaultBlockList();
+
+			CacheValidFormerHumans();
+		}
+
+		/// <summary>
+		/// Determines whether [is valid former human] [the specified forced].
+		/// </summary>
+		/// <param name="pawnKind">Kind of the pawn.</param>
+        /// <param name="allowDisabled">Include disabled animals.</param>
+        /// <param name="allowRestricted">Include restricted animals.</param>
+		/// <returns>
+		///   <c>true</c> if [is valid former human] [the specified forced]; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool IsValidFormerHuman(this ThingDef pawnKind, bool allowRestricted = true, bool allowDisabled = false)
+        {
+            if (pawnKind.race == null)
+                return false;
+
+            // Must be an animal
+            if (pawnKind.race.Animal == false)
+                return false;
+
+            // Dryads are not controllable 
+            if (pawnKind.race.Dryad)
+                return false;
+
+            // XML Patched as not valid former human.
+            if (pawnKind.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == false)
+                return false;
+
+            // If restricted is not allowed, then filter away special chaomorphs.
+            ChaomorphExtension chaoExtension = pawnKind.GetModExtension<ChaomorphExtension>();
+			if (chaoExtension != null && allowRestricted == false)
+            {
+                // Only ordinary chaomorphs are allowed normally.
+                if (chaoExtension.chaoType != ChaomorphType.Chaomorph)
+                    return false;
+
+                // Chamorphs with a selection weight of less than 0 is not allowed.
+                if (chaoExtension.selectionWeight < 0)
+                    return false;
+            }
+
+            // Check if manually blocked
+            if (PawnmorpherMod.Settings.animalBlacklist.TryGetValue(pawnKind.defName, out FormerHumanRestrictions restriction))
+            {
+                if (allowRestricted == false && restriction == FormerHumanRestrictions.Restricted)
+                    return false;
+
+				if (allowDisabled == false && restriction == FormerHumanRestrictions.Disabled)
+					return false;
+			}
+
+            return true;
+		}
+
+		/// <summary>
+		/// Caches the valid former humans. See <see cref="AllRegularFormerHumanPawnkindDefs"/>
+		/// </summary>
+		public static void CacheValidFormerHumans()
+        {
+            _allRegularFormerHumanPawnKinds.Clear();
+            _allRegularFormerHumanPawnKinds.AddRange(DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race.IsValidFormerHuman(allowRestricted: false)));
+		}
 
 
         /// <summary>
@@ -1499,5 +1558,20 @@ namespace Pawnmorph
                 }
             }
         }
+
+        internal static Dictionary<string, FormerHumanRestrictions> GetDefaultBlockList()
+        {
+
+			var defaultConfig = new Dictionary<string, FormerHumanRestrictions>()
+            {
+
+            };
+
+            foreach (var animal in AnimalClassDefOf.Powerful.GetAssociatedAnimals())
+                defaultConfig.Add(animal.defName, FormerHumanRestrictions.Restricted);
+
+
+            return defaultConfig;
+		}
     }
 }

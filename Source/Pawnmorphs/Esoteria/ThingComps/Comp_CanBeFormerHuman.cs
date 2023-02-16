@@ -1,5 +1,4 @@
-﻿using Pawnmorph.DefExtensions;
-using Pawnmorph.FormerHumans;
+﻿using Pawnmorph.FormerHumans;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -68,7 +67,7 @@ namespace Pawnmorph.ThingComps
             if (!PawnmorpherMod.Settings.enableWildFormers)
                 return false;
 
-            if (parent.def.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
+            if (parent.def.IsValidFormerHuman() == false)
                 return false;
 
             // Don't make animals belonging to any faction former humans

@@ -139,25 +139,23 @@ namespace Pawnmorph
             get
             {
                 if (_enabledRaces == null)
-                {
-                    _enabledRaces = new HashSet<ThingDef>();
-                    foreach (ThingDef race in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Humanlike == true))
-                    {
-                        if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
-                        _enabledRaces.Add(race);
-                    }
-
-                    foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Animal == true))
-                    {
-                        var fhSettings = thingDef.GetModExtension<FormerHumanSettings>(); 
-                        if(fhSettings?.neverFormerHuman == true) continue;
-                        _enabledRaces.Add(thingDef); 
-                    }
-                }
+					InvalidateRaceCache();
 
                 return _enabledRaces;
             }
         }
+
+        public static void InvalidateRaceCache()
+		{
+			_enabledRaces = new HashSet<ThingDef>();
+			foreach (ThingDef race in DefDatabase<ThingDef>.AllDefs.Where(t => t.race?.Humanlike == true))
+			{
+				if (!DefDatabase<MutagenDef>.AllDefs.Any(m => m.CanTransform(race))) continue;
+				_enabledRaces.Add(race);
+			}
+
+			_enabledRaces.AddRange(DefDatabase<ThingDef>.AllDefs.Where(x => x.IsValidFormerHuman()));
+		}
 
         /// <summary>
         ///     Adds the instinct change to this need

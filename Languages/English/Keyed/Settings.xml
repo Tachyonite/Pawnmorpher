@@ -40,4 +40,10 @@
 	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
 	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
 	<PMBlacklistFormerHumansText>Enable or disable individual animals from being selectable by the game for completely transformation.\nOnly animals not associated with a morph type can be disabled.</PMBlacklistFormerHumansText>
+	<PMBlacklistFormerHumansEnabled>Enabled</PMBlacklistFormerHumansEnabled>
+	<PMBlacklistFormerHumansRestricted>Restricted</PMBlacklistFormerHumansRestricted>
+	<PMBlacklistFormerHumansDisabled>Disabled</PMBlacklistFormerHumansDisabled>
+	<PMBlacklistFormerHumansEnabledDescription></PMBlacklistFormerHumansEnabledDescription>
+	<PMBlacklistFormerHumansRestrictedDescription></PMBlacklistFormerHumansRestrictedDescription>
+	<PMBlacklistFormerHumansDisabledDescription></PMBlacklistFormerHumansDisabledDescription>
 </LanguageData>

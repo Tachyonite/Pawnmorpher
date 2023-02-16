@@ -318,6 +318,7 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
     <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
     <Compile Include="Genebank\GenebankEntry.cs" />
     <Compile Include="Genebank\IGenebankEntry.cs" />

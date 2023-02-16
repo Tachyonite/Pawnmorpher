@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.FormerHumans;
 using UnityEngine;
 using Verse;
 
@@ -91,7 +92,7 @@ namespace Pawnmorph
 		/// <summary>
 		/// List of blacklisted animal types.
 		/// </summary>
-		public List<string> animalBlacklist;
+		public Dictionary<string, FormerHumanRestrictions> animalBlacklist;
 
 		/// <summary>
 		/// Dictionary of optional patches explicitly enabled or disabled.
@@ -148,7 +149,9 @@ namespace Pawnmorph
 
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (formerChance > 1) formerChance /= 100f; 
+                animalBlacklist = null;
+
+				if (formerChance > 1) formerChance /= 100f; 
             }
 
             base.ExposeData();

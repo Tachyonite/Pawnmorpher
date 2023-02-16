@@ -45,12 +45,12 @@ namespace Pawnmorph
                 InjectGraphics(); 
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
-                BanlistFormerHumanAnimals();
                 PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
                 EnableDisableOptionalPatches();
                 CheckForObsoletedComponents();
-                try
+
+				try
                 {
 
 
@@ -87,31 +87,6 @@ namespace Pawnmorph
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
         }
-
-        private static void BanlistFormerHumanAnimals()
-        {
-            if (PawnmorpherMod.Settings.animalBlacklist == null)
-                return;
-
-			foreach (string animalDef in PawnmorpherMod.Settings.animalBlacklist)
-			{
-                ThingDef animal = DefDatabase<ThingDef>.GetNamed(animalDef, false);
-                if (animal == null)
-                    continue;
-
-				FormerHumanSettings formerHumanConfig = animal.GetModExtension<FormerHumanSettings>();
-				if (formerHumanConfig == null)
-				{
-					formerHumanConfig = new FormerHumanSettings();
-					if (animal.modExtensions == null)
-						animal.modExtensions = new List<DefModExtension>();
-
-					animal.modExtensions.Add(formerHumanConfig);
-				}
-
-				formerHumanConfig.neverFormerHuman = true;
-			}
-		}
 
         private static void EnableDisableOptionalPatches()
         {
