@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pawnmorph.FormerHumans
 {
+	/// <summary>
+	/// Used to describe if an animal can be appear as a former human.
+	/// </summary>
 	public enum FormerHumanRestrictions : byte
 	{
 		/// <summary>
