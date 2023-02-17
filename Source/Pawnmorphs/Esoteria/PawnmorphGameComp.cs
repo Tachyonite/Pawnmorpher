@@ -13,7 +13,6 @@ using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -246,7 +245,7 @@ namespace Pawnmorph
 
         /// <summary>add the given pawnkind to the mutagen chamber database</summary>
         /// <param name="pawnkind">The pawnkind.</param>
-        [Obsolete("use " +nameof(Chambers.ChamberDatabase) + "." + nameof(Chambers.ChamberDatabase.AddToDatabase) + " instead")]
+        [Obsolete("use " +nameof(Chambers.ChamberDatabase) + "." + nameof(Chambers.ChamberDatabase.TryAddToDatabase) + " instead")]
         public void TagPawn(PawnKindDef pawnkind)
         {
             if (!taggedAnimals.Contains(pawnkind)) taggedAnimals.Add(pawnkind);

@@ -1,12 +1,9 @@
 ﻿// PawnComponentPatches.cs created by Iron Wolf for Pawnmorph on 11/27/2019 1:00 PM
 // last updated 11/27/2019  1:00 PM
 
-using System;
 using HarmonyLib;
 using RimWorld;
 using Verse;
-using Verse.AI;
-using Verse.Noise;
 
 #pragma warning disable 1591
 

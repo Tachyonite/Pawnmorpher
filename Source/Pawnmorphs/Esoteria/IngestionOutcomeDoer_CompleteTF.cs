@@ -1,8 +1,5 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.TfSys;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 

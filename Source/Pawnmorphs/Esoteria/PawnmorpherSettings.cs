@@ -1,5 +1,6 @@
-﻿using Pawnmorph.DebugUtils;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pawnmorph.DebugUtils;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -92,8 +93,25 @@ namespace Pawnmorph
         /// </summary>
         public Dictionary<string, bool> optionalPatches;
 
-        /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
-        public override void ExposeData()
+
+        /// <summary>
+        /// The saved genebank window size
+        /// </summary>
+        public Vector2? GenebankWindowSize;
+
+        /// <summary>
+        /// The saved genebank window location
+        /// </summary>
+        public Vector2? GenebankWindowLocation;
+
+
+		/// <summary>
+		/// The saved genebank font size
+		/// </summary>
+		public Verse.GameFont? GenebankWindowFont;
+
+		/// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
+		public override void ExposeData()
         {
             Scribe_Values.Look(ref enableFallout, nameof(enableFallout), DEFAULT_FALLOUT_SETTING);
             Scribe_Values.Look(ref enableMutagenLeak, "enableMutagenLeak", true);
@@ -111,7 +129,13 @@ namespace Pawnmorph
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
-            Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
+
+
+			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
+			Scribe_Values.Look(ref GenebankWindowLocation, nameof(GenebankWindowLocation));
+			Scribe_Values.Look(ref GenebankWindowFont, nameof(GenebankWindowFont));
+
+			Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
             Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));

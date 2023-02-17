@@ -2,16 +2,13 @@
 // last updated 11/02/2019  10:07 AM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Factions;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
-using Verse.Noise;
 
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches

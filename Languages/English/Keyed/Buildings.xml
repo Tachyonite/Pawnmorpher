@@ -16,5 +16,5 @@
 
     <!-- Mutagen tank -->
     <PMExtractSlurryLabel>Extract slurry</PMExtractSlurryLabel>
-    <PMExtractSlurryDesc>Extract some mutagen slurry from the tank. A pawn will come to extract it.</PMExtractSlurryDesc>
+    <PMExtractSlurryDesc>Extract some mechanite slurry from the tank. A pawn will come to extract it.</PMExtractSlurryDesc>
 </LanguageData>

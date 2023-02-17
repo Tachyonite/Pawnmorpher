@@ -1,8 +1,6 @@
 ﻿// Worker_FurryAppreciation.cs created by Iron Wolf for Pawnmorph on 09/18/2019 2:07 PM
 // last updated 09/18/2019  2:07 PM
 
-using System.Linq;
-using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;

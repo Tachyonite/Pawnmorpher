@@ -1,7 +1,6 @@
 ﻿// Tag.cs created by Iron Wolf for Pawnmorph on 08/13/2020 5:18 PM
 // last updated 08/13/2020  5:18 PM
 
-using Pawnmorph.Chambers;
 using RimWorld;
 using UnityEngine;
 using Verse;

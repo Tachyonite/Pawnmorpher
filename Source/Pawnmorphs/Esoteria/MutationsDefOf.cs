@@ -2,7 +2,7 @@
 // last updated 09/22/2019  8:36 AM
 
 using RimWorld;
-using Verse;
+
 #pragma warning disable 1591 
 namespace Pawnmorph
 {

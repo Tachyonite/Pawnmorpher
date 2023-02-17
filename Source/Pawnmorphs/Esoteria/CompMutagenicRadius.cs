@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
-using Verse;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace Pawnmorph
 {

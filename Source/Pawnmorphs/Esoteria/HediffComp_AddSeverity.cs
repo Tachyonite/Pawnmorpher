@@ -1,5 +1,4 @@
-﻿using Pawnmorph.Utilities;
-using Verse;
+﻿using Verse;
 
 namespace Pawnmorph
 {

@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using RimWorld;
 using Verse;
 
@@ -53,17 +54,15 @@ namespace Pawnmorph.Hediffs
             try
             {
                 var mutationDef = (MutationDef) mutation.def;
-
+                MutationGenebankEntry bankEntry = new MutationGenebankEntry(mutationDef);
 
                 if (CanTag(mutationDef))
                 {
-                    if (!DB.CanAddToDatabase(mutationDef, out string reason))
+                    if (!DB.TryAddToDatabase(bankEntry, out string reason))
                     {
                         Messages.Message(reason, MessageTypeDefOf.RejectInput);
                         return; 
                     }
-                    
-                    DB.TryAddToDatabase(mutationDef);
                 }
             }
             catch (InvalidCastException e)

@@ -279,7 +279,7 @@ namespace Pawnmorph.GraphicSys
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (_skinColor == Color.clear) _skinColor = Pawn.story.SkinColor;
+                if (_skinColor == Color.clear) _skinColor = Pawn.story.SkinColorBase;
                 if (_body == null) _body = Pawn.story.bodyType;
                 if(_styleInfo == null) _styleInfo = new StyleInfo();
                 
@@ -344,7 +344,7 @@ namespace Pawnmorph.GraphicSys
             _customDrawSize = comp.customDrawSize;
             _customPortraitDrawSize = comp.customPortraitDrawSize;
             _fixedGenderPostSpawn = comp.fixGenderPostSpawn;
-            _skinColor = comp.GetSkinColor() ?? Color.white;
+            _skinColor = Pawn.story.SkinColorBase;
 
             if (Pawn.story.hairDef != PMStyleDefOf.PM_HairHidden)
                 _hairDef = Pawn.story.hairDef;

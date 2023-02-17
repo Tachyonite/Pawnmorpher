@@ -1,11 +1,7 @@
 ﻿// Giver_CheckRace.cs modified by Iron Wolf for Pawnmorph on 08/03/2019 6:03 PM
 // last updated 08/03/2019  6:03 PM
 
-using System.Collections.Generic;
-using System.Linq;
-using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs

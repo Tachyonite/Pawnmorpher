@@ -2,7 +2,6 @@
 // last updated 07/25/2021  4:35 PM
 
 using System.Linq;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -24,7 +23,6 @@ namespace Pawnmorph.PreceptComps
         /// </returns>
         protected override ThingDef GetAnimal(in HistoryEvent historyEvent, Ideo ideo)
         {
-            ThingDef animal = null;
             var mut = historyEvent.GetArg<Hediff_AddedMutation>(PMHistoryEventArgsNames.MUTATION);
 
 

@@ -4,15 +4,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
-using HarmonyLib;
-using HugsLib.Logs;
-using Pawnmorph.DefExtensions;
 using static Pawnmorph.PMHistoryEventArgsNames;
 
 namespace Pawnmorph
@@ -280,6 +279,10 @@ namespace Pawnmorph
         {
             if (pawn == null) throw new ArgumentNullException(nameof(pawn));
             if (!HybridsAreEnabledFor(pawn.def)) return;
+            if (pawn.DevelopmentalStage != DevelopmentalStage.Adult)
+                return; // If pawn is not an adult, then don't shift race.
+                        // Would need to handle development stages across multiple races and potentially between different HAR races.
+
             if (pawn.ShouldBeConsideredHuman())
             {
                 if (pawn.def != ThingDefOf.Human)
@@ -540,6 +543,11 @@ namespace Pawnmorph
             var morph = hInfluence as MorphDef;
             //if the highest influence isn't a morph pick a random morph from the animal class
             morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+            
+            // This can happen if the AnimalClassDef doesn't have any associated morphs
+            if (morph == null)
+                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+            
             if (morph.classification.Contains(AnimalClassDefOf.Canid)) //TODO Generalize this or just pick randomly, 
                 return MorphDefOfs.ChaofoxMorph;
             if (morph.classification.Contains(AnimalClassDefOf.Reptile))

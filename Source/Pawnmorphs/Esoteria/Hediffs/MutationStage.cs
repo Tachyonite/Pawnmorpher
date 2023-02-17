@@ -3,11 +3,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using RimWorld;
-using RimWorld.IO;
 using Verse;
 
 namespace Pawnmorph.Hediffs
@@ -77,6 +75,9 @@ namespace Pawnmorph.Hediffs
         [CanBeNull]
         public List<VerbToolOverride> verbOverrides;
 
+        /// <summary>
+        /// Any abilities added by the stage
+        /// </summary>
         [CanBeNull]
         public List<Abilities.MutationAbilityDef> abilities;
 
@@ -121,6 +122,10 @@ namespace Pawnmorph.Hediffs
 			RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
 		}
 
+        /// <summary>
+        /// Called once when the hediff stage is first loaded, for any one-time initialization
+        /// </summary>
+        /// <param name="hediff"></param>
         public void OnLoad(Hediff hediff)
         {
             ApplyVerbOverrides(hediff);

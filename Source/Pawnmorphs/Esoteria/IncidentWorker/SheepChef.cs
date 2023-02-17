@@ -1,8 +1,6 @@
 ﻿// SheepChef.cs created by Iron Wolf for Pawnmorph on 01/05/2021 4:30 PM
 // last updated 01/05/2021  4:30 PM
 
-using System.Linq;
-using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;

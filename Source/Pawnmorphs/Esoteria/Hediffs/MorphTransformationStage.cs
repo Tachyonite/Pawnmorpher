@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Utilities;
-using HarmonyLib;
-using Pawnmorph.DebugUtils;
 using Verse;
 
 namespace Pawnmorph.Hediffs

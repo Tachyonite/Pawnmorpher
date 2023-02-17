@@ -1,12 +1,9 @@
 ﻿// Worker_HasMutations.cs created by Iron Wolf for Pawnmorph on 09/18/2019 2:14 PM
 // last updated 09/18/2019  2:14 PM
 
-using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -41,7 +38,7 @@ namespace Pawnmorph.Thoughts
             
             var initGraphics = CompCacher<InitialGraphicsComp>.GetCompCached(p);
             // Null for pawns spawned before this change. Will only work for new pawns since we'll never know what they were originally!
-            if (initGraphics.OriginalRace != null && initGraphics.OriginalRace != ThingDefOf.Human) // Don't bother checking for natural mutations for those originally human.
+            if (initGraphics != null && initGraphics.OriginalRace != null && initGraphics.OriginalRace != ThingDefOf.Human) // Don't bother checking for natural mutations for those originally human.
             {
                 RaceMutationSettingsExtension racialMutations = initGraphics.OriginalRace.TryGetRaceMutationSettings();
                 if (racialMutations != null)

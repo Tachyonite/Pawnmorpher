@@ -1,18 +1,11 @@
-﻿using AlienRace;
-using Pawnmorph.GraphicSys;
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using AlienRace;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
-using static RimWorld.PawnUtility;
 
 namespace Pawnmorph.HPatches.Optional
 {
@@ -115,14 +108,15 @@ namespace Pawnmorph.HPatches.Optional
         }
 
 
-        // Calculate the rendered size based on body size
+        // Calculate the scale multiplier based on Pawnmorpher's BodySize multiplier
+        // TODO: Add a toggle to allow scaling by any body size difference compared to normal instead
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static float GetScale(Pawn pawn)
         {
             if (_currentPawn != pawn)
             {
                 _currentPawn = pawn;
-                _currentScaledBodySize = Mathf.Sqrt(pawn.BodySize / pawn.RaceProps.baseBodySize);
+                _currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
             }
             
             return _currentScaledBodySize;

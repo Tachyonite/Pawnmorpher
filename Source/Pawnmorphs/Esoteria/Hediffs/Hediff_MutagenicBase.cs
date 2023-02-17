@@ -551,7 +551,8 @@ namespace Pawnmorph.Hediffs
             set
             {
                 // Severity changes can potentially queue up mutations
-                if (CurStageIndex != -1 && CurStage is HediffStage_Mutation mutStage)
+                // Note that CurStage can be null if this hediff does not have stages, but the 'is' will return false in that case
+                if (CurStage is HediffStage_Mutation mutStage)
                 {
                     float diff = value - base.Severity;
                     int mutations = mutStage.mutationRate?.GetMutationsPerSeverity(this, diff) ?? 0;

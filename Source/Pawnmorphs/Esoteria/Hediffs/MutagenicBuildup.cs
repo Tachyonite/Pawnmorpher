@@ -1,6 +1,4 @@
-﻿using Pawnmorph.Utilities;
-using UnityEngine;
-using Verse;
+﻿using Verse;
 
 namespace Pawnmorph.Hediffs
 {

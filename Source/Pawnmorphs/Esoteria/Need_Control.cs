@@ -130,6 +130,9 @@ namespace Pawnmorph
         /// </value>
         public float SeekerLevel => _seekerLevel;
 
+        /// <summary>
+        /// The races that this need is enabled for
+        /// </summary>
         [NotNull]
         public static HashSet<ThingDef> EnabledRaces
         {

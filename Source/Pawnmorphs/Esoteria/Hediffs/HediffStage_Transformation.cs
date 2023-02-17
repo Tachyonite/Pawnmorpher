@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs.Composable;
 using Verse;
-using System.Linq ;
 
 namespace Pawnmorph.Hediffs
 {

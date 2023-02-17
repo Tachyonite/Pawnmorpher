@@ -1,14 +1,12 @@
 ﻿// GatherableBodyResourcePatch.cs modified by Iron Wolf for Pawnmorph on 12/02/2019 4:26 PM
 // last updated 12/02/2019  4:26 PM
 
-using HarmonyLib;
-using JetBrains.Annotations;
-using Pawnmorph.GraphicSys;
-using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using HarmonyLib;
+using JetBrains.Annotations;
+using RimWorld;
 using UnityEngine;
 using Verse;
 

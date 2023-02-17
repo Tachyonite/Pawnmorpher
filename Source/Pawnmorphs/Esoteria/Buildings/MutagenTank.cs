@@ -1,12 +1,7 @@
 ﻿// MutaniteCentrifuge.cs created by Iron Wolf for Pawnmorph on 03/25/2020 6:14 AM
 // last updated 03/25/2020  6:14 AM
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using PipeSystem;
-using RimWorld;
 using UnityEngine;
 using Verse;
 

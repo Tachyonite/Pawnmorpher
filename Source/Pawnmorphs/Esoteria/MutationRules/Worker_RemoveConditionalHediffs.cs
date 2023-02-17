@@ -1,7 +1,6 @@
 ﻿// Worker_Hellhound.cs created by Iron Wolf for Pawnmorph on 07/29/2020 8:54 PM
 // last updated 07/29/2020  8:54 PM
 
-using System;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using Verse;

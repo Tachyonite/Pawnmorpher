@@ -1,17 +1,15 @@
-﻿using Pawnmorph.Abilities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Pawnmorph.Abilities;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -136,10 +134,11 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             GeneRowItem item;
             int totalCapacity = _databank.TotalStorage;
-            foreach (MutationDef mutation in _databank.StoredMutations)
+            foreach (GenebankEntry<MutationDef> mutationEntry in _databank.GetEntryItems<MutationDef>())
             {
-                string searchText = mutation.label;
-                item = new GeneRowItem(mutation, totalCapacity, searchText);
+                MutationDef mutation = mutationEntry.Value;
+				string searchText = mutation.label;
+                item = new GeneRowItem(mutationEntry, totalCapacity, searchText);
 
                 string parts;
                 if (mutation.RemoveComp?.layer == MutationLayer.Skin)
@@ -299,8 +298,8 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             foreach (var item in selectedRows)
             {
-                MutationDef mutation = item.Def as MutationDef;
-                _previewNorth.AddMutation(mutation);
+                MutationDef mutation = (item.Def as GenebankEntry<MutationDef>).Value;
+				_previewNorth.AddMutation(mutation);
                 _previewEast.AddMutation(mutation);
                 _previewSouth.AddMutation(mutation);
 
@@ -325,7 +324,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             if (selectedRows.Count == 1)
             {
-                _selectedDef = (selectedRows[0].Def as MutationDef);
+				_selectedDef = (selectedRows[0].Def as GenebankEntry<MutationDef>).Value;
                 if (_selectedDef.stages != null)
                     _stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
                 else
@@ -536,9 +535,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             }
         }
 
-        public override void Delete(Def def)
+        public override void Delete(IGenebankEntry def)
         {
-            _databank.RemoveFromDatabase(def as MutationDef);
+            _databank.RemoveFromDatabase(def as GenebankEntry<MutationDef>);
         }
     }
 }

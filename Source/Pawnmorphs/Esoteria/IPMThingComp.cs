@@ -1,10 +1,6 @@
 ﻿// IPMThingComp.cs created by Iron Wolf for Pawnmorph on 05/17/2020 8:35 AM
 // last updated 05/17/2020  8:35 AM
 
-using System;
-using JetBrains.Annotations;
-using Verse;
-
 namespace Pawnmorph
 {
     /// <summary>

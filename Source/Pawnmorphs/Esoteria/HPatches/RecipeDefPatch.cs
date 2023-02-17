@@ -1,11 +1,8 @@
-﻿using HarmonyLib;
-using Pawnmorph.Chambers;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using HarmonyLib;
+using Pawnmorph.Chambers;
 using Verse;
 
 namespace Pawnmorph.HPatches

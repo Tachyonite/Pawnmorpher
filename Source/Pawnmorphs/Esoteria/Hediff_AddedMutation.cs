@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
-using Pawnmorph.HPatches;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -127,6 +125,7 @@ namespace Pawnmorph
             }
         }
 
+        /// <inheritdoc />
         public override string DebugString()
         {
             string debugString = base.DebugString();
@@ -210,15 +209,12 @@ namespace Pawnmorph
         /// </summary>
         public override void Tick()
         {
-            // We don't use any of the vanilla functionality so there is no reason to propagate the tick further down
-            TickBase = Def.RunBaseLogic || (CurrentMutationStage?.RunBaseLogic ?? false);
-
             base.Tick();
 
-            foreach (Abilities.MutationAbility ability in abilities)
-            {
-                ability.Tick();
-            }
+            // Use a for loop here because this is a hot path and creating enumerators is causing too much overhead
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < abilities.Count; i++)
+                abilities[i].Tick();
 
             if (shouldRemove == false && pawn.IsHashIntervalTick(10))
             {
@@ -235,6 +231,11 @@ namespace Pawnmorph
         {
             if (newStage is MutationStage mStage)
             {
+                
+                // We don't normally use any of the vanilla functionality so there is no reason to propagate the tick further down
+                // unless the hediff specifically requests it
+                TickBase = Def.RunBaseLogic || mStage.RunBaseLogic;
+                
                 GenerateAbilities(mStage);
 
                 //check for aspect skips 
@@ -250,7 +251,7 @@ namespace Pawnmorph
         }
 
 
-
+        /// <inheritdoc />
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
@@ -280,6 +281,7 @@ namespace Pawnmorph
             }
         }
 
+        /// <summary>
         ///     checks if this mutation blocks the addition of a new mutation at the given part
         /// </summary>
         /// <param name="otherMutation">The other mutation.</param>
@@ -417,7 +419,7 @@ namespace Pawnmorph
         }
 
         /// <summary>
-        ///     Posts the tick.
+        ///     Called after Tick().  The base class ticks Comps here.
         /// </summary>
         public override void PostTick()
         {

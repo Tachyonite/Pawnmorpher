@@ -1,16 +1,10 @@
-﻿using Pawnmorph.Chambers;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
+﻿using System;
+using System.Collections.Generic;
+using Pawnmorph.Chambers;
 using Pawnmorph.UserInterface.Genebank;
 using Pawnmorph.UserInterface.Genebank.Tabs;
-using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -27,15 +21,21 @@ namespace Pawnmorph.UserInterface
 
         private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
         private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
+		private static readonly string TAB_TEMPLATES_HEADER = "PM_Genebank_TemplateTab_Caption".Translate();
 
-        private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
+		private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
         private static readonly float COLUMN_SIZE_SIZE;
 
         private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
         private static readonly float BUTTON_DELETE_SIZE;
 
+        private static readonly string BUTTON_FONT = "PM_Genebank_FontButton".Translate();
+		private static readonly float BUTTON_FONT_SIZE;
+		private static readonly string BUTTON_FONT_TINY = "PM_Genebank_FontButtonTiny".Translate();
+		private static readonly string BUTTON_FONT_SMALL = "PM_Genebank_FontButtonSmall".Translate();
+		private static readonly string BUTTON_FONT_MEDIUM = "PM_Genebank_FontButtonMedium".Translate();
 
-        private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
+		private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
         private const float SPACING = 10f;
         private const float HEADER_HEIGHT = 150;
 
@@ -45,7 +45,8 @@ namespace Pawnmorph.UserInterface
             CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
             COLUMN_SIZE_SIZE = Mathf.Max(Text.CalcSize(COLUMN_SIZE).x, 100f);
             BUTTON_DELETE_SIZE = Mathf.Max(Text.CalcSize(BUTTON_DELETE).x, 100f);
-        }
+            BUTTON_FONT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_FONT).x, 80f);
+		}
 
         private readonly List<TabRecord> _tabs;
         private readonly Table<GeneRowItem> _table;
@@ -60,8 +61,9 @@ namespace Pawnmorph.UserInterface
             _tabs = new List<TabRecord>();
             _table = new Table<GeneRowItem>((item, text) => item.SearchString.Contains(text));
             _table.SelectionChanged += Table_SelectionChanged;
+			_table.MultiSelect = true;
 
-            this.resizeable = true;
+			this.resizeable = true;
             this.draggable = true;
             this.doCloseX = true;
         }
@@ -74,8 +76,12 @@ namespace Pawnmorph.UserInterface
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
-            //base.windowRect = new Rect(40, 40, Screen.width - 80, Screen.height - 80);
-            base.windowRect = new Rect(40, 40, Screen.width - 80, 860);
+
+			Vector2 location = PawnmorpherMod.Settings.GenebankWindowLocation ?? new Vector2(40, 40);
+			Vector2 size = PawnmorpherMod.Settings.GenebankWindowSize ?? new Vector2(Screen.width * 0.9f, Screen.height * 0.8f);
+            _table.LineFont = PawnmorpherMod.Settings.GenebankWindowFont ?? GameFont.Tiny;
+
+			base.windowRect = new Rect(location, size);
         }
 
         public override void PostOpen()
@@ -94,8 +100,9 @@ namespace Pawnmorph.UserInterface
 
             _tabs.Add(new TabRecord(TAB_MUTATIONS_HEADER, () => SelectTab(new MutationsTab()), () => _currentTab is MutationsTab));
             _tabs.Add(new TabRecord(TAB_ANIMALS_HEADER, () => SelectTab(new AnimalsTab()), () => _currentTab is AnimalsTab));
-
-            SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
+			_tabs.Add(new TabRecord(TAB_TEMPLATES_HEADER, () => SelectTab(new TemplatesTab()), () => _currentTab is TemplatesTab));
+            
+			SelectTab((GenebankTab)Activator.CreateInstance(_priorMode));
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -127,13 +134,28 @@ namespace Pawnmorph.UserInterface
 
             TabDrawer.DrawTabs(mainBox, _tabs);
             _table.Draw(mainBox.ContractedBy(SPACING));
-            
-            Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
+
+			Text.Font = GameFont.Small;
+
+			Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
             if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_DELETE_SIZE, footer.height), BUTTON_DELETE))
             {
                 DeleteSelection();
             }
 
+			if (Widgets.ButtonText(new Rect(footer.xMax - BUTTON_FONT_SIZE, footer.y, BUTTON_FONT_SIZE, footer.height), BUTTON_FONT))
+			{
+				List<FloatMenuOption> options = new List<FloatMenuOption>(3);
+                options.Add(new FloatMenuOption(BUTTON_FONT_TINY, () => _table.LineFont = GameFont.Tiny));
+				options.Add(new FloatMenuOption(BUTTON_FONT_SMALL, () => _table.LineFont = GameFont.Small));
+				options.Add(new FloatMenuOption(BUTTON_FONT_MEDIUM, () => _table.LineFont = GameFont.Medium));
+				Find.WindowStack.Add(new FloatMenu(options));
+			}
+
+            footer.width -= BUTTON_FONT_SIZE;
+
+			if (_currentTab != null)
+                _currentTab.DrawFooter(new Rect(footer.x + BUTTON_DELETE_SIZE + SPACING, footer.y, footer.width - BUTTON_DELETE_SIZE - SPACING, footer.height));
 
 
             Rect detailsBox = new Rect(inRect.xMax - _detailsWidth, inRect.y, _detailsWidth, inRect.height + SPACING);
@@ -153,12 +175,22 @@ namespace Pawnmorph.UserInterface
             _table.Refresh();
         }
 
+        public override void PreClose()
+		{
+			PawnmorpherMod.Settings.GenebankWindowLocation = base.windowRect.position;
+			PawnmorpherMod.Settings.GenebankWindowSize = base.windowRect.size;
+			PawnmorpherMod.Settings.GenebankWindowFont = _table.LineFont;
+
+            PawnmorpherMod.Settings.Mod.WriteSettings();
+			base.PreClose();
+        }
+
         public override void PostClose()
         {
             // Remember selected tab for next time interface is opened.
             _priorMode = _currentTab.GetType();
 
-            base.PostClose();
+			base.PostClose();
         }
 
         private void DrawHeader(Rect inRect)
@@ -202,11 +234,11 @@ namespace Pawnmorph.UserInterface
         }
 
 
-        private void SelectTab(GenebankTab tab)
+        public void SelectTab(GenebankTab tab)
         {
             _currentTab = tab;
             _table.Clear();
-
+			tab.Parent = this;
             tab.Initialize(_chamberDatabase);
             tab.GenerateTable(_table);
 
@@ -230,5 +262,11 @@ namespace Pawnmorph.UserInterface
             _table.Refresh();
         }
 
+        internal void ResetToDefaults()
+        {
+            PawnmorpherMod.Settings.GenebankWindowLocation = null;
+			PawnmorpherMod.Settings.GenebankWindowSize = null;
+			PawnmorpherMod.Settings.GenebankWindowFont = null;
+		}
     }
 }

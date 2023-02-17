@@ -1,9 +1,6 @@
 ﻿// FormerHumanSettings.cs modified by Iron Wolf for Pawnmorph on 12/24/2019 9:20 AM
 // last updated 12/24/2019  9:20 AM
 
-using System.Collections.Generic;
-using AlienRace;
-using JetBrains.Annotations;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.TfSys;
 using RimWorld;

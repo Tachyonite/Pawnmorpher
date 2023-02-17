@@ -1,6 +1,5 @@
 ﻿using Pawnmorph.Aspects;
 using Pawnmorph.GraphicSys;
-using System;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.SimplePawnColorSet;

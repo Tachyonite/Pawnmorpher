@@ -3,7 +3,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;

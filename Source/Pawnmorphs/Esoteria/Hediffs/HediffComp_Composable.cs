@@ -10,9 +10,11 @@ using Verse;
 namespace Pawnmorph.Hediffs
 {
     /// <summary>
-    /// <see cref=""/>
+    /// A comp for composable mutagenic hediffs where the Hediff is responsible for deciding what kinds of mutations to apply.
+    /// Needed because hediff stages can't store state and so the state must be saved to the Hediff or one of its comps.
+    /// Meant to be used with <see cref="MutTypes_FromComp"/>
     /// </summary>
-    /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{Pawnmorph.Hediffs.HediffCompProps_Composable}" />
+    /// <seealso cref="Pawnmorph.Utilities.HediffCompBase{HediffCompProps_Composable}" />
     public class HediffComp_Composable : HediffCompBase<HediffCompProps_Composable>, IMutRate
     {
 
@@ -54,7 +56,7 @@ namespace Pawnmorph.Hediffs
     /// <summary>
     /// properties for <see cref="HediffComp_Composable"/>
     /// </summary>
-    /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{Pawnmorph.Hediffs.HediffComp_Composable}" />
+    /// <seealso cref="Pawnmorph.Utilities.HediffCompPropertiesBase{HediffComp_Composable}" />
     public class HediffCompProps_Composable : HediffCompPropertiesBase<HediffComp_Composable>
     {
         

@@ -1,10 +1,10 @@
 ﻿// TagAnimal.cs created by Iron Wolf for Pawnmorph on 07/20/2021 6:37 PM
 // last updated 07/20/2021  6:37 PM
 
-using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
+using RimWorld;
 using Verse;
 
 namespace Pawnmorph.RecipeWorkers
@@ -28,7 +28,7 @@ namespace Pawnmorph.RecipeWorkers
         public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
         {
             if (pawn?.kindDef == null) return; 
-            DB.TryAddToDatabase(pawn.kindDef);
+            DB.TryAddToDatabase(new AnimalGenebankEntry(pawn.kindDef));
         }
 
         /// <summary>

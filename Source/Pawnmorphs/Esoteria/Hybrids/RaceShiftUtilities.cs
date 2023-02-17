@@ -6,16 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
-using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hybrids
 {
@@ -216,8 +213,6 @@ namespace Pawnmorph.Hybrids
 
             float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
 
-            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
-
             pawn.def = race;
             pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
 
@@ -294,6 +289,8 @@ namespace Pawnmorph.Hybrids
 
             if (pawn.Faction != faction) 
                 pawn.SetFaction(faction);
+
+            pawn.VerbTracker?.InitVerbsFromZero();
 
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {

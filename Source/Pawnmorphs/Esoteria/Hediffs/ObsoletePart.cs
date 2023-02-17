@@ -2,7 +2,6 @@
 // last updated 10/27/2019  8:52 AM
 
 using System;
-using Verse;
 
 namespace Pawnmorph.Hediffs
 {

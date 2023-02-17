@@ -1,15 +1,12 @@
-﻿using Pawnmorph.Chambers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using RimWorld;
-using RimWorld.BaseGen;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -106,10 +103,11 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             GeneRowItem row;
             int totalStorage = _databank.TotalStorage;
-            foreach (PawnKindDef animal in _databank.TaggedAnimals)
+            foreach (GenebankEntry<PawnKindDef> animalEntry in _databank.GetEntryItems<PawnKindDef>())
             {
+                PawnKindDef animal = animalEntry.Value;
                 string searchText = animal.label;
-                row = new GeneRowItem(animal, totalStorage, searchText);
+                row = new GeneRowItem(animalEntry, totalStorage, searchText);
 
                 // Comfortable temperature
                 float? minTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMin)?.value;
@@ -172,9 +170,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
         {
             PawnKindDef selectedRace = null;
             if (selectedRows.Count == 1)
-                selectedRace = selectedRows[0].Def as PawnKindDef;
+				selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
 
-            _previewNorth.PawnKindDef = selectedRace;
+			_previewNorth.PawnKindDef = selectedRace;
             _previewEast.PawnKindDef = selectedRace;
             _previewSouth.PawnKindDef = selectedRace;
 
@@ -187,7 +185,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
         {
             if (selectedRows.Count == 1)
             {
-                PawnKindDef selectedRace = selectedRows[0].Def as PawnKindDef;
+                PawnKindDef selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
 
 
                 _stringBuilder.Clear();
@@ -271,9 +269,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             _previewSouth.Refresh();
         }
 
-        public override void Delete(Def def)
+        public override void Delete(IGenebankEntry def)
         {
-            _databank.RemoveFromDatabase(def as PawnKindDef);
+            _databank.RemoveFromDatabase(def as GenebankEntry<PawnKindDef>);
         }
     }
 }

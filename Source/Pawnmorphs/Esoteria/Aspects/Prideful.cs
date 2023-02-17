@@ -1,10 +1,7 @@
 ﻿// SplitMind.cs created by Iron Wolf for Pawnmorph on 05/09/2020 1:18 PM
 // last updated 05/09/2020  1:18 PM
 
-using System;
-using Pawnmorph.Utilities;
 using RimWorld;
-using Verse;
 
 namespace Pawnmorph.Aspects
 {
@@ -14,6 +11,7 @@ namespace Pawnmorph.Aspects
     /// <seealso cref="Pawnmorph.Aspect" />
     public class Prideful : Aspect 
     {
+        /// <inheritdoc />
         protected override void PostAdd()
         {
             TraitSet traitSet = Pawn.story?.traits;
@@ -22,6 +20,7 @@ namespace Pawnmorph.Aspects
             base.PostAdd();
         }
 
+        /// <inheritdoc />
         public override void PostRemove()
         {
             TraitSet traitSet = Pawn.story?.traits;

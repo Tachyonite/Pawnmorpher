@@ -51,7 +51,7 @@
     <ThingDef ParentName="ArtifactBase">
         <defName>PM_ChaoThrumboGenome</defName>
         <label>Unstable genome</label>
-        <description>A strange and corrupted genome. Having this interact with regular data storage would fry the system, and must be used directly in the chamber. Warning: Due to the extremely cryptic genome data contained within, the resulting animal may be far larger than the chambers can safely handle. Prepare accordingly.</description>
+        <description>A strange and corrupted genome. Having this interact with regular data storage would fry the system, but a new option has become available in the chamber under animals. Warning: Due to the extremely cryptic genome data contained within, the resulting animal may be far larger than the chambers can safely handle. Prepare accordingly.</description>
         <stackLimit>1</stackLimit>
         <tradeNeverStack>true</tradeNeverStack>
         <statBases>

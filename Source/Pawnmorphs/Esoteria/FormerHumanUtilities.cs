@@ -5,11 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.Letters;
+using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -19,7 +17,6 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -36,6 +33,7 @@ namespace Pawnmorph
 
         /// <summary>
         /// The minimum biological age for a former human's human form
+        /// TODO - Support children if biotech is installed
         /// </summary>
         public const float MIN_FORMER_HUMAN_AGE = 17f;
 

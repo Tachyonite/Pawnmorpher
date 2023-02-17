@@ -2,7 +2,6 @@
 // last updated 10/20/2020  7:04 AM
 
 using RimWorld;
-using Verse;
 
 namespace Pawnmorph
 {

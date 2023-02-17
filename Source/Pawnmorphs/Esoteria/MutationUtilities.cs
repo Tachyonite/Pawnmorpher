@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using AlienRace;
@@ -11,13 +10,12 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
 using Verse;
+using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 
 namespace Pawnmorph

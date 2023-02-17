@@ -119,6 +119,7 @@ namespace Pawnmorph.ThingComps
 
         private Gizmo[] _cachedGizmoArr;
 
+        /// <inheritdoc />
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -150,6 +151,9 @@ namespace Pawnmorph.ThingComps
 
         Command_Action Gizmo => _cachedGizmo;
 
+        /// <summary>
+        /// Resets the selected animal
+        /// </summary>
         public void ResetSelection()
         {
             _cachedGizmo.defaultLabel = Props.labelKey.Translate();

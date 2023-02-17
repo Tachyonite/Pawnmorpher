@@ -2,7 +2,6 @@
 // last updated 08/03/2021  4:09 PM
 
 using System;
-using Pawnmorph.PreceptComps;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Thoughts.Precept;
 using RimWorld;
@@ -46,7 +45,7 @@ namespace Pawnmorph.DefExtensions
                 newThought.veneratedAnimalLabel = oThought.veneratedAnimalLabel;
                 return newThought;
             }
-            catch (InvalidCastException e)
+            catch (InvalidCastException)
             {
                 Log.Error($"unable to create new thought of {originalThought.def.defName}! unable to cast {originalThought.GetType().Name} to {nameof(MutationMemory_VeneratedAnimal)}");
                 throw; 

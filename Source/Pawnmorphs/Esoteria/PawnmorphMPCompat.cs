@@ -1,11 +1,9 @@
 ﻿using System.Reflection;
-
-using Verse;
 using HarmonyLib;
 using Multiplayer.API;
-
 using Pawnmorph;
 using Pawnmorph.Hediffs;
+using Verse;
 
 namespace PawnMorpher
 {

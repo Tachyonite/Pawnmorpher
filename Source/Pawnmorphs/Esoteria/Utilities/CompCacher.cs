@@ -134,7 +134,7 @@ namespace Pawnmorph.Utilities
             {
                 GenCompCacher.ClearAllCompCaches(); //clear any pawns from a previous world 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Log.Error($"Pawnmorpher is unable to clear all comp caches on world initialization!");
             }

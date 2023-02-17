@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using JetBrains.Annotations;
-using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Plants;
 using RimWorld;
