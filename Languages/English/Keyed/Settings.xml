@@ -20,7 +20,7 @@
 	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
 	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
 	<manhunterTfChance>Chance for pawns to go manhunter when transformed</manhunterTfChance>
-	<hostileKeepFactionTfChance>Chance for hostile pawns to keept their faction when transformed</hostileKeepFactionTfChance>
+	<hostileKeepFactionTfChance>Chance for pawns of other factions to keept their faction when transformed</hostileKeepFactionTfChance>
 	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
 	<PMInjectorsRequireTaggingTooltip>If true, tagging animals is required to make injectors.</PMInjectorsRequireTaggingTooltip>
 	<PMEnableMutationVisualsButton>Show mutations on races.</PMEnableMutationVisualsButton>
