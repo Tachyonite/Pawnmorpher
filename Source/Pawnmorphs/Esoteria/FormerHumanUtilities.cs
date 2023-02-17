@@ -154,7 +154,7 @@ namespace Pawnmorph
                 return false;
 
             // XML Patched as not valid former human.
-            if (pawnKind.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == false)
+            if (pawnKind.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
                 return false;
 
             // If restricted is not allowed, then filter away special chaomorphs.
