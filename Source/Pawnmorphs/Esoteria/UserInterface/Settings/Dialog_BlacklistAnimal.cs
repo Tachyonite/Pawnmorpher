@@ -25,10 +25,18 @@ namespace Pawnmorph.UserInterface.Settings
 
 		private static readonly Dictionary<FormerHumanRestrictions, string> OPTIONS = new Dictionary<FormerHumanRestrictions, string>()
 		{
-			{ FormerHumanRestrictions.Enabled, "PMBlacklistFormerHumansEnabled".Translate() },
-			{ FormerHumanRestrictions.Restricted, "PMBlacklistFormerHumansRestricted".Translate() },
-			{ FormerHumanRestrictions.Disabled, "PMBlacklistFormerHumansDisabled".Translate() },
+			[FormerHumanRestrictions.Enabled] = "PMBlacklistFormerHumansEnabled".Translate(),
+			[FormerHumanRestrictions.Restricted] = "PMBlacklistFormerHumansRestricted".Translate(),
+			[FormerHumanRestrictions.Disabled] = "PMBlacklistFormerHumansDisabled".Translate(),
 		};
+
+		private static readonly Dictionary<FormerHumanRestrictions, string> OPTIONS_DESCRIPTIONS = new Dictionary<FormerHumanRestrictions, string>()
+		{
+			[FormerHumanRestrictions.Enabled] = "PMBlacklistFormerHumansEnabledDescription".Translate(),
+			[FormerHumanRestrictions.Restricted] = "PMBlacklistFormerHumansRestrictedDescription".Translate(),
+			[FormerHumanRestrictions.Disabled] = "PMBlacklistFormerHumansDisabledDescription".Translate(),
+		};
+
 
 		private Dictionary<ThingDef, FormerHumanRestrictions> _canBeFormerHumanDictonary;
 		Dictionary<string, FormerHumanRestrictions> _settingsReference;
@@ -58,8 +66,6 @@ namespace Pawnmorph.UserInterface.Settings
 
 			_morphAnimals = MorphDef.AllDefs.SelectMany(x => x.AllAssociatedAnimals).ToHashSet();
 
-			Log.Warning(String.Join(Environment.NewLine, animals.Select(x => x.LabelCap)));
-
 			var filterList = new ListFilter<ThingDef>(animals, (animal, filterText) => animal.LabelCap.ToString().ToLower().Contains(filterText));
 			_animalListBox = new FilterListBox<ThingDef>(filterList);
 		}
@@ -84,7 +90,18 @@ namespace Pawnmorph.UserInterface.Settings
 			_animalListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
 			{
 				FormerHumanRestrictions current = _canBeFormerHumanDictonary[item];
-				if (listing.ButtonTextLabeled(item.LabelCap, OPTIONS[current], tooltip: item.modContentPack.ModMetaData.Name))
+				
+				string tooltip = "";
+				string source = item.modContentPack?.ModMetaData?.Name;
+				if (String.IsNullOrWhiteSpace(source) == false)
+				{
+					tooltip += "Added by " + source;
+					tooltip += Environment.NewLine;
+					tooltip += Environment.NewLine;
+				}
+				tooltip += OPTIONS_DESCRIPTIONS[current];
+
+				if (listing.ButtonTextLabeled(item.LabelCap, OPTIONS[current], tooltip: tooltip))
 				{
 					List<FloatMenuOption> options = new List<FloatMenuOption>();
 

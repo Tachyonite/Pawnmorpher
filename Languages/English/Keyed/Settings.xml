@@ -40,11 +40,11 @@
 	<PMAnimalAssociationsText>Associate additional animals with morphs that will act as both additional outcomes, source of sequencing morph mutations and unlocking the injector.</PMAnimalAssociationsText>
 	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
 	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
-	<PMBlacklistFormerHumansText>Enable or disable individual animals from being selectable by the game for completely transformation.\nOnly animals not associated with a morph type can be disabled.</PMBlacklistFormerHumansText>
+	<PMBlacklistFormerHumansText>Enable, restrict or disable animals from randomly appearing as former humans in game.\nAnimals associated with morphs can only be restricted.</PMBlacklistFormerHumansText>
 	<PMBlacklistFormerHumansEnabled>Enabled</PMBlacklistFormerHumansEnabled>
 	<PMBlacklistFormerHumansRestricted>Restricted</PMBlacklistFormerHumansRestricted>
 	<PMBlacklistFormerHumansDisabled>Disabled</PMBlacklistFormerHumansDisabled>
-	<PMBlacklistFormerHumansEnabledDescription></PMBlacklistFormerHumansEnabledDescription>
-	<PMBlacklistFormerHumansRestrictedDescription></PMBlacklistFormerHumansRestrictedDescription>
-	<PMBlacklistFormerHumansDisabledDescription></PMBlacklistFormerHumansDisabledDescription>
+	<PMBlacklistFormerHumansEnabledDescription>Can freely appear as former human in game.</PMBlacklistFormerHumansEnabledDescription>
+	<PMBlacklistFormerHumansRestrictedDescription>Can only appear as former human at random in game.</PMBlacklistFormerHumansRestrictedDescription>
+	<PMBlacklistFormerHumansDisabledDescription>Cannot appear as former human in game at all.</PMBlacklistFormerHumansDisabledDescription>
 </LanguageData>
