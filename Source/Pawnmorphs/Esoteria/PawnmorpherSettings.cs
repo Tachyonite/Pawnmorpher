@@ -149,8 +149,6 @@ namespace Pawnmorph
 
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                animalBlacklist = null;
-
 				if (formerChance > 1) formerChance /= 100f; 
             }
 
