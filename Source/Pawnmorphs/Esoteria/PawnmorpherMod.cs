@@ -96,8 +96,11 @@ namespace Pawnmorph
 
             }
 
+			listingStandard
+			   .Label($"{nameof(PawnmorpherSettings.hostileKeepFactionTfChance).Translate()}: {settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+			settings.hostileKeepFactionTfChance = listingStandard.Slider(settings.hostileKeepFactionTfChance, 0, 1f);
 
-            if (Prefs.DevMode)
+			if (Prefs.DevMode)
             {
                 listingStandard.Label($"logging level:{settings.logLevel}");
                 float f = (float) ((int) settings.logLevel);

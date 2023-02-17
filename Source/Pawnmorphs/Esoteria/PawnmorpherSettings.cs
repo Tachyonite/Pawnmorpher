@@ -64,15 +64,21 @@ namespace Pawnmorph
         /// the chance an tf'd enemy or neutral pawn will go manhunter 
         /// </summary>
         public float manhunterTfChance = 0;
+
         /// <summary>
         /// The chance a friendly pawn will go manhunter when tf'd 
         /// </summary>
-        public float friendlyManhunterTfChance = 0; 
+        public float friendlyManhunterTfChance = 0;
 
         /// <summary>
-        /// The current log level
+        /// The chance a hostile will keep their faction when tf'd
         /// </summary>
-        public LogLevel logLevel = LogLevel.Warnings;
+		public float hostileKeepFactionTfChance = 0f;
+
+		/// <summary>
+		/// The current log level
+		/// </summary>
+		public LogLevel logLevel = LogLevel.Warnings;
 
         /// <summary>
         /// List of races whitelisted to have visible mutations.
@@ -135,6 +141,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
+			Scribe_Values.Look(ref hostileKeepFactionTfChance, nameof(hostileKeepFactionTfChance));
+
 
 
 			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));

@@ -1564,7 +1564,11 @@ namespace Pawnmorph
 
 			var defaultConfig = new Dictionary<string, FormerHumanRestrictions>()
             {
+                // Genetic Rim
+                ["GR_ArchotechCentipede"] = FormerHumanRestrictions.Disabled,
 
+                // Alpha Animals
+                ["AA_Gallatross"] = FormerHumanRestrictions.Restricted,
             };
 
             foreach (var animal in AnimalClassDefOf.Powerful.GetAssociatedAnimals())
