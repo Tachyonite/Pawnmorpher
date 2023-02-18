@@ -66,7 +66,9 @@ namespace Pawnmorph.UserInterface.Settings
 
 			_morphAnimals = MorphDef.AllDefs.SelectMany(x => x.AllAssociatedAnimals).ToHashSet();
 
-			var filterList = new ListFilter<ThingDef>(animals, (animal, filterText) => animal.LabelCap.ToString().ToLower().Contains(filterText));
+			var filterList = new ListFilter<ThingDef>(animals, 
+				(animal, filterText) => animal.LabelCap.ToString().ToLower().Contains(filterText) ||
+				OPTIONS[_canBeFormerHumanDictonary[animal]].ToLower().Contains(filterText));
 			_animalListBox = new FilterListBox<ThingDef>(filterList);
 		}
 
