@@ -1,5 +1,7 @@
 ﻿using Pawnmorph.FormerHumans;
+using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -46,8 +48,8 @@ namespace Pawnmorph.ThingComps
                     bool isManhunter = Pawn.MentalStateDef == MentalStateDefOf.Manhunter
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
-                    float sapience = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
+                    float sapience = RandUtilities.generateBetaRandom(1.5f, 4.5f);
+					FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
                     if (isManhunter)
                         // TODO this will only ever fire once, even if the pawn shows up again later
                         RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);
