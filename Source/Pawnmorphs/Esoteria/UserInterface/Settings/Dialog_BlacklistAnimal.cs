@@ -21,7 +21,7 @@ namespace Pawnmorph.UserInterface.Settings
 		private static readonly Vector2 RESET_BUTTON_SIZE = new Vector2(120f, 40f);
 		private static readonly Vector2 CANCEL_BUTTON_SIZE = new Vector2(120f, 40f);
 		private static readonly Vector2 RAW_BUTTON_SIZE = new Vector2(28, 28f);
-		private const float SPACER_SIZE = 17f;
+		private const float SPACER_SIZE = 8f;
 
 		private static readonly Dictionary<FormerHumanRestrictions, string> OPTIONS = new Dictionary<FormerHumanRestrictions, string>()
 		{
@@ -77,16 +77,11 @@ namespace Pawnmorph.UserInterface.Settings
 		{
 			float curY = 0;
 			Text.Font = GameFont.Medium;
-			Widgets.Label(new Rect(0, curY, inRect.width, Text.LineHeight), HEADER_TEXT);
-
-			curY += Text.LineHeight;
+			Widgets.Label(0, ref curY, inRect.width, HEADER_TEXT);
 
 			Text.Font = GameFont.Small;
-			Rect descriptionRect = new Rect(0, curY, inRect.width, 60);
-			Widgets.Label(descriptionRect, DESCRIPTION_TEXT);
-
-			curY += descriptionRect.height;
-			curY += 35;
+			Widgets.Label(0, ref curY, inRect.width, DESCRIPTION_TEXT);
+			curY += SPACER_SIZE;
 
 			float totalHeight = inRect.height - curY - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y)) - SPACER_SIZE;
 			_animalListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
