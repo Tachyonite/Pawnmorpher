@@ -1,7 +1,6 @@
 ﻿// PortraitCachePatches.cs created by Iron Wolf for Pawnmorph on 03/08/2020 11:05 AM
 // last updated 03/08/2020  11:05 AM
 
-using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;

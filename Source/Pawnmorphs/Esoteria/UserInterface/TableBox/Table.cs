@@ -1,19 +1,25 @@
-﻿using Pawnmorph.Utilities.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pawnmorph.Utilities.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Verse;
 
 namespace Pawnmorph.UserInterface.TableBox
 {
     internal class Table<T> where T : ITableRow
-    {
-        private const float CELL_SPACING = 5;
+	{
+		private static readonly string SEARCH_PLACEHOLDER = "TableControlSearchPlaceholder".Translate();
+		private static readonly float SEARCH_PLACEHOLDER_SIZE;
+
+
+		static Table()
+		{
+			Text.Font = GameFont.Small;
+            SEARCH_PLACEHOLDER_SIZE = Text.CalcSize(SEARCH_PLACEHOLDER).x;
+		}
+
+
+		private const float CELL_SPACING = 5;
         private const float ROW_SPACING = 3;
 
         private List<TableColumn<T>> _columns;
@@ -25,11 +31,13 @@ namespace Pawnmorph.UserInterface.TableBox
         private List<T> _selectedRows;
         private float _fixedColumnWidth;
         private float _dynamicColumnWidth;
+		private GameFont _lineFont;
+		private bool _multiSelect;
 
-        /// <summary>
-        /// Returns the current selected rows.
-        /// </summary>
-        public IReadOnlyList<T> SelectedRows => _selectedRows;
+		/// <summary>
+		/// Returns the current selected rows.
+		/// </summary>
+		public IReadOnlyList<T> SelectedRows => _selectedRows;
 
         /// <summary>
         /// Triggered when selected rows is changed.
@@ -37,10 +45,34 @@ namespace Pawnmorph.UserInterface.TableBox
         public event EventHandler<IReadOnlyList<T>> SelectionChanged;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Table{T}" /> class.
+        /// Gets or sets the line font.
         /// </summary>
-        /// <param name="filterCallback">Callback used to apply filter text.</param>
-        public Table(Func<T, string, bool> filterCallback)
+        /// <value>
+        /// The line font.
+        /// </value>
+        public GameFont LineFont
+        {
+            get => _lineFont;
+            set => _lineFont = value;
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Table{T}"/> allows selecting multiple rows.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if multi-select is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool MultiSelect
+		{
+			get => _multiSelect;
+			set => _multiSelect = value;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Table{T}" /> class.
+		/// </summary>
+		/// <param name="filterCallback">Callback used to apply filter text.</param>
+		public Table(Func<T, string, bool> filterCallback)
         {
             _columns = new List<TableColumn<T>>();
             _rows = new ListFilter<T>(filterCallback);
@@ -50,7 +82,7 @@ namespace Pawnmorph.UserInterface.TableBox
 
 
         /// <summary>Adds the column.</summary>
-        /// <param name="header">Column caption.</param>
+        /// <param name="header">Title of the column.</param>
         /// <param name="width">Column width.</param>
         /// <param name="orderByCallback">Optional callback to tell the column how to order rows.</param>
         public TableColumn<T> AddColumn(string header, float width, Action<ListFilter<T>, bool, TableColumn> orderByCallback = null)
@@ -161,19 +193,22 @@ namespace Pawnmorph.UserInterface.TableBox
         /// <param name="boundingBox">Decides the size and position of the table.</param>
         public void Draw(Rect boundingBox)
         {
-            Rect searchBox = new Rect(boundingBox.x, boundingBox.y, boundingBox.width - 28f - CELL_SPACING, 28f);
+            Text.Font = GameFont.Small;
+
+			float clearButtonSize = Text.LineHeight;
+			Rect searchBox = new Rect(boundingBox.x, boundingBox.y, boundingBox.width - clearButtonSize - CELL_SPACING, clearButtonSize);
             _searchText = Widgets.TextField(searchBox, _searchText);
-            if (Widgets.ButtonText(new Rect(boundingBox.xMax - 28f, boundingBox.y, 28, 28), "X"))
+            if (Widgets.ButtonText(new Rect(boundingBox.xMax - clearButtonSize, boundingBox.y, clearButtonSize, clearButtonSize), "X"))
                 _searchText = "";
-            
-            searchBox.width = 70f;
-            if (_searchText == String.Empty)
-                Widgets.NoneLabelCenteredVertically(searchBox, "Search...");
+
+			
+			if (_searchText == String.Empty)
+                Widgets.NoneLabelCenteredVertically(new Rect(searchBox.x + CELL_SPACING, searchBox.y, SEARCH_PLACEHOLDER_SIZE, Text.LineHeight), SEARCH_PLACEHOLDER);
             
             _rows.Filter = _searchText;
             
-            boundingBox.y += 35;
-            boundingBox.height -= 35;
+            boundingBox.y += clearButtonSize + 7;
+            boundingBox.height -= clearButtonSize + 7;
 
 
             TableColumn<T> column;
@@ -205,7 +240,7 @@ namespace Pawnmorph.UserInterface.TableBox
             boundingBox.y += Text.LineHeight + ROW_SPACING;
             boundingBox.height -= Text.LineHeight + ROW_SPACING;
 
-            Text.Font = GameFont.Tiny;
+            Text.Font = _lineFont;
 
 
             Rect rowRect = new Rect(0, 0, tableWidth, Text.LineHeight + ROW_SPACING);
@@ -252,23 +287,12 @@ namespace Pawnmorph.UserInterface.TableBox
 
                 if (Widgets.ButtonInvisible(rowRect, false))
                 {
-                    if (Event.current.control == false)
+                    if (_multiSelect == false || Event.current.control == false)
                         _selectedRows.Clear();
                     
                     _selectedRows.Add(currentRow);
 
                     SelectionChanged?.Invoke(this, _selectedRows);
-                    //if (Input.GetKey(KeyCode.LeftShift) == false)
-                    //{
-
-                    //}
-                    //else
-                    //{
-                    //    if (Input.GetKey(KeyCode.LeftControl) == false)
-                    //        _selectedRows.Clear();
-
-                    //    _selectedRows.Add(currentRow);
-                    //}
                 }
 
                 rowRect.y += rowRect.height;

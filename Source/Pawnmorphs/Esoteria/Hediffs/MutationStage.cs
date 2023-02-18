@@ -75,6 +75,9 @@ namespace Pawnmorph.Hediffs
         [CanBeNull]
         public List<VerbToolOverride> verbOverrides;
 
+        /// <summary>
+        /// Any abilities added by the stage
+        /// </summary>
         [CanBeNull]
         public List<Abilities.MutationAbilityDef> abilities;
 
@@ -86,6 +89,12 @@ namespace Pawnmorph.Hediffs
         /// </value>
         [NotNull]
         public IReadOnlyList<AspectEntry> SkipAspects => ((IReadOnlyList<AspectEntry>) skipAspects) ?? Array.Empty<AspectEntry>();
+
+
+        /// <summary>
+        /// Indicates whether there is a reason to run vanilla hediff base logic or not.
+        /// </summary>
+        public bool RunBaseLogic = false;
 
 
         string IDescriptiveStage.DescriptionOverride => description;
@@ -109,11 +118,47 @@ namespace Pawnmorph.Hediffs
             {
                 hediff.pawn.TryAddMutationThought(memory);
             }
-        }
 
+			RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
+		}
+
+        /// <summary>
+        /// Called once when the hediff stage is first loaded, for any one-time initialization
+        /// </summary>
+        /// <param name="hediff"></param>
         public void OnLoad(Hediff hediff)
         {
             ApplyVerbOverrides(hediff);
+            RunBaseLogic = ShouldRunBaseLogic() ? true : RunBaseLogic;
+        }
+
+        /// <summary>
+        /// Called during initialization when deciding if rimworld hediff base logic should be executed on tick.
+        /// </summary>
+        protected virtual bool ShouldRunBaseLogic()
+        {
+            if (hediffGivers != null && hediffGivers.Count > 0)
+                return true;
+
+            if (mentalStateGivers != null && mentalStateGivers.Count > 0)
+                return true;
+
+            if (mentalBreakMtbDays > 0)
+                return true;
+
+            if (vomitMtbDays > 0)
+                return true;
+
+            if (forgetMemoryThoughtMtbDays > 0)
+                return true;
+
+            if (destroyPart)
+                return true;
+
+            if (deathMtbDays > 0)
+                return true;
+
+            return false;
         }
 
 

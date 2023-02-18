@@ -3,7 +3,6 @@
 
 using RimWorld;
 using UnityEngine;
-using Verse;
 
 namespace Pawnmorph.Thoughts
 {

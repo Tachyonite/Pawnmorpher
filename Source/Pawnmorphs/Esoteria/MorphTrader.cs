@@ -1,13 +1,11 @@
-﻿using RimWorld;
-using RimWorld.Planet;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Verse;
-using Pawnmorph.Utilities;
-using UnityEngine;
 using Pawnmorph.FormerHumans;
+using RimWorld;
+using RimWorld.Planet;
+using Verse;
 
 namespace Pawnmorph
 {
@@ -43,7 +41,7 @@ namespace Pawnmorph
                     break;
                 }
                 PawnKindDef slave = PawnKindDef.Named("PawnmorpherSlave");
-                PawnGenerationRequest request = new PawnGenerationRequest(slave, slaveFaction, PawnGenerationContext.NonPlayer, forTile, forceGenerateNewPawn: false, newborn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, !trader.orbital);
+                PawnGenerationRequest request = new PawnGenerationRequest(slave, slaveFaction, PawnGenerationContext.NonPlayer, forTile, forceGenerateNewPawn: false, allowDead: false, allowDowned: false, canGeneratePawnRelations: true, mustBeCapableOfViolence: false, 1f, !trader.orbital);
                 yield return PawnGenerator.GeneratePawn(request);
             }
         }

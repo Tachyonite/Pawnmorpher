@@ -4,7 +4,6 @@
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
 using Verse;
-using Verse.Noise;
 
 namespace Pawnmorph.DefExtensions
 {

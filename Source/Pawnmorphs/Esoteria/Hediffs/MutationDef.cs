@@ -59,6 +59,11 @@ namespace Pawnmorph.Hediffs
         public bool isTaggable = true;
 
         /// <summary>
+        /// Indicates whether there is a reason to run vanilla hediff base logic or not.
+        /// </summary>
+        public bool RunBaseLogic = false;
+
+        /// <summary>
         /// optional field that will act as an explicit description for the mutations 'genome' object
         /// </summary>
         public string customGenomeDescription;
@@ -103,13 +108,13 @@ namespace Pawnmorph.Hediffs
         ///     The class this part gives influence for
         /// </summary>
         /// only should be set if morphInfluence is not set!
-        [CanBeNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [CanBeNull][UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public AnimalClassBase classInfluence;
 
         /// <summary>
         /// The class influences if multiple.
         /// </summary>
-        [CanBeNull] [UsedImplicitly(ImplicitUseKindFlags.Assign)]
+        [CanBeNull][UsedImplicitly(ImplicitUseKindFlags.Assign)]
         public List<AnimalClassBase> classInfluences;
 
         /// <summary>The mutation memory</summary>
@@ -126,6 +131,11 @@ namespace Pawnmorph.Hediffs
 
         [Unsaved] private List<ThingDef> _associatedAnimals;
         [Unsaved] private List<AnimalClassBase> _classInfluencesCache;
+
+		/// <summary>
+		/// Gets a cached mutation layer from any remover RemoveFromPartCompProperties component. Null if none.
+		/// </summary>
+		public MutationLayer? Layer { get; private set; } = null;
 
 
         /// <summary>
@@ -153,7 +163,7 @@ namespace Pawnmorph.Hediffs
         /// The cached mutation stages.
         /// </value>
         [NotNull]
-        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ?? Array.Empty<MutationStage>();
+        public IReadOnlyList<MutationStage> CachedMutationStages => _cachedMutationStages ??= Array.Empty<MutationStage>();
 
         /// <summary>
         ///     returns a full, detailed, representation of the object in string form
@@ -365,8 +375,11 @@ namespace Pawnmorph.Hediffs
                 }
             }
 
-           
-        }
+            if (hediffGivers != null && hediffGivers.Count > 0)
+                RunBaseLogic = true;
+
+            Layer = RemoveComp?.layer;
+		}
 
         [NotNull]
         private static readonly List<BodyPartDef> _tmpPartLst = new List<BodyPartDef>();

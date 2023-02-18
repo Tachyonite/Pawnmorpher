@@ -1,0 +1,125 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="SuidJawPart" ParentName="EvenToedUngulateJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/TinySnoutPorcine</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnoutPorcine</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A flat nosed snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes. The strange shape makes speaking very difficult.</description>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, good for snorting, snuffling for roots and berries, and oinking at things that [PAWN_pronoun] likes. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.1</offset>
+						</li>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.5</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="SuidEarPart" ParentName="EvenToedUngulateEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.025</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="SuidTailPart" ParentName="EvenToedUngulateTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.025</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Metabolism</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

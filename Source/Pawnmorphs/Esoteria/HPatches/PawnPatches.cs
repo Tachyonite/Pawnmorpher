@@ -70,6 +70,8 @@ namespace Pawnmorph.HPatches
         [HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
         static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
         {
+			if (__instance.def.TryGetRaceMutationSettings()?.immuneToAll == true)
+				return true;
             var sTracker = __instance.GetSapienceTracker();
             if (sTracker?.CurrentState != null)
             {
@@ -144,7 +146,12 @@ namespace Pawnmorph.HPatches
         [NotNull]
         private static readonly LinkedList<Pawn> _waitingQueue = new LinkedList<Pawn>(); //need to use a list because unspawned pawns may be queued 
 
-        
+
+        private static readonly List<(Pawn, Action)> _queuedPostTickActions = new List<(Pawn, Action)>();
+        internal static void QueuePostTickAction(Pawn p, Action action)
+        {
+            _queuedPostTickActions.Add((p, action));
+        }
 
 
         //this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
@@ -180,6 +187,25 @@ namespace Pawnmorph.HPatches
             {
                 Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
                 throw;
+            }
+
+            if (_queuedPostTickActions.Count > 0)
+            {
+                for (int i = 0; i < _queuedPostTickActions.Count; i++)
+                {
+                    if (_queuedPostTickActions[i].Item1 == __instance)
+                    {
+                        try
+                        {
+                            _queuedPostTickActions[i].Item2();
+                        }
+                        finally
+                        {
+                            _queuedPostTickActions.RemoveAt(i);
+                        }
+                        break;
+                    }
+                }
             }
         }
 

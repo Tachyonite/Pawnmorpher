@@ -1,7 +1,6 @@
 ﻿// Chaothrumbo.cs created by Iron Wolf for Pawnmorph on 06/26/2021 10:09 AM
 // last updated 06/26/2021  10:09 AM
 
-using System;
 using Pawnmorph.Thoughts;
 using RimWorld;
 using Verse;

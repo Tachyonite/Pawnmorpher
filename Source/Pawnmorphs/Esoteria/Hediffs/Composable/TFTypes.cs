@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Utilities;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable
@@ -125,7 +124,7 @@ namespace Pawnmorph.Hediffs.Composable
         /// <param name="hediff">Hediff.</param>
         public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
         {
-            return morphDef.PrimaryFeralPawnKinds.RandomElement();
+            return morphDef.FeralPawnKinds.RandomElement();
         }
 
         /// <summary>
@@ -154,7 +153,7 @@ namespace Pawnmorph.Hediffs.Composable
         public override PawnKindDef GetTF(Hediff_MutagenicBase hediff)
         {
             return classDef.GetAllMorphsInClass()
-                    .SelectMany(m => m.PrimaryFeralPawnKinds)
+                    .SelectMany(m => m.FeralPawnKinds)
                     .Distinct()
                     .RandomElement();
         }

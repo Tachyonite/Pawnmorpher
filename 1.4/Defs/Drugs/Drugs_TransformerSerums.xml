@@ -1,0 +1,379 @@
+<Defs>
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="BasicTransformerBase">
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>120</MarketValue>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="TransformerBase">
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>120</MarketValue>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="BasicTransformerBase">
+		<defName>RandomTransformer</defName>
+		<label>mutaserum</label>
+		<description>A serum filled with mechanites and animal DNA that causes random mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumGreen</texPath>
+		</graphicData>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Animal</animalClass>
+					<!-- pick any animal -->
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- ====================== Biome Transformers ====================== -->
+
+	<ThingDef Abstract="True" ParentName="TransformerBase" Name="BiomeSerumBase">
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumYellow</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="BiomeSerumBase">
+		<defName>RandomAridTransformer</defName>
+		<label>mutaserum, arid</label>
+		<description>A serum filled with mechanites and animal DNA that causes mutations suited for arid environments. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<severity>1.00</severity>
+					<fullTf>true</fullTf>
+					<morphCategory>Arid</morphCategory>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="BiomeSerumBase">
+		<defName>RandomColdTransformer</defName>
+		<label>mutaserum, cold</label>
+		<description>A serum filled with mechanites and animal DNA that causes mutations suited for cold environments. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Cold</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="BiomeSerumBase">
+		<defName>RandomTemperateTransformer</defName>
+		<label>mutaserum, temperate</label>
+		<description>A serum filled with mechanites and animal DNA that causes mutations suited for temperate environments. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Temperate</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="BiomeSerumBase">
+		<defName>RandomTropicalTransformer</defName>
+		<label>mutaserum, tropical</label>
+		<description>A serum filled with mechanites and animal DNA that causes mutations suited for tropical environments. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Tropical</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- ======================= Role Transformers ======================= -->
+
+	<ThingDef Abstract="True" ParentName="TransformerBase" Name="RoleSerumBase">
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumRed</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="RoleSerumBase">
+		<defName>RandomCombatTransformer</defName>
+		<label>mutaserum, combat</label>
+		<description>A serum filled with mechanites and animal DNA that causes combat-oriented mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Combat</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="RoleSerumBase">
+		<defName>RandomProductionTransformer</defName>
+		<label>mutaserum, production</label>
+		<description>A serum filled with mechanites and animal DNA that causes production-oriented mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Production</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="RoleSerumBase">
+		<defName>RandomCrafterTransformer</defName>
+		<label>mutaserum, crafter</label>
+		<description>A serum filled with mechanites and animal DNA that causes crafting-oriented mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Crafter</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="RoleSerumBase">
+		<defName>RandomSocialTransformer</defName>
+		<label>mutaserum, social</label>
+		<description>A serum filled with mechanites and animal DNA that causes socially-inclined mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Social</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<!-- ======================= Genus Transformers ======================= -->
+
+	<ThingDef Abstract="True" ParentName="TransformerBase" Name="GenusSerumBase">
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumBlue</texPath>
+		</graphicData>
+	</ThingDef>
+
+	<ThingDef ParentName="TransformerBase">
+		<defName>RandomPowerfulTransformer</defName>
+		<label>mutaserum, powerful</label>
+		<description>An unidentified serum with powerful effects dissimilar to anything else. These ones take longer, and consume more hunger than other types of serums...but provide very powerful creatures.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/SerumPowerful</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>375</MarketValue>
+		</statBases>
+		<recipeMaker>
+			<researchPrerequisite>PowerfulSerumSynthesis</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+			<Mutanite>1</Mutanite>
+			<Neutroamine >4</Neutroamine>
+		</costList>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<morphCategory>Powerful</morphCategory>
+					<fullTf>true</fullTf>
+					<severity>1.00</severity>
+					<allowRestricted>true</allowRestricted>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomDomesticTransformer</defName>
+		<label>mutaserum, domestic</label>
+		<description>A serum filled with mechanites and animal DNA that causes domestic animal mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionEffects.AddMorphCategoryTfHediff">
+					<fullTf>true</fullTf>
+					<morphCategory>Domestic</morphCategory>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomAvianTransformer</defName>
+		<label>mutaserum, avian</label>
+		<description>A serum filled with mechanites and animal DNA that causes avian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Avian</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomBovidTransformer</defName>
+		<label>mutaserum, bovid</label>
+		<description>A serum filled with mechanites and animal DNA that causes bovid mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Bovid</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomCanineTransformer</defName>
+		<label>mutaserum, canid</label>
+		<description>A serum filled with mechanites and animal DNA that causes canid mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Canid</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomCervidTransformer</defName>
+		<label>mutaserum, cervid</label>
+		<description>A serum filled with mechanites and animal DNA that causes cervid mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Cervid</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomEquineTransformer</defName>
+		<label>mutaserum, equine</label>
+		<description>A serum filled with mechanites and animal DNA that causes equine mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Equine</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomFelineTransformer</defName>
+		<label>mutaserum, feline</label>
+		<description>A serum filled with mechanites and animal DNA that causes feline mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Feline</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomRodentTransformer</defName>
+		<label>mutaserum, rodent</label>
+		<description>A serum filled with mechanites and animal DNA that causes rodent mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Rodent</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomReptileTransformer</defName>
+		<label>mutaserum, reptilian</label>
+		<description>A serum filled with mechanites and animal DNA that causes reptilian mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Reptile</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+
+	<ThingDef ParentName="GenusSerumBase">
+		<defName>RandomUrsineTransformer</defName>
+		<label>mutaserum, ursine</label>
+		<description>A serum filled with mechanites and animal DNA that causes ursine mutations. Use with caution, as leaving the mechanites unchecked may transform the user.</description>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_AddMorphTf">
+					<animalClass>Ursine</animalClass>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+	</ThingDef>
+	
+</Defs>

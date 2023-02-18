@@ -8,7 +8,6 @@ using Pawnmorph.Composable.Hediffs;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs.Composable;
 using RimWorld;
-using UnityEngine.Analytics;
 using Verse;
 
 namespace Pawnmorph.Hediffs

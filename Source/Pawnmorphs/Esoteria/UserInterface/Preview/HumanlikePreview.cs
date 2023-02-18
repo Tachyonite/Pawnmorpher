@@ -1,12 +1,9 @@
-﻿using AlienRace;
-using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AlienRace;
+using Pawnmorph.Hediffs;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -73,11 +70,13 @@ namespace Pawnmorph.UserInterface.Preview
             _pawn.Name = new NameTriple("", "X", "");
             _pawn.story.birthLastName = "";
             _pawn.story.Title = "";
-            _pawn.story.bodyType = race.alienRace?.generalSettings?.alienPartGenerator?.alienbodytypes[0] ?? BodyTypeDefOf.Male;
-            _pawn.story.crownType = CrownType.Average;
+            _pawn.story.bodyType = race.alienRace?.generalSettings?.alienPartGenerator?.bodyTypes[0] ?? BodyTypeDefOf.Male;
+            _pawn.story.headType = race.alienRace?.generalSettings?.alienPartGenerator?.HeadTypes[0] ?? HeadTypeDefOf.Skull;
             _pawn.story.hairDef = HairDefOf.Shaved;
+            _pawn.ageTracker.AgeBiologicalTicks = _pawn.ageTracker.AdultMinAgeTicks + 1;
             _pawn.InitializeComps();
             _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("skin", Color.white, Color.white);
+            _pawn.GetComp<AlienPartGenerator.AlienComp>().OverwriteColorChannel("hair", Color.gray, Color.gray);
             Thing = _pawn;
         }
 
@@ -112,7 +111,7 @@ namespace Pawnmorph.UserInterface.Preview
         /// <param name="severity">The severity level to change mutations to.</param>
         public void SetSeverity(MutationDef mutation, float severity)
         {
-            IEnumerable<Hediff_AddedMutation> mutations = _pawn.health.hediffSet.GetHediffs<Hediff_AddedMutation>().Where(x => x.Def == mutation);
+            IEnumerable<Hediff_AddedMutation> mutations = _pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>().Where(x => x.Def == mutation);
             foreach (Hediff_AddedMutation item in mutations)
             {
                 item.Severity = severity;

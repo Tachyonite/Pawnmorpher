@@ -1,17 +1,15 @@
-﻿using Pawnmorph.Abilities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Pawnmorph.Abilities;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface.Preview;
 using Pawnmorph.UserInterface.TableBox;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -23,6 +21,12 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
         private const float STAGE_BUTTON_SIZE = 30;
 
         private static readonly string TAB_COLUMN_MUTATION = "PM_Genebank_MutationTab_Column_Mutation".Translate();
+
+        private static readonly string TAB_COLUMN_BODYPART = "PM_Genebank_MutationTab_Column_BodyPart".Translate();
+        private static readonly float TAB_COLUMN_BODYPART_SIZE;
+
+        private static readonly string TAB_COLUMN_ANIMAL = "PM_Genebank_MutationTab_Column_Animal".Translate();
+        private static readonly float TAB_COLUMN_ANIMAL_SIZE;
 
         private static readonly string TAB_COLUMN_PARAGON = "PM_Genebank_MutationTab_Column_Paragon".Translate();
         private static readonly float TAB_COLUMN_PARAGON_SIZE;
@@ -49,6 +53,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             Text.Font = GameFont.Small;
             TAB_COLUMN_PARAGON_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_PARAGON).x, 60f);
             TAB_COLUMN_ABILITIES_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ABILITIES).x, 100f);
+
+            TAB_COLUMN_BODYPART_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_BODYPART).x, 100f);
+            TAB_COLUMN_ANIMAL_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ANIMAL).x, 100f);
 
             Text.Font = GameFont.Medium;
             DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
@@ -115,17 +122,54 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                 });
             column.IsFixedWidth = false;
 
+            TableColumn colBodyPart = table.AddColumn(TAB_COLUMN_BODYPART, TAB_COLUMN_BODYPART_SIZE);
+            TableColumn colAnimal = table.AddColumn(TAB_COLUMN_ANIMAL, TAB_COLUMN_ANIMAL_SIZE);
+
             TableColumn colParagon = table.AddColumn(TAB_COLUMN_PARAGON, TAB_COLUMN_PARAGON_SIZE);
             TableColumn colAbilities = table.AddColumn(TAB_COLUMN_ABILITIES, TAB_COLUMN_ABILITIES_SIZE);
             TableColumn colStats = table.AddColumn(TAB_COLUMN_STATS, 0.5f);
             colStats.IsFixedWidth = false;
 
+            AddColumnHook(table);
+
             GeneRowItem item;
             int totalCapacity = _databank.TotalStorage;
-            foreach (MutationDef mutation in _databank.StoredMutations)
+            foreach (GenebankEntry<MutationDef> mutationEntry in _databank.GetEntryItems<MutationDef>())
             {
-                string searchText = mutation.label;
-                item = new GeneRowItem(mutation, totalCapacity, searchText);
+                MutationDef mutation = mutationEntry.Value;
+				string searchText = mutation.label;
+                item = new GeneRowItem(mutationEntry, totalCapacity, searchText);
+
+                string parts;
+                if (mutation.RemoveComp?.layer == MutationLayer.Skin)
+                {
+                    // Skin mutations cover all surface body parts.
+                    parts = "Skin";
+                    searchText += " " + parts;
+                }
+                else if (mutation.parts.Count < 3)
+                {
+                    // If at most 2 body parts, then list them.
+                    parts = String.Join(", ", mutation.parts.Select(x => x.LabelCap).Distinct());
+                    searchText += " " + parts;
+                }
+                else
+                {
+                    // If more than 2 body parts then show as multiple instead but still make them all searchable.
+                    parts = "Multiple";
+                    searchText += " " + String.Join(" ", mutation.parts.Select(x => x.label).Distinct());
+                }
+                item[colBodyPart] = parts;
+
+
+                string animal = "Multiple";
+                List<ThingDef> animals = mutation.AssociatedAnimals.ToList();
+                if (animals.Count == 1)
+                    animal = animals[0].LabelCap;
+
+                item[colAnimal] = animal;
+                searchText += " " + String.Join(" ", animals.Select(x => x.label));
+
 
                 if (mutation.stages != null)
                 {
@@ -146,16 +190,14 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                         if (lastStage.key == "paragon")
                         {
                             item[colParagon] = TAB_COLUMN_PARAGON.ToLower();
-                            lastStage = stages[stages.Count - 2];
+                            lastStage = stages[Math.Max(0, stages.Count - 2)];
                             searchText += " " + item[colParagon];
                         }
 
                         List<StatDef> stats = new List<StatDef>();
-                        if (lastStage.statFactors != null)
-                            stats.AddRange(lastStage.statFactors.Where(x => x.value > 1).Select(x => x.stat));
 
                         if (lastStage.statOffsets != null)
-                            stats.AddRange(lastStage.statOffsets.Where(x => x.value > 0).Select(x => x.stat));
+                            stats.AddRange(lastStage.statOffsets.Select(x => x.stat));
 
                         string statsImpact = String.Join(", ", stats.Where(x => x != null).Select(x => x.LabelCap).Distinct());
                         searchText += " " + statsImpact;
@@ -164,10 +206,23 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
                     }
                 }
 
+                AddedRowHook(item, searchText);
+
                 item.SearchString = searchText.ToLower();
                 table.AddRow(item);
             }
 
+        }
+
+
+        public override void AddedRowHook(GeneRowItem row, string searchText)
+        {
+            // Hook method.
+        }
+
+        public override void AddColumnHook(Table<GeneRowItem> table)
+        {
+            // Hook method.
         }
 
         public override void SelectionChanged(IReadOnlyList<GeneRowItem> selectedRows)
@@ -241,8 +296,8 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             foreach (var item in selectedRows)
             {
-                MutationDef mutation = item.Def as MutationDef;
-                _previewNorth.AddMutation(mutation);
+                MutationDef mutation = (item.Def as GenebankEntry<MutationDef>).Value;
+				_previewNorth.AddMutation(mutation);
                 _previewEast.AddMutation(mutation);
                 _previewSouth.AddMutation(mutation);
 
@@ -267,7 +322,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
             if (selectedRows.Count == 1)
             {
-                _selectedDef = (selectedRows[0].Def as MutationDef);
+				_selectedDef = (selectedRows[0].Def as GenebankEntry<MutationDef>).Value;
                 if (_selectedDef.stages != null)
                     _stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
                 else
@@ -478,9 +533,9 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
             }
         }
 
-        public override void Delete(Def def)
+        public override void Delete(IGenebankEntry def)
         {
-            _databank.RemoveFromDatabase(def as MutationDef);
+            _databank.RemoveFromDatabase(def as GenebankEntry<MutationDef>);
         }
     }
 }

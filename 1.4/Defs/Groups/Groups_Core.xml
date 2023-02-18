@@ -1,0 +1,14 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd">
+	<!-- special group that should not be assigned to any morphs, but is used to get the number of humans on the map if needed -->
+	<Pawnmorph.MorphGroupDef>
+		<defName>Humans</defName>
+	</Pawnmorph.MorphGroupDef>
+	
+    <Pawnmorph.AspectDef Name="MorphGroupAspectBase" Abstract="true">
+        <labelColor>(171,106,217)</labelColor>
+    </Pawnmorph.AspectDef>
+
+	<ThoughtDef Abstract="true" Name="GroupThoughtHBase">
+		<workerClass>ThoughtWorker_Hediff</workerClass>
+	</ThoughtDef>
+</Defs>

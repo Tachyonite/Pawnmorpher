@@ -3,7 +3,6 @@
 
 using HarmonyLib;
 using Pawnmorph.Chambers;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph.HPatches

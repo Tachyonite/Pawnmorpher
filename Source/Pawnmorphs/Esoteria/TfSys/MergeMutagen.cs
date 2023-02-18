@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Thoughts;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 

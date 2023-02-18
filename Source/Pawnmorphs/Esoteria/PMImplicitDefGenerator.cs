@@ -4,8 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -22,19 +20,11 @@ namespace Pawnmorph
     /// </summary>
     public static class PMImplicitDefGenerator
     {
-        private static readonly MethodInfo GiveHashMethod;
-
 
         [NotNull] private static readonly List<Def> _defList = new List<Def>();
         [NotNull] private static readonly List<DefSt> _defSts = new List<DefSt>();
 
         [NotNull] private static readonly object[] tmpArr = new object[2];
-
-
-        static PMImplicitDefGenerator()
-        {
-            GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
-        }
 
         /// <summary>
         ///     Generates the implicit defs.
@@ -74,12 +64,9 @@ namespace Pawnmorph
 
             _defList.Clear();
             //short hashs
-            _defSts.Clear();
-            _defSts.AddRange(InjectorGenerator.GeneratedInjectorDefs.Select(d => new DefSt(d, typeof(ThingDef))));
-            _defSts.AddRange(MorphHediffGenerator.AllGeneratedHediffDefs.Select(d => new DefSt(d, typeof(HediffDef))));
-            _defSts.AddRange(PMRecipeDefGenerator.AllRecipes.Select(d => new DefSt(d, typeof(RecipeDef))));
-
-            foreach (DefSt defSt in _defSts) GiveShortHash(defSt.def, defSt.type);
+            GiveHashes(InjectorGenerator.GeneratedInjectorDefs);
+            GiveHashes(MorphHediffGenerator.AllGeneratedHediffDefs);
+            GiveHashes(PMRecipeDefGenerator.AllRecipes);
 
             //debug log 
             //DebugOutput();
@@ -99,28 +86,27 @@ namespace Pawnmorph
 
         }
 
-        private static void DebugOutput()
+        private static void GiveHashes<T>(IEnumerable<T> items) where T : Def
         {
-            var joinEnm = _defSts.GroupBy(d => d.type);
-            StringBuilder builder = new StringBuilder();
-            foreach (IGrouping<Type, DefSt> grouping in joinEnm)
-            {
-                builder.AppendLine($"def type {grouping.Key.Name}:");
-                foreach (DefSt defSt in grouping)
-                {
-                    builder.AppendLine($"\t{defSt.def.defName}");
-                }
-            }
-
-            Log.Message(builder.ToString());
+            foreach (T def in items)
+                HashGiverUtils.GiveShortHash(def);
         }
 
-        private static void GiveShortHash([NotNull] Def def, [NotNull] Type type)
-        {
-            tmpArr[0] = def;
-            tmpArr[1] = type;
-            GiveHashMethod.Invoke(null, tmpArr);
-        }
+        //private static void DebugOutput()
+        //{
+        //    var joinEnm = _defSts.GroupBy(d => d.type);
+        //    StringBuilder builder = new StringBuilder();
+        //    foreach (IGrouping<Type, DefSt> grouping in joinEnm)
+        //    {
+        //        builder.AppendLine($"def type {grouping.Key.Name}:");
+        //        foreach (DefSt defSt in grouping)
+        //        {
+        //            builder.AppendLine($"\t{defSt.def.defName}");
+        //        }
+        //    }
+
+        //    Log.Message(builder.ToString());
+        //}
 
         private struct DefSt
         {

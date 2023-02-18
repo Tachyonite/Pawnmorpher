@@ -6,16 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
-using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
 using Verse;
-using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph.Hybrids
 {
@@ -216,8 +213,6 @@ namespace Pawnmorph.Hybrids
 
             float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
 
-            currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
-
             pawn.def = race;
             pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
 
@@ -279,6 +274,12 @@ namespace Pawnmorph.Hybrids
 
             }
 
+
+            foreach (Hediff_AddedMutation mutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
+            {
+                mutation.ApplyVisualAdjustment();
+            } 
+
             if (reRollTraits && race is ThingDef_AlienRace alienDef) 
                 ReRollRaceTraits(pawn, alienDef);
 
@@ -288,6 +289,8 @@ namespace Pawnmorph.Hybrids
 
             if (pawn.Faction != faction) 
                 pawn.SetFaction(faction);
+
+            pawn.VerbTracker?.InitVerbsFromZero();
 
             foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
             {
@@ -334,7 +337,7 @@ namespace Pawnmorph.Hybrids
                 return;
             }
 
-            if (graphicsComp == null)
+            if (graphicsComp == null || graphicsComp.Scanned == false)
                 return;
 
             //story.bodyType = graphicsComp.BodyType;
@@ -390,11 +393,13 @@ namespace Pawnmorph.Hybrids
             var oldGen = oldRace.alienRace.generalSettings.alienPartGenerator;
             var newGen = race.alienRace.generalSettings.alienPartGenerator;
 
-            alienComp.crownType = TransferPawnPart(newGen.aliencrowntypes, alienComp.crownType);
-            story.bodyType = TransferPawnPart(newGen.alienbodytypes, story.bodyType);
+            story.headType = TransferPawnPart(newGen.headTypes.Where(x => x.gender == Gender.None || x.gender == pawn.gender).ToList(), story.headType);
+            
+            // alienComp.headVariant = newGen.headTypes.IndexOf();  oldGen.headTypes[alienComp.headVariant]
+            story.bodyType = TransferPawnPart(newGen.bodyTypes, story.bodyType);
             
             // Transfer hair
-            pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, HairDefOf.Shaved);
+            pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, RimWorld.HairDefOf.Bald);
 
             // Transfer beard
             pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
@@ -446,9 +451,9 @@ namespace Pawnmorph.Hybrids
                         if (PawnStyleItemChooser.WantsToUseStyle(pawn, current))
                             return current;
                     }
-                                        
+                    
                     // Otherwise pick a new hairstyle.
-                    return PawnStyleItemChooser.ChooseStyleItem<T>(pawn) ?? noStyle;
+                    return GetRandomStyle<T>(pawn);
                 }
             }
             else
@@ -456,6 +461,21 @@ namespace Pawnmorph.Hybrids
 
             return current;
         }
+
+        static private T GetRandomStyle<T>(Pawn pawn) where T : StyleItemDef
+        {
+            if (typeof(HairDef) == typeof(T))
+            {
+                return PawnStyleItemChooser.RandomHairFor(pawn) as T;
+            }
+            else if (typeof(BeardDef) == typeof(T))
+            {
+                return PawnStyleItemChooser.RandomBeardFor(pawn) as T;
+            }
+
+            return null;
+        }
+
 
         static void ReRollRaceTraits(Pawn pawn, ThingDef_AlienRace newRace)
         {
@@ -682,19 +702,18 @@ namespace Pawnmorph.Hybrids
                 comp.ColorChannels["skin"].first = morph.GetSkinColorOverride(pawn) ?? comp.ColorChannels["skin"].first;
                 comp.ColorChannels["skin"].second = morph.GetSkinColorSecondOverride(pawn) ?? comp.ColorChannels["skin"].second;
 
-                comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.hairColor;
+                comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.HairColor;
                 comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.ColorChannels["hair"].second;
             }
             else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
             {
                 foreach (var channel in alien.GetPartGenerator().colorChannels)
                 {
-                    comp.ColorChannels[channel.name].first = comp.GenerateColor(channel, first: true);
-                    comp.ColorChannels[channel.name].second = comp.GenerateColor(channel, first: false);
+                    comp.ColorChannels[channel.name] = comp.GenerateChannel(channel);
                 }
             }
 
-            pawn.story.hairColor = comp.ColorChannels["hair"].first;
+            pawn.story.HairColor = comp.ColorChannels["hair"].first;
             
             var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
             if (gUpdater != null)

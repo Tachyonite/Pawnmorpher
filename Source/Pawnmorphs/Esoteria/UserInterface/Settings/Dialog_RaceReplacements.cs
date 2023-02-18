@@ -1,9 +1,7 @@
-﻿using Pawnmorph.Utilities.Collections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pawnmorph.Utilities.Collections;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -18,6 +16,7 @@ namespace Pawnmorph.UserInterface.Settings
         private static Vector2 APPLY_BUTTON_SIZE = new Vector2(120f, 40f);
         private static Vector2 RESET_BUTTON_SIZE = new Vector2(120f, 40f);
         private static Vector2 CANCEL_BUTTON_SIZE = new Vector2(120f, 40f);
+        private static Vector2 RAW_BUTTON_SIZE = new Vector2(28, 28f);
         private const float SPACER_SIZE = 17f;
 
 
@@ -116,8 +115,15 @@ namespace Pawnmorph.UserInterface.Settings
                         Find.WindowStack.Add(new FloatMenu(options));
                 }
             });
-            
+
+
             // Draw the apply, reset and cancel buttons.
+
+            if (Widgets.ButtonImage(new Rect(5, inRect.height - 33, RAW_BUTTON_SIZE.x, RAW_BUTTON_SIZE.y), TexButton.Rename))
+            {
+                ShowRawInput();
+            }
+
             float buttonVertPos = inRect.height - Math.Max(APPLY_BUTTON_SIZE.y, Math.Max(RESET_BUTTON_SIZE.y, CANCEL_BUTTON_SIZE.y));
             float applyHorPos = inRect.width / 2 - APPLY_BUTTON_SIZE.x - RESET_BUTTON_SIZE.x / 2 - SPACER_SIZE;
             float resetHorPos = inRect.width / 2 - RESET_BUTTON_SIZE.x / 2;
@@ -136,6 +142,31 @@ namespace Pawnmorph.UserInterface.Settings
                 OnCancelKeyPressed();
             }
         }
+
+
+        private void ShowRawInput()
+        {
+            Dictionary<string, string> currentValue = _selectedReplacements.Where(x => x.Value != null).ToDictionary(x => x.Key.defName, x => x.Value.defName);
+            string stringValue = string.Join(",", currentValue);
+            Dialog_Textbox textBox = new Dialog_Textbox(stringValue, true, new Vector2(300, 100));
+
+            textBox.ApplyAction = (value) =>
+            {
+                try
+                {
+                    string[] items = value.Split(new[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+                    _settingsReference = items.Select(x => x.Split(',')).Where(x => x[1].Length > 0).ToDictionary(y => y[0], y => y[1]);
+                    RefreshAliens();
+                }
+                catch (Exception)
+                {
+                    Find.WindowStack.Add(new Dialog_Popup("PMFailedToParse".Translate(), new Vector2(300, 100)));
+                }
+            };
+
+            Find.WindowStack.Add(textBox);
+        }
+
 
 
 

@@ -1,7 +1,6 @@
 ﻿// SyringeRifleTf.cs created by Iron Wolf for Pawnmorph on 05/17/2020 7:39 PM
 // last updated 05/17/2020  7:39 PM
 
-using System.Linq;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Verse;
@@ -16,13 +15,24 @@ namespace Pawnmorph.Hediffs
     {
         private PawnKindDef _chosenKind;
 
+
         /// <summary>
         /// Gets a value indicating whether this instance should be removed.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
         /// </value>
-        public override bool ShouldRemove => MutationStatValue <= 0; 
+        public override bool ShouldRemove => MutationStatValue <= 0;
+
+
+        /// <summary>
+        /// Gets a random pawnkind animal
+        /// </summary>
+        private PawnKindDef ChooseRandomAnimal()
+        {   
+            return FormerHumanUtilities.AllRegularFormerHumanPawnkindDefs.RandomElement();
+        }
+        
 
         /// <summary>
         /// Initializes this instance with the given weapon
@@ -33,7 +43,7 @@ namespace Pawnmorph.Hediffs
             _chosenKind = weapon?.TryGetComp<AnimalSelectorComp>()?.ChosenKind;
             if (_chosenKind == null)
             {
-                _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
+                _chosenKind = ChooseRandomAnimal();
             }
 
             ResetMutationCaches();
@@ -54,7 +64,7 @@ namespace Pawnmorph.Hediffs
         {
             if (_chosenKind == null)
             {
-                _chosenKind = DefDatabase<PawnKindDef>.AllDefs.Where(p => p.RaceProps.Animal).RandomElement();
+                _chosenKind = ChooseRandomAnimal();
             }
             var tfRequest = new TransformationRequest(_chosenKind, pawn);
             var res = MutagenDefOf.defaultMutagen.MutagenCached.Transform(tfRequest);

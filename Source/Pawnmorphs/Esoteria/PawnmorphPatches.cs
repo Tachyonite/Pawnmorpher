@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -247,8 +246,24 @@ namespace Pawnmorph
                 else
                     Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
             }
+            // Patch Simple Sidearms mod if present.
+            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "petetimessix.simplesidearms"))
+            {
+                MethodInfo simpleSidearmsValidCarrierMethod = AccessTools.Method("PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier");
 
+                if (simpleSidearmsValidCarrierMethod != null)
+                    methodsToPatch.Add(simpleSidearmsValidCarrierMethod);
+                else
+                    Log.Warning("Pawnmorpher: Unable to simple sidearms Valid Carrier Method.");
 
+                MethodInfo simpleSidearmsMemoryCompMethod = AccessTools.Method("SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn");
+
+                if (simpleSidearmsMemoryCompMethod != null)
+                    methodsToPatch.Add(simpleSidearmsMemoryCompMethod);
+                else
+                    Log.Warning("Pawnmorpher: Unable to simple sidearms GetMemoryCompForPawn Method.");
+            }
+            
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
@@ -271,7 +286,7 @@ namespace Pawnmorph
 
             //jobs and toils 
             methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
-            methodsToPatch.Add(typeof(GatheringWorker_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
+            methodsToPatch.Add(typeof(LordJob_Joinable_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
 
             //down/death thoughts 
             methodsToPatch.Add(typeof(PawnDiedOrDownedThoughtsUtility).GetMethod(nameof(PawnDiedOrDownedThoughtsUtility.GetThoughts), staticFlags));
@@ -279,7 +294,11 @@ namespace Pawnmorph
             //incidents 
             PatchIncidents(methodsToPatch);
 
-            //interaction patch 
+            //interaction patch
+            methodsToPatch.Add(typeof(HealthCardUtility).GetMethod("CreateSurgeryBill", STATIC_FLAGS));
+            methodsToPatch.Add(AccessTools.Method(typeof(RimWorld.FloatMenuMakerMap), nameof(RimWorld.FloatMenuMakerMap.ChoicesAtFor)));
+            PatchRescueMessage(methodsToPatch);
+
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
             methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
@@ -298,6 +317,8 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("Recache", STATIC_FLAGS));
             methodsToPatch.Add(typeof(SocialCardUtility).GetMethod("GetPawnRowTooltip", STATIC_FLAGS));
 
+            // Food restrictions tracker
+            methodsToPatch.Add(AccessTools.PropertyGetter(typeof(Pawn_FoodRestrictionTracker), nameof(Pawn_FoodRestrictionTracker.Configurable)));
 
 
             methodsToPatch.Add(typeof(Dialog_InfoCard).GetMethod(nameof(Dialog_InfoCard.DoWindowContents), INSTANCE_FLAGS));
@@ -319,9 +340,11 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
             methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
             methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
-            
-            //now patch them 
-            foreach (var methodInfo in methodsToPatch)
+
+			
+
+			//now patch them 
+			foreach (var methodInfo in methodsToPatch)
             {
                 if (methodInfo.methodInfo == null)
                 {
@@ -359,6 +382,18 @@ namespace Pawnmorph
             methodsToPatch.AddRange(methods);
         }
 
+        private static void PatchRescueMessage([NotNull] List<MethodInfoSt> methodsToPatch)
+        {
+            IEnumerable<Type> tps = typeof(FloatMenuMakerMap)
+                                   .GetNestedTypes(ALL)
+                                   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
+
+            IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+                                                   .Where(m => m.HasSignature() && m.Name.Contains("<AddHumanlikeOrders>"))
+                                                   .Select(m => (MethodInfoSt)m);
+            methodsToPatch.AddRange(methods);
+        }
+
         private static void AddRitualPatches([NotNull]List<MethodInfoSt> methodsToPatch)
         {
             var tp = typeof(Precept_Ritual);
@@ -373,7 +408,8 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(RitualOutcomeComp_ParticipantCount).GetMethod("Counts", INSTANCE_FLAGS));
 
 
-
+            methodsToPatch.Add(AccessTools.Method(typeof(JobDriver_Scarify), nameof(JobDriver_Scarify.AvailableOnNow)));
+            //methodsToPatch.Add(typeof(JobDriver_Scarify).GetMethod(nameof(JobDriver_Scarify.AvailableOnNow), STATIC_FLAGS));
             methodsToPatch.AddRange(methods.Select(m => (MethodInfoSt) m));
             methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.CanEverSpectate), INSTANCE_FLAGS));
 
@@ -382,16 +418,25 @@ namespace Pawnmorph
 
         private static void AddRolePatches([NotNull] List<MethodInfoSt> methodsToPatch)
         {
-            var types = new Type[]
+            
+            /*var types = new Type[]
             {
                 typeof(RitualRoleColonist),
                 typeof(RitualRoleWarden),
-                typeof(RitualRoleConvertee)
-            };
+                typeof(RitualRoleConvertee),
+                typeof(RitualRoleBlindingTarget),
+                typeof(RitualRoleScarificationTarget)
+            };*/
+            var types = new List<Type>();
+            types = typeof(RitualRole).AllSubclassesNonAbstract();
 
-            var methods = types.Select(t => t.GetMethod(nameof(RitualRole.AppliesToPawn), INSTANCE_FLAGS))
+
+            /*var methods = types.Select(t => t.GetMethod(nameof(RitualRole.AppliesToPawn), INSTANCE_FLAGS))
                                .Where(m => !m.IsAbstract)
-                               .Select(m => (MethodInfoSt) m);
+                               .Select(m => (MethodInfoSt) m);*/
+            var methods = types.Select(t => AccessTools.DeclaredMethod(t, nameof(RitualRole.AppliesToPawn)))
+                               .Where(m => m != null)
+                               .Select(m => (MethodInfoSt)m);
             methodsToPatch.AddRange(methods); 
 
         }

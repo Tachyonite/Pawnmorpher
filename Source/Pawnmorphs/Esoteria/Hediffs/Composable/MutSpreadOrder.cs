@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Pawnmorph.Hediffs.Utility;
 using Pawnmorph.Utilities;
-using Pawnmorph.Utilities.Collections;
 using Verse;
 
 namespace Pawnmorph.Hediffs.Composable

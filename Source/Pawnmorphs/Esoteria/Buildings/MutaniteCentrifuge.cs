@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
-using Pawnmorph.SlurryNet;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -55,6 +54,7 @@ namespace Pawnmorph.Buildings
         /// The danger radius
         /// </summary>
         public const int DANGER_RADIUS = 5;
+        private const float DEFAULT_GLOW_RADIUS = 1;
 
         private const float MUTAGENIC_BUILDUP_RATE = 0.02f;
 
@@ -63,8 +63,6 @@ namespace Pawnmorph.Buildings
         [NotNull] private readonly List<(Thing thing, int rmCount)> _rmCache = new List<(Thing thing, int rmCount)>();
         private int _timeCounter;
 
-
-        private float _initialRadius;
 
         private RunningMode _mode;
 
@@ -78,7 +76,7 @@ namespace Pawnmorph.Buildings
 
         private ColorInt _initialColor;
 
-        private SlurryNetDrawer _drawer;
+        private PipeSystem.CompResource _drawer;
 
         private float _glowRadius;
 
@@ -87,6 +85,7 @@ namespace Pawnmorph.Buildings
         private float _storedSlurry;
 
         private Command_Toggle _highYieldCommand;
+
 
         /// <summary>
         ///     Gets or sets the current mode.
@@ -210,19 +209,10 @@ namespace Pawnmorph.Buildings
         {
             base.SpawnSetup(map, respawningAfterLoad);
             
-
-            _initialRadius = Glower?.Props?.glowRadius ?? 0;
             _flickable = GetComp<CompFlickable>();
             _initialColor = Glower?.Props?.glowColor ?? Clear;
             _glowRadius = GetGlowRadius(CurrentMode);
-            _drawer = GetComp<SlurryNetDrawer>();
-
-            if (_drawer != null)
-            {
-                _drawer.SlurryDrawnFromNet += SlurryDrawn;
-                if (!respawningAfterLoad)
-                    _drawer.enabled = true; 
-            }
+            _drawer = GetComp<PipeSystem.CompResource>();
 
             if (Glower != null)
             {
@@ -246,17 +236,54 @@ namespace Pawnmorph.Buildings
         public override void Tick()
         {
             base.Tick();
-            if (!ShouldBeOn) return;
+            if (!IsOn)
+                return;
+
             if (_producing)
             {
-                if (!IsOn) return;
-                if (CurrentMode == RunningMode.HighYield && this.IsHashIntervalTick(20)) DoMutagenicBuildup();
+                if (CurrentMode == RunningMode.HighYield && this.IsHashIntervalTick(20)) 
+                    DoMutagenicBuildup();
 
                 _timeCounter++;
-                if (_timeCounter >= GetTimeNeeded()) ProduceMutanite();
+
+                if (_timeCounter >= GetTimeNeeded()) 
+                    ProduceMutanite();
+            }
+            else if (this.IsHashIntervalTick(100))
+            {
+
+                if (_drawer != null)
+                {
+                    float val;
+                    switch (_mode)
+                    {
+                        case RunningMode.Normal:
+                            val = 1;
+                            break;
+
+                        case RunningMode.HighYield:
+                            val = 2;
+                            break;
+
+                        default:
+                            return;
+                    }
+
+                    float neededAmount = GetRequiredMutaniteCount(CurrentMode);
+                    // Is there enough slurry in the network to top up?
+                    if (_drawer.PipeNet.Stored > val)
+                    {
+                        _drawer.PipeNet.DrawAmongStorage(val, _drawer.PipeNet.storages);
+                        _storedSlurry += val;
+
+                        if (neededAmount < _storedSlurry)
+                            StartProduction();
+
+                        _cachedInactiveString = null;
+                    }
+                }
             }
         }
-
 
         private void DoMutagenicBuildup()
         {
@@ -311,7 +338,6 @@ namespace Pawnmorph.Buildings
             if (Glower != null)
                 Glower.Props.glowColor = Clear;
             _producing = false;
-            if (_drawer != null) _drawer.enabled = true;
             UpdateGlower();
         }
 
@@ -331,7 +357,7 @@ namespace Pawnmorph.Buildings
             switch (value)
             {
                 case RunningMode.Normal:
-                    radius = _initialRadius;
+                    radius = DEFAULT_GLOW_RADIUS;
                     break;
                 case RunningMode.HighYield:
                     radius = DANGER_RADIUS;
@@ -447,23 +473,6 @@ namespace Pawnmorph.Buildings
         private void SetRunningMode(RunningMode value)
         {
             _mode = value;
-            if (_drawer != null)
-            {
-                float val;
-                switch (value)
-                {
-                    case RunningMode.Normal:
-                        val = 1; 
-                        break;
-                    case RunningMode.HighYield:
-                        val = 2; 
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(value), value, null);
-                }
-
-                _drawer.drawSpeedMultiplier = val; 
-            }
             
             CompGlower glower = Glower;
             if (glower == null) return;
@@ -479,29 +488,13 @@ namespace Pawnmorph.Buildings
             {
                 glower.Props.glowRadius = 0;
             }
-
-            
         }
 
         
-        private void SlurryDrawn([NotNull] SlurryNetDrawer sender, float amount)
-        {
-            
-            _storedSlurry += amount;
-            float neededAmount = GetRequiredMutaniteCount(CurrentMode);
-            if (_storedSlurry >= neededAmount)
-            {
-                StartProduction();
-                sender.enabled = false;
-            }
-
-            _cachedInactiveString = null;
-        }
-
 
         private void StartProduction()
         {
-            _storedSlurry = 0; 
+            _storedSlurry -= GetRequiredMutaniteCount(_mode); 
             _producing = true;
             _timeCounter = 0;
             if (Glower != null)

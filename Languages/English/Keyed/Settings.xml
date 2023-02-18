@@ -26,11 +26,18 @@
 	<PMEnableMutationVisualsHeader>Enable mutations visuals for races.</PMEnableMutationVisualsHeader>
 	<PMEnableMutationVisualsText>Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.</PMEnableMutationVisualsText>
 	<PMRequiresRestart>Requires a game restart to take affect.</PMRequiresRestart>
-	<PMRaceReplacementButton>Set race replacements.</PMRaceReplacementButton>
-	<PMRaceReplacementHeader>Set race replacements for morphs.</PMRaceReplacementHeader>
-	<PMRaceReplacementText>Here you can replace morphs with races from other mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
+	<PMRaceReplacementButton>Set morph replacements.</PMRaceReplacementButton>
+	<PMRaceReplacementHeader>Set morph replacements for morphs.</PMRaceReplacementHeader>
+	<PMRaceReplacementText>Here you can replace morphs with races from other installed HAR mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
 	<PMRaceReplacementLocked>Locked by patch.</PMRaceReplacementLocked>
 	<PMOptionalPatchesButton>Toggle optional patches.</PMOptionalPatchesButton>
 	<PMOptionalPatchesHeader>Toggle optional patches.</PMOptionalPatchesHeader>
 	<PMOptionalPatchesText>Enable or disable patches that are not strictly necessary for the mod to function.\nHover over a patch to see description.</PMOptionalPatchesText>
+	<PMFailedToParse>Failed to parse.</PMFailedToParse>
+	<PMAnimalAssociationsButton>Associate animals.</PMAnimalAssociationsButton>
+	<PMAnimalAssociationsHeader>Associate animals.</PMAnimalAssociationsHeader>
+	<PMAnimalAssociationsText>Associate additional animals with morphs that will act as both additional outcomes, source of sequencing morph mutations and unlocking the injector.</PMAnimalAssociationsText>
+	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
+	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
+	<PMBlacklistFormerHumansText>Enable or disable individual animals from being selectable by the game for completely transformation.\nOnly animals not associated with a morph type can be disabled.</PMBlacklistFormerHumansText>
 </LanguageData>

@@ -56,7 +56,7 @@ namespace Pawnmorph.Damage
         {
             if (!MutagenDefOf.defaultMutagen.CanInfect(pawn)) return;
             float extraSeverity = dInfo.Amount * 0.02f * dInfo.GetSeverityPerDamage();
-            extraSeverity *= pawn.GetStatValue(StatDefOf.ToxicSensitivity);
+            extraSeverity *= 1f - pawn.GetStatValue(StatDefOf.ToxicResistance);
 
             if (Mathf.Abs(extraSeverity) < EPSILON) return;
 
@@ -151,7 +151,7 @@ namespace Pawnmorph.Damage
                 new BattleLogEntry_ExplosionImpact(explosion.instigator, t, explosion.weapon, explosion.projectile, def);
             Find.BattleLog.Add(battleLogEntry_ExplosionImpact);
 
-            pawn.stances?.StaggerFor(95);
+            pawn.stances?.stagger?.StaggerFor(95);
         }
 
 

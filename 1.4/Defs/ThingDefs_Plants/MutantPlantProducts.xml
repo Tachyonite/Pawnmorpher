@@ -1,0 +1,109 @@
+<Defs>
+	<ThingDef ParentName="TFItemBase">
+        <defName>Chaobulb</defName>
+        <label>chaobulb seedpod</label>
+        <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Mutagenic mechanites replicate within chaobulb plants and congregate in their bulbs, making it a simple, if work-intensive, way to produce more of them.
+
+Raw chaobulbs are often used by tribes to connect with nature and bring out their inner warrior animal.</description>
+        <graphicData>
+            <texPath>Plants/Items/ChaobulbFruit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<thingCategories Inherit="False">
+			<li>PlantMatter</li>
+			<li>Drugs</li>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
+					<hediffDefs>
+						<li>FullRandomTF</li>
+					</hediffDefs>
+					<hediffDefsComplete>
+						<li>FullRandomTFAnyOutcome</li>
+					</hediffDefsComplete>
+					<severity>1</severity>
+				</li>
+			</outcomeDoers>
+			<foodType>Seed</foodType>
+			<preferability>NeverForNutrition</preferability>
+		</ingestible>
+		<statBases Inherit="False">
+			<MarketValue>9</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.0</Nutrition>
+			<MutaniteConcentration>0.1</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+	
+    <ThingDef ParentName="TFItemBase">
+        <defName>Glowvine</defName>
+        <label>glowvine seedpod</label>
+		<description>A blue seedpod harvested from a mutated healroot plant. It contains a naturally-occuring strain of mutagenic mechanites known as antigen, which have dampening effects on most other kinds of mutagenic mechanites. Antigen can be extracted and refined into various anti-mutagenic drugs.
+
+When eaten in its raw form, glowvine will slow down the effects of mutagenic mechanites, though it's not powerful to halt them completely. Tribes often use them as a low-tech treatment to lessen the effects of mutagenic diseases and buildup.</description>
+        <graphicData>
+            <texPath>Plants/Items/GlowvineFruit</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
+		<thingCategories Inherit="False">
+			<li>PlantMatter</li>
+			<li>Drugs</li>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserLow</hediffDef>
+					<severity>1.0</severity>
+				</li>
+			</outcomeDoers>
+			<foodType>Seed</foodType>
+			<preferability>NeverForNutrition</preferability>
+		</ingestible>
+		<statBases Inherit="False">
+			<MarketValue>18</MarketValue>
+			<Mass>0.045</Mass>
+			<Flammability>0.2</Flammability>
+			<Nutrition>0.0</Nutrition>
+			<MutaniteConcentration>0.0</MutaniteConcentration>
+		</statBases>
+	</ThingDef>
+	
+	<HediffDef>
+		<defName>StabiliserLow</defName>
+		<description>This pawn has unrefined antigen circulating in their system, slowing the effects of mutagenic mechanites. This lasts for a day.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>mutations slowed</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1.0</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-0.5</MutagenSensitivity>
+					<TransformationSensitivity>-0.5</TransformationSensitivity>
+					<MutationHaltChance>0.25</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

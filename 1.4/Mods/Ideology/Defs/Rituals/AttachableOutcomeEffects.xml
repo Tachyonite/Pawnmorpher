@@ -1,0 +1,20 @@
+<Defs>
+    <RitualAttachableOutcomeEffectDef>
+        <defName>PM_AddVeneratedMutationsToTarget</defName>
+        <workerClass>Pawnmorph.Rituals.AttachableOutcomeEffectWorkers.AddRandomVeneratedMutation</workerClass>
+        <label>give pawns venerated mutations</label>
+        <effectDesc>some pawns will be given mutations from one of your venerated animals</effectDesc>
+        <letterInfoText>{Count} {Member} were affected by the ritual</letterInfoText>
+        <onlyPositiveOutcomes>true</onlyPositiveOutcomes>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->participating in [precept_name]</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
+    </RitualAttachableOutcomeEffectDef>
+
+</Defs>

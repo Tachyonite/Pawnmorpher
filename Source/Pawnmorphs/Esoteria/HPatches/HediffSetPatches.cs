@@ -14,6 +14,23 @@ namespace Pawnmorph.HPatches
     static class HediffSetPatches
     {
 
+        [HarmonyPatch(typeof(HediffSet), nameof(HediffSet.GetHungerRateFactor)), HarmonyPostfix]
+        static void GetHungerRateFactorPatch(ref float __result, HediffDef ignore, List<Hediff> ___hediffs)
+        {
+            for (int i = 0; i < ___hediffs.Count; i++)
+            {
+                if (___hediffs[i].def == ignore)
+                    continue;
+
+                HediffComp_Production comp = ___hediffs[i].TryGetComp<HediffComp_Production>();
+                if (comp != null)
+                {
+                    __result *= comp.CurStage.hungerRateFactor;
+                }
+            }
+        }
+
+
 
         [HarmonyPatch(typeof(HediffSet), nameof(HediffSet.GetPartHealth))]
         static class GetPartHealthTranspiler

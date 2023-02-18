@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using RimWorld;
 using Verse;
 
@@ -12,7 +13,7 @@ namespace Pawnmorph.Thoughts
     ///     thought worker for the beast master aspect
     /// </summary>
     /// <seealso cref="RimWorld.ThoughtWorker" />
-    public class Worker_BeastMaster : ThoughtWorker
+    public class Worker_BeastMaster : ThoughtWorker_BondedAnimalMaster
     {
         [NotNull] private readonly List<string> _animalNames = new List<string>();
 
@@ -23,41 +24,17 @@ namespace Pawnmorph.Thoughts
         /// <returns></returns>
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            _animalNames.Clear();
-            GetAnimals(p, _animalNames);
-            if (_animalNames.Any())
-                return false;
-            if (_animalNames.Count == 1)
-                return ThoughtState.ActiveAtStage(0, _animalNames[0]);
-            return ThoughtState.ActiveAtStage(1, _animalNames.ToCommaList(true));
-        }
-
-        private bool AnimalMasterCheck(Pawn p, Pawn animal)
-        {
-            return animal.playerSettings.RespectedMaster == p;
-        }
-
-        private void GetAnimals([NotNull] Pawn p, [NotNull] List<string> outAnimals)
-        {
-            outAnimals.Clear();
-            foreach (Pawn pawn in PawnsFinder.AllMapsWorldAndTemporary_Alive)
+            if (def.IsValidFor(p))
             {
-                if (pawn.playerSettings?.Master != p) continue;
-                if (!pawn.IsFormerHuman()) continue;
-
-                if (pawn.Faction != p.Faction) continue;
-
-                if (AnimalMasterCheck(p, pawn))
-                    outAnimals.Add(pawn.Name?.ToStringFull ?? pawn.LabelShort);
+                return base.CurrentStateInternal(p);
             }
+            return false;
         }
 
-
-        private int GetAnimalsCount(Pawn p)
+        /// <inheritdoc />
+        protected override bool AnimalMasterCheck(Pawn p, Pawn animal)
         {
-            _animalNames.Clear();
-            GetAnimals(p, _animalNames);
-            return _animalNames.Count;
+            return base.AnimalMasterCheck(p,animal) && animal.IsFormerHuman();
         }
     }
 }

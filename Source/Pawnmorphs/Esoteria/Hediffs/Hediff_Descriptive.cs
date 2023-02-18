@@ -1,8 +1,7 @@
-﻿using JetBrains.Annotations;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using JetBrains.Annotations;
 using Verse;
 
 namespace Pawnmorph.Hediffs

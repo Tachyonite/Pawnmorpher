@@ -10,7 +10,6 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.TfSys
@@ -333,8 +332,7 @@ namespace Pawnmorph.TfSys
 
             currentConvertedAge = Math.Max(currentConvertedAge, FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             long agedTicksDelta = (long)(currentConvertedAge - originalAge) * 3600000L; // 3600000f ticks per year.
-            transformedPawn.original.ageTracker.AgeBiologicalTicks += agedTicksDelta;
-
+            transformedPawn.original.ageTracker.AgeBiologicalTicks += agedTicksDelta; 
             var spawned = (Pawn) GenSpawn.Spawn(transformedPawn.original, animal.PositionHeld, animal.MapHeld);
 
             if (spawned.Faction != animal.Faction && rFaction == null) //if the responsible faction is null (no one knows who did it) have the reverted pawn join that faction   
@@ -366,6 +364,7 @@ namespace Pawnmorph.TfSys
                 Find.World.worldPawns.RemovePawn(animal);
 
             }
+            animal.ideo = null;
             animal.Destroy();
             return true;
         }

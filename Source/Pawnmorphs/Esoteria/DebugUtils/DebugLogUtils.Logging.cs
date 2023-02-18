@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 using Verse;
+
 #pragma warning disable 1591
 
 namespace Pawnmorph.DebugUtils

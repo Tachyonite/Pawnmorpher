@@ -1,12 +1,10 @@
 ﻿// RandomMorphFullTfStage.cs modified by Iron Wolf for Pawnmorph on 01/25/2020 12:02 PM
 // last updated 01/25/2020  12:02 PM
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph.Hediffs

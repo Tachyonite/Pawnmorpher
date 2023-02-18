@@ -1,0 +1,60 @@
+<Defs>
+    <InteractionDef Name="FH_TrainAttemptBase" Abstract="true">
+        <symbol>Things/Mote/SpeechSymbols/TrainAttempt</symbol>
+        <initiatorXpGainSkill>Animals</initiatorXpGainSkill>
+        <initiatorXpGainAmount>70</initiatorXpGainAmount>
+    </InteractionDef>
+
+    <InteractionDef ParentName="FH_TrainAttemptBase">
+        <defName>FormerHumanTrainAttempt</defName>
+        <label>animal talk</label>
+        <logRulesInitiator>
+            <rulesStrings>
+                <li>r_logentry->[INITIATOR_nameDef] [trained] [RECIPIENT_nameDef].</li>
+                <li>r_logentry->[INITIATOR_nameDef] [trained] [RECIPIENT_nameDef] by [method].</li>
+
+                <li>trained(p=2)->[tried] to train</li>
+                <li>trained->[tried] to show a new trick to</li>
+                <li>trained->[tried] to discipline</li>
+                <li>trained->[tried] to instruct</li>
+                <li>trained->[tried] to encourage a new skill in</li>
+                <li>trained->demonstrated a skill to</li>
+                <li>trained->encouraged a new response from</li>
+
+                <li>method->clipping on a leash</li>
+                <li>method->offering a treat</li>
+                <li>method->doing a pet voice</li>
+                <li>method->calling [RECIPIENT_objective] a good boi</li>
+                <li>method->threatening to treat [RECIPIENT_objective] like an animal</li>
+                <li>method->staring into [RECIPIENT_objcetive] eyes</li>
+                <li>method->giving [RECIPIENT_objcetive] a name tag</li>
+
+                <li>tried->tried</li>
+                <li>tried->attempted</li>
+
+            </rulesStrings>
+        </logRulesInitiator>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <!-- will show up for all former humans -->
+
+            </li>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <!-- we can't use the thought fields in the interaction workers 
+              so I'm using this to add thoughts to the recipient  -->
+                <thought>FormerHumanTrainThought</thought>
+            </li>
+            <!-- un comment once rule packs in RulePacks/FormerHumans/FH_Training are filled out -->
+            <!--
+             <li Class="Pawnmorph.DefExtensions.SapientRulePackVariant">
+                <variants>
+                    <sapient>SapientAnimalTameAttempt</sapient>
+                    <mostlySapient>MostlySapientAnimalTameAttempt</mostlySapient>
+                    <conflicted>ConflictedAnimalTameAttempt</conflicted>
+                    <mostlyFeral>MostlyFeralAnimalTameAttempt</mostlyFeral>
+                </variants>
+            </li>
+            -->
+        </modExtensions>
+    </InteractionDef>
+</Defs>

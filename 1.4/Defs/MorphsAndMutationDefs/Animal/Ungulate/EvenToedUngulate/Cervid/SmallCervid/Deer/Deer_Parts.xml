@@ -1,0 +1,109 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerSnout</defName>
+		<label>deer snout</label>
+		<mutationTale>GrewDeerMuzzle</mutationTale>
+		<graphics>
+			<MuzzleMale>Parts/Deer/Deer_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Deer/Deer_Muzzle_Female</MuzzleFemale>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has become deer-like snout with a wide nose that picks up the scents of predators. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerEar</defName>
+		<label>deer ear</label>
+		<graphics>
+			<LeftEar>Parts/Deer/Deer_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<RightEar>Parts/Deer/Deer_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, smooth ear of a deer sits atop [PAWN_nameDef]'s head, listening out for predators.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+		<classInfluence>DeerMorph</classInfluence>
+		<defName>EtherDeerTail</defName>
+		<label>deer tail</label>
+		<graphics>
+			<Tail>Parts/Deer/Deer_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short tail juts out from [PAWN_nameDef]'s spine, flaring up whenever danger is sensed.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidHornPart">
+		<defName>EtherAntlers</defName>
+		<label>antlers</label>
+		<description>Burly antlers belonging to a deer.</description>
+		<classInfluence>DeerMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<label>fawn</label>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>buck</label>
+					<description>A pair of horns are sprouting form the top of  [PAWN_nameDef]'s head. They're covered in soft velvet but are growing bigger rapidly.</description>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_B</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<label>stag</label>
+					<description>From the base of [PAWN_nameDef]'s head a tree like pair of horns has grown into an impressive rack. They're going to make short work of any hunter seeking a trophy!</description>
+					<graphics>
+						<Horns>Parts/Deer/Deer_Antler_C</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

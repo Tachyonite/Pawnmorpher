@@ -1,0 +1,57 @@
+<Defs>
+    <ThoughtDef>
+        <defName>MartenTransformationMemory</defName>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>The world looks so much bigger than me...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Oh, I feel so agile!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Why a marten?! That's like one step away from being a skunk!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>While this does feel amazing, I can't help but wonder what being a full fledged marten would be like...</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>MartenRevertedMemory</defName>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Phew, back to being the same size as everyone else.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aww, now I'm just a normal, clumsy human again...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Yes! I'm human again! Who would want to be a stupid marten anyway?</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Well, this is one step farther away from becoming a marten, but I suppose it's a step toward becoming every other animal, right?</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

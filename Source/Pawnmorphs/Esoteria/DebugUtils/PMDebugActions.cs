@@ -5,13 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.FormerHumans;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
-using Pawnmorph.Jobs;
-using Pawnmorph.Social;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.UserInterface;
@@ -20,9 +22,6 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using HarmonyLib;
-using AlienRace;
-using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph.DebugUtils
 {
@@ -39,8 +38,7 @@ namespace Pawnmorph.DebugUtils
             var mutations = DefDatabase<MutationDef>.AllDefs.Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if (cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef);
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -54,8 +52,7 @@ namespace Pawnmorph.DebugUtils
                                                             .Distinct();
             foreach (MutationDef mutationDef in mutations)
             {
-                if (cd.StoredMutations.Contains(mutationDef)) continue;
-                cd.AddToDatabase(mutationDef);
+                cd.TryAddToDatabase(new MutationGenebankEntry(mutationDef));
             }
         }
 
@@ -166,7 +163,7 @@ namespace Pawnmorph.DebugUtils
                 var thingDef = kindDef.race;
                 if (thingDef.race?.Animal != true) continue;
 
-                if (!database.TryAddToDatabase(kindDef, out string reason))
+                if (!database.TryAddToDatabase(new AnimalGenebankEntry(kindDef), out string reason))
                 {
                     sBuilder.AppendLine($"unable to store {kindDef.label} because {reason}");
                 }
@@ -236,7 +233,7 @@ namespace Pawnmorph.DebugUtils
                 if (!pawnKindDef.race.IsValidAnimal() || db.TaggedAnimals.Contains(pawnKindDef)) continue;
                 var tmpPk = pawnKindDef;
                 yield return new DebugMenuOption(pawnKindDef.label, DebugMenuOptionMode.Action,
-                                                 () => db.AddToDatabase(tmpPk));
+                                                 () => db.TryAddToDatabase(new AnimalGenebankEntry(tmpPk)));
             }
         }
 
@@ -433,6 +430,22 @@ namespace Pawnmorph.DebugUtils
         }
 
 
+        [DebugAction("Pawnmorpher", "Make pawn alien.", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void MakePawnAlien(Pawn pawn)
+        {
+            if (pawn.def is ThingDef_AlienRace == false)
+                return;
+
+            List<DebugMenuOption> options = new List<DebugMenuOption>();
+
+            foreach (var alienRace in DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Except(RaceGenerator.ImplicitRaces))
+            {
+                options.Add(new DebugMenuOption(alienRace.LabelCap, DebugMenuOptionMode.Action, () => RaceShiftUtilities.ChangePawnRace(pawn, alienRace)));
+            }
+
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
 
         private static void MakePawnMorph([CanBeNull] MorphDef morph)
         {
@@ -451,10 +464,6 @@ namespace Pawnmorph.DebugUtils
             var mutList = mutations.ToList();
             if (mutList.Count == 0) 
                 return;
-
-            var i = 0;
-            List<Hediff_AddedMutation> givenList = new List<Hediff_AddedMutation>();
-            List<MutationDef> triedGive = new List<MutationDef>();
 
             foreach (MutationDef mutation in mutations)
                 MutationUtilities.AddMutation(pawn, mutation);
@@ -685,14 +694,20 @@ namespace Pawnmorph.DebugUtils
             Log.Message(initialComp.GetDebugStr());
         }
 
-        private static void AddAspectAtStage(AspectDef def, Pawn p, int i)
+		[DebugAction("Pawnmorpher", "Get pawn stats cache", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void GetPawnCachedStats(Pawn pawn)
+		{
+			Log.Message(StatsUtility.GetPawnDebugString(pawn));
+		}
+
+		private static void AddAspectAtStage(AspectDef def, Pawn p, int i)
         {
             p.GetAspectTracker()?.Add(def, i);
         }
 
         private static void AddBackstoryToPawn(Pawn pawn, BackstoryDef def)
         {
-            pawn.story.adulthood = def.backstory;
+            pawn.story.Adulthood = def;
         }
 
         private static List<DebugMenuOption> GetGiveBackstoriesOptions(Pawn pawn)

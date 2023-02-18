@@ -3,11 +3,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
-using UnityEngine;
-using UnityEngine.Assertions.Must;
 using Verse;
 
 namespace Pawnmorph.Hediffs

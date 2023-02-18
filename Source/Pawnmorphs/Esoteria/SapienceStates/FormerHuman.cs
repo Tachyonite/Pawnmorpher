@@ -33,10 +33,10 @@ namespace Pawnmorph.SapienceStates
         /// </summary>
         public override void Tick()
         {
-            if (_countdownStarted && Pawn.IsHashIntervalTick(60)  && RandUtilities.MtbDaysEventOccured(PERMANENTLY_FERAL_MTB))
+            if (_countdownStarted && Pawn.IsHashIntervalTick(60) && RandUtilities.MtbDaysEventOccured(PERMANENTLY_FERAL_MTB))
             {
-                _countdownStarted = false; 
-                MakePermanentlyFeral();
+                _countdownStarted = false;
+                Tracker.MakePermanentlyFeral();
             }
         }
 
@@ -84,8 +84,6 @@ namespace Pawnmorph.SapienceStates
                                                "LetterHediffFromPermanentTF".Translate(Pawn.LabelShort).CapitalizeFirst(),
                                                LetterDefOf.NegativeEvent, Pawn);
 
-            Pawn.needs?.AddOrRemoveNeedsAsAppropriate(); //make sure any comps get added/removed as appropriate 
-            PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
         }
 
         /// <summary>
@@ -199,7 +197,7 @@ namespace Pawnmorph.SapienceStates
             Pawn.ownership?.UnclaimAll();
             Pawn.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
             Pawn.workSettings?.DisableAll();
-            Pawn.ownership = null;
+            //Pawn.ownership = null;
             Pawn.drafter = null;
             Pawn.apparel = null;
             Pawn.foodRestriction = null;
@@ -245,7 +243,8 @@ namespace Pawnmorph.SapienceStates
             Pawn.ownership = Pawn.ownership ?? new Pawn_Ownership(Pawn);
             Pawn.equipment = Pawn.equipment ?? new Pawn_EquipmentTracker(Pawn);
             Pawn.story = Pawn.story ?? new Pawn_StoryTracker(Pawn); //need to add story component to not break hospitality 
-            Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn); //need this to not break thoughts and stuff 
+			Pawn.genes = Pawn.genes ?? new Pawn_GeneTracker(Pawn);
+			Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn); //need this to not break thoughts and stuff 
             Pawn.skills = Pawn.skills ?? new Pawn_SkillTracker(Pawn); //need this for thoughts 
             Pawn.royalty = Pawn.royalty ?? new Pawn_RoyaltyTracker(Pawn);// former humans can be royalty  
             Pawn.abilities = Pawn.abilities ?? new Pawn_AbilityTracker(Pawn);
@@ -256,23 +255,22 @@ namespace Pawnmorph.SapienceStates
             Pawn.guilt = Pawn.guilt ?? new Pawn_GuiltTracker(Pawn);
             Pawn.foodRestriction = Pawn.foodRestriction ?? new Pawn_FoodRestrictionTracker(Pawn);
             Pawn.timetable = Pawn.timetable ?? new Pawn_TimetableTracker(Pawn);
-            Pawn.ideo = Pawn.ideo ?? new Pawn_IdeoTracker(Pawn);
             Pawn.style = Pawn.style ?? new Pawn_StyleTracker(Pawn);
             Pawn.styleObserver = Pawn.styleObserver ?? new Pawn_StyleObserverTracker(Pawn); 
             Comp_SapientAnimal nComp = Pawn.GetComp<Comp_SapientAnimal>();
-            bool addedComp = false;
+
+            if (Pawn.ideo == null && ModLister.IdeologyInstalled)
+            {
+                Pawn.ideo = new Pawn_IdeoTracker(Pawn);
+                Pawn.ideo.SetIdeo(Faction.OfPlayer.ideos.GetRandomIdeoForNewPawn());
+            }
+
 
             if (nComp == null)
             {
-                addedComp = true;
                 nComp = new Comp_SapientAnimal { parent = Pawn };
                 Pawn.AllComps.Add(nComp);
 
-            }
-
-            //now initialize the comp 
-            if (addedComp)
-            {
                 nComp.Initialize(new CompProperties());//just pass in empty props 
             }
 

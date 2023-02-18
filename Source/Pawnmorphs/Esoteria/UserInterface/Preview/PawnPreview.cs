@@ -1,14 +1,7 @@
-﻿using Pawnmorph.GraphicSys;
+﻿using System;
 using Pawnmorph.Utilities;
 using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using Verse;
-using Verse.AI;
 
 namespace Pawnmorph.UserInterface.Preview
 {
@@ -47,6 +40,7 @@ namespace Pawnmorph.UserInterface.Preview
             else
                 obj.gender = Gender.Male;
 
+            obj.health = new Pawn_HealthTracker(obj);
             obj.ageTracker = new Pawn_AgeTracker(obj);
             obj.ageTracker.AgeBiologicalTicks = (long)thing.RaceProps.lifeExpectancy * TimeMetrics.TICKS_PER_YEAR / 2;
             _scale = 1f / Math.Max(1, obj.ageTracker.CurKindLifeStage.bodyGraphicData.drawSize.x / 2f);

@@ -1,6 +1,5 @@
-﻿using Pawnmorph.DebugUtils;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Pawnmorph.DebugUtils;
 using UnityEngine;
 using Verse;
 
@@ -67,8 +66,13 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
                 ShowOptionalPatches();
 
+            if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
+                ShowAnimalAssociations();
 
-            listingStandard.EndSection(checkBoxSection);
+			if (checkBoxSection.ButtonText("PMBlacklistFormerHumansButton".Translate()))
+				ShowAnimalBlacklist();
+
+			listingStandard.EndSection(checkBoxSection);
 
 
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
@@ -134,12 +138,32 @@ namespace Pawnmorph
             Find.WindowStack.Add(raceReplacements);
         }
 
-        /// <summary>
-        /// Override SettingsCategory to show up in the list of settings. <br />
-        /// Using .Translate() is optional, but does allow for localisation.
-        /// </summary>
-        /// <returns> The (translated) mod name. </returns>
-        public override string SettingsCategory()
+
+        private void ShowAnimalAssociations()
+        {
+            if (settings.animalAssociations == null)
+                settings.animalAssociations = new Dictionary<string, string>();
+
+            UserInterface.Settings.Dialog_AnimalAssociations animalAssociations = new UserInterface.Settings.Dialog_AnimalAssociations(settings.animalAssociations);
+            Find.WindowStack.Add(animalAssociations);
+        }
+
+
+		private void ShowAnimalBlacklist()
+		{
+			if (settings.animalBlacklist == null)
+				settings.animalBlacklist = new List<string>();
+
+			UserInterface.Settings.Dialog_BlacklistAnimal animalAssociations = new UserInterface.Settings.Dialog_BlacklistAnimal(settings.animalBlacklist);
+			Find.WindowStack.Add(animalAssociations);
+		}
+
+		/// <summary>
+		/// Override SettingsCategory to show up in the list of settings. <br />
+		/// Using .Translate() is optional, but does allow for localisation.
+		/// </summary>
+		/// <returns> The (translated) mod name. </returns>
+		public override string SettingsCategory()
         {
             return "PawnmorpherModName".Translate();
         }

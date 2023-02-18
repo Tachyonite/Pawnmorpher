@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
@@ -23,6 +23,9 @@ namespace Pawnmorph
         /// <summary>The thought to add when the resource is produced</summary>
         public ThoughtDef thought = null;
 
+        /// <summary>
+        /// The hediff givers on this stage, if any
+        /// </summary>
         public List<HediffGiver> hediffGivers;
 
         /// <summary>
@@ -35,6 +38,10 @@ namespace Pawnmorph
         /// </summary>
         public float? minSeverity;
 
+        /// <summary>
+        /// An additional factor for hunger rate
+        /// </summary>
+        public float hungerRateFactor = 1f;
 
         /// <summary>
         /// all stat offsets that will be active during this stage 

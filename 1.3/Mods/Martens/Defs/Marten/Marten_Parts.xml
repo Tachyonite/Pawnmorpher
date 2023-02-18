@@ -1,0 +1,168 @@
+<Defs>
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraJawPart">
+        <classInfluence>MartenMorph</classInfluence>
+        <defName>EtherMartenJaw</defName>
+        <label>musteline muzzle</label>
+        <parts>
+            <li>Jaw</li>
+        </parts>
+        <graphics>
+			<Muzzle>Parts/Marten/Marten_Muzzle</Muzzle>
+		</graphics>
+        <stagePatches>
+            <li function="modify">
+                <stageKey>adapting</stageKey>
+                <values>
+                    <description>[PAWN_nameDef]'s jaw has reshaped into one resembling a mustlid's, complete with razor sharp teeth. The strange shape makes speaking very difficult.</description>
+                </values>
+            </li>
+            <li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has reshaped into one resembling a mustlid's, complete with razor sharp teeth. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has reshaped into one resembling a mustlid's, complete with razor sharp teeth. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+        </stagePatches>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraEarPart">
+        <classInfluence>MartenMorph</classInfluence>
+        <defName>EtherMartenEar</defName>
+        <label>musteline</label>
+        <parts>
+            <li>Ear</li>
+        </parts>
+        <graphics>
+			<LeftEar>Parts/Marten/Marten_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Marten/Marten_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Marten/Marten_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Marten/Marten_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+        <stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+                    <description>Trangular, furry ears sit atop [PAWN_nameDef]'s head, like a marten's.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef ParentName="CarnivoraTailPart">
+        <classInfluence>MartenMorph</classInfluence>
+        <defName>EtherMartenTail</defName>
+        <label>marten tail</label>
+        <parts>
+            <li>Tail</li>
+            <li>MorphTail</li>
+        </parts>
+        <graphics>
+			<Tail>Parts/Raccoon/Raccoon_Tail</Tail>
+		</graphics>
+        <stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+                    <description>A long fluffy marten tail. It's great for helping [PAWN_nameDef] keep [PAWN_objective] balance.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.10</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <!--<Pawnmorph.Hediffs.MutationDef ParentName="MartenPart">
+        <classInfluence>MartenMorph</classInfluence>
+        <defName>EtherMartenHand</defName>
+        <label>musteline</label>
+        <description>Cute but inflexible paws have replaced [PAWN_nameDef]'s hands. They lack a thumb, which has receded into a useless dewclaw.</description>
+        <parts>
+            <li>Hand</li>
+        </parts>
+        <mutationTale>HandsBecomePaws</mutationTale>
+        <mutationMemory>CanidPawHandMemory</mutationMemory>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>-1</minSeverity>
+                <label>fuzed paw</label>
+                <description>The mechanites working on this hand have gone haywire, leaving the mustalid paw inflexable and near-useless.</description>
+                <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0</minSeverity>
+                <label>clawed</label>
+                <description>The nails of [PAWN_nameDef]'s hand have darkened and grown into sharp, menacing claws.</description>
+                <stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.2</minSeverity>
+                <label>padded</label>
+                <description>The palm and the tips of each of [PAWN_nameDef]'s fingers have grown into fleshy pads, a perfect compliment to their sharp, animal-like claws. While they do not interfere much with [PAWN_nameDef]'s work, they do look out of place on the otherwise human hand.</description>
+                <stopChance>0.3</stopChance>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.4</minSeverity>
+                <description>The pads, claws and shortend digits of [PAWN_nameDef]'s hand makes it look more like a paw than a hand, but isn't completely useless.</description>
+                <label>hand-paw</label>
+                <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.8</minSeverity>
+                <label>unfamiliar paw</label>
+                <description>The changes to [PAWN_nameDef]'s hand have concluded, though calling it a hand anymore is generous. Indead, it is far more similar to a marten's paws due to both lacking a thumb, which has receded into a useless dewclaw, as well as their short, clawed and relatively inflexible digits. It will take some time for [PAWN_nameDef] to get used to the changes.</description>
+                <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>0.99</minSeverity>
+                <label>paw</label>
+                <description>[PAWN_nameDef]'s hand has been replace with the paw of a marten. [PAWN_subjective] can still use the appendage with suprising skill, despite the loss of [PAWN_possessive] oposable thumb.</description>
+                <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+            </li>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+                <minSeverity>2.5</minSeverity>
+                <label>dextrous paw</label>
+                <description>Despite the normal inflexibility of the paw's digits, [PAWN_nameDef] has mastered the use of [PAWN_possessive] new paw to such a degree that [PAWN_subjective] can perform feats of dexterity [PAWN_subjective] could not have imagined before the changes.</description>
+                <partEfficiencyOffset>0.1</partEfficiencyOffset>
+            </li>
+        </stages>
+        <comps>
+            <li Class="HediffCompProperties_VerbGiver">
+                <tools>
+                    <li>
+                        <label>claws</label>
+                        <labelUsedInLogging>False</labelUsedInLogging>
+                        <capacities>
+                            <li>Scratch</li>
+                        </capacities>
+                        <power>4.5</power>
+                        <cooldownTime>0.8</cooldownTime>
+                        <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+                    </li>
+                </tools>
+            </li>
+            <li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+                <severityPerDay>0.15</severityPerDay>
+            </li>
+        </comps>
+        <countToAffect>2</countToAffect>
+        <categories>
+            <li>Extreme</li>
+        </categories>
+    </Pawnmorph.Hediffs.MutationDef>-->
+</Defs>

@@ -1,0 +1,25 @@
+<Defs>
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_SheepChef</defName>
+        <title>former celebrity chef</title>
+        <titleShort>celebrity chef</titleShort>
+        <baseDesc>[PAWN_nameDef] used to own his own 5-star restaurant until he a fateful event in which he yelled at an apprentice chef over lamb sauce.
+		In response, the apprentice slipped some ovine mutagen into the dish he was served, leading to the sudden transformation of chef into ram. [PAWN_nameDef] was then shoved into a cryptosleep pod and set adrift into the galaxy.
+		Eventually, he landed on a distant rimworld, and sought to begin his new life.</baseDesc>
+        <workAllowsList>
+            <li>Cooking</li>
+            <li>ManualSkilled</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_ChaothrumboBackstory</defName>
+        <title>chaothrumbo</title>
+        <titleShort>chaothrumbo</titleShort>
+        <baseDesc>[PAWN_nameDef] was transformed into a titanic chaomorph known as a chaothrumbo.</baseDesc>
+        <workAllowsList>
+            <li>PlantWork</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+</Defs>

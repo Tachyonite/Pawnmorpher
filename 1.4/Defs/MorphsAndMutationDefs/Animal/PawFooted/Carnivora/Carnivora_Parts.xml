@@ -1,0 +1,100 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>8</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>4</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraEarPart" ParentName="PawFootedEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CarnivoraTailPart" ParentName="PawFootedTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

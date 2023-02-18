@@ -5,11 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
-using Pawnmorph.Letters;
+using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -19,7 +17,6 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using Pawnmorph.FormerHumans;
 
 namespace Pawnmorph
 {
@@ -36,13 +33,14 @@ namespace Pawnmorph
 
         /// <summary>
         /// The minimum biological age for a former human's human form
+        /// TODO - Support children if biotech is installed
         /// </summary>
         public const float MIN_FORMER_HUMAN_AGE = 17f;
 
 
         private const float
             FORMER_HUMAN_FILTH_ADJ =
-                0.33f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
+                1f; //at 0  former humans make the same filth as regular animals at 1 they make the same filth as humans 
 
         private const float ANIMALISTIC_FILTH_AMOUNT = 2; //animalistic humanoids make the same amount of filth as dogs 
         private const float MAX_SAPIENCE_REDUCE_AMOUNT = 0.2f;
@@ -887,9 +885,8 @@ namespace Pawnmorph
             if (workSettings == null) throw new ArgumentNullException(nameof(workSettings));
             var formerHumanExt = sapientAnimal.def.GetModExtension<FormerHumanSettings>();
             BackstoryDef backstoryDef = formerHumanExt?.backstory ?? BackstoryDefOf.FormerHumanNormal;
-            Backstory bkStory = backstoryDef.backstory;
             foreach (WorkTypeDef workTypeDef in DefDatabase<WorkTypeDef>.AllDefsListForReading)
-                if (bkStory.DisabledWorkTypes.Contains(workTypeDef))
+                if (backstoryDef.DisabledWorkTypes.Contains(workTypeDef))
                     workSettings.SetPriority(workTypeDef, 0);
                 else
                     workSettings.SetPriority(workTypeDef, 3);
@@ -1238,11 +1235,11 @@ namespace Pawnmorph
                                                     == true);
             PawnTransferUtilities.TransferThoughts(original, transformedPawn);
             PawnTransferUtilities.TransferInteractions(original, transformedPawn);
-
             PawnTransferUtilities.TransferQuestRelations(original, transformedPawn);
-
             if (ModLister.RoyaltyInstalled) PawnTransferUtilities.TransferFavor(original, transformedPawn);
             if (ModLister.IdeologyInstalled) PawnTransferUtilities.TransferIdeo(original, transformedPawn);
+            PawnTransferUtilities.TransferAbilities(original, transformedPawn,
+                                                 a => a.def.GetModExtension<TFTransferable>()?.CanTransfer(transformedPawn) == true);
         }
 
         /// <summary>
@@ -1300,7 +1297,7 @@ namespace Pawnmorph
             BackstoryDef backstoryDef = backstoryOverride;
             if (backstoryDef != null)
             {
-                pawn.story.adulthood = backstoryDef.backstory;
+                pawn.story.Adulthood = backstoryDef;
                 return;
             }
 
@@ -1308,7 +1305,7 @@ namespace Pawnmorph
 
             backstoryDef = ext?.backstory ?? BackstoryDefOf.FormerHumanNormal;
 
-            pawn.story.adulthood = backstoryDef.backstory;
+            pawn.story.Adulthood = backstoryDef;
         }
 
         /// <summary>

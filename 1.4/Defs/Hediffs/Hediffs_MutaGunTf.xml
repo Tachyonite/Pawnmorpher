@@ -1,0 +1,39 @@
+<Defs>
+    <HediffDef ParentName="MorphParent">
+        <defName>SyringeRifleHediff</defName>
+        <label>ethermorph</label>
+        <hediffClass>Pawnmorph.Hediffs.SyringeRifleTf</hediffClass>
+        <description>This pawn has been shot with a powerful, fast-acting dose of mutagenic mechanites and is highly likely to change into something very quickly, which may leave them paralysed for a time.</description>
+        <initialSeverity>0</initialSeverity>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.SyringeTfStage">
+                <painOffset>1</painOffset>
+                <minSeverity>0</minSeverity>
+                <capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+                </capMods>
+                <meanMutationsPerDay>50</meanMutationsPerDay>
+            </li>
+            <li>
+                <minSeverity>0.9</minSeverity>
+            </li>
+        </stages>
+        <comps Inherit="False"> 
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>15</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProps_TfStageConfigChecker"/> <!-- This comp is just here to check for errors in transformation stages. -->
+		</comps>
+    </HediffDef>
+</Defs>

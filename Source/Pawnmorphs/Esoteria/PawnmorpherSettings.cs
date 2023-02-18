@@ -1,5 +1,6 @@
-﻿using Pawnmorph.DebugUtils;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pawnmorph.DebugUtils;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph
@@ -83,12 +84,39 @@ namespace Pawnmorph
         public Dictionary<string, string> raceReplacements;
 
         /// <summary>
-        /// Dictionary of optional patches explicitly enabled or disabled.
+        /// Dictionary of morphdef and selected replacement racedef
         /// </summary>
-        public Dictionary<string, bool> optionalPatches;
+        public Dictionary<string, string> animalAssociations;
 
-        /// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
-        public override void ExposeData()
+		/// <summary>
+		/// List of blacklisted animal types.
+		/// </summary>
+		public List<string> animalBlacklist;
+
+		/// <summary>
+		/// Dictionary of optional patches explicitly enabled or disabled.
+		/// </summary>
+		public Dictionary<string, bool> optionalPatches;
+
+
+        /// <summary>
+        /// The saved genebank window size
+        /// </summary>
+        public Vector2? GenebankWindowSize;
+
+        /// <summary>
+        /// The saved genebank window location
+        /// </summary>
+        public Vector2? GenebankWindowLocation;
+
+
+		/// <summary>
+		/// The saved genebank font size
+		/// </summary>
+		public Verse.GameFont? GenebankWindowFont;
+
+		/// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
+		public override void ExposeData()
         {
             Scribe_Values.Look(ref enableFallout, nameof(enableFallout), DEFAULT_FALLOUT_SETTING);
             Scribe_Values.Look(ref enableMutagenLeak, "enableMutagenLeak", true);
@@ -106,11 +134,19 @@ namespace Pawnmorph
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
-            Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
+
+
+			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
+			Scribe_Values.Look(ref GenebankWindowLocation, nameof(GenebankWindowLocation));
+			Scribe_Values.Look(ref GenebankWindowFont, nameof(GenebankWindowFont));
+
+			Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
+            Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
+			Scribe_Collections.Look(ref animalBlacklist, nameof(animalBlacklist));
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (formerChance > 1) formerChance /= 100f; 
             }

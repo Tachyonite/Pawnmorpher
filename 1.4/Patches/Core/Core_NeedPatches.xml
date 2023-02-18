@@ -1,0 +1,10 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/NeedDef[defName = "Mood" or defName = "Comfort" or defName = "Beauty"]</xpath>
+        <value>
+            <li Class="Pawnmorph.DefExtensions.SapientAnimalNeed">
+                <mustBeColonist>false</mustBeColonist>
+            </li>
+        </value>
+    </Operation>
+</Patch>

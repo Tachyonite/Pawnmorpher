@@ -1,0 +1,141 @@
+<Defs>
+    <Pawnmorph.ListedBackstoryDef Name="FormerHumanBase" Abstract="true" >
+        <slot>Adulthood</slot>
+        <spawnCategories>
+            <li>FormerHumans</li>
+        </spawnCategories>
+        <workAllowsList>
+            <li>Violent</li>
+            <li>ManualDumb</li>
+            <li>Hauling</li>
+            <li>Firefighting</li>
+            <li>Cleaning</li>
+            <li>Commoner</li>
+            <li>Social</li>
+            <li>Animals</li>
+            <li>Intellectual</li>
+        </workAllowsList>
+        <bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef Name="PM_FormerHumanBaseNoHauling" Abstract="true">
+        <slot>Adulthood</slot>
+        <spawnCategories>
+            <li>FormerHumans</li>
+        </spawnCategories>
+        <workAllowsList>
+            <li>Violent</li>
+            <li>ManualDumb</li>
+            <li>Firefighting</li>
+            <li>Cleaning</li>
+            <li>Commoner</li>
+            <li>Social</li>
+            <li>Animals</li>
+            <li>Intellectual</li>
+        </workAllowsList>
+        <bodyTypeFemale>Female</bodyTypeFemale>
+        <bodyTypeMale>Male</bodyTypeMale>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanNormal</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+    </Pawnmorph.ListedBackstoryDef>
+    
+    <!-- for small animals -->
+    <Pawnmorph.ListedBackstoryDef ParentName="PM_FormerHumanBaseNoHauling">
+        <defName>FormerHumanNormalNoHauling</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanChaomorph</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into a dangerous chimera, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long?  In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanChaoboar</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into a dangerous chimera, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long?  In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>Crafting</li>
+            <li>Caring</li>
+            <li>Artistic</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanCrafter</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>Crafting</li>
+            <li>Caring</li>
+            <li>Artistic</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanConstructor</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>Crafting</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <!-- from https://github.com/Keno-GH/Pawnmorpher-Useful-Animals -->
+
+    <!--Animals strong enough to fall a tree-->
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_FormerHumanPlantWorker</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, fell trees thanks to their strength, tend to plants, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>PlantWork</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <!--Animals specialized on mining. Basically Insects. Because of game limitations, this also allows them to construct-->
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_FormerHumanMiner</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, mine thanks to their new body parts, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>Mining</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+    <!--Animals strong and with high dexterity that can do most tasks-->
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>PM_FormerHumanSkilled</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and, thanks to [PAWN_pronoun] innate strength and dextrerous paws, is able to perform most tasks. [PAWN_nameDef] will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>ManualSkilled</li>
+            <li>Crafting</li>
+            <li>Caring</li>
+            <li>Artistic</li>
+            <li>PlantWork</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+
+</Defs>

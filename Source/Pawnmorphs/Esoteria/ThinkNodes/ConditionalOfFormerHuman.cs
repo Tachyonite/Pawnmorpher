@@ -4,7 +4,6 @@
 using Pawnmorph.Utilities;
 using Verse;
 using Verse.AI;
-using Verse.Noise;
 
 namespace Pawnmorph.ThinkNodes
 {

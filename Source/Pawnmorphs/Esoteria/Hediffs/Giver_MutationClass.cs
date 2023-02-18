@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
 
@@ -18,7 +17,7 @@ namespace Pawnmorph.Hediffs
         /// The animal classification to pull mutations from 
         /// </summary>
         [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public AnimalClassDef animalClass;
+        public AnimalClassBase animalClass;
 
 
 

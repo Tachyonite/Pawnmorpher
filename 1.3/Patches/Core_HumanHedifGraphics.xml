@@ -95,12 +95,23 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
-				<inFrontOfBody>true</inFrontOfBody>
+				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<layerOffset>-0.328</layerOffset>
+					</south>
+					<north>
+						<layerOffset>-0.01</layerOffset>
+					</north>
+					<east>
+						<layerOffset>-0.328</layerOffset>
+					</east>
+				</offsets>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -342,7 +353,6 @@
 				<anchorID>BodyExtendingTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<offsets>
-					<south></south>
 					<north>
 						<bodyTypes>
 							<Male>(0,-0.35)</Male>
@@ -353,6 +363,7 @@
 						</bodyTypes>
 					</north>
 					<east>
+						<layerOffset>-0.29</layerOffset>
 						<bodyTypes>
 							<Male>(0.22,-0.24)</Male>
 							<Female>(0.18,-0.31)</Female>
@@ -383,7 +394,7 @@
 				<anchorID>Skullspike</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -418,7 +429,7 @@
 				<anchorID>CobraHood</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -436,7 +447,7 @@
 				<anchorID>CobraHoodBackground</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>

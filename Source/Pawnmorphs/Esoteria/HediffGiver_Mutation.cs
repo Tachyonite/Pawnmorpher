@@ -3,7 +3,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -76,7 +75,7 @@ namespace Pawnmorph
                 var comp = singleComp;
 
                 // If we haven't already tried to apply this giver's hediff and the pawn either passes a percentile roll or are of the right gender, try and apply the hediff.
-                if (!_triggered.TryGetValue(cause) && (gender == pawn.gender || Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
+                if (!_triggered.TryGetValue(cause) && (gender == pawn.gender && Rand.RangeInclusive(0, 100) <= chance) && TryApply(pawn, mutagen, null, cause))
                 {
                     _triggered[cause] = true;
                     DoMutationAddedEffects(pawn);
@@ -127,7 +126,7 @@ namespace Pawnmorph
             bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
             if (addLogEntry && added && partsToAffect != null)
             {
-                AddMutationLogFor(pawn);
+                AddMutationLogFor(pawn, mutagenDef);
             }
 
             if (added)
@@ -141,9 +140,9 @@ namespace Pawnmorph
             return added;
         }
 
-        private void AddMutationLogFor(Pawn pawn)
+        private void AddMutationLogFor(Pawn pawn, MutagenDef mutagenDef)
         {
-            var log = new MutationLogEntry(pawn, hediff, null, partsToAffect);
+            var log = new MutationLogEntry(pawn, hediff, mutagenDef, partsToAffect);
             Find.PlayLog.Add(log);
         }
 
@@ -177,7 +176,7 @@ namespace Pawnmorph
             var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
             pawn.health.AddHediff(hediffInst, recordToAdd);
             DoMutationAddedEffects(pawn);
-            AddMutationLogFor(pawn);
+            AddMutationLogFor(pawn, mutagen);
 
             return true; 
         }

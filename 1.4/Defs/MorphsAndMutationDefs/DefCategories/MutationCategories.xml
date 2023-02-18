@@ -1,0 +1,65 @@
+<Defs>
+	<Pawnmorph.MutationCategoryDef>
+		<!-- meant for mutations like fur, scales, ect that do not alter the body shape greatly -->
+		<defName>Minor</defName>
+		<label>minor</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Major</defName>
+		<label>major</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Extreme</defName>
+		<label>extreme</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Combat</defName>
+		<label>combat</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Crafter</defName>
+		<label>crafter</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Social</defName>
+		<label>social</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Productive</defName>
+		<label>productive</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Exotic</defName>
+		<restrictionLevel>CategoryOnly</restrictionLevel>
+		<label>exotic</label>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<!-- category for all 'combo parts' -->
+		<defName>Combo</defName>
+		<!-- make sure pawns don't spawn with it -->
+		<restrictionLevel>Always</restrictionLevel>
+	</Pawnmorph.MutationCategoryDef>
+
+	<Pawnmorph.MutationCategoryDef>
+		<defName>Powerful</defName>
+		<label>powerful</label>
+		<restrictionLevel>CategoryOnly</restrictionLevel>
+		<genomeProvider>true</genomeProvider>
+	</Pawnmorph.MutationCategoryDef>
+</Defs>

@@ -1,0 +1,35 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="AnimalisticNakedThougthNudist">
+		<defName>AnimalisticHappyNude</defName>
+		<validWhileDespawned>true</validWhileDespawned>
+
+		<stages>
+			<li>
+				<label>happily nude</label>
+				<description>I'm nude and loving it! I feel so free and unconstrained and in touch with my surroundings!</description>
+				<baseMoodEffect>20</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Nothin' between me and the world, it's just right.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>There's no other option right?</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Why would they want to put stuff over their fur...</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>happily nude</label>
+				<description>Clothes?</description>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

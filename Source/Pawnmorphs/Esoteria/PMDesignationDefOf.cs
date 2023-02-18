@@ -4,6 +4,7 @@
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
+
 // ReSharper disable NotNullMemberIsNotInitialized
 
 #pragma warning disable 1591

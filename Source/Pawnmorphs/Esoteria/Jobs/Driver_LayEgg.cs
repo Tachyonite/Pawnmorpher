@@ -1,7 +1,4 @@
-﻿using Verse;
-using System.Linq;
-
-namespace Pawnmorph.Jobs
+﻿namespace Pawnmorph.Jobs
 {
     /// <summary> Job driver to make humanoid pawns lay eggs using HediffComp_Production. </summary>
     public class Driver_LayEgg : Driver_ProduceThing

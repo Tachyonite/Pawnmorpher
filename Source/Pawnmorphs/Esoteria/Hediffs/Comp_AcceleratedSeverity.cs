@@ -1,7 +1,6 @@
 ﻿// Comp_AcceleratedSeverity.cs modified by Iron Wolf for Pawnmorph on 11/04/2019 6:14 PM
 // last updated 11/04/2019  6:14 PM
 
-using System;
 using Pawnmorph.Utilities;
 using UnityEngine;
 using Verse;

@@ -2,11 +2,9 @@
 // last updated 09/13/2019  8:14 AM
 
 #pragma warning disable 1591
-using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -21,6 +19,12 @@ namespace Pawnmorph.GraphicSys
     public class GraphicsUpdaterComp : ThingComp, IMutationEventReceiver
     {
         private bool _subOnce;
+        private Color _effectiveHairColor;
+
+        /// <summary>
+        /// Assigned by <see cref="HPatches.GeneTrackerPatches.EnsureCorrectSkinColorOverridePostfix(Pawn)"/> right before this is triggered.
+        /// </summary>
+        public Color? GeneOverrideColor { get; set; }
 
         public bool IsDirty { get; set; }
 
@@ -30,6 +34,8 @@ namespace Pawnmorph.GraphicSys
         private AlienPartGenerator.AlienComp GComp => Pawn.GetComp<AlienPartGenerator.AlienComp>();
 
         private InitialGraphicsComp InitialGraphics => Pawn.GetComp<InitialGraphicsComp>();
+
+
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
@@ -72,7 +78,7 @@ namespace Pawnmorph.GraphicSys
             }
         }
 
-        private void RefreshGraphics()
+        public void RefreshGraphics()
         {
             var pawn = (Pawn)parent;
             var mTracker = pawn.GetMutationTracker();
@@ -87,9 +93,11 @@ namespace Pawnmorph.GraphicSys
             IsDirty = false; 
         }
 
-        bool UpdateSkinColor([NotNull] MutationTracker tracker, bool force = false)
+
+        void UpdateSkinColor([NotNull] MutationTracker tracker, bool force = false)
         {
-            if (GComp == null || InitialGraphics == null) return false;
+            if (GComp == null || InitialGraphics == null) 
+                return;
 
             var colorationAspect = tracker.Pawn.GetAspectTracker()?.GetAspect<Aspects.ColorationAspect>();
             if (colorationAspect != null && colorationAspect.IsFullOverride)
@@ -97,42 +105,41 @@ namespace Pawnmorph.GraphicSys
                 var color = colorationAspect.ColorSet.skinColor;
                 if (color.HasValue)
                 {
-                    GComp.SetSkinColor(color.Value); 
-                    return true;
+                    GComp.SetSkinColor(color.Value); // Assign to HAR addons. (Might not be needed once HAR fixes updating colors)
+                    Pawn.story.skinColorOverride = color.Value; // Assign to pawn.
+                    return;
                 }
             }
 
             var highestInfluence = Pawn.GetHighestInfluence();
             var curMorph = Pawn.def.GetMorphOfRace();
-            if (highestInfluence == null)
-            {
-                if (GComp.GetSkinColor()== InitialGraphics.SkinColor && !force)
-                {
-                    return false; // If there is not influence or if the highest influence is that of their current race do nothing.
-                }
-                else 
-                {
-                    GComp.ColorChannels["skin"].first = InitialGraphics.SkinColor;
-                    return true;
-                }
+            if (highestInfluence != null)
+			{
+                // This may cause issues if a pawn's color is changed by outside influences like other mods and end up fighting over it.
+
+
+
+				// Calculate skin color based on mutation influences.
+				float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
+				var baseColor = GeneOverrideColor ?? curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+				var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
+
+				Color effectiveSkinColor = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
+				Pawn.story.skinColorOverride = effectiveSkinColor;
+				GComp.SetSkinColor(effectiveSkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
             }
+            else
+			{
+				// If no mutation influence then reset skin color to either gene override or natural skin color (assign null);
+				Pawn.story.skinColorOverride = GeneOverrideColor;
 
+				// If we never touch SkinColorBase, then there is actually no reason to reassign with initial.
+				Pawn.story.SkinColorBase = InitialGraphics.SkinColor;
 
-            float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
-            var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
-
-            if (!force && baseColor == morphColor)
-            {
-                return false; // If they're the same color don't do anything.
-            }
-
-            var col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
-
-            GComp.ColorChannels["skin"].first = col;
-
-            return true;
-        }
+				// HAR (at the time of this comment) postfixes Pawn.Story.SkinColor.
+				GComp.SetSkinColor(GeneOverrideColor ?? InitialGraphics.SkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
+			}
+		}
 
         bool UpdateHairColor([NotNull] MutationTracker tracker, bool force = false)
         {
@@ -144,7 +151,7 @@ namespace Pawnmorph.GraphicSys
                 var color = colorationAspect.ColorSet.hairColor;
                 if (color.HasValue)
                 {
-                    Pawn.story.hairColor = color.Value;
+                    Pawn.story.HairColor = color.Value;
                     return true;
                 }
             }
@@ -154,42 +161,47 @@ namespace Pawnmorph.GraphicSys
 
             if (highestInfluence == null)
             {
-                if (Pawn.story.hairColor == InitialGraphics.HairColor && !force)
+                if (Pawn.story.HairColor == InitialGraphics.HairColor && !force)
                 {
                     return false; // If there is not influence or if the highest influence is that of their current race do nothing.
                 }
                 else
                 {
-                    Pawn.story.hairColor = InitialGraphics.HairColor;
+                    Pawn.story.HairColor = InitialGraphics.HairColor;
                     return true;
                 }
             }
                 
-            float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
-            var baseColor = curMorph?.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
-            var morphColor = highestInfluence.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
 
-            if (!force && baseColor == morphColor)
+            Color currentHairColor = Pawn.story.HairColor;
+            // If forced, hair color is set here or hair color is natural then update. (Avoid updating if overriden by genes)
+            if (force || currentHairColor == _effectiveHairColor || currentHairColor == InitialGraphics.HairColor)
             {
-                return false; //if they're the same color don't  do anything 
-            }
+                float lerpVal = tracker.GetDirectNormalizedInfluence(highestInfluence);
+                var baseColor = curMorph?.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
+                var morphColor = highestInfluence.GetHairColorOverride(tracker.Pawn) ?? InitialGraphics.HairColor;
 
-            // If base is transparent don't do anything
-            if (baseColor.a == 0)
-                return false;
-            
-            Color col;
-            if (morphColor.a == 0)
-            {
-                // If target is transparent, keep using base.
-                col = baseColor;
-            }
-            else
-                col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
+				// If base is transparent don't do anything
+				if (baseColor.a == 0)
+					return false;
 
-            Pawn.story.hairColor = GComp.ColorChannels["hair"].first = col;
+				Color col;
+				if (morphColor.a == 0)
+				{
+					// If target is transparent, keep using base.
+					col = baseColor;
+				}
+				else
+					col = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); //blend the 2 by the normalized colors 
 
-            return true;
+				_effectiveHairColor = col;
+                Pawn.story.HairColor = col;
+			}
+
+
+			GComp.ColorChannels["hair"].first = Pawn.story.HairColor;
+
+			return true;
         }
 
         void IMutationEventReceiver.MutationAdded(Hediff_AddedMutation mutation, MutationTracker tracker)

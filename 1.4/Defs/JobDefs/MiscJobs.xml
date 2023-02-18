@@ -1,0 +1,21 @@
+<Defs>
+    <JobDef>
+        <defName>PMResurrect</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_ResurrectTf</driverClass>
+        <reportString>resurrecting TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	<JobDef>
+        <defName>PM_OperateSequencer</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_UseMutationScanner</driverClass>
+        <reportString>scanning at TargetA.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+	
+    <JobDef>
+        <defName>PM_UseMutationGenome</defName>
+        <driverClass>Pawnmorph.Jobs.Driver_UseGenome</driverClass>
+        <reportString>applying TargetB.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>

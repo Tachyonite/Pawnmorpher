@@ -6,12 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
-using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
-using Verse.Noise;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
 
 namespace Pawnmorph
@@ -34,23 +32,7 @@ namespace Pawnmorph
         private HediffDef _mutationDef;
         private List<BodyPartDef> _mutatedRecords;
         private Pawn _pawn;
-        [CanBeNull] private MutagenDef _mutagenCause;
-        [CanBeNull] private MutationCauses _causes; 
-
-        
-        [NotNull] private MutagenDef BestMutagenCause
-        {
-            get
-            {
-                if (_mutagenCause == null)
-                {
-                    _mutagenCause = _causes?.GetAllCauses<MutagenDef>()?.FirstOrDefault()?.causeDef; 
-                    
-                }
-
-                return _mutagenCause ?? MutagenDefOf.defaultMutagen; 
-            }
-        }
+        private MutationCauses _causes; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
@@ -71,8 +53,6 @@ namespace Pawnmorph
         {
             get
             {
-                if(_causes == null) _causes = new MutationCauses();
-                
                 return _causes; 
             }
         }
@@ -83,6 +63,7 @@ namespace Pawnmorph
         /// </summary>
         /// <param name="pawn">The pawn.</param>
         /// <param name="mutationDef">The mutation definition.</param>
+        /// <param name="mutagenCause">The cause for this mutation (optional)</param>
         /// <param name="mutatedParts">The mutated parts.</param>
         public MutationLogEntry(Pawn pawn, HediffDef mutationDef, [CanBeNull] MutagenDef mutagenCause, 
                                 IEnumerable<BodyPartDef> mutatedParts)
@@ -90,6 +71,10 @@ namespace Pawnmorph
             _mutatedRecords = mutatedParts.ToList();
             _pawn = pawn;
             _mutationDef = mutationDef;
+            _causes = new MutationCauses();
+
+            if (mutagenCause != null)
+                _causes.AddMutagenCause(mutagenCause);
         }
 
         /// <summary>
@@ -194,9 +179,16 @@ namespace Pawnmorph
                     grammarRequest.Rules.AddRange(_causes.GenerateRules());
                 }
 
-                if (!grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
+                if (grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
                 {
-                    grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
+                    
+                    grammarRequest.Rules.Add(new Rule_String("caused_by", "caused by"));
+                    //grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
+                }
+                else
+                {
+                    grammarRequest.Rules.Add(new Rule_String("caused_by", ""));
+                    grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, ""));
                 }
 
 

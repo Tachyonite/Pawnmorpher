@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.Hediffs;
@@ -10,11 +8,10 @@ using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
-using UnityEngine;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine;
 using Verse;
-using Verse.AI;
 using Verse.AI.Group;
 
 namespace Pawnmorph
@@ -443,13 +440,12 @@ namespace Pawnmorph
         /// <param name="animal"> The animal. </param>
         public static PawnGenerationRequest GenerateRandomPawnFromAnimal(Pawn animal)
         {
-            var convertedAge = Mathf.Max(ConvertAge(animal, ThingDefOf.Human.race),17);
+            var convertedAge = Mathf.Max(ConvertAge(animal, ThingDefOf.Human.race),FormerHumanUtilities.MIN_FORMER_HUMAN_AGE);
             var gender = animal.gender;
             if (Rand.RangeInclusive(0, 100) <= 50)
             {
                 switch (gender)
                 {
-                    
                     case Gender.Male:
                         gender = Gender.Female; 
                         break;
@@ -467,7 +463,7 @@ namespace Pawnmorph
             return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
                                              fixedBiologicalAge: convertedAge,
                                              fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
-                                             fixedGender: gender, fixedMelanin: null);
+                                             fixedGender: gender);
         }
         
         /// <summary>Gets the transformed gender.</summary>
@@ -542,7 +538,7 @@ namespace Pawnmorph
 
 
 
-            //HandleApparelAndEquipment(originalPawn, caravan); 
+            HandleApparelAndEquipment(originalPawn, caravan); 
             if (cause != null)
                 originalPawn
                    .health.RemoveHediff(cause); // Remove the hediff that caused the transformation so they don't transform again if reverted.
@@ -552,14 +548,6 @@ namespace Pawnmorph
             if (originalPawn.ownership.OwnedBed != null) // If the original pawn owned a bed somewhere...
                 originalPawn.ownership.UnclaimBed(); // ...unclaim it.
 
-            if (originalPawn.CarriedBy != null) // If the original pawn was being carried when they transformed...
-            {
-                Pawn carryingPawn = originalPawn.CarriedBy;
-                Thing outPawn;
-               // carryingPawn.carryTracker.TryDropCarriedThing(carryingPawn.Position, ThingPlaceMode.Direct,
-               //                                               out outPawn); // ...drop them so they can be removed.
-            }
-
             if (originalPawn.IsPrisoner)
                 HandlePrisoner(originalPawn);
 
@@ -567,7 +555,7 @@ namespace Pawnmorph
          
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             //remove any jobs the pawn may be doing 
             //if (originalPawn.jobs != null && originalPawn.Map != null && originalPawn.thinker != null) this causes former humans to sometimes despawn and I don't know why 
@@ -652,7 +640,7 @@ namespace Pawnmorph
 
 
             // Make sure any current lords know they can't use this pawn anymore.
-            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.IncappedOrKilled);
+            originalPawn.GetLord()?.Notify_PawnLost(originalPawn, PawnLostCondition.Incapped);
 
             if (!tfdPawn.Spawned)
                 Log.Error($"tfdPawn no longer spawned A");
@@ -707,8 +695,9 @@ namespace Pawnmorph
             
             if (originalPawn.Spawned)
             {
-                apparelTracker?.DropAll(originalPawn.PositionHeld); // Makes the original pawn drop all apparel...
-                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // ... and equipment (i.e. guns).
+                apparelTracker?.DropAll(originalPawn.PositionHeld); // Drop all apparel
+                equipmentTracker?.DropAllEquipment(originalPawn.PositionHeld); // Drop all equipment (i.e. guns).
+                originalPawn.inventory.DropAllNearPawn(originalPawn.PositionHeld); // Drop anything else being carried.
             }
             else if (caravan != null)
             {

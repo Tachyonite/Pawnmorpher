@@ -1,0 +1,78 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherLeopardJaw</defName>
+        <stages>
+            <li>
+                <label>Spotted face</label>
+                <description>It's hard to talk without purring.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Spotted face</label>
+                <description>Mrrow!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Spotted face</label>
+                <description>No! I don't want to purr!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherLeopardEar</defName>
+        <stages>
+            <li>
+                <label>Leopard ears</label>
+                <description>As far as things go, these aren't too bad.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Leopard ears</label>
+                <description>I can hear everything!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Leopard ears</label>
+                <description>I feel like an anime character...</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherLeopardTail</defName>
+        <stages>
+            <li>
+                <label>Spotted tail</label>
+                <description>These spots are kinda cool.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Spotted tail</label>
+                <description>It's not as fluffy as I would have liked, but it's still cool!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Spotted tail</label>
+                <description>This thing has a mind of its own! Get it off me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+</Defs>

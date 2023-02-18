@@ -1,0 +1,30 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxJawBase">
+		<defName>EtherFennecFoxMuzzle</defName>
+		<classInfluence>FennecFoxMorph</classInfluence>
+		<label>fennec fox muzzle</label>
+		<graphics>
+			<MuzzleMale>Parts/FoxFennec/FennecFox_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/FoxFennec/FennecFox_Muzzle_Female</MuzzleFemale>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherFennecFoxEar</defName>
+		<classInfluence>FennecFoxMorph</classInfluence>
+		<label>fennec fox ear</label>
+		<graphics>
+			<LeftEar>Parts/FoxFennec/FennecFox_Ear_Left</LeftEar>
+			<RightEar>Parts/FoxFennec/FennecFox_Ear_Right</RightEar>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherFennecFluffyTail</defName>
+		<classInfluence>FennecFoxMorph</classInfluence>
+		<label>fennec fox tail</label>
+		<graphics>
+			<Tail>Parts/FoxFennec/FennecFox_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -2,16 +2,13 @@
 // last updated 11/02/2019  10:07 AM
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Factions;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
-using Verse.Noise;
 
 #pragma warning disable 1591
 namespace Pawnmorph.HPatches
@@ -59,8 +56,8 @@ namespace Pawnmorph.HPatches
                 }
 
 
-                var backstories = pawn.story?.AllBackstories ?? Enumerable.Empty<Backstory>();
-                var extensions = backstories.Select(b => DefDatabase<BackstoryDef>.GetNamedSilentFail(b.identifier))
+                var backstories = pawn.story?.AllBackstories ?? Enumerable.Empty<BackstoryDef>();
+                var extensions = backstories//.Select(b => DefDatabase<BackstoryDef>.GetNamedSilentFail(b.identifier))
                                                .Where(bd => bd != null)
                                                .OrderBy(bd => bd.slot) //make sure the adult backstories overrides the child backstories 
                                                .Select(bd => bd.GetModExtension<MorphPawnKindExtension>())

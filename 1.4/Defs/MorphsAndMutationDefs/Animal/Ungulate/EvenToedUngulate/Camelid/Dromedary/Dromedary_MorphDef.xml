@@ -1,0 +1,23 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CamelidMorph">
+		<defName>DromedaryMorph</defName>
+		<label>dromedarymorph</label>
+		<description>Dromedaromorphs are the result of humans contaminated by high levels of mutating mechanites. Their ability to store water and vent excess heat makes them excel in desert environments</description>
+		<race>Dromedary</race>
+		<categories>
+			<li>Arid</li>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphDromedaryTF</fullTransformation>
+		<partialTransformation>PawnmorphDromedaryTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(211,187,159)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>DromedaryTransformationMemory</transformationMemory>
+			<revertedMemory>DromedaryRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

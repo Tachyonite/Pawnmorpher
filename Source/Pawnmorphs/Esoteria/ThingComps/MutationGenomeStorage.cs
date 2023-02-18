@@ -2,10 +2,8 @@
 // last updated 08/07/2020  1:43 PM
 
 using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
-using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;

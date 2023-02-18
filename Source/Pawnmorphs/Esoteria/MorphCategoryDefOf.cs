@@ -1,8 +1,8 @@
 ﻿// MorphCategoryDefOf.cs created by Iron Wolf for Pawnmorph on 09/15/2019 9:13 PM
 // last updated 09/15/2019  9:13 PM
 
-using JetBrains.Annotations;
 using RimWorld;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {

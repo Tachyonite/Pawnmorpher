@@ -1,0 +1,54 @@
+<Defs>
+    <RecipeDef>
+        <defName>VCE_PM_MutaniteSalt</defName>
+        <label>grind mutanite into salt</label>
+        <description>Create a lot of green seasoning from lumps of mutanite. Added to meals after cooking for an extra kick.</description>
+        <jobString>Grinding mutanite into salt.</jobString>
+        <workSpeedStat>CookSpeed</workSpeedStat>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_CookMeal</soundWorking>
+        <workAmount>200</workAmount>
+        <recipeUsers>
+            <li>VCE_CondimentPrepTable</li>	  
+        </recipeUsers>	
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>Mutanite</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>Mutanite</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+        <products>
+            <Mutasalt>10</Mutasalt>
+        </products>
+        <researchPrerequisite>VCE_CondimentsResearch</researchPrerequisite>
+    </RecipeDef>
+    <ItemProcessor.CombinationDef>
+        <defName>VCE_CowmorphMilkIntoCheese</defName>
+        <building>VCE_CheesePress</building>
+        <items>
+            <li>TFMilk</li>
+        </items>	
+        <amount>
+            <li>25</li>
+        </amount>
+        <result>Mutacheese</result>	
+        <yield>1</yield>
+        <useQualityIncreasing>true</useQualityIncreasing>
+        <awfulQualityAgeDaysThreshold>10</awfulQualityAgeDaysThreshold>
+        <poorQualityAgeDaysThreshold>15</poorQualityAgeDaysThreshold>
+        <normalQualityAgeDaysThreshold>25</normalQualityAgeDaysThreshold>
+        <goodQualityAgeDaysThreshold>35</goodQualityAgeDaysThreshold>
+        <excellentQualityAgeDaysThreshold>40</excellentQualityAgeDaysThreshold>
+        <masterworkQualityAgeDaysThreshold>45</masterworkQualityAgeDaysThreshold>
+        <legendaryQualityAgeDaysThreshold>100</legendaryQualityAgeDaysThreshold>
+    </ItemProcessor.CombinationDef>
+</Defs>

@@ -7,7 +7,6 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 using Verse.AI;
 

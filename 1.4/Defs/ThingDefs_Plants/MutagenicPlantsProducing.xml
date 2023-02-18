@@ -1,0 +1,190 @@
+<Defs>
+    <ThingDef ParentName="PlantBase" Name="PM_ChaobulbBase" Abstract="true">
+        <thingClass>Pawnmorph.Plants.Chaobulb</thingClass>
+		<label>chaobulb</label>
+        <description>A mutagen-infused plant that sprouts odd orange bulbs. Chaobulb plants naturally collect trace amounts of raw resources out of the ground, which are then used by mutagenic mechanites to replicate. The mechanites are stored in the orange bulbs that give the plant its name, which can be harvested and processed into mechanite slurry.
+
+Chaobulb plants are delicate, and the bulbs are prone to rupturing if harvested incorrectly. They are slow to plant and harvest compared to other plants, and harvest failures have a risk of mutating the hapless farmer.</description>
+        <statBases>
+            <MaxHitPoints>60</MaxHitPoints>
+            <Beauty>4</Beauty>
+            <Nutrition>0.18</Nutrition>
+        </statBases>
+		<graphicData>
+            <texPath>Plants/Chaobulb</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+        </graphicData>
+		<selectable>true</selectable>
+        <neverMultiSelect>false</neverMultiSelect>
+        <fillPercent>0.20</fillPercent>
+        <pathCost>30</pathCost>
+        <plant>
+		    <fertilityMin>0.7</fertilityMin>
+            <fertilitySensitivity>1</fertilitySensitivity>
+            <growDays>10</growDays>
+            <leaflessGraphicPath>Plants/Leafless/Chaobulb</leaflessGraphicPath>
+            <immatureGraphicPath>Plants/Leafless/Chaobulb</immatureGraphicPath>
+            <harvestedThingDef>Chaobulb</harvestedThingDef>
+            <harvestFailable>false</harvestFailable> <!--This plant has a special handler for botched harvest-->
+			<harvestYield>3</harvestYield>
+            <harvestWork>300</harvestWork>
+            <harvestTag>Standard</harvestTag>
+			<topWindExposure>0.3</topWindExposure>
+            <wildOrder>2</wildOrder>
+        </plant>
+		<comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>2</glowRadius>
+                <glowColor>(219,214,81,0)</glowColor>
+            </li>
+        </comps>
+    </ThingDef>
+    <ThingDef ParentName="PM_ChaobulbBase">
+        <defName>Plant_ChaoBulb</defName>
+        <plant>
+            <wildClusterRadius>5</wildClusterRadius>
+            <wildClusterWeight>250</wildClusterWeight>
+            <visualSizeRange>0.95~1.75</visualSizeRange>
+
+        </plant>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+                <!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				10 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
+				-->
+                <priority>10</priority>
+                <!-- if true the source plant must be something that can be havested -->
+                <mustBeHarvestable>true</mustBeHarvestable>
+            </li>
+        </modExtensions>
+    </ThingDef>
+    <ThingDef ParentName="PM_ChaobulbBase">
+        <defName>Plant_ChaoBulb_Domestic</defName>
+        <plant>
+			<sowWork>700</sowWork>
+            <sowMinSkill>7</sowMinSkill>
+            <sowResearchPrerequisites>
+                <li>MutagenicPlantSowing</li>
+            </sowResearchPrerequisites>
+            <visualSizeRange>0.95~1.7</visualSizeRange>
+            <sowTags>
+                <li>Ground</li>
+                <li>Hydroponic</li>
+            </sowTags>
+        </plant>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+                <ignore>true</ignore> <!-- we don't want this to be swapped for normal plants  -->
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <ThingDef Name="GlowVineBase" ParentName="PlantBase" Abstract="true">
+        <thingClass>Pawnmorph.Things.ExpandedPlant</thingClass>
+		<label>glowvine</label>
+        <description>A mutagen-infused plant that sprouts odd blue bulbs, glowvines are a form of healroot that has been mutated by exposure to mechanite contamination. Similar to chaobulbs, they produce glowing bulbs full of mechanites. However, the mechanites within glowvines have been altered somehow by the substances in the healroot, and as a result they now have an anti-mutagenic effect. The bulbs can be harvested and processed into antigen.
+
+Antigen plants are delicate and sensitive to temperature. They take a long time to sow and harvest compared to other plants, and they will only grow in moderately cold temperatures. However, mutation has rendered them capable of growing without light, and so they are commonly grown within refridgerated darkhouses or caves.</description>
+        <statBases>
+            <MaxHitPoints>50</MaxHitPoints>
+            <Beauty>10</Beauty>
+            <Nutrition>0.18</Nutrition>
+        </statBases>
+		<graphicData>
+            <texPath>Plants/Glowvine</texPath>
+            <graphicClass>Graphic_Random</graphicClass>
+        </graphicData>
+        <selectable>true</selectable>
+        <neverMultiSelect>false</neverMultiSelect>
+        <fillPercent>0.20</fillPercent>
+        <pathCost>30</pathCost>
+        <plant>
+			<fertilityMin>0.9</fertilityMin>
+            <fertilitySensitivity>1</fertilitySensitivity>
+            <dieIfNoSunlight>false</dieIfNoSunlight>
+            <dieIfLeafless>false</dieIfLeafless>
+            <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
+            <immatureGraphicPath>Plants/Leafless/Glowvine</immatureGraphicPath>
+            <harvestedThingDef>Glowvine</harvestedThingDef>
+            <growDays>15</growDays>
+            <growMinGlow>0</growMinGlow>
+            <growOptimalGlow>0</growOptimalGlow>
+			<harvestYield>2</harvestYield>
+            <harvestWork>400</harvestWork>
+            <harvestTag>Standard</harvestTag>
+			<wildClusterRadius>3</wildClusterRadius>
+            <wildClusterWeight>250</wildClusterWeight>
+            <visualSizeRange>0.95~1.7</visualSizeRange>
+            <topWindExposure>0.3</topWindExposure>
+            <wildOrder>2</wildOrder>
+        </plant>
+		<comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>2</glowRadius>
+                <glowColor>(45,200,255,0)</glowColor>
+            </li>
+        </comps>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AdditionalPlantInfo">
+                <minGrowthTemperature>-20</minGrowthTemperature>
+                <minOptimalGrowthTemperature>0</minOptimalGrowthTemperature>
+                <maxOptimalGrowthTemperature>17</maxOptimalGrowthTemperature>
+                <maxGrowthTemperature>30</maxGrowthTemperature>
+                <minLeaflessTemperature>-200</minLeaflessTemperature>
+                <maxLeaflessTemperature>-22</maxLeaflessTemperature>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <ThingDef ParentName="GlowVineBase">
+        <defName>Plant_Glowvine</defName>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+                <!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+                <priority>1</priority>
+                <!-- if true the source plant must be something that can be havested -->
+                <mustBeHarvestable>true</mustBeHarvestable>
+
+                <sourcePlantFilter>
+                    <isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+                    <filterList>
+                        <!-- glowvine will only come from healroot  -->
+                        <li>Plant_Healroot</li>
+                        <li>Plant_HealrootWild</li>
+                    </filterList>
+                </sourcePlantFilter>
+
+                <!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <ThingDef ParentName="GlowVineBase">
+        <defName>Plant_Glowvine_Domestic</defName>
+        <plant>
+			<sowWork>800</sowWork>
+            <sowMinSkill>8</sowMinSkill>
+            <sowResearchPrerequisites>
+                <li>MutagenicPlantSowing</li>
+            </sowResearchPrerequisites>
+            <sowTags>
+                <li>Ground</li>
+                <li>Hydroponic</li>
+            </sowTags>
+        </plant>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+                <ignore>true</ignore>
+            </li>
+        </modExtensions>
+    </ThingDef>
+</Defs>

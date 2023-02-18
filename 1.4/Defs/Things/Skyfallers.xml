@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>FlightIncoming</defName>
+    <label>flying (incoming)</label>
+    <skyfaller>
+      <movementType>Decelerate</movementType>
+      <rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(2, 2)</shadowSize>
+      <anticipationSound>DropPod_Fall</anticipationSound>
+      <anticipationSoundTicks>100</anticipationSoundTicks>
+      <motesPerCell>0</motesPerCell>
+    </skyfaller>
+  </ThingDef>
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>FlightLeaving</defName>
+    <label>flying (leaving)</label>
+    <skyfaller>
+      <movementType>Decelerate</movementType>
+      <rotateGraphicTowardsDirection>true</rotateGraphicTowardsDirection>
+      <reversed>true</reversed>
+      <shadow>Things/Skyfaller/SkyfallerShadowDropPod</shadow>
+      <shadowSize>(2, 2)</shadowSize>
+      <anticipationSound>DropPod_Leaving</anticipationSound>
+      <anticipationSoundTicks>-10</anticipationSoundTicks>
+      <ticksToImpactRange>-10</ticksToImpactRange>
+    </skyfaller>
+  </ThingDef>
+</Defs>

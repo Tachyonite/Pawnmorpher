@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
-using Pawnmorph.Chambers;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
-using Verse;
-using RimWorld;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
+using RimWorld;
 using UnityEngine;
-
+using Verse;
 //just a typedef to shorten long type name 
-using HediffGraphic = AlienRace.AlienPartGenerator.BodyAddonHediffGraphic; 
+using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic; 
 
 namespace Pawnmorph
 {
@@ -42,13 +40,12 @@ namespace Pawnmorph
 
             try
             {
-                GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
-
                 VerifyMorphDefDatabase();
 
                 InjectGraphics(); 
                 NotifySettingsChanged();
                 GenerateImplicitRaces();
+                BanlistFormerHumanAnimals();
                 PatchExplicitRaces();
                 AddMutationsToWhitelistedRaces();
                 EnableDisableOptionalPatches();
@@ -90,6 +87,31 @@ namespace Pawnmorph
                 throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}",e);
             }
         }
+
+        private static void BanlistFormerHumanAnimals()
+        {
+            if (PawnmorpherMod.Settings.animalBlacklist == null)
+                return;
+
+			foreach (string animalDef in PawnmorpherMod.Settings.animalBlacklist)
+			{
+                ThingDef animal = DefDatabase<ThingDef>.GetNamed(animalDef, false);
+                if (animal == null)
+                    continue;
+
+				FormerHumanSettings formerHumanConfig = animal.GetModExtension<FormerHumanSettings>();
+				if (formerHumanConfig == null)
+				{
+					formerHumanConfig = new FormerHumanSettings();
+					if (animal.modExtensions == null)
+						animal.modExtensions = new List<DefModExtension>();
+
+					animal.modExtensions.Add(formerHumanConfig);
+				}
+
+				formerHumanConfig.neverFormerHuman = true;
+			}
+		}
 
         private static void EnableDisableOptionalPatches()
         {
@@ -260,7 +282,7 @@ namespace Pawnmorph
                 Log.Warning($"No hediff graphics found at {hediffGraphic.path} for hediff {hediffGraphic.hediff} in");
 
             if (hediffGraphic.severity != null)
-                foreach (AlienPartGenerator.BodyAddonHediffSeverityGraphic bahsg in hediffGraphic.severity)
+                foreach (AlienPartGenerator.ExtendedHediffSeverityGraphic bahsg in hediffGraphic.severity)
                 {
                     while (
                         ContentFinder<Texture2D>
@@ -301,7 +323,7 @@ namespace Pawnmorph
             };
 
             var severityLst =
-                new List<AlienPartGenerator.BodyAddonHediffSeverityGraphic>();
+                new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
             for (var index = mutationStages.Count - 1; index >= 0; index--)
             {
                 MutationStage stage = mutationStages[index];
@@ -327,7 +349,7 @@ namespace Pawnmorph
 
                 // fill the severity graphics if they are present in descending order
                 if (string.IsNullOrWhiteSpace(path) == false)
-                    severityLst.Add(new AlienPartGenerator.BodyAddonHediffSeverityGraphic
+                    severityLst.Add(new AlienPartGenerator.ExtendedHediffSeverityGraphic
                     {
                         path = path,
                         severity = stage.minSeverity
@@ -534,8 +556,6 @@ namespace Pawnmorph
         {
             var pType = typeof(AlienPartGenerator.BodyAddon);
             var shaderField = pType.GetField("shaderType", BindingFlags.Instance | BindingFlags.NonPublic);
-            var prioritizationField = pType.GetField("prioritization", BindingFlags.Instance | BindingFlags.NonPublic);
-            var colorChannelField = pType.GetField("colorChannel", BindingFlags.Instance | BindingFlags.NonPublic);
             string aID = (addon as TaggedBodyAddon)?.anchorID; 
             var copy = new TaggedBodyAddon()
             { 
@@ -552,14 +572,22 @@ namespace Pawnmorph
                 drawSize = addon.drawSize,
                 hiddenUnderApparelFor = addon.hiddenUnderApparelFor.MakeSafe().ToList(),
                 path = addon.path,
-                offsets = addon.offsets ?? new AlienPartGenerator.BodyAddonOffsets(),
+                offsets = addon.offsets ?? new AlienPartGenerator.DirectionalOffset(),
                 linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
                 inFrontOfBody = addon.inFrontOfBody,
                 layerInvert = addon.layerInvert,
                 variantCount = addon.variantCount,
                 hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
+                ageGraphics = addon.ageGraphics.MakeSafe().ToList(),
+                damageGraphics = addon.damageGraphics.MakeSafe().ToList(),
+                bodytypeGraphics = addon.bodytypeGraphics.MakeSafe().ToList(),
+                genderGraphics = addon.genderGraphics.MakeSafe().ToList(),
+                headtypeGraphics = addon.headtypeGraphics.MakeSafe().ToList(),
+                traitGraphics = addon.traitGraphics.MakeSafe().ToList(),
                 alignWithHead = addon.alignWithHead,
                 
+                ColorChannel = addon.ColorChannel,
+
 
                 hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
                 defaultOffsets = addon.defaultOffsets,
@@ -569,8 +597,6 @@ namespace Pawnmorph
             };
 
             shaderField.SetValue(copy, addon.ShaderType);
-            prioritizationField.SetValue(copy, addon.Prioritization.ToList());
-            colorChannelField.SetValue(copy, addon.ColorChannel);
 
             
             return copy;
@@ -632,8 +658,7 @@ namespace Pawnmorph
                 tmpArr[1] = typeof(ThingDef); 
                 foreach (ThingDef thingDef in genRaces)
                 {
-                    tmpArr[0] = thingDef;
-                    GiveHashMethod.Invoke(null, tmpArr); 
+                    HashGiverUtils.GiveShortHash(thingDef);
                 }
             }
             catch (MissingMethodException e)
@@ -643,10 +668,6 @@ namespace Pawnmorph
                                                e);
             }
         }
-
-
-        private static readonly MethodInfo GiveHashMethod; 
-
 
         /// <summary>called when the settings are changed</summary>
         public static void NotifySettingsChanged()

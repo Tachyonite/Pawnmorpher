@@ -2,13 +2,13 @@
 // last updated 09/13/2019  9:51 AM
 
 using System;
-using System.Linq;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hybrids;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using static AlienRace.AlienPartGenerator;
 
 namespace Pawnmorph.GraphicSys
 {
@@ -88,10 +88,17 @@ namespace Pawnmorph.GraphicSys
         /// <exception cref="ArgumentNullException">generator</exception>
         public static Color? GenerateRandomColor([NotNull] this AlienPartGenerator generator, string channelName, bool first=true, int? seed = null)
         {
-            if (generator == null) throw new ArgumentNullException(nameof(generator));
+            if (generator == null) 
+                throw new ArgumentNullException(nameof(generator));
+            
             var channel = generator.colorChannels?.FirstOrDefault(c => c.name == channelName);
-            var cGen = first ? channel?.first : channel?.second;
-            if (cGen == null) return null;
+            if (channel == null)
+                return null;
+
+            var channelCategory = channel.entries.RandomElementByWeight((ColorChannelGeneratorCategory ccgc) => ccgc.weight);
+            var cGen = first ? channelCategory?.first : channelCategory?.second;
+            if (cGen == null) 
+                return null;
 
 
             if (seed != null)

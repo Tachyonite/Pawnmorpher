@@ -1,10 +1,8 @@
 ﻿// Driver_TransformPrisoner.cs created by Iron Wolf for Pawnmorph on 10/20/2020 6:58 AM
 // last updated 10/20/2020  6:58 AM
 
-using System;
 using System.Collections.Generic;
 using Pawnmorph.Chambers;
-using RimWorld;
 using Verse;
 using Verse.AI;
 

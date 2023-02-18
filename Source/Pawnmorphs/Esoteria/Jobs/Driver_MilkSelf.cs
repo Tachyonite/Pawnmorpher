@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
-using Pawnmorph.Utilities;
-using Verse;
-
-namespace Pawnmorph.Jobs
+﻿namespace Pawnmorph.Jobs
 {
     /// <summary> Job driver to make humanoid pawns milk themselves using HediffComp_Production. </summary>
     public class Driver_MilkSelf : Driver_ProduceThing

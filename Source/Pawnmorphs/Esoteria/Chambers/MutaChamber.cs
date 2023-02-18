@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
@@ -424,7 +425,10 @@ namespace Pawnmorph.Chambers
 
 
             if (_innerState != ChamberState.Idle) yield break;
-            yield return PartPickerGizmo;
+
+            if ((innerContainer[0] as Pawn).def is ThingDef_AlienRace)
+                yield return PartPickerGizmo;
+
             yield return MergingGizmo;
         }
 
@@ -697,8 +701,7 @@ namespace Pawnmorph.Chambers
             if (comp == null)
                 return;
 
-            comp.IsDirty = true;
-            comp.CompTick();
+            comp.RefreshGraphics();
         }
 
         private void CheckMutationProgress([NotNull] Pawn pawn)

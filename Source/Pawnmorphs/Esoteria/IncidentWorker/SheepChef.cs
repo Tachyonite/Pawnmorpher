@@ -1,8 +1,6 @@
 ﻿// SheepChef.cs created by Iron Wolf for Pawnmorph on 01/05/2021 4:30 PM
 // last updated 01/05/2021  4:30 PM
 
-using System.Linq;
-using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -56,7 +54,7 @@ namespace Pawnmorph.IncidentWorkers
 
             if (pawn.story != null)
             {
-                pawn.story.adulthood = PMBackstoryDefOf.PM_SheepChef.backstory; 
+                pawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef; 
             }
             
             if(pawn.skills != null)
@@ -122,16 +120,8 @@ namespace Pawnmorph.IncidentWorkers
             Pawn lPawn = PawnGenerator.GeneratePawn(local);
 
             var name = lPawn.Name as NameTriple;
-            lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last); 
-
-
-            if (!BackstoryDatabase.TryGetWithIdentifier("chef", out Backstory back))
-            {
-            }
-            else
-            {
-                lPawn.story.adulthood = back; 
-            }
+            lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last);
+            lPawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef;
 
             AssignMutations(lPawn); 
             return lPawn; 

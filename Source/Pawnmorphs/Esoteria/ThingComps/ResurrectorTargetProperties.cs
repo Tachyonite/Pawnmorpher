@@ -5,11 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using Pawnmorph.Chambers;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph.ThingComps

@@ -2,7 +2,6 @@
 // last updated 09/16/2020  8:34 AM
 
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -12,6 +11,7 @@ namespace Pawnmorph.HPatches
     [HarmonyPatch(typeof(ApparelUtility))]
     static class ApparelUtilityPatches
     {
+        [HarmonyPriority(Priority.Last)]
         [HarmonyPatch(nameof(ApparelUtility.HasPartsToWear)), HarmonyPrefix]
         static bool FixHasPartsFor(Pawn p, ThingDef apparel, ref bool __result) //vanilla function erroniously assumes if the pawn is not missing any body parts 
         {

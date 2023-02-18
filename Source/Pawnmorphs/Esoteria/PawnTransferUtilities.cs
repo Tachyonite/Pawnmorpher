@@ -75,7 +75,7 @@ namespace Pawnmorph
         static PawnTransferUtilities()
         {
             _ideoInternalFieldInfo = typeof(Pawn_IdeoTracker).GetField("ideo", BindingFlags.NonPublic | BindingFlags.Instance);
-            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certainty", BindingFlags.NonPublic | BindingFlags.Instance);
+            _ideoCertaintyField = typeof(Pawn_IdeoTracker).GetField("certaintyInt", BindingFlags.NonPublic | BindingFlags.Instance);
             if (_ideoInternalFieldInfo == null) Log.Error("unable to get internal field \"ideo\" from Pawn_IdeoTracker");
             if (_ideoCertaintyField == null) Log.Error("unable to find certainty field in Pawn_IdeoTracker");
         }
@@ -146,6 +146,41 @@ namespace Pawnmorph
                 sk.passion = passion;
             }
         }
+
+        /// <summary>
+        ///     Transfers all transferable abilities from pawn1 to pawn2. Due to how Psycasts work, they first need to be all removed
+        /// </summary>
+        /// <param name="pawn1">The source pawn.</param>
+        /// <param name="pawn2">The destination pawn.</param>
+        /// <param name="selector">The selector.</param>
+        public static void TransferAbilities([NotNull] Pawn pawn1, [NotNull] Pawn pawn2, [NotNull] Func<Ability, bool> selector)
+        {
+            if (pawn1 == null) throw new ArgumentNullException(nameof(pawn1));
+            if (pawn2 == null) throw new ArgumentNullException(nameof(pawn2));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            Pawn_AbilityTracker abilities1 = pawn1.abilities;
+            Pawn_AbilityTracker abilities2 = pawn2.abilities;           
+            IEnumerable<Ability> tAbilities = abilities1.AllAbilitiesForReading.Where(selector);
+            //First purge any psycasts the new pawn will have
+            foreach (Ability ability in abilities2.AllAbilitiesForReading)
+            {
+                if (ability?.def?.abilityClass == null)
+                    continue;
+
+                if (ability.def.abilityClass.IsAssignableFrom(typeof(Psycast)))
+                {
+                    abilities2.RemoveAbility(ability.def);
+                }  
+            }
+            foreach (Ability ability in tAbilities)
+            {
+                abilities2.GainAbility(ability.def);
+            }
+
+        }
+
+
+
 
 
         /// <summary>
@@ -268,14 +303,47 @@ namespace Pawnmorph
 
                 if (otherRecord == null && hediff.Part != null)
                     continue;
+                //Here we check if the pawn has a hediff we can match to the currently copied hediff
+                Hediff otherHediff = TryMatchHediffByDefAndBodyPart(hediff.def,health2,otherRecord); 
+                if (otherHediff == null)
+                { 
+                    otherHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
+                    if (otherHediff is Hediff_Psylink psyDiff)
+                        psyDiff.suppressPostAddLetter = true;
 
-                if (health2.hediffSet.HasHediff(hediff.def, otherRecord)) 
+                    health2.AddHediff(otherHediff);
+                }
+                //Vanilla Psycasts Expanded throws a null reference exception if we try to adjust the hediff's severity before adding it to the pawn, since they try to access the pawn. This results in an immunity to full transformation
+                if (hediff.Severity == otherHediff.Severity)
                     continue;
-
-                Hediff newHediff = HediffMaker.MakeHediff(hediff.def, pawn2, otherRecord);
-                health2.AddHediff(newHediff);
+                if (otherHediff is Hediff_Psylink psylinkExitsting)
+                {
+                    psylinkExitsting.ChangeLevel((int)(hediff.Severity - psylinkExitsting.Severity), false);
+                }
+                else if (otherHediff is Hediff_Level newLevelExitsting)
+                {
+                    newLevelExitsting.SetLevelTo((int)hediff.Severity);
+                }
+                else
+                {
+                    otherHediff.Severity = hediff.Severity;
+                }
             }
         }
+
+        private static Hediff TryMatchHediffByDefAndBodyPart(HediffDef hediff,Pawn_HealthTracker health, BodyPartRecord bodyPart)
+        {
+            for (int i = 0; i < health.hediffSet.hediffs.Count; i++)
+            {
+                var hediffChecked = health.hediffSet.hediffs[i];
+                if (hediffChecked.def == hediff && hediffChecked.Part == bodyPart)
+                {
+                    return hediffChecked;
+                }
+            }
+            return null;
+        }
+
 
         /// <summary>
         ///     Transfers the hediffs from pawn1 onto pawn2

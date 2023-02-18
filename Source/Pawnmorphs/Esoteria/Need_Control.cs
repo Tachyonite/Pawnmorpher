@@ -130,8 +130,11 @@ namespace Pawnmorph
         /// </value>
         public float SeekerLevel => _seekerLevel;
 
+        /// <summary>
+        /// The races that this need is enabled for
+        /// </summary>
         [NotNull]
-        private static HashSet<ThingDef> EnabledRaces
+        public static HashSet<ThingDef> EnabledRaces
         {
             get
             {
@@ -183,9 +186,8 @@ namespace Pawnmorph
         /// <param name="drawArrows">if set to <c>true</c> [draw arrows].</param>
         /// <param name="doTooltip">if set to <c>true</c> [do tooltip].</param>
         /// <param name="rectForTooltip">The rect for tooltip.</param>
-        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1f,
-                                       bool drawArrows = true,
-                                       bool doTooltip = true, Rect? rectForTooltip = null)
+        /// <param name="drawLabel">Whether or not to draw need label.</param>
+        public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = int.MaxValue, float customMargin = -1, bool drawArrows = true, bool doTooltip = true, Rect? rectForTooltip = null, bool drawLabel = true)
         {
             if (threshPercents == null || _maxLevelCached == null)
             {
@@ -203,7 +205,7 @@ namespace Pawnmorph
                 }
             }
 
-            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip);
+            base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip, drawLabel);
         }
 
         /// <summary>

@@ -2,7 +2,6 @@
 // last updated 03/25/2020  7:20 PM
 
 using System;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Damage;
 using Pawnmorph.DefExtensions;
@@ -38,7 +37,7 @@ namespace Pawnmorph
         {
             mutagenDef = mutagenDef ?? MutagenDefOf.defaultMutagen;
             if (!mutagenDef.CanInfect(pawn)) return 0; 
-            return (pawn.GetStatValue(StatDefOf.ToxicSensitivity)*pawn.GetStatValue(PMStatDefOf.MutagenSensitivity)); 
+            return ((1f - pawn.GetStatValue(StatDefOf.ToxicResistance))*pawn.GetStatValue(PMStatDefOf.MutagenSensitivity)); 
         }
 
 

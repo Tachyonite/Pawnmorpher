@@ -3,6 +3,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph;
 using Pawnmorph.Chambers;
+using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
@@ -20,7 +21,8 @@ namespace EtherGun
         /// called when this instance impacts the given thing 
         /// </summary>
         /// <param name="hitThing">The hit thing.</param>
-        protected override void Impact(Thing hitThing)
+        /// <param name="blockedByShield"></param>
+        protected override void Impact(Thing hitThing, bool blockedByShield = false)
         {
             base.Impact(hitThing);
             var pgc = Find.World.GetComponent<PawnmorphGameComp>();
@@ -53,10 +55,10 @@ namespace EtherGun
 
             if (!pawn.def.IsTaggable())
             {
-                Messages.Message(ChamberDatabase.ANIMAL_TOO_CHAOTIC_REASON.Translate(pawn.def), MessageTypeDefOf.RejectInput);
+                Messages.Message(AnimalGenebankEntry.ANIMAL_TOO_CHAOTIC_REASON.Translate(pawn.def), MessageTypeDefOf.RejectInput);
 
             }
-            else if ( !database.TryAddToDatabase(pawn.kindDef, out string reason))
+            else if (!database.TryAddToDatabase(new AnimalGenebankEntry(pawn.kindDef), out string reason))
             {
                 Messages.Message(reason, MessageTypeDefOf.RejectInput);
 
@@ -112,7 +114,7 @@ namespace EtherGun
             {
                 var mut = node.Value; 
                 if(database.FreeStorage < mut.GetRequiredStorage()) break;
-                database.AddToDatabase(mut);
+                database.TryAddToDatabase(new MutationGenebankEntry(mut));
                 node = node.Next;
                 c++; 
             }
