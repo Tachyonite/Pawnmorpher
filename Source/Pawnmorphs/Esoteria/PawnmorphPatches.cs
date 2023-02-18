@@ -30,7 +30,19 @@ namespace Pawnmorph
     {
         private static readonly Type patchType = typeof(PawnmorphPatches);
         [NotNull]
-        private static readonly MethodInfo _animalTabWorkerMethod; 
+        private static readonly MethodInfo _animalTabWorkerMethod;
+
+        private static readonly Dictionary<string, string> _modPatches = new Dictionary<string, string>()
+        {
+            ["jecrell.doorsexpanded"] = "DoorsExpanded.Building_DoorExpanded:PawnCanOpen",
+			["kentington.saveourship2"] = "RimWorld.Building_ShipAirlock:PawnCanOpen",
+
+			["petetimessix.simplesidearms"] = "PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier",
+			["petetimessix.simplesidearms"] = "SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn",
+		};
+
+
+
         static PawnmorphPatches()
         {
 
@@ -236,34 +248,23 @@ namespace Pawnmorph
 
             List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
 
-            // Patch doors expanded mod if present.
-            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "jecrell.doorsexpanded"))
+            StringBuilder modPatchingLog = new StringBuilder();
+            foreach (string mod in _modPatches.Keys)
             {
-                MethodInfo doorsExpandedMethod = AccessTools.Method("DoorsExpanded.Building_DoorExpanded:PawnCanOpen");
+                if (LoadedModManager.RunningMods.Any(x => x.PackageId == mod))
+                {
+					MethodInfo method = AccessTools.Method(_modPatches[mod]);
 
-                if (doorsExpandedMethod != null)
-                    methodsToPatch.Add(doorsExpandedMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
+                    if (method != null)
+                        methodsToPatch.Add(method);
+                    else
+                        modPatchingLog.AppendLine("Unable to patch " + _modPatches[mod]);
+				}
             }
-            // Patch Simple Sidearms mod if present.
-            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "petetimessix.simplesidearms"))
-            {
-                MethodInfo simpleSidearmsValidCarrierMethod = AccessTools.Method("PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier");
 
-                if (simpleSidearmsValidCarrierMethod != null)
-                    methodsToPatch.Add(simpleSidearmsValidCarrierMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to simple sidearms Valid Carrier Method.");
+            if (modPatchingLog.Length > 0)
+				Log.Warning("[Pawnmorpher] Failed patching mods:" + Environment.NewLine + modPatchingLog.ToString());
 
-                MethodInfo simpleSidearmsMemoryCompMethod = AccessTools.Method("SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn");
-
-                if (simpleSidearmsMemoryCompMethod != null)
-                    methodsToPatch.Add(simpleSidearmsMemoryCompMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to simple sidearms GetMemoryCompForPawn Method.");
-            }
-            
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
@@ -361,7 +362,7 @@ namespace Pawnmorph
             foreach (var methodInfo in methodsToPatch)
             {
                 if (methodInfo.methodInfo == null) continue;
-                builder.AppendLine($"{methodInfo.methodInfo.Name}");
+                builder.AppendLine($"{methodInfo.methodInfo.DeclaringType.FullName + "." + methodInfo.methodInfo.Name}");
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
