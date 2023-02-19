@@ -269,9 +269,6 @@ namespace Pawnmorph
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
             methodsToPatch.Add(canUseBedMethod);
 
-            // Pawn Utilities
-            methodsToPatch.Add(typeof(PawnUtility).GetMethod(nameof(PawnUtility.SpawnedMasteredPawns), STATIC_FLAGS));
-
             //wildman
             AddWildmanMethods(methodsToPatch);
 
@@ -328,8 +325,9 @@ namespace Pawnmorph
 
             AddDesignatorMethods(methodsToPatch);
             AddThoughtWorkerPatches(methodsToPatch);
+            PatchSpawnedMasteredPawns(methodsToPatch);
 
-            AddRitualPatches(methodsToPatch);
+			AddRitualPatches(methodsToPatch);
 
             methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.PawnNotAssignableReason), staticFlags));
 
@@ -441,9 +439,22 @@ namespace Pawnmorph
 
         }
 
+		// PawnUtility.SpawnedMasteredPawns
+		private static void PatchSpawnedMasteredPawns([NotNull] List<MethodInfoSt> methodsToPatch)
+		{
+			IEnumerable<Type> tps = typeof(PawnUtility)
+								   .GetNestedTypes(ALL)
+								   .Where(t => t.IsCompilerGenerated() && t.Name.Contains("<SpawnedMasteredPawns>"));
+
+			IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+												   .Where(m => m.HasSignature() && m.Name.Contains("MoveNext"))
+												   .Select(m => (MethodInfoSt)m);
+			methodsToPatch.AddRange(methods);
+		}
 
 
-        private static void AddThoughtWorkerPatches([NotNull] List<MethodInfoSt> methodsToPatch)
+
+		private static void AddThoughtWorkerPatches([NotNull] List<MethodInfoSt> methodsToPatch)
         {
             methodsToPatch.Add(typeof(ThoughtWorker_Precept_IdeoDiversity_Uniform).GetMethod("ShouldHaveThought", INSTANCE_FLAGS));
         }
