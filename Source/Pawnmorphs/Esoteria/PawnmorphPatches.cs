@@ -32,16 +32,14 @@ namespace Pawnmorph
         [NotNull]
         private static readonly MethodInfo _animalTabWorkerMethod;
 
-        private static readonly Dictionary<string, string> _modPatches = new Dictionary<string, string>()
+        private static readonly ILookup<string, string> _modPatches = new KeyValuePair<string, string>[]
         {
-            ["jecrell.doorsexpanded"] = "DoorsExpanded.Building_DoorExpanded:PawnCanOpen",
-			["kentington.saveourship2"] = "RimWorld.Building_ShipAirlock:PawnCanOpen",
+            new ("jecrell.doorsexpanded", "DoorsExpanded.Building_DoorExpanded:PawnCanOpen"),
+			new ("kentington.saveourship2", "RimWorld.Building_ShipAirlock:PawnCanOpen"),
 
-			["petetimessix.simplesidearms"] = "PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier",
-			["petetimessix.simplesidearms"] = "SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn",
-		};
-
-
+			new ("petetimessix.simplesidearms", "PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier"),
+			new ("petetimessix.simplesidearms", "SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn"),
+		}.ToLookup(x => x.Key, x => x.Value);
 
         static PawnmorphPatches()
         {
@@ -249,16 +247,19 @@ namespace Pawnmorph
             List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
 
             StringBuilder modPatchingLog = new StringBuilder();
-            foreach (string mod in _modPatches.Keys)
+            foreach (string mod in _modPatches.Select(x => x.Key))
             {
                 if (LoadedModManager.RunningMods.Any(x => x.PackageId == mod))
                 {
-					MethodInfo method = AccessTools.Method(_modPatches[mod]);
+                    foreach (var methodIdentity in _modPatches[mod])
+					{
+						MethodInfo method = AccessTools.Method(methodIdentity);
 
-                    if (method != null)
-                        methodsToPatch.Add(method);
-                    else
-                        modPatchingLog.AppendLine("Unable to patch " + _modPatches[mod]);
+						if (method != null)
+							methodsToPatch.Add(method);
+						else
+							modPatchingLog.AppendLine("Unable to patch " + _modPatches[mod]);
+					}
 				}
             }
 
