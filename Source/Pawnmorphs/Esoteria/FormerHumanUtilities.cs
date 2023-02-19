@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
@@ -176,8 +177,17 @@ namespace Pawnmorph
                 if (allowRestricted == false && restriction == FormerHumanRestrictions.Restricted)
                     return false;
 
-				if (allowDisabled == false && restriction == FormerHumanRestrictions.Disabled)
-					return false;
+
+                if (restriction == FormerHumanRestrictions.Disabled)
+                {
+                    // If animal is disabled but has a related morph, then count as restricted.
+                    // They could have disabled the animal and then added a sub-mod which needs it for a morph.
+                    if (allowRestricted && pawnKind.GetMorphOfRace() != null)
+                        return true;
+
+                    if (allowDisabled == false)
+                        return false;
+                }
 			}
 
             return true;
