@@ -4,6 +4,9 @@
         <defName>PM_AnimalConstant</defName>
         <thinkRoot Class="ThinkNode_Priority">
             <subNodes>
+                <li Class="ThinkNode_Subtree">
+                  <treeDef>Despawned</treeDef>
+                </li>
                 <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
                     <filter>
                         <isBlackList>false</isBlackList>
