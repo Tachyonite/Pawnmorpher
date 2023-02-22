@@ -38,6 +38,10 @@
 		<li IfModActive="crustypeanut.rc2.core">1.4/Mods/RimCuisine2</li>
 		<li IfModActive="UnlimitedHugs.RemoteTech">1.4/Mods/RemoteTech</li>
 		<li IfModActive="vanillaexpanded.backgrounds">1.4/Mods/VBE</li>
+		<li IfModActive="roolo.giddyupbattlemounts,sarg.giddyupsaddles">1.4/Mods/GiddyUp</li>
+
+
+
 		<li IfModActive="zmodw.zwanimals,acpteam.acpvanillastyle">1.4/Mods/ZWE-ACP</li>
 		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.4/Mods/ADogSaidAnimalProsthetics</li>
 	</v1.4>
