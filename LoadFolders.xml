@@ -39,6 +39,7 @@
 		<li IfModActive="UnlimitedHugs.RemoteTech">1.4/Mods/RemoteTech</li>
 		<li IfModActive="vanillaexpanded.backgrounds">1.4/Mods/VBE</li>
 		<li IfModActive="roolo.giddyupbattlemounts,sarg.giddyupsaddles">1.4/Mods/GiddyUp</li>
+		<li IfModActive="Owlchemist.GiddyUp">1.4/Mods/GiddyUp-2</li>
 
 
 
