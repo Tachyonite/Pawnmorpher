@@ -45,6 +45,7 @@
 	<PMBlacklistFormerHumansRestricted>Restricted</PMBlacklistFormerHumansRestricted>
 	<PMBlacklistFormerHumansDisabled>Disabled</PMBlacklistFormerHumansDisabled>
 	<PMBlacklistFormerHumansEnabledDescription>Can freely appear as former human in game.</PMBlacklistFormerHumansEnabledDescription>
-	<PMBlacklistFormerHumansRestrictedDescription>Can only appear as former human at random in game.</PMBlacklistFormerHumansRestrictedDescription>
-	<PMBlacklistFormerHumansDisabledDescription>Cannot appear as former human in game at all.</PMBlacklistFormerHumansDisabledDescription>
+	<PMBlacklistFormerHumansRestrictedDescription>Can exist as former human but not spawn at random.</PMBlacklistFormerHumansRestrictedDescription>
+	<PMBlacklistFormerHumansDisabledDescription>Cannot exist as former human at all.</PMBlacklistFormerHumansDisabledDescription>
+	<PMBlacklistFormerHumansAddedBy>Added by {0}</PMBlacklistFormerHumansAddedBy>
 </LanguageData>

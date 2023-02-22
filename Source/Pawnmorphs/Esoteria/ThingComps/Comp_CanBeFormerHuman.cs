@@ -48,6 +48,9 @@ namespace Pawnmorph.ThingComps
                     bool isManhunter = Pawn.MentalStateDef == MentalStateDefOf.Manhunter
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
+                    // Strong bias towards feral sapience for former humans spawned "in the wild".
+                    // Reasoning: They have spent so much time wandering and living in the wild
+                    // before they encounter your colony that their grip on sapience is much more likely than not slipping.
                     float sapience = RandUtilities.generateBetaRandom(1.5f, 4.5f);
 					FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
                     if (isManhunter)

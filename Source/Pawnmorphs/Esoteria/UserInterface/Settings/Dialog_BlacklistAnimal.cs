@@ -49,6 +49,10 @@ namespace Pawnmorph.UserInterface.Settings
 		{
 			_settingsReference = settingsReference;
 			_canBeFormerHumanDictonary = new Dictionary<ThingDef, FormerHumanRestrictions>();
+
+
+			this.resizeable = true;
+			this.draggable = true;
 		}
 
 		public override void PostOpen()
@@ -92,7 +96,7 @@ namespace Pawnmorph.UserInterface.Settings
 				string source = item.modContentPack?.ModMetaData?.Name;
 				if (String.IsNullOrWhiteSpace(source) == false)
 				{
-					tooltip += "Added by " + source;
+					tooltip += "PMBlacklistFormerHumansAddedBy".Translate(source);
 					tooltip += Environment.NewLine;
 					tooltip += Environment.NewLine;
 				}
