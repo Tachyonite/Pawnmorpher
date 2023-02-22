@@ -402,7 +402,8 @@ namespace Pawnmorph.Hybrids
             pawn.story.hairDef = TransferStyle<HairDef>(pawn, oldRace, race, pawn.story.hairDef, RimWorld.HairDefOf.Bald);
 
             // Transfer beard
-            pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
+            if (pawn.style.CanWantBeard)
+                pawn.style.beardDef = TransferStyle<BeardDef>(pawn, oldRace, race, pawn.style.beardDef, BeardDefOf.NoBeard);
             
             // Regenerate in case target race has different channels.
             // Default is "skin" and "hair" but might also have "eyes" or "tail"
