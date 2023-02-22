@@ -160,7 +160,6 @@
 		<label>permanently feral</label>
 		<description>[PAWN_nameDef] used to be a human, but the mechanites in [PAWN_possessive] system have forgotten his prior form — [PAWN_pronoun] is now sealed in this form for the rest of [PAWN_possessive] life. Reversion serums will not work.</description>
 		<hediffClass>HediffWithComps</hediffClass>
-		<preventsPregnancy>true</preventsPregnancy>
 	</HediffDef>
 
 	<HediffDef ParentName="FormerHumanHediffParent">
