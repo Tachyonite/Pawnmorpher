@@ -426,7 +426,7 @@ namespace Pawnmorph.GraphicSys
 
             public void Scan([NotNull] Pawn_StyleTracker styleTracker)
             {
-                if (styleTracker.beardDef != PMStyleDefOf.PM_BeardHidden)
+                if (styleTracker.CanWantBeard && styleTracker.beardDef != PMStyleDefOf.PM_BeardHidden)
                     beardDef = styleTracker.beardDef;
 
                 nextHairDef = styleTracker.nextHairDef;
