@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.FormerHumans;
 using UnityEngine;
 using Verse;
 
@@ -63,15 +64,21 @@ namespace Pawnmorph
         /// the chance an tf'd enemy or neutral pawn will go manhunter 
         /// </summary>
         public float manhunterTfChance = 0;
+
         /// <summary>
         /// The chance a friendly pawn will go manhunter when tf'd 
         /// </summary>
-        public float friendlyManhunterTfChance = 0; 
+        public float friendlyManhunterTfChance = 0;
 
         /// <summary>
-        /// The current log level
+        /// The chance a hostile will keep their faction when tf'd
         /// </summary>
-        public LogLevel logLevel = LogLevel.Warnings;
+		public float hostileKeepFactionTfChance = 0f;
+
+		/// <summary>
+		/// The current log level
+		/// </summary>
+		public LogLevel logLevel = LogLevel.Warnings;
 
         /// <summary>
         /// List of races whitelisted to have visible mutations.
@@ -91,7 +98,7 @@ namespace Pawnmorph
 		/// <summary>
 		/// List of blacklisted animal types.
 		/// </summary>
-		public List<string> animalBlacklist;
+		public Dictionary<string, FormerHumanRestrictions> animalBlacklist;
 
 		/// <summary>
 		/// Dictionary of optional patches explicitly enabled or disabled.
@@ -134,6 +141,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
+			Scribe_Values.Look(ref hostileKeepFactionTfChance, nameof(hostileKeepFactionTfChance));
+
 
 
 			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
@@ -148,7 +157,7 @@ namespace Pawnmorph
 
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (formerChance > 1) formerChance /= 100f; 
+				if (formerChance > 1) formerChance /= 100f; 
             }
 
             base.ExposeData();

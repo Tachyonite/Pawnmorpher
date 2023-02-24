@@ -1,6 +1,7 @@
-﻿using Pawnmorph.DefExtensions;
-using Pawnmorph.FormerHumans;
+﻿using Pawnmorph.FormerHumans;
+using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -47,8 +48,11 @@ namespace Pawnmorph.ThingComps
                     bool isManhunter = Pawn.MentalStateDef == MentalStateDefOf.Manhunter
                                     || Pawn.MentalStateDef == MentalStateDefOf.ManhunterPermanent;
 
-                    float sapience = Rand.Value;
-                    FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
+                    // Strong bias towards feral sapience for former humans spawned "in the wild".
+                    // Reasoning: They have spent so much time wandering and living in the wild
+                    // before they encounter your colony that their grip on sapience is much more likely than not slipping.
+                    float sapience = RandUtilities.generateBetaRandom(1.5f, 4.5f);
+					FormerHumanUtilities.MakeAnimalSapient(Pawn, sapience, !isManhunter);
                     if (isManhunter)
                         // TODO this will only ever fire once, even if the pawn shows up again later
                         RelatedFormerHumanUtilities.WildNotifyIfRelated(Pawn);
@@ -68,7 +72,7 @@ namespace Pawnmorph.ThingComps
             if (!PawnmorpherMod.Settings.enableWildFormers)
                 return false;
 
-            if (parent.def.GetModExtension<FormerHumanSettings>()?.neverFormerHuman == true)
+            if (parent.def.IsValidFormerHuman() == false)
                 return false;
 
             // Don't make animals belonging to any faction former humans

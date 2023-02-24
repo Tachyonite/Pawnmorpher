@@ -102,5 +102,61 @@ namespace Pawnmorph.Utilities
 
             return baseVal;
         }
-    }
+
+		private static float Marsaglia(float d, float c)
+		{
+			while (true)
+			{
+				float x, v;
+
+				do
+				{
+					x = generateNormalRandom();
+					v = Mathf.Pow(1.0f + c * x, 3);
+				}
+				while (v <= 0);
+
+				float u = Rand.Range(0.0f, 1.0f);
+
+				//Shortcut to make the procedure faster according to the paper.
+				if (u < 1 - 0.0331 * Mathf.Pow(x, 4))
+					return d * v;
+				//Normal step.
+				if (Math.Log(u) < 0.5 * Mathf.Pow(x, 2) + d * (1.0 - v + Math.Log(v)))
+					return d * v;
+			}
+		}
+
+		private static float generateGammaRandom(float shape, float scale)
+		{
+			if (shape < 1)
+			{
+				float d = shape + 1.0f - 1.0f / 3.0f;
+				float c = (1.0f / 3.0f) / Mathf.Sqrt(d);
+
+				float u = Rand.Range(0.0f, 1.0f);
+				return scale * Marsaglia(d, c) * Mathf.Pow(u, 1.0f / shape);
+			}
+			else
+			{
+				float d = shape - 1.0f / 3.0f;
+				float c = (1.0f / 3.0f) / Mathf.Sqrt(d);
+
+				return scale * Marsaglia(d, c);
+			}
+		}
+
+        /// <summary>
+        /// Generates a random number between 0 and 1 using a beta distribution.
+        /// </summary>
+        /// <param name="alpha">The alpha component.</param>
+        /// <param name="beta">The beta component.</param>
+        /// <returns></returns>
+        public static float generateBetaRandom(float alpha, float beta)
+		{
+			float x = generateGammaRandom(alpha, 1);
+			float y = generateGammaRandom(beta, 1);
+			return x / (x + y);
+		}
+	}
 }

@@ -155,7 +155,9 @@ namespace Pawnmorph.UserInterface.Settings
                 try
                 {
                     string[] items = value.Split(new[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
-                    _settingsReference = items.Select(x => x.Split(',')).Where(x => x[1].Length > 0).ToDictionary(y => y[0], y => y[1]);
+                    Dictionary<string, string> buffer = items.Select(x => x.Split(',')).Where(x => x[1].Length > 0).ToDictionary(y => y[0], y => y[1]);
+                    _settingsReference.Clear();
+                    _settingsReference.AddRange(buffer);
                     RefreshAliens();
                 }
                 catch (Exception)
