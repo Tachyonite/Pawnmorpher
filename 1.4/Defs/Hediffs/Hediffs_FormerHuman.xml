@@ -9,6 +9,7 @@
 		<label>former human</label>
 		<description>[PAWN_nameDef] used to be a human, but by whatever means has now been transformed into this current form. In this state, [PAWN_pronoun] can be reverted.</description>
 		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
+		<preventsPregnancy>true</preventsPregnancy>
 		<stages>
 			<li>
 				<label>sapient</label>
@@ -108,6 +109,7 @@
 	<HediffDef ParentName="FormerHumanHediffParent">
 		<defName>2xMergedHuman</defName>
 		<label>2x merged morph</label>
+		<preventsPregnancy>true</preventsPregnancy>
 		<description>[PAWN_nameDef] is a creature that should never have been, a fusion of two beings which mutated to become one animalistic monstrosity.</description>
 		<hediffClass>Pawnmorph.Hediffs.FormerHuman</hediffClass>
 		<stages>
