@@ -516,7 +516,7 @@
     <Compile Include="HPatches\HealthUtilityPatch.cs" />
     <Compile Include="HPatches\Mods\CompactHediffs\CustomHealthCardUtilsPatch.cs" />
     <Compile Include="HPatches\SelectorPatch.cs" />
-    <Compile Include="HPatches\GiddyUpPatch.cs" />
+    <Compile Include="HPatches\Mods\Giddy-Up\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HediffDefPatches.cs" />
     <Compile Include="HPatches\HediffPatches.cs" />
     <Compile Include="HPatches\HediffSetPatches.cs" />
