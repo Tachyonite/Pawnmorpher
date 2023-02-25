@@ -5,10 +5,10 @@ using System;
 
 namespace Pawnmorph.Hediffs
 {
-    //Do not remove, this class is just here to mark mutations as 'obsolete' 
-    [Obsolete]
-    internal class ObsoletePart : Hediff_AddedMutation
-    {
-        
-    }
+	//Do not remove, this class is just here to mark mutations as 'obsolete' 
+	[Obsolete]
+	internal class ObsoletePart : Hediff_AddedMutation
+	{
+
+	}
 }

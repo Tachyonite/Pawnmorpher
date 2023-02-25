@@ -3,18 +3,18 @@
 
 namespace Pawnmorph.Thoughts
 {
-    /// <summary>
-    /// static class containing common labels for formatted thoughts 
-    /// </summary>
-    public static class ThoughtLabels
-    {
-        //add interning if formatting performance becomes an issue 
+	/// <summary>
+	/// static class containing common labels for formatted thoughts 
+	/// </summary>
+	public static class ThoughtLabels
+	{
+		//add interning if formatting performance becomes an issue 
 
-        /// <summary>
-        /// label for a venerated animal in a string 
-        /// </summary>
-        public const string VENERATED_ANIMAL = "ANIMALKIND";
+		/// <summary>
+		/// label for a venerated animal in a string 
+		/// </summary>
+		public const string VENERATED_ANIMAL = "ANIMALKIND";
 
 
-    }
+	}
 }

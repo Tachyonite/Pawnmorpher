@@ -6,16 +6,16 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Static class containing transformation related pawn relation defs. </summary>
-    [DefOf]
-    public static class TfRelationDefOf
-    {
-        static TfRelationDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(TfRelationDefOf)); 
-        }
+	/// <summary> Static class containing transformation related pawn relation defs. </summary>
+	[DefOf]
+	public static class TfRelationDefOf
+	{
+		static TfRelationDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(TfRelationDefOf));
+		}
 
-        public static PawnRelationDef MergeMate;
-        public static PawnRelationDef ExMerged; 
-    }
+		public static PawnRelationDef MergeMate;
+		public static PawnRelationDef ExMerged;
+	}
 }

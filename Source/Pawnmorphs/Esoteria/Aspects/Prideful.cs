@@ -5,28 +5,28 @@ using RimWorld;
 
 namespace Pawnmorph.Aspects
 {
-    /// <summary>
-    /// aspect for the giving merged pawns a 'split mind'
-    /// </summary>
-    /// <seealso cref="Pawnmorph.Aspect" />
-    public class Prideful : Aspect 
-    {
-        /// <inheritdoc />
-        protected override void PostAdd()
-        {
-            TraitSet traitSet = Pawn.story?.traits;
-            traitSet.GainTrait(new Trait(PMTraitDefOf.PM_PridefulTrait));
+	/// <summary>
+	/// aspect for the giving merged pawns a 'split mind'
+	/// </summary>
+	/// <seealso cref="Pawnmorph.Aspect" />
+	public class Prideful : Aspect
+	{
+		/// <inheritdoc />
+		protected override void PostAdd()
+		{
+			TraitSet traitSet = Pawn.story?.traits;
+			traitSet.GainTrait(new Trait(PMTraitDefOf.PM_PridefulTrait));
 
-            base.PostAdd();
-        }
+			base.PostAdd();
+		}
 
-        /// <inheritdoc />
-        public override void PostRemove()
-        {
-            TraitSet traitSet = Pawn.story?.traits;
-            traitSet.allTraits.RemoveAll(x => x.def == PMTraitDefOf.PM_PridefulTrait);
+		/// <inheritdoc />
+		public override void PostRemove()
+		{
+			TraitSet traitSet = Pawn.story?.traits;
+			traitSet.allTraits.RemoveAll(x => x.def == PMTraitDefOf.PM_PridefulTrait);
 
-            base.PostRemove();
-        }
-    }
+			base.PostRemove();
+		}
+	}
 }

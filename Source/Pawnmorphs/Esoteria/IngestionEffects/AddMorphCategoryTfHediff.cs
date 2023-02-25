@@ -10,81 +10,81 @@ using Verse;
 
 namespace Pawnmorph.IngestionEffects
 {
-    /// <summary>
-    /// ingestion outcome doer that adds a tf hediff picked from a given morph category 
-    /// </summary>
-    /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
-    public class AddMorphCategoryTfHediff : IngestionOutcomeDoer
-    {
-        /// <summary>
-        /// The full tf
-        /// </summary>
-        public bool fullTf;
-        /// <summary>
-        /// The morph category
-        /// </summary>
-        public MorphCategoryDef morphCategory;
-        /// <summary>
-        /// The initial severity
-        /// </summary>
-        public float severity = 1;
+	/// <summary>
+	/// ingestion outcome doer that adds a tf hediff picked from a given morph category 
+	/// </summary>
+	/// <seealso cref="RimWorld.IngestionOutcomeDoer" />
+	public class AddMorphCategoryTfHediff : IngestionOutcomeDoer
+	{
+		/// <summary>
+		/// The full tf
+		/// </summary>
+		public bool fullTf;
+		/// <summary>
+		/// The morph category
+		/// </summary>
+		public MorphCategoryDef morphCategory;
+		/// <summary>
+		/// The initial severity
+		/// </summary>
+		public float severity = 1;
 
-        /// <summary>
-        /// Whether or not to allow restricted morphs.
-        /// </summary>
-        public bool allowRestricted = false;
+		/// <summary>
+		/// Whether or not to allow restricted morphs.
+		/// </summary>
+		public bool allowRestricted = false;
 
-        [Unsaved] private List<HediffDef> _allHediffs;
-        
-        [NotNull]
-        List<HediffDef> AllHediffs
-        {
-            get
-            {
-                if (_allHediffs == null)
-                {
-                    if (morphCategory == null)
-                    {
-                        Log.Error($"{nameof(AddMorphCategoryTfHediff)} does not have it's {nameof(morphCategory)} field set!");
-                        _allHediffs = new List<HediffDef>();
-                    }
-                    else
-                    {
-                        // If morph is not restricted, serum permits restricted or category itself is restricted.
-                        _allHediffs =
-                            morphCategory.AllMorphsInCategories
-                                         .Where(m => !m.Restricted || allowRestricted || morphCategory.restricted)
-                                         .Select(m => fullTf
-                                                                                ? m.fullTransformation
-                                                                                : m.partialTransformation)
-                                         .ToList();
-                    }
-                }
+		[Unsaved] private List<HediffDef> _allHediffs;
 
-                return _allHediffs; 
-            }
-        }
+		[NotNull]
+		List<HediffDef> AllHediffs
+		{
+			get
+			{
+				if (_allHediffs == null)
+				{
+					if (morphCategory == null)
+					{
+						Log.Error($"{nameof(AddMorphCategoryTfHediff)} does not have it's {nameof(morphCategory)} field set!");
+						_allHediffs = new List<HediffDef>();
+					}
+					else
+					{
+						// If morph is not restricted, serum permits restricted or category itself is restricted.
+						_allHediffs =
+							morphCategory.AllMorphsInCategories
+										 .Where(m => !m.Restricted || allowRestricted || morphCategory.restricted)
+										 .Select(m => fullTf
+																				? m.fullTransformation
+																				: m.partialTransformation)
+										 .ToList();
+					}
+				}
 
-        /// <summary>
-        /// Does the special hediff effect 
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="ingested">The ingested.</param>
-        protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
-        {
-            if (pawn?.health == null) 
-                return;
+				return _allHediffs;
+			}
+		}
 
-            var hediff = AllHediffs.RandElement();
+		/// <summary>
+		/// Does the special hediff effect 
+		/// </summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <param name="ingested">The ingested.</param>
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		{
+			if (pawn?.health == null)
+				return;
 
-            if (hediff == null)
-            {
-                Log.Error($"No morphs were found in category {morphCategory.defName}. Allow restricted: {allowRestricted}");
-                return;
-            }
+			var hediff = AllHediffs.RandElement();
 
-            var h = pawn.health.AddHediff(hediff);
-            h.Severity = severity; 
-        }
-    }
+			if (hediff == null)
+			{
+				Log.Error($"No morphs were found in category {morphCategory.defName}. Allow restricted: {allowRestricted}");
+				return;
+			}
+
+			var h = pawn.health.AddHediff(hediff);
+			h.Severity = severity;
+		}
+	}
 }

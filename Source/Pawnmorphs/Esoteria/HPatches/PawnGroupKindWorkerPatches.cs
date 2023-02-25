@@ -5,8 +5,8 @@
 
 namespace Pawnmorph.HPatches
 {
-    public static class PawnGroupKindWorkerPatches
-    {
-        
-    }
+	public static class PawnGroupKindWorkerPatches
+	{
+
+	}
 }

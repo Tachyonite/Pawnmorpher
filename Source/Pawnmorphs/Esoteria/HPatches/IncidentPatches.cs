@@ -7,21 +7,21 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class IncidentPatches
-    {
-        [HarmonyPatch(typeof(IncidentWorker_AnimalInsanityMass), "AnimalUsable")]
-        static class StopMadSapientAnimalPatch
-        {
-            static bool Prefix(Pawn p, ref bool __result)
-            {
-                if (p.IsSapientFormerHuman())
-                {
-                    __result = false;
-                    return false; 
-                }
+	static class IncidentPatches
+	{
+		[HarmonyPatch(typeof(IncidentWorker_AnimalInsanityMass), "AnimalUsable")]
+		static class StopMadSapientAnimalPatch
+		{
+			static bool Prefix(Pawn p, ref bool __result)
+			{
+				if (p.IsSapientFormerHuman())
+				{
+					__result = false;
+					return false;
+				}
 
-                return true; 
-            }
-        }
-    }
+				return true;
+			}
+		}
+	}
 }

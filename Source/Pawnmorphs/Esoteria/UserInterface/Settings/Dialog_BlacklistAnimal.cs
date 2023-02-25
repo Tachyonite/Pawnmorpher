@@ -70,7 +70,7 @@ namespace Pawnmorph.UserInterface.Settings
 
 			_morphAnimals = MorphDef.AllDefs.SelectMany(x => x.AllAssociatedAnimals).ToHashSet();
 
-			var filterList = new ListFilter<ThingDef>(animals, 
+			var filterList = new ListFilter<ThingDef>(animals,
 				(animal, filterText) => animal.LabelCap.ToString().ToLower().Contains(filterText) ||
 				OPTIONS[_canBeFormerHumanDictonary[animal]].ToLower().Contains(filterText));
 			_animalListBox = new FilterListBox<ThingDef>(filterList);
@@ -91,7 +91,7 @@ namespace Pawnmorph.UserInterface.Settings
 			_animalListBox.Draw(inRect, 0, curY, totalHeight, (item, listing) =>
 			{
 				FormerHumanRestrictions current = _canBeFormerHumanDictonary[item];
-				
+
 				string tooltip = "";
 				string source = item.modContentPack?.ModMetaData?.Name;
 				if (String.IsNullOrWhiteSpace(source) == false)

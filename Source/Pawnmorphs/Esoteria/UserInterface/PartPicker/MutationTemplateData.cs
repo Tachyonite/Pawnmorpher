@@ -18,17 +18,17 @@ namespace Pawnmorph.UserInterface.PartPicker
 		/// The saved mutation def
 		/// </summary>
 		public MutationDef MutationDef => _mutationDef;
-		
+
 		/// <summary>
 		/// The name of the body part the mutation is attached to.
 		/// </summary>
 		public string PartLabelCap => _partLabelCap;
-		
+
 		/// <summary>
 		/// The severity of the mutation
 		/// </summary>
 		public float Severity => _severity;
-		
+
 		/// <summary>
 		/// Whether the mutation is halted or not
 		/// </summary>

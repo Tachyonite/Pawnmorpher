@@ -6,7 +6,7 @@ namespace Pawnmorph.Genebank.Model
 {
 	internal class TemplateGenebankEntry : GenebankEntry<MutationTemplate>
 	{
-		public TemplateGenebankEntry() 
+		public TemplateGenebankEntry()
 			: base(null)
 		{
 		}

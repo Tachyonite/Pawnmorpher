@@ -7,33 +7,33 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// interface for verbs with customizable commands 
-    /// </summary>
-    public interface ICustomVerb
-    {
-        /// <summary>
-        /// Gets the label.
-        /// </summary>
-        /// <param name="ownerThing">The owner thing.</param>
-        /// <returns></returns>
-        string GetLabel([NotNull] Thing ownerThing);  
+	/// <summary>
+	/// interface for verbs with customizable commands 
+	/// </summary>
+	public interface ICustomVerb
+	{
+		/// <summary>
+		/// Gets the label.
+		/// </summary>
+		/// <param name="ownerThing">The owner thing.</param>
+		/// <returns></returns>
+		string GetLabel([NotNull] Thing ownerThing);
 
-        /// <summary>
-        /// Gets the description for this verb 
-        /// </summary>
-        /// <param name="ownerThing">The owner thing.</param>
-        /// <returns></returns>
-        string GetDescription([NotNull] Thing ownerThing);
+		/// <summary>
+		/// Gets the description for this verb 
+		/// </summary>
+		/// <param name="ownerThing">The owner thing.</param>
+		/// <returns></returns>
+		string GetDescription([NotNull] Thing ownerThing);
 
-        /// <summary>
-        /// Gets the UI icon for this verb 
-        /// </summary>
-        /// <param name="ownerThing">The owner thing.</param>
-        /// <returns></returns>
-        [CanBeNull]
-        Texture2D GetUIIcon([NotNull] Thing ownerThing);
-        
+		/// <summary>
+		/// Gets the UI icon for this verb 
+		/// </summary>
+		/// <param name="ownerThing">The owner thing.</param>
+		/// <returns></returns>
+		[CanBeNull]
+		Texture2D GetUIIcon([NotNull] Thing ownerThing);
 
-    }
+
+	}
 }

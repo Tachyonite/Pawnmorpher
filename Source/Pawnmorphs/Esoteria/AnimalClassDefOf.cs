@@ -9,24 +9,24 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     def of for animal classifications
-    /// </summary>
-    [DefOf]
-    public static class AnimalClassDefOf
-    {
-        static AnimalClassDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(AnimalClassDefOf));
-        }
+	/// <summary>
+	///     def of for animal classifications
+	/// </summary>
+	[DefOf]
+	public static class AnimalClassDefOf
+	{
+		static AnimalClassDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(AnimalClassDefOf));
+		}
 
-        public static AnimalClassDef Animal;
+		public static AnimalClassDef Animal;
 
-        public static AnimalClassDef Canid;
-        public static AnimalClassDef Reptile;
+		public static AnimalClassDef Canid;
+		public static AnimalClassDef Reptile;
 		public static AnimalClassDef Bovid;
 		public static AnimalClassDef Cervid;
 
 		public static AnimalClassDef Powerful;
-    }
+	}
 }
