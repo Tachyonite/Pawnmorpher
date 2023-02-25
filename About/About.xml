@@ -27,7 +27,7 @@
 Requires Humanoid Alien Framework and Hugslib.
 
 	</description>
-	<packageId>tachyonite.pawnmorpherpublic</packageId>
+	<packageId>tachyonite.pawnmorpher</packageId>
 	<modDependencies>
 		<li>
 			<packageId>erdelf.HumanoidAlienRaces</packageId>
