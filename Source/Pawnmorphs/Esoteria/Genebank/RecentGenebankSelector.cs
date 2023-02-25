@@ -21,11 +21,28 @@ namespace Pawnmorph.Genebank
 		private byte _recentLength;
 		private ChamberDatabase _database;
 
+		/// <summary>
+		/// Occurs when user makes a selection.
+		/// </summary>
 		public event EventHandler<IGenebankEntry> OnSelected;
 
+		/// <summary>
+		/// Gets or sets additional options that will always be shown last.
+		/// </summary>
 		public IList<FloatMenuOption> AdditionalOptions { get; set; }
 
+		/// <summary>
+		/// Gets or sets a value indicating whether browse button is enabled.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if the browse is enabled; otherwise, <c>false</c>.
+		/// </value>
 		public bool CanBrowse { get; set; }
+
+		/// <summary>
+		/// Gets or sets the row filter applied to genebank table when browsing.
+		/// </summary>
+		public Func<IGenebankEntry, bool> RowFilter { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RecentGenebankSelector{T}"/> class.
@@ -78,7 +95,10 @@ namespace Pawnmorph.Genebank
 					ItemSelected(item);
 				}
 			});
-
+			if (RowFilter != null)
+			{
+				browseDialog.RowFilter += (item) => RowFilter(item.Def);
+			}
 			Find.WindowStack.Add(browseDialog);
 		}
 

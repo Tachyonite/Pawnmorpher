@@ -35,9 +35,15 @@ namespace Pawnmorph.UserInterface.TableBox
 		private bool _multiSelect;
 
 		/// <summary>
-		/// Returns the current selected rows.
+		/// Gets or sets the row filter function. Return true to include row and fall to skip.
 		/// </summary>
-		public IReadOnlyList<T> SelectedRows => _selectedRows;
+		public Func<T, bool> RowFilter { get; set; }
+
+
+        /// <summary>
+        /// Returns the current selected rows.
+        /// </summary>
+        public IReadOnlyList<T> SelectedRows => _selectedRows;
 
         /// <summary>
         /// Triggered when selected rows is changed.
@@ -113,8 +119,11 @@ namespace Pawnmorph.UserInterface.TableBox
         /// <param name="item">Row to add.</param>
         public void AddRow(T item)
         {
-            // Ensure new rows have every column in data cache to avoid needing to check for every single cell during rendering.
-            foreach (TableColumn column in _columns)
+            if (RowFilter != null && RowFilter(item) == false)
+                return;
+
+			// Ensure new rows have every column in data cache to avoid needing to check for every single cell during rendering.
+			foreach (TableColumn column in _columns)
             {
                 if (item.HasColumn(column) == false)
                     item[column] = String.Empty;

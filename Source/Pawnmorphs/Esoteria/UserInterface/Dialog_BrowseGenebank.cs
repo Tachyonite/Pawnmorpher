@@ -37,6 +37,16 @@ namespace Pawnmorph.UserInterface
 		public Action<IGenebankEntry> OnCloseCallback { get; set; }
 
 		/// <summary>
+		/// Gets or sets the table's row filter.
+		/// </summary>
+		public Func<GeneRowItem, bool> RowFilter
+		{
+			get => _table.RowFilter;
+			set => _table.RowFilter = value;
+		}
+
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Dialog_BrowseGenebank"/> class.
 		/// </summary>
 		/// <param name="tab">The genebank tab to show.</param>
