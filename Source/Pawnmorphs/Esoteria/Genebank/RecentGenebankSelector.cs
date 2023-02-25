@@ -54,6 +54,7 @@ namespace Pawnmorph.Genebank
 			_recentLength = historyLength;
 			_recentOptions = new Queue<IGenebankEntry>(historyLength);
 			_database = database;
+			CanBrowse = true;
 		}
 
 
@@ -104,9 +105,12 @@ namespace Pawnmorph.Genebank
 
 		private void ItemSelected(IGenebankEntry item)
 		{
-			if (_recentOptions.Count == _recentLength)
-				_recentOptions.Dequeue();
-			_recentOptions.Enqueue(item);
+			if (_recentOptions.Contains(item) == false)
+			{
+				if (_recentOptions.Count == _recentLength)
+					_recentOptions.Dequeue();
+				_recentOptions.Enqueue(item);
+			}
 			OnSelected?.Invoke(this, item);
 		}
 

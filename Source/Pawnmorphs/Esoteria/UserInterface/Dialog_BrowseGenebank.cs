@@ -14,6 +14,7 @@ namespace Pawnmorph.UserInterface
 {
 	internal class Dialog_BrowseGenebank : Window
 	{
+		private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
 		private const float SPACING = 10f;
 		private static readonly string BUTTON_SELECT = "PM_Genebank_DeleteButton".Translate();
 		private static readonly float BUTTON_SELECT_SIZE;
@@ -79,7 +80,9 @@ namespace Pawnmorph.UserInterface
 		public override void PostOpen()
 		{
 			base.PostOpen();
+			_table.Clear();
 			_tab.GenerateTable(_table);
+			_table.Refresh();
 		}
 
 		private void Table_SelectionChanged(object sender, IReadOnlyList<GeneRowItem> e)
@@ -87,14 +90,17 @@ namespace Pawnmorph.UserInterface
 			Selected = null;
 			if (e.Count == 1)
 				Selected = e[0].Def;
+
+			_tab.SelectionChanged(e);
 		}
 
 		public override void DoWindowContents(Rect inRect)
 		{
+			float mainWidth = inRect.width * MAIN_COLUMN_WIDTH_FRACT;
+			float detailsWidth = inRect.width - mainWidth - SPACING;
 
 			Rect mainBox = inRect;
-			mainBox.y += TabDrawer.TabHeight;
-			mainBox.height -= TabDrawer.TabHeight;
+			mainBox.width = mainWidth;
 
 			Widgets.DrawBoxSolidWithOutline(mainBox, Color.black, Color.gray);
 
@@ -108,10 +114,16 @@ namespace Pawnmorph.UserInterface
 			Text.Font = GameFont.Small;
 
 			Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
-			if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_SELECT_SIZE, footer.height), BUTTON_SELECT))
+			if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_SELECT_SIZE, footer.height), "Select")) //BUTTON_SELECT))
 			{
 				SelectRow();
 			}
+
+
+			Rect detailsBox = new Rect(inRect.xMax - detailsWidth, inRect.y, detailsWidth, inRect.height + SPACING);
+			Widgets.DrawBoxSolidWithOutline(detailsBox, Color.black, Color.gray);
+			
+			_tab.DrawDetails(detailsBox.ContractedBy(SPACING));
 
 			//if (_tab != null)
 			//	_tab.DrawFooter(new Rect(footer.x + BUTTON_SELECT_SIZE + SPACING, footer.y, footer.width - BUTTON_SELECT_SIZE - SPACING, footer.height));

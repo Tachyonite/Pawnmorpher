@@ -6,6 +6,9 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Genebank;
+using Pawnmorph.Genebank.Model;
+using Pawnmorph.UserInterface.Genebank.Tabs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -115,7 +118,9 @@ namespace Pawnmorph.ThingComps
 
         private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
-        private Command_Action _cachedGizmo;
+		private RecentGenebankSelector<AnimalsTab> _recentAnimalsSelector;
+
+		private Command_Action _cachedGizmo;
 
         private Gizmo[] _cachedGizmoArr;
 
@@ -131,7 +136,24 @@ namespace Pawnmorph.ThingComps
                 defaultLabel = Props.labelKey.Translate(),
                 defaultDesc = Props.descriptionKey.Translate()
             };
-        }
+
+
+            _recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
+			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
+			_recentAnimalsSelector.RowFilter = (row) =>
+			{
+				PawnKindDef animal = row as PawnKindDef;
+
+				if (Props.raceFilter?.PassesFilter(animal) ?? false == false)
+					return false;
+
+				if (SpeciesFilter?.Invoke(animal) ?? false == false)
+					return false;
+
+				return true;
+			};
+			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
+		}
 
         /// <summary>
         /// Comps the get gizmos extra.
@@ -164,34 +186,37 @@ namespace Pawnmorph.ThingComps
         private void GizmoAction()
         {
             OnClick?.Invoke(this);
-            var options = GetOptions.ToList();
-            if (options.Count == 0)
-            {
-                var emptyOption = new FloatMenuOption(ANIMAL_PICKER_NOCHOICES.Translate(), null);
-                emptyOption.Disabled = true;
-                options.Add(emptyOption);
-            }
-            Find.WindowStack.Add(new FloatMenu(options)); 
-        }
+            _recentAnimalsSelector.ShowOptions();
+		}
 
-        private IEnumerable<FloatMenuOption> GetOptions
+		private void RecentAnimalsSelector_OnSelected(object sender, Genebank.Model.IGenebankEntry e)
+		{
+            ChoseAnimal((e as AnimalGenebankEntry).Value);
+		}
+
+		private IList<FloatMenuOption> GetForcedOptions()
         {
-            get
+            if (Props.alwaysAvailable != null)
             {
-                foreach (PawnKindDef kind in AllAnimalsSelectable)
-                {
-                    var tk = kind;
-                    string label;
-                    AnimalSelectorOverrides overrides = kind.GetModExtension<AnimalSelectorOverrides>();
-                    if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
-                        label = overrides.label;
-                    else
-                        label = tk.LabelCap;
+                FloatMenuOption[] collection = new FloatMenuOption[Props.alwaysAvailable.Count];
 
-                    yield return new FloatMenuOption(label, () => ChoseAnimal(tk));
-                }
+                for (int i = 0; i < Props.alwaysAvailable.Count; i++)
+                {
+                    PawnKindDef item = Props.alwaysAvailable[i];
+
+					string label;
+					AnimalSelectorOverrides overrides = item.GetModExtension<AnimalSelectorOverrides>();
+					if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
+					    label = overrides.label;
+					else
+					    label = item.LabelCap;
+
+					collection[i] = new FloatMenuOption(item.LabelCap, () => ChoseAnimal(item));
+				}
+                return collection;
             }
-        }
+            return new FloatMenuOption[0];
+		}
 
         private void ChoseAnimal(PawnKindDef chosenKind)
         {
