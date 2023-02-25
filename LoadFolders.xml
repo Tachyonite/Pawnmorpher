@@ -26,6 +26,7 @@
 		<li IfModActive="vanillaexpanded.backgrounds">1.3/Mods/VBE</li>
 		<li IfModActive="zmodw.zwanimals,acpteam.acpvanillastyle">1.3/Mods/ZWE-ACP</li>
 		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.3/Mods/ADogSaidAnimalProsthetics</li>
+		<li IfModActive="CETeam.CombatExtended">1.3/Mods/CombatExtended</li>
 	</v1.3>
 	<v1.4>
 		<li>/</li>
