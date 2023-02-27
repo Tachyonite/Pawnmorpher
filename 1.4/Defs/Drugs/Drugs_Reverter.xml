@@ -10,6 +10,7 @@ Because reverter relies on the data stored within the mutagenic mechanites to re
 		</graphicData>
 		<statBases>
 			<WorkToMake>600</WorkToMake>
+			<MarketValue>300</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -29,7 +30,6 @@ Because reverter relies on the data stored within the mutagenic mechanites to re
 		<costList>
 			<MutagenStabiliser>1</MutagenStabiliser>
 			<Antigen>1</Antigen>
-			<Neutroamine>2</Neutroamine>
 			<Mutanite>2</Mutanite>
 		</costList>
 		<comps>

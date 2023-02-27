@@ -11,7 +11,7 @@ Booster pills are illegal throughout civilized space, but are a staple for certa
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>55</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -52,7 +52,7 @@ RGB pills are a common party drug in some mutation-positive societies. Prankster
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>55</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -110,7 +110,7 @@ Feral pills are highly illegal in civilized space. At least one exotic animal tr
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>55</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -149,7 +149,7 @@ Dry pills are often used to make mutagen exposure victims more comfortable until
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>55</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -194,7 +194,7 @@ X-aspect is most commonly used to restore human-level sapience to etherbroken an
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>55</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -234,7 +234,7 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 		<rotatable>false</rotatable>
 		<statBases>
 			<WorkToMake>600</WorkToMake>
-			<MarketValue>18</MarketValue>
+			<MarketValue>95</MarketValue>
 			<Mass>0.005</Mass>
 			<Flammability>0.7</Flammability>
 		</statBases>
@@ -258,7 +258,7 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 		</recipeMaker>
 		<costList>
 			<Antigen>1</Antigen>
-			<Neutroamine>2</Neutroamine>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -284,8 +284,8 @@ Accelerators are commonly used by mutagen junkies looking to quickly get their t
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<rotatable>false</rotatable>
 		<statBases>
-			<WorkToMake>600</WorkToMake>
-			<MarketValue>18</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>55</MarketValue>
 			<Mass>0.005</Mass>
 			<Flammability>0.7</Flammability>
 		</statBases>
@@ -329,7 +329,7 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>110</MarketValue>
+			<MarketValue>100</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -348,7 +348,7 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 		</recipeMaker>
 		<costList>
 			<Antigen>1</Antigen>
-			<Neutroamine>2</Neutroamine>
+			<Neutroamine>1</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
