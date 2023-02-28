@@ -225,7 +225,9 @@ namespace Pawnmorph.Hybrids
 			map?.mapPawns.UpdateRegistryForPawn(pawn);
 
 			//add the group hediff if applicable 
-			AspectDef aspectDef = race.GetMorphOfRace()?.group?.aspectDef;
+			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+
+			AspectDef aspectDef = newMorph?.group?.aspectDef;
 			if (aspectDef != null) aTracker?.Add(aspectDef);
 
 			if (map != null)
@@ -241,8 +243,11 @@ namespace Pawnmorph.Hybrids
 			//if (race != ThingDefOf.Human) 
 			ValidateExplicitRaceChange(pawn, race, oldRace);
 
-
-			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
+			{
+				// If any morph-specific hairstyles then pick one at random.
+				pawn.story.hairDef = newMorph.raceSettings.hairstyles.Where(x => CheckStyleGender(x, pawn.gender)).RandomElement();
+			}
 
 			//check if the body def changed and handle any apparel changes 
 			if (oldRace.race.body != race.race.body)
@@ -296,6 +301,25 @@ namespace Pawnmorph.Hybrids
 			{
 				raceChangeEventReceiver.OnRaceChange(oldRace);
 			}
+		}
+
+		private static bool CheckStyleGender(StyleItemDef style, Gender pawnGender)
+		{
+			switch (style.styleGender)
+			{
+				case StyleGender.Any:
+				case StyleGender.MaleUsually:
+				case StyleGender.FemaleUsually:
+					return true;
+
+				case StyleGender.Male:
+					return pawnGender == Gender.Male;
+
+				case StyleGender.Female:
+					return pawnGender == Gender.Female;
+			}
+
+			return false;
 		}
 
 		[NotNull]
