@@ -58,24 +58,24 @@ namespace Pawnmorph.Hybrids
 			return _raceLookupTable.TryGetValue(race);
 		}
 
-		private static RaceProperties GenerateHybridProperties([NotNull] RaceProperties human, [NotNull] RaceProperties animal)
+		private static RaceProperties GenerateHybridProperties([NotNull] RaceProperties human, [NotNull] RaceProperties animal, [NotNull] HybridRaceSettings morph)
 		{
-			(float hSize, float hHRate) = GetFoodStats(human, animal);
+			// (float hSize, float hHRate) = GetFoodStats(human, animal);
 
 
-			return new RaceProperties
+			RaceProperties properties = new RaceProperties
 			{
 				thinkTreeMain = human.thinkTreeMain, //most of these are just guesses, have to figure out what's safe to change and what isn't 
 				thinkTreeConstant = human.thinkTreeConstant,
 				intelligence = human.intelligence,
 				makesFootprints = true,
-				lifeExpectancy = human.lifeExpectancy,
+				lifeExpectancy = morph.lifeExpectancy ?? human.lifeExpectancy,
 				leatherDef = animal.leatherDef,
 				nameCategory = human.nameCategory,
-				body = human.body,
+				body = morph.body ?? human.body,
 				baseBodySize = human.baseBodySize,
 				baseHealthScale = human.baseHealthScale,
-				baseHungerRate = human.baseHungerRate,
+				baseHungerRate = morph.baseHungerRate ?? human.baseHungerRate,
 				hasGenders = human.hasGenders,
 				foodType = GenerateFoodFlags(animal.foodType),
 				gestationPeriodDays = human.gestationPeriodDays,
@@ -103,6 +103,11 @@ namespace Pawnmorph.Hybrids
 				corpseDef = human.corpseDef,
 				packAnimal = animal.packAnimal
 			};
+
+			typeof(RaceProperties).GetField("bloodDef", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.BloodDef);
+			typeof(RaceProperties).GetField("fleshType", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.FleshType);
+
+			return properties;
 		}
 
 		private static TrainabilityDef GetTrainability(TrainabilityDef animalTrainability)
@@ -578,7 +583,7 @@ namespace Pawnmorph.Hybrids
 			{
 				defName = morph.defName + "Race_Implied", //most of these are guesses, should figure out what's safe to change and what isn't 
 				label = morph.label,
-				race = GenerateHybridProperties(humanDef.race, animal?.race),
+				race = GenerateHybridProperties(humanDef.race, animal?.race, morph.raceSettings),
 				thingCategories = humanDef.thingCategories,
 				thingClass = humanDef.thingClass,
 				category = humanDef.category,
@@ -619,6 +624,10 @@ namespace Pawnmorph.Hybrids
 			var vLst = impliedRace.Verbs.MakeSafe().Concat(animal.Verbs.MakeSafe()).ToList();
 			verbField.SetValue(impliedRace, vLst);
 			impliedRace.alienRace = GenerateHybridAlienSettings(humanDef.alienRace, morph, impliedRace);
+
+			// Add racial components
+			if (morph.raceSettings.comps?.Count > 0)
+				impliedRace.comps.AddRange(morph.raceSettings.comps);
 
 			return impliedRace;
 		}
