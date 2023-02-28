@@ -365,6 +365,7 @@ namespace Pawnmorph.Hybrids
 					}
 
 
+					ValidateGenes(pawn, oldARace, aRace);
 					ValidateGraphicsPaths(pawn, oldARace, aRace);
 					HPatches.PawnPatches.QueueRaceCheck(pawn);
 				} //validating the graphics paths only works for aliens 
@@ -377,6 +378,37 @@ namespace Pawnmorph.Hybrids
 			else
 			{
 				Log.Warning($"trying change the race of {pawn.Name} from {oldRace.defName} which is not {nameof(ThingDef_AlienRace)}!");
+			}
+		}
+
+
+		private static void ValidateGenes([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
+		{
+			if (ThingDefOf.Human == race)
+			{
+				// Reversion
+				// Revert endo genes to original.
+				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+				pawn.genes.Endogenes.Clear();
+				pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
+			}
+			else
+			{
+				// Remove invalid endo genes
+				for (int i = 0; i < pawn.genes.Endogenes.Count; i++)
+				{
+					Gene gene = pawn.genes.Endogenes[i];
+					if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+						pawn.genes.Endogenes.Remove(gene);
+				}
+			}
+
+			// Remove invalid xeno genes.
+			for (int i = 0; i < pawn.genes.Xenogenes.Count; i++)
+			{
+				Gene gene = pawn.genes.Xenogenes[i];
+				if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+					pawn.genes.Endogenes.Remove(gene);
 			}
 		}
 

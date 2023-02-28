@@ -1,6 +1,8 @@
 ﻿// InitialGraphics.cs modified by Iron Wolf for Pawnmorph on 09/10/2019 6:43 PM
 // last updated 09/10/2019  6:43 PM
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
@@ -233,6 +235,23 @@ namespace Pawnmorph.GraphicSys
 
 		private Pawn Pawn => (Pawn)parent;
 
+		private List<Gene> _initialEndoGenes;
+
+		public List<Gene> InitialEndoGenes
+		{
+			get
+			{
+				if (!_scanned)
+					ScanGraphics();
+				return _initialEndoGenes;
+			}
+			set
+			{
+				_initialEndoGenes = value;
+			}
+		}
+
+
 		/// <summary>Gets the debug string.</summary>
 		/// <returns></returns>
 		public string GetDebugStr()
@@ -358,6 +377,7 @@ namespace Pawnmorph.GraphicSys
 			_body = Pawn.story.bodyType;
 			_headType = Pawn.story.headType;
 			_scannedRace = Pawn.def;
+			_initialEndoGenes = Pawn.genes?.Endogenes.ToList();
 
 			if (_originalRace == null)
 				_originalRace = Pawn.def;
