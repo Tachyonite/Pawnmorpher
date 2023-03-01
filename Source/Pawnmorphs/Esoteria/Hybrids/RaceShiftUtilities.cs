@@ -179,6 +179,7 @@ namespace Pawnmorph.Hybrids
 		/// <exception cref="ArgumentNullException">pawn</exception>
 		public static void ChangePawnRace([NotNull] Pawn pawn, [NotNull] ThingDef race, bool reRollTraits = false)
 		{
+			var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 			if (race == null) throw new ArgumentNullException(nameof(race));
 			MorphDef oldMorph = pawn.def.GetMorphOfRace();
@@ -238,7 +239,9 @@ namespace Pawnmorph.Hybrids
 
 
 			//always revert to human settings first so the race change is consistent 
-			ValidateReversion(pawn);
+
+			if (graphicsComp?.Scanned == true)
+				graphicsComp.RestoreGraphics();
 
 			//if (race != ThingDefOf.Human) 
 			ValidateExplicitRaceChange(pawn, race, oldRace);
@@ -246,7 +249,9 @@ namespace Pawnmorph.Hybrids
 			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
 			{
 				// If any morph-specific hairstyles then pick one at random.
-				pawn.story.hairDef = newMorph.raceSettings.hairstyles.Where(x => CheckStyleGender(x, pawn.gender)).RandomElement();
+				HairDef morphHair = newMorph.raceSettings.hairstyles.Where(x => CheckStyleGender(x, pawn.gender)).RandomElement();
+				if (morphHair != null)
+					pawn.story.hairDef = morphHair;
 			}
 
 			//check if the body def changed and handle any apparel changes 
@@ -271,12 +276,10 @@ namespace Pawnmorph.Hybrids
 			//no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
 			// If reverted to human then rescan graphics to fix base skin color if originally alien.
-			if (race == ThingDefOf.Human)
+			if (race == ThingDefOf.Human && graphicsComp != null)
 			{
-				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-				if (graphicsComp != null && graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
+				if (graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
 					graphicsComp.ScanGraphics();
-
 			}
 
 
@@ -349,28 +352,6 @@ namespace Pawnmorph.Hybrids
 				}
 			}
 		}
-
-		private static void ValidateReversion(Pawn pawn)
-		{
-			var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-			var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-			var story = pawn.story;
-			if (alienComp == null)
-			{
-				Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
-				return;
-			}
-
-			if (graphicsComp == null || graphicsComp.Scanned == false)
-				return;
-
-			//story.bodyType = graphicsComp.BodyType;
-			//alienComp.crownType = graphicsComp.CrownType;
-			//story.hairDef = graphicsComp.HairDef; 
-
-			graphicsComp.RestoreGraphics();
-		}
-
 
 		private static void ValidateExplicitRaceChange(Pawn pawn, ThingDef race, ThingDef oldRace)
 		{
