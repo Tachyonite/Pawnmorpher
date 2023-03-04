@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <CombatExtended.AmmoCategoryDef>
+    <defName>PM_Mutagenic</defName>
+    <label>mutagenic</label>
+    <labelShort>mutagen</labelShort>
+    <description>Mutates organic targets on contact.</description>
+  </CombatExtended.AmmoCategoryDef>
+  <CombatExtended.AmmoCategoryDef>
+    <defName>GrenadeMutagenic</defName>
+    <label>Mutagenic</label>
+    <labelShort>mutagen</labelShort>
+    <description>Filled with a chaotic mix of DNA and mechanites that aerosolizes on impact. The mist can mutate any organics caught in it.</description>
+  </CombatExtended.AmmoCategoryDef>
+  <CombatExtended.AmmoCategoryDef>
+    <defName>MutaniteArrow</defName>
+    <label>mutanite arrow</label>
+    <labelShort>mutanite</labelShort>
+    <description>The arrow head is made from mutanite which mutates the victim.</description>
+    <advanced>true</advanced>
+  </CombatExtended.AmmoCategoryDef>
+</Defs>

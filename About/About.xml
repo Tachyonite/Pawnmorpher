@@ -1,4 +1,4 @@
-<ModMetaData>
+﻿<ModMetaData>
 	<name>Pawnmorpher</name>
 	<author>The Pawnmorpher Team</author>
 	<supportedVersions>
@@ -72,5 +72,6 @@ Requires Humanoid Alien Framework and Hugslib.
 		<li>VanillaExpanded.VCookE</li>
 		<li>crustypeanut.rc2.core</li>
 		<li>UnlimitedHugs.RemoteTech</li>
+		<li>CETeam.CombatExtended</li>
 	</loadAfter>
 </ModMetaData>
