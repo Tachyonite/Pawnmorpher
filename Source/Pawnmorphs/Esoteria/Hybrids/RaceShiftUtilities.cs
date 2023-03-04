@@ -179,6 +179,7 @@ namespace Pawnmorph.Hybrids
 		/// <exception cref="ArgumentNullException">pawn</exception>
 		public static void ChangePawnRace([NotNull] Pawn pawn, [NotNull] ThingDef race, bool reRollTraits = false)
 		{
+			var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 			if (race == null) throw new ArgumentNullException(nameof(race));
 			MorphDef oldMorph = pawn.def.GetMorphOfRace();
@@ -225,7 +226,9 @@ namespace Pawnmorph.Hybrids
 			map?.mapPawns.UpdateRegistryForPawn(pawn);
 
 			//add the group hediff if applicable 
-			AspectDef aspectDef = race.GetMorphOfRace()?.group?.aspectDef;
+			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+
+			AspectDef aspectDef = newMorph?.group?.aspectDef;
 			if (aspectDef != null) aTracker?.Add(aspectDef);
 
 			if (map != null)
@@ -236,13 +239,22 @@ namespace Pawnmorph.Hybrids
 
 
 			//always revert to human settings first so the race change is consistent 
-			ValidateReversion(pawn);
+
+			if (graphicsComp?.Scanned == true)
+				graphicsComp.RestoreGraphics();
 
 			//if (race != ThingDefOf.Human) 
 			ValidateExplicitRaceChange(pawn, race, oldRace);
 
+			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
+			{
+				// If any morph-specific hairstyles then pick one at random.
+				HairDef morphHair = newMorph.raceSettings.hairstyles.Where(x => CheckStyleGender(x, pawn.gender)).RandomElement();
+				if (morphHair != null)
+					pawn.story.hairDef = morphHair;
+			}
 
-			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
+			HandleRaceRestrictions(pawn, race);
 
 			//check if the body def changed and handle any apparel changes 
 			if (oldRace.race.body != race.race.body)
@@ -266,12 +278,10 @@ namespace Pawnmorph.Hybrids
 			//no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
 			// If reverted to human then rescan graphics to fix base skin color if originally alien.
-			if (race == ThingDefOf.Human)
+			if (race == ThingDefOf.Human && graphicsComp != null)
 			{
-				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-				if (graphicsComp != null && graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
+				if (graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
 					graphicsComp.ScanGraphics();
-
 			}
 
 
@@ -296,6 +306,68 @@ namespace Pawnmorph.Hybrids
 			{
 				raceChangeEventReceiver.OnRaceChange(oldRace);
 			}
+		}
+
+		private static void HandleRaceRestrictions(Pawn pawn, ThingDef race)
+		{
+			RaceRestrictionSettings restrictionSettings = null;
+			if (race is ThingDef_AlienRace alien)
+				restrictionSettings = alien.alienRace.raceRestriction;
+
+			if (restrictionSettings == null)
+				return;
+
+			ThingOwner inventory = pawn.inventory.GetDirectlyHeldThings();
+
+			List<Apparel> apparel = pawn.apparel.WornApparel;
+			for (int i = apparel.Count - 1; i >= 0; i--)
+			{
+				Apparel item = apparel[i];
+				if (item.def != null)
+				{
+					if (RaceRestrictionSettings.CanWear(item.def, race) == false)
+					{
+						// If pawn cannot keep item equipped due to race restrictions, then try add it to pawn's inventory otherwise drop.
+						if (inventory.TryAddOrTransfer(item) == false)
+							pawn.apparel.TryDrop(item);
+					}
+				}
+
+			}
+
+			List<ThingWithComps> equipment = pawn.equipment.AllEquipmentListForReading;
+			for (int i = equipment.Count - 1; i >= 0; i--)
+			{
+				ThingWithComps item = equipment[i];
+				if (item.def != null)
+				{
+					if (RaceRestrictionSettings.CanEquip(item.def, race) == false)
+					{
+						// If pawn cannot keep item equipped due to race restrictions, then try add it to pawn's inventory otherwise drop.
+						if (inventory.TryAddOrTransfer(item) == false)
+							pawn.equipment.TryDropEquipment(item, out _, pawn.PositionHeld);
+					}
+				}
+			}
+		}
+
+		private static bool CheckStyleGender(StyleItemDef style, Gender pawnGender)
+		{
+			switch (style.styleGender)
+			{
+				case StyleGender.Any:
+				case StyleGender.MaleUsually:
+				case StyleGender.FemaleUsually:
+					return true;
+
+				case StyleGender.Male:
+					return pawnGender == Gender.Male;
+
+				case StyleGender.Female:
+					return pawnGender == Gender.Female;
+			}
+
+			return false;
 		}
 
 		[NotNull]
@@ -325,28 +397,6 @@ namespace Pawnmorph.Hybrids
 				}
 			}
 		}
-
-		private static void ValidateReversion(Pawn pawn)
-		{
-			var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-			var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
-			var story = pawn.story;
-			if (alienComp == null)
-			{
-				Log.Error($"trying to validate the graphics of {pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
-				return;
-			}
-
-			if (graphicsComp == null || graphicsComp.Scanned == false)
-				return;
-
-			//story.bodyType = graphicsComp.BodyType;
-			//alienComp.crownType = graphicsComp.CrownType;
-			//story.hairDef = graphicsComp.HairDef; 
-
-			graphicsComp.RestoreGraphics();
-		}
-
 
 		private static void ValidateExplicitRaceChange(Pawn pawn, ThingDef race, ThingDef oldRace)
 		{
