@@ -121,21 +121,22 @@ namespace Pawnmorph.HPatches
 
 				_workModifierCache[__instance] = cachedModifierList;
 				cachedModifierList.Update();
+				cachedModifierList.Offset(-_workModifierCache.Count);
 			}
 
-			List<IWorkModifier> modifiers = cachedModifierList.GetValue(100);
+			List<IWorkModifier> modifiers = cachedModifierList.GetValue(200);
 			if (modifiers == null || modifiers.Count == 0)
 				return;
 
 			List<WorkTypeDef> types = DefDatabase<WorkTypeDef>.AllDefsListForReading;
-			for (int typeIndex = 0; typeIndex < types.Count; typeIndex++)
+			for (int typeIndex = types.Count - 1; typeIndex >= 0; typeIndex--)
 			{
 				WorkTypeDef workTypeDef = types[typeIndex];
 
 				if (__result.Contains(workTypeDef))
 					continue; // Already disabled.
 
-				for (int modifierIndex = 0; modifierIndex < modifiers.Count; modifierIndex++)
+				for (int modifierIndex = modifiers.Count - 1; modifierIndex >= 0; modifierIndex--)
 				{
 					IWorkModifier modifier = modifiers[modifierIndex];
 
