@@ -71,20 +71,17 @@ namespace Pawnmorph.HPatches
 		[HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
 		static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
 		{
-			if (__instance.def.TryGetRaceMutationSettings()?.immuneToAll == true)
-				return true;
-			var sTracker = __instance.GetSapienceTracker();
-			if (sTracker?.CurrentState != null)
-			{
-				__result = __instance.Faction == Faction.OfPlayer && sTracker.CurrentIntelligence == Intelligence.Humanlike;
-				if (__result && __instance.guest?.IsSlave == true)
-				{
-					__result = __instance.guest.SlaveIsSecure;
-				}
-				return false;
-			}
+			// This should probably be replaced with a transpiler.
 
-			return true;
+			// Don't do additional checks for pawns of other factions.
+			if (__instance.Faction?.def.isPlayer == true)
+				return true;
+
+			__result = __instance.GetIntelligence() == Intelligence.Humanlike;
+			if (__result && __instance.IsSlave == true)
+				__result = __instance.guest.SlaveIsSecure;
+
+			return false;
 		}
 
 

@@ -666,7 +666,7 @@ namespace Pawnmorph
 				_intelligenceCache[pawn] = value;
 			}
 
-			return value.GetValue(200);
+			return value.GetValue(600);
 		}
 
 		/// <summary>
