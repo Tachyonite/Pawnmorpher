@@ -1,7 +1,7 @@
 <Defs>
 	<ThingDef Abstract="true" ParentName="SerumBase" Name="BasicTransformerBase">
 		<statBases>
-			<WorkToMake>1500</WorkToMake>
+			<WorkToMake>800</WorkToMake>
 			<MarketValue>120</MarketValue>
 		</statBases>
 		<recipeMaker>
@@ -212,8 +212,8 @@
 			<texPath>Things/Item/Drug/SerumPowerful</texPath>
 		</graphicData>
 		<statBases>
-			<WorkToMake>3000</WorkToMake>
-			<MarketValue>425</MarketValue>
+			<WorkToMake>2000</WorkToMake>
+			<MarketValue>400</MarketValue>
 		</statBases>
 		<recipeMaker>
 			<researchPrerequisite>PowerfulSerumSynthesis</researchPrerequisite>
