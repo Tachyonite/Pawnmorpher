@@ -15,17 +15,35 @@ namespace Pawnmorph.HPatches
 		[HarmonyPostfix]
 		private static void CanUsebedEverPostfix(ref bool __result, [NotNull] Pawn p, ThingDef bedDef)
 		{
-			if (!__result && p.GetIntelligence() == Intelligence.Humanlike)
+			if (__result == false)
 			{
-				__result = bedDef?.building?.bed_humanlike == true;
-			}
-			else if (__result && p.GetIntelligence() < Intelligence.ToolUser)
-			{
+				// If mechanoid, do nothing.
+				if (p.RaceProps.IsMechanoid)
+					return;
+
+				// Humanlike trying to use animal bed
+				// Animal trying to use humanoid bed
+
 				BuildingProperties building = bedDef?.building;
-				__result = building != null && p.BodySize <= (double)building.bed_maxBodySize;
+				if (building != null)
+				{
+					// If bed is too small, do nothing.
+					if (p.BodySize > building.bed_maxBodySize)
+						return;
+
+					if (p.GetIntelligence() == Intelligence.Humanlike)
+					{
+						// The pawn has humanlike intelligence and so can only use humanlike beds. (And not cribs!)
+						__result = building.bed_humanlike;
+					}
+					else
+					{
+						// If humanoids with less than humanlike intelligence must use an animal bed that fits their body size.
+						__result = building.bed_humanlike == false;
+					}
+				}
 			}
 		}
-
 	}
 
 	[HarmonyPatch(typeof(Building_Bed))]

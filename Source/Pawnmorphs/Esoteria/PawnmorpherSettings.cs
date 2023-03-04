@@ -73,7 +73,7 @@ namespace Pawnmorph
 		/// <summary>
 		/// The chance a hostile will keep their faction when tf'd
 		/// </summary>
-		public float hostileKeepFactionTfChance = 0f;
+		public float hostileKeepFactionTfChance = 0.5f;
 
 		/// <summary>
 		/// The current log level

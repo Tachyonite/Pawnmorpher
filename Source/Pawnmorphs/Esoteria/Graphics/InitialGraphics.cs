@@ -325,6 +325,12 @@ namespace Pawnmorph.GraphicSys
 
 			var comp = parent.GetComp<AlienPartGenerator.AlienComp>();
 
+			if (comp == null)
+			{
+				Log.Error($"trying to validate the graphics of {Pawn.Name} but they don't have an {nameof(AlienPartGenerator.AlienComp)}!");
+				return;
+			}
+
 			comp.SetSkinColor(SkinColor, SkinColorSecond);
 			comp.customDrawSize = CustomDrawSize;
 			comp.customPortraitDrawSize = CustomPortraitDrawSize;

@@ -18,6 +18,10 @@ namespace Pawnmorph.Hybrids
 	/// </summary>
 	public class HybridRaceSettings
 	{
+		private Type partTransformer = default;
+		private IPartTransformer _transformer;
+
+
 		/// <summary>unused</summary>
 		[Obsolete("Doesn't do anything'")]
 		public FoodSettings foodSettings = new FoodSettings();
@@ -46,21 +50,41 @@ namespace Pawnmorph.Hybrids
 		/// </summary>
 		public bool transferHumanBodyAddons;
 
-		private Type partTransformer = default;
-		private IPartTransformer _transformer;
-
-
 		/// <summary>
 		/// a list of mutations that will be added to a pawn when they become a hybrid if they do not have them already 
 		/// </summary>
 		public List<MutationDef> requiredMutations = new List<MutationDef>();
 
 		/// <summary>
+		/// A list of hair styles that will be used as a pool and be randomly added to a pawn when they become a hybrid.
+		/// </summary>
+		public List<HairDef> hairstyles = new List<HairDef>();
+
+		/// <summary>
 		/// if true the required mutations will be added to the pawn when they become a hybrid, otherwise not having the required part will
 		/// prevent the pawn from becoming a hybrid 
 		/// </summary>
 		public bool forceRequiredMutations;
+		
+		/// <summary>
+		/// Overrides <see cref="RaceProperties.lifeExpectancy"/>
+		/// </summary>
+		public float? lifeExpectancy;
 
+		/// <summary>
+		/// Overrides <see cref="RaceProperties.baseHungerRate"/>
+		/// </summary>
+		public float? baseHungerRate;
+
+		/// <summary>
+		/// Overrides <see cref="RaceProperties.body"/>
+		/// </summary>
+		public BodyDef body;
+
+		/// <summary>
+		/// Applies comps to generated hybrid race.
+		/// </summary>
+		public List<CompProperties> comps;
 
 		/// <summary>
 		/// checks if the given pawn can become a hybrid with these settings.
