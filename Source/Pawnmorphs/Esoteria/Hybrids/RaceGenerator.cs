@@ -488,7 +488,7 @@ namespace Pawnmorph.Hybrids
 		/// <returns></returns>
 		private static RaceRestrictionSettings GenerateHybridRestrictionSettings(RaceRestrictionSettings human, MorphDef morph)
 		{
-			return new RaceRestrictionSettings(); //TODO restriction settings like apparel and stuff  
+			return morph.raceSettings?.restrictionSettings ?? human;
 		}
 
 		private static ThingDef_AlienRace.AlienSettings GenerateHybridAlienSettings(ThingDef_AlienRace.AlienSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)

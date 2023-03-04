@@ -254,6 +254,8 @@ namespace Pawnmorph.Hybrids
 					pawn.story.hairDef = morphHair;
 			}
 
+			HandleRaceRestrictions(pawn, race);
+
 			//check if the body def changed and handle any apparel changes 
 			if (oldRace.race.body != race.race.body)
 			{
@@ -303,6 +305,49 @@ namespace Pawnmorph.Hybrids
 			foreach (IRaceChangeEventReceiver raceChangeEventReceiver in pawn.AllComps.OfType<IRaceChangeEventReceiver>())
 			{
 				raceChangeEventReceiver.OnRaceChange(oldRace);
+			}
+		}
+
+		private static void HandleRaceRestrictions(Pawn pawn, ThingDef race)
+		{
+			RaceRestrictionSettings restrictionSettings = null;
+			if (race is ThingDef_AlienRace alien)
+				restrictionSettings = alien.alienRace.raceRestriction;
+
+			if (restrictionSettings == null)
+				return;
+
+			ThingOwner inventory = pawn.inventory.GetDirectlyHeldThings();
+
+			List<Apparel> apparel = pawn.apparel.WornApparel;
+			for (int i = apparel.Count - 1; i >= 0; i--)
+			{
+				Apparel item = apparel[i];
+				if (item.def != null)
+				{
+					if (RaceRestrictionSettings.CanWear(item.def, race) == false)
+					{
+						// If pawn cannot keep item equipped due to race restrictions, then try add it to pawn's inventory otherwise drop.
+						if (inventory.TryAddOrTransfer(item) == false)
+							pawn.apparel.TryDrop(item);
+					}
+				}
+
+			}
+
+			List<ThingWithComps> equipment = pawn.equipment.AllEquipmentListForReading;
+			for (int i = equipment.Count - 1; i >= 0; i--)
+			{
+				ThingWithComps item = equipment[i];
+				if (item.def != null)
+				{
+					if (RaceRestrictionSettings.CanEquip(item.def, race) == false)
+					{
+						// If pawn cannot keep item equipped due to race restrictions, then try add it to pawn's inventory otherwise drop.
+						if (inventory.TryAddOrTransfer(item) == false)
+							pawn.equipment.TryDropEquipment(item, out _, pawn.PositionHeld);
+					}
+				}
 			}
 		}
 
