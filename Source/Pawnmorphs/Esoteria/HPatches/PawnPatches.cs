@@ -74,7 +74,7 @@ namespace Pawnmorph.HPatches
 			// This should probably be replaced with a transpiler.
 
 			// Don't do additional checks for pawns of other factions.
-			if (__instance.Faction?.def.isPlayer == true)
+			if (__instance.Faction?.def.isPlayer ?? false == false)
 				return true;
 
 			__result = __instance.GetIntelligence() == Intelligence.Humanlike;
