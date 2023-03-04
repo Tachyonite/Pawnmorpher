@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.FormerHumans;
 using UnityEngine;
 using Verse;
 
@@ -63,15 +64,21 @@ namespace Pawnmorph
         /// the chance an tf'd enemy or neutral pawn will go manhunter 
         /// </summary>
         public float manhunterTfChance = 0;
+
         /// <summary>
         /// The chance a friendly pawn will go manhunter when tf'd 
         /// </summary>
-        public float friendlyManhunterTfChance = 0; 
+        public float friendlyManhunterTfChance = 0;
 
         /// <summary>
-        /// The current log level
+        /// The chance a hostile will keep their faction when tf'd
         /// </summary>
-        public LogLevel logLevel = LogLevel.Warnings;
+		public float hostileKeepFactionTfChance = 0.5f;
+
+		/// <summary>
+		/// The current log level
+		/// </summary>
+		public LogLevel logLevel = LogLevel.Warnings;
 
         /// <summary>
         /// List of races whitelisted to have visible mutations.
@@ -88,10 +95,15 @@ namespace Pawnmorph
         /// </summary>
         public Dictionary<string, string> animalAssociations;
 
-        /// <summary>
-        /// Dictionary of optional patches explicitly enabled or disabled.
-        /// </summary>
-        public Dictionary<string, bool> optionalPatches;
+		/// <summary>
+		/// List of blacklisted animal types.
+		/// </summary>
+		public Dictionary<string, FormerHumanRestrictions> animalBlacklist;
+
+		/// <summary>
+		/// Dictionary of optional patches explicitly enabled or disabled.
+		/// </summary>
+		public Dictionary<string, bool> optionalPatches;
 
 
         /// <summary>
@@ -129,6 +141,8 @@ namespace Pawnmorph
             Scribe_Values.Look(ref friendlyManhunterTfChance, nameof(friendlyManhunterTfChance));
             Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
             Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
+			Scribe_Values.Look(ref hostileKeepFactionTfChance, nameof(hostileKeepFactionTfChance));
+
 
 
 			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
@@ -139,10 +153,11 @@ namespace Pawnmorph
             Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));
             Scribe_Collections.Look(ref optionalPatches, nameof(optionalPatches));
             Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
+			Scribe_Collections.Look(ref animalBlacklist, nameof(animalBlacklist));
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                if (formerChance > 1) formerChance /= 100f; 
+				if (formerChance > 1) formerChance /= 100f; 
             }
 
             base.ExposeData();

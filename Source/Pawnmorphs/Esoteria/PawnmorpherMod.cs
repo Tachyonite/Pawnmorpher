@@ -69,8 +69,10 @@ namespace Pawnmorph
             if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
                 ShowAnimalAssociations();
 
+			if (checkBoxSection.ButtonText("PMBlacklistFormerHumansButton".Translate()))
+				ShowAnimalBlacklist();
 
-            listingStandard.EndSection(checkBoxSection);
+			listingStandard.EndSection(checkBoxSection);
 
 
             listingStandard.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
@@ -94,8 +96,11 @@ namespace Pawnmorph
 
             }
 
+			listingStandard
+			   .Label($"{nameof(PawnmorpherSettings.hostileKeepFactionTfChance).Translate()}: {settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
+			settings.hostileKeepFactionTfChance = listingStandard.Slider(settings.hostileKeepFactionTfChance, 0, 1f);
 
-            if (Prefs.DevMode)
+			if (Prefs.DevMode)
             {
                 listingStandard.Label($"logging level:{settings.logLevel}");
                 float f = (float) ((int) settings.logLevel);
@@ -146,12 +151,19 @@ namespace Pawnmorph
             Find.WindowStack.Add(animalAssociations);
         }
 
-        /// <summary>
-        /// Override SettingsCategory to show up in the list of settings. <br />
-        /// Using .Translate() is optional, but does allow for localisation.
-        /// </summary>
-        /// <returns> The (translated) mod name. </returns>
-        public override string SettingsCategory()
+
+		private void ShowAnimalBlacklist()
+		{
+			UserInterface.Settings.Dialog_BlacklistAnimal animalAssociations = new UserInterface.Settings.Dialog_BlacklistAnimal(settings.animalBlacklist);
+			Find.WindowStack.Add(animalAssociations);
+		}
+
+		/// <summary>
+		/// Override SettingsCategory to show up in the list of settings. <br />
+		/// Using .Translate() is optional, but does allow for localisation.
+		/// </summary>
+		/// <returns> The (translated) mod name. </returns>
+		public override string SettingsCategory()
         {
             return "PawnmorpherModName".Translate();
         }

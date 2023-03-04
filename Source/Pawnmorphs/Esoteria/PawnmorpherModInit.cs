@@ -6,6 +6,7 @@ using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
@@ -48,7 +49,8 @@ namespace Pawnmorph
                 AddMutationsToWhitelistedRaces();
                 EnableDisableOptionalPatches();
                 CheckForObsoletedComponents();
-                try
+
+				try
                 {
 
 

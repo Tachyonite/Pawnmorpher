@@ -246,6 +246,8 @@ namespace Pawnmorph.TfSys
                 faction = request.forcedFaction;
             else if (original.IsColonist)
                 faction = original.Faction;
+            else if (Rand.Chance(PawnmorpherMod.Settings.hostileKeepFactionTfChance))
+                faction = original.Faction;
             else
                 faction = null;
             return faction;

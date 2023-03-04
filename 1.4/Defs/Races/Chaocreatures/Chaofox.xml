@@ -76,6 +76,8 @@
 			<manhunterOnTameFailChance>0</manhunterOnTameFailChance>
 			<packAnimal>true</packAnimal>
 		</race>
+		<comps>
+		</comps>
 	</ThingDef>
 	<PawnKindDef ParentName="AnimalKindBase">
 		<defName>Chaofox</defName>

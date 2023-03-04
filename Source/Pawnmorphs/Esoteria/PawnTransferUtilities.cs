@@ -164,6 +164,9 @@ namespace Pawnmorph
             //First purge any psycasts the new pawn will have
             foreach (Ability ability in abilities2.AllAbilitiesForReading)
             {
+                if (ability?.def?.abilityClass == null)
+                    continue;
+
                 if (ability.def.abilityClass.IsAssignableFrom(typeof(Psycast)))
                 {
                     abilities2.RemoveAbility(ability.def);

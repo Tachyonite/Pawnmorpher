@@ -20,6 +20,7 @@
 	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
 	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
 	<manhunterTfChance>Chance for pawns to go manhunter when transformed</manhunterTfChance>
+	<hostileKeepFactionTfChance>Chance for pawns of other factions to keep their faction when transformed</hostileKeepFactionTfChance>
 	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
 	<PMInjectorsRequireTaggingTooltip>If true, tagging animals is required to make injectors.</PMInjectorsRequireTaggingTooltip>
 	<PMEnableMutationVisualsButton>Show mutations on races.</PMEnableMutationVisualsButton>
@@ -37,4 +38,14 @@
 	<PMAnimalAssociationsButton>Associate animals.</PMAnimalAssociationsButton>
 	<PMAnimalAssociationsHeader>Associate animals.</PMAnimalAssociationsHeader>
 	<PMAnimalAssociationsText>Associate additional animals with morphs that will act as both additional outcomes, source of sequencing morph mutations and unlocking the injector.</PMAnimalAssociationsText>
+	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
+	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
+	<PMBlacklistFormerHumansText>Enable, restrict or disable animals from randomly appearing as former humans in game.\nAnimals associated with morphs can only be restricted.</PMBlacklistFormerHumansText>
+	<PMBlacklistFormerHumansEnabled>Enabled</PMBlacklistFormerHumansEnabled>
+	<PMBlacklistFormerHumansRestricted>Restricted</PMBlacklistFormerHumansRestricted>
+	<PMBlacklistFormerHumansDisabled>Disabled</PMBlacklistFormerHumansDisabled>
+	<PMBlacklistFormerHumansEnabledDescription>Can freely appear as former human in game.</PMBlacklistFormerHumansEnabledDescription>
+	<PMBlacklistFormerHumansRestrictedDescription>Can exist as former human but not spawn at random.</PMBlacklistFormerHumansRestrictedDescription>
+	<PMBlacklistFormerHumansDisabledDescription>Cannot exist as former human at all.</PMBlacklistFormerHumansDisabledDescription>
+	<PMBlacklistFormerHumansAddedBy>Added by {0}</PMBlacklistFormerHumansAddedBy>
 </LanguageData>

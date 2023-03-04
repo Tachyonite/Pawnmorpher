@@ -30,7 +30,17 @@ namespace Pawnmorph
     {
         private static readonly Type patchType = typeof(PawnmorphPatches);
         [NotNull]
-        private static readonly MethodInfo _animalTabWorkerMethod; 
+        private static readonly MethodInfo _animalTabWorkerMethod;
+
+        private static readonly ILookup<string, string> _modPatches = new KeyValuePair<string, string>[]
+        {
+            new ("jecrell.doorsexpanded", "DoorsExpanded.Building_DoorExpanded:PawnCanOpen"),
+			new ("kentington.saveourship2", "RimWorld.Building_ShipAirlock:PawnCanOpen"),
+
+			new ("petetimessix.simplesidearms", "PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier"),
+			new ("petetimessix.simplesidearms", "SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn"),
+		}.ToLookup(x => x.Key, x => x.Value);
+
         static PawnmorphPatches()
         {
 
@@ -236,34 +246,26 @@ namespace Pawnmorph
 
             List<MethodInfoSt> methodsToPatch = new List<MethodInfoSt>();
 
-            // Patch doors expanded mod if present.
-            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "jecrell.doorsexpanded"))
+            StringBuilder modPatchingLog = new StringBuilder();
+            foreach (string mod in _modPatches.Select(x => x.Key))
             {
-                MethodInfo doorsExpandedMethod = AccessTools.Method("DoorsExpanded.Building_DoorExpanded:PawnCanOpen");
+                if (LoadedModManager.RunningMods.Any(x => x.PackageId == mod))
+                {
+                    foreach (var methodIdentity in _modPatches[mod])
+					{
+						MethodInfo method = AccessTools.Method(methodIdentity);
 
-                if (doorsExpandedMethod != null)
-                    methodsToPatch.Add(doorsExpandedMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to patch doors expanded.");
+						if (method != null)
+							methodsToPatch.Add(method);
+						else
+							modPatchingLog.AppendLine("Unable to patch " + _modPatches[mod]);
+					}
+				}
             }
-            // Patch Simple Sidearms mod if present.
-            if (LoadedModManager.RunningMods.Any(x => x.PackageId == "petetimessix.simplesidearms"))
-            {
-                MethodInfo simpleSidearmsValidCarrierMethod = AccessTools.Method("PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier");
 
-                if (simpleSidearmsValidCarrierMethod != null)
-                    methodsToPatch.Add(simpleSidearmsValidCarrierMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to simple sidearms Valid Carrier Method.");
+            if (modPatchingLog.Length > 0)
+				Log.Warning("[Pawnmorpher] Failed patching mods:" + Environment.NewLine + modPatchingLog.ToString());
 
-                MethodInfo simpleSidearmsMemoryCompMethod = AccessTools.Method("SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn");
-
-                if (simpleSidearmsMemoryCompMethod != null)
-                    methodsToPatch.Add(simpleSidearmsMemoryCompMethod);
-                else
-                    Log.Warning("Pawnmorpher: Unable to simple sidearms GetMemoryCompForPawn Method.");
-            }
-            
             //bed stuff 
             var bedUtilType = typeof(RestUtility);
             var canUseBedMethod = bedUtilType.GetMethod(nameof(RestUtility.CanUseBedEver), staticFlags);
@@ -325,8 +327,9 @@ namespace Pawnmorph
 
             AddDesignatorMethods(methodsToPatch);
             AddThoughtWorkerPatches(methodsToPatch);
+            PatchSpawnedMasteredPawns(methodsToPatch);
 
-            AddRitualPatches(methodsToPatch);
+			AddRitualPatches(methodsToPatch);
 
             methodsToPatch.Add(typeof(RitualRoleAssignments).GetMethod(nameof(RitualRoleAssignments.PawnNotAssignableReason), staticFlags));
 
@@ -337,9 +340,11 @@ namespace Pawnmorph
             methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
             methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
             methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
-            
-            //now patch them 
-            foreach (var methodInfo in methodsToPatch)
+
+			
+
+			//now patch them 
+			foreach (var methodInfo in methodsToPatch)
             {
                 if (methodInfo.methodInfo == null)
                 {
@@ -359,7 +364,7 @@ namespace Pawnmorph
             foreach (var methodInfo in methodsToPatch)
             {
                 if (methodInfo.methodInfo == null) continue;
-                builder.AppendLine($"{methodInfo.methodInfo.Name}");
+                builder.AppendLine($"{methodInfo.methodInfo.DeclaringType.FullName + "." + methodInfo.methodInfo.Name}");
             }
             Log.Message(builder.ToString());
             DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
@@ -436,9 +441,22 @@ namespace Pawnmorph
 
         }
 
+		// PawnUtility.SpawnedMasteredPawns
+		private static void PatchSpawnedMasteredPawns([NotNull] List<MethodInfoSt> methodsToPatch)
+		{
+			IEnumerable<Type> tps = typeof(PawnUtility)
+								   .GetNestedTypes(ALL)
+								   .Where(t => t.IsCompilerGenerated() && t.Name.Contains("<SpawnedMasteredPawns>"));
+
+			IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
+												   .Where(m => m.HasSignature() && m.Name.Contains("MoveNext"))
+												   .Select(m => (MethodInfoSt)m);
+			methodsToPatch.AddRange(methods);
+		}
 
 
-        private static void AddThoughtWorkerPatches([NotNull] List<MethodInfoSt> methodsToPatch)
+
+		private static void AddThoughtWorkerPatches([NotNull] List<MethodInfoSt> methodsToPatch)
         {
             methodsToPatch.Add(typeof(ThoughtWorker_Precept_IdeoDiversity_Uniform).GetMethod("ShouldHaveThought", INSTANCE_FLAGS));
         }

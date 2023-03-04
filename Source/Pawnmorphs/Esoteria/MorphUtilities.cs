@@ -535,29 +535,30 @@ namespace Pawnmorph
 
         private static MorphDef GetChimeraRace([CanBeNull] AnimalClassBase hInfluence)
         {
-            if (hInfluence == null)
+            if (hInfluence != null)
             {
-                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
+                var morph = hInfluence as MorphDef;
+                //if the highest influence isn't a morph pick a random morph from the animal class
+                morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
+
+				// Morph can be null here if the AnimalClassDef doesn't have any associated morphs
+				if (morph != null)
+                {
+                    if (AnimalClassDefOf.Canid.Contains(morph.classification)) //TODO Generalize this or just pick randomly, 
+                        return MorphDefOfs.ChaofoxMorph;
+
+                    if (AnimalClassDefOf.Reptile.Contains(morph.classification))
+                        return MorphDefOfs.ChaodinoMorph;
+
+                    if (AnimalClassDefOf.Cervid.Contains(morph.classification))
+                        return MorphDefOfs.ChaoboomMorph;
+
+                    if (AnimalClassDefOf.Bovid.Contains(morph.classification))
+                        return MorphDefOfs.ChaocowMorph;
+                }
             }
-
-            var morph = hInfluence as MorphDef;
-            //if the highest influence isn't a morph pick a random morph from the animal class
-            morph = morph ?? ((AnimalClassDef) hInfluence).GetAllMorphsInClass().RandomElementWithFallback();
-            
-            // This can happen if the AnimalClassDef doesn't have any associated morphs
-            if (morph == null)
-                return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
-            
-            if (morph.classification.Contains(AnimalClassDefOf.Canid)) //TODO Generalize this or just pick randomly, 
-                return MorphDefOfs.ChaofoxMorph;
-            if (morph.classification.Contains(AnimalClassDefOf.Reptile))
-                return MorphDefOfs.ChaodinoMorph;
-            if (morph == MorphDefOfs.BoomalopeMorph) return MorphDefOfs.ChaoboomMorph;
-            if (morph == MorphDefOfs.CowMorph) return MorphDefOfs.ChaocowMorph;
-
             return MorphCategoryDefOf.Chimera.AllMorphsInCategories.RandomElement();
-            
-    }
+        }
 
         /// <summary>
         ///     get the largest influence on this pawn

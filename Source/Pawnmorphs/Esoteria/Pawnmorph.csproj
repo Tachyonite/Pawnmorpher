@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
-  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')"> 
+  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <Reference Include="Assembly-CSharp">
       <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -318,6 +318,7 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
     <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
     <Compile Include="Genebank\GenebankEntry.cs" />
     <Compile Include="Genebank\IGenebankEntry.cs" />
@@ -325,6 +326,7 @@
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
@@ -514,7 +516,7 @@
     <Compile Include="HPatches\HealthUtilityPatch.cs" />
     <Compile Include="HPatches\Mods\CompactHediffs\CustomHealthCardUtilsPatch.cs" />
     <Compile Include="HPatches\SelectorPatch.cs" />
-    <Compile Include="HPatches\GiddyUpPatch.cs" />
+    <Compile Include="HPatches\Mods\Giddy-Up\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HediffDefPatches.cs" />
     <Compile Include="HPatches\HediffPatches.cs" />
     <Compile Include="HPatches\HediffSetPatches.cs" />
@@ -896,6 +898,7 @@
     <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
     <Compile Include="UserInterface\Settings\Dialog_AnimalAssociations.cs" />
     <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_BlacklistAnimal.cs" />
     <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
     <Compile Include="UserInterface\TableBox\ITableRow.cs" />
     <Compile Include="UserInterface\TableBox\Table.cs" />
@@ -976,7 +979,7 @@
     </PackageReference>
   </ItemGroup>
   <!--Only use the Krafs stub if we can't access the real assembly -->
-  <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')"> 
+  <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>1.4.3525</Version>
     </PackageReference>

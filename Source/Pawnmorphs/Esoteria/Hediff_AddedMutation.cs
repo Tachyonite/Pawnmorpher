@@ -375,7 +375,7 @@ namespace Pawnmorph
                         initialGraphics.HairDef = pawn.story.hairDef;
                     pawn.story.hairDef = PMStyleDefOf.PM_HairHidden;
                 }
-                else if (Part.def == BodyPartDefOf.Jaw && pawn.style.beardDef != PMStyleDefOf.PM_BeardHidden)
+                else if (Part.def == BodyPartDefOf.Jaw && pawn.style.CanWantBeard && pawn.style.beardDef != PMStyleDefOf.PM_BeardHidden)
                 {
                     // Hide beard
                     var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
