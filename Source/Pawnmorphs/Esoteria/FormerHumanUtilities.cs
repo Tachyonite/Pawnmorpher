@@ -1579,6 +1579,9 @@ namespace Pawnmorph
 
 				// Alpha Animals
 				["AA_Gallatross"] = FormerHumanRestrictions.Restricted,
+
+				// Insectoids
+				["VFEI_Insectoid_Queen"] = FormerHumanRestrictions.Disabled,
 			};
 
 			foreach (var animal in AnimalClassDefOf.Powerful.GetAssociatedAnimals())
