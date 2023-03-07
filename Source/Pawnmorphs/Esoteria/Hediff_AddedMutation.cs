@@ -235,6 +235,7 @@ namespace Pawnmorph
 				// We don't normally use any of the vanilla functionality so there is no reason to propagate the tick further down
 				// unless the hediff specifically requests it
 				TickBase = Def.RunBaseLogic || mStage.RunBaseLogic;
+				// Log.Message($"{pawn.LabelCap}: Stage changed, Tick base: " + TickBase + " - " + Def.RunBaseLogic);
 
 				GenerateAbilities(mStage);
 
@@ -317,10 +318,15 @@ namespace Pawnmorph
 					abilities = new List<Abilities.MutationAbility>();
 
 				GenerateAbilities(base.CurStage);
+
+				if (CurrentMutationStage != null)
+					CurrentMutationStage.OnLoad(this);
+
+
+				TickBase = Def.RunBaseLogic || CurrentMutationStage?.RunBaseLogic == true;
+				// Log.Message($"{pawn.LabelCap}: Stage changed, Tick base: " + TickBase + " - " + Def.RunBaseLogic);
 			}
 
-			if (CurrentMutationStage != null)
-				CurrentMutationStage.OnLoad(this);
 		}
 
 		/// <summary>
