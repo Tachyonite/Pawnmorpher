@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--Based on real life paintballs containing chemical agents.-->
+  <!-- ==================== AmmoSet ========================== -->
+  <CombatExtended.AmmoSetDef>
+    <defName>PM_AmmoSet_MutagenCapsule</defName>
+    <label>.68 mutagel balls</label>
+    <ammoTypes>
+      <PM_Ammo_68Mutagen_Ball>PM_Bullet_68Mutagen_Ball</PM_Ammo_68Mutagen_Ball>
+    </ammoTypes>
+  </CombatExtended.AmmoSetDef>
+  <!-- ==================== Ammo ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase">
+    <defName>PM_Ammo_68Mutagen_Ball</defName>
+    <label>.68 mutagel ball</label>
+    <description>Small capsules that contain jellied mutanite surrounded by a thin membrane that bursts on impact, intended for use in low pressure airguns.</description>
+    <statBases>
+      <Mass>0.003</Mass>
+      <Bulk>0.02</Bulk>
+      <MarketValue>0.28</MarketValue>
+    </statBases>
+    <tradeTags>
+      <li>CE_AutoEnableTrade</li>
+      <li>CE_AutoEnableCrafting_DrugLab</li>
+    </tradeTags>
+    <thingCategories>
+      <li>AmmoAdvanced</li>
+    </thingCategories>
+    <graphicData>
+      <texPath>Things/Ammo/LowPressureMCapsule/Ball</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <ammoClass>PM_Mutagenic</ammoClass>
+    <ingestible>
+      <foodType>Processed, Fluid</foodType>
+      <preferability>NeverForNutrition</preferability>
+      <ingestSound>Meal_Eat</ingestSound>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MutagenicBuildup_Weapon</hediffDef>
+          <severity>0.2</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <comps>
+      <li Class="CombatExtended.CompProperties_ExplosiveCE">
+        <damageAmountBase>3</damageAmountBase>
+        <explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
+        <explosiveRadius>0.5</explosiveRadius>
+        <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+      </li>
+    </comps>
+    <socialPropernessMatters>false</socialPropernessMatters>
+  </ThingDef>
+  <!-- ================== Projectiles ================== -->
+  <ThingDef ParentName="Base6x24mmChargedBullet">
+    <defName>PM_Bullet_68Mutagen_Ball</defName>
+    <label>.68 mutagel ball</label>
+    <graphicData>
+      <texPath>Things/Projectiles/MutagenBullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>MutagenicBulletDamage</damageDef>
+      <speed>28</speed>
+      <damageAmountBase>5</damageAmountBase>
+      <armorPenetrationSharp>0</armorPenetrationSharp>
+      <armorPenetrationBlunt>0.56</armorPenetrationBlunt>
+    </projectile>
+  </ThingDef>
+  <!-- ==================== Recipes ========================== -->
+  <RecipeDef ParentName="FlamethrowerAmmoRecipeBase">
+    <defName>MakePM_Ammo_68Mutagen_Ball</defName>
+    <label>make .68 mutagel ball x500</label>
+    <description>Craft 500 .68 mutagel balls.</description>
+    <jobString>Making .68 mutagel balls.</jobString>
+    <workAmount>3600</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mutanite</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Neutroamine</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Mutanite</li>
+        <li>Neutroamine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <PM_Ammo_68Mutagen_Ball>500</PM_Ammo_68Mutagen_Ball>
+    </products>
+  </RecipeDef>
+</Defs>

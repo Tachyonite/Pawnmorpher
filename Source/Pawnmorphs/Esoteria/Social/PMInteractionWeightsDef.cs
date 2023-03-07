@@ -28,6 +28,10 @@ namespace Pawnmorph.Social
 		/// <summary>Weight added to the interaction for being a specific kind of morphs</summary>
 		public Dictionary<MorphDef, float> morphWeights = new Dictionary<MorphDef, float>();
 
+
+		private HashSet<HediffDef> _hediffs = new HashSet<HediffDef>(20);
+
+
 		/// <summary>
 		/// Gets the total interaction weight for the given pawn based on this def.
 		/// The higher the weight the more likely this interaction is going to be picked.
@@ -38,14 +42,25 @@ namespace Pawnmorph.Social
 		/// <returns></returns>
 		public float GetTotalWeight(Pawn pawn)
 		{
-			HashSet<HediffDef> hediffs = pawn.health.hediffSet.hediffs.Select(h => h.def).ToHashSet();
+			_hediffs.Clear();
+
+			for (int i = 0; i < pawn.health.hediffSet.hediffs.Count; i++)
+			{
+				_hediffs.Add(pawn.health.hediffSet.hediffs[i].def);
+			}
+			
+			if (requiredMutationsAny != null && !requiredMutationsAny.Any(_hediffs.Contains)) 
+				return 0;
+
+			if (requiredMutationsAll != null && !requiredMutationsAll.All(_hediffs.Contains)) 
+				return 0;
+
+
 			MorphDef morphDef = pawn.def.GetMorphOfRace();
+			if (restrictedToMorphs != null && !restrictedToMorphs.Contains(morphDef)) 
+				return 0;
 
-			if (requiredMutationsAny != null && !requiredMutationsAny.Any(hediffs.Contains)) return 0;
-			if (requiredMutationsAll != null && !requiredMutationsAll.All(hediffs.Contains)) return 0;
-			if (restrictedToMorphs != null && !restrictedToMorphs.Contains(morphDef)) return 0;
-
-			float weightFromMutations = hediffs.Sum(m => mutationWeights.TryGetValue(m, 0));
+			float weightFromMutations = _hediffs.Sum(m => mutationWeights.TryGetValue(m, 0));
 			float weightFromMorph = (morphDef != null) ? morphWeights.TryGetValue(morphDef, 0) : 0;
 
 			return weightFromMutations + weightFromMorph;

@@ -666,7 +666,7 @@ namespace Pawnmorph
 				_intelligenceCache[pawn] = value;
 			}
 
-			return value.GetValue(200);
+			return value.GetValue(600);
 		}
 
 		/// <summary>
@@ -1022,7 +1022,7 @@ namespace Pawnmorph
 		/// </returns>
 		public static bool IsFenceBlocked([NotNull] this Pawn pawn)
 		{
-			return !pawn.IsHumanlike() && pawn.RaceProps.FenceBlocked;
+			return pawn.RaceProps.FenceBlocked && !pawn.IsHumanlike();
 		}
 
 		/// <summary>
@@ -1076,7 +1076,7 @@ namespace Pawnmorph
 		/// <returns></returns>
 		public static bool IsRoamer([NotNull] this Pawn pawn)
 		{
-			return !pawn.IsHumanlike() && pawn.RaceProps.Roamer;
+			return pawn.RaceProps.Roamer && !pawn.IsHumanlike();
 		}
 
 		/// <summary>
@@ -1579,6 +1579,9 @@ namespace Pawnmorph
 
 				// Alpha Animals
 				["AA_Gallatross"] = FormerHumanRestrictions.Restricted,
+
+				// Insectoids
+				["VFEI_Insectoid_Queen"] = FormerHumanRestrictions.Disabled,
 			};
 
 			foreach (var animal in AnimalClassDefOf.Powerful.GetAssociatedAnimals())

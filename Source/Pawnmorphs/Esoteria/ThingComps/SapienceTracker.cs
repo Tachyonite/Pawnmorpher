@@ -279,7 +279,7 @@ namespace Pawnmorph.ThingComps
 
 		private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
 		{
-			if (pawn.Faction != Faction.OfPlayer)
+			if (pawn.Faction?.def.isPlayer ?? false == false)
 				return;
 
 			if (oldLevel.IsColonistAnimal() && !currentLevel.IsColonistAnimal())
