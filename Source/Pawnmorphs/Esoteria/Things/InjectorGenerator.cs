@@ -124,7 +124,7 @@ namespace Pawnmorph.Things
 				resourceReadoutPriority = ResourceCountPriority.Middle,
 				category = ThingCategory.Item,
 				statBases = GetStatModifiers(props),
-				thingCategories = new List<ThingCategoryDef> { PMThingCategoryDefOf.Injector, ThingCategoryDefOf.Drugs },
+				thingCategories = new List<ThingCategoryDef> { PMThingCategoryDefOf.Injector },
 				rotatable = false,
 				techLevel = props.techLevel,
 				alwaysHaulable = true,
