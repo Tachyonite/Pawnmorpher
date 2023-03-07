@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
-using Mono.Unix.Native;
 using Pawnmorph.Hybrids;
 using Pawnmorph.Utilities;
-using RimWorld;
 using Verse;
 
 namespace Pawnmorph.HPatches
