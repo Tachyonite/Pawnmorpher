@@ -42,7 +42,6 @@
 			</li>
 		</comps>
 		<thingCategories Inherit="False">
-			<li>Drugs</li>
 			<li>RawMutagen</li>
 			<li>AnimalProductRaw</li>
 		</thingCategories>
@@ -82,7 +81,6 @@
 			</li>
 		</comps>
 		<thingCategories Inherit="False">
-			<li>Drugs</li>
 			<li>RawMutagen</li>
 			<li>AnimalProductRaw</li>
 		</thingCategories>

@@ -16,7 +16,6 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 		</comps>
 		<thingCategories Inherit="False">
 			<li>PlantMatter</li>
-			<li>Drugs</li>
 			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>
@@ -60,7 +59,6 @@ When eaten in its raw form, glowvine will slow down the effects of mutagenic mec
 		</comps>
 		<thingCategories Inherit="False">
 			<li>PlantMatter</li>
-			<li>Drugs</li>
 			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>

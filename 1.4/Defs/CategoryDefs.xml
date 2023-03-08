@@ -10,7 +10,7 @@
 	<ThingCategoryDef>
 		<defName>Mutapill</defName>
 		<label>mutapill</label>
-		<parent>Drugs</parent>
+		<parent>Medicine</parent>
 		<resourceReadoutRoot>true</resourceReadoutRoot>
 		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
 	</ThingCategoryDef>

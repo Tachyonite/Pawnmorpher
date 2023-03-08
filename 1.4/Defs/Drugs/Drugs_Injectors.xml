@@ -12,8 +12,8 @@
             <MarketValue>80</MarketValue>
             <MutaniteConcentration>0.07</MutaniteConcentration>
         </statBases>
-        <thingCategories>
-            <li>Injector</li>
+		<thingCategories Inherit="False">
+			<li>Injector</li>
         </thingCategories>
         <ingestible>
             <drugCategory>Medical</drugCategory>

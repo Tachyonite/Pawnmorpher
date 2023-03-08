@@ -12,6 +12,9 @@ Because reverter relies on the data stored within the mutagenic mechanites to re
 			<WorkToMake>600</WorkToMake>
 			<MarketValue>300</MarketValue>
 		</statBases>
+		<thingCategories Inherit="False">
+			<li>Medicine</li>
+        </thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
