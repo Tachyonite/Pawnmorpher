@@ -9,7 +9,7 @@
 		</graphicData>
 		<stackLimit>10</stackLimit>
 		<thingCategories>
-			<li>Items</li>
+			<li>ItemsMisc</li>
 		</thingCategories>
 		<statBases>
 			<MarketValue>700</MarketValue>
@@ -46,7 +46,7 @@
 		</graphicData>
 		<stackLimit>10</stackLimit>
 		<thingCategories>
-			<li>Items</li>
+			<li>ItemsMisc</li>
 		</thingCategories>
 		<statBases>
 			<MarketValue>1200</MarketValue>

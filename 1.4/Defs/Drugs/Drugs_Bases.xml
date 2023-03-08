@@ -21,7 +21,7 @@
 			<ingestReportString>Taking {0}.</ingestReportString>
 		</ingestible>
 		<thingCategories>
-			<li>Drugs</li>
+			<li>Mutapill</li>
 		</thingCategories>
 		<rotatable>false</rotatable>
 		<techLevel>Ultra</techLevel>
@@ -57,7 +57,7 @@
 			<Mass>0.01</Mass>
 		</statBases>
 		<thingCategories>
-			<li>Serum</li>
+			<li>Drugs</li>
 		</thingCategories>
 		<tradeTags>
 			<li>ExoticMisc</li>

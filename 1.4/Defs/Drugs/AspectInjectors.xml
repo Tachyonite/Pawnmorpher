@@ -7,7 +7,7 @@
         </graphicData>
         <stackLimit>10</stackLimit>
         <thingCategories>
-            <li>Items</li>
+            <li>Injector</li>
         </thingCategories>
         <statBases>
             <MarketValue>1500</MarketValue>
