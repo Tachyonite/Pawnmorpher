@@ -43,7 +43,13 @@ namespace Pawnmorph
 		/// </summary>
 		public Hediff_AddedMutation()
 		{
-			TickBase = false;
+		}
+
+		/// <inheritdoc/>
+		public override void PostMake()
+		{
+			base.PostMake();
+			TickBase = Def?.RunBaseLogic ?? false;
 		}
 
 		/// <summary>
