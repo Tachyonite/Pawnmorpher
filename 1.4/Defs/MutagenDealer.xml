@@ -11,20 +11,20 @@
 				<countRange>750~1200</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>Chaobulb</thingDef>
+				<countRange>70~160</countRange>
+			</li>			
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Glowine</thingDef>
+				<countRange>35~80</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>ComponentIndustrial</thingDef>
-				<countRange>6~20</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Steel</thingDef>
-				<countRange>75~200</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Plasteel</thingDef>
-				<countRange>50~150</countRange>
+				<countRange>15~25</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Mutanite</thingDef>
-				<countRange>1~10</countRange>
+				<countRange>5~10</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Neutroamine</thingDef>
@@ -32,25 +32,25 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MedicineIndustrial</thingDef>
-				<countRange>2~15</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Morphsilk</thingDef>
 				<countRange>10~20</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
+				<thingDef>Morphsilk</thingDef>
+				<countRange>120~160</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_Hazsilk</thingDef>
-				<countRange>5~10</countRange>
+				<countRange>80~120</countRange>
 			</li>
 			
 			<!-- Drugs -->
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>TFEgg</thingDef>
-				<countRange>3~5</countRange>
+				<countRange>20~30</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>TFMilk</thingDef>
-				<countRange>3~5</countRange>
+				<countRange>20~30</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MechaniteSlurry</thingDef>
@@ -62,11 +62,11 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MutagenStabiliser</thingDef>
-				<countRange>1~3</countRange>
+				<countRange>2~4</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MutagenAccelerator</thingDef>
-				<countRange>1~3</countRange>
+				<countRange>2~4</countRange>
 			</li>
 			<li Class="StockGenerator_Category">
 				<categoryDef>Mutapill</categoryDef>
@@ -74,8 +74,8 @@
 					<li>MutagenStabiliser</li>
 					<li>MutagenAccelerator</li>
 				</excludedThingDefs>
-				<thingDefCountRange>3~6</thingDefCountRange>
-				<countRange>1~1</countRange>
+				<thingDefCountRange>2~4</thingDefCountRange>
+				<countRange>1~2</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_HaltCream</thingDef>
@@ -95,7 +95,7 @@
 					<li>RandomPowerfulTransformer</li>
 				</excludedThingDefs>
 				<thingDefCountRange>2~4</thingDefCountRange>
-				<countRange>1~1</countRange>
+				<countRange>2~4</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RandomPowerfulTransformer</thingDef>
@@ -103,7 +103,7 @@
 			</li>
 			<li Class="Pawnmorph.StockGenerator_Injectors">
 				<animalClass>Animal</animalClass><!-- this will grab injectors from all morphs under the given category -->
-				<countRange>-7~2</countRange><!-- 10% chance for 1, 10% for 2-->
+				<countRange>0~4</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_ExperimentalInjector</thingDef>
@@ -138,7 +138,6 @@
 			</li>
 			<!-- Animals -->
 			<li Class="Pawnmorph.StockGenerator_Morphs">
-				<checkTemperature>false</checkTemperature>
 				<tradeTagsSell>
 					<li>AnimalChaotic</li>
 					<li>AnimalCommon</li>
@@ -148,11 +147,10 @@
 				<kindCountRange>1~5</kindCountRange>
 				<countRange>1~5</countRange>
 			</li>
-			<!-- Buying -->
+			<!-- Buying -->      
 			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+			<li Class="StockGenerator_BuyTradeTag"><tag>Drugs</tag></li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
-			<!-- weird organic gone and I don't know what replaced it 
-			<li Class="StockGenerator_BuyWeirdOrganic" />
 			-->
 			
 		</stockGenerators>
