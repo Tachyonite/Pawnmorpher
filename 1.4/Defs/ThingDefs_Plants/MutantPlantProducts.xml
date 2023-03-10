@@ -17,6 +17,7 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 		<thingCategories Inherit="False">
 			<li>PlantMatter</li>
 			<li>RawMutagen</li>
+			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
 			<outcomeDoers>

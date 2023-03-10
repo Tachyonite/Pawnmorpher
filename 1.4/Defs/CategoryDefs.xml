@@ -2,9 +2,9 @@
 	<ThingCategoryDef>
 		<defName>Injector</defName>
 		<label>injector</label>
-		<parent>Drugs</parent>
+		<parent>Medicine</parent>
 		<resourceReadoutRoot>true</resourceReadoutRoot>
-		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
@@ -12,15 +12,15 @@
 		<label>mutapill</label>
 		<parent>Medicine</parent>
 		<resourceReadoutRoot>true</resourceReadoutRoot>
-		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>
 		<defName>Serum</defName>
 		<label>serums</label>
-		<parent>Drugs</parent>
+		<parent>Medicine</parent>
 		<resourceReadoutRoot>true</resourceReadoutRoot>
-		<iconPath>UI/Icons/ThingCategories/Drugs</iconPath>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
 	</ThingCategoryDef>
 
 	<ThingCategoryDef>

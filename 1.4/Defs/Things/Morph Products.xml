@@ -44,6 +44,7 @@
 		<thingCategories Inherit="False">
 			<li>RawMutagen</li>
 			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
@@ -83,6 +84,7 @@
 		<thingCategories Inherit="False">
 			<li>RawMutagen</li>
 			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
