@@ -19,7 +19,6 @@ Raw antigen is often used as an emergency treatment for mutagenic diseases and m
 			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>AntigenEffective</hediffDef>

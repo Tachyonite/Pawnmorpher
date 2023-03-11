@@ -71,6 +71,7 @@ When eaten in its raw form, glowvine will slow down the effects of mutagenic mec
 			</outcomeDoers>
 			<foodType>Seed</foodType>
 			<preferability>NeverForNutrition</preferability>
+			<drugCategory>None</drugCategory>
 		</ingestible>
 		<statBases Inherit="False">
 			<MarketValue>18</MarketValue>

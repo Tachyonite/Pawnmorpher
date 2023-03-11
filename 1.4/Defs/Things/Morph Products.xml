@@ -7,9 +7,6 @@
 			</li>
 		</comps>
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
-		<thingCategories>
-			<li>Drugs</li>
-		</thingCategories>
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<ingestible>
 			<drugCategory>Social</drugCategory>
