@@ -324,7 +324,7 @@
     <Compile Include="Genebank\IGenebankEntry.cs" />
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
-    <Compile Include="HPatches\GamePatches.cs" />
+    <Compile Include="HPatches\Optional\NarrowHeads.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="PMStyleDefOf.cs" />

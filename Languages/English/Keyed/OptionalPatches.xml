@@ -3,4 +3,6 @@
     <PMFoodStackMultiplierDescription>Multiplies the max meal size by pawn bodysize.</PMFoodStackMultiplierDescription>
     <PMPawnScalingCaption>Pawn scaling.</PMPawnScalingCaption>
     <PMPawnScalingDescription>Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.</PMPawnScalingDescription>
+    <PMNarrowHeadsCaption>Narrow heads.</PMNarrowHeadsCaption>
+    <PMNarrowHeadsDescription>Disables all narrow heads, replacing them with average.\nMutation graphics do not fit narrow heads.</PMNarrowHeadsDescription>
 </LanguageData>

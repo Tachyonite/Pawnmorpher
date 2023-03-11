@@ -1,16 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
 
-namespace Pawnmorph.HPatches
+namespace Pawnmorph.HPatches.Optional
 {
+	[OptionalPatch("PMNarrowHeadsCaption", "PMNarrowHeadsDescription", nameof(_enabled), true)]
 	[HarmonyPatch(typeof(Game))]
 	[UsedImplicitly]
-	internal static class GamePatches
+	internal static class NarrowHeads
 	{
+		static bool _enabled = true;
+
+		static bool Prepare(MethodBase original)
+		{
+			if (original == null && _enabled)
+				Log.Message("[PM] Optional narrow head patch enabled.");
+
+			return _enabled;
+		}
+
 		private static readonly Dictionary<string, string> HeadReplacements = new()
 		{
 			{ "Male_NarrowNormal", "Male_AverageNormal" },
@@ -27,6 +39,7 @@ namespace Pawnmorph.HPatches
 		{
 			FixMissingNarrowHeads();
 		}
+
 		private static void FixMissingNarrowHeads()
 		{
 			Dictionary<HeadTypeDef, HeadTypeDef> headMap =
