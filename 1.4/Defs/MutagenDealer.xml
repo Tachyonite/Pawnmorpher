@@ -1,10 +1,11 @@
 <Defs>
 	<TraderKindDef>
 		<defName>PawnmorpherTrader</defName>
-		<label>Morph trader</label>
+		<label>morph trader</label>
 		<orbital>false</orbital>
 		<commonality>1</commonality>
 		<stockGenerators>
+			
 			<!-- Ressources -->
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
@@ -12,19 +13,19 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Chaobulb</thingDef>
-				<countRange>70~160</countRange>
+				<countRange>50~150</countRange>
 			</li>			
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>Glowine</thingDef>
-				<countRange>35~80</countRange>
+				<thingDef>Glowvine</thingDef>
+				<countRange>40~80</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ComponentIndustrial</thingDef>
-				<countRange>15~25</countRange>
+				<countRange>15~30</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Mutanite</thingDef>
-				<countRange>5~10</countRange>
+				<countRange>2~8</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Neutroamine</thingDef>
@@ -36,21 +37,21 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Morphsilk</thingDef>
-				<countRange>120~160</countRange>
+				<countRange>125~200</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_Hazsilk</thingDef>
-				<countRange>80~120</countRange>
+				<countRange>80~130</countRange>
 			</li>
 			
 			<!-- Drugs -->
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>TFEgg</thingDef>
-				<countRange>20~30</countRange>
+				<countRange>10~40</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>TFMilk</thingDef>
-				<countRange>20~30</countRange>
+				<countRange>10~40</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MechaniteSlurry</thingDef>
@@ -62,11 +63,11 @@
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MutagenStabiliser</thingDef>
-				<countRange>2~4</countRange>
+				<countRange>1~5</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MutagenAccelerator</thingDef>
-				<countRange>2~4</countRange>
+				<countRange>1~5</countRange>
 			</li>
 			<li Class="StockGenerator_Category">
 				<categoryDef>Mutapill</categoryDef>
@@ -75,15 +76,15 @@
 					<li>MutagenAccelerator</li>
 				</excludedThingDefs>
 				<thingDefCountRange>2~4</thingDefCountRange>
-				<countRange>1~2</countRange>
+				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_HaltCream</thingDef>
-				<countRange>1~2</countRange>
+				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_AdaptionCream</thingDef>
-				<countRange>1~2</countRange>
+				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ReversionSyringe</thingDef>
@@ -94,8 +95,8 @@
 				<excludedThingDefs>
 					<li>RandomPowerfulTransformer</li>
 				</excludedThingDefs>
-				<thingDefCountRange>2~4</thingDefCountRange>
-				<countRange>2~4</countRange>
+				<thingDefCountRange>2~5</thingDefCountRange>
+				<countRange>1~3</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>RandomPowerfulTransformer</thingDef>
@@ -103,7 +104,7 @@
 			</li>
 			<li Class="Pawnmorph.StockGenerator_Injectors">
 				<animalClass>Animal</animalClass><!-- this will grab injectors from all morphs under the given category -->
-				<countRange>0~4</countRange>
+				<countRange>0~3</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>PM_ExperimentalInjector</thingDef>
@@ -126,16 +127,17 @@
 			<!-- none -->
 
 			<!-- Exotic -->
-			
 			<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
 				<allowRestricted>false</allowRestricted>
-				<countRange>-1~5</countRange>
+				<countRange>-1~4</countRange><!-- 66% chance -->
 			</li>
+			
 			<!-- Slaves -->
 			<li Class="Pawnmorph.StockGenerator_MorphSlaves">
 				<respectPopulationIntent>false</respectPopulationIntent>
-				<countRange>2~10</countRange>
+				<countRange>2~4</countRange>
 			</li>
+			
 			<!-- Animals -->
 			<li Class="Pawnmorph.StockGenerator_Morphs">
 				<tradeTagsSell>
@@ -144,185 +146,175 @@
 					<li>AnimalUncommon</li>
 					<li>AnimalFighter</li>
 				</tradeTagsSell>
-				<kindCountRange>1~5</kindCountRange>
-				<countRange>1~5</countRange>
+				<kindCountRange>1~3</kindCountRange>
+				<countRange>1~3</countRange>
 			</li>
+			
 			<!-- Buying -->      
 			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
 			<li Class="StockGenerator_BuyTradeTag"><tag>Drugs</tag></li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
-			-->
 			
 		</stockGenerators>
 	</TraderKindDef>
 
 	<TraderKindDef>
 		<defName>PawnmorpherTraderOrbital</defName>
-		<label>Morph trader</label>
+		<label>morph trader</label>
 		<orbital>true</orbital>
 		<commonality>1</commonality>
 		<stockGenerators>
-			<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
-				<!--
-				<mutationFilter>
-					<isBlackList>true</isBlackList>
-					<filterList>
-						<li>MutationDef</li>
-					</filterList>
-				</mutationFilter>
-				<categoryFilter>
-					Same as mutation filter but for whole categories 
-				</categoryFilter>
-				certain mutations like 'combo' and 'bad' mutations are considered 
-				'restricted' so they can only be given under special circumstances
-				change this to true to allow genomes for these mutations to be generated 
-				-->
-				<allowRestricted>false</allowRestricted>
-
-				<countRange>1~15</countRange>
-			</li>
-
+			
+			<!-- Ressources -->
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Silver</thingDef>
-				<countRange>
-					<min>800</min>
-					<max>3000</max>
-				</countRange>
+				<countRange>2000~4000</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Chaobulb</thingDef>
+				<countRange>100~300</countRange>
+			</li>			
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Glowvine</thingDef>
+				<countRange>80~160</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>ComponentIndustrial</thingDef>
-				<countRange>
-					<min>5</min>
-					<max>30</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Steel</thingDef>
-				<countRange>
-					<min>50</min>
-					<max>200</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>MedicineIndustrial</thingDef>
-				<countRange>
-					<min>2</min>
-					<max>15</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Plasteel</thingDef>
-				<countRange>
-					<min>-50</min>
-					<max>50</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Gold</thingDef>
-				<countRange>
-					<min>-50</min>
-					<max>200</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Neutroamine</thingDef>
-				<countRange>
-					<min>50</min>
-					<max>200</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Chemfuel</thingDef>
-				<countRange>
-					<min>300</min>
-					<max>500</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>MechaniteSlurry</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>5</max>
-				</countRange>
-			</li>
-			<li Class="StockGenerator_SingleDef">
-				<thingDef>Antigen</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>5</max>
-				</countRange>
+				<countRange>30~40</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>Mutanite</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>15</max>
-				</countRange>
+				<countRange>5~30</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>RandomPowerfulTransformer</thingDef>
-				<countRange>
-					<min>-3</min>
-					<max>4</max>
-				</countRange>
+				<thingDef>Neutroamine</thingDef>
+				<countRange>100~500</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>RandomCombatTransformer</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>4</max>
-				</countRange>
+				<thingDef>MedicineIndustrial</thingDef>
+				<countRange>20~300</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>RandomProductionTransformer</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>2</max>
-				</countRange>
+				<thingDef>Morphsilk</thingDef>
+				<countRange>150~300</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>ReversionSyringe</thingDef>
-				<countRange>
-					<min>-1</min>
-					<max>2</max>
-				</countRange>
+				<thingDef>PM_Hazsilk</thingDef>
+				<countRange>100~200</countRange>
+			</li>
+			
+			<!-- Drugs -->
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>TFEgg</thingDef>
+				<countRange>30~100</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>FeralPill</thingDef>
-				<countRange>
-					<min>-2</min>
-					<max>5</max>
-				</countRange>
+				<thingDef>TFMilk</thingDef>
+				<countRange>30~100</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
-				<thingDef>UdderPill</thingDef>
-				<countRange>
-					<min>-2</min>
-					<max>10</max>
-				</countRange>
+				<thingDef>MechaniteSlurry</thingDef>
+				<countRange>15~30</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>Antigen</thingDef>
+				<countRange>5~15</countRange>
 			</li>
 			<li Class="StockGenerator_SingleDef">
 				<thingDef>MutagenStabiliser</thingDef>
-				<countRange>
-					<min>-5</min>
-					<max>3</max>
-				</countRange>
+				<countRange>5~10</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>MutagenAccelerator</thingDef>
+				<countRange>5~10</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Mutapill</categoryDef>
+				<excludedThingDefs>
+					<li>MutagenStabiliser</li>
+					<li>MutagenAccelerator</li>
+				</excludedThingDefs>
+				<thingDefCountRange>4~6</thingDefCountRange>
+				<countRange>2~5</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>PM_HaltCream</thingDef>
+				<countRange>2~5</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>PM_AdaptionCream</thingDef>
+				<countRange>2~5</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>ReversionSyringe</thingDef>
+				<countRange>1~2</countRange>
+			</li>
+			<li Class="StockGenerator_Category">
+				<categoryDef>Serum</categoryDef>
+				<excludedThingDefs>
+					<li>RandomPowerfulTransformer</li>
+				</excludedThingDefs>
+				<thingDefCountRange>5~7</thingDefCountRange>
+				<countRange>3~5</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>RandomPowerfulTransformer</thingDef>
+				<countRange>-8~1</countRange><!-- 10% chance -->
 			</li>
 			<li Class="Pawnmorph.StockGenerator_Injectors">
-				<animalClass>Animal</animalClass> <!-- this will grab injectors from all morphs under the given category -->
-				<countRange>
-					<min>1</min>
-					<max>20</max>
-				</countRange>
+				<animalClass>Animal</animalClass><!-- this will grab injectors from all morphs under the given category -->
+				<countRange>3~7</countRange>
+			</li>
+			<li Class="StockGenerator_SingleDef">
+				<thingDef>PM_ExperimentalInjector</thingDef>
+				<countRange>5~7</countRange>
 			</li>
 
-			<li Class="StockGenerator_BuyTradeTag">
-				<tag>Art</tag>
+			<!-- Techprints -->
+			<!-- none -->
+
+			<!-- Weapons -->
+			<!-- none -->
+
+			<!-- Apparel -->
+			<!-- none -->
+
+			<!-- Implants -->
+			<!-- none -->
+
+			<!-- Buildings -->
+			<!-- none -->
+
+			<!-- Exotic -->
+			<li Class="Pawnmorph.StockGenerators.GenomeGenerator">
+				<allowRestricted>false</allowRestricted>
+				<countRange>1~10</countRange>
 			</li>
+			
+			<!-- Slaves -->
+			<li Class="Pawnmorph.StockGenerator_MorphSlaves">
+				<respectPopulationIntent>false</respectPopulationIntent>
+				<countRange>2~4</countRange>
+			</li>
+			
+			<!-- Animals -->
+			<li Class="Pawnmorph.StockGenerator_Morphs">
+				<checkTemperature>false</checkTemperature>
+				<tradeTagsSell>
+					<li>AnimalChaotic</li>
+					<li>AnimalCommon</li>
+					<li>AnimalUncommon</li>
+					<li>AnimalFighter</li>
+				</tradeTagsSell>
+				<kindCountRange>2~4</kindCountRange>
+				<countRange>1~3</countRange>
+			</li>
+			
+			<!-- Buying -->      
+			<li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+			<li Class="StockGenerator_BuyTradeTag"><tag>Drugs</tag></li>
 			<li Class="StockGenerator_BuyExpensiveSimple" />
-			<!--
-			<li Class="StockGenerator_BuyWeirdOrganic" />
-			-->
+			
 		</stockGenerators>
 	</TraderKindDef>
 </Defs>
