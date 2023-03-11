@@ -7,7 +7,7 @@
 			<texPath>Things/Item/Drug/Genekit_rgb</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<stackLimit>25</stackLimit>
+		<stackLimit>10</stackLimit>
 		<statBases>
 			<MarketValue>110</MarketValue>
 		</statBases>
@@ -24,7 +24,7 @@
             <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
 		<thingSetMakerTags>
-			<li>RewardSpecial</li>
+			<li>RewardStandardLowFreq</li>
 		</thingSetMakerTags>
 	</ThingDef>
 </Defs>
