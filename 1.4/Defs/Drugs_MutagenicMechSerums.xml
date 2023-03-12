@@ -27,7 +27,7 @@
             <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
 		<thingSetMakerTags>
-			<li>RewardSpecial</li>
+			<li>RewardStandardLowFreq</li>
 		</thingSetMakerTags>
 		<modExtensions>
 			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
@@ -100,7 +100,7 @@
 			</li>
 		</comps>
 		<thingSetMakerTags>
-			<li>RewardSpecial</li>
+			<li>RewardStandardLowFreq</li>
 		</thingSetMakerTags>
 	</ThingDef>
 </Defs>

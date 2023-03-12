@@ -23,8 +23,5 @@
 			</li>
             <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
-		<thingSetMakerTags>
-			<li>RewardSpecial</li>
-		</thingSetMakerTags>
 	</ThingDef>
 </Defs>

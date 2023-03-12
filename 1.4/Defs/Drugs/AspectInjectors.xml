@@ -12,9 +12,8 @@
         <statBases>
             <MarketValue>1500</MarketValue>
         </statBases>
-        <tradeability>Sellable</tradeability>
         <thingSetMakerTags>
-            <li>RewardSpecial</li>
+            <li>RewardStandardLowFreq</li>
         </thingSetMakerTags>
         <techLevel>Spacer</techLevel>
         <modExtensions>
