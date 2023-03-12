@@ -9,10 +9,10 @@
 		</graphicData>
 		<stackLimit>10</stackLimit>
 		<thingCategories>
-			<li>Items</li>
+			<li>ItemsMisc</li>
 		</thingCategories>
 		<statBases>
-			<MarketValue>1300</MarketValue>
+			<MarketValue>700</MarketValue>
 		</statBases>
 		<tradeability>Sellable</tradeability>
 		<comps>
@@ -46,10 +46,10 @@
 		</graphicData>
 		<stackLimit>10</stackLimit>
 		<thingCategories>
-			<li>Items</li>
+			<li>ItemsMisc</li>
 		</thingCategories>
 		<statBases>
-			<MarketValue>1700</MarketValue>
+			<MarketValue>1200</MarketValue>
 		</statBases>
 		<tradeability>Sellable</tradeability>
 		<comps>

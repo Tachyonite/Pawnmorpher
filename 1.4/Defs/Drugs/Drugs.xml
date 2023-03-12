@@ -5,9 +5,6 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<rotatable>false</rotatable>
-		<thingCategories>
-			<li>Injector</li>
-		</thingCategories>
 		<statBases>
 			<WorkToMake>4000</WorkToMake>
 			<MarketValue>400</MarketValue>

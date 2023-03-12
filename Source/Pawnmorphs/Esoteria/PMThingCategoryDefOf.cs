@@ -13,9 +13,10 @@ namespace Pawnmorph
 		public static ThingCategoryDef Injector;
 		public static ThingCategoryDef RawMutagen;
 		public static ThingCategoryDef Serum;
+		public static ThingCategoryDef Mutapill;
 
-		/// <summary> Not in base ThingCategoryDefOf </summary>
-		public static ThingCategoryDef Textiles;
+        /// <summary> Not in base ThingCategoryDefOf </summary>
+        public static ThingCategoryDef Textiles;
 
 
 		public static ThingCategoryDef PM_MutationGenome;
