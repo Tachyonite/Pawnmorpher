@@ -16,28 +16,28 @@ using Verse;
 
 namespace Pawnmorph.Chambers
 {
-    /// <summary>
-    ///     world component that acts as the central database for a given world instance
-    /// </summary>
-    /// <seealso cref="RimWorld.Planet.WorldComponent" />
-    public class ChamberDatabase : WorldComponent
-    {
-        
-        private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
-        private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
-        private const string ALREADY_TAGGED_MULTI_REASON = "PMAlreadyTaggedMulti";
+	/// <summary>
+	///     world component that acts as the central database for a given world instance
+	/// </summary>
+	/// <seealso cref="RimWorld.Planet.WorldComponent" />
+	public class ChamberDatabase : WorldComponent
+	{
 
-        /// <summary>
-        ///     translation string for not enough free power
-        /// </summary>
-        public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
-        private const string NOT_TAGGABLE = "PMMutationNotTaggable";
-        private const string RESTRICTED_MUTATION = "PMMutationRestricted";
+		private const string NOT_ENOUGH_STORAGE_REASON = "NotEnoughStorageSpaceToTagPK";
+		private const string ALREADY_TAGGED_REASON = "AlreadyTaggedAnimal";
+		private const string ALREADY_TAGGED_MULTI_REASON = "PMAlreadyTaggedMulti";
+
+		/// <summary>
+		///     translation string for not enough free power
+		/// </summary>
+		public const string NOT_ENOUGH_POWER = "PMDatabaseWithoutPower";
+		private const string NOT_TAGGABLE = "PMMutationNotTaggable";
+		private const string RESTRICTED_MUTATION = "PMMutationRestricted";
 
 		private PawnmorpherSettings Settings => LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
 		private int? _usedStorageCache;
-        private int _totalStorage = 0;
-        private int _inactiveAmount;
+		private int _totalStorage = 0;
+		private int _inactiveAmount;
 
 		Dictionary<Type, ExposableList<IGenebankEntry>> _genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
 
@@ -46,19 +46,19 @@ namespace Pawnmorph.Chambers
 		/// </summary>
 		/// <param name="world">The world.</param>
 		public ChamberDatabase(World world) : base(world)
-        {
-        }
+		{
+		}
 
 
 
-        /// <summary>
-        ///     Gets the stored mutations.
-        /// </summary>
-        /// <value>
-        ///     The stored mutations.
-        /// </value>
-        [NotNull]
-        public IReadOnlyList<MutationDef> StoredMutations => GetEntryValues<MutationDef>();
+		/// <summary>
+		///     Gets the stored mutations.
+		/// </summary>
+		/// <value>
+		///     The stored mutations.
+		/// </value>
+		[NotNull]
+		public IReadOnlyList<MutationDef> StoredMutations => GetEntryValues<MutationDef>();
 
 		/// <summary>
 		///     Gets the tagged animals.
@@ -67,11 +67,11 @@ namespace Pawnmorph.Chambers
 		[NotNull]
 		public IReadOnlyList<PawnKindDef> TaggedAnimals => GetEntryValues<PawnKindDef>();
 
-        /// <summary>
-        /// Gets the saved mutation templates.
-        /// </summary>
-        /// <value>The saved mutation templates.</value>
-        public IReadOnlyList<MutationTemplate> MutationTemplates => GetEntryValues<MutationTemplate>();
+		/// <summary>
+		/// Gets the saved mutation templates.
+		/// </summary>
+		/// <value>The saved mutation templates.</value>
+		public IReadOnlyList<MutationTemplate> MutationTemplates => GetEntryValues<MutationTemplate>();
 
 		/// <summary>
 		///     Gets the free storage.
@@ -80,76 +80,76 @@ namespace Pawnmorph.Chambers
 		///     The free storage.
 		/// </value>
 		public int FreeStorage
-        {
-            get
-            {
-                if (Settings.chamberDatabaseIgnoreStorageLimit) return int.MaxValue;
-                return TotalStorage - UsedStorage - _inactiveAmount;
-            }
-        }
-
-        /// <summary>
-        ///     Gets or sets the total storage available in the system
-        /// </summary>
-        /// <value>
-        ///     The total storage.
-        /// </value>
-        public int TotalStorage
-        {
-            get => _totalStorage;
-            set => _totalStorage = Mathf.Max(0, value);
-        }
-
-        /// <summary>
-        ///     Gets the amount of storage space currently in use.
-        /// </summary>
-        /// <value>
-        ///     The used storage.
-        /// </value>
-        public int UsedStorage
-        {
-            get
-            {
-                if (_usedStorageCache == null)
-                {
-                    var v = 0;
-
-                    foreach (IList<IGenebankEntry> genebankEntries in _genebankDatabase.Values)
-                    {
-                        v += genebankEntries.Sum(x => x.GetRequiredStorage());
-                    }
-
-					_usedStorageCache = v;
-                }
-
-                return _usedStorageCache.Value;
-            }
-        }
-
-
-
-        /// <summary>
-        /// Gets a readonly list of values contained in genebank by type.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>Empty collection if no values.</returns>
-        public IReadOnlyList<T> GetEntryValues<T>()
-        {
-            Type entryType = typeof(GenebankEntry<T>);
-
-			if (_genebankDatabase.ContainsKey(entryType))
-            {
-			    return _genebankDatabase[entryType].Select(x => (x as GenebankEntry<T>).Value).ToList();
-            }
-            return new List<T>();
+		{
+			get
+			{
+				if (Settings.chamberDatabaseIgnoreStorageLimit) return int.MaxValue;
+				return TotalStorage - UsedStorage - _inactiveAmount;
+			}
 		}
 
-        /// <summary>
-        /// Gets a readonly list of <see cref="GenebankEntry{T}"/> from genebank by type.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>Empty collection if no values.</returns>
-        public IReadOnlyList<GenebankEntry<T>> GetEntryItems<T>()
+		/// <summary>
+		///     Gets or sets the total storage available in the system
+		/// </summary>
+		/// <value>
+		///     The total storage.
+		/// </value>
+		public int TotalStorage
+		{
+			get => _totalStorage;
+			set => _totalStorage = Mathf.Max(0, value);
+		}
+
+		/// <summary>
+		///     Gets the amount of storage space currently in use.
+		/// </summary>
+		/// <value>
+		///     The used storage.
+		/// </value>
+		public int UsedStorage
+		{
+			get
+			{
+				if (_usedStorageCache == null)
+				{
+					var v = 0;
+
+					foreach (IList<IGenebankEntry> genebankEntries in _genebankDatabase.Values)
+					{
+						v += genebankEntries.Sum(x => x.GetRequiredStorage());
+					}
+
+					_usedStorageCache = v;
+				}
+
+				return _usedStorageCache.Value;
+			}
+		}
+
+
+
+		/// <summary>
+		/// Gets a readonly list of values contained in genebank by type.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns>Empty collection if no values.</returns>
+		public IReadOnlyList<T> GetEntryValues<T>()
+		{
+			Type entryType = typeof(GenebankEntry<T>);
+
+			if (_genebankDatabase.ContainsKey(entryType))
+			{
+				return _genebankDatabase[entryType].Select(x => (x as GenebankEntry<T>).Value).ToList();
+			}
+			return new List<T>();
+		}
+
+		/// <summary>
+		/// Gets a readonly list of <see cref="GenebankEntry{T}"/> from genebank by type.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns>Empty collection if no values.</returns>
+		public IReadOnlyList<GenebankEntry<T>> GetEntryItems<T>()
 		{
 			Type entryType = typeof(GenebankEntry<T>);
 
@@ -157,7 +157,7 @@ namespace Pawnmorph.Chambers
 			{
 				return _genebankDatabase[entryType].Cast<GenebankEntry<T>>().ToList();
 			}
-            return new List<GenebankEntry<T>>();
+			return new List<GenebankEntry<T>>();
 		}
 
 		/// <summary>
@@ -179,14 +179,14 @@ namespace Pawnmorph.Chambers
 			if (entry == null)
 				throw new ArgumentNullException(nameof(entry));
 
-            if (CanAddToDatabase(entry, out string reason) == false)
-            {
-                failMode.LogFail(reason);
-                return false;
-            }
+			if (CanAddToDatabase(entry, out string reason) == false)
+			{
+				failMode.LogFail(reason);
+				return false;
+			}
 
-            AddToDatabaseInternal(entry);
-            return true;
+			AddToDatabaseInternal(entry);
+			return true;
 		}
 
 
@@ -212,7 +212,7 @@ namespace Pawnmorph.Chambers
 
 
 		private void AddToDatabaseInternal<T>([NotNull] GenebankEntry<T> entry)
-        {
+		{
 			Type entryType = typeof(GenebankEntry<T>);
 			if (_genebankDatabase.ContainsKey(entryType) == false)
 				_genebankDatabase.Add(entryType, new ExposableList<IGenebankEntry>());
@@ -223,15 +223,15 @@ namespace Pawnmorph.Chambers
 				_usedStorageCache += entry.GetRequiredStorage();
 		}
 
-        /// <summary>
-        /// Determines whether this the provided value can be added to the genebank.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="entry">The entry.</param>
-        /// <returns>
-        ///   <c>true</c> if the value can be added to teh genebank; otherwise, <c>false</c>.
-        /// </returns>
-        public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry)
+		/// <summary>
+		/// Determines whether this the provided value can be added to the genebank.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="entry">The entry.</param>
+		/// <returns>
+		///   <c>true</c> if the value can be added to teh genebank; otherwise, <c>false</c>.
+		/// </returns>
+		public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry)
 		{
 			return CanAddToDatabase(entry, out _);
 		}
@@ -247,17 +247,17 @@ namespace Pawnmorph.Chambers
 		/// </returns>
 		public bool CanAddToDatabase<T>([NotNull] GenebankEntry<T> entry, out string reason)
 		{
-			if (entry == null) 
-                throw new ArgumentNullException(nameof(entry));
+			if (entry == null)
+				throw new ArgumentNullException(nameof(entry));
 
-            Type entryType = typeof(GenebankEntry<T>);
+			Type entryType = typeof(GenebankEntry<T>);
 			if (_genebankDatabase.ContainsKey(entryType) && _genebankDatabase[entryType].Contains(entry))
 			{
 				reason = ALREADY_TAGGED_REASON.Translate(entry.GetCaption());
 				return false;
 			}
 
-            int requiredStorage = entry.GetRequiredStorage();
+			int requiredStorage = entry.GetRequiredStorage();
 			if (FreeStorage < requiredStorage)
 			{
 				reason = NOT_ENOUGH_STORAGE_REASON.Translate(entry.GetCaption(), DatabaseUtilities.GetStorageString(requiredStorage), DatabaseUtilities.GetStorageString(FreeStorage));
@@ -270,10 +270,10 @@ namespace Pawnmorph.Chambers
 				return false;
 			}
 
-            if (entry.CanAddToDatabase(this, out reason) == false)
-            {
-                return false;
-            }
+			if (entry.CanAddToDatabase(this, out reason) == false)
+			{
+				return false;
+			}
 
 			reason = "";
 			return true;
@@ -294,10 +294,10 @@ namespace Pawnmorph.Chambers
 		{
 			if (mutationDefs == null) throw new ArgumentNullException(nameof(mutationDefs));
 
-            // Gets the smallest mutation not already logged.
-            IReadOnlyList<MutationDef> taggedMutations = GetEntryValues<MutationDef>();
+			// Gets the smallest mutation not already logged.
+			IReadOnlyList<MutationDef> taggedMutations = GetEntryValues<MutationDef>();
 			var smallestMutation = mutationDefs.Except(taggedMutations)
-                                               .MinBy(x => x.GetRequiredStorage());
+											   .MinBy(x => x.GetRequiredStorage());
 
 			if (smallestMutation == null)
 			{
@@ -306,10 +306,10 @@ namespace Pawnmorph.Chambers
 				return true;
 			}
 
-            int minRequiredCapacity = smallestMutation.GetRequiredStorage();
+			int minRequiredCapacity = smallestMutation.GetRequiredStorage();
 			if (FreeStorage < minRequiredCapacity)
 			{
-                // Smallest untagged mutation doesn't fit. Insufficient capacity.
+				// Smallest untagged mutation doesn't fit. Insufficient capacity.
 				reason = NOT_ENOUGH_STORAGE_REASON.Translate(smallestMutation, DatabaseUtilities.GetStorageString(minRequiredCapacity), DatabaseUtilities.GetStorageString(FreeStorage));
 				return false;
 			}
@@ -324,87 +324,87 @@ namespace Pawnmorph.Chambers
 			return true;
 		}
 
-        /// <summary>
-        ///     Exposes the data.
-        /// </summary>
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            
-            Scribe_Collections.Look(ref _genebankDatabase, nameof(_genebankDatabase), LookMode.Value, LookMode.Deep);
+		/// <summary>
+		///     Exposes the data.
+		/// </summary>
+		public override void ExposeData()
+		{
+			base.ExposeData();
 
-            // Save compatibility for migrating from old collections to new dictionary.
-            // These collections are not saved when the save is next saved.
+			Scribe_Collections.Look(ref _genebankDatabase, nameof(_genebankDatabase), LookMode.Value, LookMode.Deep);
+
+			// Save compatibility for migrating from old collections to new dictionary.
+			// These collections are not saved when the save is next saved.
 			if (Scribe.mode == LoadSaveMode.LoadingVars && _genebankDatabase == null)
-            {
-                _genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
+			{
+				_genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
 
 				List<MutationDef> mutationDefs = null;
-                Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
-                if (mutationDefs != null)
-                    _genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposableList<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
+				Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
+				if (mutationDefs != null)
+					_genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposableList<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
 
 				List<PawnKindDef> taggedAnimalDefs = null;
 				Scribe_Collections.Look(ref taggedAnimalDefs, "TaggedAnimals", LookMode.Def);
 				if (taggedAnimalDefs != null)
 					_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposableList<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
-				
-                List<MutationTemplate> templates = null;
+
+				List<MutationTemplate> templates = null;
 				Scribe_Collections.Look(ref templates, "_storedTemplates");
 				if (templates != null)
 					_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposableList<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
 			}
 
 			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
-        }
+		}
 
-        /// <summary>
-        ///     Finalizes the initialize.
-        /// </summary>
-        public override void FinalizeInit()
-        {
-            base.FinalizeInit();
-            _usedStorageCache = null;
-        }
+		/// <summary>
+		///     Finalizes the initialize.
+		/// </summary>
+		public override void FinalizeInit()
+		{
+			base.FinalizeInit();
+			_usedStorageCache = null;
+		}
 
-        /// <summary>
-        ///     Notifies that the given amount of storage capacity has lost power and is no longer available .
-        /// </summary>
-        /// <param name="storageAmount">The storage amount.</param>
-        public void NotifyLostPower(int storageAmount)
-        {
-            _inactiveAmount += storageAmount;
-        }
+		/// <summary>
+		///     Notifies that the given amount of storage capacity has lost power and is no longer available .
+		/// </summary>
+		/// <param name="storageAmount">The storage amount.</param>
+		public void NotifyLostPower(int storageAmount)
+		{
+			_inactiveAmount += storageAmount;
+		}
 
-        /// <summary>
-        ///     Notifies the given amount of storage capacity has power restored
-        /// </summary>
-        /// <param name="storageAmount">The storage amount.</param>
-        public void NotifyPowerOn(int storageAmount)
-        {
-            _inactiveAmount = Mathf.Max(_inactiveAmount - storageAmount, 0);
-        }
+		/// <summary>
+		///     Notifies the given amount of storage capacity has power restored
+		/// </summary>
+		/// <param name="storageAmount">The storage amount.</param>
+		public void NotifyPowerOn(int storageAmount)
+		{
+			_inactiveAmount = Mathf.Max(_inactiveAmount - storageAmount, 0);
+		}
 
 		/// <summary>
 		///     Removes the given mutation def from database.
 		/// </summary>
 		/// <param name="entry">The entry to remove.</param>
 		public void RemoveFromDatabase<T>(GenebankEntry<T> entry)
-        {
-            if (_genebankDatabase.TryGetValue(typeof(GenebankEntry<T>), out ExposableList<IGenebankEntry> genebankEntries))
-            {
+		{
+			if (_genebankDatabase.TryGetValue(typeof(GenebankEntry<T>), out ExposableList<IGenebankEntry> genebankEntries))
+			{
 				if (genebankEntries.Contains(entry))
-                {
-                    genebankEntries.Remove(entry);
-                    ClearCache();
-                }
+				{
+					genebankEntries.Remove(entry);
+					ClearCache();
+				}
 			}
-        }
+		}
 
 
 		internal void ClearCache()
-        {
-            _usedStorageCache = null;
-        }
-    }
+		{
+			_usedStorageCache = null;
+		}
+	}
 }

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!-- ========== Remove Smoke grenadiers ========== -->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers/li/*/Muta_Grenadier_Smoke</xpath>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

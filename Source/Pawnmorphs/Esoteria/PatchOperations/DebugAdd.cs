@@ -10,63 +10,63 @@ using Verse;
 #pragma warning disable CS0649
 namespace Pawnmorph.PatchOperations
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="Verse.PatchOperationPathed" />
-    public class DebugAdd : PatchOperationPathed
-    {
-        private enum Order
-        {
-            Append,
-            Prepend
-        }
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <seealso cref="Verse.PatchOperationPathed" />
+	public class DebugAdd : PatchOperationPathed
+	{
+		private enum Order
+		{
+			Append,
+			Prepend
+		}
 
-        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        private XmlContainer value;
-        
-        [UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        private Order order;
+		[UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		private XmlContainer value;
 
-        /// <summary>
-        /// Applies the worker.
-        /// </summary>
-        /// <param name="xml">The XML.</param>
-        /// <returns></returns>
-        protected override bool ApplyWorker(XmlDocument xml)
-        {
-            XmlNode node = value.node;
-            bool result = false;
+		[UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		private Order order;
 
-            List<XmlNode> foundNodes = xml.SelectNodes(xpath).OfType<XmlNode>().ToList();
+		/// <summary>
+		/// Applies the worker.
+		/// </summary>
+		/// <param name="xml">The XML.</param>
+		/// <returns></returns>
+		protected override bool ApplyWorker(XmlDocument xml)
+		{
+			XmlNode node = value.node;
+			bool result = false;
 
-            if (foundNodes.Count == 0)
-            {
-                Log.Error($"unable to find any nodes matching xpath \n\"{xpath}\"!");
-                return false; 
-            }
+			List<XmlNode> foundNodes = xml.SelectNodes(xpath).OfType<XmlNode>().ToList();
 
-            foreach (var xmlNode in foundNodes)
-            {
-                result = true;
-                if (order == Order.Append)
-                {
-                    foreach (XmlNode childNode in node.ChildNodes)
-                    {
-                        xmlNode.AppendChild(xmlNode.OwnerDocument.ImportNode(childNode, deep: true));
-                    }
-                }
-                else if (order == Order.Prepend)
-                {
-                    for (int num = node.ChildNodes.Count - 1; num >= 0; num--)
-                    {
-                        xmlNode.PrependChild(xmlNode.OwnerDocument.ImportNode(node.ChildNodes[num], deep: true));
-                    }
-                }
-            }
-            return result;
-        }
-    }
+			if (foundNodes.Count == 0)
+			{
+				Log.Error($"unable to find any nodes matching xpath \n\"{xpath}\"!");
+				return false;
+			}
+
+			foreach (var xmlNode in foundNodes)
+			{
+				result = true;
+				if (order == Order.Append)
+				{
+					foreach (XmlNode childNode in node.ChildNodes)
+					{
+						xmlNode.AppendChild(xmlNode.OwnerDocument.ImportNode(childNode, deep: true));
+					}
+				}
+				else if (order == Order.Prepend)
+				{
+					for (int num = node.ChildNodes.Count - 1; num >= 0; num--)
+					{
+						xmlNode.PrependChild(xmlNode.OwnerDocument.ImportNode(node.ChildNodes[num], deep: true));
+					}
+				}
+			}
+			return result;
+		}
+	}
 }
 
 #pragma warning restore CS0649

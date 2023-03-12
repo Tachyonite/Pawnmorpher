@@ -6,20 +6,20 @@ using Verse.AI;
 
 namespace Pawnmorph.ThinkNodes
 {
-    /// <summary>
-    /// think node for animalistic pawns 
-    /// </summary>
-    /// <seealso cref="Verse.AI.ThinkNode_Conditional" />
-    public class ConditionalAnimalisticHumanlike : ThinkNode_Conditional
-    {
-        /// <summary>
-        /// if the condition is satisfied or not 
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns></returns>
-        protected override bool Satisfied(Pawn pawn)
-        {
-            return pawn.RaceProps.Humanlike && pawn.IsAnimal(); 
-        }
-    }
+	/// <summary>
+	/// think node for animalistic pawns 
+	/// </summary>
+	/// <seealso cref="Verse.AI.ThinkNode_Conditional" />
+	public class ConditionalAnimalisticHumanlike : ThinkNode_Conditional
+	{
+		/// <summary>
+		/// if the condition is satisfied or not 
+		/// </summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <returns></returns>
+		protected override bool Satisfied(Pawn pawn)
+		{
+			return pawn.RaceProps.Humanlike && pawn.IsAnimal();
+		}
+	}
 }

@@ -7,24 +7,24 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    [HarmonyPatch(typeof(ThingOwnerUtility))]
-    static class ThingOwnerUtilityPatches
-    {
-        [HarmonyPatch(nameof(ThingOwnerUtility.ContentsSuspended)), HarmonyPostfix]
-        static void SuspendPawnsFix(IThingHolder holder, ref bool __result)
-        {
-            if (__result) return;
+	[HarmonyPatch(typeof(ThingOwnerUtility))]
+	static class ThingOwnerUtilityPatches
+	{
+		[HarmonyPatch(nameof(ThingOwnerUtility.ContentsSuspended)), HarmonyPostfix]
+		static void SuspendPawnsFix(IThingHolder holder, ref bool __result)
+		{
+			if (__result) return;
 
-            while(holder != null)
-            {
-                if (holder is MutaChamber)
-                {
-                    __result = true;
-                    return; 
-                }
+			while (holder != null)
+			{
+				if (holder is MutaChamber)
+				{
+					__result = true;
+					return;
+				}
 
-                holder = holder.ParentHolder; 
-            }
-        }
-    }
+				holder = holder.ParentHolder;
+			}
+		}
+	}
 }

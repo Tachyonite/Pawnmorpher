@@ -6,13 +6,13 @@ using Verse;
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// interface for hediff stages that execute something when they are entered 
-    /// </summary>
-    public interface IExecutableStage
-    {
-        /// <summary>called when the given hediff enters this stage</summary>
-        /// <param name="hediff">The hediff.</param>
-        void EnteredStage([NotNull] Hediff hediff); 
-    }
+	/// <summary>
+	/// interface for hediff stages that execute something when they are entered 
+	/// </summary>
+	public interface IExecutableStage
+	{
+		/// <summary>called when the given hediff enters this stage</summary>
+		/// <param name="hediff">The hediff.</param>
+		void EnteredStage([NotNull] Hediff hediff);
+	}
 }

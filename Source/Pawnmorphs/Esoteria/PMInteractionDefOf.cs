@@ -9,14 +9,14 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class PMInteractionDefOf
-    {
-        [NotNull] public static InteractionDef FormerHumanAnimalChat; 
+	[DefOf]
+	public static class PMInteractionDefOf
+	{
+		[NotNull] public static InteractionDef FormerHumanAnimalChat;
 
-        static PMInteractionDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMInteractionDefOf)); 
-        }
-    }
+		static PMInteractionDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMInteractionDefOf));
+		}
+	}
 }

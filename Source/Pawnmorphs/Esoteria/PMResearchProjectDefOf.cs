@@ -6,22 +6,22 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static def of class containing research project defs
-    /// </summary>
-    [DefOf]
-    public static class PMResearchProjectDefOf
-    {
-        static PMResearchProjectDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMResearchProjectDefOf)); 
-        }
+	/// <summary>
+	/// static def of class containing research project defs
+	/// </summary>
+	[DefOf]
+	public static class PMResearchProjectDefOf
+	{
+		static PMResearchProjectDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMResearchProjectDefOf));
+		}
 
-        /// <summary>
-        /// The injectors research 
-        /// </summary>
-        public static ResearchProjectDef Injectors; 
+		/// <summary>
+		/// The injectors research 
+		/// </summary>
+		public static ResearchProjectDef Injectors;
 
 
-    }
+	}
 }

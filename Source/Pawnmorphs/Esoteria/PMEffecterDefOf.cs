@@ -6,18 +6,18 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class for commonly used effects 
-    /// </summary>
-    [DefOf]
-    public static class PMEffecterDefOf
-    {
-        static PMEffecterDefOf() {  DefOfHelper.EnsureInitializedInCtor(typeof(PMEffecterDefOf));}
+	/// <summary>
+	/// static class for commonly used effects 
+	/// </summary>
+	[DefOf]
+	public static class PMEffecterDefOf
+	{
+		static PMEffecterDefOf() { DefOfHelper.EnsureInitializedInCtor(typeof(PMEffecterDefOf)); }
 
-        /// <summary>
-        /// The EffectorDef for cooking
-        /// </summary>
-        public static EffecterDef Cook; 
-    }
+		/// <summary>
+		/// The EffectorDef for cooking
+		/// </summary>
+		public static EffecterDef Cook;
+	}
 
 }

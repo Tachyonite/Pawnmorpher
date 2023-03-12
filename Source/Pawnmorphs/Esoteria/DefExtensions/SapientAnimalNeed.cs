@@ -5,15 +5,15 @@ using Verse;
 
 namespace Pawnmorph.DefExtensions
 {
-    /// <summary>
-    /// def extension for marking a need for use in sapient animals 
-    /// </summary>
-    /// <seealso cref="Verse.DefModExtension" />
-    public class SapientAnimalNeed : DefModExtension
-    {
-        /// <summary>
-        /// if the sapient animal must be a colonist 
-        /// </summary>
-        public bool mustBeColonist; 
-    }
+	/// <summary>
+	/// def extension for marking a need for use in sapient animals 
+	/// </summary>
+	/// <seealso cref="Verse.DefModExtension" />
+	public class SapientAnimalNeed : DefModExtension
+	{
+		/// <summary>
+		/// if the sapient animal must be a colonist 
+		/// </summary>
+		public bool mustBeColonist;
+	}
 }

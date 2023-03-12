@@ -5,19 +5,19 @@ using RimWorld;
 
 namespace Pawnmorph.ThingComps
 {
-    /// <summary>
-    /// properties for the sequencer comp 
-    /// </summary>
-    /// <seealso cref="RimWorld.CompProperties_Scanner" />
-    public class MutationSequencerProps : CompProperties_Scanner
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MutationSequencerProps"/> class.
-        /// </summary>
-        public MutationSequencerProps()
-        {
-            compClass = typeof(MutationSequencerComp);
-        }
+	/// <summary>
+	/// properties for the sequencer comp 
+	/// </summary>
+	/// <seealso cref="RimWorld.CompProperties_Scanner" />
+	public class MutationSequencerProps : CompProperties_Scanner
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MutationSequencerProps"/> class.
+		/// </summary>
+		public MutationSequencerProps()
+		{
+			compClass = typeof(MutationSequencerComp);
+		}
 
-    }
+	}
 }

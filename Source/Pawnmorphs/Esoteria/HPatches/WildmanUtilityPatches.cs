@@ -7,39 +7,39 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class WildmanUtilityPatches
-    {
-        [HarmonyPatch(nameof(WildManUtility.NonHumanlikeOrWildMan))]
-       
-            [HarmonyPostfix]
-            static void FixNonHumanlikeOrWildmanPostfix(ref bool __result, [NotNull] Pawn p)
-            {
-                if (__result && p.RaceProps.Animal)
-                {
-                    __result = !p.IsHumanlike(); 
-                }
-            }
-        
+	static class WildmanUtilityPatches
+	{
+		[HarmonyPatch(nameof(WildManUtility.NonHumanlikeOrWildMan))]
 
-            [HarmonyPatch(nameof(WildManUtility.AnimalOrWildMan))]
-       
-            [HarmonyPostfix]
-            static void FixAnimalOrWildman(ref bool __result, [NotNull] Pawn p)
-            {
-                if (__result && p.RaceProps.Animal)
-                {
-                    __result = !p.IsHumanlike(); 
-                }
-            }
+		[HarmonyPostfix]
+		static void FixNonHumanlikeOrWildmanPostfix(ref bool __result, [NotNull] Pawn p)
+		{
+			if (__result && p.RaceProps.Animal)
+			{
+				__result = !p.IsHumanlike();
+			}
+		}
 
 
-            [HarmonyPatch(nameof(WildManUtility.IsWildMan))]
-            [HarmonyPostfix]
-            private static void FixIsWildman(ref bool __result, [NotNull] Pawn p)
-            {
-                __result = __result || p.RaceProps.Humanlike && p.GetIntelligence() == Intelligence.Animal;
-            }
+		[HarmonyPatch(nameof(WildManUtility.AnimalOrWildMan))]
+
+		[HarmonyPostfix]
+		static void FixAnimalOrWildman(ref bool __result, [NotNull] Pawn p)
+		{
+			if (__result && p.RaceProps.Animal)
+			{
+				__result = !p.IsHumanlike();
+			}
+		}
 
 
-    }
+		[HarmonyPatch(nameof(WildManUtility.IsWildMan))]
+		[HarmonyPostfix]
+		private static void FixIsWildman(ref bool __result, [NotNull] Pawn p)
+		{
+			__result = __result || p.RaceProps.Humanlike && p.GetIntelligence() == Intelligence.Animal;
+		}
+
+
+	}
 }

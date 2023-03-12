@@ -7,16 +7,16 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class BackstoryDefOf
-    {
-        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static BackstoryDef FormerHumanNormal;
+	[DefOf]
+	public static class BackstoryDefOf
+	{
+		[NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		public static BackstoryDef FormerHumanNormal;
 
-       
-        static BackstoryDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(BackstoryDefOf));
-        }
-    }
+
+		static BackstoryDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(BackstoryDefOf));
+		}
+	}
 }

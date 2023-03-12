@@ -8,32 +8,32 @@ using Verse;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Static container for commonly referenced job defs. </summary>
-    [DefOf]
-    public static class PMJobDefOf
-    {
-        static PMJobDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMJobDefOf));
-        }
+	/// <summary> Static container for commonly referenced job defs. </summary>
+	[DefOf]
+	public static class PMJobDefOf
+	{
+		static PMJobDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMJobDefOf));
+		}
 
-        public static JobDef PMLayEgg;
-        public static JobDef PMMilkSelf;
-        public static JobDef PMDrainChemcyst;
-        public static JobDef PMShaveSelf;
-        public static JobDef PMResurrect;
-        public static JobDef PM_OperateSequencer;
+		public static JobDef PMLayEgg;
+		public static JobDef PMMilkSelf;
+		public static JobDef PMDrainChemcyst;
+		public static JobDef PMShaveSelf;
+		public static JobDef PMResurrect;
+		public static JobDef PM_OperateSequencer;
 
-        public static JobDef PM_MutagenicSow;
-        public static JobDef PM_PlantMutagenicPlant; 
+		public static JobDef PM_MutagenicSow;
+		public static JobDef PM_PlantMutagenicPlant;
 
-        public static JobDef PM_CarrySpecialToMutagenChamber; 
+		public static JobDef PM_CarrySpecialToMutagenChamber;
 
-        [NotNull] public static JobDef RecruitSapientFormerHuman;
-        [NotNull]
-        public static JobDef PM_UseMutationGenome;
+		[NotNull] public static JobDef RecruitSapientFormerHuman;
+		[NotNull]
+		public static JobDef PM_UseMutationGenome;
 
-        public static JobDef EnterMutagenChamber;
-        [NotNull] public static JobDef PM_TransformPrisoner; 
-    }
+		public static JobDef EnterMutagenChamber;
+		[NotNull] public static JobDef PM_TransformPrisoner;
+	}
 }

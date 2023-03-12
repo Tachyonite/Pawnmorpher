@@ -3,16 +3,16 @@
 
 using RimWorld;
 
-#pragma warning disable 1591 
+#pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Static container for commonly referenced mutations. </summary>
-    [DefOf]
-    public static class MutationsDefOf
-    {
-        static MutationsDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MutationsDefOf));
-        }
-    }
+	/// <summary> Static container for commonly referenced mutations. </summary>
+	[DefOf]
+	public static class MutationsDefOf
+	{
+		static MutationsDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(MutationsDefOf));
+		}
+	}
 }

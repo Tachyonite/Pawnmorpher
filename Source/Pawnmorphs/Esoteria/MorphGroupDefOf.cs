@@ -6,14 +6,14 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class MorphGroupDefOf
-    {
-        static MorphGroupDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MorphGroupDefOf));
-        }
+	[DefOf]
+	public static class MorphGroupDefOf
+	{
+		static MorphGroupDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(MorphGroupDefOf));
+		}
 
-        public static MorphGroupDef Humans;
-    }
+		public static MorphGroupDef Humans;
+	}
 }

@@ -7,35 +7,35 @@ using Verse;
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// interface for a type that retrieves mutations for a specific race at generation
-    /// used for alien race compatibility 
-    /// </summary>
-    public interface IRaceMutationRetriever
-    {
-        /// <summary>
-        /// Gets the configuration errors with this instance.
-        /// </summary>
-        /// <returns></returns>
-        [NotNull]
-        IEnumerable<string> GetConfigErrors();
+	/// <summary>
+	/// interface for a type that retrieves mutations for a specific race at generation
+	/// used for alien race compatibility 
+	/// </summary>
+	public interface IRaceMutationRetriever
+	{
+		/// <summary>
+		/// Gets the configuration errors with this instance.
+		/// </summary>
+		/// <returns></returns>
+		[NotNull]
+		IEnumerable<string> GetConfigErrors();
 
-        /// <summary>
-        /// Gets all mutations that should be given to a specified race at spawn time
-        /// </summary>
-        /// <param name="race">The race.</param>
-        /// <param name="preGeneratedPawn">The pre generated pawn, can be null if being called outside of generation</param>
-        /// <returns></returns>
-        [NotNull]
-        IEnumerable<MutationDef> GetMutationsFor([NotNull] ThingDef race, [CanBeNull] Pawn preGeneratedPawn);
+		/// <summary>
+		/// Gets all mutations that should be given to a specified race at spawn time
+		/// </summary>
+		/// <param name="race">The race.</param>
+		/// <param name="preGeneratedPawn">The pre generated pawn, can be null if being called outside of generation</param>
+		/// <returns></returns>
+		[NotNull]
+		IEnumerable<MutationDef> GetMutationsFor([NotNull] ThingDef race, [CanBeNull] Pawn preGeneratedPawn);
 
-        /// <summary>
-        /// Determines whether this instance can generate the specified mutation.
-        /// </summary>
-        /// <param name="mDef">The m definition.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance with the specified m definition can generate ; otherwise, <c>false</c>.
-        /// </returns>
-        bool CanGenerate([NotNull] MutationDef mDef); 
-    }
+		/// <summary>
+		/// Determines whether this instance can generate the specified mutation.
+		/// </summary>
+		/// <param name="mDef">The m definition.</param>
+		/// <returns>
+		///   <c>true</c> if this instance with the specified m definition can generate ; otherwise, <c>false</c>.
+		/// </returns>
+		bool CanGenerate([NotNull] MutationDef mDef);
+	}
 }

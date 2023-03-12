@@ -10,20 +10,20 @@ using Verse;
 #if true
 namespace Pawnmorph.HPatches
 {
-    public static class PawnComponentPatches
-    {
-        [HarmonyPatch(typeof(PawnComponentsUtility))]
-        [HarmonyPatch("AddAndRemoveDynamicComponents")]
-        public static class AddRemoveComponentsPatch
-        {
-            internal static void Postfix(Pawn pawn)
-            {
-                var sState = pawn.GetSapienceState(); 
-                sState?.AddOrRemoveDynamicComponents();
-            }
+	public static class PawnComponentPatches
+	{
+		[HarmonyPatch(typeof(PawnComponentsUtility))]
+		[HarmonyPatch("AddAndRemoveDynamicComponents")]
+		public static class AddRemoveComponentsPatch
+		{
+			internal static void Postfix(Pawn pawn)
+			{
+				var sState = pawn.GetSapienceState();
+				sState?.AddOrRemoveDynamicComponents();
+			}
 
 
-        }
-    }
+		}
+	}
 }
 #endif
