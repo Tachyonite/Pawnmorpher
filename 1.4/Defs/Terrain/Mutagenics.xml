@@ -59,7 +59,6 @@
 		</statBases>
 		<thingCategories>
 			<li>RawMutagen</li>
-			<li>ResourcesRaw</li>
 		</thingCategories>
 		<deepCommonality>0.125</deepCommonality>
 		<deepCountPerPortion>1</deepCountPerPortion>
@@ -268,4 +267,3 @@
 	</StuffCategoryDef>
 	
 </Defs>
-
