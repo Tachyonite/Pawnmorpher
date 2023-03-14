@@ -63,6 +63,10 @@ namespace Pawnmorph.Thoughts
 		{
 			get
 			{
+				// It seems some mods might call CurStageIndex in prefix before thought has been attached to a pawn.
+				if (pawn == null)
+					return 0;
+
 				var fSapienceStatus = pawn.GetQuantizedSapienceLevel();
 				if (fSapienceStatus == null)
 				{
