@@ -71,7 +71,6 @@ namespace Pawnmorph.HPatches
 			private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 			{
 				List<CodeInstruction> instructionList = instructions.ToList();
-				Log.Message("Patching WorkGiver Tamed");
 				for (var i = 0; i < instructionList.Count - 1; i++)
 				{
 					CodeInstruction jInst = instructionList[i + 1];

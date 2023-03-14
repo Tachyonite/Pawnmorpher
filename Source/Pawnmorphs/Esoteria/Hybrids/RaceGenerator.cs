@@ -776,18 +776,7 @@ namespace Pawnmorph.Hybrids
 				});
 				ar.recipes.RemoveDuplicates();
 			}
-			//ar.alienRace.raceRestriction?.workGiverList?.ForEach(delegate (WorkGiverDef wgd)
-			//{
-			//	if (wgd != null)
-			//	{
-			//		harmony.Patch(AccessTools.Method(wgd.giverClass, "JobOnThing"), null, new HarmonyMethod(patchType, "GenericJobOnThingPostfix"));
-			//		MethodInfo methodInfo2 = AccessTools.Method(wgd.giverClass, "HasJobOnThing");
-			//		if ((object)methodInfo2 != null && methodInfo2.IsDeclaredMember())
-			//		{
-			//			harmony.Patch(methodInfo2, null, new HarmonyMethod(patchType, "GenericHasJobOnThingPostfix"));
-			//		}
-			//	}
-			//});
+			ar.alienRace.raceRestriction?.workGiverList?.ForEach(PawnmorphPatches.PatchHumanoidRace);
 		}
 	}
 }
