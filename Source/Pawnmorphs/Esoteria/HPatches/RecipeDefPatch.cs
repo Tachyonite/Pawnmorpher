@@ -20,13 +20,13 @@ namespace Pawnmorph.HPatches
 
 			_settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
 			List<ThingDef> _injectors = PMThingCategoryDefOf.Injector.SortedChildThingDefs;
-
+			
 			List<MorphDef> allMorphs = MorphDef.AllDefs.ToList();
 
 			_injectorMorphMapping = new Dictionary<int, MorphDef>(_injectors.Count);
 			foreach (var injector in _injectors)
 			{
-				IngestionOutcomeDoer_GiveHediff hediff = injector.ingestible.outcomeDoers.OfType<IngestionOutcomeDoer_GiveHediff>().FirstOrDefault();
+				IngestionOutcomeDoer_GiveHediff hediff = injector.ingestible?.outcomeDoers.OfType<IngestionOutcomeDoer_GiveHediff>().FirstOrDefault();
 				if (hediff != null && hediff.hediffDef != null)
 				{
 					MorphDef morphDef = allMorphs.FirstOrDefault(m => m.fullTransformation == hediff.hediffDef);

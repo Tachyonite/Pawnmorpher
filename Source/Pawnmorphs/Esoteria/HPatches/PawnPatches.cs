@@ -75,13 +75,14 @@ namespace Pawnmorph.HPatches
 
 			// Don't do additional checks for pawns of other factions.
 			if (__instance.Faction?.def.isPlayer == true)
-				return true;
+			{
+				__result = __instance.GetIntelligence() == Intelligence.Humanlike;
+				if (__result && __instance.IsSlave == true)
+					__result = __instance.guest.SlaveIsSecure;
 
-			__result = __instance.GetIntelligence() == Intelligence.Humanlike;
-			if (__result && __instance.IsSlave == true)
-				__result = __instance.guest.SlaveIsSecure;
-
-			return false;
+				return false;
+			}
+			return true;
 		}
 
 

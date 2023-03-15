@@ -90,7 +90,7 @@
 		<jobString>Processing components from slurry.</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>2500</workAmount>
+		<workAmount>12000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
@@ -107,7 +107,7 @@
 						<li>Steel</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>3</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -116,7 +116,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<ComponentIndustrial>2</ComponentIndustrial>
+			<ComponentIndustrial>3</ComponentIndustrial>
 		</products>
 		<recipeUsers>
 			<li>MutagenLab</li>
@@ -135,7 +135,7 @@
 		<jobString>fabricating reincarnator mech serum</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>6000</workAmount>
+		<workAmount>10000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
@@ -144,7 +144,7 @@
 						<li>MechaniteSlurry</li>
 					</thingDefs>
 				</filter>
-				<count>15</count>
+				<count>14</count>
 			</li>
 			<li>
 				<filter>
@@ -152,7 +152,7 @@
 						<li>Antigen</li>
 					</thingDefs>
 				</filter>
-				<count>15</count>
+				<count>6</count>
 			</li>
 			<li>
 				<filter>
@@ -176,7 +176,7 @@
 						<li>Mutanite</li>
 					</thingDefs>
 				</filter>
-				<count>4</count>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -205,7 +205,7 @@
 		<jobString>fabricating mutagenic healer mech serum</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>4000</workAmount>
+		<workAmount>5000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
@@ -214,7 +214,7 @@
 						<li>MechaniteSlurry</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>7</count>
 			</li>
 			<li>
 				<filter>
@@ -222,7 +222,7 @@
 						<li>Antigen</li>
 					</thingDefs>
 				</filter>
-				<count>10</count>
+				<count>3</count>
 			</li>
 			<li>
 				<filter>
@@ -230,7 +230,7 @@
 						<li>MedicineUltratech</li>
 					</thingDefs>
 				</filter>
-				<count>3</count>
+				<count>2</count>
 			</li>
 			<li>
 				<filter>
@@ -238,7 +238,7 @@
 						<li>ComponentSpacer</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>1</count>
 			</li>
 			<li>
 				<filter>
@@ -246,7 +246,7 @@
 						<li>Mutanite</li>
 					</thingDefs>
 				</filter>
-				<count>2</count>
+				<count>1</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -275,7 +275,7 @@
 		<jobString>Refining antigen into glitterworld medicine</jobString>
 		<effectWorking>Cook</effectWorking>
 		<soundWorking>Recipe_Brewing</soundWorking>
-		<workAmount>2000</workAmount>
+		<workAmount>3000</workAmount>
 		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 		<ingredients>
 			<li>
@@ -284,7 +284,7 @@
 						<li>Antigen</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>1</count>
 			</li>
 			<li>
 				<filter>
@@ -292,7 +292,7 @@
 						<li>Neutroamine</li>
 					</thingDefs>
 				</filter>
-				<count>5</count>
+				<count>4</count>
 			</li>
 			<li>
 				<filter>
@@ -300,7 +300,7 @@
 						<li>MedicineIndustrial</li>
 					</thingDefs>
 				</filter>
-				<count>1</count>
+				<count>2</count>
 			</li>
 		</ingredients>
 		<fixedIngredientFilter>
@@ -309,7 +309,7 @@
 			</thingDefs>
 		</fixedIngredientFilter>
 		<products>
-			<MedicineUltratech>1</MedicineUltratech>
+			<MedicineUltratech>2</MedicineUltratech>
 		</products>
 		<recipeUsers>
 			<li>MutagenLab</li>

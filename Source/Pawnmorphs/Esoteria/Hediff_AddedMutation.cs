@@ -43,7 +43,13 @@ namespace Pawnmorph
 		/// </summary>
 		public Hediff_AddedMutation()
 		{
-			TickBase = false;
+		}
+
+		/// <inheritdoc/>
+		public override void PostMake()
+		{
+			base.PostMake();
+			TickBase = Def?.RunBaseLogic ?? false;
 		}
 
 		/// <summary>
@@ -231,7 +237,6 @@ namespace Pawnmorph
 		{
 			if (newStage is MutationStage mStage)
 			{
-
 				// We don't normally use any of the vanilla functionality so there is no reason to propagate the tick further down
 				// unless the hediff specifically requests it
 				TickBase = Def.RunBaseLogic || mStage.RunBaseLogic;
@@ -317,10 +322,14 @@ namespace Pawnmorph
 					abilities = new List<Abilities.MutationAbility>();
 
 				GenerateAbilities(base.CurStage);
+
+				if (CurrentMutationStage != null)
+					CurrentMutationStage.OnLoad(this);
+
+
+				TickBase = Def.RunBaseLogic || CurrentMutationStage?.RunBaseLogic == true;
 			}
 
-			if (CurrentMutationStage != null)
-				CurrentMutationStage.OnLoad(this);
 		}
 
 		/// <summary>

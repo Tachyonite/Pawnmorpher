@@ -688,7 +688,7 @@ namespace Pawnmorph
 			DebugLogUtils.Assert(!pawn.guest.IsPrisoner, $"{pawn.Name} is being cleaned up but is still a prisoner");
 		}
 
-		private static void HandleApparelAndEquipment(Pawn originalPawn, Caravan caravan)
+		internal static void HandleApparelAndEquipment(Pawn originalPawn, Caravan caravan)
 		{
 			var apparelTracker = originalPawn.apparel;
 			var equipmentTracker = originalPawn.equipment;

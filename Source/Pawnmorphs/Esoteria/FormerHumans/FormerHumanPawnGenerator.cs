@@ -68,7 +68,8 @@ namespace Pawnmorph.FormerHumans
 					fixedBirthName: settings.FirstName, fixedLastName: settings.LastName,
 					fixedGender: settings.Gender, colonistRelationChanceFactor: settings.ColonistRelationChanceFactor ?? 1);
 			Pawn pawn = PawnGenerator.GeneratePawn(request);
-			CleanupPawn(pawn);
+			TransformerUtility.HandleApparelAndEquipment(pawn, null);
+
 			return pawn;
 		}
 
@@ -151,17 +152,6 @@ namespace Pawnmorph.FormerHumans
 				MutationResult res = MutationUtilities.AddMutation(lPawn, rM, addList, aEffects);
 				if (res) i++; //only increment if we actually added any mutations 
 			}
-		}
-
-
-		/// <summary>
-		/// Cleans the pawn up post-generation so that they don't have any gear/equipment when reverted
-		/// </summary>
-		/// <param name="lPawn">L pawn.</param>
-		private static void CleanupPawn(Pawn lPawn) //TODO Unify this with TransformerUtility.CleanUpHumanPawnPostTf()
-		{
-			lPawn.equipment?.DestroyAllEquipment();
-			lPawn.apparel?.DestroyAll();
 		}
 
 	}
