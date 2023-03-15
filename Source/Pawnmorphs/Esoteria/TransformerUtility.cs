@@ -462,7 +462,7 @@ namespace Pawnmorph
 
 			return new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer,
 											 fixedBiologicalAge: convertedAge,
-											 fixedChronologicalAge: Rand.Range(convertedAge, convertedAge + 200),
+											 fixedChronologicalAge: animal.ageTracker.AgeChronologicalYearsFloat,
 											 fixedGender: gender);
 		}
 

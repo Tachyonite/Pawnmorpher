@@ -212,10 +212,13 @@ namespace Pawnmorph.Hybrids
 				}
 
 
+			if (pawn.story.traits == null)
+				pawn.story.traits = new TraitSet(pawn);
+
 			float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
 
 			pawn.def = race;
-			pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
+			pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
 
 			if (removed && !map.listerThings.Contains(pawn))
 				map.listerThings.Add(pawn);

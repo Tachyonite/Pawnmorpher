@@ -487,25 +487,25 @@ namespace Pawnmorph
 		{
 			if (kind == null) throw new ArgumentNullException(nameof(kind));
 			if (originals == null) throw new ArgumentNullException(nameof(originals));
-			float avgOriginalAge = 0, avgOriginalLifeExpectancy = 0, avgChronoAge = 0;
+			float avgOriginalAge = 0, avgOriginalLifeExpectancy = 0, maxChronoAge = 0;
 			var counter = 0;
 			foreach (Pawn oPawn in originals)
 			{
 				counter++;
 				avgOriginalAge += oPawn.ageTracker.AgeBiologicalYears;
 				avgOriginalLifeExpectancy += oPawn.RaceProps.lifeExpectancy;
-				avgChronoAge += oPawn.ageTracker.AgeChronologicalYears;
+
+				if (maxChronoAge < oPawn.ageTracker.AgeChronologicalYears)
+					maxChronoAge = oPawn.ageTracker.AgeChronologicalYears;
 			}
 
 			avgOriginalLifeExpectancy /= counter;
-			avgChronoAge /= counter;
 			avgOriginalAge /= counter;
 
 			float newAge =
 				TransformerUtility.ConvertAge(avgOriginalAge, avgOriginalLifeExpectancy, kind.RaceProps.lifeExpectancy);
-			float newChronoAge = avgChronoAge * newAge / avgOriginalAge;
 			return new PawnGenerationRequest(kind, faction, context, fixedGender: fixedGender, fixedBiologicalAge: newAge,
-											 fixedChronologicalAge: newChronoAge);
+											 fixedChronologicalAge: maxChronoAge);
 		}
 
 		/// <summary>
@@ -525,7 +525,7 @@ namespace Pawnmorph
 		{
 			float age = TransformerUtility.ConvertAge(original.RaceProps, kind.RaceProps, original.ageTracker.AgeBiologicalYears);
 			return new PawnGenerationRequest(kind, faction, context, fixedBiologicalAge: age,
-											 fixedChronologicalAge: Math.Max(original.ageTracker.AgeChronologicalYears, age),
+											 fixedChronologicalAge: original.ageTracker.AgeChronologicalYears,
 											 fixedGender: fixedGender);
 		}
 
@@ -1165,12 +1165,12 @@ namespace Pawnmorph
 				return;
 			}
 
-			// TODO chrono age
 			FHGenerationSettings settings = new FHGenerationSettings()
 			{
 				FirstName = fixedFirstName,
 				LastName = fixedLastName,
-				Gender = fixedOriginalGender
+				Gender = fixedOriginalGender,
+				ChronoAge = animal.ageTracker.AgeChronologicalYearsFloat
 			};
 			Pawn lPawn = FormerHumanPawnGenerator.GenerateRandomHumanForm(animal, settings);
 
