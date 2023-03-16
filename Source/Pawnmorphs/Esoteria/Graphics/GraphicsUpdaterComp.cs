@@ -20,6 +20,7 @@ namespace Pawnmorph.GraphicSys
 	{
 		private bool _subOnce;
 		private Color _effectiveHairColor;
+		private bool _suspended;
 
 		/// <summary>
 		/// Assigned by <see cref="HPatches.GeneTrackerPatches.EnsureCorrectSkinColorOverridePostfix(Pawn)"/> right before this is triggered.
@@ -80,6 +81,9 @@ namespace Pawnmorph.GraphicSys
 
 		public void RefreshGraphics()
 		{
+			if (_suspended)
+				return;
+
 			var pawn = (Pawn)parent;
 			var mTracker = pawn.GetMutationTracker();
 			if (mTracker != null)
@@ -213,6 +217,18 @@ namespace Pawnmorph.GraphicSys
 		void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
 		{
 			IsDirty = true;
+		}
+
+
+		public void BeginUpdate()
+		{
+			_suspended = true;
+		}
+
+		public void EndUpdate()
+		{
+			_suspended = false;
+			RefreshGraphics();
 		}
 	}
 }
