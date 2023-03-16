@@ -458,41 +458,43 @@ namespace Pawnmorph.Hybrids
 				pawn.genes.Endogenes.Clear();
 				pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
 
-
-				// Taken from Verse.PawnGenerator
-				if (pawn.genes.GetMelaninGene() == null)
+				if (PawnmorpherMod.Settings.generateEndoGenesForAliens)
 				{
-					GeneDef geneDef = PawnSkinColors.RandomSkinColorGene(pawn);
-					if (geneDef != null)
+					// Taken from Verse.PawnGenerator
+					if (pawn.genes.GetMelaninGene() == null)
 					{
-						pawn.genes.AddGene(geneDef, xenogene: false);
-
-						Color? skinColor = geneDef.skinColorBase;
-						if (skinColor.HasValue)
+						GeneDef geneDef = PawnSkinColors.RandomSkinColorGene(pawn);
+						if (geneDef != null)
 						{
-							pawn.story.SkinColorBase = skinColor.Value;
-							pawn.story.skinColorOverride = null;
+							pawn.genes.AddGene(geneDef, xenogene: false);
+
+							Color? skinColor = geneDef.skinColorBase;
+							if (skinColor.HasValue)
+							{
+								pawn.story.SkinColorBase = skinColor.Value;
+								pawn.story.skinColorOverride = null;
+							}
 						}
+
 					}
 
-				}
-
-				if (pawn.genes.GetHairColorGene() == null)
-				{
-					Color? hairColor;
-					GeneDef geneDef2 = PawnHairColors.RandomHairColorGene(pawn.story.SkinColorBase);
-					if (geneDef2 != null)
+					if (pawn.genes.GetHairColorGene() == null)
 					{
-						pawn.genes.AddGene(geneDef2, xenogene: false);
-						hairColor = geneDef2.hairColorOverride;
-					}
-					else
-					{
-						hairColor = PawnHairColors.RandomHairColor(pawn, pawn.story.SkinColorBase, pawn.ageTracker.AgeBiologicalYears);
-					}
+						Color? hairColor;
+						GeneDef geneDef2 = PawnHairColors.RandomHairColorGene(pawn.story.SkinColorBase);
+						if (geneDef2 != null)
+						{
+							pawn.genes.AddGene(geneDef2, xenogene: false);
+							hairColor = geneDef2.hairColorOverride;
+						}
+						else
+						{
+							hairColor = PawnHairColors.RandomHairColor(pawn, pawn.story.SkinColorBase, pawn.ageTracker.AgeBiologicalYears);
+						}
 
-					if (hairColor.HasValue)
-						pawn.story.HairColor = hairColor.Value;
+						if (hairColor.HasValue)
+							pawn.story.HairColor = hairColor.Value;
+					}
 				}
 			}
 			else

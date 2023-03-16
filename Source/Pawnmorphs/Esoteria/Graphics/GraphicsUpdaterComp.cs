@@ -129,6 +129,9 @@ namespace Pawnmorph.GraphicSys
 				var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
 
 				Color effectiveSkinColor = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
+
+				// Log.Message($"Coloring: gene: {GeneOverrideColor}, base: {baseColor}, morph: {morphColor}, effective: {effectiveSkinColor}");
+
 				Pawn.story.skinColorOverride = effectiveSkinColor;
 				GComp.SetSkinColor(effectiveSkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
 			}
