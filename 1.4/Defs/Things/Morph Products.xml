@@ -8,6 +8,11 @@
 		</comps>
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
 		<socialPropernessMatters>false</socialPropernessMatters>
+		<thingCategories Inherit="False">
+			<li>RawMutagen</li>
+			<li>AnimalProductRaw</li>
+			<li>Drugs</li>
+		</thingCategories>
 		<ingestible>
 			<drugCategory>Social</drugCategory>
 			<preferability>DesperateOnly</preferability>
@@ -38,11 +43,6 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
-		<thingCategories Inherit="False">
-			<li>RawMutagen</li>
-			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
-		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -78,11 +78,6 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
-		<thingCategories Inherit="False">
-			<li>RawMutagen</li>
-			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
-		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
