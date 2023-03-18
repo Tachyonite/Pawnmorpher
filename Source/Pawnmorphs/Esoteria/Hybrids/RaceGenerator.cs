@@ -263,6 +263,7 @@ namespace Pawnmorph.Hybrids
 
 				CreateImplicitMeshes(race);
 				race.ResolveReferences();
+				DoHarStuff(race);
 				yield return race;
 			}
 
@@ -644,6 +645,138 @@ namespace Pawnmorph.Hybrids
 		{
 			if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
 			return _raceLookupTable.ContainsKey(raceDef);
+		}
+
+		// AlienRace.HarmonyPatches..cctor
+		private static void DoHarStuff(ThingDef_AlienRace ar)
+		{
+			foreach (ThoughtDef restrictedThought in ar.alienRace.thoughtSettings.restrictedThoughts)
+			{
+				if (!ThoughtSettings.thoughtRestrictionDict.ContainsKey(restrictedThought))
+				{
+					ThoughtSettings.thoughtRestrictionDict.Add(restrictedThought, new List<ThingDef_AlienRace>());
+				}
+				ThoughtSettings.thoughtRestrictionDict[restrictedThought].Add(ar);
+			}
+			foreach (ThingDef apparel in ar.alienRace.raceRestriction.apparelList)
+			{
+				if (!RaceRestrictionSettings.apparelRestricted.Contains(apparel))
+				{
+					RaceRestrictionSettings.apparelRestricted.Add(apparel);
+				}
+				ar.alienRace.raceRestriction.whiteApparelList.Add(apparel);
+			}
+			foreach (ThingDef weapon in ar.alienRace.raceRestriction.weaponList)
+			{
+				if (!RaceRestrictionSettings.weaponRestricted.Contains(weapon))
+				{
+					RaceRestrictionSettings.weaponRestricted.Add(weapon);
+				}
+				ar.alienRace.raceRestriction.whiteWeaponList.Add(weapon);
+			}
+			foreach (ThingDef building in ar.alienRace.raceRestriction.buildingList)
+			{
+				if (!RaceRestrictionSettings.buildingRestricted.Contains(building))
+				{
+					RaceRestrictionSettings.buildingRestricted.Add(building);
+				}
+				ar.alienRace.raceRestriction.whiteBuildingList.Add(building);
+			}
+			foreach (RecipeDef recipe in ar.alienRace.raceRestriction.recipeList)
+			{
+				if (!RaceRestrictionSettings.recipeRestricted.Contains(recipe))
+				{
+					RaceRestrictionSettings.recipeRestricted.Add(recipe);
+				}
+				ar.alienRace.raceRestriction.whiteRecipeList.Add(recipe);
+			}
+			foreach (ThingDef plant in ar.alienRace.raceRestriction.plantList)
+			{
+				if (!RaceRestrictionSettings.plantRestricted.Contains(plant))
+				{
+					RaceRestrictionSettings.plantRestricted.Add(plant);
+				}
+				ar.alienRace.raceRestriction.whitePlantList.Add(plant);
+			}
+			foreach (TraitDef trait in ar.alienRace.raceRestriction.traitList)
+			{
+				if (!RaceRestrictionSettings.traitRestricted.Contains(trait))
+				{
+					RaceRestrictionSettings.traitRestricted.Add(trait);
+				}
+				ar.alienRace.raceRestriction.whiteTraitList.Add(trait);
+			}
+			foreach (ThingDef food in ar.alienRace.raceRestriction.foodList)
+			{
+				if (!RaceRestrictionSettings.foodRestricted.Contains(food))
+				{
+					RaceRestrictionSettings.foodRestricted.Add(food);
+				}
+				ar.alienRace.raceRestriction.whiteFoodList.Add(food);
+			}
+			foreach (ThingDef pet in ar.alienRace.raceRestriction.petList)
+			{
+				if (!RaceRestrictionSettings.petRestricted.Contains(pet))
+				{
+					RaceRestrictionSettings.petRestricted.Add(pet);
+				}
+				ar.alienRace.raceRestriction.whitePetList.Add(pet);
+			}
+			foreach (ResearchProjectDef item in ar.alienRace.raceRestriction.researchList.SelectMany((ResearchProjectRestrictions rl) => rl?.projects))
+			{
+				if (!RaceRestrictionSettings.researchRestrictionDict.ContainsKey(item))
+				{
+					RaceRestrictionSettings.researchRestrictionDict.Add(item, new List<ThingDef_AlienRace>());
+				}
+				RaceRestrictionSettings.researchRestrictionDict[item].Add(ar);
+			}
+			foreach (GeneDef gene in ar.alienRace.raceRestriction.geneList)
+			{
+				if (!RaceRestrictionSettings.geneRestricted.Contains(gene))
+				{
+					RaceRestrictionSettings.geneRestricted.Add(gene);
+				}
+				ar.alienRace.raceRestriction.whiteGeneList.Add(gene);
+			}
+			foreach (ThingDef reproduction in ar.alienRace.raceRestriction.reproductionList)
+			{
+				if (!RaceRestrictionSettings.reproductionRestricted.Contains(reproduction))
+				{
+					RaceRestrictionSettings.reproductionRestricted.Add(reproduction);
+				}
+				ar.alienRace.raceRestriction.whiteReproductionList.Add(reproduction);
+			}
+			if (ar.alienRace.generalSettings.corpseCategory != ThingCategoryDefOf.CorpsesHumanlike)
+			{
+				ThingCategoryDefOf.CorpsesHumanlike.childThingDefs.Remove(ar.race.corpseDef);
+				if (ar.alienRace.generalSettings.corpseCategory != null)
+				{
+					ar.race.corpseDef.thingCategories = new List<ThingCategoryDef> { ar.alienRace.generalSettings.corpseCategory };
+					ar.alienRace.generalSettings.corpseCategory.childThingDefs.Add(ar.race.corpseDef);
+					ar.alienRace.generalSettings.corpseCategory.ResolveReferences();
+				}
+				ThingCategoryDefOf.CorpsesHumanlike.ResolveReferences();
+			}
+			ar.alienRace.generalSettings.alienPartGenerator.GenerateMeshsAndMeshPools();
+			if (ar.alienRace.generalSettings.humanRecipeImport && ar != ThingDefOf.Human)
+			{
+				(ar.recipes ?? (ar.recipes = new List<RecipeDef>())).AddRange(ThingDefOf.Human.recipes.Where((RecipeDef rd) => !rd.targetsBodyPart || rd.appliedOnFixedBodyParts.NullOrEmpty() || rd.appliedOnFixedBodyParts.Any((BodyPartDef bpd) => ar.race.body.AllParts.Any((BodyPartRecord bpr) => bpr.def == bpd))));
+				DefDatabase<RecipeDef>.AllDefsListForReading.ForEach(delegate (RecipeDef rd)
+				{
+					List<ThingDef> recipeUsers = rd.recipeUsers;
+					if (recipeUsers != null && recipeUsers.Contains(ThingDefOf.Human))
+					{
+						rd.recipeUsers.Add(ar);
+					}
+					ThingFilter defaultIngredientFilter = rd.defaultIngredientFilter;
+					if (defaultIngredientFilter != null && !defaultIngredientFilter.Allows(ThingDefOf.Meat_Human))
+					{
+						rd.defaultIngredientFilter.SetAllow(ar.race.meatDef, allow: false);
+					}
+				});
+				ar.recipes.RemoveDuplicates();
+			}
+			ar.alienRace.raceRestriction?.workGiverList?.ForEach(PawnmorphPatches.PatchHumanoidRace);
 		}
 	}
 }
