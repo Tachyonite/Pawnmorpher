@@ -40,9 +40,9 @@ namespace Pawnmorph
 		{
 			Listing_Standard listingStandard = new Listing_Standard();
 			listingStandard.Begin(inRect);
-
+			
 			Listing_Standard checkBoxSection = listingStandard.BeginSection(10 * Text.LineHeight);
-			checkBoxSection.ColumnWidth = inRect.width / 2;
+			checkBoxSection.ColumnWidth = (checkBoxSection.ColumnWidth - 14) / 2;
 			checkBoxSection.CheckboxLabeled("enableFalloutCheckboxLabel".Translate(), ref settings.enableFallout, "enableFalloutCheckboxTooltip".Translate());
 			checkBoxSection.CheckboxLabeled("enableMutagenLeakCheckboxLabel".Translate(), ref settings.enableMutagenLeak, "enableMutagenLeakCheckboxTooltip".Translate());
 			checkBoxSection.CheckboxLabeled("enableMutagenCheckboxLabel".Translate(), ref settings.enableMutagenShipPart, "enableMutagenCheckboxTooltip".Translate());
@@ -56,6 +56,7 @@ namespace Pawnmorph
 											"PMInjectorsRequireTaggingTooltip".Translate());
 
 			checkBoxSection.CheckboxLabeled("PMHazardousChaobulbs".Translate(), ref settings.hazardousChaobulbs, "PMHazardousChaobulbsTooltip".Translate());
+			checkBoxSection.CheckboxLabeled("PMGenerateEndoGenesForAliens".Translate(), ref settings.generateEndoGenesForAliens, "PMGenerateEndoGenesForAliensTooltip".Translate());
 
 			if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
 				ShowVisibleRaceSelection();

@@ -148,6 +148,7 @@ namespace Pawnmorph.DebugUtils
 				mutation.Severity = sevAdj.NaturalSeverityLimit;
 			}
 
+			mTracker.RecalculateMutationInfluences();
 			p.health?.capacities?.Notify_CapacityLevelsDirty();
 		}
 

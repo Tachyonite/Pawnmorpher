@@ -20,6 +20,7 @@ namespace Pawnmorph.GraphicSys
 	{
 		private bool _subOnce;
 		private Color _effectiveHairColor;
+		private bool _suspended;
 
 		/// <summary>
 		/// Assigned by <see cref="HPatches.GeneTrackerPatches.EnsureCorrectSkinColorOverridePostfix(Pawn)"/> right before this is triggered.
@@ -80,6 +81,9 @@ namespace Pawnmorph.GraphicSys
 
 		public void RefreshGraphics()
 		{
+			if (_suspended)
+				return;
+
 			var pawn = (Pawn)parent;
 			var mTracker = pawn.GetMutationTracker();
 			if (mTracker != null)
@@ -125,6 +129,9 @@ namespace Pawnmorph.GraphicSys
 				var morphColor = highestInfluence.GetSkinColorOverride(tracker.Pawn) ?? InitialGraphics.SkinColor;
 
 				Color effectiveSkinColor = Color.Lerp(baseColor, morphColor, Mathf.Sqrt(lerpVal)); // Blend the 2 by the normalized colors.
+
+				// Log.Message($"Coloring: gene: {GeneOverrideColor}, base: {baseColor}, morph: {morphColor}, effective: {effectiveSkinColor}");
+
 				Pawn.story.skinColorOverride = effectiveSkinColor;
 				GComp.SetSkinColor(effectiveSkinColor); // Assign effective skin color to body parts. (Might not be needed once HAR fixes updating colors)
 			}
@@ -213,6 +220,18 @@ namespace Pawnmorph.GraphicSys
 		void IMutationEventReceiver.MutationRemoved(Hediff_AddedMutation mutation, MutationTracker tracker)
 		{
 			IsDirty = true;
+		}
+
+
+		public void BeginUpdate()
+		{
+			_suspended = true;
+		}
+
+		public void EndUpdate()
+		{
+			_suspended = false;
+			RefreshGraphics();
 		}
 	}
 }

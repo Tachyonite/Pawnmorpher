@@ -145,7 +145,6 @@ namespace Pawnmorph.TfSys
 				TryAddMutationsToPawn(original, request.cause, request.outputDef);
 
 			var reactionStatus = original.GetFormerHumanReactionStatus();
-			float newAge = TransformerUtility.ConvertAge(original, request.outputDef.race.race);
 			Faction faction;
 			faction = GetFaction(request, original);
 
