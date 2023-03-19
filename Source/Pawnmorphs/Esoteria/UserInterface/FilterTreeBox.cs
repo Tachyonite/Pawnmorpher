@@ -22,7 +22,8 @@ namespace Pawnmorph.UserInterface
 
 		public FilterTreeBox(List<TreeNode_FilterBox> roots)
 		{
-			_roots = roots;
+			_roots = roots.ToList();
+			_roots.Reverse();
 			_items = new List<TreeNode_FilterBox>();
 			UpdateFilter();
 		}
