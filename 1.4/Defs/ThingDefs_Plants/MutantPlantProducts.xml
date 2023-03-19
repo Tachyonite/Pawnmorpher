@@ -38,6 +38,9 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
+			<joyKind>Chemical</joyKind>
+			<joy>0.40</joy>
+			<drugCategory>Hard</drugCategory>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
@@ -49,7 +52,6 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 					<severity>1</severity>
 				</li>
 			</outcomeDoers>
-			<drugCategory>Social</drugCategory>
 		</ingestible>
 		<statBases Inherit="False">
 			<MarketValue>9</MarketValue>
