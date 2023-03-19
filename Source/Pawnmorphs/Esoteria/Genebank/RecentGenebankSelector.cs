@@ -17,7 +17,7 @@ namespace Pawnmorph.Genebank
 	{
 		private static readonly string NO_OPTIONS_TRANSLATION = "PMAnimalPickerGizmoNoChoices".Translate();
 
-		private Queue<IGenebankEntry> _recentOptions;
+		private IGenebankEntry[] _recentOptions;
 		private byte _recentLength;
 		private ChamberDatabase _database;
 
@@ -52,7 +52,7 @@ namespace Pawnmorph.Genebank
 		public RecentGenebankSelector(byte historyLength, ChamberDatabase database)
 		{
 			_recentLength = historyLength;
-			_recentOptions = new Queue<IGenebankEntry>(historyLength);
+			_recentOptions = new IGenebankEntry[_recentLength];
 			_database = database;
 			CanBrowse = true;
 		}
@@ -62,13 +62,18 @@ namespace Pawnmorph.Genebank
 		{
 			List<FloatMenuOption> options = new List<FloatMenuOption>();
 
-			foreach (var recentItem in _recentOptions)
+
+			for (int i = _recentOptions.Length - 1; i >= 0; i--)
 			{
+				IGenebankEntry recentItem = _recentOptions[i];
+				if (recentItem == null)
+					continue;
+
 				options.Add(new FloatMenuOption(recentItem.GetCaption(), () => ItemSelected(recentItem)));
 			}
 
 			if (CanBrowse)
-				options.Add(new FloatMenuOption("TRANSLATE: Browse", BrowseGenebank));
+				options.Add(new FloatMenuOption("Browse", BrowseGenebank));
 
 			if (AdditionalOptions != null)
 				options.AddRange(AdditionalOptions);
@@ -105,29 +110,29 @@ namespace Pawnmorph.Genebank
 
 		private void ItemSelected(IGenebankEntry item)
 		{
-			if (_recentOptions.Contains(item) == false)
+			int index = Array.IndexOf(_recentOptions, item);
+			if (index < 0)
 			{
-				if (_recentOptions.Count == _recentLength)
-					_recentOptions.Dequeue();
-				_recentOptions.Enqueue(item);
+				// Get index of first null
+				index = Array.IndexOf(_recentOptions, null);
+				if (index < 0) // Otherwise start at the end.
+					index = _recentOptions.Length - 1;
 			}
+
+			for (int i = index; i >= 1; i--)
+				_recentOptions[i] = _recentOptions[i - 1];
+
+			_recentOptions[0] = item;
 			OnSelected?.Invoke(this, item);
 		}
 
 
 		public void ExposeData()
 		{
-			List<IGenebankEntry> recent = _recentOptions.ToList();
+			List<IGenebankEntry> recent = _recentOptions.Where(x => x != null).ToList();
 			Scribe_Collections.Look(ref recent, "_recentGenebank" + typeof(T).Name);
-
 			if (recent != null)
-			{
-				_recentOptions.Clear();
-				for (int i = 0; i < recent.Count; i++)
-				{
-					_recentOptions.Enqueue(recent[i]);
-				}
-			}
+				recent.CopyTo(_recentOptions);
 		}
 	}
 }

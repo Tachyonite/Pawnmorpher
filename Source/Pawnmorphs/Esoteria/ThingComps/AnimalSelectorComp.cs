@@ -144,10 +144,10 @@ namespace Pawnmorph.ThingComps
 			{
 				PawnKindDef animal = row as PawnKindDef;
 
-				if (Props.raceFilter?.PassesFilter(animal) ?? false == false)
+				if (Props.raceFilter?.PassesFilter(animal) == false)
 					return false;
 
-				if (SpeciesFilter?.Invoke(animal) ?? false == false)
+				if (SpeciesFilter?.Invoke(animal) == false)
 					return false;
 
 				return true;
@@ -250,12 +250,19 @@ namespace Pawnmorph.ThingComps
         {
             Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
             Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
+            //Scribe_Deep.Look(ref _recentAnimalsSelector, nameof(_recentAnimalsSelector));
+            _recentAnimalsSelector.ExposeData();
 
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
+
+			if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 if (_chosenKind != null)
                     ChoseAnimal(_chosenKind);
-            }
+
+     //           if (_recentAnimalsSelector == null)
+					//_recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>()
+
+			}
         }
     }
 
