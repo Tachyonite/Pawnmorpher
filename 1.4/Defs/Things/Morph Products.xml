@@ -11,10 +11,9 @@
 		<thingCategories Inherit="False">
 			<li>RawMutagen</li>
 			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
-			<drugCategory>Social</drugCategory>
+			<drugCategory>None</drugCategory>
 			<preferability>DesperateOnly</preferability>
 			<foodType>AnimalProduct, Fluid</foodType>
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>

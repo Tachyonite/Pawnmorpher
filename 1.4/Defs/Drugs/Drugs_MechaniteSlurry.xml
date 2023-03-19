@@ -14,11 +14,10 @@ Although it induces rapid and uncontrollable mutations, some desperate individua
 			<MutaniteConcentration>0.07</MutaniteConcentration>
 		</statBases>
 		<thingCategories>
-			<li>Drugs</li>
 			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
+			<drugCategory>None</drugCategory>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>FullRandomTFAnyOutcome</hediffDef>
