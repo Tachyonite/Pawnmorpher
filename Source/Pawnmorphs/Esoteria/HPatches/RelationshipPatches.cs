@@ -8,22 +8,22 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class RelationshipPatches
-    {
-        [HarmonyPatch(typeof(ThoughtWorker_BondedAnimalMaster)), HarmonyPatch("CurrentStateInternal")]
-        static class BondPatch
-        {
-            [HarmonyPrefix]
-            static bool DisableForSapients([NotNull] Pawn p, ref ThoughtState __result)
-            {
-                if (p.IsFormerHuman() && (p.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral) != SapienceLevel.PermanentlyFeral)
-                {
-                    __result = false;
-                    return false; 
-                }
+	static class RelationshipPatches
+	{
+		[HarmonyPatch(typeof(ThoughtWorker_BondedAnimalMaster)), HarmonyPatch("CurrentStateInternal")]
+		static class BondPatch
+		{
+			[HarmonyPrefix]
+			static bool DisableForSapients([NotNull] Pawn p, ref ThoughtState __result)
+			{
+				if (p.IsFormerHuman() && (p.GetQuantizedSapienceLevel() ?? SapienceLevel.PermanentlyFeral) != SapienceLevel.PermanentlyFeral)
+				{
+					__result = false;
+					return false;
+				}
 
-                return true; 
-            }
-        }
-    }
+				return true;
+			}
+		}
+	}
 }

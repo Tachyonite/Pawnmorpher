@@ -6,15 +6,15 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Static class containing commonly referenced MorphCategoryDefs. </summary>
-    [DefOf]
-    public static class MorphCategoryDefOf
-    {
-        public static MorphCategoryDef Powerful;
-        public static MorphCategoryDef Combat;
-        public static MorphCategoryDef Production;
-        public static MorphCategoryDef Social;
-        public static MorphCategoryDef Crafter;
-        public static MorphCategoryDef Chimera; 
-    }
+	/// <summary> Static class containing commonly referenced MorphCategoryDefs. </summary>
+	[DefOf]
+	public static class MorphCategoryDefOf
+	{
+		public static MorphCategoryDef Powerful;
+		public static MorphCategoryDef Combat;
+		public static MorphCategoryDef Production;
+		public static MorphCategoryDef Social;
+		public static MorphCategoryDef Crafter;
+		public static MorphCategoryDef Chimera;
+	}
 }

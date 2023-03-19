@@ -6,16 +6,16 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Static class containing references to commonly used Traits. </summary>
-    [DefOf]
-    public static class PMTraitDefOf
-    {
-        static PMTraitDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMTraitDefOf));
-        }
+	/// <summary> Static class containing references to commonly used Traits. </summary>
+	[DefOf]
+	public static class PMTraitDefOf
+	{
+		static PMTraitDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMTraitDefOf));
+		}
 
-        public static TraitDef MutationAffinity;
-        public static TraitDef PM_PridefulTrait;
-    }
+		public static TraitDef MutationAffinity;
+		public static TraitDef PM_PridefulTrait;
+	}
 }

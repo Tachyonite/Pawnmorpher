@@ -12,73 +12,73 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    
-    static class HediffDefPatches
-    {
-        [NotNull] private static readonly Dictionary<HediffDef, bool> _immunityCache = new Dictionary<HediffDef, bool>(100);
 
-        [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.PossibleToDevelopImmunityNaturally))]
-        private static class HediffImmunityPatch
-        {
-            private static bool Prefix(HediffDef __instance, ref bool __result)
-            {
-                if (_immunityCache.TryGetValue(__instance, out __result))
-                    return false;
+	static class HediffDefPatches
+	{
+		[NotNull] private static readonly Dictionary<HediffDef, bool> _immunityCache = new Dictionary<HediffDef, bool>(100);
 
-                return true;
-            }
+		[HarmonyPatch(typeof(HediffDef), nameof(HediffDef.PossibleToDevelopImmunityNaturally))]
+		private static class HediffImmunityPatch
+		{
+			private static bool Prefix(HediffDef __instance, ref bool __result)
+			{
+				if (_immunityCache.TryGetValue(__instance, out __result))
+					return false;
 
-            private static void Postfix(HediffDef __instance, ref bool __result, bool __runOriginal)
-            {
-                if (__runOriginal)
-                    _immunityCache[__instance] = __result;
-            }
-        }
+				return true;
+			}
 
-        [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ConfigErrors))]
-        static class AdditionalErrorChecks
-        {
-            static IEnumerable<string> Postfix(IEnumerable<string> errors, HediffDef __instance)
-            {
-                foreach (string s in errors.MakeSafe())
-                {
-                    yield return s; 
-                }
+			private static void Postfix(HediffDef __instance, ref bool __result, bool __runOriginal)
+			{
+				if (__runOriginal)
+					_immunityCache[__instance] = __result;
+			}
+		}
 
-                if (__instance.stages != null)
-                {
-                    StringBuilder builder = new StringBuilder(); 
-                    for (var index = 0; index < __instance.stages.Count; index++)
-                    {
-                        IInitializableStage instanceStage = __instance.stages[index] as IInitializableStage;
-                        if(instanceStage == null) continue;
-                        builder.Clear();
-                        foreach (string configError in instanceStage.ConfigErrors(__instance))
-                        {
-                            builder.AppendLine(configError); 
-                        }
+		[HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ConfigErrors))]
+		static class AdditionalErrorChecks
+		{
+			static IEnumerable<string> Postfix(IEnumerable<string> errors, HediffDef __instance)
+			{
+				foreach (string s in errors.MakeSafe())
+				{
+					yield return s;
+				}
 
-                        if (builder.Length > 0)
-                        {
-                            yield return $"in stage {index}:\n" + builder; 
-                        }
-                    }
-                }
-            }
-        }
-        [HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ResolveReferences)) ]
-        static class AdditionalResolveReferencesChecks
-        {
-            static void Postfix(HediffDef __instance)
-            {
-                if (__instance?.stages != null)
-                {
-                    foreach (IInitializableStage iStage in __instance.stages.OfType<IInitializableStage>())
-                    {
-                        iStage.ResolveReferences(__instance); 
-                    }
-                }
-            }
-        }
-    }
+				if (__instance.stages != null)
+				{
+					StringBuilder builder = new StringBuilder();
+					for (var index = 0; index < __instance.stages.Count; index++)
+					{
+						IInitializableStage instanceStage = __instance.stages[index] as IInitializableStage;
+						if (instanceStage == null) continue;
+						builder.Clear();
+						foreach (string configError in instanceStage.ConfigErrors(__instance))
+						{
+							builder.AppendLine(configError);
+						}
+
+						if (builder.Length > 0)
+						{
+							yield return $"in stage {index}:\n" + builder;
+						}
+					}
+				}
+			}
+		}
+		[HarmonyPatch(typeof(HediffDef), nameof(HediffDef.ResolveReferences))]
+		static class AdditionalResolveReferencesChecks
+		{
+			static void Postfix(HediffDef __instance)
+			{
+				if (__instance?.stages != null)
+				{
+					foreach (IInitializableStage iStage in __instance.stages.OfType<IInitializableStage>())
+					{
+						iStage.ResolveReferences(__instance);
+					}
+				}
+			}
+		}
+	}
 }

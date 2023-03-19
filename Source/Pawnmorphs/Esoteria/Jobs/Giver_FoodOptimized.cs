@@ -5,12 +5,12 @@ using RimWorld;
 
 namespace Pawnmorph.Jobs
 {
-    /// <summary>
-    /// job giver for the get food job that is optimized for morphs and former humans 
-    /// </summary>
-    /// <seealso cref="RimWorld.JobGiver_GetFood" />
-    public class Giver_FoodOptimized : JobGiver_GetFood
-    {
-        
-    }
+	/// <summary>
+	/// job giver for the get food job that is optimized for morphs and former humans 
+	/// </summary>
+	/// <seealso cref="RimWorld.JobGiver_GetFood" />
+	public class Giver_FoodOptimized : JobGiver_GetFood
+	{
+
+	}
 }

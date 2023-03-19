@@ -6,19 +6,19 @@ using RimWorld;
 #pragma warning disable 01591
 namespace Pawnmorph.Hybrids
 {
-    /// <summary>
-    /// static container for hybrid related thought defs
-    /// </summary>
-    [DefOf]
-    public static class HThoughtDefOf
-    {
-        //food thoughts 
-        public static ThoughtDef MorphAteAnimalMeatDirect;
-        public static ThoughtDef MorphAteAnimalMeatAsIngredient; 
+	/// <summary>
+	/// static container for hybrid related thought defs
+	/// </summary>
+	[DefOf]
+	public static class HThoughtDefOf
+	{
+		//food thoughts 
+		public static ThoughtDef MorphAteAnimalMeatDirect;
+		public static ThoughtDef MorphAteAnimalMeatAsIngredient;
 
-        static HThoughtDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HThoughtDefOf)); 
-        }
-    }
+		static HThoughtDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(HThoughtDefOf));
+		}
+	}
 }

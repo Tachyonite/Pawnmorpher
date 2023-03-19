@@ -3,11 +3,11 @@
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class CompProperties_DependentPart
-    {
-        
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	public class CompProperties_DependentPart
+	{
+
+	}
 }

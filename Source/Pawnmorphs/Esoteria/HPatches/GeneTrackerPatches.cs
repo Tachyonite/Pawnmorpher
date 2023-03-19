@@ -21,7 +21,7 @@ namespace Pawnmorph.HPatches
 			{
 				graphicsComp.GeneOverrideColor = ___pawn.story.skinColorOverride;
 				graphicsComp.RefreshGraphics();
-			} 
+			}
 		}
 
 	}

@@ -6,22 +6,22 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    [DefOf]
-    public static class PMBackstoryDefOf
-    {
-        // ReSharper disable once NotNullMemberIsNotInitialized
-        static PMBackstoryDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMBackstoryDefOf));
-        }
-        
-        /// <summary>
-        /// The pm sheep chef
-        /// </summary>
-        [NotNull]
-        public static BackstoryDef PM_SheepChef; 
-    }
+	/// <summary>
+	/// 
+	/// </summary>
+	[DefOf]
+	public static class PMBackstoryDefOf
+	{
+		// ReSharper disable once NotNullMemberIsNotInitialized
+		static PMBackstoryDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMBackstoryDefOf));
+		}
+
+		/// <summary>
+		/// The pm sheep chef
+		/// </summary>
+		[NotNull]
+		public static BackstoryDef PM_SheepChef;
+	}
 }

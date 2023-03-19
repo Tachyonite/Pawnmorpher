@@ -8,37 +8,37 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class for history related utilities
-    /// </summary>
-    public static class PMHistoryEventUtilities
-    {
+	/// <summary>
+	/// static class for history related utilities
+	/// </summary>
+	public static class PMHistoryEventUtilities
+	{
 
-        /// <summary>
-        /// determine if the given doer is willing to do this event def.
-        /// </summary>
-        /// <param name="eventDef">The event definition.</param>
-        /// <param name="doer">The doer.</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">
-        /// eventDef
-        /// or
-        /// doer
-        /// </exception>
-        public static bool DoerWillingToDo([NotNull] this HistoryEventDef eventDef, [NotNull] Pawn doer)
-        {
-            if (eventDef == null) throw new ArgumentNullException(nameof(eventDef));
-            if (doer == null) throw new ArgumentNullException(nameof(doer));
+		/// <summary>
+		/// determine if the given doer is willing to do this event def.
+		/// </summary>
+		/// <param name="eventDef">The event definition.</param>
+		/// <param name="doer">The doer.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException">
+		/// eventDef
+		/// or
+		/// doer
+		/// </exception>
+		public static bool DoerWillingToDo([NotNull] this HistoryEventDef eventDef, [NotNull] Pawn doer)
+		{
+			if (eventDef == null) throw new ArgumentNullException(nameof(eventDef));
+			if (doer == null) throw new ArgumentNullException(nameof(doer));
 
-            var ideo = doer.Ideo;
-            if (ideo == null) return true;
-            var hEvent = new HistoryEvent(eventDef, doer.Named(HistoryEventArgsNames.Doer));
-            return ideo.MemberWillingToDo(hEvent); 
-        }
+			var ideo = doer.Ideo;
+			if (ideo == null) return true;
+			var hEvent = new HistoryEvent(eventDef, doer.Named(HistoryEventArgsNames.Doer));
+			return ideo.MemberWillingToDo(hEvent);
+		}
 
-      
 
-    }
+
+	}
 
 
 

@@ -7,16 +7,16 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// interface for thing comps that have gizmos that need to be displayed when equipped 
-    /// </summary>
-    public interface IEquipmentGizmo
-    {
-        /// <summary>
-        /// Gets the gizmos.
-        /// </summary>
-        /// <returns></returns>
-        [NotNull]
-        IEnumerable<Gizmo> GetGizmos(); 
-    }
+	/// <summary>
+	/// interface for thing comps that have gizmos that need to be displayed when equipped 
+	/// </summary>
+	public interface IEquipmentGizmo
+	{
+		/// <summary>
+		/// Gets the gizmos.
+		/// </summary>
+		/// <returns></returns>
+		[NotNull]
+		IEnumerable<Gizmo> GetGizmos();
+	}
 }

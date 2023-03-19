@@ -10,13 +10,13 @@ using Verse;
 namespace Pawnmorph.HPatches
 {
 
-    [HarmonyPatch(typeof(ReverseDesignatorDatabase), "InitDesignators")]
-    static class DesignatorDatabasePatch
-    {
-        [HarmonyPostfix]
-        static void Postfix([NotNull] List<Designator> ___desList)
-        {
-            ___desList.Add(new RecruitSapientFormerHuman());
-        }
-    }
+	[HarmonyPatch(typeof(ReverseDesignatorDatabase), "InitDesignators")]
+	static class DesignatorDatabasePatch
+	{
+		[HarmonyPostfix]
+		static void Postfix([NotNull] List<Designator> ___desList)
+		{
+			___desList.Add(new RecruitSapientFormerHuman());
+		}
+	}
 }

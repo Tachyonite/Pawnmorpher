@@ -7,22 +7,22 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class SapienceStateDefOf
-    {
-        static SapienceStateDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(SapienceStateDefOf));
-        }
+	[DefOf]
+	public static class SapienceStateDefOf
+	{
+		static SapienceStateDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(SapienceStateDefOf));
+		}
 
-        [NotNull]
+		[NotNull]
 
-        public static SapienceStateDef FormerHuman;
+		public static SapienceStateDef FormerHuman;
 
-        [NotNull]
-        public static SapienceStateDef Animalistic;
+		[NotNull]
+		public static SapienceStateDef Animalistic;
 
-        [NotNull]
-        public static SapienceStateDef MergedPawn;
-    }
+		[NotNull]
+		public static SapienceStateDef MergedPawn;
+	}
 }

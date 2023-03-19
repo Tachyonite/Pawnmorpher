@@ -6,25 +6,25 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static def of class for common SoundDefs 
-    /// </summary>
-    [DefOf]
-    public static class PMSoundDefOf
-    {
-        static PMSoundDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMSoundDefOf));
-        }
-        /// <summary>
-        /// sound of using an injector 
-        /// </summary>
-        public static SoundDef Ingest_Inject;
+	/// <summary>
+	/// static def of class for common SoundDefs 
+	/// </summary>
+	[DefOf]
+	public static class PMSoundDefOf
+	{
+		static PMSoundDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMSoundDefOf));
+		}
+		/// <summary>
+		/// sound of using an injector 
+		/// </summary>
+		public static SoundDef Ingest_Inject;
 
-        /// <summary>
-        /// The recipe cook meal sound 
-        /// </summary>
-        public static SoundDef Recipe_CookMeal;
-        
-    }
+		/// <summary>
+		/// The recipe cook meal sound 
+		/// </summary>
+		public static SoundDef Recipe_CookMeal;
+
+	}
 }

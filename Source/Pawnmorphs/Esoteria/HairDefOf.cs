@@ -6,14 +6,14 @@ using RimWorld;
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class HairDefOf
-    {
-        public static HairDef Shaved;
+	[DefOf]
+	public static class HairDefOf
+	{
+		public static HairDef Shaved;
 
-        static HairDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HairDefOf));
-        }
-    }
+		static HairDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(HairDefOf));
+		}
+	}
 }

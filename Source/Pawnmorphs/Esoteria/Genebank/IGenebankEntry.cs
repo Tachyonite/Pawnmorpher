@@ -12,13 +12,13 @@ namespace Pawnmorph.Genebank.Model
 		/// </summary>
 		/// <returns>The genebank entry caption</returns>
 		string GetCaption();
-		
+
 		/// <summary>
 		/// Computes the required amount of storage to store this genebank entry
 		/// </summary>
 		/// <returns>The required storage, in kMb</returns>
 		int GetRequiredStorage();
-		
+
 		/// <summary>
 		/// Tests for any additional requirements preventing this entry from being added to the database
 		/// (Not including basic stuff like sufficient storage space)

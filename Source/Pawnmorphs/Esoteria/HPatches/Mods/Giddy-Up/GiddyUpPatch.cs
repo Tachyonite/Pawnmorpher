@@ -11,50 +11,50 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    internal static class GiddyUpPatch
-    {
-        internal static void PatchGiddyUp([NotNull] Harmony harmonyInstance)
-        {
-            try
-            {
-                if (LoadedModManager.RunningMods.Any(m => m.PackageId == "roolo.giddyupcaravan" || m.PackageId == "Owlchemist.GiddyUp"))
-                {
-                    PatchGiddyUpCaravan(harmonyInstance); 
-                }
+	internal static class GiddyUpPatch
+	{
+		internal static void PatchGiddyUp([NotNull] Harmony harmonyInstance)
+		{
+			try
+			{
+				if (LoadedModManager.RunningMods.Any(m => m.PackageId == "roolo.giddyupcaravan" || m.PackageId == "Owlchemist.GiddyUp"))
+				{
+					PatchGiddyUpCaravan(harmonyInstance);
+				}
 
-            }
-            catch (Exception e)
-            {
-                Log.Error($"PM:while patching giddyup caught {e.GetType().Name} \n{e}");
-            }
-        }
+			}
+			catch (Exception e)
+			{
+				Log.Error($"PM:while patching giddyup caught {e.GetType().Name} \n{e}");
+			}
+		}
 
-        private static void PatchGiddyUpCaravan([NotNull] Harmony harmonyInstance)
-        {
-            var patchType = GenTypes.GetTypeInAnyAssembly("GiddyUpCaravan.Harmony.TransferableOneWayWidget_DoRow");
-            if (patchType == null)
-            {
-                Log.Error($"PM: unable to patch \"GiddyUpCaravan.Harmony.TransferableOneWayWidget_DoRow\" in GiddyUp Caravan!");
-                return;
-            }
+		private static void PatchGiddyUpCaravan([NotNull] Harmony harmonyInstance)
+		{
+			var patchType = GenTypes.GetTypeInAnyAssembly("GiddyUpCaravan.Harmony.TransferableOneWayWidget_DoRow");
+			if (patchType == null)
+			{
+				Log.Error($"PM: unable to patch \"GiddyUpCaravan.Harmony.TransferableOneWayWidget_DoRow\" in GiddyUp Caravan!");
+				return;
+			}
 
-            var patchMethod = patchType.GetMethod("handleAnimal", BindingFlags.Static | BindingFlags.NonPublic);
+			var patchMethod = patchType.GetMethod("handleAnimal", BindingFlags.Static | BindingFlags.NonPublic);
 
-            if (patchMethod == null)
-            {
-                Log.Error("PM: unable to patch \"handleAnimal\" in GiddyUpCaravan!");
-                return;
-            }
+			if (patchMethod == null)
+			{
+				Log.Error("PM: unable to patch \"handleAnimal\" in GiddyUpCaravan!");
+				return;
+			}
 
-            var prefix = typeof(GiddyUpPatch).GetMethod(nameof(HandleAnimalPrefix), BindingFlags.Static | BindingFlags.NonPublic);
+			var prefix = typeof(GiddyUpPatch).GetMethod(nameof(HandleAnimalPrefix), BindingFlags.Static | BindingFlags.NonPublic);
 
-            harmonyInstance.Patch(patchMethod, new HarmonyMethod(prefix));
-        }
+			harmonyInstance.Patch(patchMethod, new HarmonyMethod(prefix));
+		}
 
 
-        private static void HandleAnimalPrefix(Pawn animal, List<Pawn> pawns)
-        {
-            if (pawns != null && animal != null) pawns.Remove(animal); //remove the animal from the selection of riders 
-        }
-    }
+		private static void HandleAnimalPrefix(Pawn animal, List<Pawn> pawns)
+		{
+			if (pawns != null && animal != null) pawns.Remove(animal); //remove the animal from the selection of riders 
+		}
+	}
 }

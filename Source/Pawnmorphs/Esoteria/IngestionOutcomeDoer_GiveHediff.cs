@@ -6,31 +6,31 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// ingestion outcome doer to add a simple hediff ignoring body size 
-    /// </summary>
-    /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
-    public class IngestionOutcomeDoer_GiveHediff : IngestionOutcomeDoer
-    {
+	/// <summary>
+	/// ingestion outcome doer to add a simple hediff ignoring body size 
+	/// </summary>
+	/// <seealso cref="RimWorld.IngestionOutcomeDoer" />
+	public class IngestionOutcomeDoer_GiveHediff : IngestionOutcomeDoer
+	{
 
-        /// <summary>The hediff</summary>
-        public HediffDef hediffDef;
+		/// <summary>The hediff</summary>
+		public HediffDef hediffDef;
 
-        /// <summary>The initial severity</summary>
-        public float severity = -1;
+		/// <summary>The initial severity</summary>
+		public float severity = -1;
 
 
 
-        /// <summary>Does the ingestion outcome special.</summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="ingested">The ingested.</param>
-        protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
-        {
-            severity = severity < 0 ? hediffDef.initialSeverity : severity;
-            var h = HediffMaker.MakeHediff(hediffDef, pawn);
-            h.Severity = severity; 
-            pawn?.health?.AddHediff(h);
-        }
+		/// <summary>Does the ingestion outcome special.</summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <param name="ingested">The ingested.</param>
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		{
+			severity = severity < 0 ? hediffDef.initialSeverity : severity;
+			var h = HediffMaker.MakeHediff(hediffDef, pawn);
+			h.Severity = severity;
+			pawn?.health?.AddHediff(h);
+		}
 
-    }
+	}
 }

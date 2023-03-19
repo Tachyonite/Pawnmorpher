@@ -31,7 +31,7 @@ namespace Pawnmorph.HPatches
 		{
 			Dictionary<HeadTypeDef, HeadTypeDef> headMap =
 				HeadReplacements.ToDictionary(pair => DefDatabase<HeadTypeDef>.GetNamed(pair.Key),
-				                              pair => DefDatabase<HeadTypeDef>.GetNamed(pair.Value));
+											  pair => DefDatabase<HeadTypeDef>.GetNamed(pair.Value));
 
 			foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
 			{

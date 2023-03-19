@@ -2,8 +2,8 @@
 
 namespace Pawnmorph.DefExtensions
 {
-    internal class AnimalSelectorOverrides : DefModExtension
-    {
-        public string label = null;
-    }
+	internal class AnimalSelectorOverrides : DefModExtension
+	{
+		public string label = null;
+	}
 }
