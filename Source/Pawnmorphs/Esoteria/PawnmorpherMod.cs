@@ -149,6 +149,7 @@ namespace Pawnmorph
 			coreNode.AddChild("ChamberDatabaseIgnoresDataLimit", "ChamberDatabaseIgnoresDataLimitTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.chamberDatabaseIgnoreStorageLimit, x.height));
 			coreNode.AddChild("PMInjectorsRequireTagging", "PMInjectorsRequireTaggingTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.injectorsRequireTagging, x.height));
 			coreNode.AddChild("PMHazardousChaobulbs", "PMHazardousChaobulbsTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.hazardousChaobulbs, x.height));
+			coreNode.AddChild("PMGenerateEndoGenesForAliens", "PMGenerateEndoGenesForAliensTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.generateEndoGenesForAliens, x.height));
 
 			result.Add(coreNode);
 

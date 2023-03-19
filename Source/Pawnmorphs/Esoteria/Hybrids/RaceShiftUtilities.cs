@@ -12,6 +12,7 @@ using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.Hybrids
@@ -185,6 +186,11 @@ namespace Pawnmorph.Hybrids
 			MorphDef oldMorph = pawn.def.GetMorphOfRace();
 			ThingDef oldRace = pawn.def;
 
+
+			var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
+			gUpdater?.BeginUpdate();
+
+
 			AspectTracker aTracker = pawn.GetAspectTracker();
 
 			AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
@@ -212,10 +218,13 @@ namespace Pawnmorph.Hybrids
 				}
 
 
+			if (pawn.story.traits == null)
+				pawn.story.traits = new TraitSet(pawn);
+
 			float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
 
 			pawn.def = race;
-			pawn.ageTracker.AgeBiologicalTicks = (long)currentConvertedAge * TimeMetrics.TICKS_PER_YEAR; // 3600000f ticks per year.;
+			pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
 
 			if (removed && !map.listerThings.Contains(pawn))
 				map.listerThings.Add(pawn);
@@ -236,7 +245,6 @@ namespace Pawnmorph.Hybrids
 				var comp = map.GetComponent<MorphTracker>();
 				comp.NotifyPawnRaceChanged(pawn, oldMorph);
 			}
-
 
 			//always revert to human settings first so the race change is consistent 
 
@@ -292,6 +300,13 @@ namespace Pawnmorph.Hybrids
 
 			if (reRollTraits && race is ThingDef_AlienRace alienDef)
 				ReRollRaceTraits(pawn, alienDef);
+
+
+			if (gUpdater != null)
+				gUpdater.EndUpdate();
+			else
+				pawn.RefreshGraphics();
+
 
 			//save location 
 			if (Current.ProgramState == ProgramState.Playing)
@@ -416,6 +431,7 @@ namespace Pawnmorph.Hybrids
 
 
 					ValidateGraphicsPaths(pawn, oldARace, aRace);
+					ValidateGenes(pawn, oldARace, aRace);
 					HPatches.PawnPatches.QueueRaceCheck(pawn);
 				} //validating the graphics paths only works for aliens 
 				else
@@ -427,6 +443,77 @@ namespace Pawnmorph.Hybrids
 			else
 			{
 				Log.Warning($"trying change the race of {pawn.Name} from {oldRace.defName} which is not {nameof(ThingDef_AlienRace)}!");
+			}
+		}
+
+
+		private static void ValidateGenes([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
+		{
+			var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+			if (ThingDefOf.Human == race)
+			{
+				// Reversion
+				// Revert endo genes to original.
+				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+				pawn.genes.Endogenes.Clear();
+				pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
+
+				if (PawnmorpherMod.Settings.generateEndoGenesForAliens)
+				{
+					// Taken from Verse.PawnGenerator
+					if (pawn.genes.GetMelaninGene() == null)
+					{
+						GeneDef geneDef = PawnSkinColors.RandomSkinColorGene(pawn);
+						if (geneDef != null)
+						{
+							pawn.genes.AddGene(geneDef, xenogene: false);
+
+							Color? skinColor = geneDef.skinColorBase;
+							if (skinColor.HasValue)
+							{
+								pawn.story.SkinColorBase = skinColor.Value;
+								pawn.story.skinColorOverride = null;
+							}
+						}
+
+					}
+
+					if (pawn.genes.GetHairColorGene() == null)
+					{
+						Color? hairColor;
+						GeneDef geneDef2 = PawnHairColors.RandomHairColorGene(pawn.story.SkinColorBase);
+						if (geneDef2 != null)
+						{
+							pawn.genes.AddGene(geneDef2, xenogene: false);
+							hairColor = geneDef2.hairColorOverride;
+						}
+						else
+						{
+							hairColor = PawnHairColors.RandomHairColor(pawn, pawn.story.SkinColorBase, pawn.ageTracker.AgeBiologicalYears);
+						}
+
+						if (hairColor.HasValue)
+							pawn.story.HairColor = hairColor.Value;
+					}
+				}
+			}
+			else
+			{
+				// Remove invalid endo genes
+				for (int i = 0; i < pawn.genes.Endogenes.Count; i++)
+				{
+					Gene gene = pawn.genes.Endogenes[i];
+					if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+						pawn.genes.Endogenes.Remove(gene);
+				}
+			}
+
+			// Remove invalid xeno genes.
+			for (int i = 0; i < pawn.genes.Xenogenes.Count; i++)
+			{
+				Gene gene = pawn.genes.Xenogenes[i];
+				if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+					pawn.genes.Endogenes.Remove(gene);
 			}
 		}
 
@@ -756,21 +843,15 @@ namespace Pawnmorph.Hybrids
 				comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.HairColor;
 				comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.ColorChannels["hair"].second;
 			}
-			else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
-			{
-				foreach (var channel in alien.GetPartGenerator().colorChannels)
-				{
-					comp.ColorChannels[channel.name] = comp.GenerateChannel(channel);
-				}
-			}
+			//else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
+			//{
+			//	foreach (var channel in alien.GetPartGenerator().colorChannels)
+			//	{
+			//		comp.ColorChannels[channel.name] = comp.GenerateChannel(channel);
+			//	}
+			//}
 
-			pawn.story.HairColor = comp.ColorChannels["hair"].first;
-
-			var gUpdater = pawn.GetComp<GraphicsUpdaterComp>();
-			if (gUpdater != null)
-				gUpdater.IsDirty = true;
-			else
-				pawn.RefreshGraphics();
+			//pawn.story.HairColor = comp.ColorChannels["hair"].first;
 		}
 
 		/// <summary>

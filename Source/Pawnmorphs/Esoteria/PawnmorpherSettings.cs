@@ -76,6 +76,11 @@ namespace Pawnmorph
 		public float hostileKeepFactionTfChance = 0.5f;
 
 		/// <summary>
+		/// Whether or not to generate endo genes like skin and hair color for pawns spawned as aliens when reverted to human
+		/// </summary>
+		public bool generateEndoGenesForAliens = true;
+
+		/// <summary>
 		/// The current log level
 		/// </summary>
 		public LogLevel logLevel = LogLevel.Warnings;
@@ -142,6 +147,7 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref chamberDatabaseIgnoreStorageLimit, nameof(chamberDatabaseIgnoreStorageLimit));
 			Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
 			Scribe_Values.Look(ref hostileKeepFactionTfChance, nameof(hostileKeepFactionTfChance));
+			Scribe_Values.Look(ref generateEndoGenesForAliens, nameof(generateEndoGenesForAliens), true);
 
 
 
