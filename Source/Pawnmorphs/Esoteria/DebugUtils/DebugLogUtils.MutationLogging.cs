@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HarmonyLib;
-using HugsLib.Utils;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
@@ -299,7 +298,7 @@ namespace Pawnmorph.DebugUtils
 				builder.AppendLine("{");
 				var label = "label = \"" + mClass.defName + "\"";
 				builder.AppendLine(label);
-				builder.AppendLine(mutations.Select(m => m.defName).Join(","));
+				builder.AppendLine(String.Join(",", mutations.Select(m => m.defName)));
 
 				foreach (MClassificationInfo child in children.MakeSafe())
 				{
