@@ -48,11 +48,6 @@ Requires Humanoid Alien Framework and Hugslib.
 				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
 			</li>
 			<li>
-				<packageId>UnlimitedHugs.HugsLib</packageId>
-				<displayName>HugsLib</displayName>
-				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
-			</li>
-			<li>
 				<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
 				<displayName>Vanilla Expanded Framework</displayName>
 				<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
