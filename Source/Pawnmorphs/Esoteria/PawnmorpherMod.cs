@@ -2,6 +2,7 @@
 using Pawnmorph.DebugUtils;
 using Pawnmorph.UserInterface;
 using Pawnmorph.UserInterface.TreeBox;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -139,7 +140,7 @@ namespace Pawnmorph
 		{
 			List<TreeNode_FilterBox> result = new List<TreeNode_FilterBox>();
 
-			TreeNode_FilterBox coreNode = new TreeNode_FilterBox("Core");
+			TreeNode_FilterBox coreNode = new TreeNode_FilterBox(ExpansionDefOf.Core.label);
 			coreNode.AddChild("enableFalloutCheckboxLabel", "enableFalloutCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableFallout, x.height));
 			coreNode.AddChild("enableMutagenLeakCheckboxLabel", "enableMutagenLeakCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenLeak, x.height));
 			coreNode.AddChild("enableMutagenCheckboxLabel", "enableMutagenCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenShipPart, x.height));
