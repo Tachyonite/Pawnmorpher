@@ -25,7 +25,7 @@ namespace Pawnmorph.HPatches
 		})]
 		internal static class GetValueUnfinalizedPatch
 		{
-			static void Postfix(ref float __result, StatRequest req, bool applyPostProcess, StatDef ___stat)
+			static float Postfix(float __result, StatRequest req, StatDef ___stat)
 			{
 				if (req.Thing is Pawn pawn)
 				{
@@ -40,6 +40,7 @@ namespace Pawnmorph.HPatches
 
 					__result += cachedStat.GetValue(1000);
 				}
+				return __result;
 			}
 
 			public static void Invalidate(Pawn pawn)
