@@ -39,6 +39,9 @@
   </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
+    <Reference Include="0PrepatcherAPI">
+      <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

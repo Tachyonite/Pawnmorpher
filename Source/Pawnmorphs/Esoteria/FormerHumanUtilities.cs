@@ -14,6 +14,7 @@ using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using Pawnmorph.Work;
+using Prepatcher;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -638,6 +639,42 @@ namespace Pawnmorph
 			return statValue;
 		}
 
+
+		/// <summary>
+		/// Gets the cached intelligence. If using prepatcher, this method will be replaced with a reference to a field member directly on pawn.
+		/// </summary>
+		/// <param name="target">The pawn in question.</param>
+		/// https://github.com/Zetrith/Prepatcher/wiki/Adding-fields
+		[PrepatcherField]
+		[ValueInitializer(nameof(NewIntelligenceCache))]
+		public static TimedCache<Intelligence> GetCachedIntelligence(this Pawn target)
+		{
+			if (_intelligenceCache.TryGetValue(target, out TimedCache<Intelligence> value) == false)
+				_intelligenceCache[target] = value = NewIntelligenceCache(target);
+
+			return value;
+		}
+
+		/// <summary>
+		/// Factory method to create a new intelligence cache. Made to allow prepatcher to initialize injected field.
+		/// </summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <returns></returns>
+		public static TimedCache<Intelligence> NewIntelligenceCache(this Pawn pawn)
+		{
+			TimedCache<Intelligence> value = new TimedCache<Intelligence>(() =>
+			{
+				SapienceTracker sTracker = pawn.GetSapienceTracker();
+				if (sTracker == null)
+					return pawn.RaceProps.intelligence;
+
+				return sTracker.CurrentIntelligence;
+			});
+
+			return value;
+		}
+
+
 		/// <summary>
 		///     Gets the intelligence of this pawn
 		/// </summary>
@@ -649,24 +686,7 @@ namespace Pawnmorph
 			if (pawn == null)
 				throw new ArgumentNullException(nameof(pawn));
 
-			if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value) == false)
-			{
-				value = new TimedCache<Intelligence>(() =>
-				{
-					SapienceTracker sTracker = pawn.GetSapienceTracker();
-					if (sTracker == null)
-						return pawn.RaceProps.intelligence;
-
-					return sTracker.CurrentIntelligence;
-				}, pawn.RaceProps.intelligence);
-
-				// Stagger the stored timestamp to avoid every pawn updating cached value on same tick.
-				value.Update();
-				value.Offset(-_intelligenceCache.Count);
-				_intelligenceCache[pawn] = value;
-			}
-
-			return value.GetValue(600);
+			return GetCachedIntelligence(pawn).GetValue(600);
 		}
 
 		/// <summary>
@@ -1048,6 +1068,7 @@ namespace Pawnmorph
 		///     <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">pawn</exception>
+		//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsHumanlike([NotNull] this Pawn pawn)
 		{
 			return pawn.GetIntelligence() == Intelligence.Humanlike;
@@ -1074,6 +1095,7 @@ namespace Pawnmorph
 		/// </summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <returns></returns>
+		//[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsRoamer([NotNull] this Pawn pawn)
 		{
 			return pawn.RaceProps.Roamer && !pawn.IsHumanlike();
