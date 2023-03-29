@@ -1,5 +1,23 @@
 <Defs>
-	<ThingDef ParentName="TFItemBase">
+	<ThingDef Name="TFPlantBase" ParentName="OrganicProductBase" Abstract="True">
+		<comps>
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>20</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+		</comps>
+		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<ingestible>
+			<preferability>NeverForNutrition</preferability>
+			<foodType>Seed</foodType>
+			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+		</ingestible>
+	</ThingDef>
+
+	<!-- Chaobulb -->
+
+	<ThingDef ParentName="TFPlantBase">
         <defName>Chaobulb</defName>
         <label>chaobulb seedpod</label>
         <description>A bulbous, warty-looking seed pod from a chaovine. Orange in colour and pungent in smell, it is said to be uncomfortably delicious, and leaves a fuzzy aftertaste in the mouth. Mutagenic mechanites replicate within chaobulb plants and congregate in their bulbs, making it a simple, if work-intensive, way to produce more of them.
@@ -20,6 +38,9 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 			<li>Drugs</li>
 		</thingCategories>
 		<ingestible>
+			<joyKind>Chemical</joyKind>
+			<joy>0.40</joy>
+			<drugCategory>Hard</drugCategory>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
 					<hediffDefs>
@@ -31,8 +52,6 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 					<severity>1</severity>
 				</li>
 			</outcomeDoers>
-			<foodType>Seed</foodType>
-			<preferability>NeverForNutrition</preferability>
 		</ingestible>
 		<statBases Inherit="False">
 			<MarketValue>9</MarketValue>
@@ -42,8 +61,10 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 			<MutaniteConcentration>0.1</MutaniteConcentration>
 		</statBases>
 	</ThingDef>
-	
-    <ThingDef ParentName="TFItemBase">
+
+	<!-- Glowvine -->
+
+	<ThingDef ParentName="TFPlantBase">
         <defName>Glowvine</defName>
         <label>glowvine seedpod</label>
 		<description>A blue seedpod harvested from a mutated healroot plant. It contains a naturally-occuring strain of mutagenic mechanites known as antigen, which have dampening effects on most other kinds of mutagenic mechanites. Antigen can be extracted and refined into various anti-mutagenic drugs.
@@ -69,8 +90,6 @@ When eaten in its raw form, glowvine will slow down the effects of mutagenic mec
 					<severity>1.0</severity>
 				</li>
 			</outcomeDoers>
-			<foodType>Seed</foodType>
-			<preferability>NeverForNutrition</preferability>
 			<drugCategory>None</drugCategory>
 		</ingestible>
 		<statBases Inherit="False">

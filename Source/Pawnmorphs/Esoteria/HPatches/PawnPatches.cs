@@ -176,40 +176,41 @@ namespace Pawnmorph.HPatches
 		[HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
 		static void RunRaceCompCheck(Pawn __instance)
 		{
-			try
+			if (_waitingQueue.Count > 0)
 			{
-				var node = _waitingQueue.First;
-
-				while (node != null)
+				try
 				{
-					var next = node.Next;
-					if (node.Value == __instance) break;
-					if (node.Value == null || node.Value.Destroyed)
+					var node = _waitingQueue.First;
+
+					while (node != null)
 					{
-						_waitingQueue.Remove(node);
+						if (node.Value == __instance) 
+							break;
+
+						var next = node.Next;
+						if (node.Value == null || node.Value.Destroyed)
+							_waitingQueue.Remove(node);
+
+						node = next;
 					}
 
-					node = next;
-				}
+					if (node != null)
+					{
+						_waitingQueue.Remove(node);
+						RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
 
-				if (node != null)
+					}
+				}
+				catch (Exception e)
 				{
-					_waitingQueue.Remove(node);
-					RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-
+					Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
+					throw;
 				}
-
-
-			}
-			catch (Exception e)
-			{
-				Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
-				throw;
 			}
 
 			if (_queuedPostTickActions.Count > 0)
 			{
-				for (int i = 0; i < _queuedPostTickActions.Count; i++)
+				for (int i = _queuedPostTickActions.Count - 1; i >= 0; i--)
 				{
 					if (_queuedPostTickActions[i].Item1 == __instance)
 					{
