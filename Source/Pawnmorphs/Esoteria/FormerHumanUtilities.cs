@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Hediffs;
+using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -669,8 +670,9 @@ namespace Pawnmorph
 					return pawn.RaceProps.intelligence;
 
 				return sTracker.CurrentIntelligence;
-			});
+			}, Intelligence.Humanlike);
 
+			PawnPatches.QueuePostTickAction(pawn, () => value.Update());
 			return value;
 		}
 

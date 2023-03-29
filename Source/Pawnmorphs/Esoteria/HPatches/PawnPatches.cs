@@ -173,38 +173,31 @@ namespace Pawnmorph.HPatches
 
 
 		//this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
-		[HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
-		static void RunRaceCompCheck(Pawn __instance)
+		[HarmonyPatch(typeof(Verse.TickManager), nameof(Verse.TickManager.DoSingleTick)), HarmonyPostfix]
+		static void RunRaceCompCheck()
 		{
 			if (_waitingQueue.Count > 0)
 			{
-				try
+				var node = _waitingQueue.First;
+				Pawn pawn = null;
+				while (node != null)
 				{
-					var node = _waitingQueue.First;
-
-					while (node != null)
+					try
 					{
-						if (node.Value == __instance) 
-							break;
+						pawn = node.Value;
+
+						if (pawn != null && node.Value.Destroyed == false)
+							RaceShiftUtilities.AddRemoveDynamicRaceComps(pawn, pawn.def);
 
 						var next = node.Next;
-						if (node.Value == null || node.Value.Destroyed)
-							_waitingQueue.Remove(node);
-
+						_waitingQueue.Remove(node);
 						node = next;
 					}
-
-					if (node != null)
+					catch (Exception e)
 					{
-						_waitingQueue.Remove(node);
-						RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-
+						Log.Error($"unable to perform race check on pawn {pawn?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
+						throw;
 					}
-				}
-				catch (Exception e)
-				{
-					Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
-					throw;
 				}
 			}
 
@@ -212,17 +205,13 @@ namespace Pawnmorph.HPatches
 			{
 				for (int i = _queuedPostTickActions.Count - 1; i >= 0; i--)
 				{
-					if (_queuedPostTickActions[i].Item1 == __instance)
+					try
 					{
-						try
-						{
-							_queuedPostTickActions[i].Item2();
-						}
-						finally
-						{
-							_queuedPostTickActions.RemoveAt(i);
-						}
-						break;
+						_queuedPostTickActions[i].Item2();
+					}
+					finally
+					{
+						_queuedPostTickActions.RemoveAt(i);
 					}
 				}
 			}
