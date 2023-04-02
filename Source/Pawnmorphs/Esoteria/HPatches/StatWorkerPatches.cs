@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Pawnmorph.Utilities;
+using Prepatcher;
 using RimWorld;
 using Verse;
 
@@ -15,6 +16,19 @@ namespace Pawnmorph.HPatches
 	public static class StatWorkerPatches
 	{
 		private static Dictionary<ulong, TimedCache<float>> _cache = new Dictionary<ulong, TimedCache<float>>(200);
+
+		/// <summary>
+		/// If using prepatcher, this method gets a value stored on the Pawn to indicate if this method should be skipped entirely. Always returns false otherwise.
+		/// </summary>
+		/// <param name="target">The pawn in question.</param>
+		/// https://github.com/Zetrith/Prepatcher/wiki/Adding-fields
+		[PrepatcherField]
+		private static ref bool PmShouldSkipStatWorker(this Pawn target)
+		{
+			return ref _placeholder;
+		}
+
+		private static bool _placeholder = false;
 
 
 		[HarmonyPatch(typeof(StatWorker))]
@@ -29,6 +43,9 @@ namespace Pawnmorph.HPatches
 			{
 				if (req.Thing is Pawn pawn)
 				{
+					if (PmShouldSkipStatWorker(pawn))
+						return __result;
+
 					ulong lookupID = (ulong)pawn.thingIDNumber << 32 | ___stat.index;
 
 					if (_cache.TryGetValue(lookupID, out TimedCache<float> cachedStat) == false)
@@ -45,6 +62,7 @@ namespace Pawnmorph.HPatches
 
 			public static void Invalidate(Pawn pawn)
 			{
+				PmShouldSkipStatWorker(pawn) = false;
 				ulong pawnId = (ulong)pawn.thingIDNumber << 32;
 				foreach (var item in _cache)
 				{
@@ -53,11 +71,13 @@ namespace Pawnmorph.HPatches
 						item.Value.QueueUpdate();
 					}
 				}
+				Log.Warning("Invalidated");
 			}
 
 			private static float CalculateOffsets(Pawn pawn, StatDef stat)
 			{
 				float offset = 0;
+				bool shouldSkip = true;
 
 				var allAspects = pawn.GetAspectTracker()?.Aspects;
 				if (allAspects != null)
@@ -66,6 +86,7 @@ namespace Pawnmorph.HPatches
 					{
 						foreach (StatModifier statOffset in aspect.StatOffsets)
 						{
+							shouldSkip = false;
 							if (statOffset.stat != stat)
 								continue;
 
@@ -84,6 +105,7 @@ namespace Pawnmorph.HPatches
 
 						foreach (StatModifier statOffset in productionComp.CurStage.statOffsets)
 						{
+							shouldSkip = false;
 							if (statOffset.stat != stat)
 								continue;
 
@@ -92,6 +114,7 @@ namespace Pawnmorph.HPatches
 					}
 				}
 
+				PmShouldSkipStatWorker(pawn) = shouldSkip;
 				return offset;
 			}
 		}
