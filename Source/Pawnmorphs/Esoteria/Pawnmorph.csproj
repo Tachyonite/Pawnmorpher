@@ -606,6 +606,7 @@
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
+    <Compile Include="UserInterface\FilterTreeBox.cs" />
     <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
@@ -883,6 +884,8 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
+    <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
     <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
     <Compile Include="UserInterface\ButtonTexturesPM.cs" />
     <Compile Include="UserInterface\Dialog_PartPicker.cs" />
