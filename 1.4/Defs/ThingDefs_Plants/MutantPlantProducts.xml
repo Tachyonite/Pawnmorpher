@@ -13,6 +13,9 @@
 			<foodType>Seed</foodType>
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
 		</ingestible>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AdministerableExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- Chaobulb -->
@@ -60,6 +63,9 @@ Raw chaobulbs are often used by tribes to connect with nature and bring out thei
 			<Nutrition>0.0</Nutrition>
 			<MutaniteConcentration>0.1</MutaniteConcentration>
 		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.MutagenicItemExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- Glowvine -->

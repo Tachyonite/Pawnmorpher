@@ -26,6 +26,10 @@
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 			<MutaniteConcentration>0.1</MutaniteConcentration>
 		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AdministerableExtension" />
+			<li Class="Pawnmorph.ModExtensions.MutagenicItemExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ========== CowMorph Milk ========== -->

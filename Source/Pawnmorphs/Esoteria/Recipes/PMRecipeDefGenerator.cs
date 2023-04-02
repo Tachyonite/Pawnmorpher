@@ -1,11 +1,13 @@
 ﻿// PMRecipeDefGenerator.cs created by Iron Wolf for Pawnmorph on 10/26/2021 7:19 AM
 // last updated 10/26/2021  7:19 AM
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
 using Pawnmorph.IngestionEffects;
+using Pawnmorph.ModExtensions;
 using Pawnmorph.Things;
 using RimWorld;
 using Verse;
@@ -65,11 +67,19 @@ namespace Pawnmorph.Recipes
 			items.AddRange(MorphDef.AllDefs.Select(m => m.injectorDef).Where(m => m != null && !m.IsDrug));
 
 			//really hacky way of getting the serums but can't think of a better way 
-			var serums = DefDatabase<ThingDef>.AllDefs.Where(td => !td.IsDrug && td.ingestible?.outcomeDoers?.Any(o => o is IngestionOutcomeDoer_AddMorphTf || o is AddMorphCategoryTfHediff || o is IngestionOutcomeDoer_GiveHediff) == true);
+			var serums = DefDatabase<ThingDef>.AllDefs.Where(td => td.HasModExtension<AdministerableExtension>());
 
+			Type administerClass = typeof(Recipe_AdministerIngestible);
 			foreach (ThingDef thingDef in serums)
 			{
-				if (!items.Contains(thingDef)) items.Add(thingDef);
+				if (!items.Contains(thingDef))
+				{
+					// Don't generate a recipe if a recipe already exists.
+					// No sure way to know if a mod or item already has an administer recipe
+					// Checking for identical label at least ensures we don't create a 100% duplicate.
+					if (DefDatabase<RecipeDef>.AllDefsListForReading.Any(x => x.workerClass == administerClass && x.jobString == "RecipeAdministerJobString".Translate(thingDef.label)) == false)
+						items.Add(thingDef);
+				}
 			}
 
 
