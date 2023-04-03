@@ -49,6 +49,7 @@ namespace Pawnmorph
 			{
 				_nodes = GenerateTreeNodes();
 				_treeBox = new FilterTreeBox(_nodes);
+				_treeBox.ExpandAll();
 			}
 
 

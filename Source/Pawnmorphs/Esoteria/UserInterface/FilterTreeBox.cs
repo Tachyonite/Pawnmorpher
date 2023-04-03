@@ -29,6 +29,30 @@ namespace Pawnmorph.UserInterface
 		}
 
 
+		/// <summary>
+		/// Expands all currently displayed nodes.
+		/// </summary>
+		public void ExpandAll()
+		{
+			ToggleNodes(true);
+		}
+
+		/// <summary>
+		/// Collapses all currently displayed nodes.
+		/// </summary>
+		public void CollapseAll()
+		{
+			ToggleNodes(false);
+		}
+
+		private void ToggleNodes(bool expand)
+		{
+			for (int i = _items.Count - 1; i >= 0; i--)
+				_items[i].SetOpen(-1, expand);
+
+			UpdateVisibleNodes();
+		}
+
 		private void UpdateFilter()
 		{
 			_items.Clear();
