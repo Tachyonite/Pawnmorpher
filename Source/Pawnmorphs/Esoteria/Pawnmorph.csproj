@@ -327,6 +327,10 @@
     <Compile Include="Genebank\IGenebankEntry.cs" />
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
+    <Compile Include="Hediffs\Base\HediffCompProps_PM.cs" />
+    <Compile Include="Hediffs\Base\HediffComp_PM.cs" />
+    <Compile Include="Hediffs\Base\HediffDef_PM.cs" />
+    <Compile Include="Hediffs\Base\Hediff_PM.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
