@@ -12,17 +12,17 @@ namespace Pawnmorph.UserInterface.TreeBox
 	{
 		Rect _rect = new Rect();
 
-		internal bool Node(TreeNode_FilterBox node, int indentLevel, bool recursiveDraw = true)
+		internal bool Node(TreeNode_FilterBox node, int indentLevel, float editOffset, bool recursiveDraw = true)
 		{
-			if (node.Visible == false)
+			if (node.Visible == false || node.Enabled == false)
 				return false;
 
 			bool toggled = OpenCloseWidget(node, indentLevel, -1);
-			LabelLeft(node.Label, node.Tooltip, indentLevel);
+			LabelLeft(node.Label, node.Tooltip, indentLevel, editOffset);
 
-			_rect.x = LabelWidth;
+			_rect.x = LabelWidth - editOffset;
 			_rect.y = curY;
-			_rect.width = ColumnWidth - LabelWidth;
+			_rect.width = EditAreaWidth + editOffset;
 			_rect.height = lineHeight;
 
 			if (node.Callback != null)
@@ -36,7 +36,7 @@ namespace Pawnmorph.UserInterface.TreeBox
 					int count = node.children.Count;
 					for (int i = 0; i < count; i++)
 					{
-						toggled |= Node((TreeNode_FilterBox)node.children[i], indentLevel + 1);
+						toggled |= Node((TreeNode_FilterBox)node.children[i], indentLevel + 1, editOffset);
 					}
 				}
 			}

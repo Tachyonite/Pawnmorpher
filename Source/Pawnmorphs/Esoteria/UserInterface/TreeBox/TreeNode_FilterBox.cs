@@ -35,7 +35,12 @@ namespace Pawnmorph.UserInterface.TreeBox
 		/// </summary>
 		public bool Visible { get; private set; }
 
-		public ActionIn<Rect> Callback { get; }
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="TreeNode_FilterBox"/> is enabled.
+		/// </summary>
+		public bool Enabled { get; set; }
+
+		public ActionIn<Rect> Callback { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TreeNode_FilterBox"/> node to use with the <see cref="FilterTreeBox"/>.
@@ -46,6 +51,7 @@ namespace Pawnmorph.UserInterface.TreeBox
 		public TreeNode_FilterBox(string label, string tooltip = null, ActionIn<Rect> callback = null)
 			: base()
 		{
+			Enabled = true;
 			Label = label;
 			Tooltip = tooltip;
 			Callback = callback;
@@ -113,13 +119,14 @@ namespace Pawnmorph.UserInterface.TreeBox
 		/// <param name="nodes">Output collection to return nodes.</param>
 		public void GetVisibleNodes(List<TreeNode_FilterBox> nodes)
 		{
-			if (Visible)
+			if (Visible && Enabled)
 			{
 				nodes.Add(this);
 
 				if (IsOpen(1))
 				{
-					for (int i = children.Count - 1; i >= 0; i--)
+					int count = children.Count;
+					for (int i = 0; i < count; i++)
 					{
 						((TreeNode_FilterBox)children[i]).GetVisibleNodes(nodes);
 					}

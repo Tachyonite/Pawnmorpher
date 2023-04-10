@@ -23,7 +23,6 @@ namespace Pawnmorph.UserInterface
 		public FilterTreeBox(List<TreeNode_FilterBox> roots)
 		{
 			_roots = roots.ToList();
-			_roots.Reverse();
 			_items = new List<TreeNode_FilterBox>();
 			UpdateFilter();
 		}
@@ -57,9 +56,10 @@ namespace Pawnmorph.UserInterface
 		{
 			_items.Clear();
 			// Reset tree.
+			int count = _roots.Count;
 			if (_currentFilter.Length == 0)
 			{
-				for (int i = _roots.Count - 1; i >= 0; i--)
+				for (int i = 0; i < count; i++)
 				{
 					_roots[i].SetVisibility(true, true);
 					_roots[i].GetVisibleNodes(_items);
@@ -67,7 +67,7 @@ namespace Pawnmorph.UserInterface
 			}
 			else
 			{
-				for (int i = _roots.Count - 1; i >= 0; i--)
+				for (int i = 0; i < count; i++)
 				{
 					_roots[i].SetVisibility(false, false);
 					TreeSearch(_roots[i]);
@@ -79,7 +79,8 @@ namespace Pawnmorph.UserInterface
 		private void UpdateVisibleNodes()
 		{
 			_items.Clear();
-			for (int i = _roots.Count - 1; i >= 0; i--)
+			int count = _roots.Count;
+			for (int i = 0; i < count; i++)
 			{
 				_roots[i].GetVisibleNodes(_items);
 			}
@@ -153,7 +154,7 @@ namespace Pawnmorph.UserInterface
 			for (; currentIndex < count; currentIndex++)
 			{
 				TreeNode_FilterBox node = _items[currentIndex];
-				if (lineListing.Node(node, node.nestDepth, false))
+				if (lineListing.Node(node, node.nestDepth, listbox.width * 0.5f, false))
 				{
 					UpdateVisibleNodes();
 					break;
