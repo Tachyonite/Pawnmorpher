@@ -159,14 +159,14 @@ namespace Pawnmorph
 
 
 
-			coreNode.AddChild("transformChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.transformChance, new FloatRange(0, 100), settings.transformChance.ToString("F1") + "%"));
-			coreNode.AddChild("formerChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.formerChance, new FloatRange(0, 1), settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)));
-			coreNode.AddChild("partialChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.partialChance, new FloatRange(0, 100), settings.partialChance.ToString("F1") + "%"));
-			coreNode.AddChild("maxMutationThoughtsSliderLabel", null, (in Rect x) => settings.maxMutationThoughts = (int)Widgets.HorizontalSlider(x, (float)settings.maxMutationThoughts, 0, 10, true, label: settings.maxMutationThoughts.ToString(), roundTo: 0));
+			coreNode.AddChild("transformChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.transformChance, new FloatRange(0, 100), settings.transformChance.ToString("F1") + "%"), true);
+			coreNode.AddChild("formerChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.formerChance, new FloatRange(0, 1), settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)), true);
+			coreNode.AddChild("partialChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.partialChance, new FloatRange(0, 100), settings.partialChance.ToString("F1") + "%"), true);
+			coreNode.AddChild("maxMutationThoughtsSliderLabel", null, (in Rect x) => settings.maxMutationThoughts = (int)Widgets.HorizontalSlider(x, (float)settings.maxMutationThoughts, 0, 10, true, label: settings.maxMutationThoughts.ToString(), roundTo: 0), true);
 
 
-			TreeNode_FilterBox manhunterChanceNode = coreNode.AddChild(nameof(PawnmorpherSettings.manhunterTfChance), null, null);
-			TreeNode_FilterBox friendlyManhunterChanceNode = coreNode.AddChild(nameof(PawnmorpherSettings.friendlyManhunterTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.friendlyManhunterTfChance, new FloatRange(0, 1), settings.friendlyManhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)));
+			TreeNode_FilterBox manhunterChanceNode = coreNode.AddChild(nameof(PawnmorpherSettings.manhunterTfChance), null, null, true);
+			TreeNode_FilterBox friendlyManhunterChanceNode = coreNode.AddChild(nameof(PawnmorpherSettings.friendlyManhunterTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.friendlyManhunterTfChance, new FloatRange(0, 1), settings.friendlyManhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)), true);
 
 			manhunterChanceNode.Callback = (in Rect x) =>
 			{
@@ -174,7 +174,7 @@ namespace Pawnmorph
 				friendlyManhunterChanceNode.Enabled = settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON;
 			};
 
-			coreNode.AddChild(nameof(PawnmorpherSettings.hostileKeepFactionTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.hostileKeepFactionTfChance, new FloatRange(0, 1), settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)));
+			coreNode.AddChild(nameof(PawnmorpherSettings.hostileKeepFactionTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.hostileKeepFactionTfChance, new FloatRange(0, 1), settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)), true);
 
 			if (Prefs.DevMode)
 			{
@@ -184,7 +184,7 @@ namespace Pawnmorph
 					float f = (float)((int)settings.logLevel);
 					f = (int)Widgets.HorizontalSlider(x, f, 0, maxLevel, true, label: settings.logLevel.ToString(), roundTo: 0);
 					settings.logLevel = (LogLevel)Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
-				});
+				}, true);
 			}
 
 			result.Add(coreNode);

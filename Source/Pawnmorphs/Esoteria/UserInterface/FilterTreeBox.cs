@@ -19,6 +19,7 @@ namespace Pawnmorph.UserInterface
 		private string _currentFilter = string.Empty;
 		private List<TreeNode_FilterBox> _roots;
 		private List<TreeNode_FilterBox> _items;
+		private float _totalRows = 0f;
 
 		public FilterTreeBox(List<TreeNode_FilterBox> roots)
 		{
@@ -74,6 +75,7 @@ namespace Pawnmorph.UserInterface
 					_roots[i].GetVisibleNodes(_items);
 				}
 			}
+			InvalidateListCache();
 		}
 
 		private void UpdateVisibleNodes()
@@ -84,6 +86,13 @@ namespace Pawnmorph.UserInterface
 			{
 				_roots[i].GetVisibleNodes(_items);
 			}
+			InvalidateListCache();
+		}
+
+		private void InvalidateListCache()
+		{
+			int doubleRows = _items.Count(x => x.SplitRow);
+			_totalRows = _items.Count + doubleRows;
 		}
 
 		private void TreeSearch(TreeNode_FilterBox node)
@@ -139,10 +148,12 @@ namespace Pawnmorph.UserInterface
 
 			Text.Font = GameFont.Small;
 			Listing_TreeFilter lineListing = new Listing_TreeFilter();
+			lineListing.verticalSpacing = 4f;
+			lineListing.lineHeight = Text.LineHeight;
 			float lineHeight = lineListing.lineHeight + lineListing.verticalSpacing;
 
 			int count = _items.Count;
-			Rect listbox = new Rect(0, 0, inRect.width - 20, (count + 1) * lineHeight);
+			Rect listbox = new Rect(0, 0, inRect.width - 20, (_totalRows + 1) * lineHeight);
 			Widgets.BeginScrollView(new Rect(inRect.x, curY, inRect.width, height), ref _scrollPosition, listbox);
 
 			// Begin listcontrol and add empty gap for all the space above scrollbox.
