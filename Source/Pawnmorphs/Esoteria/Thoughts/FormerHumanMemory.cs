@@ -63,6 +63,12 @@ namespace Pawnmorph.Thoughts
 		{
 			get
 			{
+				// It seems some mods might call CurStageIndex in prefix before thought has been attached to a pawn.
+				// For example, Vanilla Traits Expanded.
+				// https://github.com/Vanilla-Expanded/VanillaTraitsExpanded/blob/b55456925c4a4ffbc7347444e98a622d3562508c/1.4/Source/VanillaTraitsExpanded/HarmonyPatches/Thought_Patches.cs#LL218C63-L218C92
+				if (pawn == null)
+					return 0;
+
 				var fSapienceStatus = pawn.GetQuantizedSapienceLevel();
 				if (fSapienceStatus == null)
 				{

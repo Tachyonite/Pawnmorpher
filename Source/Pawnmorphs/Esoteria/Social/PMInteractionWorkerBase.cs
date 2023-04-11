@@ -41,6 +41,9 @@ namespace Pawnmorph.Social
 		/// <returns></returns>
 		protected float GetBaseWeight(Pawn initiator, Pawn recipient)
 		{
+			if (initiator == recipient)
+				return 0;
+
 			var initiatorWeight = Def.initiatorWeights?.GetTotalWeight(initiator) ?? 0;
 			var recipientWeight = Def.recipientWeights?.GetTotalWeight(recipient) ?? 0;
 			if (Def.requiresBoth && (initiatorWeight <= 0 || recipientWeight <= 0))

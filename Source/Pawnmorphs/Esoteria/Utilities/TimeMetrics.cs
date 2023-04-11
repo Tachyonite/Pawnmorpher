@@ -8,6 +8,12 @@ namespace Pawnmorph.Utilities
 	/// </summary>
 	public static class TimeMetrics
 	{
+		// Verse.TickList
+		public const int TICKS_RARE = 250; // TickerType.Rare => 250, 
+		public const int TICKS_LONG = 2000; // TickerType.Long => 2000, 
+
+
+
 		/// <summary>
 		///     The ticks per day
 		/// </summary>

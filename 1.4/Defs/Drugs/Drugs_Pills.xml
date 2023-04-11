@@ -11,7 +11,7 @@ Booster pills are illegal throughout civilized space, but are a staple for certa
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>30</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -27,6 +27,7 @@ Booster pills are illegal throughout civilized space, but are a staple for certa
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
@@ -52,7 +53,7 @@ RGB pills are a common party drug in some mutation-positive societies. Prankster
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>30</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -84,10 +85,11 @@ RGB pills are a common party drug in some mutation-positive societies. Prankster
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
-			<Neutroamine>1</Neutroamine>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -110,7 +112,7 @@ Feral pills are highly illegal in civilized space. At least one exotic animal tr
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>30</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -125,10 +127,11 @@ Feral pills are highly illegal in civilized space. At least one exotic animal tr
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
-			<Neutroamine>1</Neutroamine>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -149,7 +152,7 @@ Dry pills are often used to make mutagen exposure victims more comfortable until
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>30</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -168,10 +171,11 @@ Dry pills are often used to make mutagen exposure victims more comfortable until
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
-			<Neutroamine>1</Neutroamine>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -194,7 +198,7 @@ X-aspect is most commonly used to restore human-level sapience to etherbroken an
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>65</MarketValue>
+			<MarketValue>30</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -207,10 +211,11 @@ X-aspect is most commonly used to restore human-level sapience to etherbroken an
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
-			<Neutroamine>1</Neutroamine>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -233,8 +238,8 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<rotatable>false</rotatable>
 		<statBases>
-			<WorkToMake>600</WorkToMake>
-			<MarketValue>18</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>50</MarketValue>
 			<Mass>0.005</Mass>
 			<Flammability>0.7</Flammability>
 		</statBases>
@@ -255,6 +260,7 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 				<li>MutagenLab</li>
 			</recipeUsers>
 			<workSkill>Intellectual</workSkill>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<Antigen>1</Antigen>
@@ -284,14 +290,13 @@ Accelerators are commonly used by mutagen junkies looking to quickly get their t
 		<socialPropernessMatters>false</socialPropernessMatters>
 		<rotatable>false</rotatable>
 		<statBases>
-			<WorkToMake>600</WorkToMake>
-			<MarketValue>18</MarketValue>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>30</MarketValue>
 			<Mass>0.005</Mass>
 			<Flammability>0.7</Flammability>
 		</statBases>
 		<techLevel>Industrial</techLevel>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>AcceleratorHigh</hediffDef>
@@ -305,10 +310,11 @@ Accelerators are commonly used by mutagen junkies looking to quickly get their t
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>1</MechaniteSlurry>
-			<Neutroamine>1</Neutroamine>
+			<Neutroamine>2</Neutroamine>
 		</costList>
 		<comps>
 			<li Class="CompProperties_Drug">
@@ -329,7 +335,7 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 		</graphicData>
 		<statBases>
 			<WorkToMake>400</WorkToMake>
-			<MarketValue>110</MarketValue>
+			<MarketValue>50</MarketValue>
 		</statBases>
 		<ingestible>
 			<outcomeDoers>
@@ -345,6 +351,7 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 				<li>DrugLab</li>
 				<li>MutagenLab</li>
 			</recipeUsers>
+			<productCount>2</productCount>
 		</recipeMaker>
 		<costList>
 			<Antigen>1</Antigen>

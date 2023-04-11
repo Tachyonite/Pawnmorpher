@@ -32,6 +32,8 @@ namespace Pawnmorph
 		[NotNull]
 		private static readonly MethodInfo _animalTabWorkerMethod;
 
+		private static Harmony _harmonyInstance;
+
 		private static readonly ILookup<string, string> _modPatches = new KeyValuePair<string, string>[]
 		{
 			new ("jecrell.doorsexpanded", "DoorsExpanded.Building_DoorExpanded:PawnCanOpen"),
@@ -49,8 +51,8 @@ namespace Pawnmorph
 
 
 
-			var
-				harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
+			var harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different? 
+			_harmonyInstance = harmonyInstance;
 			harmonyInstance.Patch(
 								  AccessTools.Method(typeof(FoodUtility),
 													 nameof(FoodUtility.ThoughtsFromIngesting)),
@@ -369,6 +371,22 @@ namespace Pawnmorph
 			Log.Message(builder.ToString());
 			DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
 		}
+
+
+
+		internal static void PatchHumanoidRace(WorkGiverDef wgd)
+		{
+			if (wgd != null)
+			{
+				_harmonyInstance.Patch(AccessTools.Method(wgd.giverClass, "JobOnThing"), null, new HarmonyMethod(patchType, "GenericJobOnThingPostfix"));
+				MethodInfo methodInfo2 = AccessTools.Method(wgd.giverClass, "HasJobOnThing");
+				if ((object)methodInfo2 != null && methodInfo2.IsDeclaredMember())
+				{
+					_harmonyInstance.Patch(methodInfo2, null, new HarmonyMethod(patchType, "GenericHasJobOnThingPostfix"));
+				}
+			}
+		}
+
 
 		private static void PatchIncidents([NotNull] List<MethodInfoSt> methodsToPatch)
 		{

@@ -3,7 +3,7 @@ using Verse;
 
 namespace Pawnmorph.Utilities
 {
-	internal class TimedCache<T>
+	public class TimedCache<T>
 	{
 		private TickManager _tickManager;
 		private T _value;
@@ -58,7 +58,6 @@ namespace Pawnmorph.Utilities
 		public TimedCache(Func<T> valueGetter)
 		{
 			_tickManager = Find.TickManager;
-			_timestamp = _tickManager.TicksGame;
 			_requestedUpdate = false;
 			_valueGetter = valueGetter;
 		}
@@ -67,6 +66,7 @@ namespace Pawnmorph.Utilities
 			: this(valueGetter)
 		{
 			_value = initialValue;
+			_timestamp = _tickManager.TicksGame;
 		}
 
 		public void Offset(int offset)

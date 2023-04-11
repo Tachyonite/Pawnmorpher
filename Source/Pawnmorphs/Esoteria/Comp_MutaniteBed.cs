@@ -1,7 +1,6 @@
 ﻿// Comp_MutaniteBed.cs modified by Iron Wolf for Pawnmorph on 11/12/2019 5:36 PM
 // last updated 11/12/2019  5:37 PM
 
-using HugsLib;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -36,11 +35,6 @@ namespace Pawnmorph
 		{
 			base.PostSpawnSetup(respawningAfterLoad);
 			_parent = parent as Building_Bed;
-			if (_parent != null)
-			{
-
-				HugsLibController.Instance.DistributedTicker.RegisterTickability(TickLong, TICK_INTERVAL, parent);
-			}
 
 			var sevPerDayComp = MorphTransformationDefOf.MutagenicBuildup.CompProps<HediffCompProperties_Immunizable>();
 			var sevPerDay = sevPerDayComp.severityPerDayNotImmune;
@@ -62,9 +56,12 @@ namespace Pawnmorph
 
 		private const float EPSILON = 0.00001f;
 
-		/// <summary>called every 2000 ticks</summary>
-		void TickLong()
+		/// <summary>
+		/// Called every 250 ticks.
+		/// </summary>
+		public override void CompTickRare()
 		{
+			base.CompTickRare();
 			foreach (Pawn curOccupant in _parent.CurOccupants)
 			{
 				if (curOccupant == null) continue;

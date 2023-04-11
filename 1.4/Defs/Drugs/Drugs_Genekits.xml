@@ -11,6 +11,9 @@
 		<statBases>
 			<MarketValue>110</MarketValue>
 		</statBases>
+		<thingCategories Inherit="False">
+			<li>ItemsMisc</li>
+		</thingCategories>
 		<tradeability>Sellable</tradeability>
 		<comps>
 			<li Class="CompProperties_Usable">
@@ -23,8 +26,5 @@
 			</li>
             <li Class="CompProperties_UseEffectDestroySelf" />
 		</comps>
-		<thingSetMakerTags>
-			<li>RewardSpecial</li>
-		</thingSetMakerTags>
 	</ThingDef>
 </Defs>
