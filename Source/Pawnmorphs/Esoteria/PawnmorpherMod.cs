@@ -52,15 +52,13 @@ namespace Pawnmorph
 				_treeBox.ExpandAll();
 			}
 
+			Listing_Standard checkBoxSection = new Listing_Standard();
 
 			Rect optionList = new Rect(inRect);
-			optionList.height = 5 * Text.LineHeight;
-			Widgets.DrawMenuSection(optionList);
-
-			Listing_Standard checkBoxSection = new Listing_Standard();
+			optionList.height = 3 * (30 + checkBoxSection.verticalSpacing) + 8;
 			Widgets.DrawMenuSection(optionList);
 			checkBoxSection.Begin(optionList.ContractedBy(4));
-			
+			checkBoxSection.ColumnWidth = (checkBoxSection.ColumnWidth - 14) / 2;
 			if (checkBoxSection.ButtonText("PMEnableMutationVisualsButton".Translate()))
 				ShowVisibleRaceSelection();
 
@@ -69,6 +67,8 @@ namespace Pawnmorph
 
 			if (checkBoxSection.ButtonText("PMOptionalPatchesButton".Translate()))
 				ShowOptionalPatches();
+
+			checkBoxSection.NewColumn();
 
 			if (checkBoxSection.ButtonText("PMAnimalAssociationsButton".Translate()))
 				ShowAnimalAssociations();
@@ -86,55 +86,6 @@ namespace Pawnmorph
 			sliderSectionRect.height = inRect.height - optionList.height;
 
 			_treeBox.Draw(sliderSectionRect.ContractedBy(4));
-
-
-
-			//Listing_Standard sliderSection = new Listing_Standard();
-
-			//int sliders = 14;
-			//if (Prefs.DevMode)
-			//	sliders = 16;
-			//Rect viewRect = new Rect(0, 0, sliderSectionRect.width - 20, (sliders + 1) * (Text.LineHeight + sliderSection.verticalSpacing));
-			//Widgets.BeginScrollView(sliderSectionRect, ref _sliderScrollPosition, viewRect);
-
-			//sliderSection.Begin(viewRect);
-
-			//sliderSection.Label($"{"transformChanceSliderLabel".Translate()}: {settings.transformChance.ToString("F1")}%");
-			//settings.transformChance = sliderSection.Slider(settings.transformChance, 0f, 100f);
-			//sliderSection.Label($"{"formerChanceSliderLabel".Translate()}: {settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)}");
-			//settings.formerChance = sliderSection.Slider(settings.formerChance, 0f, 1f);
-			//sliderSection.Label($"{"partialChanceSliderLabel".Translate()}: {settings.partialChance.ToString("F1")}%");
-			//settings.partialChance = sliderSection.Slider(settings.partialChance, 0f, 100f);
-			//sliderSection.Label($"{"maxMutationThoughtsSliderLabel".Translate()}: {settings.maxMutationThoughts}");
-			//settings.maxMutationThoughts = (int)sliderSection.Slider(settings.maxMutationThoughts, 1, 10);
-
-			//sliderSection
-			//   .Label($"{nameof(PawnmorpherSettings.manhunterTfChance).Translate()}: {settings.manhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
-			//settings.manhunterTfChance = sliderSection.Slider(settings.manhunterTfChance, 0, 1f);
-
-			//if (settings.manhunterTfChance > FormerHumanUtilities.MANHUNTER_EPSILON)
-			//{
-			//	sliderSection
-			//	   .Label($"{nameof(PawnmorpherSettings.friendlyManhunterTfChance).Translate()}: {settings.friendlyManhunterTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
-			//	settings.friendlyManhunterTfChance = sliderSection.Slider(settings.friendlyManhunterTfChance, 0, 1f);
-
-			//}
-
-			//sliderSection
-			//   .Label($"{nameof(PawnmorpherSettings.hostileKeepFactionTfChance).Translate()}: {settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)}");
-			//settings.hostileKeepFactionTfChance = sliderSection.Slider(settings.hostileKeepFactionTfChance, 0, 1f);
-
-			//if (Prefs.DevMode)
-			//{
-			//	sliderSection.Label($"logging level:{settings.logLevel}");
-			//	float f = (float)((int)settings.logLevel);
-			//	var maxLevel = (int)LogLevel.Pedantic;
-			//	f = sliderSection.Slider(maxLevel - f, 0, maxLevel);
-			//	settings.logLevel = (LogLevel)Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
-			//}
-
-			//sliderSection.End();
-			//Widgets.EndScrollView();
 			base.DoSettingsWindowContents(inRect);
 		}
 
@@ -149,15 +100,8 @@ namespace Pawnmorph
 			coreNode.AddChild("enableMutagenDiseasesCheckboxLabel", "enableMutagenDiseasesCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenDiseases, x.height));
 			coreNode.AddChild("enableMutagenMeteorCheckboxLabel", "enableMutagenMeteorCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenMeteor, x.height));
 			coreNode.AddChild("enableWildFormersCheckboxLabel", "enableWildFormersCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableWildFormers, x.height));
-			coreNode.AddChild("ChamberDatabaseIgnoresDataLimit", "ChamberDatabaseIgnoresDataLimitTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.chamberDatabaseIgnoreStorageLimit, x.height));
-			coreNode.AddChild("PMInjectorsRequireTagging", "PMInjectorsRequireTaggingTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.injectorsRequireTagging, x.height));
 			coreNode.AddChild("PMHazardousChaobulbs", "PMHazardousChaobulbsTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.hazardousChaobulbs, x.height));
 			coreNode.AddChild("PMGenerateEndoGenesForAliens", "PMGenerateEndoGenesForAliensTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.generateEndoGenesForAliens, x.height));
-
-
-
-
-
 
 			coreNode.AddChild("transformChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.transformChance, new FloatRange(0, 100), settings.transformChance.ToString("F1") + "%"), true);
 			coreNode.AddChild("formerChanceSliderLabel", null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.formerChance, new FloatRange(0, 1), settings.formerChance.ToStringByStyle(ToStringStyle.PercentTwo)), true);
@@ -176,18 +120,26 @@ namespace Pawnmorph
 
 			coreNode.AddChild(nameof(PawnmorpherSettings.hostileKeepFactionTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.hostileKeepFactionTfChance, new FloatRange(0, 1), settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)), true);
 
-			if (Prefs.DevMode)
-			{
-				coreNode.AddChild("Debug level.", null, (in Rect x) =>
-				{
-					var maxLevel = (int)LogLevel.Pedantic;
-					float f = (float)((int)settings.logLevel);
-					f = (int)Widgets.HorizontalSlider(x, f, 0, maxLevel, true, label: settings.logLevel.ToString(), roundTo: 0);
-					settings.logLevel = (LogLevel)Mathf.FloorToInt(Mathf.Clamp(maxLevel - f, 0, maxLevel));
-				}, true);
-			}
-
 			result.Add(coreNode);
+
+
+
+			TreeNode_FilterBox debugNode = new TreeNode_FilterBox("PMDebug".Translate());
+
+
+			debugNode.AddChild("ChamberDatabaseIgnoresDataLimit", "ChamberDatabaseIgnoresDataLimitTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.chamberDatabaseIgnoreStorageLimit, x.height));
+			debugNode.AddChild("PMInjectorsRequireTagging", "PMInjectorsRequireTaggingTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.injectorsRequireTagging, x.height));
+
+			debugNode.AddChild("PMDebugLevel", null, (in Rect x) =>
+			{
+				var maxLevel = (int)LogLevel.Pedantic;
+				float f = (float)settings.logLevel;
+				settings.logLevel = (LogLevel)Mathf.RoundToInt(Widgets.HorizontalSlider(x, f, 0, maxLevel, true, label: settings.logLevel.ToString()));
+			}, true);
+
+
+			result.Add(debugNode);
+
 
 			return result;
 		}

@@ -50,4 +50,6 @@
 	<PMBlacklistFormerHumansRestrictedDescription>Can exist as former human but not spawn at random.</PMBlacklistFormerHumansRestrictedDescription>
 	<PMBlacklistFormerHumansDisabledDescription>Cannot exist as former human at all.</PMBlacklistFormerHumansDisabledDescription>
 	<PMBlacklistFormerHumansAddedBy>Added by {0}</PMBlacklistFormerHumansAddedBy>
+	<PMDebug>Debug</PMDebug>
+	<PMDebugLevel>Debug level</PMDebugLevel>
 </LanguageData>
