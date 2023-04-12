@@ -11,6 +11,8 @@
 		<maxSeverity>3</maxSeverity> <!-- the custom severity per day comp on most mutations will limit this to 1 for most pawns  -->
 		<minSeverity>-2</minSeverity>
 		<initialSeverity>0</initialSeverity>
+		<alwaysAllowMothball>True</alwaysAllowMothball>
+		<alwaysAllowMothballCached>True</alwaysAllowMothballCached>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPart" Abstract="True" ParentName="PawnmorphPartNoRmComp">

@@ -173,55 +173,45 @@ namespace Pawnmorph.HPatches
 
 
 		//this is a post fix and not in a comp because we need to make sure comps aren't added or removed while they are being iterated over
-		[HarmonyPatch(nameof(Pawn.Tick)), HarmonyPostfix]
-		static void RunRaceCompCheck(Pawn __instance)
+		[HarmonyPatch(typeof(Verse.TickManager), nameof(Verse.TickManager.DoSingleTick)), HarmonyPostfix]
+		static void RunRaceCompCheck()
 		{
-			try
+			if (_waitingQueue.Count > 0)
 			{
 				var node = _waitingQueue.First;
-
+				Pawn pawn = null;
 				while (node != null)
 				{
-					var next = node.Next;
-					if (node.Value == __instance) break;
-					if (node.Value == null || node.Value.Destroyed)
+					try
 					{
+						pawn = node.Value;
+
+						if (pawn != null && node.Value.Destroyed == false)
+							RaceShiftUtilities.AddRemoveDynamicRaceComps(pawn, pawn.def);
+
+						var next = node.Next;
 						_waitingQueue.Remove(node);
+						node = next;
 					}
-
-					node = next;
+					catch (Exception e)
+					{
+						Log.Error($"unable to perform race check on pawn {pawn?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
+						throw;
+					}
 				}
-
-				if (node != null)
-				{
-					_waitingQueue.Remove(node);
-					RaceShiftUtilities.AddRemoveDynamicRaceComps(__instance, __instance.def);
-
-				}
-
-
-			}
-			catch (Exception e)
-			{
-				Log.Error($"unable to perform race check on pawn {__instance?.Name?.ToStringFull ?? "NULL"}\ncaught {e.GetType().Name}");
-				throw;
 			}
 
 			if (_queuedPostTickActions.Count > 0)
 			{
-				for (int i = 0; i < _queuedPostTickActions.Count; i++)
+				for (int i = _queuedPostTickActions.Count - 1; i >= 0; i--)
 				{
-					if (_queuedPostTickActions[i].Item1 == __instance)
+					try
 					{
-						try
-						{
-							_queuedPostTickActions[i].Item2();
-						}
-						finally
-						{
-							_queuedPostTickActions.RemoveAt(i);
-						}
-						break;
+						_queuedPostTickActions[i].Item2();
+					}
+					finally
+					{
+						_queuedPostTickActions.RemoveAt(i);
 					}
 				}
 			}

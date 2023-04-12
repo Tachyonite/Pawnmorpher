@@ -8,8 +8,12 @@
 		</comps>
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
 		<socialPropernessMatters>false</socialPropernessMatters>
+		<thingCategories Inherit="False">
+			<li>RawMutagen</li>
+			<li>AnimalProductRaw</li>
+		</thingCategories>
 		<ingestible>
-			<drugCategory>Social</drugCategory>
+			<drugCategory>None</drugCategory>
 			<preferability>DesperateOnly</preferability>
 			<foodType>AnimalProduct, Fluid</foodType>
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
@@ -22,6 +26,10 @@
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 			<MutaniteConcentration>0.1</MutaniteConcentration>
 		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AdministerableExtension" />
+			<li Class="Pawnmorph.ModExtensions.MutagenicItemExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ========== CowMorph Milk ========== -->
@@ -38,11 +46,6 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
-		<thingCategories Inherit="False">
-			<li>RawMutagen</li>
-			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
-		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">
@@ -78,11 +81,6 @@
 				<listOrder>1010</listOrder>
 			</li>
 		</comps>
-		<thingCategories Inherit="False">
-			<li>RawMutagen</li>
-			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
-		</thingCategories>
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediffRandom">

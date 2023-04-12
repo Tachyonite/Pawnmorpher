@@ -245,6 +245,7 @@ Stabilizer is commonly used as a prophylaxis to protect the user from mutagenic 
 		</statBases>
 		<techLevel>Industrial</techLevel>
 		<ingestible>
+			<drugCategory>Medical</drugCategory>
 			<outcomeDoers>
 				<li Class="IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>StabiliserHigh</hediffDef>

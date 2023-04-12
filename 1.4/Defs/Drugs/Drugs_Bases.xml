@@ -7,6 +7,9 @@
 			<effectWorking>Cook</effectWorking>
 			<soundWorking>Recipe_CookMeal</soundWorking>
 		</recipeMaker>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AdministerableExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef Name="PM_PillBase" ParentName="PM_DrugBase" Abstract="true">
@@ -45,6 +48,9 @@
 			<ingestReportString>Injecting {0}.</ingestReportString>
 		</ingestible>
 		<socialPropernessMatters>true</socialPropernessMatters>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.MutagenicItemExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<ThingDef Name="SerumBase" ParentName="PM_Injection" Abstract="True">

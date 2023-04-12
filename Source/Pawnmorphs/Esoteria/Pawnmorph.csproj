@@ -39,6 +39,9 @@
   </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
+    <Reference Include="0PrepatcherAPI">
+      <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -328,6 +331,8 @@
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="ModExtensions\AdministerableExtension.cs" />
+    <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
@@ -608,6 +613,7 @@
     <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
+    <Compile Include="UserInterface\FilterTreeBox.cs" />
     <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
     <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
     <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
@@ -885,6 +891,8 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
+    <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
     <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
     <Compile Include="UserInterface\ButtonTexturesPM.cs" />
     <Compile Include="UserInterface\Dialog_PartPicker.cs" />
@@ -973,17 +981,15 @@
     <Folder Include="Chambers\NewFolder1\" />
     <Folder Include="Events\" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
-      <Version>10.0.1</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
       <Version>1.4.3525</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

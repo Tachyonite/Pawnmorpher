@@ -5,9 +5,11 @@ using Verse;
 
 namespace Pawnmorph.Abilities.Skyfallers
 {
-	internal class FlightSkyFaller : Skyfaller
+	internal class FlightSkyFaller : Skyfaller, IActiveDropPod
 	{
 		private LocalTargetInfo _target;
+
+		ActiveDropPodInfo IActiveDropPod.Contents => new ActiveDropPodInfo();
 
 		public event Action<FlightSkyFaller> OnLanded;
 		public event Action<FlightSkyFaller> OnTakeOff;
