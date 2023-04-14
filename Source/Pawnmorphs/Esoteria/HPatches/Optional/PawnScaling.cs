@@ -21,6 +21,7 @@ namespace Pawnmorph.HPatches.Optional
 		static float _scaleMultiplier;
 		static float _maxSize;
 		static float _minSize;
+		static bool _useBodysize;
 
 		public string Caption => "PMPawnScalingCaption".Translate();
 
@@ -121,7 +122,14 @@ namespace Pawnmorph.HPatches.Optional
 			if (_currentPawn != pawn)
 			{
 				_currentPawn = pawn;
-				_currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
+
+				if (_useBodysize)
+				{
+					_currentScaledBodySize = Mathf.Sqrt(pawn.BodySize / pawn.RaceProps.baseBodySize);
+				}
+				else
+					_currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
+
 				_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
 				_currentScaledBodySize = Mathf.Clamp(_currentScaledBodySize, _minSize, _maxSize);
 			}
@@ -166,6 +174,7 @@ namespace Pawnmorph.HPatches.Optional
 			node.AddChild("PMPawnScalingScaleMultiplier", "PMPawnScalingScaleMultiplierTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _scaleMultiplier, new FloatRange(0.5f, 3), _scaleMultiplier.ToStringPercent(), 0.1f));
 			node.AddChild("PMPawnScalingMaxScale", "PMPawnScalingMaxScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _maxSize, new FloatRange(1, 5), _maxSize.ToStringPercent(), 0.1f));
 			node.AddChild("PMPawnScalingMinScale", "PMPawnScalingMinScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _minSize, new FloatRange(0.3f, 1), _minSize.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingUseBodysize", "PMPawnScalingUseBodysizeTooltip", callback: (in Rect x) => Widgets.Checkbox(x.position, ref _useBodysize));
 		}
 
 		public void ExposeData()
@@ -173,6 +182,7 @@ namespace Pawnmorph.HPatches.Optional
 			Scribe_Values.Look(ref _scaleMultiplier, "PM_ScaleMultiplier", 1);
 			Scribe_Values.Look(ref _maxSize, "PM_maxScale", 5);
 			Scribe_Values.Look(ref _minSize, "PM_minScale", 0.3f);
+			Scribe_Values.Look(ref _useBodysize, "PM_useBodysize", false);
 		}
 	}
 }

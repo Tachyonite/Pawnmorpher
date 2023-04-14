@@ -9,4 +9,6 @@
     <PMPawnScalingMaxScaleTooltip>Minimum size a pawn will be able to render.</PMPawnScalingMaxScaleTooltip>
     <PMPawnScalingMinScale>Maximum pawn scale.</PMPawnScalingMinScale>
     <PMPawnScalingMinScaleTooltip>Maximum size a pawn will be able to render.</PMPawnScalingMinScaleTooltip>
+    <PMPawnScalingUseBodysize>Scale by actual bodysize.</PMPawnScalingUseBodysize>
+    <PMPawnScalingUseBodysizeTooltip>If the scaling algorithm should visually scale everything by using a pawns actual body size rather than just those affected by pawnmorpher.</PMPawnScalingUseBodysizeTooltip>
 </LanguageData>
