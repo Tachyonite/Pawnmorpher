@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using AlienRace;
+using Pawnmorph.Interfaces;
+using Pawnmorph.UserInterface.TreeBox;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -11,13 +13,16 @@ namespace Pawnmorph.HPatches.Optional
 {
 	[OptionalPatch("PMPawnScalingCaption", "PMPawnScalingDescription", nameof(_enabled), false)]
 	[HarmonyLib.HarmonyPatch]
-	static class PawnScaling
+	class PawnScaling : IConfigurableObject
 	{
 		static bool _enabled = false;
 		static Pawn _currentPawn;
 		static float _currentScaledBodySize;
+		static float _scaleMultiplier;
+		static float _maxSize;
+		static float _minSize;
 
-
+		public string Caption => "PMPawnScalingCaption".Translate();
 
 		static bool Prepare(MethodBase original)
 		{
@@ -117,6 +122,8 @@ namespace Pawnmorph.HPatches.Optional
 			{
 				_currentPawn = pawn;
 				_currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
+				_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
+				_currentScaledBodySize = Mathf.Clamp(_currentScaledBodySize, _minSize, _maxSize);
 			}
 
 			return _currentScaledBodySize;
@@ -149,6 +156,23 @@ namespace Pawnmorph.HPatches.Optional
 			float size = Mathf.Floor(bodySize * 10) / 10;
 			__result.z = __result.z * size;
 			__result.x = __result.x * size;
+		}
+
+		public void GenerateMenu(TreeNode_FilterBox node)
+		{
+			if (_enabled == false)
+				return;
+
+			node.AddChild("PMPawnScalingScaleMultiplier", "PMPawnScalingScaleMultiplierTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _scaleMultiplier, new FloatRange(0.5f, 3), _scaleMultiplier.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingMaxScale", "PMPawnScalingMaxScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _maxSize, new FloatRange(1, 5), _maxSize.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingMinScale", "PMPawnScalingMinScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _minSize, new FloatRange(0.3f, 1), _minSize.ToStringPercent(), 0.1f));
+		}
+
+		public void ExposeData()
+		{
+			Scribe_Values.Look(ref _scaleMultiplier, "PM_ScaleMultiplier", 1);
+			Scribe_Values.Look(ref _maxSize, "PM_maxScale", 5);
+			Scribe_Values.Look(ref _minSize, "PM_minScale", 0.3f);
 		}
 	}
 }

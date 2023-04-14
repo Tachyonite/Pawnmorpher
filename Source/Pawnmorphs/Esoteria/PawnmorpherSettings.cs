@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.FormerHumans;
+using Pawnmorph.UserInterface.TreeBox;
 using UnityEngine;
 using Verse;
 
@@ -161,12 +164,32 @@ namespace Pawnmorph
 			Scribe_Collections.Look(ref animalAssociations, nameof(animalAssociations));
 			Scribe_Collections.Look(ref animalBlacklist, nameof(animalBlacklist));
 
+
+
+
+			foreach (Interfaces.IConfigurableObject configurableObject in GetAllConfigurableObjects())
+				configurableObject.ExposeData();
+
+
+
+
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
 				if (formerChance > 1) formerChance /= 100f;
 			}
 
 			base.ExposeData();
+		}
+
+
+		internal IEnumerable<Interfaces.IConfigurableObject> GetAllConfigurableObjects()
+		{
+			// Discover all configurable objects.
+			Type iConfigurable = typeof(Interfaces.IConfigurableObject);
+			foreach (Type type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => iConfigurable.IsAssignableFrom(x) && x.IsInterface == false && x.IsAbstract == false))
+			{
+				yield return (Interfaces.IConfigurableObject)Activator.CreateInstance(type);
+			}
 		}
 	}
 }

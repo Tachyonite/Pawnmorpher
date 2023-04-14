@@ -16,7 +16,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\1.4\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
@@ -330,6 +330,7 @@
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="Interfaces\IConfigurableObject.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
     <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
     <Compile Include="PMStyleDefOf.cs" />
