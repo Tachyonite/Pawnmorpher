@@ -61,7 +61,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Override HAR comp scales.
 		[HarmonyLib.HarmonyPatch(typeof(AlienComp), nameof(AlienComp.PostSpawnSetup)), HarmonyLib.HarmonyPostfix]
-		private static void PostSpawnSetup(bool respawningAfterLoad, AlienComp __instance)
+		private static void PostSpawnSetup(AlienComp __instance)
 		{
 			SetCompScales(__instance, (Pawn)__instance.parent, GetScale((Pawn)__instance.parent));
 		}
@@ -85,7 +85,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Apply scale to body addon offsets.
 		[HarmonyLib.HarmonyPatch(typeof(AlienRace.HarmonyPatches), nameof(AlienRace.HarmonyPatches.DrawAddonsFinalHook)), HarmonyLib.HarmonyPostfix]
-		private static void DrawAddonsFinalHook(Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, ref Graphic graphic, ref Vector3 offsetVector, ref float angle, ref Material mat)
+		private static void DrawAddonsFinalHook(Pawn pawn, ref Vector3 offsetVector)
 		{
 			float value = GetScale(pawn);
 			offsetVector.x *= value;
@@ -139,7 +139,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Offset rendered pawn from actual position to move selection box to their feet.
 		[HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
-		private static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
+		private static void DrawAt(ref Vector3 drawLoc, Pawn __instance)
 		{
 			float bodySize = GetScale(__instance);
 			// Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
@@ -155,7 +155,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Apply scale offset to head position.
 		[HarmonyLib.HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt)), HarmonyLib.HarmonyPostfix]
-		private static void BaseHeadOffsetAt(Rot4 rotation, ref Vector3 __result, Pawn ___pawn)
+		private static void BaseHeadOffsetAt(ref Vector3 __result, Pawn ___pawn)
 		{
 			float bodySize = GetScale(___pawn);
 			if (bodySize == 1)
