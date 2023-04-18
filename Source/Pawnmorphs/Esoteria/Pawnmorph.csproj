@@ -982,7 +982,7 @@
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.4.3525</Version>
+      <Version>1.4.3682</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

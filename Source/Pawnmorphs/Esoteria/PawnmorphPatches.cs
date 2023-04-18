@@ -609,21 +609,21 @@ namespace Pawnmorph
 			//first clear the cache 
 			_modifiersCache.Clear();
 
-			//List<Hediff> hediffs = ingester.health?.hediffSet?.hediffs;
-			//if (hediffs != null)
-			//{
-			//	for (int i = hediffs.Count - 1; i >= 0; i--)
-			//	{
-			//		Hediff item = hediffs[i];
+			List<Hediff> hediffs = ingester.health?.hediffSet?.hediffs;
+			if (hediffs != null)
+			{
+				for (int i = hediffs.Count - 1; i >= 0; i--)
+				{
+					Hediff item = hediffs[i];
 
-			//		if (item is IFoodThoughtModifier modifier)
-			//			_modifiersCache.Add(modifier);
+					if (item is IFoodThoughtModifier modifier)
+						_modifiersCache.Add(modifier);
 
-			//		HediffStage stage = item.CurStage;
-			//		if (stage != null && stage is IFoodThoughtModifier modifierStage)
-			//			_modifiersCache.Add(modifierStage);
-			//	}
-			//}
+					HediffStage stage = item.CurStage;
+					if (stage != null && stage is IFoodThoughtModifier modifierStage)
+						_modifiersCache.Add(modifierStage);
+				}
+			}
 
 			AspectTracker tracker = ingester.GetAspectTracker();
 			if (tracker?.AspectCount > 0)
@@ -655,19 +655,19 @@ namespace Pawnmorph
 				if (ingester?.story?.traits == null) return;
 				bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
 
-				if (foodSource.def == morphDef.race.race.meatDef && !cannibal)
+				if (cannibal == false)
 				{
-					TryAddIngestThought(ingester, cannibalThought.thought, null, foodThoughts, foodSource.def, meatSource);
-					return;
-				}
+					if (foodSource.def == morphDef.race.race.meatDef)
+					{
+						TryAddIngestThought(ingester, cannibalThought.thought, null, foodThoughts, foodSource.def, meatSource);
+						return;
+					}
 
-				ThingDef comp = foodSource.TryGetComp<CompIngredients>()
-										 ?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
-				if (comp != null && !cannibal)
-				{
-
-					TryAddIngestThought(ingester, cannibalThought.ingredientThought, null, foodThoughts, foodSource.def, meatSource);
-
+					ThingDef comp = foodSource.TryGetComp<CompIngredients>()?.ingredients?.FirstOrDefault(def => def == morphDef.race.race.meatDef);
+					if (comp != null)
+					{
+						TryAddIngestThought(ingester, cannibalThought.ingredientThought, null, foodThoughts, foodSource.def, meatSource);
+					}
 				}
 			}
 			else
@@ -710,42 +710,42 @@ namespace Pawnmorph
 		{
 			raceDef = raceDef ?? ingester.def;
 			CannibalThoughtStatus cannibalStatus = PMFoodUtilities.GetStatusOfFoodForPawn(raceDef, foodSource);
+
+			if (cannibalStatus == CannibalThoughtStatus.None)
+				return null;
+
 			var ext = ingester.def.GetModExtension<FormerHumanSettings>();
-			ThoughtDef thoughtDefBad;
-			ThoughtDef cannibalThoughtDef;
 			FoodThoughtSettings foodSettings = ext?.foodThoughtSettings;
-			switch (cannibalStatus)
-			//assign the correct cannibal thoughts, one for pawns without the cannibal trait the other for pawns with it 
-			{
-				case CannibalThoughtStatus.None:
-					return null;
-				case CannibalThoughtStatus.Direct:
-					thoughtDefBad = foodSettings?.cannibalThought
-								 ?? PMThoughtDefOf.FHDefaultCannibalThought_Direct;
-					cannibalThoughtDef = foodSettings?.cannibalThoughtGood
-									  ?? PMThoughtDefOf.FHDefaultCannibalGoodThought_Direct;
-					break;
-				case CannibalThoughtStatus.Ingredient:
-					thoughtDefBad = foodSettings?.cannibalThoughtIngredient
-								 ?? PMThoughtDefOf.FHDefaultCannibalThought_Ingredient;
-					cannibalThoughtDef = foodSettings?.cannibalThoughtIngredientGood
-									  ?? PMThoughtDefOf.FHDefaultCannibalGoodThought_Ingredient;
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
 
 			bool isCannibal = ingester.story?.traits?.HasTrait(TraitDefOf.Cannibal) ?? false;
-			ThoughtDef thought = isCannibal ? cannibalThoughtDef : thoughtDefBad;
-			return thought;
+
+
+			//assign the correct cannibal thoughts, one for pawns without the cannibal trait the other for pawns with it 
+			if (cannibalStatus == CannibalThoughtStatus.Direct)
+			{
+				if (isCannibal)
+					return foodSettings?.cannibalThoughtGood ?? PMThoughtDefOf.FHDefaultCannibalGoodThought_Direct;
+
+				return foodSettings?.cannibalThought ?? PMThoughtDefOf.FHDefaultCannibalThought_Direct;
+			}
+			else if (cannibalStatus == CannibalThoughtStatus.Ingredient)
+			{
+				if (isCannibal)
+					return foodSettings?.cannibalThoughtIngredientGood ?? PMThoughtDefOf.FHDefaultCannibalGoodThought_Ingredient;
+
+				return foodSettings?.cannibalThoughtIngredient ?? PMThoughtDefOf.FHDefaultCannibalThought_Ingredient;
+			}
+
+			return null;
 		}
 
-		private static bool PrepareToIngestToilsPrefix(JobDriver __instance, Toil chewToil, ref IEnumerable<Toil> __result) //TODO figure out how to turn this into a transpiler patch 
+		private static bool PrepareToIngestToilsPrefix(JobDriver __instance, ref IEnumerable<Toil> __result) //TODO figure out how to turn this into a transpiler patch 
 		{
 			Thing thing = __instance.job.targetA.Thing;
-			if (RaceGenerator.TryGetMorphOfRace(__instance.pawn.def, out MorphDef def))
+			if (RaceGenerator.IsMorphRace(__instance.pawn.def))
 			{
-				if (thing.def.ingestible == null) return true;
+				if (thing.def.ingestible == null) 
+					return true;
 
 				FoodTypeFlags flg = thing.def.ingestible.foodType & (FoodTypeFlags.Tree | FoodTypeFlags.Plant);
 				if (flg != 0)
@@ -758,11 +758,6 @@ namespace Pawnmorph
 
 					return false;
 				}
-			}
-			else if (__instance.pawn.IsSapientFormerHuman())
-			{
-				if (thing.def.ingestible == null) return true;
-
 			}
 
 			return true;
