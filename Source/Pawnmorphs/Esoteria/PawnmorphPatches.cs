@@ -20,6 +20,7 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
+using UnityEngine.SocialPlatforms;
 using Verse;
 using Verse.AI;
 
@@ -580,7 +581,7 @@ namespace Pawnmorph
 
 
 		[NotNull]
-		private static readonly List<IFoodThoughtModifier> _modifiersCache = new List<IFoodThoughtModifier>();
+		private static SortedSet<IFoodThoughtModifier> _modifiersCache = new SortedSet<IFoodThoughtModifier>(ModComparer);
 
 		class FoodModifierComparer : IComparer<IFoodThoughtModifier>
 		{
@@ -607,28 +608,40 @@ namespace Pawnmorph
 
 			//first clear the cache 
 			_modifiersCache.Clear();
-			//add any hediffs 
-			var hModifiers = ingester.health?.hediffSet?.hediffs?.OfType<IFoodThoughtModifier>();
-			//any hediff stages 
-			var hStageModifiers = ingester.health?.hediffSet?.hediffs?.Select(h => h.CurStage)
-										  .Where(s => s != null)
-										  .OfType<IFoodThoughtModifier>();
-			//now all aspects 
-			var aModifiers = ingester.GetAspectTracker()?.Aspects.OfType<IFoodThoughtModifier>();
 
-			//now add them all to the cache 
-			_modifiersCache.AddRange(hModifiers.MakeSafe());
-			_modifiersCache.AddRange(hStageModifiers.MakeSafe());
-			_modifiersCache.AddRange(aModifiers.MakeSafe());
-			//now sort by priority 
-			_modifiersCache.Sort(ModComparer);
+			//List<Hediff> hediffs = ingester.health?.hediffSet?.hediffs;
+			//if (hediffs != null)
+			//{
+			//	for (int i = hediffs.Count - 1; i >= 0; i--)
+			//	{
+			//		Hediff item = hediffs[i];
 
-			//now apply them all in order 
-			foreach (IFoodThoughtModifier foodThoughtModifier in _modifiersCache)
+			//		if (item is IFoodThoughtModifier modifier)
+			//			_modifiersCache.Add(modifier);
+
+			//		HediffStage stage = item.CurStage;
+			//		if (stage != null && stage is IFoodThoughtModifier modifierStage)
+			//			_modifiersCache.Add(modifierStage);
+			//	}
+			//}
+
+			AspectTracker tracker = ingester.GetAspectTracker();
+			if (tracker?.AspectCount > 0)
 			{
-				foodThoughtModifier.ModifyThoughtsFromFood(foodSource, __result);
+				foreach (Aspect aspect in tracker.Aspects)
+				{
+					if (aspect is IFoodThoughtModifier modifier)
+						_modifiersCache.Add(modifier);
+				}
 			}
 
+			if (_modifiersCache.Count > 0)
+			{
+				foreach (IFoodThoughtModifier foodThoughtModifier in _modifiersCache)
+				{
+					foodThoughtModifier.ModifyThoughtsFromFood(foodSource, __result);
+				}
+			}
 		}
 
 		private static void ApplyMorphFoodThoughts(Pawn ingester, Thing foodSource, List<FoodUtility.ThoughtFromIngesting> foodThoughts)
