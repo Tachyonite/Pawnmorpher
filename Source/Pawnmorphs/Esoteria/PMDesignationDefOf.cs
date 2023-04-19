@@ -4,20 +4,21 @@
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
+
 // ReSharper disable NotNullMemberIsNotInitialized
 
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public class PMDesignationDefOf
-    {
-        [NotNull]
-        public static DesignationDef RecruitSapientFormerHuman;
+	[DefOf]
+	public class PMDesignationDefOf
+	{
+		[NotNull]
+		public static DesignationDef RecruitSapientFormerHuman;
 
-        static PMDesignationDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMDesignationDefOf));
-        }
-    }
+		static PMDesignationDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMDesignationDefOf));
+		}
+	}
 }

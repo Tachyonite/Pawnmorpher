@@ -1,0 +1,59 @@
+<Defs>
+	<ThoughtDef>
+		<defName>FurryNoMutations</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_MorphFrustrated</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>MutationAffinity</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>morph frustrated</label>
+				<description>The human genome is so simple, and I could be so much more.</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- This is the default thought for pawns that have mutations and the furry trait. -->
+	<ThoughtDef>
+		<defName>FurryMutationThoughtsHappy</defName>
+		<workerClass>Pawnmorph.Thoughts.Worker_HasMutations</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<requiredTraits>
+			<li>MutationAffinity</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>morph pleased</label>
+				<description>Oh man, it's happening!</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>morph quite pleased</label>
+				<description>I'm already looking great, can't wait for more!</description>
+				<baseMoodEffect>7</baseMoodEffect>
+			</li>
+			<li>
+				<label>morph delighted</label>
+				<description>This is so cool. My dream is coming true!</description>
+				<baseMoodEffect>9</baseMoodEffect>
+			</li>
+			<li>
+				<label>morph enchanted</label>
+				<description>From my head to my toes, I can feel the changes all over. This is incredible!</description>
+				<baseMoodEffect>11</baseMoodEffect>
+			</li>
+			<li>
+				<label>morph overjoyed</label>
+				<description>I'm a beastly freak... and I love it!</description>
+				<baseMoodEffect>12</baseMoodEffect>
+			</li>
+			<li>
+				<label>anthro body is complete</label>
+				<description>I knew life was better on the wild side. This is the best thing ever!</description>
+				<baseMoodEffect>13</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

@@ -1,4 +1,4 @@
-<ModMetaData>
+﻿<ModMetaData>
 	<name>Pawnmorpher</name>
 	<author>The Pawnmorpher Team</author>
 	<supportedVersions>
@@ -6,6 +6,7 @@
 		<li>1.1</li>
 		<li>1.2</li>
 		<li>1.3</li>
+		<li>1.4</li>
 	</supportedVersions>
 	<description>Become a mad scientist and unleash the power of mechanite mutagen upon the world.
 
@@ -39,6 +40,21 @@ Requires Humanoid Alien Framework and Hugslib.
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
 		</li>
 	</modDependencies>
+	<modDependenciesByVersion>
+		<v1.4>
+			<li>
+				<packageId>erdelf.HumanoidAlienRaces</packageId>
+				<displayName>Humanoid Alien Races 2.0</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+				<displayName>Vanilla Expanded Framework</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
+				<downloadUrl>https://github.com/AndroidQuazar/VanillaExpandedFramework</downloadUrl>
+			</li>
+    </v1.4>
+  </modDependenciesByVersion>
 	<loadBefore>
 	</loadBefore>
 	<loadAfter>
@@ -51,5 +67,6 @@ Requires Humanoid Alien Framework and Hugslib.
 		<li>VanillaExpanded.VCookE</li>
 		<li>crustypeanut.rc2.core</li>
 		<li>UnlimitedHugs.RemoteTech</li>
+		<li>CETeam.CombatExtended</li>
 	</loadAfter>
 </ModMetaData>

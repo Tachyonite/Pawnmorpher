@@ -1,0 +1,8 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="RodentMorph" Name="ArborealMorph">
+		<classification>Arboreal</classification>
+		<categories>
+			<li>Crafter</li>
+		</categories>
+	</Pawnmorph.MorphDef>
+</Defs>

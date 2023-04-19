@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!--DamageDefs-->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]/hediff</xpath>
+        <value>
+          <hediff>Bruise</hediff>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]/externalViolence</xpath>
+        <value>
+          <externalViolence>false</externalViolence>
+          <makesBlood>false</makesBlood>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]/armorCategory</xpath>
+        <value>
+          <armorCategory>Blunt</armorCategory>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]/overkillPctToDestroyPart</xpath>
+        <value>
+          <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]</xpath>
+        <value>
+          <li Class="CombatExtended.DamageDefExtensionCE">
+            <harmOnlyOutsideLayers>true</harmOnlyOutsideLayers>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/DamageDef[defName="MutagenicBulletDamage"]/modExtensions/li[@Class="Pawnmorph.Damage.MutagenicDamageExtension"]/severityPerDamage</xpath>
+        <value>
+          <severityPerDamage>0.01</severityPerDamage>
+        </value>
+      </li>
+      <!--===AmmoDefs===-->
+      <!--Tagging Darts-->
+      <!--(Seems impossible to do without some C# work, these ammo defs will stay here for now though)-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+          <!--<ThingCategoryDef><defName>AmmoPMTaggingDart</defName><label>tagging gun darts</label><parent>AmmoRifles</parent><iconPath>UI/Icons/ThingCategories/CaliberArrow</iconPath></ThingCategoryDef>-->
+          <!-- ==================== AmmoSets ========================== -->
+          <!--<CombatExtended.AmmoSetDef><defName>PM_AmmoSet_TaggingRifle</defName><label>tagging gun darts</label><ammoTypes><PM_Ammo_TaggingGun_Dart>PM_Bullet_TaggingGun_Dart</PM_Ammo_TaggingGun_Dart><PM_Ammo_TaggingGun_NLDart>PM_Bullet_TaggingGun_NL</PM_Ammo_TaggingGun_NLDart></ammoTypes></CombatExtended.AmmoSetDef>-->
+          <!-- ==================== Ammo ========================== -->
+          <!--<CombatExtended.AmmoCategoryDef><defName>PM_TaggingNonLethal</defName><label>genetic tagging</label><labelShort>tagging</labelShort><description>Special round designed for tagging animals. Filled with fast-acting mechanites that scan the genetic structure of its target and add it to any connected database.</description></CombatExtended.AmmoCategoryDef>-->
+          <!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase"><defName>PM_Ammo_TaggingGun_Dart</defName><label>tagging gun dart (Tagging)</label><description>Small dart intended for use in low pressure airguns.</description><statBases><Mass>0.118</Mass><Bulk>0.14</Bulk><MarketValue>0.85</MarketValue></statBases><tradeTags><li>CE_AutoEnableTrade</li><li>CE_AutoEnableCrafting</li></tradeTags><thingCategories><li>AmmoPMTaggingDart</li></thingCategories><graphicData><texPath>Things/Ammo/LowPressureMCapsule/AP</texPath><graphicClass>Graphic_StackCount</graphicClass></graphicData><ammoClass>PM_TaggingNonLethal</ammoClass><generateAllowChance>0</generateAllowChance></ThingDef>-->
+          <!--<ThingDef Class="CombatExtended.AmmoDef" ParentName="SpacerSmallAmmoBase"><defName>PM_Ammo_TaggingGun_NLDart</defName><label>tagging gun dart (Tranquilizer)</label><description>Small dart intended for use in low pressure airguns.</description><statBases><Mass>0.118</Mass><Bulk>0.14</Bulk><MarketValue>0.85</MarketValue></statBases><tradeTags><li>CE_AutoEnableTrade</li><li>CE_AutoEnableCrafting</li></tradeTags><thingCategories><li>AmmoPMTaggingDart</li></thingCategories><graphicData><texPath>Things/Ammo/LowPressureMCapsule/NL</texPath><graphicClass>Graphic_StackCount</graphicClass></graphicData><ammoClass>TranqNonLethal</ammoClass></ThingDef>-->
+          <!-- ================== Projectiles ================== -->
+          <ThingDef ParentName="Base6x24mmChargedBullet">
+            <defName>PM_Bullet_TaggingGun_Dart</defName>
+            <thingClass>EtherGun.Projectile_TaggingBullet</thingClass>
+            <label>genetic tagger</label>
+            <graphicData>
+              <texPath>Things/Projectiles/GelCapsule</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>Bullet</damageDef>
+              <damageAmountBase>1</damageAmountBase>
+              <armorPenetrationSharp>1.85</armorPenetrationSharp>
+              <armorPenetrationBlunt>12.85</armorPenetrationBlunt>
+              <speed>30</speed>
+            </projectile>
+          </ThingDef>
+          <!--<ThingDef ParentName="Base6x24mmChargedBullet"><defName>PM_Bullet_TaggingGun_NL</defName><label>tranquilizer dart</label><graphicData><texPath>Things/Projectile/GelCapsuleNL</texPath><graphicClass>Graphic_Single</graphicClass></graphicData><projectile Class="CombatExtended.ProjectilePropertiesCE"><damageDef>Tranquilizer</damageDef><damageAmountBase>1</damageAmountBase><armorPenetrationSharp>1.85</armorPenetrationSharp><armorPenetrationBlunt>12.85</armorPenetrationBlunt><speed>30</speed></projectile></ThingDef>-->
+          <!-- ==================== Recipes ========================== -->
+          <!--<RecipeDef ParentName="AmmoRecipeBase"><defName>MakePM_Ammo_TaggingGun_Dart</defName><label>make tagging gun dart (Tagging) x200</label><description>Craft 200 tagging gun darts (Tagging).</description><jobString>Making tagging gun darts (Tagging).</jobString><ingredients><li><filter><thingDefs><li>Steel</li></thingDefs></filter><count>18</count></li><li><filter><thingDefs><li>Mutanite</li></thingDefs></filter><count>12</count></li></ingredients><fixedIngredientFilter><thingDefs><li>Steel</li><li>Mutanite</li></thingDefs></fixedIngredientFilter><products><PM_Ammo_TaggingGun_Dart>200</PM_Ammo_TaggingGun_Dart></products><workAmount>3800</workAmount></RecipeDef>-->
+          <!--<RecipeDef ParentName="AmmoRecipeBase"><defName>MakePM_Ammo_TaggingGun_NLDart</defName><label>make tagging gun dart (Tranquilizer) x200</label><description>Craft 200 tagging gun darts (Tranquilizer).</description><jobString>Making tagging gun darts (Tranquilizer).</jobString><ingredients><li><filter><thingDefs><li>Steel</li></thingDefs></filter><count>18</count></li><li><filter><thingDefs><li>Neutroamine</li></thingDefs></filter><count>12</count></li></ingredients><fixedIngredientFilter><thingDefs><li>Steel</li><li>Neutroamine</li></thingDefs></fixedIngredientFilter><products><PM_Ammo_TaggingGun_NLDart>200</PM_Ammo_TaggingGun_NLDart></products><workAmount>3800</workAmount></RecipeDef>-->
+        </value>
+      </li>
+      <!--40mm Grenade-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
+        <value>
+          <Ammo_40x46mmGrenade_Mutagenic>Bullet_40x46mmGrenade_Mutagenic</Ammo_40x46mmGrenade_Mutagenic>
+        </value>
+      </li>
+      <!--Mutanite Arrows-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_Arrow"]/ammoTypes</xpath>
+        <value>
+          <Ammo_Arrow_Mutanite>Projectile_Arrow_Mutanite</Ammo_Arrow_Mutanite>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_StreamlinedArrow"]/ammoTypes</xpath>
+        <value>
+          <Ammo_Arrow_Mutanite>Projectile_StreamlinedArrow_Mutanite</Ammo_Arrow_Mutanite>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_GreatArrow"]/ammoTypes</xpath>
+        <value>
+          <Ammo_GreatArrow_Mutanite>Projectile_GreatArrow_Mutanite</Ammo_GreatArrow_Mutanite>
+        </value>
+      </li>
+      <!--Patch Mortar Shells-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_81mmMortarShell"]/ammoTypes</xpath>
+        <value>
+          <Shell_TF>Bullet_81mmMortarShell_TF</Shell_TF>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+          <CombatExtended.AmmoCategoryDef>
+            <defName>GrenadeMutagenic</defName>
+            <label>Mutagenic</label>
+            <description>Filled with a chaotic mix of DNA and mechanites that aerosolizes on impact. The mist can mutate any organics caught in it.</description>
+          </CombatExtended.AmmoCategoryDef>
+          <!-- Need to override mortar shell because of hardcoded vanilla references -->
+          <ThingDef Class="CombatExtended.AmmoDef" ParentName="81mmMortarShellBaseCraftableBase">
+            <defName>Shell_TF</defName>
+            <label>81mm mortar shell (Mutagenic)</label>
+            <graphicData>
+              <texPath>Things/Ammo/Mortar/MutagenShell</texPath>
+              <graphicClass>Graphic_StackCount</graphicClass>
+            </graphicData>
+            <statBases>
+              <MarketValue>112.42</MarketValue>
+              <Mass>5.27</Mass>
+              <Bulk>8.17</Bulk>
+            </statBases>
+            <ammoClass>GrenadeMutagenic</ammoClass>
+            <detonateProjectile>Bullet_81mmMortarShell_TF</detonateProjectile>
+            <comps>
+              <!--Default values -->
+              <li Class="CompProperties_Explosive">
+                <explosiveRadius>2.9</explosiveRadius>
+                <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+                <!--<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>-->
+                <explosionEffect>ExtinguisherExplosion</explosionEffect>
+                <postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+                <postExplosionSpawnChance>0.6</postExplosionSpawnChance>
+                <explodeOnKilled>True</explodeOnKilled>
+                <startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+                <wickTicks>
+                  <min>30</min>
+                  <max>60</max>
+                </wickTicks>
+              </li>
+            </comps>
+          </ThingDef>
+          <ThingDef ParentName="Base81mmMortarShell">
+            <defName>Bullet_81mmMortarShell_TF</defName>
+            <label>81mm mortar shell (Mutagenic)</label>
+            <graphicData>
+              <texPath>Things/Projectiles/Mortar/MutagenShell</texPath>
+              <graphicClass>Graphic_Single</graphicClass>
+            </graphicData>
+            <projectile Class="CombatExtended.ProjectilePropertiesCE">
+              <damageDef>MutagenCloud_Large</damageDef>
+              <damageAmountBase>156</damageAmountBase>
+              <armorPenetrationSharp>0</armorPenetrationSharp>
+              <armorPenetrationBlunt>0</armorPenetrationBlunt>
+              <flyOverhead>true</flyOverhead>
+              <explosionRadius>5.5</explosionRadius>
+              <soundExplode>Explosion_EMP</soundExplode>
+              <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            </projectile>
+          </ThingDef>
+          <RecipeDef ParentName="AmmoRecipeBase">
+            <defName>MakeShell_TF</defName>
+            <label>make 81mm mutagenic mortar shells x5</label>
+            <description>Craft 5 81mm mutagenic mortar shells.</description>
+            <jobString>Making 81mm mutagenic mortar shells.</jobString>
+            <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+            <ingredients>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>Steel</li>
+                  </thingDefs>
+                </filter>
+                <count>54</count>
+              </li>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>MechaniteSlurry</li>
+                  </thingDefs>
+                </filter>
+                <count>10</count>
+              </li>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>ComponentIndustrial</li>
+                  </thingDefs>
+                </filter>
+                <count>2</count>
+              </li>
+            </ingredients>
+            <fixedIngredientFilter>
+              <thingDefs>
+                <li>Steel</li>
+                <li>MechaniteSlurry</li>
+                <li>ComponentIndustrial</li>
+              </thingDefs>
+            </fixedIngredientFilter>
+            <products>
+              <Shell_TF>5</Shell_TF>
+            </products>
+            <workAmount>13800</workAmount>
+          </RecipeDef>
+        </value>
+      </li>
+      <!--===WeaponDefs===-->
+      <!--Disable Vanilla Mutabow-->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="Mutabow"]</xpath>
+      </li>
+      <!--===Tagging Gun===-->
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="TST_Gun_TaggingGun"]/verbs/li[verbClass="Pawnmorph.Verbs.Tag"]</xpath>
+      </li>
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>TST_Gun_TaggingGun</defName>
+        <statBases>
+          <Mass>3</Mass>
+          <RangedWeapon_Cooldown>1.17</RangedWeapon_Cooldown>
+          <SightsEfficiency>1.1</SightsEfficiency>
+          <ShotSpread>0.21</ShotSpread>
+          <SwayFactor>1.33</SwayFactor>
+          <Bulk>10.03</Bulk>
+        </statBases>
+        <costList>
+          <Steel>60</Steel>
+          <ComponentIndustrial>3</ComponentIndustrial>
+          <Mutanite>1</Mutanite>
+        </costList>
+        <Properties>
+          <verbClass>Pawnmorph.Verbs.Tag</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>PM_Bullet_TaggingGun_Dart</defaultProjectile>
+          <warmupTime>1.1</warmupTime>
+          <range>55</range>
+          <soundCast>Shot_ChargeRifle</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+        </Properties>
+        <!--<AmmoUser><magazineSize>1</magazineSize><reloadTime>2.4</reloadTime><ammoSet>PM_AmmoSet_TaggingRifle</ammoSet></AmmoUser>-->
+        <!--<FireModes><aiAimMode>AimedShot</aiAimMode></FireModes>-->
+        <weaponTags>
+          <li>CE_AI_SR</li>
+        </weaponTags>
+        <AllowWithRunAndGun>false</AllowWithRunAndGun>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="TST_Gun_TaggingGun"]/label</xpath>
+        <value>
+          <label>tagging gun</label>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="TST_Gun_TaggingGun"]/graphicData/texPath</xpath>
+        <value>
+          <texPath>Things/Item/Dartgun</texPath>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="TST_Gun_TaggingGun"]</xpath>
+        <value>
+          <li Class="CombatExtended.GunDrawExtension">
+            <DrawSize>1.34,1.34</DrawSize>
+            <DrawOffset>0.12,-0.10</DrawOffset>
+          </li>
+        </value>
+      </li>
+      <!--===SMG===-->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Mutarifle</defName>
+        <statBases>
+          <Mass>2.15</Mass>
+          <RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
+          <SightsEfficiency>1.00</SightsEfficiency>
+          <ShotSpread>0.14</ShotSpread>
+          <SwayFactor>0.94</SwayFactor>
+          <Bulk>4.2</Bulk>
+          <WorkToMake>24500</WorkToMake>
+        </statBases>
+        <costList>
+          <Steel>30</Steel>
+          <ComponentIndustrial>5</ComponentIndustrial>
+        </costList>
+        <Properties>
+          <recoilAmount>1.20</recoilAmount>
+          <verbClass>CombatExtended.Verb_ShootCE</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>PM_Bullet_68Mutagen_Ball</defaultProjectile>
+          <warmupTime>0.6</warmupTime>
+          <range>15</range>
+          <burstShotCount>6</burstShotCount>
+          <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+          <soundCast>Shot_Autopistol</soundCast>
+          <soundCastTail>GunTail_Light</soundCastTail>
+          <muzzleFlashScale>9</muzzleFlashScale>
+        </Properties>
+        <AmmoUser>
+          <magazineSize>30</magazineSize>
+          <reloadTime>4</reloadTime>
+          <ammoSet>PM_AmmoSet_MutagenCapsule</ammoSet>
+        </AmmoUser>
+        <FireModes>
+          <aimedBurstShotCount>3</aimedBurstShotCount>
+          <aiUseBurstMode>FALSE</aiUseBurstMode>
+          <aiAimMode>Snapshot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>CE_SMG</li>
+          <li>CE_AI_BROOM</li>
+        </weaponTags>
+        <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Mutarifle" or defName="TST_Gun_TaggingGun" or defName="TST_Gun_EtherGun"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>stock</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <chanceFactor>1.5</chanceFactor>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>5</power>
+              <cooldownTime>2.02</cooldownTime>
+              <armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>muzzle</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.55</cooldownTime>
+              <armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!--===Rocket Launcher===-->
+      <li Class="PatchOperationAttributeSet">
+        <xpath>Defs/ThingDef[defName="Gun_MutagenicRocketLauncher"]</xpath>
+        <attribute>ParentName</attribute>
+        <value>BaseMakeableGun</value>
+      </li>
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="Gun_MutagenicRocketLauncher"]/statBases/MarketValue</xpath>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Gun_MutagenicRocketLauncher"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>barrel</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>2.44</cooldownTime>
+              <armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- Patch projectile -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Bullet_MutagenicRocket"]/thingClass</xpath>
+        <value>
+          <thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Bullet_MutagenicRocket"]/projectile</xpath>
+        <value>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <damageDef>MutagenCloud_Large</damageDef>
+            <explosionRadius>8.5</explosionRadius>
+            <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+            <damageAmountBase>12</damageAmountBase>
+            <speed>100</speed>
+            <explosionDamageFalloff>true</explosionDamageFalloff>
+            <explosionEffect>ExtinguisherExplosion</explosionEffect>
+            <postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+            <postExplosionSpawnChance>0.4</postExplosionSpawnChance>
+            <postExplosionSpawnThingCount>2</postExplosionSpawnThingCount>
+          </projectile>
+        </value>
+      </li>
+      <!-- Patch stats -->
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Gun_MutagenicRocketLauncher</defName>
+        <statBases>
+          <Mass>20.00</Mass>
+          <RangedWeapon_Cooldown>1.5</RangedWeapon_Cooldown>
+          <SightsEfficiency>2.24</SightsEfficiency>
+          <ShotSpread>0.2</ShotSpread>
+          <SwayFactor>3.24</SwayFactor>
+          <Bulk>13.0</Bulk>
+          <WorkToMake>49500</WorkToMake>
+        </statBases>
+        <costList>
+          <Steel>125</Steel>
+          <ComponentIndustrial>8</ComponentIndustrial>
+          <MechaniteSlurry>5</MechaniteSlurry>
+        </costList>
+        <Properties>
+          <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <defaultProjectile>Bullet_MutagenicRocket</defaultProjectile>
+          <warmupTime>2.1</warmupTime>
+          <range>48</range>
+          <burstShotCount>1</burstShotCount>
+          <soundCast>InfernoCannon_Fire</soundCast>
+          <soundCastTail>GunTail_Heavy</soundCastTail>
+          <onlyManualCast>true</onlyManualCast>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <muzzleFlashScale>14</muzzleFlashScale>
+        </Properties>
+        <FireModes>
+          <aiAimMode>AimedShot</aiAimMode>
+        </FireModes>
+        <weaponTags>
+          <li>CE_AI_AOE</li>
+        </weaponTags>
+        <researchPrerequisite>CE_AdvancedLaunchers</researchPrerequisite>
+        <AllowWithRunAndGun>false</AllowWithRunAndGun>
+      </li>
+      <!--===Grenade===-->
+      <!--Kill recipe maker-->
+      <li Class="PatchOperationAttributeSet">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]</xpath>
+        <attribute>ParentName</attribute>
+        <value>BaseWeapon</value>
+      </li>
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]/recipeMaker</xpath>
+      </li>
+      <!--Melee tools-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>Body</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>1.75</cooldownTime>
+              <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!--Projectile-->
+      <li Class="PatchOperationAttributeRemove">
+        <xpath>Defs/ThingDef[defName="Proj_GrenadeTF"]</xpath>
+        <attribute>Class</attribute>
+      </li>
+      <li Class="PatchOperationRemove">
+        <xpath>Defs/ThingDef[defName="Proj_GrenadeTF"]/AddHediffChance</xpath>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Proj_GrenadeTF"]/projectile</xpath>
+        <value>
+          <projectile Class="CombatExtended.ProjectilePropertiesCE">
+            <explosionRadius>3.5</explosionRadius>
+            <damageDef>MutagenCloud</damageDef>
+            <explosionDelay>100</explosionDelay>
+            <explosionEffect>ExtinguisherExplosion</explosionEffect>
+            <preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+            <preExplosionSpawnChance>0.8</preExplosionSpawnChance>
+            <postExplosionSpawnThingDef>Gas_Mutagen</postExplosionSpawnThingDef>
+            <postExplosionSpawnChance>1</postExplosionSpawnChance>
+            <speed>12</speed>
+            <screenShakeFactor>0</screenShakeFactor>
+          </projectile>
+        </value>
+      </li>
+      <!-- Grenade -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]/label</xpath>
+        <value>
+          <label>mutagenic grenade</label>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]/graphicData</xpath>
+        <value>
+          <graphicData>
+            <texPath>Things/Ammo/HandGrenades/Mutagenic</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+            <onGroundRandomRotateAngle>0</onGroundRandomRotateAngle>
+          </graphicData>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]</xpath>
+        <value>
+          <thingClass>CombatExtended.AmmoThing</thingClass>
+          <stackLimit>75</stackLimit>
+          <resourceReadoutPriority>First</resourceReadoutPriority>
+        </value>
+      </li>
+      <li Class="PatchOperationAttributeSet">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]</xpath>
+        <attribute>Class</attribute>
+        <value>CombatExtended.AmmoDef</value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Weapon_GrenadeTF"]/comps</xpath>
+        <value>
+          <comps>
+            <li Class="CombatExtended.CompProperties_ExplosiveCE">
+              <explosiveRadius>3.5</explosiveRadius>
+              <explosiveDamageType>MutagenCloud</explosiveDamageType>
+              <preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+              <preExplosionSpawnChance>0.8</preExplosionSpawnChance>
+              <postExplosionSpawnThingDef>Gas_Mutagen</postExplosionSpawnThingDef>
+              <postExplosionSpawnChance>1</postExplosionSpawnChance>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <li Class="CombatExtended.PatchOperationMakeGunCECompatible">
+        <defName>Weapon_GrenadeTF</defName>
+        <statBases>
+          <Mass>0.75</Mass>
+          <Bulk>1.05</Bulk>
+          <MarketValue>15.33</MarketValue>
+          <RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+          <SightsEfficiency>0.65</SightsEfficiency>
+        </statBases>
+        <Properties>
+          <label>throw mutagenic grenade</label>
+          <verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+          <hasStandardCommand>true</hasStandardCommand>
+          <range>10</range>
+          <warmupTime>0.8</warmupTime>
+          <noiseRadius>4</noiseRadius>
+          <ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>
+          <soundCast>ThrowGrenade</soundCast>
+          <targetParams>
+            <canTargetLocations>true</canTargetLocations>
+          </targetParams>
+          <defaultProjectile>Proj_GrenadeTF</defaultProjectile>
+          <onlyManualCast>true</onlyManualCast>
+          <ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+          <ai_AvoidFriendlyFireRadius>3</ai_AvoidFriendlyFireRadius>
+        </Properties>
+        <weaponTags>
+          <li>CE_AI_AOE</li>
+          <li>CE_OneHandedWeapon</li>
+          <li>PawnmorpherGun</li>
+          <li>PMGrenadeMutagenic</li>
+        </weaponTags>
+      </li>
+      <!--Recipe-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs</xpath>
+        <value>
+          <RecipeDef ParentName="GrenadeRecipeBase">
+            <defName>MakeMutagenicGrenades</defName>
+            <label>make mutagenic grenades x10</label>
+            <description>Craft 10 mutagenic grenades.</description>
+            <jobString>Making mutagenic grenades.</jobString>
+            <workAmount>4400</workAmount>
+            <ingredients>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>Steel</li>
+                  </thingDefs>
+                </filter>
+                <count>8</count>
+              </li>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>MechaniteSlurry</li>
+                  </thingDefs>
+                </filter>
+                <count>4</count>
+              </li>
+              <li>
+                <filter>
+                  <thingDefs>
+                    <li>ComponentIndustrial</li>
+                  </thingDefs>
+                </filter>
+                <count>2</count>
+              </li>
+            </ingredients>
+            <fixedIngredientFilter>
+              <thingDefs>
+                <li>Steel</li>
+                <li>MechaniteSlurry</li>
+                <li>ComponentIndustrial</li>
+              </thingDefs>
+            </fixedIngredientFilter>
+            <products>
+              <Weapon_GrenadeTF>10</Weapon_GrenadeTF>
+            </products>
+            <researchPrerequisite>MutagenicWeapons</researchPrerequisite>
+          </RecipeDef>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

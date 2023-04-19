@@ -1,39 +1,37 @@
-﻿using Pawnmorph.Utilities;
-using UnityEngine;
-using Verse;
+﻿using Verse;
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// hediff type for mutagenic buildup
-    /// </summary>
-    /// <seealso cref="Pawnmorph.Hediffs.MorphTf" />
-    /// should add more and more mutations as severity increases, with a full tf at a severity of 1
-    public class MutagenicBuildup : MorphTf
-    {
-        /// <summary>
-        /// Tries the merge with the other hediff
-        /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns></returns>
-        public override bool TryMergeWith(Hediff other)
-        {
-            if (other is MutagenicBuildup buildup)
-            {
-               
-                Severity += other.Severity; 
-                foreach (HediffComp hediffComp in comps)
-                {
-                    hediffComp.CompPostMerged(other); 
-                }
+	/// <summary>
+	/// hediff type for mutagenic buildup
+	/// </summary>
+	/// <seealso cref="Pawnmorph.Hediffs.MorphTf" />
+	/// should add more and more mutations as severity increases, with a full tf at a severity of 1
+	public class MutagenicBuildup : MorphTf
+	{
+		/// <summary>
+		/// Tries the merge with the other hediff
+		/// </summary>
+		/// <param name="other">The other.</param>
+		/// <returns></returns>
+		public override bool TryMergeWith(Hediff other)
+		{
+			if (other is MutagenicBuildup buildup)
+			{
 
-                ResetMutationOrder();
-                return true;
-            }
+				Severity += other.Severity;
+				foreach (HediffComp hediffComp in comps)
+				{
+					hediffComp.CompPostMerged(other);
+				}
 
-            return false; 
-        }
-    }
+				ResetMutationOrder();
+				return true;
+			}
 
-  
+			return false;
+		}
+	}
+
+
 }

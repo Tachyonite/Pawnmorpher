@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pawnmorph.Abilities
+﻿namespace Pawnmorph.Abilities
 {
-    /// <summary>
-    /// Different mutation ability states.
-    /// </summary>
-    public enum MutationAbilityState
-    {
-        /// <summary>
-        /// Ability is not currently doing anything.
-        /// </summary>
-        None,
+	/// <summary>
+	/// Different mutation ability states.
+	/// </summary>
+	public enum MutationAbilityState
+	{
+		/// <summary>
+		/// Ability is not currently doing anything.
+		/// </summary>
+		None,
 
-        /// <summary>
-        /// Ability is currently active.
-        /// </summary>
-        Active,
+		/// <summary>
+		/// Ability is currently active.
+		/// </summary>
+		Active,
 
-        /// <summary>
-        /// Ability is currently being cast.
-        /// </summary>
-        Casting,
+		/// <summary>
+		/// Ability is currently being cast.
+		/// </summary>
+		Casting,
 
-        /// <summary>
-        /// Ability is currently cooling down.
-        /// </summary>
-        Cooldown,
-    }
+		/// <summary>
+		/// Ability is currently cooling down.
+		/// </summary>
+		Cooldown,
+	}
 }

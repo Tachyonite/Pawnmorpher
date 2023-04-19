@@ -1,0 +1,25 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CamelidMorph">
+		<defName>AlpacaMorph</defName>
+		<label>alpacamorph</label>
+		<group>HerbivoreHerding</group>
+		<description>Alpacamorphs are rather woolly herbivorous humanoids who often have hooves. They produce good amounts of soft wool, which they can shave off themselves... and they don't need your help, thank you.</description>
+		<race>Alpaca</race>
+		<categories>
+			<li>Temperate</li>
+			<li>Tropical</li>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphAlpacaTF</fullTransformation>
+		<partialTransformation>PawnmorphAlpacaTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(223,188,126)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>AlpacaTransformationMemory</transformationMemory>
+			<revertedMemory>AlpacaRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

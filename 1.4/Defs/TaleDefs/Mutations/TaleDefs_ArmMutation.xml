@@ -1,0 +1,17 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>ArmBecomsWing</defName>
+		<label>arm becomes wing</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s arms changing</li>
+				<li>tale_noun->[PAWN_nameDef]'s twisting and contorting into wings</li>
+				<li>image->[PAWN_nameFull] flaps [PAWN_possessive] arms [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] tries to lift something [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to unfurl their wings.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to lift off the ground.</li>
+				<li>circumstance_group->while someone pats [PAWN_possessive] head</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

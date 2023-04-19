@@ -1,0 +1,82 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
+		<mutationMemory>EtherAlphabeaverJaw</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverJaw</defName>
+		<label>alphabeaver snout</label>
+		<graphics>
+			<Muzzle>Parts/Alphabeaver/Alphabeaver_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A robust beaver jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. On the other hand, those teeth make speech very difficult, and [PAWN_nameDef] has a hearty appetite.</description>
+					<hungerRateFactor>1</hungerRateFactor>
+					<statOffsets>
+						<PlantWorkSpeed>0.1</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. Adaptation has made speaking a little easier, but [PAWN_nameDef] still has a hearty appetite.</description>
+					<hungerRateFactor>1.5</hungerRateFactor>
+					<statOffsets>
+						<PlantWorkSpeed>0.2</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A robust rodent jaw has formed on [PAWN_nameDef]'s face with strong front teeth, being able to cut trees and other plants in a few quick bites. With further adaptation, [PAWN_nameDef] is talking normally, but still need to eat more than normal.</description>
+					<hungerRateFactor>1.5</hungerRateFactor>
+					<statOffsets>
+						<PlantWorkSpeed>0.3</PlantWorkSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
+		<mutationMemory>EtherAlphabeaverEar</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverEar</defName>
+		<label>alphabeaver ear</label>
+		<graphics>
+			<LeftEar>Parts/Alphabeaver/Alphabeaver_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Alphabeaver/Alphabeaver_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Alphabeaver/Alphabeaver_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Alphabeaver/Alphabeaver_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fuzzy and waterproof ear has replaced [PAWN_nameDef]'s normal ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealTailPart">
+		<mutationMemory>EtherAlphabeaverTail</mutationMemory>
+		<classInfluence>AlphabeaverMorph</classInfluence>
+		<defName>EtherAlphabeaverTail</defName>
+		<label>alphabeaver tail</label>
+		<graphics>
+			<Tail>Parts/Alphabeaver/Alphabeaver_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A perfect rudder in most scenarios, this tail can be used to speed up construction by inventive means known only to the user of one. Also really useful for smoothing floors.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

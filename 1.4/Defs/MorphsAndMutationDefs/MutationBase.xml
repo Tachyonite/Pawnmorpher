@@ -1,0 +1,36 @@
+<Defs>
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPartNoRmComp" Abstract="True">
+		<hediffClass>Pawnmorph.Hediff_AddedMutation</hediffClass>
+		<defaultLabelColor>(121, 55, 145)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<value>10</value>
+		<addedPartProps>
+			<solid>true</solid>
+		</addedPartProps>
+		<isBad>false</isBad>
+		<maxSeverity>3</maxSeverity> <!-- the custom severity per day comp on most mutations will limit this to 1 for most pawns  -->
+		<minSeverity>-2</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<alwaysAllowMothball>True</alwaysAllowMothball>
+		<alwaysAllowMothballCached>True</alwaysAllowMothballCached>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPart" Abstract="True" ParentName="PawnmorphPartNoRmComp">
+		<initialSeverity>0.1</initialSeverity>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layer>Core</layer>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphPartCombo" Abstract="True" ParentName="PawnmorphPartNoRmComp">
+		<defaultLabelColor>(160, 55, 186)</defaultLabelColor>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layer>Core</layer>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

@@ -1,0 +1,180 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef Abstract="true" Name="FH_PersistentThought">
+		<workerClass>Pawnmorph.Thoughts.Worker_FormerHuman</workerClass>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_PersistentThought">
+		<defName>FH_PersistentThoughtDefault</defName>
+		<nullifyingTraits>
+			<li>BodyPurist</li>
+			<li>MutationAffinity</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>I can hardly believe my eyes. I'm a goddamn animal!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>lingering instinct</label>
+				<description>Something's tugging at my mind...it's the animal.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>conflicted mind</label>
+				<description>I shouldn't give in but it's...getting cloudy in here.</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>hard to think...</label>
+				<description>Gotta...stay...focused. All I want to do is eat and sleep!</description>
+			</li>
+			<li>
+				<label>feral animal</label>
+				<description>...food?</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+			<li>
+				<label>...</label>
+				<description>Food!</description>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AspectRestriction">
+				<invert>true</invert>
+				<aspectEntries>
+					<li>
+						<aspectDef>PrimalWish</aspectDef>
+					</li>
+				</aspectEntries>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_PersistentThought">
+		<defName>FH_PersistentThoughtMA</defName> <!-- mutation affinity -->
+		<requiredTraits>
+			<li>MutationAffinity</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>This is a little bit more extreme than I wanted, but ok.</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>lingering instinct</label>
+				<description>Hmm...I could get used feeling like an animal.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>conflicted mind</label>
+				<description>The call of the wild is getting stronger...and I don't really mind it.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+			<li>
+				<label>hard to think...</label>
+				<description>I should stay focused, but...I'm comfortable like this.</description>
+				<baseMoodEffect>6</baseMoodEffect>
+			</li>
+			<li>
+				<label>feral animal</label>
+				<description>...food?</description>
+			</li>
+			<li>
+				<label>...</label>
+				<description>Food!</description>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AspectRestriction">
+				<invert>true</invert>
+				<aspectEntries>
+					<li>
+						<aspectDef>PrimalWish</aspectDef>
+					</li>
+				</aspectEntries>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_PersistentThought">
+		<defName>FH_PersistentThoughtBP</defName> <!-- body purist-->
+		<requiredTraits>
+			<li>BodyPurist</li>
+		</requiredTraits>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>This is not what I wanted at all, for the love of all that is good, please, someone turn me back!</description>
+				<baseMoodEffect>-20</baseMoodEffect>
+			</li>
+			<li>
+				<label>lingering instinct</label>
+				<description>I need to stay strong, but it's difficult when every sense is overwhelmed!</description>
+				<baseMoodEffect>-15</baseMoodEffect>
+			</li>
+			<li>
+				<label>conflicted mind</label>
+				<description>No, god, no...the animal in my mind is taking over...getting foggy in here...</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>hard to think...</label>
+				<description>Gotta...keep...going...but...can't...</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>feral animal</label>
+				<description>...food?</description>
+			</li>
+			<li>
+				<label>...</label>
+				<description>Food!</description>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="FH_PersistentThought">
+		<defName>FH_PersistentThoughtPW</defName> <!-- primal wish -->
+		<stages>
+			<li>
+				<label>primal wish fulfilled</label>
+				<description>I got exactly what I wanted. Now, when does the instinct kick in?</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+			<li>
+				<label>lingering instinct</label>
+				<description>Hmm, all these sights and smells from a different viewpoint is extremely interesting!</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>conflicted mind</label>
+				<description>Wow, this uh...this instinct is getting strong. I think I'm still ok with it...</description>
+				<baseMoodEffect>15</baseMoodEffect>
+			</li>
+			<li>
+				<label>hard to think...</label>
+				<description>Might...just...give...in...</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+			<li>
+				<label>feral animal</label>
+				<description>...food?</description>
+			</li>
+			<li>
+				<label>...</label>
+				<description>Food!</description>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.AspectRestriction">
+				<aspectEntries>
+					<li>
+						<aspectDef>PrimalWish</aspectDef>
+					</li>
+				</aspectEntries>
+			</li>
+		</modExtensions>
+	</ThoughtDef>
+</Defs>

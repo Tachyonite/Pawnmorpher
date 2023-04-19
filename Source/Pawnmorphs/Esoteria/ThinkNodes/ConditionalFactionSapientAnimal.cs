@@ -7,28 +7,28 @@ using Verse.AI;
 
 namespace Pawnmorph.ThinkNodes
 {
-    /// <summary>
-    /// conditional node for sapient animals that are part of a faction other then the player's
-    /// </summary>
-    /// <seealso cref="Verse.AI.ThinkNode_Conditional" />
-    public class ConditionalFactionSapientAnimal : ThinkNode_Conditional
-    {
-        /// <summary>
-        /// The sapience cutoff
-        /// </summary>
-        public SapienceLevel cutoff;
+	/// <summary>
+	/// conditional node for sapient animals that are part of a faction other then the player's
+	/// </summary>
+	/// <seealso cref="Verse.AI.ThinkNode_Conditional" />
+	public class ConditionalFactionSapientAnimal : ThinkNode_Conditional
+	{
+		/// <summary>
+		/// The sapience cutoff
+		/// </summary>
+		public SapienceLevel cutoff;
 
-        /// <summary>
-        /// check if the pawn satisfies this condition.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns></returns>
-        protected override bool Satisfied(Pawn pawn)
-        {
-            return pawn.IsFormerHuman()
-                && pawn.GetQuantizedSapienceLevel() <= cutoff
-                && pawn.Faction != null
-                && pawn.Faction != Faction.OfPlayer; 
-        }
-    }
+		/// <summary>
+		/// check if the pawn satisfies this condition.
+		/// </summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <returns></returns>
+		protected override bool Satisfied(Pawn pawn)
+		{
+			return pawn.IsFormerHuman()
+				&& pawn.GetQuantizedSapienceLevel() <= cutoff
+				&& pawn.Faction != null
+				&& pawn.Faction != Faction.OfPlayer;
+		}
+	}
 }

@@ -7,48 +7,48 @@ using Verse;
 
 namespace Pawnmorph.Thoughts
 {
-    /// <summary> Thought worker that works like ThoughtWorker_Hediff except is also respects traits. </summary>
-    public class Worker_HediffTrait: ThoughtWorker
-    {
-        /// <summary>Gets the current thought state of the given pawn</summary>
-        /// <param name="p">The pawn.</param>
-        /// <returns></returns>
-        protected override ThoughtState CurrentStateInternal(Pawn p)
-        {
-            var firstHediff = p.health?.hediffSet?.GetFirstHediffOfDef(def.hediff); 
-            if(firstHediff?.def.stages == null) return ThoughtState.Inactive; //the target hediff must have stages 
+	/// <summary> Thought worker that works like ThoughtWorker_Hediff except is also respects traits. </summary>
+	public class Worker_HediffTrait : ThoughtWorker
+	{
+		/// <summary>Gets the current thought state of the given pawn</summary>
+		/// <param name="p">The pawn.</param>
+		/// <returns></returns>
+		protected override ThoughtState CurrentStateInternal(Pawn p)
+		{
+			var firstHediff = p.health?.hediffSet?.GetFirstHediffOfDef(def.hediff);
+			if (firstHediff?.def.stages == null) return ThoughtState.Inactive; //the target hediff must have stages 
 
-            if(!CheckTraits(p)) return ThoughtState.Inactive;
+			if (!CheckTraits(p)) return ThoughtState.Inactive;
 
-            var hStageIndex = firstHediff.CurStageIndex;
-            var index = Mathf.Min(def.stages.Count - 1, hStageIndex);
+			var hStageIndex = firstHediff.CurStageIndex;
+			var index = Mathf.Min(def.stages.Count - 1, hStageIndex);
 
-            return ThoughtState.ActiveAtStage(index);
-        }
+			return ThoughtState.ActiveAtStage(index);
+		}
 
-        /// <summary> Check to make sure that the pawn's traits allow for the thought to be active. </summary>
-        /// <returns> If traits allow the thought can be active. </returns>
-        private bool CheckTraits(Pawn pawn)
-        {
-            var storyTraits = pawn.story?.traits;
-            if (def.nullifyingTraits != null)
-            {
-                foreach (var nullifyingTrait in def.nullifyingTraits)
-                {
-                    if (storyTraits?.HasTrait(nullifyingTrait) ?? false) return false; 
-                }
-            }
+		/// <summary> Check to make sure that the pawn's traits allow for the thought to be active. </summary>
+		/// <returns> If traits allow the thought can be active. </returns>
+		private bool CheckTraits(Pawn pawn)
+		{
+			var storyTraits = pawn.story?.traits;
+			if (def.nullifyingTraits != null)
+			{
+				foreach (var nullifyingTrait in def.nullifyingTraits)
+				{
+					if (storyTraits?.HasTrait(nullifyingTrait) ?? false) return false;
+				}
+			}
 
-            if(def.requiredTraits != null)
-            {
-                if (storyTraits == null) return false;
-                foreach (var requiredTrait in def.requiredTraits)
-                {
-                    if (!storyTraits.HasTrait(requiredTrait)) return false; 
-                }
-            }
+			if (def.requiredTraits != null)
+			{
+				if (storyTraits == null) return false;
+				foreach (var requiredTrait in def.requiredTraits)
+				{
+					if (!storyTraits.HasTrait(requiredTrait)) return false;
+				}
+			}
 
-            return true; 
-        }
-    }
+			return true;
+		}
+	}
 }

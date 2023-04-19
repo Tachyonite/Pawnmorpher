@@ -11,7 +11,8 @@
 		<fullTransformation>PawnmorphFennecFoxTF</fullTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(203,167,107)</skinColorOverride>
+				<skinColorOverride>(229,186,126)</skinColorOverride>
+				<hairColorOverride>(204,168,112)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>

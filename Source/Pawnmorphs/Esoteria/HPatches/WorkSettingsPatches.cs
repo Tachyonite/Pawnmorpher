@@ -8,22 +8,22 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    static class WorkSettingsPatches
-    {
-        [HarmonyPatch(typeof(Pawn_WorkSettings)), HarmonyPatch(nameof(Pawn_WorkSettings.EnableAndInitialize))]
-        static class InitializationPatch
-        {
-            [HarmonyPostfix]
-            static void InitializeForFormerHumans([NotNull] Pawn_WorkSettings __instance, [NotNull] Pawn ___pawn)
-            {
-                if (___pawn.IsFormerHuman() && ___pawn.workSettings != null)
-                {
+	static class WorkSettingsPatches
+	{
+		[HarmonyPatch(typeof(Pawn_WorkSettings)), HarmonyPatch(nameof(Pawn_WorkSettings.EnableAndInitialize))]
+		static class InitializationPatch
+		{
+			[HarmonyPostfix]
+			static void InitializeForFormerHumans([NotNull] Pawn_WorkSettings __instance, [NotNull] Pawn ___pawn)
+			{
+				if (___pawn.IsFormerHuman() && ___pawn.workSettings != null)
+				{
 
-                    FormerHumanUtilities.InitializeWorkSettingsFor(___pawn, __instance); 
+					FormerHumanUtilities.InitializeWorkSettingsFor(___pawn, __instance);
 
 
-                }
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 }

@@ -1,0 +1,63 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaJawPart">
+		<classInfluence>IguanaMorph</classInfluence>
+		<defName>EtherIguanaSnout</defName>
+		<label>iguana snout</label>
+		<graphics>
+			<Muzzle>Parts/Iguana/Iguana_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="LacertiliaTailPart">
+		<classInfluence>IguanaMorph</classInfluence>
+		<defName>EtherIguanaTail</defName>
+		<label>iguana tail</label>
+		<graphics>
+			<Tail>Parts/None/None</Tail>
+			<BodyExtendingTail>Parts/Iguana/Iguana_Tail</BodyExtendingTail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>A small tail has appeared at the base of [PAWN_nameDef]'s spine. It's rapidly growing longer and thicker.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s tail reaching his ankles and has become very thick. It'll take some time before [PAWN_nameDef] gets used to it.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, muscular tail has grown from [PAWN_nameDef]'s spine. It's tough enough to shrug off brutal attacks and sturdy so [PAWN_nameDef] can brace against it, keeping them stable.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>IguanaMorph</classInfluence>
+		<defName>EtherIguanaHorns</defName>
+		<description>A series of spines drapes down the back. Would look good with a spiky hairstyle</description>
+		<label>spines</label>
+		<graphics>
+			<Skullspike>Parts/Iguana/Iguana_Spines</Skullspike>
+		</graphics>
+		<parts>
+			<li>Head</li>
+		</parts>
+		<blockSites>
+			<li>Skull</li>
+		</blockSites>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

@@ -3,26 +3,26 @@
 
 namespace Pawnmorph.DebugUtils
 {
-    /// <summary>
-    ///     enum for different modes functions can record errors
-    /// </summary>
-    public enum LogFailMode
-    {
-        /// <summary>
-        /// fails  are ignored 
-        /// </summary>
-        Silent,
-        /// <summary>
-        /// fails are logged and ignored 
-        /// </summary>
-        Log,
-        /// <summary>
-        /// fails produce a warning and ignored 
-        /// </summary>
-        Warning,
-        /// <summary>
-        /// fails produce an error
-        /// </summary>
-        Error
-    }
+	/// <summary>
+	///     enum for different modes functions can record errors
+	/// </summary>
+	public enum LogFailMode
+	{
+		/// <summary>
+		/// fails  are ignored 
+		/// </summary>
+		Silent,
+		/// <summary>
+		/// fails are logged and ignored 
+		/// </summary>
+		Log,
+		/// <summary>
+		/// fails produce a warning and ignored 
+		/// </summary>
+		Warning,
+		/// <summary>
+		/// fails produce an error
+		/// </summary>
+		Error
+	}
 }

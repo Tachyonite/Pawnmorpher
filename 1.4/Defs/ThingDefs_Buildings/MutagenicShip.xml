@@ -1,0 +1,71 @@
+<Defs>
+  <ThingDef ParentName="CrashedShipPartBase" Name="MutagenicShipPartBase" Abstract="True">
+    <!-- same as ship part base minus the snow expanding comp -->
+   
+  </ThingDef>
+
+    <ThingDef ParentName="MutagenicShipPartBase">
+        <defName>CrashedMutagenicShipPart</defName>
+        <label>ship part (mutagenic)</label>
+        <description>A mysterious crashed piece of a spaceship. It may contain any manner of deadly defenders and exotic materials. This one seems to have mutagenic effects.</description>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <graphicData>
+            <texPath>Things/Building/MutationShipPart</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(6,3)</drawSize>
+            <shadowData>
+                <volume>(5.5, 1.0, 2.45)</volume>
+            </shadowData>
+        </graphicData>
+        <killedLeavings>
+            <MechaniteSlurry>5</MechaniteSlurry>
+            <ReversionSyringe>2</ReversionSyringe>
+        </killedLeavings>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.ShowMutationRadius</li>
+        </placeWorkers>
+        <comps>
+            <li Class="CompProperties_Glower">
+                <glowRadius>12</glowRadius>
+                <glowColor>(217,80,80,0)</glowColor>
+            </li>
+            <li Class="Pawnmorph.CompProperties_MutagenicRadius">
+
+                <radiusPerDayCurve>
+                    <points>
+                        <li>0,10</li>
+                        <li>1,20</li>
+                        <li>3,30</li>
+                        <li>5,35</li>
+                        <li>10,50</li>
+                        <li>15,100</li>
+                    </points>
+                </radiusPerDayCurve>
+                <hediff>FullRandomTFAnyOutcome</hediff>
+                <harmFrequencyPerArea>1</harmFrequencyPerArea>
+            </li>
+        </comps>
+    </ThingDef>
+
+
+  <ThingDef ParentName="SkyfallerBase">
+    <defName>CrashedMutagenicShipPartIncoming</defName>
+    <label>crashed ship part (incoming)</label>
+    <size>(6, 3)</size>
+    <skyfaller>
+      <shadow>Things/Skyfaller/SkyfallerShadowRectangle</shadow>
+      <shadowSize>(7, 3.5)</shadowSize>
+      <explosionRadius>5</explosionRadius>
+      <explosionDamage>MutagenCloud_Large</explosionDamage>
+      <cameraShake>1</cameraShake>
+      <metalShrapnelCountRange>
+        <min>6</min>
+        <max>10</max>
+      </metalShrapnelCountRange>
+      <rubbleShrapnelCountRange>
+        <min>300</min>
+        <max>400</max>
+      </rubbleShrapnelCountRange>
+    </skyfaller>
+  </ThingDef>
+</Defs>

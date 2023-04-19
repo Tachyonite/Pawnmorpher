@@ -1,0 +1,70 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralJawPart">
+		<mutationMemory>EtherRatSnout</mutationMemory>
+		<classInfluence>RatMorph</classInfluence>
+		<defName>EtherRatSnout</defName>
+		<label>rat snout</label>
+		<graphics>
+			<Muzzle>Parts/Rat/Rat_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a rat, complete with oversized front teeth. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a rat. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a rat. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
+		<mutationMemory>EtherRatEar</mutationMemory>
+		<classInfluence>RatMorph</classInfluence>
+		<defName>EtherRatEar</defName>
+		<label>rat ear</label>
+		<graphics>
+			<LeftEar>Parts/Rat/Rat_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Rat/Rat_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Rat/Rat_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Rat/Rat_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A grey-furred, rounded ear listens carefully for predators.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralTailPart">
+		<mutationMemory>EtherRatTail</mutationMemory>
+		<classInfluence>RatMorph</classInfluence>
+		<defName>EtherRatTail</defName>
+		<label>rat tail</label>
+		<graphics>
+			<Tail>Parts/Rat/Rat_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A ratty tail, hairless, long and snaking.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

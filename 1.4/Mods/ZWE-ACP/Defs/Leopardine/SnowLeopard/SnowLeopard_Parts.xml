@@ -1,0 +1,19 @@
+<Defs>
+    <Pawnmorph.Hediffs.MutationDef ParentName="LeopardJawBase">
+        <defName>EtherSnowLeopardJaw</defName>
+        <classInfluence>SnowLeopardMorph</classInfluence>
+        <mutationMemory>EtherSnowLeopardJaw</mutationMemory>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef ParentName="LeopardEarBase">
+        <defName>EtherSnowLeopardEar</defName>
+        <classInfluence>SnowLeopardMorph</classInfluence>
+        <mutationMemory>EtherSnowLeopardEar</mutationMemory>
+    </Pawnmorph.Hediffs.MutationDef>
+
+    <Pawnmorph.Hediffs.MutationDef ParentName="LeopardTailBase">
+        <defName>EtherSnowLeopardTail</defName>
+        <classInfluence>SnowLeopardMorph</classInfluence>
+        <mutationMemory>EtherSnowLeopardTail</mutationMemory>
+    </Pawnmorph.Hediffs.MutationDef>
+</Defs>

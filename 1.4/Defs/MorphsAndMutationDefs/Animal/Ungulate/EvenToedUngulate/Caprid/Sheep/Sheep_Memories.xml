@@ -1,0 +1,160 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SheepTransformationMemory</defName>
+		<stages>
+			<li>
+				<label>changed</label>
+				<description>Ugh, that's a lot of hair. Where's the shears — er, I mean, razor?</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>I'm so cute and fluffy!</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>I'm shedding everywhere, this is disgusting.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>changed</label>
+				<description>Hmmm... I wonder how much more sheeplike I could baaaah?</description>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SheepRevertedMemory</defName>
+		<stages>
+			<li>
+				<label>reverted</label>
+				<description>Ha, no more shearings for me!</description>
+				<baseMoodEffect>3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw, I liked having wool.</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Thank Randy, I no longer smell like wet hair all the time.</description>
+				<baseMoodEffect>10</baseMoodEffect>
+			</li>
+			<li>
+				<label>reverted</label>
+				<description>Aw, I wanted to be more sheepish, not less.</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSheepSnout</defName>
+		<stages>
+			<li>
+				<label>Sheep face</label>
+				<description>Baaaaaaaa? I don't really want to eat grass...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep face</label>
+				<description>Who needs a lawnmower when you could just do it yourself?</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep face</label>
+				<description>Wha-a-a-at's wrong my my fa-a-a-aace?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep face</label>
+				<description>I don't need to be able to cook when I could just eat grass!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSheepEye</defName>
+		<stages>
+			<li>
+				<label>Sheep eye</label>
+				<description>The pupils look so...animal.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep eye</label>
+				<description>Nobody can sneak up on me now...!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep eye</label>
+				<description>They make me look like a stupid sheep!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSheepEar</defName>
+		<stages>
+			<li>
+				<label>Sheep ear</label>
+				<description>They are really annoying sometimes, blocking my vision flopping around.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep ear</label>
+				<description>Baaaa! Look at my ears!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep ear</label>
+				<description>I look like I belong in a cage...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSheepTail</defName>
+		<stages>
+			<li>
+				<label>Sheep tail</label>
+				<description>Nubby...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep tail</label>
+				<description>It's soooo cute!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Sheep tail</label>
+				<description>This is too weird for me, but at least I can hide it from people.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

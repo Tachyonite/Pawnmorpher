@@ -1,0 +1,16 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="RhinocerotidaeMorph">
+		<defName>RhinocerosMorph</defName>
+		<label>rhinomorph</label>
+		<description>A massive humanoid resembling a rhinoceros, usually with a horned nose and an angry look in their eyes. They are dangerous at combat, often utilizing their horn to charge their victims.</description>
+		<race>Rhinoceros</race>
+		<injectorDef>RhinocerosTransformer</injectorDef>
+		<fullTransformation>PawnmorphRhinocerosTF</fullTransformation>
+		<partialTransformation>PawnmorphRhinocerosTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(140,140,140)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

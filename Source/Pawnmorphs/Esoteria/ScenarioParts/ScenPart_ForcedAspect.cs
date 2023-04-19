@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using UnityEngine;
 using Verse;
-using RimWorld;
+
 #pragma warning disable 1591
 
 namespace Pawnmorph.ScenarioParts
@@ -20,17 +21,17 @@ namespace Pawnmorph.ScenarioParts
 			Rect scenPartRect = listing.GetScenPartRect(this, RowHeight * 3f + 31f);
 			if (Widgets.ButtonText(scenPartRect.TopPartPixels(RowHeight), aspectDef.LabelCap))
 			{
-				FloatMenuUtility.MakeMenu(PossibleAspects(), (AspectDef ad) => ad.LabelCap, (AspectDef ad) => delegate()
+				FloatMenuUtility.MakeMenu(PossibleAspects(), (AspectDef ad) => ad.LabelCap, (AspectDef ad) => delegate ()
 				{
 					aspectDef = ad;
 					if (stageIndex >= aspectDef.stages.Count())
-                    {
-						stageIndex = aspectDef.stages.Count()-1;
-                    }
+					{
+						stageIndex = aspectDef.stages.Count() - 1;
+					}
 					if (stageIndex < 0)
-                    {
+					{
 						stageIndex = 0;
-                    }
+					}
 				});
 			}
 			if (Widgets.ButtonText(new Rect(scenPartRect.x, scenPartRect.y + RowHeight, scenPartRect.width, 31f), aspectDef.stages[stageIndex].LabelCap ?? aspectDef.LabelCap))
@@ -46,8 +47,8 @@ namespace Pawnmorph.ScenarioParts
 		private IEnumerable<AspectDef> PossibleAspects()
 		{
 			return from x in DefDatabase<AspectDef>.AllDefsListForReading
-			where x.scenarioCanAdd
-			select x;
+				   where x.scenarioCanAdd
+				   select x;
 		}
 
 		public override void ExposeData()

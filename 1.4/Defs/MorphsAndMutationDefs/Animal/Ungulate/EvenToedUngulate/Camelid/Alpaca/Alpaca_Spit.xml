@@ -1,0 +1,131 @@
+<Defs>
+
+	<ManeuverDef>
+		<defName>SpitInEyes</defName>
+		<requiredCapacity>SpitInEyes</requiredCapacity>
+		<verb>
+			<verbClass>Verb_MeleeApplyHediff</verbClass>
+			<bodypartTagTarget>SightSource</bodypartTagTarget>
+			<minIntelligence>ToolUser</minIntelligence>
+			<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+		</verb>
+		<logEntryDef>SpitInEyes</logEntryDef>
+		<combatLogRulesHit>Maneuver_SpitMaterialInEyes_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_SpitMaterialInEyes_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_SpitMaterialInEyes_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_SpitMaterialInEyes_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+	
+	<ManeuverDef>
+		<defName>SpitInMouth</defName>
+		<requiredCapacity>SpitInEyes</requiredCapacity>
+		<verb>
+			<verbClass>Verb_MeleeApplyHediff</verbClass>
+			<bodypartTagTarget>SightSource</bodypartTagTarget>
+			<minIntelligence>ToolUser</minIntelligence>
+			<impactFleck>DustPuff</impactFleck>
+			<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+		</verb>
+		<logEntryDef>SpitInMouth</logEntryDef>
+		<combatLogRulesHit>Maneuver_SpitMaterialInMouth_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_SpitMaterialInMouth_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_SpitMaterialInMouth_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_SpitMaterialInMouth_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInEyes_MeleeHit</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] spat at [RECIPIENT_definite]'s eyes.</li>
+				<li>r_logentry(p=0.2)->[INITIATOR_definite] spat a spray of mutagen-laced saliva in [RECIPIENT_definite]'s eyes.</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInEyes_MeleeDeflect</defName>
+		<include>
+			<li>Maneuver_SpitMaterialInEyes_MeleeMiss</li>  <!-- I'm pretty sure this can't actually happen -->
+		</include>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInEyes_MeleeMiss</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] tried to spit in [RECIPIENT_definite]'s eyes, but missed.</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInEyes_MeleeDodge</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] tried to spit in [RECIPIENT_definite]'s eyes, but [RECIPIENT_definite] dodged out of the way.</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	
+	
+	
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInMouth_MeleeHit</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] spat a mechanite-infused spray at [RECIPIENT_definite]'s face, [talkedabout].</li>
+				<li>r_logentry(p=0.2)->[INITIATOR_definite] spat an aimed spray of mutagen-laced saliva in [RECIPIENT_definite]'s face, [talkedabout].</li>
+				
+				
+				<li>[talkedabout]->which seems to be getting hairier.</li>
+				<li>[talkedabout]->and now their ears itch.</li>
+				<li>[talkedabout]->and now their face feels funny.</li>
+				
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInMouth_MeleeDeflect</defName>
+		<include>
+			<li>Maneuver_SpitMaterialInMouth_MeleeMiss</li>  <!-- I'm pretty sure this can't actually happen -->
+		</include>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInMouth_MeleeMiss</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] tried to spit in [RECIPIENT_definite]'s face, but missed.</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	<RulePackDef>
+		<defName>Maneuver_SpitMaterialInMouth_MeleeDodge</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_definite] tried to spit in [RECIPIENT_definite]'s face, but [RECIPIENT_definite] dodged out of the way.</li>
+			</rulesStrings>
+		</rulePack>
+	</RulePackDef>
+	
+	
+
+	<ToolCapacityDef>
+		<defName>SpitInEyes</defName>
+	</ToolCapacityDef>
+	<ToolCapacityDef>
+		<defName>SpitInMouth</defName>
+	</ToolCapacityDef>
+
+	<LogEntryDef>
+		<defName>SpitInEyes</defName>
+		<iconDamaged>Things/Mote/SpeechSymbols/Spit</iconDamaged>
+		<iconDamagedFromInstigator>Things/Mote/SpeechSymbols/SpitTarget</iconDamagedFromInstigator>
+	</LogEntryDef>
+	
+	<LogEntryDef>
+		<defName>SpitInMouth</defName>
+		<iconDamaged>Things/Mote/SpeechSymbols/Spit</iconDamaged>
+		<iconDamagedFromInstigator>Things/Mote/SpeechSymbols/SpitTarget</iconDamagedFromInstigator>
+	</LogEntryDef>
+
+
+</Defs>

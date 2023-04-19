@@ -3,24 +3,24 @@
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// interface for a hediff stage that can override the hediff's main label and description entirely 
-    /// </summary>
-    public interface IDescriptiveStage
-    {
-        /// <summary>
-        /// Gets the description override.
-        /// </summary>
-        /// <value>
-        /// The description override.
-        /// </value>
-        string DescriptionOverride { get; }
-        /// <summary>
-        /// Gets the label override.
-        /// </summary>
-        /// <value>
-        /// The label override.
-        /// </value>
-        string LabelOverride { get; }
-    }
+	/// <summary>
+	/// interface for a hediff stage that can override the hediff's main label and description entirely 
+	/// </summary>
+	public interface IDescriptiveStage
+	{
+		/// <summary>
+		/// Gets the description override.
+		/// </summary>
+		/// <value>
+		/// The description override.
+		/// </value>
+		string DescriptionOverride { get; }
+		/// <summary>
+		/// Gets the label override.
+		/// </summary>
+		/// <value>
+		/// The label override.
+		/// </value>
+		string LabelOverride { get; }
+	}
 }

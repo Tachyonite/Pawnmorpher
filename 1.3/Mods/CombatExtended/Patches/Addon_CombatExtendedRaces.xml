@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!--Naga-->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="SnakeMorph"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left fist</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.26</cooldownTime>
+              <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right fist</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>1.26</cooldownTime>
+              <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>teeth</label>
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>1</power>
+              <cooldownTime>2</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.07</chanceFactor>
+              <soundMeleeHit>Pawn_Melee_HumanBite_Hit</soundMeleeHit>
+              <soundMeleeMiss>Pawn_Melee_HumanBite_Miss</soundMeleeMiss>
+              <armorPenetrationSharp>0.15</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>2</power>
+              <cooldownTime>4.49</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.625</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

@@ -1,0 +1,72 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="RodentJawPart">
+		<classInfluence>BoomratMorph</classInfluence>
+		<defName>EtherBoomratJaw</defName>
+		<label>boomrat snout</label>
+		<mutationMemory>EtherBoomratJaw</mutationMemory>
+		<mutationTale>GrewRatMuzzle</mutationTale>
+		<graphics>
+			<Muzzle>Parts/Boomrat/Boomrat_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possessive] face. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possessive] face. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has taken on the shape of rat's muzzle. Scarred and blistering skin surrounds a few chemfuel boils that push out of [PAWN_possessive] face. With further adaptation, [PAWN_nameDef] has learned to speak normally. That is, if anything about this could be called normal.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RodentEarPart">
+		<classInfluence>BoomratMorph</classInfluence>
+		<defName>EtherBoomratEar</defName>
+		<label>boomrat ear</label>
+		<mutationMemory>EtherBoomratEar</mutationMemory>
+		<mutationTale>EarsBecomeRatEars</mutationTale>
+		<graphics>
+			<LeftEar>Parts/Boomrat/Boomrat_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Boomrat/Boomrat_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Boomrat/Boomrat_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Boomrat/Boomrat_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A rounded rat like ear. Even here the skin bulges into a few pustules.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RodentTailPart">
+		<classInfluence>BoomratMorph</classInfluence>
+		<defName>EtherBoomratTail</defName>
+		<label>boomrat tail</label>
+		<mutationMemory>EtherBoomratTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Boomrat/Boomrat_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A hairless rat tail, long and snaking. Sometimes it leaves a thin trail of chemfuel as it drags along the floor.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

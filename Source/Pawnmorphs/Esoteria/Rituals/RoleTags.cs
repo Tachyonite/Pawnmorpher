@@ -3,14 +3,14 @@
 
 namespace Pawnmorph.Rituals
 {
-    /// <summary>
-    /// static class containing commonly used ritual role tags
-    /// </summary>
-    public static class RoleTags
-    {
-        /// <summary>
-        /// tag used to define a 'target' role, used to assign outcomes of an effect onto a specific role 
-        /// </summary>
-        public static string TARGET_TAG = "target"; 
-    }
+	/// <summary>
+	/// static class containing commonly used ritual role tags
+	/// </summary>
+	public static class RoleTags
+	{
+		/// <summary>
+		/// tag used to define a 'target' role, used to assign outcomes of an effect onto a specific role 
+		/// </summary>
+		public static string TARGET_TAG = "target";
+	}
 }

@@ -12,54 +12,54 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    /// <summary>
-    /// class for conversion utility patches 
-    /// </summary>
-    public static class ConversionUtilityPatches
-    {
-        /// <summary>
-        /// Preforms the patches.
-        /// </summary>
-        /// <param name="harInst">The har inst.</param>
-        public static void PreformPatches([NotNull] Harmony harInst)
-        {
-            try
-            {
-                var mainPatchType = typeof(ConversionUtility);
-                var mainPatcherType = typeof(ConversionUtilityPatches); 
-                var OffsetDelegate = mainPatchType.GetMethods(BindingFlags.Static | BindingFlags.NonPublic )
-                                             .FirstOrDefault(m => m.HasAttribute<CompilerGeneratedAttribute>()
-                                                               && m.Name.Contains("OffsetFromIdeo"));
+	/// <summary>
+	/// class for conversion utility patches 
+	/// </summary>
+	public static class ConversionUtilityPatches
+	{
+		/// <summary>
+		/// Preforms the patches.
+		/// </summary>
+		/// <param name="harInst">The har inst.</param>
+		public static void PreformPatches([NotNull] Harmony harInst)
+		{
+			try
+			{
+				var mainPatchType = typeof(ConversionUtility);
+				var mainPatcherType = typeof(ConversionUtilityPatches);
+				var OffsetDelegate = mainPatchType.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+											 .FirstOrDefault(m => m.HasAttribute<CompilerGeneratedAttribute>()
+															   && m.Name.Contains("OffsetFromIdeo"));
 
-                var OffsetPrefix =
-                    mainPatcherType.GetMethod(nameof(OffsetDelegateBugFix), BindingFlags.Static | BindingFlags.NonPublic); 
+				var OffsetPrefix =
+					mainPatcherType.GetMethod(nameof(OffsetDelegateBugFix), BindingFlags.Static | BindingFlags.NonPublic);
 
-                if (OffsetDelegate == null)
-                {
-                    Log.Error($"unable to find delegate \"OffsetFromIdeo\" in ConversionUtilityPatches");
-                    return;
-                }
+				if (OffsetDelegate == null)
+				{
+					Log.Error($"unable to find delegate \"OffsetFromIdeo\" in ConversionUtilityPatches");
+					return;
+				}
 
-                harInst.Patch(OffsetDelegate, new HarmonyMethod(OffsetPrefix));
-
-
-            }
-            catch (Exception e)
-            {
-                Log.Error($"unable to preform Conversion utility patches, caught \n{e}");
-            }
-        }
+				harInst.Patch(OffsetDelegate, new HarmonyMethod(OffsetPrefix));
 
 
-        static bool OffsetDelegateBugFix(Pawn pawn, bool invert, ref float __result)
-        {
-            if (pawn?.Ideo == null)
-            {
-                __result = 0;
-                return false; 
-            }
+			}
+			catch (Exception e)
+			{
+				Log.Error($"unable to preform Conversion utility patches, caught \n{e}");
+			}
+		}
 
-            return true; 
-        }
-    }
+
+		static bool OffsetDelegateBugFix(Pawn pawn, bool invert, ref float __result)
+		{
+			if (pawn?.Ideo == null)
+			{
+				__result = 0;
+				return false;
+			}
+
+			return true;
+		}
+	}
 }

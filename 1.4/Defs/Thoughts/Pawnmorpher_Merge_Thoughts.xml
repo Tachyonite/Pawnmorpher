@@ -1,0 +1,28 @@
+﻿<Defs>
+	<ThoughtDef>
+		<defName>FriendMergedThought</defName>
+		<durationDays>10</durationDays>
+		<nullifyingTraits>
+			<li>Psychopath</li>
+		</nullifyingTraits>
+		<stages>
+			<li>
+				<label>friend merged</label>
+				<description>The colony did mad science on my friend and now they're a monster!</description>
+				<baseMoodEffect>-8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>RivalMergedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>rival merged</label>
+				<description>We did mad science on my rival. Serves them right.</description>
+				<baseMoodEffect>8</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

@@ -1,0 +1,340 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ComposableHediffs.xsd">
+
+	<!--Base Hediff For mutagenic buildup-->
+	<HediffDef Name="MutagenicBuildupBase" Abstract="true">
+        <hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
+        <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
+        <maxSeverity>1</maxSeverity>
+        <label>mutagenic buildup</label>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>ChaoticMutagen</mutagen>
+            </li>
+        </modExtensions>
+    </HediffDef>
+	
+    <!--weapon base hediff  -->
+    <HediffDef Name="PMMutagenicBuildupWBase" ParentName="MutagenicBuildupBase" Abstract="true">
+        <makesSickThought>true</makesSickThought>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.HediffCompProps_Composable">
+                <mutRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSeverityQuadratic">
+                    <a>470.16</a>
+                    <b>538.77</b>
+                </mutRate>
+            </li>
+        </comps>
+        <stages>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>initial</label>
+                <becomeVisible>false</becomeVisible>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>initial</label>
+                <minSeverity>0.04</minSeverity>
+                <painOffset>0.1</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>minor</label>
+                <minSeverity>0.2</minSeverity>
+                <painOffset>0.2</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>moderate</label>
+                <minSeverity>0.40</minSeverity>
+                <vomitMtbDays>5</vomitMtbDays>
+                <painOffset>0.3</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>serious</label>
+                <minSeverity>0.60</minSeverity>
+                <vomitMtbDays>1</vomitMtbDays>
+                <painOffset>0.4</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>extreme</label>
+                <minSeverity>0.80</minSeverity>
+                <vomitMtbDays>0.5</vomitMtbDays>
+                <painOffset>0.6</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.50</setMax>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.85</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.8</painOffset>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.99</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+                <minSeverity>1</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_Always" />
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_All">
+                    <blackList>
+                        <li>Thrumbo</li>
+                    </blackList>
+                </tfTypes>
+                <tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+                    <chance>0.3</chance>
+                </tfGenderSelector>
+            </li>
+        </stages>
+    </HediffDef>
+
+
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_Weapon</defName>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>43.25</recoveryTime>
+                <peakSeverity>0.05</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_SmallExplosion</defName>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>70.75</recoveryTime>
+                <peakSeverity>0.12</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+    <HediffDef ParentName="PMMutagenicBuildupWBase">
+        <defName>MutagenicBuildup_LargeExplosion</defName>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <comps>
+            <li Class="Pawnmorph.Hediffs.CompProperties_AcceleratedSeverity">
+                <recoveryTime>150.25</recoveryTime>
+                <peakSeverity>0.45</peakSeverity>
+            </li>
+        </comps>
+    </HediffDef>
+
+
+    <!-- storm buildup  -->
+    <HediffDef ParentName="MutagenicBuildupBase">
+        <defName>MutagenicBuildup</defName>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <makesSickThought>true</makesSickThought>
+        <scenarioCanAdd>true</scenarioCanAdd>
+        <taleOnVisible>MutationToxicityRevealed</taleOnVisible>
+        <comps>
+            <li Class="HediffCompProperties_Immunizable">
+                <severityPerDayNotImmune>-0.08</severityPerDayNotImmune>
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffCompProps_Composable">
+                <mutRate Class="Pawnmorph.Hediffs.Composable.MutRate_MutationsPerSeverityQuadratic">
+                    <a>599.24</a>
+                    <b>40.041</b>
+                </mutRate>
+            </li>
+        </comps>
+        <stages>
+            <li>
+                <label>initial</label>
+                <becomeVisible>false</becomeVisible>
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>initial</label>
+                <minSeverity>0.04</minSeverity>
+                <painOffset>0.1</painOffset>
+
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.05</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>minor</label>
+                <minSeverity>0.2</minSeverity>
+                <painOffset>0.2</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.10</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>moderate</label>
+                <minSeverity>0.40</minSeverity>
+                <vomitMtbDays>5</vomitMtbDays>
+                <painOffset>0.3</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.15</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
+                    <categories>
+                        <li>Minor</li>
+                        <li>Major</li>
+                    </categories>
+                </mutationTypes>
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>serious</label>
+                <minSeverity>0.60</minSeverity>
+                <vomitMtbDays>1</vomitMtbDays>
+                <painOffset>0.4</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <offset>-0.25</offset>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <label>extreme</label>
+                <minSeverity>0.80</minSeverity>
+                <vomitMtbDays>0.5</vomitMtbDays>
+                <painOffset>0.6</painOffset>
+                <capMods>
+                    <li>
+                        <capacity>Consciousness</capacity>
+                        <setMax>0.50</setMax>
+                    </li>
+                </capMods>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.85</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.8</painOffset>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+                <minSeverity>0.99</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+                <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All" />
+                <mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_Comp" />
+            </li>
+            <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
+                <minSeverity>1</minSeverity>
+                <label>extreme</label>
+                <painOffset>0.9</painOffset>
+                <tfChance Class="Pawnmorph.Hediffs.Composable.TFChance_Always" />
+                <tfTypes Class="Pawnmorph.Hediffs.Composable.TFTypes_All">
+                    <blackList>
+                        <li>Thrumbo</li>
+                    </blackList>
+                </tfTypes>
+                <tfGenderSelector Class="Pawnmorph.Hediffs.Composable.TFGenderSelector_Swap">
+                    <chance>0.3</chance>
+                </tfGenderSelector>
+            </li>
+        </stages>
+
+    </HediffDef>
+</Defs>

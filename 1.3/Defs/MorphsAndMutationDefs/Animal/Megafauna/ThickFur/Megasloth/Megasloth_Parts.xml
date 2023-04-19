@@ -4,7 +4,8 @@
 		<defName>EtherMegaslothSnout</defName>
 		<label>megatherine snout</label>
 		<graphics>
-			<Muzzle>Parts/Megasloth/Megasloth_Muzzle</Muzzle>
+			<MuzzleMale>Parts/Megasloth/Megasloth_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Megasloth/Megasloth_Muzzle_Female</MuzzleFemale>
 		</graphics>
 		<mutationMemory>EtherMegaslothSnout</mutationMemory>
 		<stagePatches>

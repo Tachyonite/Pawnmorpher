@@ -9,31 +9,32 @@ using Verse;
 
 namespace Pawnmorph.Thoughts
 {
-    /// <summary>
-    ///     thought worker for the beast master aspect
-    /// </summary>
-    /// <seealso cref="RimWorld.ThoughtWorker" />
-    public class Worker_BeastMaster : ThoughtWorker_BondedAnimalMaster
-    {
-        [NotNull] private readonly List<string> _animalNames = new List<string>();
+	/// <summary>
+	///     thought worker for the beast master aspect
+	/// </summary>
+	/// <seealso cref="RimWorld.ThoughtWorker" />
+	public class Worker_BeastMaster : ThoughtWorker_BondedAnimalMaster
+	{
+		[NotNull] private readonly List<string> _animalNames = new List<string>();
 
-        /// <summary>
-        ///     Gets the current thought state
-        /// </summary>
-        /// <param name="p">The p.</param>
-        /// <returns></returns>
-        protected override ThoughtState CurrentStateInternal(Pawn p)
-        {
-            if (def.IsValidFor(p))
-            {
-                return base.CurrentStateInternal(p);
-            }
-            return false;
-        }
+		/// <summary>
+		///     Gets the current thought state
+		/// </summary>
+		/// <param name="p">The p.</param>
+		/// <returns></returns>
+		protected override ThoughtState CurrentStateInternal(Pawn p)
+		{
+			if (def.IsValidFor(p))
+			{
+				return base.CurrentStateInternal(p);
+			}
+			return false;
+		}
 
-        protected override bool AnimalMasterCheck(Pawn p, Pawn animal)
-        {
-            return base.AnimalMasterCheck(p,animal) && animal.IsFormerHuman();
-        }
-    }
+		/// <inheritdoc />
+		protected override bool AnimalMasterCheck(Pawn p, Pawn animal)
+		{
+			return base.AnimalMasterCheck(p, animal) && animal.IsFormerHuman();
+		}
+	}
 }

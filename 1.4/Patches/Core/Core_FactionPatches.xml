@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationSequence">
+        <operations>
+
+            <!-- New Faction Combat Group -->
+            <li Class="PatchOperationAdd">
+                <xpath>Defs/FactionDef[defName="Pirate"]/pawnGroupMakers</xpath>
+                <value>
+
+                    <li>
+                        <!-- Normal fights, ranged with melee mix-ins -->
+                        <kindDef>Combat</kindDef>
+                        <commonality>15</commonality> <!-- As common as heavy weapons raids -->
+                        <options>
+                            <Muta_Mercenary_Rocket>5</Muta_Mercenary_Rocket>
+                            <Muta_Grenadier_Mutagenic>4</Muta_Grenadier_Mutagenic>
+                            <Muta_Grenadier_Destructive>4</Muta_Grenadier_Destructive>
+                            <Muta_Grenadier_EMP>2</Muta_Grenadier_EMP>
+                            <Muta_Grenadier_Smoke>2</Muta_Grenadier_Smoke>
+                            <Muta_Mercenary_Gunner>10</Muta_Mercenary_Gunner>
+                            <Muta_Mercenary_Mutagunner>5</Muta_Mercenary_Mutagunner>
+                            <Muta_Mercenary_Sniper>5</Muta_Mercenary_Sniper>
+                            <Muta_Mercenary_Slasher>10</Muta_Mercenary_Slasher>
+                            <Muta_Mercenary_Mutaslasher>5</Muta_Mercenary_Mutaslasher>
+                            <Muta_Mercenary_Heavy>5</Muta_Mercenary_Heavy>
+                            <Muta_Mercenary_Elite>5</Muta_Mercenary_Elite>
+                        </options>
+                    </li>
+
+                </value>
+            </li>
+      </operations>
+  </Operation>
+</Patch>

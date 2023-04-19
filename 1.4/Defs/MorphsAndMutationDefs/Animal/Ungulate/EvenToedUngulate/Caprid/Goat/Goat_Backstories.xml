@@ -1,0 +1,44 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>GoatmorphGeneral</defName>
+		<title>rowdy goat</title>
+		<titleShort>GOAT</titleShort>
+		<baseDesc>[PAWN_nameDef] was taken from [PAWN_possessive] home and mutated by a cryptodemonic cult who worshipped a goatlike deity. [PAWN_pronoun] proved to be the Goatliest Of All Time and the cult couldn't handle [PAWN_pronoun], which provided a means to escape.</baseDesc>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>GoatMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+	<AlienRace.AlienBackstoryDef>
+		<defName>GoatmorphCultist</defName>
+		<title>caprine cultist</title>
+		<titleShort>cultist</titleShort>
+		<baseDesc>[PAWN_nameDef] spent [PAWN_possessive] life associated with an occult group who worshiped a goat-like deity. As soon as the cult got their hands on morph technology they immediately injected themselves in a pact-like mass transformation to bring themselves closer to their god. [PAWN_nameDef] was the only one left with measurable sapience and has been wandering since.</baseDesc>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>GoatMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

@@ -1,0 +1,134 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>BoomalopeTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>Eugh... I smell like chemfuel. Not liking this so far.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>It's a little weird, but I bet I could get used to these changes! Boom!</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>Eugh! I reek of chemfuel, and I feel like I could explode at any moment!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>morphed</label>
+                <description>Not bad... but it'd be fun to have four hooves on the ground... right?</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>BoomalopeRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more chemfuel!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw man, but I was really enjoying the petrol smell.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>No more hooves! Hands, glorious hands!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherBoomalopeSnout</defName>
+        <stages>
+            <li>
+                <label>Petrol snout</label>
+                <description>Perfect for one thing, eating grass.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Petrol snout</label>
+                <description>A big snout! Perfect!</description>
+                <visible>true</visible>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Petrol snout</label>
+                <description>No, I don't want to eat grass, stop thinking about it!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <durationDays>1</durationDays>
+        <defName>EtherBoomalopeEar</defName>
+        <stages>
+            <li>
+                <label>Petrol ears</label>
+                <description>My ears? What do you mean something is wrong with my ears?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Petrol ears</label>
+                <description>Heh. Boom!</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>Petrol ears</label>
+                <description>What's wrong with my ears?!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherChemfuelUdder</defName>
+		<stages>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>What is...am I...LEAKING!?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>Okay, this is a bit too weird, even for me.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>This is...oh no, this is chemfuel...oh no no no...this can't be happening!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>Chemfuel sac</label>
+				<description>I don't see the problem with this, especially if I'm going to be the full thing.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

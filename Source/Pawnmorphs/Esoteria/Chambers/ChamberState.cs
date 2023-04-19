@@ -3,23 +3,23 @@
 
 namespace Pawnmorph.Chambers
 {
-    /// <summary>
-    ///     enum for the different states a mutagenic chamber can be in
-    /// </summary>
-    public enum ChamberState
-    {
-        /// <summary>
-        ///     the chamber isn't doing anything
-        /// </summary>
-        Idle,
+	/// <summary>
+	///     enum for the different states a mutagenic chamber can be in
+	/// </summary>
+	public enum ChamberState
+	{
+		/// <summary>
+		///     the chamber isn't doing anything
+		/// </summary>
+		Idle,
 
-        ///<summary>turning a pawn into an animal</summary>
-        Transforming,
+		///<summary>turning a pawn into an animal</summary>
+		Transforming,
 
-        ///<summary>pawns are being merged in this chamber </summary>
-        MergeInto,
+		///<summary>pawns are being merged in this chamber </summary>
+		MergeInto,
 
-        ///<summary>the pawn is being merged into a different chamber </summary>
-        MergeOutOf
-    }
+		///<summary>the pawn is being merged into a different chamber </summary>
+		MergeOutOf
+	}
 }

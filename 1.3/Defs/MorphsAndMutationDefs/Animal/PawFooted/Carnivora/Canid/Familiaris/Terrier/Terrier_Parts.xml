@@ -4,7 +4,8 @@
 		<defName>EtherTerrierMuzzle</defName>
 		<label>terrier muzzle</label>
 		<graphics>
-			<Muzzle>Parts/Terrier/Terrier_Muzzle</Muzzle>
+			<MuzzleMale>Parts/Terrier/Terrier_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Terrier/Terrier_Muzzle_Female</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	
@@ -14,9 +15,7 @@
 		<label>terrier ear</label>
 		<graphics>
 			<LeftEar>Parts/Terrier/Terrier_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
 			<RightEar>Parts/Terrier/Terrier_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
