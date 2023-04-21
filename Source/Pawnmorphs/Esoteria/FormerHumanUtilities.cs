@@ -670,9 +670,7 @@ namespace Pawnmorph
 					return pawn.RaceProps.intelligence;
 
 				return sTracker.CurrentIntelligence;
-			}, Intelligence.Humanlike);
-
-			PawnPatches.QueuePostTickAction(pawn, () => value.Update());
+			});
 			return value;
 		}
 
