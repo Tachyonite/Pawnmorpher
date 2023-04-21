@@ -62,15 +62,17 @@ namespace Pawnmorph.Utilities
 		public T GetValue(int maxAge)
 		{
 			// If stat has not already been queued for update, then check if it should be updated.
-			if (_cachedStatus != CacheStatus.Cached)
+			if (_cachedStatus != CacheStatus.Queued)
 			{
 				if (_cachedStatus == CacheStatus.Unknown)
 					Update();
-
-				// If stat is older than age limit, recalculate.
-				if (_tickManager.TicksGame - _timestamp > maxAge)
+				else
 				{
-					QueueUpdate();
+					// If stat is older than age limit, recalculate.
+					if (_tickManager.TicksGame - _timestamp > maxAge)
+					{
+						QueueUpdate();
+					}
 				}
 			}
 			return _value;
@@ -81,9 +83,9 @@ namespace Pawnmorph.Utilities
 		/// </summary>
 		public void QueueUpdate()
 		{
-			if (_cachedStatus == CacheStatus.Cached)
+			if (_cachedStatus == CacheStatus.Queued)
 			{
-				_cachedStatus = CacheStatus.Cached;
+				_cachedStatus = CacheStatus.Queued;
 				LongEventHandler.ExecuteWhenFinished(Update);
 			}
 		}
