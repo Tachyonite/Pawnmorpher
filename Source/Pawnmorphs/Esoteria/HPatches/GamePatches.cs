@@ -29,6 +29,7 @@ namespace Pawnmorph.HPatches
 		}
 		private static void FixMissingNarrowHeads()
 		{
+			// Can be null if narrow head types were entirely removed by another mod like Tweaks Galore
 			Dictionary<HeadTypeDef, HeadTypeDef> headMap = new Dictionary<HeadTypeDef, HeadTypeDef>(HeadReplacements.Count);
 			foreach (KeyValuePair<string, string> pair in HeadReplacements)
 			{
