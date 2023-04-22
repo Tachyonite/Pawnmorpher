@@ -1,6 +1,6 @@
 <LanguageData>
-    <ChamberDatabaseIgnoresDataLimit>Chamber Database Ignores Data Limit.</ChamberDatabaseIgnoresDataLimit>
-    <ChamberDatabaseIgnoresDataLimitTooltip>If true, adding things to the chamber database will not require data storage, useful for debugging.</ChamberDatabaseIgnoresDataLimitTooltip>
+    <ChamberDatabaseIgnoresDataLimit>Infinite genebank capacity.</ChamberDatabaseIgnoresDataLimit>
+    <ChamberDatabaseIgnoresDataLimitTooltip>If true, adding things to the chamber database will not require data storage.</ChamberDatabaseIgnoresDataLimitTooltip>
     <PMStorageSpaceMessage>Provides</PMStorageSpaceMessage>
     <PMAnimalGenomeDescription>Stores the genetic information of {ANIMAL}.</PMAnimalGenomeDescription>
     <PMChamberAddingMutations>Adding mutations</PMChamberAddingMutations>
