@@ -29,9 +29,21 @@ namespace Pawnmorph.HPatches
 		}
 		private static void FixMissingNarrowHeads()
 		{
-			Dictionary<HeadTypeDef, HeadTypeDef> headMap =
-				HeadReplacements.ToDictionary(pair => DefDatabase<HeadTypeDef>.GetNamed(pair.Key),
-											  pair => DefDatabase<HeadTypeDef>.GetNamed(pair.Value));
+			// Can be null if narrow head types were entirely removed by another mod like Tweaks Galore
+			Dictionary<HeadTypeDef, HeadTypeDef> headMap = new Dictionary<HeadTypeDef, HeadTypeDef>(HeadReplacements.Count);
+			foreach (KeyValuePair<string, string> pair in HeadReplacements)
+			{
+				HeadTypeDef key = DefDatabase<HeadTypeDef>.GetNamed(pair.Key, false);
+				HeadTypeDef value = DefDatabase<HeadTypeDef>.GetNamed(pair.Value, false);
+
+				if (key == null || value == null)
+					continue;
+
+				headMap[key] = value;
+			}
+
+			if (headMap.Count == 0)
+				return;
 
 			foreach (Pawn pawn in PawnsFinder.All_AliveOrDead)
 			{

@@ -327,6 +327,7 @@
     <Compile Include="Genebank\IGenebankEntry.cs" />
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
+    <Compile Include="Genebank\RecentGenebankSelector.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
@@ -610,6 +611,7 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\FilterTreeBox.cs" />
     <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
