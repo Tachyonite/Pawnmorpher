@@ -160,6 +160,9 @@ namespace Pawnmorph
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 			Pawn_AbilityTracker abilities1 = pawn1.abilities;
 			Pawn_AbilityTracker abilities2 = pawn2.abilities;
+			if (abilities1 == null || abilities2 == null)
+				return;
+
 			IEnumerable<Ability> tAbilities = abilities1.AllAbilitiesForReading.Where(selector);
 			//First purge any psycasts the new pawn will have
 			foreach (Ability ability in abilities2.AllAbilitiesForReading)
