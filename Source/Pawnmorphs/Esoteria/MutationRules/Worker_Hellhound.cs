@@ -74,8 +74,14 @@ namespace Pawnmorph.MutationRules
 		{
 			foreach (HediffDef hediffDef in MorphTfs)
 			{
-				var hDiff = pawn.health?.hediffSet?.GetFirstHediffOfDef(hediffDef) as MorphTf;
-				hDiff?.MarkForRemoval();
+				Hediff mutagenicHediff = pawn.health?.hediffSet?.GetFirstHediffOfDef(hediffDef);
+				if (mutagenicHediff == null)
+					continue;
+
+				if (mutagenicHediff is Hediff_MutagenicBase mutagen)
+					mutagen.MarkForRemoval();
+				else if (mutagenicHediff is MorphTf morph)
+					morph.MarkForRemoval();
 			}
 
 			var newHediff = HediffMaker.MakeHediff(MorphDefOfs.PM_HellhoundMorph.fullTransformation, pawn);
