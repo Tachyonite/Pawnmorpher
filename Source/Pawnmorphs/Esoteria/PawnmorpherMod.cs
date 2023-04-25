@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pawnmorph.DebugUtils;
+using Pawnmorph.HPatches.Optional;
 using Pawnmorph.UserInterface;
 using Pawnmorph.UserInterface.TreeBox;
 using RimWorld;
@@ -123,6 +126,19 @@ namespace Pawnmorph
 			result.Add(coreNode);
 
 
+			// Add any additional configurable objects.
+			foreach (Interfaces.IConfigurableObject configurableObject in settings.GetAllConfigurableObjects())
+			{
+				TreeNode_FilterBox objectNode = new TreeNode_FilterBox(configurableObject.Caption);
+				configurableObject.GenerateMenu(objectNode);
+
+				if (objectNode.children.Count > 0)
+					result.Add(objectNode);
+			}
+
+
+
+
 
 			TreeNode_FilterBox debugNode = new TreeNode_FilterBox("PMDebug".Translate());
 
@@ -143,7 +159,8 @@ namespace Pawnmorph
 
 			return result;
 		}
-		
+
+
 		private void ShowVisibleRaceSelection()
 		{
 			if (settings.visibleRaces == null)
