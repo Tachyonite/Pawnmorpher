@@ -146,11 +146,11 @@ namespace Pawnmorph
 			else
 				_aspects.Add(aspect);
 			aspect.Added(Pawn, startStage);
-			if (aspect.HasCapMods) Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+
 
 			AspectStage cStage = aspect.CurrentStage;
-
 			AspectAdded?.Invoke(this, aspect);
+			Notify_AspectChanged(aspect);
 
 			if (PawnUtility.ShouldSendNotificationAbout(Pawn) && !string.IsNullOrEmpty(cStage.messageText))
 			{
@@ -277,7 +277,9 @@ namespace Pawnmorph
 		/// <param name="aspect"></param>
 		public void Notify_AspectChanged(Aspect aspect)
 		{
-			Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+			if (aspect.HasCapMods)
+				Pawn?.health?.capacities?.Notify_CapacityLevelsDirty();
+
 			HPatches.StatWorkerPatches.GetValueUnfinalizedPatch.Invalidate(Pawn);
 		}
 

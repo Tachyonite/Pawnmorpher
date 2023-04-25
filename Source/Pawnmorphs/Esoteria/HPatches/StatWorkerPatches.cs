@@ -25,6 +25,7 @@ namespace Pawnmorph.HPatches
 		[PrepatcherField]
 		private static ref bool PmShouldSkipStatWorker(this Pawn target)
 		{
+			_placeholder = false;
 			return ref _placeholder;
 		}
 
