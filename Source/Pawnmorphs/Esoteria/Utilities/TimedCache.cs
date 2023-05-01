@@ -83,8 +83,14 @@ namespace Pawnmorph.Utilities
 		/// </summary>
 		public void QueueUpdate()
 		{
-			if (_cachedStatus == CacheStatus.Queued)
+			if (_cachedStatus != CacheStatus.Queued)
 			{
+				if (_tickManager == null)
+				{
+					_cachedStatus = CacheStatus.Unknown;
+					return;
+				}
+
 				_cachedStatus = CacheStatus.Queued;
 				LongEventHandler.ExecuteWhenFinished(Update);
 			}
@@ -97,11 +103,18 @@ namespace Pawnmorph.Utilities
 		{
 			T oldValue = _value;
 			_value = _valueGetter.Invoke();
-			_timestamp = _tickManager.TicksGame;
-			_cachedStatus = CacheStatus.Cached;
 
-			if (oldValue.Equals(_value) == false)
-				ValueChanged?.Invoke(this, oldValue, _value);
+			if (_tickManager == null)
+				_tickManager = Find.TickManager;
+
+			if (_tickManager != null)
+			{
+				_timestamp = _tickManager.TicksGame;
+				_cachedStatus = CacheStatus.Cached;
+
+				if (oldValue.Equals(_value) == false)
+					ValueChanged?.Invoke(this, oldValue, _value);
+			}
 		}
 
 
@@ -125,8 +138,12 @@ namespace Pawnmorph.Utilities
 			: this(valueGetter)
 		{
 			_value = initialValue;
-			_timestamp = _tickManager.TicksGame;
-			_cachedStatus = CacheStatus.Cached;
+
+			if (_tickManager != null)
+			{
+				_timestamp = _tickManager.TicksGame;
+				_cachedStatus = CacheStatus.Cached;
+			}
 		}
 
 		public void Offset(int offset)

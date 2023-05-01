@@ -65,7 +65,7 @@ namespace Pawnmorph
 
 		[NotNull] private static readonly List<PawnKindDef> _allRegularFormerHumanPawnKinds;
 
-		[NotNull] private static readonly Dictionary<Pawn, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<Pawn, TimedCache<Intelligence>>(100);
+		[NotNull] private static readonly Dictionary<int, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<int, TimedCache<Intelligence>>(100);
 
 
 
@@ -650,8 +650,8 @@ namespace Pawnmorph
 		[ValueInitializer(nameof(NewIntelligenceCache))]
 		public static TimedCache<Intelligence> GetCachedIntelligence(this Pawn target)
 		{
-			if (_intelligenceCache.TryGetValue(target, out TimedCache<Intelligence> value) == false)
-				_intelligenceCache[target] = value = NewIntelligenceCache(target);
+			if (_intelligenceCache.TryGetValue(target.thingIDNumber, out TimedCache<Intelligence> value) == false)
+				_intelligenceCache[target.thingIDNumber] = value = NewIntelligenceCache(target);
 
 			return value;
 		}
@@ -695,8 +695,16 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		public static void InvalidateIntelligence([NotNull] this Pawn pawn)
 		{
-			if (_intelligenceCache.TryGetValue(pawn, out TimedCache<Intelligence> value))
+			if (_intelligenceCache.TryGetValue(pawn.thingIDNumber, out TimedCache<Intelligence> value))
 				value.Update();
+		}
+
+		/// <summary>
+		/// Clears pawn intelligence cache.
+		/// </summary>
+		public static void ClearIntelligence()
+		{
+			_intelligenceCache.Clear();
 		}
 
 		/// <summary>

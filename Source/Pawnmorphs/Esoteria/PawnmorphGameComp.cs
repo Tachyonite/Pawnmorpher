@@ -8,6 +8,7 @@ using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
+using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -166,6 +167,9 @@ namespace Pawnmorph
 				pawnmorphs.Clear();
 				mergedpawnmorphs.Clear();
 				StatsUtility.Clear();
+				FormerHumanUtilities.ClearIntelligence();
+				PawnPatches.Clear();
+				StatWorkerPatches.Clear();
 
 				// Make sure they're all valid.
 				ValidateTransformedPawns();

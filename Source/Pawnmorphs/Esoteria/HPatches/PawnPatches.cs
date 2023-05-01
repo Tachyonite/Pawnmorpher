@@ -87,6 +87,14 @@ namespace Pawnmorph.HPatches
 		[NotNull]
 		private static Dictionary<Pawn, TimedCache<List<IWorkModifier>>> _workModifierCache = new Dictionary<Pawn, TimedCache<List<IWorkModifier>>>();
 
+		/// <summary>
+		/// Clear pawn work modifier cache.
+		/// </summary>
+		public static void Clear()
+		{
+			_workModifierCache.Clear();
+		}
+
 		[HarmonyPatch(nameof(Pawn.GetDisabledWorkTypes)), HarmonyPostfix]
 		static void FixGetAllDisabledWorkTypes(List<WorkTypeDef> __result, Pawn __instance, bool permanentOnly)
 		{
