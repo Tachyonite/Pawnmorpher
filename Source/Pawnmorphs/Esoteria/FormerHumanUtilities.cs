@@ -702,8 +702,7 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		public static void InvalidateIntelligence([NotNull] this Pawn pawn)
 		{
-			if (_intelligenceCache.TryGetValue(pawn.thingIDNumber, out TimedCache<Intelligence> value))
-				value.Update();
+			GetCachedIntelligence(pawn).Update();
 		}
 
 		/// <summary>

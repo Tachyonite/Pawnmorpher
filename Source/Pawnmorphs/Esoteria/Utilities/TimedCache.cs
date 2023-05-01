@@ -104,7 +104,7 @@ namespace Pawnmorph.Utilities
 			T oldValue = _value;
 			_value = _valueGetter.Invoke();
 
-			if (_tickManager == null)
+			if (_tickManager == null && Current.ProgramState != ProgramState.Entry)
 				_tickManager = Find.TickManager;
 
 			if (_tickManager != null)
@@ -124,7 +124,9 @@ namespace Pawnmorph.Utilities
 		/// <param name="valueGetter">The callback to update the cached value.</param>
 		public TimedCache(Func<T> valueGetter)
 		{
-			_tickManager = Find.TickManager;
+			if (Current.ProgramState != ProgramState.Entry)
+				_tickManager = Find.TickManager;
+
 			_cachedStatus = CacheStatus.Unknown;
 			_valueGetter = valueGetter;
 		}
@@ -138,7 +140,6 @@ namespace Pawnmorph.Utilities
 			: this(valueGetter)
 		{
 			_value = initialValue;
-
 			if (_tickManager != null)
 			{
 				_timestamp = _tickManager.TicksGame;
