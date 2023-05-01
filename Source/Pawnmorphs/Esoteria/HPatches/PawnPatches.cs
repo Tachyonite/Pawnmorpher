@@ -15,6 +15,16 @@ namespace Pawnmorph.HPatches
 	[HarmonyPatch(typeof(Pawn))]
 	static class PawnPatches
 	{
+		static PawnPatches()
+		{
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
+		{
+			_workModifierCache.Clear();
+		}
+
 		[HarmonyPatch(nameof(Pawn.CombinedDisabledWorkTags), MethodType.Getter), HarmonyPostfix]
 		static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
 		{
@@ -86,14 +96,6 @@ namespace Pawnmorph.HPatches
 
 		[NotNull]
 		private static Dictionary<Pawn, TimedCache<List<IWorkModifier>>> _workModifierCache = new Dictionary<Pawn, TimedCache<List<IWorkModifier>>>();
-
-		/// <summary>
-		/// Clear pawn work modifier cache.
-		/// </summary>
-		public static void Clear()
-		{
-			_workModifierCache.Clear();
-		}
 
 		[HarmonyPatch(nameof(Pawn.GetDisabledWorkTypes)), HarmonyPostfix]
 		static void FixGetAllDisabledWorkTypes(List<WorkTypeDef> __result, Pawn __instance, bool permanentOnly)

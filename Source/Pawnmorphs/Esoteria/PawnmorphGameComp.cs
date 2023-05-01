@@ -24,6 +24,12 @@ namespace Pawnmorph
 	/// <seealso cref="RimWorld.Planet.WorldComponent" />
 	public class PawnmorphGameComp : WorldComponent
 	{
+		/// <summary>
+		/// Occurs when PM static caches should be cleared.
+		/// </summary>
+		public static event Action<PawnmorphGameComp> OnClear;
+
+
 		[Obsolete]
 		internal HashSet<PawnMorphInstance> pawnmorphs = new HashSet<PawnMorphInstance>();
 
@@ -36,7 +42,6 @@ namespace Pawnmorph
 		public HashSet<PawnKindDef> taggedAnimals = new HashSet<PawnKindDef>();
 
 		private List<TransformedPawn> _transformedPawns = new List<TransformedPawn>();
-
 
 		//hacky, will find a better solution later 
 		internal bool sheepChefEventFired;
@@ -166,10 +171,9 @@ namespace Pawnmorph
 				// Now clear.
 				pawnmorphs.Clear();
 				mergedpawnmorphs.Clear();
-				StatsUtility.Clear();
-				FormerHumanUtilities.ClearIntelligence();
-				PawnPatches.Clear();
-				StatWorkerPatches.Clear();
+
+				if (OnClear != null)
+					OnClear.Invoke(this);
 
 				// Make sure they're all valid.
 				ValidateTransformedPawns();

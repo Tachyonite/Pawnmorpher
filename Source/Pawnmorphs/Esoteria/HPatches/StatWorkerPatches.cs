@@ -17,11 +17,15 @@ namespace Pawnmorph.HPatches
 	{
 		private static Dictionary<ulong, TimedCache<float>> _cache = new Dictionary<ulong, TimedCache<float>>(200);
 
-		public static void Clear()
+		static StatWorkerPatches()
+		{
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
 		{
 			_cache.Clear();
 		}
-
 
 		/// <summary>
 		/// If using prepatcher, this method gets a value stored on the Pawn to indicate if this method should be skipped entirely. Always returns false otherwise.

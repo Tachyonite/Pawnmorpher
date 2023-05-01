@@ -132,6 +132,13 @@ namespace Pawnmorph
 				PawnmorpherMod.Settings.animalBlacklist = GetDefaultBlockList();
 
 			CacheValidFormerHumans();
+
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
+		{
+			_intelligenceCache.Clear();
 		}
 
 		/// <summary>
@@ -697,14 +704,6 @@ namespace Pawnmorph
 		{
 			if (_intelligenceCache.TryGetValue(pawn.thingIDNumber, out TimedCache<Intelligence> value))
 				value.Update();
-		}
-
-		/// <summary>
-		/// Clears pawn intelligence cache.
-		/// </summary>
-		public static void ClearIntelligence()
-		{
-			_intelligenceCache.Clear();
 		}
 
 		/// <summary>
