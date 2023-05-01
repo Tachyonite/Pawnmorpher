@@ -124,7 +124,7 @@ namespace Pawnmorph.IncidentWorkers
 
 			var name = lPawn.Name as NameTriple;
 			lPawn.Name = new NameTriple(firstName ?? name.First, name.Nick ?? firstName, lastName ?? name.Last);
-			lPawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef;
+			//lPawn.story.Adulthood = PMBackstoryDefOf.PM_SheepChef;
 
 			AssignMutations(lPawn);
 			return lPawn;
