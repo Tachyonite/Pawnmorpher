@@ -313,6 +313,7 @@ namespace Pawnmorph.Hybrids
 				headTypes = human.headTypes.MakeSafe().ToList(),
 				offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
 				headOffset = human.headOffset,
+				headOffsetSpecific = human.headOffsetSpecific,
 				headOffsetDirectional = human.headOffsetDirectional,
 				bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
 				colorChannels = human.colorChannels,
