@@ -149,7 +149,7 @@ namespace Pawnmorph.HPatches.Optional
 				// Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
 				// Only offset when standing.
 				if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
-					drawLoc.z += bodySize / 2f;
+					drawLoc.z += bodySize / 4f;
 			}
 		}
 
