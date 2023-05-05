@@ -103,6 +103,7 @@ namespace Pawnmorph
 			coreNode.AddChild("enableMutagenDiseasesCheckboxLabel", "enableMutagenDiseasesCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenDiseases, x.height));
 			coreNode.AddChild("enableMutagenMeteorCheckboxLabel", "enableMutagenMeteorCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutagenMeteor, x.height));
 			coreNode.AddChild("enableWildFormersCheckboxLabel", "enableWildFormersCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableWildFormers, x.height));
+			coreNode.AddChild("enableMutationAdaptedStageLabelCheckboxLabel", "enableMutationAdaptedStageLabelCheckboxTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.enableMutationAdaptedStageLabel, x.height));
 			coreNode.AddChild("PMHazardousChaobulbs", "PMHazardousChaobulbsTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.hazardousChaobulbs, x.height));
 			coreNode.AddChild("PMGenerateEndoGenesForAliens", "PMGenerateEndoGenesForAliensTooltip", (in Rect x) => Widgets.Checkbox(x.position, ref settings.generateEndoGenesForAliens, x.height));
 

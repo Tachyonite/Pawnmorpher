@@ -12,6 +12,8 @@
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
 	<enableWildFormersCheckboxTooltip>Toggles animals spawning onto the map as former humans, allowing them to be reverted.</enableWildFormersCheckboxTooltip>
+	<enableMutationAdaptedStageLabelCheckboxLabel>Enable stage labels for adapted mutations.</enableMutationAdaptedStageLabelCheckboxLabel>
+	<enableMutationAdaptedStageLabelCheckboxTooltip>Enables stage labels on fully adjusted mutations. (Adapted, Grown, etc.)</enableMutationAdaptedStageLabelCheckboxTooltip>
 	<PMHazardousChaobulbs>Enable Hazardous Chaobulbs</PMHazardousChaobulbs>
 	<PMHazardousChaobulbsTooltip>If failed, chaobulb harvests can give mutagenic buildup.</PMHazardousChaobulbsTooltip>
 	<transformChanceSliderLabel>Chance for mutagens to fully transform pawns</transformChanceSliderLabel>
