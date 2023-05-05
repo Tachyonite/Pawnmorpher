@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.DefExtensions;
@@ -183,6 +184,8 @@ namespace Pawnmorph
 				// Get all body-addons from all species to initialize any TaggedBodyAddon
 				IEnumerable<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>();
 
+				FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
+
 				List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
 				foreach (ThingDef_AlienRace race in humanoidRaces)
 				{
@@ -194,7 +197,10 @@ namespace Pawnmorph
 							Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
 						}
 						else
+						{
 							taggedAddons.Add(bodyAddon);
+							bodyAddonName.SetValue(bodyAddon, bodyAddon.anchorID);
+						}
 					}
 				}
 
@@ -531,6 +537,8 @@ namespace Pawnmorph
 		{
 			var pType = typeof(AlienPartGenerator.BodyAddon);
 			var shaderField = pType.GetField("shaderType", BindingFlags.Instance | BindingFlags.NonPublic);
+			FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
+
 			string aID = (addon as TaggedBodyAddon)?.anchorID;
 			var copy = new TaggedBodyAddon()
 			{
@@ -572,7 +580,7 @@ namespace Pawnmorph
 			};
 
 			shaderField.SetValue(copy, addon.ShaderType);
-
+			bodyAddonName.SetValue(copy, addon.Name);
 
 			return copy;
 		}

@@ -15,14 +15,14 @@ namespace Pawnmorph.HPatches
 
 	static class HediffDefPatches
 	{
-		[NotNull] private static readonly Dictionary<HediffDef, bool> _immunityCache = new Dictionary<HediffDef, bool>(100);
+		[NotNull] private static readonly Dictionary<ushort, bool> _immunityCache = new Dictionary<ushort, bool>(100);
 
 		[HarmonyPatch(typeof(HediffDef), nameof(HediffDef.PossibleToDevelopImmunityNaturally))]
 		private static class HediffImmunityPatch
 		{
 			private static bool Prefix(HediffDef __instance, ref bool __result)
 			{
-				if (_immunityCache.TryGetValue(__instance, out __result))
+				if (_immunityCache.TryGetValue(__instance.shortHash, out __result))
 					return false;
 
 				return true;
@@ -31,7 +31,7 @@ namespace Pawnmorph.HPatches
 			private static void Postfix(HediffDef __instance, ref bool __result, bool __runOriginal)
 			{
 				if (__runOriginal)
-					_immunityCache[__instance] = __result;
+					_immunityCache[__instance.shortHash] = __result;
 			}
 		}
 

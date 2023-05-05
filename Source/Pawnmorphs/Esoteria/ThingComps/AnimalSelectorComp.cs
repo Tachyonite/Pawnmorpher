@@ -6,6 +6,9 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.Genebank;
+using Pawnmorph.Genebank.Model;
+using Pawnmorph.UserInterface.Genebank.Tabs;
 using Pawnmorph.Utilities;
 using Verse;
 
@@ -115,6 +118,8 @@ namespace Pawnmorph.ThingComps
 
 		private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
+		private RecentGenebankSelector<AnimalsTab> _recentAnimalsSelector;
+
 		private Command_Action _cachedGizmo;
 
 		private Gizmo[] _cachedGizmoArr;
@@ -124,13 +129,30 @@ namespace Pawnmorph.ThingComps
 		{
 			base.Initialize(props);
 
-			_cachedGizmo = new Command_Action()
+            _cachedGizmo = new Command_Action()
+            {
+                action = GizmoAction,
+                icon = PMTextures.AnimalSelectorIcon,
+                defaultLabel = Props.labelKey.Translate(),
+                defaultDesc = Props.descriptionKey.Translate()
+            };
+
+
+            _recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
+			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
+			_recentAnimalsSelector.RowFilter = (row) =>
 			{
-				action = GizmoAction,
-				icon = PMTextures.AnimalSelectorIcon,
-				defaultLabel = Props.labelKey.Translate(),
-				defaultDesc = Props.descriptionKey.Translate()
+				PawnKindDef animal = row as PawnKindDef;
+
+				if (Props.raceFilter?.PassesFilter(animal) == false)
+					return false;
+
+				if (SpeciesFilter?.Invoke(animal) == false)
+					return false;
+
+				return true;
 			};
+			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
 		}
 
 		/// <summary>
@@ -161,36 +183,41 @@ namespace Pawnmorph.ThingComps
 			_cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
 		}
 
-		private void GizmoAction()
-		{
-			OnClick?.Invoke(this);
-			var options = GetOptions.ToList();
-			if (options.Count == 0)
-			{
-				var emptyOption = new FloatMenuOption(ANIMAL_PICKER_NOCHOICES.Translate(), null);
-				emptyOption.Disabled = true;
-				options.Add(emptyOption);
-			}
-			Find.WindowStack.Add(new FloatMenu(options));
+        private void GizmoAction()
+        {
+            OnClick?.Invoke(this);
+            _recentAnimalsSelector.ShowOptions();
 		}
 
-		private IEnumerable<FloatMenuOption> GetOptions
+		private void RecentAnimalsSelector_OnSelected(object sender, Genebank.Model.IGenebankEntry e)
 		{
-			get
-			{
-				foreach (PawnKindDef kind in AllAnimalsSelectable)
-				{
-					var tk = kind;
-					string label;
-					AnimalSelectorOverrides overrides = kind.GetModExtension<AnimalSelectorOverrides>();
-					if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
-						label = overrides.label;
-					else
-						label = tk.LabelCap;
+            ChoseAnimal((e as AnimalGenebankEntry).Value);
+		}
 
-					yield return new FloatMenuOption(label, () => ChoseAnimal(tk));
+		private IList<FloatMenuOption> GetForcedOptions()
+        {
+            if (Props.alwaysAvailable != null)
+            {
+				int count = Props.alwaysAvailable.Count;
+                FloatMenuOption[] collection = new FloatMenuOption[count];
+
+
+				for (int i = 0; i < count; i++)
+                {
+                    PawnKindDef item = Props.alwaysAvailable[i];
+
+					string label;
+					AnimalSelectorOverrides overrides = item.GetModExtension<AnimalSelectorOverrides>();
+					if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
+					    label = overrides.label;
+					else
+					    label = item.LabelCap;
+
+					collection[i] = new FloatMenuOption(item.LabelCap, () => ChoseAnimal(item));
 				}
-			}
+                return collection;
+            }
+            return new FloatMenuOption[0];
 		}
 
 		private void ChoseAnimal(PawnKindDef chosenKind)
@@ -218,21 +245,23 @@ namespace Pawnmorph.ThingComps
 			return _cachedGizmoArr;
 		}
 
-		/// <summary>
-		/// Save/Load data.
-		/// </summary>
-		public override void PostExposeData()
-		{
-			Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
-			Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
+        /// <summary>
+        /// Save/Load data.
+        /// </summary>
+        public override void PostExposeData()
+        {
+            Scribe_Defs.Look(ref _chosenKind, nameof(ChosenKind));
+            Scribe_Values.Look(ref _enabled, nameof(Enabled), true);
+            _recentAnimalsSelector.ExposeData();
+
 
 			if (Scribe.mode == LoadSaveMode.LoadingVars)
-			{
-				if (_chosenKind != null)
-					ChoseAnimal(_chosenKind);
+            {
+                if (_chosenKind != null)
+                    ChoseAnimal(_chosenKind);
 			}
-		}
-	}
+        }
+    }
 
 
 	/// <summary>

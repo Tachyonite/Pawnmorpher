@@ -4,8 +4,8 @@
 		<defName>EtherWolfMuzzle</defName>
 		<label>timber wolf muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/Wolf/Wolf_Muzzle</MuzzleMale>
-			<MuzzleFemale>Parts/Wolf/Wolf_Female_Muzzle</MuzzleFemale>
+			<MuzzleMale>Parts/WolfTimber/Twolf_Muzzle</MuzzleMale>
+			<MuzzleFemale>Parts/WolfTimber/Twolf_Female_Muzzle</MuzzleFemale>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -14,10 +14,10 @@
 		<defName>EtherWolfEar</defName>
 		<label>timber wolf ear</label>
 		<graphics>
-			<LeftEar>Parts/Wolf/Wolf_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/Wolf/Wolf_Ear_Left_Behind</LeftEarBehind>
-			<RightEar>Parts/Wolf/Wolf_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/Wolf/Wolf_Ear_Right_Behind</RightEarBehindHead>
+			<LeftEar>Parts/WolfTimber/Twolf_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/WolfTimber/Twolf_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/WolfTimber/Twolf_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/WolfTimber/Twolf_Ear_Right_Behind</RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -26,7 +26,7 @@
 		<defName>EtherWolfTail</defName>
 		<label>timber wolf tail</label>
 		<graphics>
-			<Tail>Parts/Wolf/Wolf_Tail</Tail>
+			<Tail>Parts/WolfTimber/Twolf_Tail</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

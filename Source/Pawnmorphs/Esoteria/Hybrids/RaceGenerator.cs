@@ -313,6 +313,7 @@ namespace Pawnmorph.Hybrids
 				headTypes = human.headTypes.MakeSafe().ToList(),
 				offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
 				headOffset = human.headOffset,
+				headOffsetSpecific = human.headOffsetSpecific,
 				headOffsetDirectional = human.headOffsetDirectional,
 				bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
 				colorChannels = human.colorChannels,
@@ -660,66 +661,42 @@ namespace Pawnmorph.Hybrids
 			}
 			foreach (ThingDef apparel in ar.alienRace.raceRestriction.apparelList)
 			{
-				if (!RaceRestrictionSettings.apparelRestricted.Contains(apparel))
-				{
-					RaceRestrictionSettings.apparelRestricted.Add(apparel);
-				}
+				RaceRestrictionSettings.apparelRestricted.Add(apparel);
 				ar.alienRace.raceRestriction.whiteApparelList.Add(apparel);
 			}
 			foreach (ThingDef weapon in ar.alienRace.raceRestriction.weaponList)
 			{
-				if (!RaceRestrictionSettings.weaponRestricted.Contains(weapon))
-				{
-					RaceRestrictionSettings.weaponRestricted.Add(weapon);
-				}
+				RaceRestrictionSettings.weaponRestricted.Add(weapon);
 				ar.alienRace.raceRestriction.whiteWeaponList.Add(weapon);
 			}
 			foreach (ThingDef building in ar.alienRace.raceRestriction.buildingList)
 			{
-				if (!RaceRestrictionSettings.buildingRestricted.Contains(building))
-				{
-					RaceRestrictionSettings.buildingRestricted.Add(building);
-				}
+				RaceRestrictionSettings.buildingRestricted.Add(building);
 				ar.alienRace.raceRestriction.whiteBuildingList.Add(building);
 			}
 			foreach (RecipeDef recipe in ar.alienRace.raceRestriction.recipeList)
 			{
-				if (!RaceRestrictionSettings.recipeRestricted.Contains(recipe))
-				{
-					RaceRestrictionSettings.recipeRestricted.Add(recipe);
-				}
+				RaceRestrictionSettings.recipeRestricted.Add(recipe);
 				ar.alienRace.raceRestriction.whiteRecipeList.Add(recipe);
 			}
 			foreach (ThingDef plant in ar.alienRace.raceRestriction.plantList)
 			{
-				if (!RaceRestrictionSettings.plantRestricted.Contains(plant))
-				{
-					RaceRestrictionSettings.plantRestricted.Add(plant);
-				}
+				RaceRestrictionSettings.plantRestricted.Add(plant);
 				ar.alienRace.raceRestriction.whitePlantList.Add(plant);
 			}
 			foreach (TraitDef trait in ar.alienRace.raceRestriction.traitList)
 			{
-				if (!RaceRestrictionSettings.traitRestricted.Contains(trait))
-				{
-					RaceRestrictionSettings.traitRestricted.Add(trait);
-				}
+				RaceRestrictionSettings.traitRestricted.Add(trait);
 				ar.alienRace.raceRestriction.whiteTraitList.Add(trait);
 			}
 			foreach (ThingDef food in ar.alienRace.raceRestriction.foodList)
 			{
-				if (!RaceRestrictionSettings.foodRestricted.Contains(food))
-				{
-					RaceRestrictionSettings.foodRestricted.Add(food);
-				}
+				RaceRestrictionSettings.foodRestricted.Add(food);
 				ar.alienRace.raceRestriction.whiteFoodList.Add(food);
 			}
 			foreach (ThingDef pet in ar.alienRace.raceRestriction.petList)
 			{
-				if (!RaceRestrictionSettings.petRestricted.Contains(pet))
-				{
-					RaceRestrictionSettings.petRestricted.Add(pet);
-				}
+				RaceRestrictionSettings.petRestricted.Add(pet);
 				ar.alienRace.raceRestriction.whitePetList.Add(pet);
 			}
 			foreach (ResearchProjectDef item in ar.alienRace.raceRestriction.researchList.SelectMany((ResearchProjectRestrictions rl) => rl?.projects))
@@ -732,18 +709,17 @@ namespace Pawnmorph.Hybrids
 			}
 			foreach (GeneDef gene in ar.alienRace.raceRestriction.geneList)
 			{
-				if (!RaceRestrictionSettings.geneRestricted.Contains(gene))
-				{
-					RaceRestrictionSettings.geneRestricted.Add(gene);
-				}
+				RaceRestrictionSettings.geneRestricted.Add(gene);
 				ar.alienRace.raceRestriction.whiteGeneList.Add(gene);
+			}
+			foreach (XenotypeDef xenotypeDef in ar.alienRace.raceRestriction.xenotypeList)
+			{
+				RaceRestrictionSettings.xenotypeRestricted.Add(xenotypeDef);
+				ar.alienRace.raceRestriction.whiteXenotypeList.Add(xenotypeDef);
 			}
 			foreach (ThingDef reproduction in ar.alienRace.raceRestriction.reproductionList)
 			{
-				if (!RaceRestrictionSettings.reproductionRestricted.Contains(reproduction))
-				{
-					RaceRestrictionSettings.reproductionRestricted.Add(reproduction);
-				}
+				RaceRestrictionSettings.reproductionRestricted.Add(reproduction);
 				ar.alienRace.raceRestriction.whiteReproductionList.Add(reproduction);
 			}
 			if (ar.alienRace.generalSettings.corpseCategory != ThingCategoryDefOf.CorpsesHumanlike)

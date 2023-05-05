@@ -18,7 +18,7 @@ namespace Pawnmorph.HPatches
 		[HarmonyPatch(typeof(FoodUtility)), HarmonyPatch(nameof(FoodUtility.AddFoodPoisoningHediff))]
 		static class FoodPoisoningIgnoreChance
 		{
-			static bool Prefix(Pawn pawn, Thing ingestible, FoodPoisonCause cause)
+			static bool Prefix(Pawn pawn, FoodPoisonCause cause)
 			{
 				if (cause == FoodPoisonCause.DangerousFoodType)
 				{
@@ -36,7 +36,7 @@ namespace Pawnmorph.HPatches
 		}
 
 
-		[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap))]
+		[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap_NewTemp))]
 		static class FixBestFoodSourceForFormerHumans
 		{
 			[NotNull]
@@ -95,7 +95,7 @@ namespace Pawnmorph.HPatches
 																			minPrefOverride);
 					return false;
 				}
-
+				
 				return true;
 			}
 

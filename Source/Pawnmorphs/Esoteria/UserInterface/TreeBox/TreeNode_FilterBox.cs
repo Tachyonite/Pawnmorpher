@@ -18,6 +18,11 @@ namespace Pawnmorph.UserInterface.TreeBox
 		private bool _canOpen = false;
 
 		/// <summary>
+		/// Gets or sets whether this node is has label and value on separate lines.
+		/// </summary>
+		public bool SplitRow { get; set; }
+
+		/// <summary>
 		/// Gets the node's label/caption.
 		/// </summary>
 		public string Label { get; }
@@ -35,7 +40,12 @@ namespace Pawnmorph.UserInterface.TreeBox
 		/// </summary>
 		public bool Visible { get; private set; }
 
-		public ActionIn<Rect> Callback { get; }
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="TreeNode_FilterBox"/> is enabled.
+		/// </summary>
+		public bool Enabled { get; set; }
+
+		public ActionIn<Rect> Callback { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TreeNode_FilterBox"/> node to use with the <see cref="FilterTreeBox"/>.
@@ -46,6 +56,7 @@ namespace Pawnmorph.UserInterface.TreeBox
 		public TreeNode_FilterBox(string label, string tooltip = null, ActionIn<Rect> callback = null)
 			: base()
 		{
+			Enabled = true;
 			Label = label;
 			Tooltip = tooltip;
 			Callback = callback;
@@ -70,10 +81,12 @@ namespace Pawnmorph.UserInterface.TreeBox
 		/// <param name="labelKey">Translation key to use for label.</param>
 		/// <param name="tooltipKey">Optional translation key to use for tooltip.</param>
 		/// <param name="callback">Optional draw callback.</param>
+		/// <param name="splitRow">Optional draw callback.</param>
 		/// <returns></returns>
-		public TreeNode_FilterBox AddChild(string labelKey, string tooltipKey = null, ActionIn<Rect> callback = null)
+		public TreeNode_FilterBox AddChild(string labelKey, string tooltipKey = null, ActionIn<Rect> callback = null, bool splitRow = false)
 		{
 			TreeNode_FilterBox node = new TreeNode_FilterBox(labelKey.Translate(), tooltipKey?.Translate(), callback);
+			node.SplitRow = splitRow;
 			node.parentNode = this;
 			node.nestDepth = nestDepth + 1;
 			children.Add(node);
@@ -113,13 +126,14 @@ namespace Pawnmorph.UserInterface.TreeBox
 		/// <param name="nodes">Output collection to return nodes.</param>
 		public void GetVisibleNodes(List<TreeNode_FilterBox> nodes)
 		{
-			if (Visible)
+			if (Visible && Enabled)
 			{
 				nodes.Add(this);
 
 				if (IsOpen(1))
 				{
-					for (int i = children.Count - 1; i >= 0; i--)
+					int count = children.Count;
+					for (int i = 0; i < count; i++)
 					{
 						((TreeNode_FilterBox)children[i]).GetVisibleNodes(nodes);
 					}

@@ -24,7 +24,7 @@
 
   &lt;size=24&gt;Dependencies&lt;/size&gt;
 
-Requires Humanoid Alien Framework and Hugslib.
+Requires Humanoid Alien Framework and VE Frameworks.
 
 	</description>
 	<packageId>tachyonite.pawnmorpher</packageId>

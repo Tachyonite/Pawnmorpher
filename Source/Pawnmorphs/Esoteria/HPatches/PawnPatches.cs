@@ -15,6 +15,16 @@ namespace Pawnmorph.HPatches
 	[HarmonyPatch(typeof(Pawn))]
 	static class PawnPatches
 	{
+		static PawnPatches()
+		{
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
+		{
+			_workModifierCache.Clear();
+		}
+
 		[HarmonyPatch(nameof(Pawn.CombinedDisabledWorkTags), MethodType.Getter), HarmonyPostfix]
 		static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
 		{

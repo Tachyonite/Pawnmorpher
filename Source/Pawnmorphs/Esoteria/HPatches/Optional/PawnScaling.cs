@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using AlienRace;
+using Pawnmorph.Interfaces;
+using Pawnmorph.UserInterface.TreeBox;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -11,13 +13,17 @@ namespace Pawnmorph.HPatches.Optional
 {
 	[OptionalPatch("PMPawnScalingCaption", "PMPawnScalingDescription", nameof(_enabled), false)]
 	[HarmonyLib.HarmonyPatch]
-	static class PawnScaling
+	class PawnScaling : IConfigurableObject
 	{
 		static bool _enabled = false;
 		static Pawn _currentPawn;
 		static float _currentScaledBodySize;
+		static float _scaleMultiplier;
+		static float _maxSize;
+		static float _minSize;
+		static bool _useBodysize;
 
-
+		public string Caption => "PMPawnScalingCaption".Translate();
 
 		static bool Prepare(MethodBase original)
 		{
@@ -55,7 +61,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Override HAR comp scales.
 		[HarmonyLib.HarmonyPatch(typeof(AlienComp), nameof(AlienComp.PostSpawnSetup)), HarmonyLib.HarmonyPostfix]
-		private static void PostSpawnSetup(bool respawningAfterLoad, AlienComp __instance)
+		private static void PostSpawnSetup(AlienComp __instance)
 		{
 			SetCompScales(__instance, (Pawn)__instance.parent, GetScale((Pawn)__instance.parent));
 		}
@@ -79,7 +85,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Apply scale to body addon offsets.
 		[HarmonyLib.HarmonyPatch(typeof(AlienRace.HarmonyPatches), nameof(AlienRace.HarmonyPatches.DrawAddonsFinalHook)), HarmonyLib.HarmonyPostfix]
-		private static void DrawAddonsFinalHook(Pawn pawn, AlienRace.AlienPartGenerator.BodyAddon addon, ref Graphic graphic, ref Vector3 offsetVector, ref float angle, ref Material mat)
+		private static void DrawAddonsFinalHook(Pawn pawn, ref Vector3 offsetVector)
 		{
 			float value = GetScale(pawn);
 			offsetVector.x *= value;
@@ -116,7 +122,16 @@ namespace Pawnmorph.HPatches.Optional
 			if (_currentPawn != pawn)
 			{
 				_currentPawn = pawn;
-				_currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
+
+				if (_useBodysize)
+				{
+					_currentScaledBodySize = Mathf.Sqrt(pawn.BodySize);
+				}
+				else
+					_currentScaledBodySize = Mathf.Sqrt(StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f);
+
+				_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
+				_currentScaledBodySize = Mathf.Clamp(_currentScaledBodySize, _minSize, _maxSize);
 			}
 
 			return _currentScaledBodySize;
@@ -124,7 +139,7 @@ namespace Pawnmorph.HPatches.Optional
 
 		// Offset rendered pawn from actual position to move selection box to their feet.
 		[HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
-		private static void DrawAt(ref Vector3 drawLoc, bool flip, Pawn __instance)
+		private static void DrawAt(ref Vector3 drawLoc, Pawn __instance)
 		{
 			float bodySize = GetScale(__instance);
 			// Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
@@ -134,13 +149,13 @@ namespace Pawnmorph.HPatches.Optional
 				// Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
 				// Only offset when standing.
 				if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
-					drawLoc.z += (bodySize - __instance.RaceProps.baseBodySize) / 2f;
+					drawLoc.z += bodySize / 2f;
 			}
 		}
 
 		// Apply scale offset to head position.
 		[HarmonyLib.HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt)), HarmonyLib.HarmonyPostfix]
-		private static void BaseHeadOffsetAt(Rot4 rotation, ref Vector3 __result, Pawn ___pawn)
+		private static void BaseHeadOffsetAt(ref Vector3 __result, Pawn ___pawn)
 		{
 			float bodySize = GetScale(___pawn);
 			if (bodySize == 1)
@@ -149,6 +164,25 @@ namespace Pawnmorph.HPatches.Optional
 			float size = Mathf.Floor(bodySize * 10) / 10;
 			__result.z = __result.z * size;
 			__result.x = __result.x * size;
+		}
+
+		public void GenerateMenu(TreeNode_FilterBox node)
+		{
+			if (_enabled == false)
+				return;
+
+			node.AddChild("PMPawnScalingScaleMultiplier", "PMPawnScalingScaleMultiplierTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _scaleMultiplier, new FloatRange(0.5f, 3), _scaleMultiplier.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingMaxScale", "PMPawnScalingMaxScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _maxSize, new FloatRange(1, 5), _maxSize.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingMinScale", "PMPawnScalingMinScaleTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref _minSize, new FloatRange(0.3f, 1), _minSize.ToStringPercent(), 0.1f));
+			node.AddChild("PMPawnScalingUseBodysize", "PMPawnScalingUseBodysizeTooltip", callback: (in Rect x) => Widgets.Checkbox(x.position, ref _useBodysize));
+		}
+
+		public void ExposeData()
+		{
+			Scribe_Values.Look(ref _scaleMultiplier, "PM_ScaleMultiplier", 1);
+			Scribe_Values.Look(ref _maxSize, "PM_maxScale", 5);
+			Scribe_Values.Look(ref _minSize, "PM_minScale", 0.3f);
+			Scribe_Values.Look(ref _useBodysize, "PM_useBodysize", false);
 		}
 	}
 }

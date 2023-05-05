@@ -1,4 +1,5 @@
 ﻿using Pawnmorph.Chambers;
+using Pawnmorph.DefExtensions;
 using Verse;
 
 namespace Pawnmorph.Genebank.Model
@@ -42,6 +43,10 @@ namespace Pawnmorph.Genebank.Model
 
 		public override string GetCaption()
 		{
+			AnimalSelectorOverrides overrides = Value.GetModExtension<AnimalSelectorOverrides>();
+			if (overrides != null && string.IsNullOrWhiteSpace(overrides.label) == false)
+				return overrides.label;
+
 			return _value.LabelCap;
 		}
 

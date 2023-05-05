@@ -52,6 +52,12 @@ namespace Pawnmorph.Utilities
 		{
 			_statCache = new Dictionary<ulong, TimedCache<float>>(400);
 			_events = new Dictionary<ushort, StatEventRegistry>(20);
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
+		{
+			_statCache.Clear();
 		}
 
 
@@ -139,11 +145,6 @@ namespace Pawnmorph.Utilities
 			}
 
 			return stringBuilder.ToString();
-		}
-
-		internal static void Clear()
-		{
-			_statCache.Clear();
 		}
 	}
 }

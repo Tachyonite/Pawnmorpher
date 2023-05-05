@@ -3,7 +3,6 @@
 		<defName>WolfMorph</defName>
 		<label>timberwolfmorph</label>
 		<race>Wolf_Timber</race>
-		<!--explicitHybridRace>WolfMorphRace_Explicit</explicitHybridRace-->
 		<categories>
 			<li>Temperate</li>
 			<li>Cold</li>
@@ -12,7 +11,8 @@
 		<partialTransformation>PawnmorphWolfTFPartial</partialTransformation>
 		<raceSettings>
 			<graphicsSettings>
-				<skinColorOverride>(104,98,93)</skinColorOverride>
+				<skinColorOverride>(112,112,112)</skinColorOverride>
+				<hairColorOverride>(189,186,160)</hairColorOverride>
 			</graphicsSettings>
 		</raceSettings>
 	</Pawnmorph.MorphDef>

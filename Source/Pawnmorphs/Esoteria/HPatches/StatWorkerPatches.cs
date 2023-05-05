@@ -17,6 +17,16 @@ namespace Pawnmorph.HPatches
 	{
 		private static Dictionary<ulong, TimedCache<float>> _cache = new Dictionary<ulong, TimedCache<float>>(200);
 
+		static StatWorkerPatches()
+		{
+			PawnmorphGameComp.OnClear += OnClear;
+		}
+
+		private static void OnClear(PawnmorphGameComp obj)
+		{
+			_cache.Clear();
+		}
+
 		/// <summary>
 		/// If using prepatcher, this method gets a value stored on the Pawn to indicate if this method should be skipped entirely. Always returns false otherwise.
 		/// </summary>
@@ -25,6 +35,7 @@ namespace Pawnmorph.HPatches
 		[PrepatcherField]
 		private static ref bool PmShouldSkipStatWorker(this Pawn target)
 		{
+			_placeholder = false;
 			return ref _placeholder;
 		}
 
@@ -71,7 +82,6 @@ namespace Pawnmorph.HPatches
 						item.Value.QueueUpdate();
 					}
 				}
-				Log.Warning("Invalidated");
 			}
 
 			private static float CalculateOffsets(Pawn pawn, StatDef stat)
