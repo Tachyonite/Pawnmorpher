@@ -84,6 +84,11 @@ namespace Pawnmorph
 		public bool generateEndoGenesForAliens = true;
 
 		/// <summary>
+		/// Whether or not to show stage label for fully adapted/grown mutations.
+		/// </summary>
+		public bool enableMutationAdaptedStageLabel = true;
+
+		/// <summary>
 		/// The current log level
 		/// </summary>
 		public LogLevel logLevel = LogLevel.Warnings;
@@ -139,6 +144,7 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref enableMutagenDiseases, "enableMutagenDiseases", true);
 			Scribe_Values.Look(ref enableMutagenMeteor, "enableMutagenMeteor", true);
 			Scribe_Values.Look(ref enableWildFormers, "enableWildFormers", true);
+			Scribe_Values.Look(ref enableMutationAdaptedStageLabel, "enableMutationAdaptedStageLabel", true);
 			Scribe_Values.Look(ref transformChance, "transformChance");
 			Scribe_Values.Look(ref formerChance, "formerChance");
 			Scribe_Values.Look(ref partialChance, "partialChance");
