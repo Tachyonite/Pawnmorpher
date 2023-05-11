@@ -344,7 +344,8 @@ namespace Pawnmorph
 			methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
 			methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
 
-
+			//caravan and inventory patch 
+            methodsToPatch.Add(typeof(MassUtility).GetMethod(nameof(MassUtility.CanEverCarryAnything), staticFlags)); 
 
 			//now patch them 
 			foreach (var methodInfo in methodsToPatch)
