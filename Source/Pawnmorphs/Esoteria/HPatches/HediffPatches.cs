@@ -6,32 +6,32 @@ using Verse;
 
 namespace Pawnmorph.HPatches
 {
-    internal static class HediffPatches
-    {
-        [HarmonyPatch(typeof(Hediff_Injury), nameof(Hediff_Injury.BleedRate), MethodType.Getter)]
-        private static class BleedRatePatch
-        {
-            private static void Postfix(Hediff_Injury __instance, ref float __result)
-            {
-                if (__result <= 0 || __instance.Part == null) return;
-                float mul = BodyUtilities.GetPartHealthMultiplier(__instance.pawn, __instance.Part);
+	internal static class HediffPatches
+	{
+		[HarmonyPatch(typeof(Hediff_Injury), nameof(Hediff_Injury.BleedRate), MethodType.Getter)]
+		private static class BleedRatePatch
+		{
+			private static void Postfix(Hediff_Injury __instance, ref float __result)
+			{
+				if (__result <= 0 || __instance.Part == null) return;
+				float mul = BodyUtilities.GetPartHealthMultiplier(__instance.pawn, __instance.Part);
 
-                __result = mul * __result;
+				__result = mul * __result;
 
-            }
-        }
+			}
+		}
 
-        [HarmonyPatch(typeof(Hediff_Injury), nameof(Hediff_Injury.PainOffset), MethodType.Getter)]
-        static class PainOffsetPatch
-        {
-            private static void Postfix(Hediff_Injury __instance, ref float __result)
-            {
-                if (__result <= 0 || __instance.Part == null) return;
-                float mul = BodyUtilities.GetPartHealthMultiplier(__instance.pawn, __instance.Part);
+		[HarmonyPatch(typeof(Hediff_Injury), nameof(Hediff_Injury.PainOffset), MethodType.Getter)]
+		static class PainOffsetPatch
+		{
+			private static void Postfix(Hediff_Injury __instance, ref float __result)
+			{
+				if (__result <= 0 || __instance.Part == null) return;
+				float mul = BodyUtilities.GetPartHealthMultiplier(__instance.pawn, __instance.Part);
 
-                __result = mul * __result;
+				__result = mul * __result;
 
-            }
-        }
-    }
+			}
+		}
+	}
 }

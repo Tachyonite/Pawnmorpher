@@ -7,14 +7,13 @@
 			</li>
 		</comps>
 		<storedConceptLearnOpportunity>DrugPolicies</storedConceptLearnOpportunity>
-		<thingCategories>
-			<li>AnimalProductRaw</li>
-			<li>Drugs</li>
-			<li>RawMutagen</li>
-		</thingCategories>
 		<socialPropernessMatters>false</socialPropernessMatters>
+		<thingCategories Inherit="False">
+			<li>RawMutagen</li>
+			<li>AnimalProductRaw</li>
+		</thingCategories>
 		<ingestible>
-			<drugCategory>Social</drugCategory>
+			<drugCategory>None</drugCategory>
 			<preferability>DesperateOnly</preferability>
 			<foodType>AnimalProduct, Fluid</foodType>
 			<maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
@@ -27,6 +26,10 @@
 			<FoodPoisonChanceFixedHuman>0.02</FoodPoisonChanceFixedHuman>
 			<MutaniteConcentration>0.1</MutaniteConcentration>
 		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AdministerableExtension" />
+			<li Class="Pawnmorph.ModExtensions.MutagenicItemExtension" />
+		</modExtensions>
 	</ThingDef>
 
 	<!-- ========== CowMorph Milk ========== -->

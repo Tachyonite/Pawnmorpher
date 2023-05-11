@@ -132,6 +132,12 @@
         </operations>
     </Operation>
 
+    <Operation Class="PatchOperationReplace">
+        <xpath>/Defs/ThingDef/race[thinkTreeConstant="AnimalConstant"]/thinkTreeConstant</xpath>
+        <value>
+            <thinkTreeConstant>PM_AnimalConstant</thinkTreeConstant>
+        </value>
+    </Operation>
 
     <!-- for debugging only, should be removed before release 
     <Operation Class="PatchOperationReplace">

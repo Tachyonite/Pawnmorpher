@@ -188,7 +188,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>With rigorous acclimation training [PAWN_pronoun] has regained speed and dexterity beyond [PAWN_objective] could have dreamed! [Pawn_possessive] dreams to to live in a sewer and a study martial arts.</description>
+				<description>With rigorous acclimation training [PAWN_pronoun] has regained speed and dexterity beyond [PAWN_objective] could have dreamed! [PAWN_possessive] dreams to to live in a sewer and a study martial arts.</description>
 				<graphics>
 					<Spines>Parts/Tortoise/Tortoise_Shell</Spines>
 					<SpinesBehind>Parts/Tortoise/Tortoise_Shell_Behind</SpinesBehind>

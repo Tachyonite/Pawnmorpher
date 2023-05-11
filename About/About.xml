@@ -1,4 +1,4 @@
-<ModMetaData>
+﻿<ModMetaData>
 	<name>Pawnmorpher</name>
 	<author>The Pawnmorpher Team</author>
 	<supportedVersions>
@@ -24,7 +24,7 @@
 
   &lt;size=24&gt;Dependencies&lt;/size&gt;
 
-Requires Humanoid Alien Framework and Hugslib.
+Requires Humanoid Alien Framework and VE Frameworks.
 
 	</description>
 	<packageId>tachyonite.pawnmorpher</packageId>
@@ -48,11 +48,6 @@ Requires Humanoid Alien Framework and Hugslib.
 				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
 			</li>
 			<li>
-				<packageId>UnlimitedHugs.HugsLib</packageId>
-				<displayName>HugsLib</displayName>
-				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
-			</li>
-			<li>
 				<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
 				<displayName>Vanilla Expanded Framework</displayName>
 				<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
@@ -72,5 +67,6 @@ Requires Humanoid Alien Framework and Hugslib.
 		<li>VanillaExpanded.VCookE</li>
 		<li>crustypeanut.rc2.core</li>
 		<li>UnlimitedHugs.RemoteTech</li>
+		<li>CETeam.CombatExtended</li>
 	</loadAfter>
 </ModMetaData>

@@ -7,22 +7,22 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    [DefOf]
-    public static class PMPawnKindDefOf
-    {
+	/// <summary>
+	/// 
+	/// </summary>
+	[DefOf]
+	public static class PMPawnKindDefOf
+	{
 
-        static PMPawnKindDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(PMPawnKindDefOf));
-        }
+		static PMPawnKindDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(PMPawnKindDefOf));
+		}
 
-        /// <summary>
-        /// The sheep
-        /// </summary>
-        [NotNull]
-        public static PawnKindDef Sheep; 
-    }
+		/// <summary>
+		/// The sheep
+		/// </summary>
+		[NotNull]
+		public static PawnKindDef Sheep;
+	}
 }

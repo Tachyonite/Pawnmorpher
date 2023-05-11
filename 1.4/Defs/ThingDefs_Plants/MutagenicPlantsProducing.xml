@@ -108,7 +108,7 @@ Antigen plants are delicate and sensitive to temperature. They take a long time 
             <leaflessGraphicPath>Plants/Leafless/Glowvine</leaflessGraphicPath>
             <immatureGraphicPath>Plants/Leafless/Glowvine</immatureGraphicPath>
             <harvestedThingDef>Glowvine</harvestedThingDef>
-            <growDays>15</growDays>
+            <growDays>12</growDays>
             <growMinGlow>0</growMinGlow>
             <growOptimalGlow>0</growOptimalGlow>
 			<harvestYield>2</harvestYield>

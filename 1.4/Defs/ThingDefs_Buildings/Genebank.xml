@@ -10,7 +10,7 @@
     </graphicData>
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
-      <li>Buildings</li>
+      <li>BuildingsMisc</li>
     </thingCategories>
     <defaultPlacingRot>South</defaultPlacingRot>
     <altitudeLayer>Building</altitudeLayer>

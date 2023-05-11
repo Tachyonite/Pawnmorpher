@@ -6,8 +6,8 @@ namespace Pawnmorph
 	/// <summary>
 	/// Getter for the mutanite value of items.
 	/// </summary>
-    public class IngredientValueGetter_Mutanite : IngredientValueGetter
-    {
+	public class IngredientValueGetter_Mutanite : IngredientValueGetter
+	{
 		/// <summary>
 		/// Get the mutanite value of an item.
 		/// </summary>

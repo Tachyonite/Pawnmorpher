@@ -1,33 +1,14 @@
 <Defs>
 	<ThingDef Abstract="true" ParentName="SerumBase" Name="BasicTransformerBase">
 		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>100</MarketValue>
 		</statBases>
+		<thingCategories Inherit="False">
+			<li>Serum</li>
+		</thingCategories>
 		<recipeMaker>
 			<researchPrerequisite>SerumSynthesis</researchPrerequisite>
-			<recipeUsers>
-				<li>MutagenLab</li>
-			</recipeUsers>
-		</recipeMaker>
-		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
-		</costList>
-		<comps>
-			<li Class="CompProperties_Drug">
-				<listOrder>1010</listOrder>
-			</li>
-		</comps>
-	</ThingDef>
-
-
-	<ThingDef Abstract="true" ParentName="SerumBase" Name="TransformerBase">
-		<statBases>
-			<WorkToMake>400</WorkToMake>
-			<MarketValue>120</MarketValue>
-		</statBases>
-		<recipeMaker>
-			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
 			<recipeUsers>
 				<li>MutagenLab</li>
 			</recipeUsers>
@@ -58,6 +39,30 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
+	</ThingDef>
+
+	<ThingDef Abstract="true" ParentName="SerumBase" Name="TransformerBase">
+		<statBases>
+			<WorkToMake>800</WorkToMake>
+			<MarketValue>120</MarketValue>
+		</statBases>
+		<thingCategories Inherit="False">
+			<li>Serum</li>
+		</thingCategories>
+		<recipeMaker>
+			<researchPrerequisite>AdvancedSerumSynthesis</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MechaniteSlurry>2</MechaniteSlurry>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1010</listOrder>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ====================== Biome Transformers ====================== -->
@@ -212,16 +217,16 @@
 			<texPath>Things/Item/Drug/SerumPowerful</texPath>
 		</graphicData>
 		<statBases>
-			<WorkToMake>600</WorkToMake>
-			<MarketValue>375</MarketValue>
+			<WorkToMake>2000</WorkToMake>
+			<MarketValue>400</MarketValue>
 		</statBases>
 		<recipeMaker>
 			<researchPrerequisite>PowerfulSerumSynthesis</researchPrerequisite>
 		</recipeMaker>
 		<costList>
-			<MechaniteSlurry>2</MechaniteSlurry>
+			<MechaniteSlurry>3</MechaniteSlurry>
 			<Mutanite>1</Mutanite>
-			<Neutroamine >4</Neutroamine>
+			<Neutroamine >5</Neutroamine>
 		</costList>
 		<ingestible>
 			<outcomeDoers>

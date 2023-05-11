@@ -3,26 +3,26 @@
 
 namespace Pawnmorph.DebugUtils
 {
-    /// <summary>
-    /// enum to control how much logging should be done 
-    /// </summary>
-    public enum LogLevel
-    {
-        /// <summary>
-        /// only log errors 
-        /// </summary>
-        Error=0,
-        /// <summary>
-        /// log warnings and errors 
-        /// </summary>
-        Warnings,
-        /// <summary>
-        /// log messages, warnings and errors 
-        /// </summary>
-        Messages,
-        /// <summary>
-        /// log everything 
-        /// </summary>
-        Pedantic
-    }
+	/// <summary>
+	/// enum to control how much logging should be done 
+	/// </summary>
+	public enum LogLevel
+	{
+		/// <summary>
+		/// only log errors 
+		/// </summary>
+		Error = 0,
+		/// <summary>
+		/// log warnings and errors 
+		/// </summary>
+		Warnings,
+		/// <summary>
+		/// log messages, warnings and errors 
+		/// </summary>
+		Messages,
+		/// <summary>
+		/// log everything 
+		/// </summary>
+		Pedantic
+	}
 }

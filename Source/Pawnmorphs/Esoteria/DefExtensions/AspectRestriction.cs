@@ -8,139 +8,139 @@ using Verse;
 
 namespace Pawnmorph.DefExtensions
 {
-    /// <summary>
-    ///     restriction def extension that restricts a def to pawns with/without specific aspects
-    /// </summary>
-    /// <seealso cref="Pawnmorph.DefExtensions.RestrictionExtension" />
-    public class AspectRestriction : RestrictionExtension
-    {
-        
-
-        /// <summary>
-        ///     The aspect entries
-        /// </summary>
-        [NotNull] public List<Entry> aspectEntries = new List<Entry>();
+	/// <summary>
+	///     restriction def extension that restricts a def to pawns with/without specific aspects
+	/// </summary>
+	/// <seealso cref="Pawnmorph.DefExtensions.RestrictionExtension" />
+	public class AspectRestriction : RestrictionExtension
+	{
 
 
-        [Unsaved] private Dictionary<AspectDef, List<int>> _lookupDict = null;
+		/// <summary>
+		///     The aspect entries
+		/// </summary>
+		[NotNull] public List<Entry> aspectEntries = new List<Entry>();
 
-        /// <summary>
-        ///     gets all errors with this instance
-        /// </summary>
-        /// <returns></returns>
-        public override IEnumerable<string> ConfigErrors()
-        {
-            foreach (string configError in base.ConfigErrors()) yield return configError;
 
-            var tmpDict = new Dictionary<AspectDef, List<int>>();
-            foreach (Entry aspectEntry in aspectEntries)
-                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (aspectEntry.aspectDef == null)
-                {
-                    yield return "aspect def is null";
-                }
-                else
-                {
-                    List<int> lst;
-                    if (!tmpDict.TryGetValue(aspectEntry.aspectDef, out lst))
-                    {
-                        lst = new List<int>();
-                        tmpDict[aspectEntry.aspectDef] = lst;
-                    }
+		[Unsaved] private Dictionary<AspectDef, List<int>> _lookupDict = null;
 
-                    lst.Add(aspectEntry.stageIndex);
-                }
+		/// <summary>
+		///     gets all errors with this instance
+		/// </summary>
+		/// <returns></returns>
+		public override IEnumerable<string> ConfigErrors()
+		{
+			foreach (string configError in base.ConfigErrors()) yield return configError;
 
-            foreach (KeyValuePair<AspectDef, List<int>> keyValuePair in tmpDict)
-            {
-                List<int> lst = keyValuePair.Value;
-                if (lst.Any(i => i < 0) && lst.Any(i => i >= 0)
-                ) //check if any entries have stage indices less then zero and greater then zero 
-                    yield return
-                        $"entry for {keyValuePair.Key.defName} has indices that are both less then zero and greater then or equal to zero!";
-            }
-        }
+			var tmpDict = new Dictionary<AspectDef, List<int>>();
+			foreach (Entry aspectEntry in aspectEntries)
+				// ReSharper disable once ConditionIsAlwaysTrueOrFalse
+				if (aspectEntry.aspectDef == null)
+				{
+					yield return "aspect def is null";
+				}
+				else
+				{
+					List<int> lst;
+					if (!tmpDict.TryGetValue(aspectEntry.aspectDef, out lst))
+					{
+						lst = new List<int>();
+						tmpDict[aspectEntry.aspectDef] = lst;
+					}
 
-        /// <summary>
-        ///     checks if the given pawn passes the restriction.
-        /// </summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <returns>
-        ///     if the def can be used with the given pawn
-        /// </returns>
-        /// <exception cref="ArgumentNullException">pawn</exception>
-        protected override bool PassesRestrictionImpl(Pawn pawn)
-        {
-            if (pawn == null) throw new ArgumentNullException(nameof(pawn));
-            bool hasAspect;
-            AspectTracker tracker = pawn.GetAspectTracker();
-            if (tracker == null)
-            {
-                hasAspect = false; //no tracker, then they cannot have an aspect 
-            }
-            else
-            {
-                hasAspect = false;
-                foreach (Aspect aspect in tracker)
-                {
-                    List<int> indexLst = GetStagesForAspect(aspect.def);
-                    if (indexLst == null) continue;
+					lst.Add(aspectEntry.stageIndex);
+				}
 
-                    if (indexLst.Any(i => i < 0))
-                    {
-                        hasAspect = true;
-                        break;
-                    }
+			foreach (KeyValuePair<AspectDef, List<int>> keyValuePair in tmpDict)
+			{
+				List<int> lst = keyValuePair.Value;
+				if (lst.Any(i => i < 0) && lst.Any(i => i >= 0)
+				) //check if any entries have stage indices less then zero and greater then zero 
+					yield return
+						$"entry for {keyValuePair.Key.defName} has indices that are both less then zero and greater then or equal to zero!";
+			}
+		}
 
-                    if (indexLst.Contains(aspect.StageIndex))
-                    {
-                        hasAspect = true;
-                        break;
-                    }
-                }
-            }
-            return hasAspect;
-        }
+		/// <summary>
+		///     checks if the given pawn passes the restriction.
+		/// </summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <returns>
+		///     if the def can be used with the given pawn
+		/// </returns>
+		/// <exception cref="ArgumentNullException">pawn</exception>
+		protected override bool PassesRestrictionImpl(Pawn pawn)
+		{
+			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+			bool hasAspect;
+			AspectTracker tracker = pawn.GetAspectTracker();
+			if (tracker == null)
+			{
+				hasAspect = false; //no tracker, then they cannot have an aspect 
+			}
+			else
+			{
+				hasAspect = false;
+				foreach (Aspect aspect in tracker)
+				{
+					List<int> indexLst = GetStagesForAspect(aspect.def);
+					if (indexLst == null) continue;
 
-        [CanBeNull]
-        private List<int> GetStagesForAspect([NotNull] AspectDef aspectDef)
-        {
-            if (_lookupDict == null)
-            {
-                _lookupDict = new Dictionary<AspectDef, List<int>>();
-                foreach (Entry aspectEntry in aspectEntries)
-                {
-                    if (aspectEntry.aspectDef == null) continue;
+					if (indexLst.Any(i => i < 0))
+					{
+						hasAspect = true;
+						break;
+					}
 
-                    List<int> lst;
-                    if (!_lookupDict.TryGetValue(aspectEntry.aspectDef, out lst))
-                    {
-                        lst = new List<int>();
-                        _lookupDict[aspectEntry.aspectDef] = lst;
-                    }
+					if (indexLst.Contains(aspect.StageIndex))
+					{
+						hasAspect = true;
+						break;
+					}
+				}
+			}
+			return hasAspect;
+		}
 
-                    lst.Add(aspectEntry.stageIndex);
-                }
-            }
+		[CanBeNull]
+		private List<int> GetStagesForAspect([NotNull] AspectDef aspectDef)
+		{
+			if (_lookupDict == null)
+			{
+				_lookupDict = new Dictionary<AspectDef, List<int>>();
+				foreach (Entry aspectEntry in aspectEntries)
+				{
+					if (aspectEntry.aspectDef == null) continue;
 
-            return _lookupDict.TryGetValue(aspectDef);
-        }
+					List<int> lst;
+					if (!_lookupDict.TryGetValue(aspectEntry.aspectDef, out lst))
+					{
+						lst = new List<int>();
+						_lookupDict[aspectEntry.aspectDef] = lst;
+					}
 
-        /// <summary>
-        ///     simple class for storing entries about an aspect and stage
-        /// </summary>
-        public class Entry
-        {
-            /// <summary>
-            ///     The aspect definition to look for
-            /// </summary>
-            public AspectDef aspectDef;
+					lst.Add(aspectEntry.stageIndex);
+				}
+			}
 
-            /// <summary>
-            ///     The stage index to look for
-            /// </summary>
-            /// if less then 0 then any stage will do
-            public int stageIndex = -1;
-        }
-    }
+			return _lookupDict.TryGetValue(aspectDef);
+		}
+
+		/// <summary>
+		///     simple class for storing entries about an aspect and stage
+		/// </summary>
+		public class Entry
+		{
+			/// <summary>
+			///     The aspect definition to look for
+			/// </summary>
+			public AspectDef aspectDef;
+
+			/// <summary>
+			///     The stage index to look for
+			/// </summary>
+			/// if less then 0 then any stage will do
+			public int stageIndex = -1;
+		}
+	}
 }

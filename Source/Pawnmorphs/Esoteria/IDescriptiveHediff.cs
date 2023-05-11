@@ -3,17 +3,17 @@
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// interface for hediffs that have a custom description 
-    /// </summary>
-    public interface IDescriptiveHediff
-    {
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        string Description { get; }
-    }
+	/// <summary>
+	/// interface for hediffs that have a custom description 
+	/// </summary>
+	public interface IDescriptiveHediff
+	{
+		/// <summary>
+		/// Gets the description.
+		/// </summary>
+		/// <value>
+		/// The description.
+		/// </value>
+		string Description { get; }
+	}
 }

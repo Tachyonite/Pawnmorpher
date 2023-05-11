@@ -11,7 +11,6 @@
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
@@ -38,7 +37,6 @@
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<drawForMale>true</drawForMale>
 				<drawForFemale>false</drawForFemale>
 				<hiddenUnderApparelFor>
@@ -67,7 +65,6 @@
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<drawForMale>false</drawForMale>
 				<drawForFemale>true</drawForFemale>
 				<hiddenUnderApparelFor>
@@ -97,7 +94,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
@@ -125,7 +121,6 @@
 				<bodyPartLabel>left ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -139,7 +134,6 @@
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -153,7 +147,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<anchorID>RightEar</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -167,7 +160,6 @@
 				<anchorID>RightEarBehindHead</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -183,7 +175,6 @@
 				<drawnInBed>false</drawnInBed>
 				<drawForMale>true</drawForMale> <!--Leave this here, it is hacky but necessary-->
 				<drawForFemale>true</drawForFemale> <!--Leave this here, it is hacky but necessary-->
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -229,11 +220,11 @@
 				<drawForMale>true</drawForMale>
 				<drawForFemale>false</drawForFemale>
 				<!--Leave this here, it is hacky but necessary-->
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
 							<Male>(0,-0.02)</Male>
+							<Female>(0,-0.06)</Female>
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
 							<Hulk>(0,-0.06)</Hulk>
@@ -242,14 +233,17 @@
 					<north>
 						<bodyTypes>
 							<Male>(0,-0.35)</Male>
+							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
 						</bodyTypes>
 					</north>
 					<east>
+						<layerOffset>-0.29</layerOffset>
 						<bodyTypes>
 							<Male>(0.2,-0.26)</Male>
+							<Female>(0.31,-0.28)</Female>
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
@@ -272,10 +266,10 @@
 				<drawForMale>false</drawForMale>
 				<drawForFemale>true</drawForFemale>
 				<!--Leave this here, it is hacky but necessary-->
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
+							<Male>(0,-0.02)</Male>
 							<Female>(0,-0.06)</Female>
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
@@ -284,6 +278,7 @@
 					</south>
 					<north>
 						<bodyTypes>
+							<Male>(0,-0.35)</Male>
 							<Female>(0,-0.39)</Female>
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
@@ -292,6 +287,7 @@
 					</north>
 					<east>
 						<bodyTypes>
+							<Male>(0.2,-0.26)</Male>
 							<Female>(0.31,-0.28)</Female>
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
@@ -312,7 +308,6 @@
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -353,7 +348,6 @@
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
-				<shaderType>CutoutSkin</shaderType>
 				<anchorID>BodyExtendingTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<offsets>
@@ -390,7 +384,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Skullspikes -->
@@ -402,7 +395,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -415,7 +407,6 @@
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<layerOffset>0.1</layerOffset>
@@ -437,7 +428,6 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
 					<li>FullHead</li>
@@ -454,7 +444,6 @@
 				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>UpperHead</li>
 					<li>FullHead</li>
@@ -471,7 +460,6 @@
 				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -527,7 +515,6 @@
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<offsets>
 					<south/>
 					<north/>
@@ -551,7 +538,6 @@
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
 				<offsets>
 					<south>
@@ -578,7 +564,6 @@
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
 				<offsets>
 					<south/>
@@ -605,7 +590,6 @@
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<shaderType>CutoutSkin</shaderType>
 				<drawnInBed>false</drawnInBed>
 				<offsets>
 					<south>
@@ -837,7 +821,6 @@
 				<bodyPartLabel>left eye</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -850,7 +833,6 @@
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>

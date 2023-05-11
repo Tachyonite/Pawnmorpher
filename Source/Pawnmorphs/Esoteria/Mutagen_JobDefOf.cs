@@ -3,13 +3,14 @@
 
 using RimWorld;
 using Verse;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    [DefOf]
-    public static class Mutagen_JobDefOf
-    {
-        public static JobDef CarryToMutagenChamber;
-        public static JobDef EnterMutagenChamber;
-    }
+	[DefOf]
+	public static class Mutagen_JobDefOf
+	{
+		public static JobDef CarryToMutagenChamber;
+		public static JobDef EnterMutagenChamber;
+	}
 }

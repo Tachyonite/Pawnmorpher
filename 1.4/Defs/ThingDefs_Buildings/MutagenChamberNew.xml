@@ -29,7 +29,7 @@
 		  <li>ITab_ContentsCasket</li>
 		</inspectorTabs>
         <thingCategories>
-            <li>BuildingsProduction</li>
+            <li>BuildingsMisc</li>
         </thingCategories>
         <statBases>
             <WorkToBuild>8000</WorkToBuild>

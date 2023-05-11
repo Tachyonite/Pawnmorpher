@@ -1,34 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Verse;
 
 namespace Pawnmorph
 {
-    public class ListedBackstoryDef : AlienRace.AlienBackstoryDef
-    {
+	/// <summary>
+	/// A backstory def that can explicitly allow a list of multiple work types 
+	/// </summary>
+	public class ListedBackstoryDef : AlienRace.AlienBackstoryDef
+	{
 
-        public List<WorkTags> workAllowsList = new List<WorkTags>();
+		/// <summary>
+		/// The list of allowed WorkTags
+		/// </summary>
+		public List<WorkTags> workAllowsList = new List<WorkTags>();
 
 
-        public override void ResolveReferences()
-        {
-            if (workAllowsList.Count > 0)
-            {
-                WorkTags allowed = WorkTags.None;
+		/// <inheritdoc />
+		public override void ResolveReferences()
+		{
+			if (workAllowsList.Count > 0)
+			{
+				WorkTags allowed = WorkTags.None;
 
-                foreach (WorkTags workAllowEntry in workAllowsList)
-                    allowed |= workAllowEntry;
+				foreach (WorkTags workAllowEntry in workAllowsList)
+					allowed |= workAllowEntry;
 
-                workAllows = allowed;
-            }
+				workAllows = allowed;
+			}
 
-            base.ResolveReferences();
+			base.ResolveReferences();
 
-            workDisables ^= WorkTags.AllWork;
-        }
+			workDisables ^= WorkTags.AllWork;
+		}
 
-    }
+	}
 }

@@ -17,7 +17,7 @@ Although it induces rapid and uncontrollable mutations, some desperate individua
 			<li>RawMutagen</li>
 		</thingCategories>
 		<ingestible>
-			<drugCategory>Medical</drugCategory>
+			<drugCategory>None</drugCategory>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
 					<hediffDef>FullRandomTFAnyOutcome</hediffDef>

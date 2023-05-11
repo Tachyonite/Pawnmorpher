@@ -4,32 +4,33 @@
 using JetBrains.Annotations;
 using RimWorld;
 using Verse;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    /// <summary> Collection of misc tf related HediffDefs. </summary>
-    [DefOf]
-    public static class TfHediffDefOf
-    {
-        // ReSharper disable once NotNullMemberIsNotInitialized
-        static TfHediffDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(TfHediffDefOf));
-        }
+	/// <summary> Collection of misc tf related HediffDefs. </summary>
+	[DefOf]
+	public static class TfHediffDefOf
+	{
+		// ReSharper disable once NotNullMemberIsNotInitialized
+		static TfHediffDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(TfHediffDefOf));
+		}
 
-       
-        [NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
-        public static HediffDef PermanentlyFeral;
 
-        public static HediffDef TransformationParalysis;
+		[NotNull, UsedImplicitly(ImplicitUseKindFlags.Assign)]
+		public static HediffDef PermanentlyFeral;
 
-        [NotNull] public static HediffDef FeralPillSapienceDrop;
+		public static HediffDef TransformationParalysis;
 
-        [NotNull]
-        public static HediffDef SapienceLimiterHediff;
+		[NotNull] public static HediffDef FeralPillSapienceDrop;
 
-        public static HediffDef LuciferiumHigh;
+		[NotNull]
+		public static HediffDef SapienceLimiterHediff;
 
-        public static HediffDef Bullrush;
-    }
+		public static HediffDef LuciferiumHigh;
+
+		public static HediffDef Bullrush;
+	}
 }
