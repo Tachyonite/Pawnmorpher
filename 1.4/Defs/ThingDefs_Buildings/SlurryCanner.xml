@@ -5,13 +5,14 @@
 		<description>Pulls slurry from the network and makes it available for hauling.</description>
 		<thingClass>Building_Storage</thingClass>
 		<category>Building</category>
+		<altitudeLayer>Building</altitudeLayer>
 		<tickerType>Never</tickerType>
 		<graphicData>
-			<texPath>Things/Building/MutaniteHopper</texPath>
+			<texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
+			<drawSize>(2,2)</drawSize>
 		</graphicData>
-		<uiIconPath>Things/Building/MutaniteHopper</uiIconPath>
+		<uiIconPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</uiIconPath>
 		<uiIconScale>1</uiIconScale>
 		<inspectorTabs>
 			<li>ITab_Storage</li>

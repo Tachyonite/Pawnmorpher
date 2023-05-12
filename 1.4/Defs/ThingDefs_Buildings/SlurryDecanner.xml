@@ -5,13 +5,14 @@
 		<description>Drains any slurry canisters placed on it into the connected slurry network.</description>
 		<thingClass>Building_Storage</thingClass>
 		<category>Building</category>
+		<altitudeLayer>Building</altitudeLayer>
 		<tickerType>Never</tickerType>
 		<graphicData>
-			<texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
+			<texPath>Things/Building/MutaniteHopper</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
+			<drawSize>(2,2)</drawSize>
 		</graphicData>
-		<uiIconPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</uiIconPath>
+		<uiIconPath>Things/Building/MutaniteHopper</uiIconPath>
 		<uiIconScale>1</uiIconScale>
 		<inspectorTabs>
 			<li>ITab_Storage</li>
