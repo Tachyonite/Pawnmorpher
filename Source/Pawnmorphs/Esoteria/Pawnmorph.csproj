@@ -612,6 +612,8 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="Things\AnimalGenome.cs" />
+    <Compile Include="Things\AnimalGenomeDef.cs" />
     <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\FilterTreeBox.cs" />
