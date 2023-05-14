@@ -333,6 +333,7 @@
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
+    <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
     <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
@@ -595,6 +596,7 @@
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="SlurryNetDefOf.cs" />
+    <Compile Include="StatWorkers\StatParts\StatPart_MarketValue.cs" />
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
@@ -612,8 +614,7 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
-    <Compile Include="Things\AnimalGenome.cs" />
-    <Compile Include="Things\AnimalGenomeDef.cs" />
+    <Compile Include="Things\Genome_Animal.cs" />
     <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\FilterTreeBox.cs" />

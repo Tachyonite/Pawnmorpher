@@ -65,6 +65,7 @@ namespace Pawnmorph
 
 		[NotNull] private static readonly List<PawnKindDef> _allRegularFormerHumanPawnKinds;
 		[NotNull] private static readonly List<PawnKindDef> _allResrictedFormerHumanPawnKinds;
+		[NotNull] private static readonly List<PawnKindDef> _allFormerHumanPawnKinds;
 
 		[NotNull] private static readonly Dictionary<int, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<int, TimedCache<Intelligence>>(100);
 
@@ -129,6 +130,7 @@ namespace Pawnmorph
 
 			_allRegularFormerHumanPawnKinds = new List<PawnKindDef>();
 			_allResrictedFormerHumanPawnKinds = new List<PawnKindDef>();
+			_allFormerHumanPawnKinds = new List<PawnKindDef>();
 
 			if (PawnmorpherMod.Settings.animalBlacklist == null)
 				PawnmorpherMod.Settings.animalBlacklist = GetDefaultBlockList();
@@ -215,6 +217,10 @@ namespace Pawnmorph
 
 			_allResrictedFormerHumanPawnKinds.Clear();
 			_allResrictedFormerHumanPawnKinds.AddRange(DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race.IsValidFormerHuman(allowRestricted: true) && _allRegularFormerHumanPawnKinds.Contains(p) == false));
+
+			_allFormerHumanPawnKinds.Clear();
+			_allFormerHumanPawnKinds.AddRange(_allRegularFormerHumanPawnKinds);
+			_allFormerHumanPawnKinds.AddRange(_allResrictedFormerHumanPawnKinds);
 		}
 
 
@@ -234,7 +240,16 @@ namespace Pawnmorph
 		/// All restricted former human pawnkind defs.
 		/// </value>
 		[NotNull]
-		public static IReadOnlyList<PawnKindDef> AllRestrictedFormerHumanPawnkindDefs => _allRegularFormerHumanPawnKinds;
+		public static IReadOnlyList<PawnKindDef> AllRestrictedFormerHumanPawnkindDefs => _allResrictedFormerHumanPawnKinds;
+
+		/// <summary>
+		/// a list of all pawnkind defs that can be former humans including both restricted and normal.
+		/// </summary>
+		/// <value>
+		/// All former human pawnkind defs.
+		/// </value>
+		[NotNull]
+		public static IReadOnlyList<PawnKindDef> AllFormerHumanPawnkindDefs => _allFormerHumanPawnKinds;
 
 		/// <summary>
 		///     the base chance for a neutral or hostile pawn to go manhunter when transformed

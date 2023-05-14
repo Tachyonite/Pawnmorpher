@@ -111,12 +111,12 @@ namespace Pawnmorph.Chambers
 				_allImplicitGenomes.Add(tDef);
 			}
 
-			foreach (PawnKindDef pk in AllPKsWithGenomes)
-			{
-				ThingDef tDef = GenerateAnimalGenome(pk);
-				_genomeDict[pk] = tDef;
-				_allImplicitGenomes.Add(tDef);
-			}
+			//foreach (PawnKindDef pk in AllPKsWithGenomes)
+			//{
+			//	ThingDef tDef = GenerateAnimalGenome(pk);
+			//	_genomeDict[pk] = tDef;
+			//	_allImplicitGenomes.Add(tDef);
+			//}
 
 
 			foreach (ThingDef allImplicitGenome in _allImplicitGenomes)
