@@ -36,7 +36,7 @@
 
 	<ThingDef ParentName="AnimalGenomeBase">
 		<defName>PM_AnimalGenome</defName>
-		<label>Genome</label>
+		<label>Animal genome</label>
 		<description>Contains an animal's genome that can be uploaded into genebank.</description>
 		<statBases>
 			<MarketValue>100</MarketValue>
@@ -52,7 +52,7 @@
 	
 	<ThingDef ParentName="AnimalGenomeBase">
 		<defName>PM_RestrictedAnimalGenome</defName>
-		<label>Restricted genome</label>
+		<label>Animal genome - Restricted</label>
 		<description>Contains a restricted animal's genome that can be uploaded into genebank.</description>
 		<statBases>
 			<MarketValue>1000</MarketValue>
