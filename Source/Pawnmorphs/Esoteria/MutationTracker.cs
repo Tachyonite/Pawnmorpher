@@ -120,12 +120,20 @@ namespace Pawnmorph
 		public Pawn Pawn => (Pawn)parent;
 
 
+		private bool? immune = null;
+
 		/// <summary>
 		///     called every tick
 		/// </summary>
 		public override void CompTick()
 		{
-			if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn.def)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+			// Could potentially use post-tick action to self-remove MutationTracker if pawn is immune.
+			if (immune == null)
+				immune = MutagenDefOf.defaultMutagen.CanInfect(Pawn.def) == false;
+			
+			if (immune == true) 
+				return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+			
 			if (InfluencesDirty)
 			{
 				RecalcInfluences();
