@@ -11,6 +11,7 @@ using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -50,6 +51,7 @@ namespace Pawnmorph
 				AddMutationsToWhitelistedRaces();
 				EnableDisableOptionalPatches();
 				CheckForObsoletedComponents();
+				RemoveInvalidMutationTrackers();
 
 				try
 				{
@@ -88,6 +90,39 @@ namespace Pawnmorph
 				throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}", e);
 			}
 		}
+
+		private static void RemoveInvalidMutationTrackers()
+		{
+			List<ThingDef> thingDefs = DefDatabase<ThingDef>.AllDefsListForReading;
+
+			Type pawnType = typeof(Pawn);
+			Type trackerType = typeof(MutationTracker);
+			Type aspectType = typeof(AspectTracker);
+			Type sapienceType = typeof(SapienceTracker);
+
+			// Loop all pawn types.
+			for (int i = thingDefs.Count - 1; i >= 0; i--)
+			{
+				ThingDef currentDef = thingDefs[i];
+				if (pawnType.IsAssignableFrom(currentDef.thingClass))
+				{
+					if (MutagenDefOf.defaultMutagen.CanInfect(currentDef))
+					{
+						currentDef.comps.Add(new CompProperties(trackerType));
+						currentDef.comps.Add(new CompProperties(aspectType));
+					}
+
+					currentDef.comps.Add(new CompProperties(sapienceType));
+				}
+
+			}
+		}
+
+
+
+
+
+
 
 		private static void EnableDisableOptionalPatches()
 		{

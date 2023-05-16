@@ -373,6 +373,8 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<maxSeverity>1.0</maxSeverity>
 		<isBad>false</isBad>
+		<alwaysAllowMothball>True</alwaysAllowMothball>
+		<alwaysAllowMothballCached>True</alwaysAllowMothballCached>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>-0.18</severityPerDay>
