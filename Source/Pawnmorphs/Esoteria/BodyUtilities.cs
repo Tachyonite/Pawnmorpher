@@ -166,10 +166,13 @@ namespace Pawnmorph
 			if (p == null) throw new ArgumentNullException(nameof(p));
 			if (record == null) throw new ArgumentNullException(nameof(record));
 
+			if (p.def.race.Animal || p.def.race.IsMechanoid)
+				return record.def.hitPoints;
+
 			if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
 				return record.def.hitPoints;
 
-			MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
+			MutationTracker mTracker = p.GetMutationTracker(false); //use mTracker so we only check mutations, a bit faster 
 			if (mTracker == null)
 				return record.def.hitPoints;
 
