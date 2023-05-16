@@ -20,6 +20,8 @@ namespace Pawnmorph
 	{
 
 		internal bool debug;
+		private bool _immune = false;
+		private bool _influencesDirty = true;
 
 
 		[NotNull] private readonly List<Hediff_AddedMutation> _mutationList = new List<Hediff_AddedMutation>();
@@ -68,6 +70,20 @@ namespace Pawnmorph
 		/// The total influence.
 		/// </value>
 		public float TotalInfluence { get; private set; }
+
+
+		/// <summary>
+		/// Gets or sets a value indicating whether the morph influences caches are dirty.
+		/// if true the influences will be recalculated on the next tick 
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if [influences dirty]; otherwise, <c>false</c>.
+		/// </value>
+		public bool InfluencesDirty 
+		{
+			get => _influencesDirty;
+			set => _influencesDirty = value;
+		}
 
 		/// <summary>
 		///     Gets the total number of mutations on the pawn being tracked.
@@ -120,38 +136,29 @@ namespace Pawnmorph
 		public Pawn Pawn => (Pawn)parent;
 
 
-		private bool? immune = null;
-
 		/// <summary>
 		///     called every tick
 		/// </summary>
 		public override void CompTick()
 		{
-			// Could potentially use post-tick action to self-remove MutationTracker if pawn is immune.
-			if (immune == null)
-				immune = MutagenDefOf.defaultMutagen.CanInfect(Pawn.def) == false;
-			
-			if (immune == true) 
-				return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
-			
-			if (InfluencesDirty)
+			if (_immune)
+				return;
+
+			if (_influencesDirty)
 			{
 				RecalcInfluences();
-				InfluencesDirty = false;
+				_influencesDirty = false;
 			}
 
-			if (Pawn.IsHashIntervalTick(MutationRuleDef.CHECK_RATE))
+			if (parent.IsHashIntervalTick(MutationRuleDef.CHECK_RATE))
 			{
 				MutationRuleUtilities.TryExecuteRulesOn(Pawn);
+
+				if (parent.IsHashIntervalTick(MutationRuleDef.CHECK_RATE * 4) && CanRaceCheckNow)
+				{
+					CheckPawnRace();
+				}
 			}
-
-
-			if (Pawn.IsHashIntervalTick(4400) && CanRaceCheckNow)
-			{
-				CheckPawnRace();
-
-			}
-
 		}
 
 		/// <summary>
@@ -207,11 +214,14 @@ namespace Pawnmorph
 		/// <param name="respawningAfterLoad">if set to <c>true</c> [respawning after load].</param>
 		public override void PostSpawnSetup(bool respawningAfterLoad)
 		{
-			base.PostSpawnSetup(respawningAfterLoad);
-			if (InfluencesDirty)
+			_immune = MutagenDefOf.defaultMutagen.CanInfect(Pawn.def) == false;
+			if (_immune)
+				return;
+
+			if (_influencesDirty)
 			{
 				RecalcInfluences();
-				InfluencesDirty = false;
+				_influencesDirty = false;
 			}
 		}
 
@@ -275,14 +285,6 @@ namespace Pawnmorph
 
 		}
 
-		/// <summary>
-		/// Gets or sets a value indicating whether the morph influences caches are dirty.
-		/// if true the influences will be recalculated on the next tick 
-		/// </summary>
-		/// <value>
-		///   <c>true</c> if [influences dirty]; otherwise, <c>false</c>.
-		/// </value>
-		public bool InfluencesDirty { get; set; }
 
 		/// <summary> Called to notify this tracker that a mutation has been added. </summary>
 		public void NotifyMutationAdded([NotNull] Hediff_AddedMutation mutation)
@@ -290,7 +292,7 @@ namespace Pawnmorph
 			if (mutation == null) throw new ArgumentNullException(nameof(mutation));
 			_mutationList.Add(mutation);
 
-			InfluencesDirty = true;
+			_influencesDirty = true;
 
 			NotifyCompsAdded(mutation);
 		}
@@ -309,7 +311,7 @@ namespace Pawnmorph
 			_mutationList.Remove(mutation);
 			MutationsCount -= 1;
 
-			InfluencesDirty = true;
+			_influencesDirty = true;
 
 			NotifyCompsRemoved(mutation);
 		}

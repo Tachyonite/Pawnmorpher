@@ -21,7 +21,7 @@ namespace Pawnmorph
 		/// <summary>
 		///     how often the rules are checked
 		/// </summary>
-		public const int CHECK_RATE = TimeMetrics.TICKS_PER_REAL_SECOND * 3 / 2;
+		public const int CHECK_RATE = 1000;
 
 
 		[Unsaved] private List<IMRuleEntry> _allRules;
@@ -301,7 +301,7 @@ namespace Pawnmorph
 
 			if (!ConditionsMet(pawn)) return false;
 
-			if (RuleDef.mtth <= 0 || Rand.MTBEventOccurs(RuleDef.mtth, 60000, MutationRuleDef.CHECK_RATE))
+			if (RuleDef.mtth <= 0 || Rand.MTBEventOccurs(RuleDef.mtth, TimeMetrics.TICKS_PER_DAY, MutationRuleDef.CHECK_RATE))
 			{
 				DoRule(pawn);
 				return true;
