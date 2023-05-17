@@ -42,5 +42,9 @@ namespace Pawnmorph
 		public static ThingDef PM_NewMutagenicChamber;
 
 		public static ThingDef PM_InjectorLab;
+
+
+		public static ThingDef PM_AnimalGenome;
+		public static ThingDef PM_RestrictedAnimalGenome;
 	}
 }

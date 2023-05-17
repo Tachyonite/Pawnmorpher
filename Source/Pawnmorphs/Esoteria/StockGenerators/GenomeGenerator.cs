@@ -26,28 +26,28 @@ namespace Pawnmorph.StockGenerators
 		/// </summary>
 		public Filter<MutationCategoryDef> categoryFilter;
 
-		private List<ThingDef> _mutationPool;
+		private List<ThingDef> _genomeThings;
 
 		[NotNull]
 		IReadOnlyList<ThingDef> GenomePool
 		{
 			get
 			{
-				if (_mutationPool == null)
+				if (_genomeThings == null)
 				{
-					_mutationPool = new List<ThingDef>();
+					_genomeThings = new List<ThingDef>();
 					foreach (var mDef in DefDatabase<MutationCategoryDef>.AllDefs)
 					{
 						if (mDef.GenomeDef == null) continue;
 						if (categoryFilter?.PassesFilter(mDef) != false)
 						{
-							_mutationPool.Add(mDef.GenomeDef);
+							_genomeThings.Add(mDef.GenomeDef);
 						}
 					}
 
 				}
 
-				return _mutationPool;
+				return _genomeThings;
 			}
 		}
 
@@ -61,22 +61,39 @@ namespace Pawnmorph.StockGenerators
 		/// <returns></returns>
 		public override IEnumerable<Thing> GenerateThings(int forTile, Faction faction = null)
 		{
-			if (GenomePool.Count == 0) yield break;
+			if (GenomePool.Count == 0) 
+				yield break;
 
-			List<ThingDef> scratchList = new List<ThingDef>();
-
-			int counter = 0;
-			var total = countRange.RandomInRange;
-			while (scratchList.Count < total && counter < 100) //counter to prevent infinite loops 
+			int total = countRange.RandomInRange;
+			for (int i = 0; i < total; i++)
 			{
-				counter++;
-				var rGenome = GenomePool.RandomElement();
-				if (scratchList.Contains(rGenome)) continue;
-				var thing = ThingMaker.MakeThing(rGenome);
-				scratchList.Add(rGenome);
+				Thing thing;
+				if (Rand.Bool)
+				{
+					// Add mutation genome
+
+					// Select random genome from pool.
+					ThingDef selectedGenome = GenomePool.RandomElement();
+
+					thing = ThingMaker.MakeThing(selectedGenome);
+				}
+				else
+				{
+					// Add animal genome
+					if (Rand.Value < 0.2f && FormerHumanUtilities.AllRestrictedFormerHumanPawnkindDefs.Count > 0)
+					{
+						// Add restricted genome
+						thing = ThingMaker.MakeThing(PMThingDefOf.PM_RestrictedAnimalGenome);
+					}
+					else
+					{
+						// Add normal genome
+						thing = ThingMaker.MakeThing(PMThingDefOf.PM_AnimalGenome);
+					}
+				}
+
 				yield return thing;
 			}
-
 		}
 
 		[Pure]

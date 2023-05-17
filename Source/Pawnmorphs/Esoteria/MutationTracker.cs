@@ -128,6 +128,12 @@ namespace Pawnmorph
 			_mutationList.MakeSafe();
 
 		/// <summary>
+		/// Returns a list of mutations.
+		/// </summary>
+		[CanBeNull]
+		public IList<Hediff_AddedMutation> Mutations => _mutationList;
+
+		/// <summary>
 		///     Gets the pawn this is tracking mutations for.
 		/// </summary>
 		/// <value>
