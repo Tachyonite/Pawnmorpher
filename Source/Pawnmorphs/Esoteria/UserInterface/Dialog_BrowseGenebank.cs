@@ -71,7 +71,7 @@ namespace Pawnmorph.UserInterface
 			base.SetInitialSizeAndPosition();
 
 			Vector2 location = PawnmorpherMod.Settings.GenebankWindowLocation ?? new Vector2(40, 40);
-			Vector2 size = PawnmorpherMod.Settings.GenebankWindowSize ?? new Vector2(Screen.width * 0.9f, Screen.height * 0.8f);
+			Vector2 size = PawnmorpherMod.Settings.GenebankWindowSize ?? new Vector2(UI.screenWidth * 0.9f, UI.screenHeight * 0.8f);
 			_table.LineFont = PawnmorpherMod.Settings.GenebankWindowFont ?? GameFont.Tiny;
 
 			base.windowRect = new Rect(location, size);
