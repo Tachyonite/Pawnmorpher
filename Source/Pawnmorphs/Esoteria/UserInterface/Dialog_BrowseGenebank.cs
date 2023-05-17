@@ -89,7 +89,7 @@ namespace Pawnmorph.UserInterface
 		{
 			Selected = null;
 			if (e.Count == 1)
-				Selected = e[0].Def;
+				Selected = e[0].RowObject;
 
 			_tab.SelectionChanged(e);
 		}

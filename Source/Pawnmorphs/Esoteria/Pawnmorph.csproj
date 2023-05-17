@@ -892,6 +892,7 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TableBox\TableRow.cs" />
     <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
     <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
     <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
@@ -915,6 +916,7 @@
     <Compile Include="UserInterface\TableBox\Table.cs" />
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
+    <Compile Include="UserInterface\Window_Sequencer.cs" />
     <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />

@@ -171,7 +171,7 @@ namespace Pawnmorph.UserInterface
 		{
 			foreach (GeneRowItem item in _table.SelectedRows)
 			{
-				_currentTab.Delete(item.Def);
+				_currentTab.Delete(item.RowObject);
 				_table.DeleteRow(item);
 			}
 			_table.Refresh();

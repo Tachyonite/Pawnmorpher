@@ -170,7 +170,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		{
 			PawnKindDef selectedRace = null;
 			if (selectedRows.Count == 1)
-				selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
+				selectedRace = (selectedRows[0].RowObject as GenebankEntry<PawnKindDef>).Value;
 
 			_previewNorth.PawnKindDef = selectedRace;
 			_previewEast.PawnKindDef = selectedRace;
@@ -185,7 +185,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		{
 			if (selectedRows.Count == 1)
 			{
-				PawnKindDef selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
+				PawnKindDef selectedRace = (selectedRows[0].RowObject as GenebankEntry<PawnKindDef>).Value;
 
 
 				_stringBuilder.Clear();

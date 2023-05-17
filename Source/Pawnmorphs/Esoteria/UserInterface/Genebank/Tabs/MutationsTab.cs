@@ -296,7 +296,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			foreach (var item in selectedRows)
 			{
-				MutationDef mutation = (item.Def as GenebankEntry<MutationDef>).Value;
+				MutationDef mutation = (item.RowObject as GenebankEntry<MutationDef>).Value;
 				_previewNorth.AddMutation(mutation);
 				_previewEast.AddMutation(mutation);
 				_previewSouth.AddMutation(mutation);
@@ -322,7 +322,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			if (selectedRows.Count == 1)
 			{
-				_selectedDef = (selectedRows[0].Def as GenebankEntry<MutationDef>).Value;
+				_selectedDef = (selectedRows[0].RowObject as GenebankEntry<MutationDef>).Value;
 				if (_selectedDef.stages != null)
 					_stages.AddRange(_selectedDef.stages.OfType<MutationStage>());
 				else
