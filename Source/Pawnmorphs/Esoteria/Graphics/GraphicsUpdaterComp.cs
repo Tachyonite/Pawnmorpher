@@ -93,7 +93,9 @@ namespace Pawnmorph.GraphicSys
 				UpdateSkinColor(mTracker, force);
 				UpdateHairColor(mTracker, force);
 			}
-			pawn?.RefreshGraphics();
+
+			if (pawn.Spawned)
+				pawn.RefreshGraphics();
 			IsDirty = false;
 		}
 
