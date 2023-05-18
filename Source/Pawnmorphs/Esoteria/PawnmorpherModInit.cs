@@ -51,7 +51,7 @@ namespace Pawnmorph
 				AddMutationsToWhitelistedRaces();
 				EnableDisableOptionalPatches();
 				CheckForObsoletedComponents();
-				RemoveInvalidMutationTrackers();
+				AddComponents();
 
 				try
 				{
@@ -91,7 +91,7 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void RemoveInvalidMutationTrackers()
+		private static void AddComponents()
 		{
 			List<ThingDef> thingDefs = DefDatabase<ThingDef>.AllDefsListForReading;
 
@@ -117,12 +117,6 @@ namespace Pawnmorph
 
 			}
 		}
-
-
-
-
-
-
 
 		private static void EnableDisableOptionalPatches()
 		{
