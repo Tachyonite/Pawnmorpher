@@ -18,49 +18,6 @@ namespace Pawnmorph.HPatches
 {
 	public static class PawnCompPatches
 	{
-		[NotNull]
-		readonly
-		private static Dictionary<NeedDef, SapientAnimalNeed> _needLookup = new Dictionary<NeedDef, SapientAnimalNeed>();
-
-
-		[CanBeNull]
-		static SapientAnimalNeed GetSapientAnimalNeed([NotNull] NeedDef need)
-		{
-			if (_needLookup.TryGetValue(need, out var ext))
-			{
-				return ext;
-			}
-
-			ext = need.GetModExtension<SapientAnimalNeed>();
-			_needLookup[need] = ext;
-			return ext;
-		}
-
-		static bool CheckNeed(Pawn pawn, NeedDef nd)
-		{
-			if ((pawn.IsPrisoner && nd.neverOnPrisoner) || (pawn.IsSlave && nd.neverOnSlave)) return false;
-			if (!nd.developmentalStageFilter.Has(pawn.DevelopmentalStage)) return false;
-			if (nd.colonistsOnly && pawn.Faction != Faction.OfPlayer) return false;
-
-			if (nd.nullifyingPrecepts != null)
-			{
-				if (pawn.Ideo != null && pawn.Ideo.PreceptsListForReading.Any(p => nd.nullifyingPrecepts.Contains(p.def)))
-					return false;
-			}
-
-			return true;
-		}
-
-
-		private static bool IsSapientOrAnimilistic(Pawn pawn)
-		{
-			bool val;
-			SapienceLevel? qSapience = pawn.GetQuantizedSapienceLevel();
-			if (!pawn.HasSapienceState() || qSapience == null)
-				val = pawn.RaceProps.Humanlike;
-			else val = qSapience.Value < SapienceLevel.Feral;
-			return val;
-		}
 
 		private static FieldInfo DefField { get; } = typeof(Thing).GetField(nameof(Thing.def));
 		private static FieldInfo PawnField { get; } = typeof(Pawn_TrainingTracker).GetField("pawn");
@@ -96,31 +53,13 @@ namespace Pawnmorph.HPatches
 		{
 			[HarmonyPatch("ShouldHaveNeed")]
 			[HarmonyPostfix]
-			private static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+			private static void GiveSapientAnimalsNeeds(Pawn ___pawn, NeedDef nd, ref bool __result)
 			{
 				if (nd == PMNeedDefOf.SapientAnimalControl)
 				{
 					__result = Need_Control.IsEnabledFor(___pawn);
 					return;
 				}
-				else if (!Need_Control.EnabledRaces.Contains(___pawn.def))
-					return;
-
-				bool isColonist = (___pawn.Faction?.IsPlayer == true);
-
-				if (nd == PMNeedDefOf.Joy && isColonist && IsSapientOrAnimilistic(___pawn))
-					__result = CheckNeed(___pawn, PMNeedDefOf.Joy);
-
-				if (IsSapientOrAnimilistic(___pawn))
-				{
-					var defExt = GetSapientAnimalNeed(nd);
-					if (defExt != null)
-					{
-						__result = CheckNeed(___pawn, nd);
-					}
-				}
-
-				if (__result) __result = nd.IsValidFor(___pawn);
 			}
 		}
 
