@@ -349,6 +349,10 @@ namespace Pawnmorph
 			//caravan and inventory patch 
             methodsToPatch.Add(typeof(MassUtility).GetMethod(nameof(MassUtility.CanEverCarryAnything), staticFlags)); 
 
+
+			//pathfinding 
+            methodsToPatch.Add(typeof(Pawn_PathFollower).GetMethod("TryEnterNextPathCell", instanceFlags));
+			methodsToPatch.Add(typeof(Building_Trap).GetMethod(nameof(Building_Trap.KnowsOfTrap), instanceFlags));
 			//now patch them 
 			foreach (var methodInfo in methodsToPatch)
 			{
