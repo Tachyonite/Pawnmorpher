@@ -96,31 +96,13 @@ namespace Pawnmorph.HPatches
 		{
 			[HarmonyPatch("ShouldHaveNeed")]
 			[HarmonyPostfix]
-			private static void GiveSapientAnimalsNeeds(Pawn_NeedsTracker __instance, Pawn ___pawn, NeedDef nd, ref bool __result)
+			private static void GiveSapientAnimalsNeeds(Pawn ___pawn, NeedDef nd, ref bool __result)
 			{
 				if (nd == PMNeedDefOf.SapientAnimalControl)
 				{
 					__result = Need_Control.IsEnabledFor(___pawn);
 					return;
 				}
-				else if (!Need_Control.EnabledRaces.Contains(___pawn.def))
-					return;
-
-				bool isColonist = (___pawn.Faction?.IsPlayer == true);
-
-				if (nd == PMNeedDefOf.Joy && isColonist && IsSapientOrAnimilistic(___pawn))
-					__result = CheckNeed(___pawn, PMNeedDefOf.Joy);
-
-				if (IsSapientOrAnimilistic(___pawn))
-				{
-					var defExt = GetSapientAnimalNeed(nd);
-					if (defExt != null)
-					{
-						__result = CheckNeed(___pawn, nd);
-					}
-				}
-
-				if (__result) __result = nd.IsValidFor(___pawn);
 			}
 		}
 
