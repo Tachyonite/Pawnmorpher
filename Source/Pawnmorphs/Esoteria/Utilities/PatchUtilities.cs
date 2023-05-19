@@ -22,18 +22,18 @@ namespace Pawnmorph.Utilities
 		// For logging purposes, it stores whenever each fragment was completed
 		private static readonly Dictionary<string, bool> fragments;
 
-		private static readonly Dictionary<MethodInfo, MethodInfo> _mappings;
+		private static readonly Dictionary<MemberInfo, MemberInfo> _mappings;
 
 		static PatchUtilities()
 		{
 			fragments = new Dictionary<string, bool>();
-			_mappings = new Dictionary<MethodInfo, MethodInfo>();
+			_mappings = new Dictionary<MemberInfo, MemberInfo>();
 			Type fhUtilType = typeof(FormerHumanUtilities);
 			Type racePropType = typeof(RaceProperties);
 			const BindingFlags publicInstance = BindingFlags.Public | BindingFlags.Instance;
 			AllFlags = BindingFlags.NonPublic | publicInstance | BindingFlags.Static;
 
-			MethodInfo method = null;
+			MemberInfo method = null;
 			method = racePropType.GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
 			IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] { typeof(Pawn) });
 			_mappings.Add(method, IsAnimalMethod);
@@ -58,7 +58,16 @@ namespace Pawnmorph.Utilities
 			CanPassFencesMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.CanPassFences), AllFlags);
 			_mappings.Add(method, CanPassFencesMethod);
 
+
+			method = AccessTools.Field(racePropType, nameof(RaceProperties.intelligence));
+			_mappings.Add(method, AccessTools.Method(fhUtilType, nameof(FormerHumanUtilities.GetIntelligence)));
+
+
 			RimworldGetRaceMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
+
+			_thingDefField = AccessTools.Field(typeof(Thing), nameof(Thing.def));
+			_thingDefRaceField = AccessTools.Field(typeof(ThingDef), nameof(ThingDef.race));
+
 			CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch));
 
 			if (_mappings.Any(x => x.Value == FenceBlockMethod) == false) Log.Error($"unable to find {nameof(RaceProperties.FenceBlocked)}");
@@ -76,7 +85,7 @@ namespace Pawnmorph.Utilities
 		///     gets <see cref="RaceProperties.Animal" /> getter method
 		/// </summary>
 		[NotNull]
-		public static MethodInfo RimworldIsAnimalMethod => _mappings.Single(x => x.Value == IsAnimalMethod).Key;
+		public static MethodInfo RimworldIsAnimalMethod => _mappings.Single(x => x.Value == IsAnimalMethod).Key as MethodInfo;
 
 		/// <summary>
 		///     Gets the rimworld get race method.
@@ -85,6 +94,9 @@ namespace Pawnmorph.Utilities
 		///     The rimworld get race method.
 		/// </value>
 		public static MethodInfo RimworldGetRaceMethod { get; }
+
+		private static FieldInfo _thingDefField;
+		private static FieldInfo _thingDefRaceField;
 
 
 		/// <summary>
@@ -425,40 +437,51 @@ namespace Pawnmorph.Utilities
 			List<CodeInstruction> codeInstructions = instructions.ToList();
 			for (var i = 0; i < codeInstructions.Count - 1; i++)
 			{
-				int j = i + 1;
-				CodeInstruction opI = codeInstructions[i];
-				CodeInstruction opJ = codeInstructions[j];
-				if (opI == null || opJ == null) continue;
+				CodeInstruction opCur = codeInstructions[i];
+				CodeInstruction opNext = codeInstructions[i + 1];
+				if (opCur == null || opNext == null) continue;
 				//the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
-				if (opI.opcode == OpCodes.Callvirt && (MethodInfo)opI.operand == RimworldGetRaceMethod)
+				if ((opCur.opcode == OpCodes.Callvirt && (MethodInfo)opCur.operand == RimworldGetRaceMethod) ||
+					(opCur.opcode == OpCodes.Ldfld && (FieldInfo)opCur.operand == _thingDefField &&
+					 opNext.opcode == OpCodes.Ldfld && (FieldInfo)opNext.operand == _thingDefRaceField))
 				{
-					//signatures we care about always have a second callVirt 
-					if (opJ.opcode != OpCodes.Callvirt) continue;
+					// Detected "p.def.race."
+					if ((MemberInfo)opNext.operand == _thingDefRaceField)
+						opNext = codeInstructions[i + 2];
 
-					var jMethod = opJ.operand as MethodInfo;
-					bool patched;
-					//figure out which method, if any, we're going to be replacing 
-
-					if (_mappings.TryGetValue(jMethod, out MethodInfo targetMethod) && targetMethod != null)
+					var jMethod = opNext.operand as MemberInfo;
+					bool patched = false;
+					//figure out which method, if any, we're going to be replacing. Mapped method may be null if it wasn't found.
+					if (_mappings.TryGetValue(jMethod, out MemberInfo targetMethod))
 					{
-						opI.operand = targetMethod;
-						patched = true;
+						if (targetMethod != null)
+						{
+							opCur.operand = targetMethod;
+
+							if (targetMethod is MethodInfo)
+								opCur.opcode = OpCodes.Call;
+							else if (targetMethod is FieldInfo)
+								opCur.opcode = OpCodes.Ldfld;
+
+							patched = true;
+						}
+						else
+							Log.Warning("Target replacement method for " + jMethod.Name + " was not found.");
 						// Log.Message($"Patched {targetMethod.Name}");
-					}
-					else
-					{
-						patched = false;
 					}
 
 					if (patched)
 					{
 						//now clean up if we did any patching 
-
-						opI.opcode = OpCodes.Call; //always uses call 
+						if (codeInstructions[i + 1] != opNext)
+						{
+							codeInstructions[i + 1].opcode = OpCodes.Nop;
+							codeInstructions[i + 1].operand = null;
+						}
 
 						//replace opJ with nop (no operation) so we don't fuck up the stack 
-						opJ.opcode = OpCodes.Nop;
-						opJ.operand = null;
+						opNext.opcode = OpCodes.Nop;
+						opNext.operand = null;
 					}
 				}
 			}
