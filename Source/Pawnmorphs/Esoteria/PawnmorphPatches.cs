@@ -281,10 +281,13 @@ namespace Pawnmorph
 			methodsToPatch.Add(new MethodInfoSt() { methodInfo = typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags) });
 
 
+			//assign comp 
+			methodsToPatch.Add(typeof(CompAssignableToPawn).GetMethod(nameof(CompAssignableToPawn.DrawGUIOverlay), instanceFlags));
+
 			//map pawns 
 			var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
 			methodsToPatch.AddRange(methods.Select(m => new MethodInfoSt() { methodInfo = m }));
-
+			methodsToPatch.Add(typeof(MapPawns).GetProperty(nameof(MapPawns.SpawnedColonyAnimals), instanceFlags).GetMethod);
 
 			methodsToPatch.Add(AccessTools.Method(typeof(Pawn_NeedsTracker), "ShouldHaveNeed"));
 			
@@ -353,6 +356,7 @@ namespace Pawnmorph
 			//pathfinding 
             methodsToPatch.Add(typeof(Pawn_PathFollower).GetMethod("TryEnterNextPathCell", instanceFlags));
 			methodsToPatch.Add(typeof(Building_Trap).GetMethod(nameof(Building_Trap.KnowsOfTrap), instanceFlags));
+
 			//now patch them 
 			foreach (var methodInfo in methodsToPatch)
 			{
