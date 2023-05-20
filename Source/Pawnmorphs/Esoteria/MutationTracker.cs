@@ -286,9 +286,7 @@ namespace Pawnmorph
 
 			_mutationList.AddRange(Pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>());
 			MutationsCount = _mutationList.Count;
-			AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-			TotalInfluence = _influenceDict.Sum(s => s.Value);
-
+			RecalcInfluences();
 		}
 
 
@@ -298,6 +296,7 @@ namespace Pawnmorph
 			if (mutation == null) throw new ArgumentNullException(nameof(mutation));
 			_mutationList.Add(mutation);
 
+			MutationsCount += 1;
 			_influencesDirty = true;
 
 			NotifyCompsAdded(mutation);
@@ -306,8 +305,7 @@ namespace Pawnmorph
 		private void RecalcInfluences()
 		{
 			AnimalClassUtilities.FillInfluenceDict(_mutationList, _influenceDict);
-			TotalInfluence = _influenceDict.Select(s => s.Value).Sum();
-			MutationsCount += 1;
+			TotalInfluence = _influenceDict.Sum(s => s.Value);
 		}
 
 		/// <summary> Called to notify this tracker that a mutation has been removed. </summary>

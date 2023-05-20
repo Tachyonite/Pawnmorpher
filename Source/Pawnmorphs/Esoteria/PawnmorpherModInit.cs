@@ -114,7 +114,6 @@ namespace Pawnmorph
 
 					currentDef.comps.Add(new CompProperties(sapienceType));
 				}
-
 			}
 		}
 
