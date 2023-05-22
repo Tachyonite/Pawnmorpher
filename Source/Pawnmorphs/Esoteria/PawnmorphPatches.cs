@@ -173,7 +173,7 @@ namespace Pawnmorph
 					var jMethod = opJ.operand as MethodInfo;
 					bool patched;
 					//figure out which method, if any, we're going to be replacing 
-					if (jMethod == PatchUtilities.RimworldGetAnimalMethod)
+					if (jMethod == PatchUtilities.RimworldIsAnimalMethod)
 					{
 						patched = true;
 						opI.operand = _animalTabWorkerMethod;
@@ -281,11 +281,16 @@ namespace Pawnmorph
 			methodsToPatch.Add(new MethodInfoSt() { methodInfo = typeof(Building_Door).GetMethod(nameof(Building_Door.PawnCanOpen), instanceFlags) });
 
 
+			//assign comp 
+			methodsToPatch.Add(typeof(CompAssignableToPawn).GetMethod(nameof(CompAssignableToPawn.DrawGUIOverlay), instanceFlags));
+
 			//map pawns 
 			var methods = typeof(MapPawns).GetMethods(instanceFlags).Where(m => m.HasSignature(typeof(Faction)) || m.HasSignature(typeof(Faction), typeof(bool)));
 			methodsToPatch.AddRange(methods.Select(m => new MethodInfoSt() { methodInfo = m }));
+			methodsToPatch.Add(typeof(MapPawns).GetProperty(nameof(MapPawns.SpawnedColonyAnimals), instanceFlags).GetMethod);
 
-
+			methodsToPatch.Add(AccessTools.Method(typeof(Pawn_NeedsTracker), "ShouldHaveNeed"));
+			
 			//jobs and toils 
 			methodsToPatch.Add(typeof(JobDriver_Ingest).GetMethod("PrepareToIngestToils", instanceFlags));
 			methodsToPatch.Add(typeof(LordJob_Joinable_MarriageCeremony).GetMethod("IsGuest", instanceFlags));
@@ -346,6 +351,11 @@ namespace Pawnmorph
 
 			//caravan and inventory patch 
             methodsToPatch.Add(typeof(MassUtility).GetMethod(nameof(MassUtility.CanEverCarryAnything), staticFlags)); 
+
+
+			//pathfinding 
+            methodsToPatch.Add(typeof(Pawn_PathFollower).GetMethod("TryEnterNextPathCell", instanceFlags));
+			methodsToPatch.Add(typeof(Building_Trap).GetMethod(nameof(Building_Trap.KnowsOfTrap), instanceFlags));
 
 			//now patch them 
 			foreach (var methodInfo in methodsToPatch)
@@ -494,12 +504,7 @@ namespace Pawnmorph
 
 		private static void AddJobGiverMethods([NotNull] List<MethodInfoSt> methodsToPatch)
 		{
-
-			var method =
-				typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS);
-			methodsToPatch.Add(method);
-
-
+			methodsToPatch.Add(typeof(WorkGiver_ReleaseAnimalsToWild).GetMethod(nameof(WorkGiver_Scanner.HasJobOnThing), INSTANCE_FLAGS));
 		}
 
 

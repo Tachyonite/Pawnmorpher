@@ -15,59 +15,68 @@ using Verse;
 namespace Pawnmorph.Utilities
 {
 	/// <summary>
-	///     static class containing various utilities for patching functions
+	///		static class containing various utilities for patching functions
 	/// </summary>
 	public static class PatchUtilities
 	{
 		// For logging purposes, it stores whenever each fragment was completed
 		private static readonly Dictionary<string, bool> fragments;
 
-
-		[NotNull] private static readonly MethodInfo _getRacePropsMethod;
-		[NotNull] private static readonly MethodInfo _getAnimalMethod;
-		[NotNull] private static readonly MethodInfo _toolUserMethod;
-		[NotNull] private static readonly MethodInfo _getHumanlikeMethod;
-		[NotNull] private static readonly MethodInfo _fenceBlockedTargetMethod;
-		[NotNull] private static readonly MethodInfo _canPassFenceTargetMethod;
-		[NotNull] private static readonly MethodInfo _roamerTargetMethod;
+		private static readonly Dictionary<MemberInfo, MemberInfo> _mappings;
 
 		static PatchUtilities()
 		{
 			fragments = new Dictionary<string, bool>();
+			_mappings = new Dictionary<MemberInfo, MemberInfo>();
 			Type fhUtilType = typeof(FormerHumanUtilities);
 			Type racePropType = typeof(RaceProperties);
 			const BindingFlags publicInstance = BindingFlags.Public | BindingFlags.Instance;
-
-			IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] { typeof(Pawn) });
-
-			IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new[] { typeof(Pawn) });
-			IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser), new[] { typeof(Pawn) });
-			_getRacePropsMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
-			GetRacePropsMethod = _getRacePropsMethod;
-			_getAnimalMethod = racePropType.GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
-			RimworldIsAnimalMethod = _getAnimalMethod;
-			_toolUserMethod = racePropType.GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
-			_getHumanlikeMethod = racePropType.GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
 			AllFlags = BindingFlags.NonPublic | publicInstance | BindingFlags.Static;
-			CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch));
+
+			MemberInfo method = null;
+			method = racePropType.GetProperty(nameof(RaceProperties.Animal)).GetGetMethod();
+			IsAnimalMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsAnimal), new[] { typeof(Pawn) });
+			_mappings.Add(method, IsAnimalMethod);
+
+			method = racePropType.GetProperty(nameof(RaceProperties.Humanlike)).GetGetMethod();
+			IsHumanoidMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new[] { typeof(Pawn) });
+			_mappings.Add(method, IsHumanoidMethod);
+
+			method = racePropType.GetProperty(nameof(RaceProperties.ToolUser)).GetGetMethod();
+			IsToolUserMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsToolUser), new[] { typeof(Pawn) });
+			_mappings.Add(method, IsToolUserMethod);
+
+			method = racePropType.GetProperty(nameof(RaceProperties.FenceBlocked), publicInstance).GetMethod;
 			FenceBlockMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsFenceBlocked), AllFlags);
+			_mappings.Add(method, FenceBlockMethod);
+
+			method = racePropType.GetProperty(nameof(RaceProperties.Roamer), publicInstance).GetMethod;
 			RoamerMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.IsRoamer), BindingFlags.Static | BindingFlags.Public);
+			_mappings.Add(method, RoamerMethod);
+
+			method = racePropType.GetProperty(nameof(RaceProperties.CanPassFences), publicInstance).GetMethod;
 			CanPassFencesMethod = fhUtilType.GetMethod(nameof(FormerHumanUtilities.CanPassFences), AllFlags);
-			_roamerTargetMethod = racePropType.GetProperty(nameof(RaceProperties.Roamer), publicInstance).GetMethod;
-			_fenceBlockedTargetMethod = racePropType
-									   .GetProperty(nameof(RaceProperties.FenceBlocked),
-													publicInstance)
-									   .GetMethod;
-			_canPassFenceTargetMethod = racePropType.GetProperty(nameof(RaceProperties.CanPassFences), publicInstance).GetMethod;
+			_mappings.Add(method, CanPassFencesMethod);
 
-			if (_fenceBlockedTargetMethod == null) Log.Error($"unable to find {nameof(RaceProperties.FenceBlocked)}");
 
-			if (_canPassFenceTargetMethod == null) Log.Error($"unable to find {nameof(RaceProperties.CanPassFences)}");
+			method = AccessTools.Field(racePropType, nameof(RaceProperties.intelligence));
+			_mappings.Add(method, AccessTools.Method(fhUtilType, nameof(FormerHumanUtilities.GetIntelligence)));
+
+
+			RimworldGetRaceMethod = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod();
+
+			_thingDefField = AccessTools.Field(typeof(Thing), nameof(Thing.def));
+			_thingDefRaceField = AccessTools.Field(typeof(ThingDef), nameof(ThingDef.race));
+
+			CommonTranspiler = typeof(PatchUtilities).GetMethod(nameof(SubstituteFormerHumanMethodsPatch));
+
+			if (_mappings.Any(x => x.Value == FenceBlockMethod) == false) Log.Error($"unable to find {nameof(RaceProperties.FenceBlocked)}");
+			if (_mappings.Any(x => x.Value == CanPassFencesMethod) == false) Log.Error($"unable to find {nameof(RaceProperties.CanPassFences)}");
 		}
 
 		/// <summary>
-		///     MethodInfo for a common transpiler method that replaces all instances of RaceProps.Animal/Tooluser/Humanlike
-		///     with the FormerHumanUtilities equivalents
+		///		MethodInfo for a common transpiler method that replaces all instances of RaceProps.Animal/Tooluser/Humanlike
+		///		with the FormerHumanUtilities equivalents
 		/// </summary>
 		[NotNull]
 		public static MethodInfo CommonTranspiler { get; }
@@ -76,16 +85,7 @@ namespace Pawnmorph.Utilities
 		///     gets <see cref="RaceProperties.Animal" /> getter method
 		/// </summary>
 		[NotNull]
-		public static MethodInfo RimworldIsAnimalMethod { get; }
-
-
-		/// <summary>
-		///     Gets Rimworld's Animal getter method.
-		/// </summary>
-		/// <value>
-		///     The rimworld get animal method.
-		/// </value>
-		public static MethodInfo RimworldGetAnimalMethod => _getAnimalMethod;
+		public static MethodInfo RimworldIsAnimalMethod => _mappings.Single(x => x.Value == IsAnimalMethod).Key as MethodInfo;
 
 		/// <summary>
 		///     Gets the rimworld get race method.
@@ -93,7 +93,10 @@ namespace Pawnmorph.Utilities
 		/// <value>
 		///     The rimworld get race method.
 		/// </value>
-		public static MethodInfo RimworldGetRaceMethod => _getRacePropsMethod;
+		public static MethodInfo RimworldGetRaceMethod { get; }
+
+		private static FieldInfo _thingDefField;
+		private static FieldInfo _thingDefRaceField;
 
 
 		/// <summary>
@@ -124,47 +127,38 @@ namespace Pawnmorph.Utilities
 
 
 		/// <summary>
-		///     Gets method info for <see cref="FormerHumanUtilities.IsAnimal" />
+		///		Gets method info for <see cref="FormerHumanUtilities.IsAnimal" />
 		/// </summary>
 		/// <value>
-		///     The is animal method.
+		///		The is animal method.
 		/// </value>
 		[NotNull]
 		public static MethodInfo IsAnimalMethod { get; }
 
 
 		/// <summary>
-		///     Gets the method info for <see cref="FormerHumanUtilities.IsHumanlike" />
+		///		Gets the method info for <see cref="FormerHumanUtilities.IsHumanlike" />
 		/// </summary>
 		/// <value>
-		///     The is humanoid method.
+		///		The is humanoid method.
 		/// </value>
 		[NotNull]
 		public static MethodInfo IsHumanoidMethod { get; }
 
 		/// <summary>
-		///     Gets the method info for <see cref="FormerHumanUtilities.IsToolUser" />
+		///		Gets the method info for <see cref="FormerHumanUtilities.IsToolUser" />
 		/// </summary>
 		/// <value>
-		///     The is tool user method.
+		///		The is tool user method.
 		/// </value>
 		[NotNull]
 		public static MethodInfo IsToolUserMethod { get; }
-
-		/// <summary>
-		///     Gets the get race props method.
-		/// </summary>
-		/// <value>
-		///     The get race props method.
-		/// </value>
-		[NotNull]
-		public static MethodInfo GetRacePropsMethod { get; }
 
 		private static BindingFlags AllFlags { get; }
 
 		//taken from PrisonLabor
 		/// <summary>
-		///     This method is used to find particular label that is assigned to last instruction's operand
+		///		This method is used to find particular label that is assigned to last instruction's operand
 		/// </summary>
 		/// <param name="opCodes">The op codes.</param>
 		/// <param name="operands">The operands.</param>
@@ -434,81 +428,6 @@ namespace Pawnmorph.Utilities
 		///     substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in
 		///     FormerHumanUtilities
 		/// </summary>
-		/// <param name="codeInstructions">The code instructions.</param>
-		/// <exception cref="System.ArgumentNullException">codeInstructions</exception>
-		public static void SubstituteFormerHumanMethods([NotNull] IList<CodeInstruction> codeInstructions)
-		{
-			if (codeInstructions == null) throw new ArgumentNullException(nameof(codeInstructions));
-
-			for (var i = 0; i < codeInstructions.Count - 1; i++)
-			{
-				int j = i + 1;
-				CodeInstruction opI = codeInstructions[i];
-				CodeInstruction opJ = codeInstructions[j];
-				if (opI == null || opJ == null) continue;
-				//the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
-				if (opI.opcode == OpCodes.Callvirt && (MethodInfo)opI.operand == _getRacePropsMethod)
-				{
-					//signatures we care about always have a second callVirt 
-					if (opJ.opcode != OpCodes.Callvirt) continue;
-
-					var jMethod = opJ.operand as MethodInfo;
-					bool patched;
-					//figure out which method, if any, we're going to be replacing 
-					if (jMethod == _getHumanlikeMethod) //TODO refactor this to be more general 
-					{
-						patched = true;
-						opI.operand = IsHumanoidMethod;
-					}
-					else if (jMethod == _getAnimalMethod)
-					{
-						patched = true;
-						opI.operand = IsAnimalMethod;
-					}
-					else if (jMethod == _toolUserMethod)
-					{
-						patched = true;
-						opI.operand = IsToolUserMethod;
-					}
-					else if (jMethod == _fenceBlockedTargetMethod)
-					{
-						patched = true;
-						opI.operand = FenceBlockMethod;
-					}
-					else if (jMethod == _canPassFenceTargetMethod)
-					{
-						patched = true;
-						opI.operand = CanPassFencesMethod;
-					}
-					else if (jMethod == _roamerTargetMethod)
-					{
-						patched = true;
-						opI.operand = RoamerMethod;
-					}
-					else
-					{
-						patched = false;
-					}
-
-					if (patched)
-					{
-						//now clean up if we did any patching 
-
-						opI.opcode = OpCodes.Call; //always uses call 
-
-						//replace opJ with nop (no operation) so we don't fuck up the stack 
-						opJ.opcode = OpCodes.Nop;
-						opJ.operand = null;
-					}
-				}
-			}
-		}
-
-
-		/// <summary>
-		///     substitutes all instances of RaceProps Humanlike, Animal, and Tooluser with their equivalent in
-		///     FormerHumanUtilities
-		/// </summary>
 		/// <param name="instructions">The code instructions.</param>
 		/// <exception cref="System.ArgumentNullException">codeInstructions</exception>
 		public static IEnumerable<CodeInstruction> SubstituteFormerHumanMethodsPatch(
@@ -518,63 +437,51 @@ namespace Pawnmorph.Utilities
 			List<CodeInstruction> codeInstructions = instructions.ToList();
 			for (var i = 0; i < codeInstructions.Count - 1; i++)
 			{
-				int j = i + 1;
-				CodeInstruction opI = codeInstructions[i];
-				CodeInstruction opJ = codeInstructions[j];
-				if (opI == null || opJ == null) continue;
+				CodeInstruction opCur = codeInstructions[i];
+				CodeInstruction opNext = codeInstructions[i + 1];
+				if (opCur == null || opNext == null) continue;
 				//the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
-				if (opI.opcode == OpCodes.Callvirt && (MethodInfo)opI.operand == _getRacePropsMethod)
+				if ((opCur.opcode == OpCodes.Callvirt && (MethodInfo)opCur.operand == RimworldGetRaceMethod) ||
+					(opCur.opcode == OpCodes.Ldfld && (FieldInfo)opCur.operand == _thingDefField &&
+					 opNext.opcode == OpCodes.Ldfld && (FieldInfo)opNext.operand == _thingDefRaceField))
 				{
-					//signatures we care about always have a second callVirt 
-					if (opJ.opcode != OpCodes.Callvirt) continue;
+					// Detected "p.def.race."
+					if ((MemberInfo)opNext.operand == _thingDefRaceField)
+						opNext = codeInstructions[i + 2];
 
-					var jMethod = opJ.operand as MethodInfo;
-					bool patched;
-					//figure out which method, if any, we're going to be replacing 
-					if (jMethod == _getHumanlikeMethod)
+					var jMethod = opNext.operand as MemberInfo;
+					bool patched = false;
+					//figure out which method, if any, we're going to be replacing. Mapped method may be null if it wasn't found.
+					if (_mappings.TryGetValue(jMethod, out MemberInfo targetMethod))
 					{
-						patched = true;
-						opI.operand = IsHumanoidMethod;
-					}
-					else if (jMethod == _getAnimalMethod)
-					{
-						patched = true;
-						opI.operand = IsAnimalMethod;
-					}
-					else if (jMethod == _toolUserMethod)
-					{
-						patched = true;
-						opI.operand = IsToolUserMethod;
-					}
-					else if (jMethod == _fenceBlockedTargetMethod)
-					{
-						patched = true;
-						opI.operand = FenceBlockMethod;
-					}
-					else if (jMethod == _canPassFenceTargetMethod)
-					{
-						patched = true;
-						opI.operand = CanPassFencesMethod;
-					}
-					else if (jMethod == _roamerTargetMethod)
-					{
-						patched = true;
-						opI.operand = RoamerMethod;
-					}
-					else
-					{
-						patched = false;
+						if (targetMethod != null)
+						{
+							opCur.operand = targetMethod;
+
+							if (targetMethod is MethodInfo)
+								opCur.opcode = OpCodes.Call;
+							else if (targetMethod is FieldInfo)
+								opCur.opcode = OpCodes.Ldfld;
+
+							patched = true;
+						}
+						else
+							Log.Warning("Target replacement method for " + jMethod.Name + " was not found.");
+						// Log.Message($"Patched {targetMethod.Name}");
 					}
 
 					if (patched)
 					{
 						//now clean up if we did any patching 
-
-						opI.opcode = OpCodes.Call; //always uses call 
+						if (codeInstructions[i + 1] != opNext)
+						{
+							codeInstructions[i + 1].opcode = OpCodes.Nop;
+							codeInstructions[i + 1].operand = null;
+						}
 
 						//replace opJ with nop (no operation) so we don't fuck up the stack 
-						opJ.opcode = OpCodes.Nop;
-						opJ.operand = null;
+						opNext.opcode = OpCodes.Nop;
+						opNext.operand = null;
 					}
 				}
 			}

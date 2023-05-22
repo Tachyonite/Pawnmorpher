@@ -75,7 +75,7 @@ namespace Pawnmorph.HPatches
 				{
 					CodeInstruction jInst = instructionList[i + 1];
 					CodeInstruction iInst = instructionList[i];
-					if (iInst.opcode == OpCodes.Callvirt && (MethodInfo)iInst.operand == PatchUtilities.GetRacePropsMethod)
+					if (iInst.opcode == OpCodes.Callvirt && (MethodInfo)iInst.operand == PatchUtilities.RimworldGetRaceMethod)
 						if (jInst.opcode == OpCodes.Callvirt
 						 && (MethodInfo)jInst.operand == PatchUtilities.RimworldIsAnimalMethod)
 						{

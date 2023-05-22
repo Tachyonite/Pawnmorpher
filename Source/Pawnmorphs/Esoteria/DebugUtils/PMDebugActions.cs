@@ -740,8 +740,9 @@ namespace Pawnmorph.DebugUtils
 
 		private static List<DebugMenuOption> GetAddAspectOptions(Pawn pawn)
 		{
-			AspectTracker tracker = pawn.GetAspectTracker();
 			var outLst = new List<DebugMenuOption>();
+			AspectTracker tracker = pawn.GetAspectTracker();
+
 			foreach (AspectDef aspectDef in DefDatabase<AspectDef>.AllDefs.Where(d => !tracker.Contains(d))
 			) //don't allow aspects to be added more then once 
 			{

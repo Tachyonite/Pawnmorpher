@@ -1,5 +1,5 @@
 <LanguageData>
-    <GenomeLabel>{MUTATION_label} genome</GenomeLabel>
+    <GenomeLabel>Mutation genome ({MUTATION_label})</GenomeLabel>
     <!-- TODO -->
     <GenomeDesc>Genome that provides information for {MUTATION} mutation.</GenomeDesc>
     <PMApplyGenome>download {0}</PMApplyGenome>
