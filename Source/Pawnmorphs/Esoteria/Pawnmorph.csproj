@@ -37,6 +37,17 @@
     <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\1.4\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
@@ -939,6 +950,7 @@
     <Compile Include="Utilities\TimedCache.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
