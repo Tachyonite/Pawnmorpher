@@ -7,7 +7,9 @@ using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
+using Pawnmorph.UserInterface;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.ThingComps
@@ -103,8 +105,24 @@ namespace Pawnmorph.ThingComps
 		/// <returns></returns>
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{
-			foreach (Gizmo gizmo in base.CompGetGizmosExtra()) yield return gizmo;
+			foreach (Gizmo gizmo in base.CompGetGizmosExtra()) 
+				yield return gizmo;
+
+
+			yield return _advPreview;
 		}
+
+		Gizmo _advPreview = new Command_Action()
+		{
+			action = () =>
+			{
+				Window_Sequencer genebankWindow = new Window_Sequencer();
+				Find.WindowStack.Add(genebankWindow);
+			},
+			icon = PMTextures.AnimalSelectorIcon,
+			defaultLabel = "Advanced sequencer"
+		};
+
 
 		/// <summary>
 		///     Does the find.
