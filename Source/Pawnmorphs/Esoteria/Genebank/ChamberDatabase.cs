@@ -335,24 +335,39 @@ namespace Pawnmorph.Chambers
 
 			// Save compatibility for migrating from old collections to new dictionary.
 			// These collections are not saved when the save is next saved.
-			if (Scribe.mode == LoadSaveMode.LoadingVars && _genebankDatabase == null)
+			if (Scribe.mode == LoadSaveMode.LoadingVars)
 			{
-				_genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
+				if (_genebankDatabase == null)
+				{
+					_genebankDatabase = new Dictionary<Type, ExposableList<IGenebankEntry>>();
 
-				List<MutationDef> mutationDefs = null;
-				Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
-				if (mutationDefs != null)
-					_genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposableList<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
+					List<MutationDef> mutationDefs = null;
+					Scribe_Collections.Look(ref mutationDefs, "StoredMutations", LookMode.Def);
+					if (mutationDefs != null)
+						_genebankDatabase.Add(typeof(GenebankEntry<MutationDef>), new ExposableList<IGenebankEntry>(mutationDefs.Select(x => new MutationGenebankEntry(x))));
 
-				List<PawnKindDef> taggedAnimalDefs = null;
-				Scribe_Collections.Look(ref taggedAnimalDefs, "TaggedAnimals", LookMode.Def);
-				if (taggedAnimalDefs != null)
-					_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposableList<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
+					List<PawnKindDef> taggedAnimalDefs = null;
+					Scribe_Collections.Look(ref taggedAnimalDefs, "TaggedAnimals", LookMode.Def);
+					if (taggedAnimalDefs != null)
+						_genebankDatabase.Add(typeof(GenebankEntry<PawnKindDef>), new ExposableList<IGenebankEntry>(taggedAnimalDefs.Select(x => new AnimalGenebankEntry(x))));
 
-				List<MutationTemplate> templates = null;
-				Scribe_Collections.Look(ref templates, "_storedTemplates");
-				if (templates != null)
-					_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposableList<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
+					List<MutationTemplate> templates = null;
+					Scribe_Collections.Look(ref templates, "_storedTemplates");
+					if (templates != null)
+						_genebankDatabase.Add(typeof(GenebankEntry<MutationTemplate>), new ExposableList<IGenebankEntry>(templates.Select(x => new TemplateGenebankEntry(x))));
+				}
+
+
+				// Clean null refs.
+				foreach (Type key in _genebankDatabase.Keys)
+				{
+					ExposableList<IGenebankEntry> collection = _genebankDatabase[key];
+					for (int i = collection.Count - 1; i >= 0; i--)
+					{
+						if (collection[i].IsValid() == false)
+							collection.RemoveAt(i);
+					}
+				}
 			}
 
 			Scribe_Values.Look(ref _totalStorage, nameof(TotalStorage));
