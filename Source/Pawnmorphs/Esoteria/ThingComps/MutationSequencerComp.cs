@@ -7,7 +7,9 @@ using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.UserInterface;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -20,12 +22,38 @@ namespace Pawnmorph.ThingComps
 	{
 		private const string MUTATION_GATHERED_LABEL = "PMMutationTagged";
 
-		[NotNull] private readonly List<MutationDef> _scratchList = new List<MutationDef>();
+		private ChamberDatabase _genebank;
+		private List<MutationDef> _scratchList;
+		private PawnKindDef _targetAnimal;
+		private bool _animalSequenced;
 
-		private AnimalSelectorComp _animalSelector;
+		Gizmo _advPreview;
 
-		private ChamberDatabase _db;
 
+		public PawnKindDef TargetAnimal
+		{
+			get => _targetAnimal;
+			set
+			{
+				_animalSequenced = false;
+				_targetAnimal = value;
+			}
+		}
+
+		public override void Initialize(CompProperties props)
+		{
+			base.Initialize(props);
+			_genebank = Find.World.GetComponent<ChamberDatabase>();
+			_scratchList = new List<MutationDef>(50);
+			_animalSequenced = false;
+
+			_advPreview = new Command_Action()
+			{
+				action = OpenSequencerInterface,
+				icon = PMTextures.AnimalSelectorIcon,
+				defaultLabel = "Open"
+			};
+		}
 
 		/// <summary>
 		/// Useds the specified worker.
@@ -36,10 +64,12 @@ namespace Pawnmorph.ThingComps
 			if (!this.CanUseNow)
 				Log.Error("Used while CanUseNow is false.");
 			this.lastScanTick = (float)Find.TickManager.TicksGame;
+
 			this.lastUserSpeed = 1f;
 			if (this.Props.scanSpeedStat != null)
 				this.lastUserSpeed = worker.GetStatValue(this.Props.scanSpeedStat, true);
-			this.daysWorkingSinceLastFinding += this.lastUserSpeed / 60000f;
+
+			this.daysWorkingSinceLastFinding += this.lastUserSpeed / TimeMetrics.TICKS_PER_DAY;
 			if (!this.TickDoesFind(this.lastUserSpeed))
 				return;
 			this.DoFind(worker);
@@ -69,33 +99,11 @@ namespace Pawnmorph.ThingComps
 				{
 					return false;
 				}
-				return parent.Faction == Faction.OfPlayer && AnimalSelector.ChosenKind != null && DB.CanTag;
-			}
-		}
 
-		[NotNull]
-		private AnimalSelectorComp AnimalSelector
-		{
-			get
-			{
-				if (_animalSelector == null)
-				{
-					_animalSelector = parent.GetComp<AnimalSelectorComp>();
-					_animalSelector.SpeciesFilter = (x) => x.GetAllMutationsFrom().Any(m => !DB.StoredMutations.Contains(m));
-				}
+				if (_animalSequenced)
+					return false;
 
-				return _animalSelector;
-			}
-		}
-
-		[NotNull]
-		private ChamberDatabase DB
-		{
-			get
-			{
-				if (_db == null) _db = Find.World.GetComponent<ChamberDatabase>();
-
-				return _db;
+				return parent.Faction == Faction.OfPlayer && _targetAnimal != null && _genebank.CanTag;
 			}
 		}
 
@@ -112,16 +120,11 @@ namespace Pawnmorph.ThingComps
 			yield return _advPreview;
 		}
 
-		Gizmo _advPreview = new Command_Action()
+		private void OpenSequencerInterface()
 		{
-			action = () =>
-			{
-				Window_Sequencer genebankWindow = new Window_Sequencer();
-				Find.WindowStack.Add(genebankWindow);
-			},
-			icon = PMTextures.AnimalSelectorIcon,
-			defaultLabel = "Advanced sequencer"
-		};
+			Window_Sequencer genebankWindow = new Window_Sequencer(this);
+			Find.WindowStack.Add(genebankWindow);
+		}
 
 
 		/// <summary>
@@ -131,33 +134,73 @@ namespace Pawnmorph.ThingComps
 		/// <exception cref="System.NotImplementedException"></exception>
 		protected override void DoFind(Pawn worker)
 		{
-			PawnKindDef chosenKind = AnimalSelector.ChosenKind;
-			if (chosenKind == null)
+			if (_animalSequenced)
+				return;
+
+			if (_targetAnimal == null)
 			{
 				Log.Error($"calling DoFind on {parent.ThingID} which does not have a chosen animal!");
 				return;
 			}
 
 			_scratchList.Clear();
-			_scratchList.AddRange(chosenKind.GetAllMutationsFrom().Where(m => !DB.StoredMutations.Contains(m)));
+			_scratchList.AddRange(_targetAnimal.GetAllMutationsFrom().Where(m => !_genebank.StoredMutations.Contains(m)));
 
 			if (_scratchList.Count == 0)
 			{
 				Log.Warning("unable to find mutation to give!");
-				AnimalSelector.ResetSelection();
+				ClearTarget();
 				return;
 			}
 
 			MutationDef mutation = _scratchList.RandomElement();
 
-			DB.TryAddToDatabase(new MutationGenebankEntry(mutation));
+			_genebank.TryAddToDatabase(new MutationGenebankEntry(mutation));
 
 			TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
-																 chosenKind.Named("animal")
+																 _targetAnimal.Named("animal")
 																);
 			Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
 			if (_scratchList.Count - 1 == 0)
-				AnimalSelector.ResetSelection();
+				ClearTarget();
+		}
+
+		private void ClearTarget()
+		{
+			TaggedString msg = "PMNothingTaggable".Translate(_targetAnimal.LabelCap.Named("animal"));
+			Messages.Message(msg, MessageTypeDefOf.NeutralEvent);
+			_animalSequenced = true;
+		}
+
+		/// <inheritdoc/>
+		public override void PostExposeData()
+		{
+			base.PostExposeData();
+			Scribe_Values.Look(ref _targetAnimal, "TargetAnimal");
+
+			if (Scribe.mode == LoadSaveMode.LoadingVars)
+			{
+				if (_targetAnimal != null)
+					_animalSequenced = _targetAnimal.GetAllMutationsFrom().Where(m => !_genebank.StoredMutations.Contains(m)).Any() == false;
+			}
+		}
+
+		/// <inheritdoc/>
+		public override string CompInspectStringExtra()
+		{
+			if (_targetAnimal == null)
+				return string.Empty;
+
+			string text = "";
+			if (lastScanTick > (float)(Find.TickManager.TicksGame - 30))
+			{
+				text += "UserSequenceAbility".Translate() + ": " + lastUserSpeed.ToStringPercent() + "\n";
+			}
+
+			if (_animalSequenced)
+				return text + "SequencingComplete".Translate(_targetAnimal.LabelCap.Named("animal"));
+
+			return text + "SequencingProgress".Translate(_targetAnimal.label.Named("animal")) + ": " + (daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays).ToStringPercent();
 		}
 	}
 }

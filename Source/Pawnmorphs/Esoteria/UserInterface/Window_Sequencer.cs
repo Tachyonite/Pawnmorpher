@@ -16,6 +16,7 @@ using RimWorld;
 using AlienRace;
 using Pawnmorph.Utilities;
 using Verse.Sound;
+using Pawnmorph.ThingComps;
 
 namespace Pawnmorph.UserInterface
 {
@@ -30,6 +31,7 @@ namespace Pawnmorph.UserInterface
 		private readonly float COLUMN_MUTATIONS_SIZE;
 
 		private readonly string DESCRIPTION_MUTATIONS = "PM_Genebank_AnimalsTab_Details_Mutations".Translate();
+		private readonly string BUTTON_SEQUENCE = "SequenceButtonStart".Translate();
 
 		private readonly string ROTATE_CW_LOC_STRING = "RotCW".Translate();
 		private readonly string ROTATE_CCW_LOC_STRING = "RotCCW".Translate();
@@ -47,15 +49,17 @@ namespace Pawnmorph.UserInterface
 		private PawnPreview _animalPreview;
 		private HumanlikePreview _morphPreview;
 
-
 		private PawnKindDef _selectedAnimal;
-		private PawnKindDef _sequenceTarget;
 
 		private string _sequencedMutationsLabel;
 		private string _sequencedMutationsTooltip;
+		private string _sequenceTargetAnimalLabel;
 
-		public Window_Sequencer()
+		MutationSequencerComp _sequencer;
+
+		public Window_Sequencer(MutationSequencerComp sequencer)
 		{
+			_sequencer = sequencer;
 			Text.Font = GameFont.Small;
 			COLUMN_MUTATIONS_SIZE = Mathf.Max(Text.CalcSize(COLUMN_MUTATIONS).x, 100f);
 			COLUMN_MORPH_SIZE = Mathf.Max(Text.CalcSize(COLUMN_MORPH).x, 100f);
@@ -194,10 +198,6 @@ namespace Pawnmorph.UserInterface
 
 		public override void DoWindowContents(Rect inRect)
 		{
-			float TwoSpacing = SPACING * 2;
-
-
-
 			inRect.SplitVerticallyWithMargin(out Rect mainRect, out Rect detailsRect, out float _, SPACING, rightWidth: PREVIEW_SIZE + PROGRESS_COLUMN_WIDTH + SPACING);
 
 			Widgets.DrawBoxSolidWithOutline(mainRect, Color.black, Color.gray);
@@ -221,8 +221,8 @@ namespace Pawnmorph.UserInterface
 
 			Text.Anchor = TextAnchor.MiddleCenter;
 			Text.Font = GameFont.Small;
-			if (_sequenceTarget != null)
-				Widgets.Label(previewBox.x, ref curY, previewBox.width, _sequenceTarget.LabelCap);
+			if (_sequencer.TargetAnimal != null)
+				Widgets.Label(previewBox.x, ref curY, previewBox.width, _sequenceTargetAnimalLabel);
 
 			if (_sequencedMutationsLabel != null)
 			{
@@ -238,7 +238,7 @@ namespace Pawnmorph.UserInterface
 
 			buttonRect.y = buttonRect.yMax + SPACING;
 			buttonRect.height = 30;
-			if (Widgets.ButtonText(buttonRect, "Sequence!"))
+			if (Widgets.ButtonText(buttonRect, BUTTON_SEQUENCE))
 				StartSequence();
 		}
 
@@ -270,7 +270,7 @@ namespace Pawnmorph.UserInterface
 
 		private void StartSequence()
 		{
-			_sequenceTarget = _selectedAnimal;
+			_sequencer.TargetAnimal = _selectedAnimal;
 			UpdateControlPanel();
 		}
 
@@ -278,16 +278,17 @@ namespace Pawnmorph.UserInterface
 
 		private void UpdateControlPanel()
 		{
-			if (_sequenceTarget == null) 
+			if (_sequencer.TargetAnimal == null) 
 			{
 				_sequencedMutationsLabel = null;
 				_sequencedMutationsTooltip = null;
 				return;
 			}
-			IReadOnlyList<MutationDef> allMutations = _sequenceTarget.GetAllMutationsFrom();
+			_sequenceTargetAnimalLabel = "SequencingProgress".Translate(_sequencer.TargetAnimal.label.Named("animal")) + ".";
+
+
+			IReadOnlyList<MutationDef> allMutations = _sequencer.TargetAnimal.GetAllMutationsFrom();
 			IReadOnlyList<MutationDef> sequencedMutations = _chamberDatabase.StoredMutations;
-
-
 			IEnumerable<MutationDef> taggedMutations = allMutations.Intersect(sequencedMutations);
 
 			int taggedCount = taggedMutations.Count();
@@ -295,7 +296,7 @@ namespace Pawnmorph.UserInterface
 
 			if (taggedCount == allCount)
 			{
-				_sequencedMutationsLabel = $"Sequencing complete!";
+				_sequencedMutationsLabel = $"SequencingComplete".Translate(_sequencer.TargetAnimal.LabelCap.Named("animal"));
 			}
 			else
 				_sequencedMutationsLabel = $"{taggedCount}/{allCount} mutations sequenced";
