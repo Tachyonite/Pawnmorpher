@@ -23,14 +23,13 @@ namespace Pawnmorph.UserInterface
 	[HotSwappable]
 	internal class Window_Sequencer : Window
 	{
-		private readonly string COLUMN_RACE = "PM_Genebank_AnimalsTab_Column_Race".Translate();
-		private readonly string COLUMN_MORPH = "PM_Genebank_AnimalsTab_Column_Race".Translate();
+		private readonly string COLUMN_RACE = "SequenceTableColumnRace".Translate();
 		private const float COLUMN_RACE_WIDTH_FRACT = 0.60f;
+		private readonly string COLUMN_MORPH = "SequenceTableColumnMorph".Translate();
 		private readonly float COLUMN_MORPH_SIZE;
-		private readonly string COLUMN_MUTATIONS = "PM_Genebank_AnimalsTab_Column_Mutations".Translate();
+		private readonly string COLUMN_MUTATIONS = "SequenceTableColumnMutations".Translate();
 		private readonly float COLUMN_MUTATIONS_SIZE;
 
-		private readonly string DESCRIPTION_MUTATIONS = "PM_Genebank_AnimalsTab_Details_Mutations".Translate();
 		private readonly string BUTTON_SEQUENCE = "SequenceButtonStart".Translate();
 
 		private readonly string ROTATE_CW_LOC_STRING = "RotCW".Translate();
@@ -39,7 +38,6 @@ namespace Pawnmorph.UserInterface
 		private readonly string MALE = "Male".Translate().CapitalizeFirst();
 
 		private const float SPACING = 10f;
-		private const float HEADER_HEIGHT = 200;
 		private const int PREVIEW_SIZE = 200;
 		private const float PROGRESS_COLUMN_WIDTH = 200f;
 
@@ -48,14 +46,11 @@ namespace Pawnmorph.UserInterface
 
 		private PawnPreview _animalPreview;
 		private HumanlikePreview _morphPreview;
-
 		private PawnKindDef _selectedAnimal;
-
 		private string _sequencedMutationsLabel;
 		private string _sequencedMutationsTooltip;
 		private string _sequenceTargetAnimalLabel;
-
-		MutationSequencerComp _sequencer;
+		private MutationSequencerComp _sequencer;
 
 		public Window_Sequencer(MutationSequencerComp sequencer)
 		{
@@ -127,8 +122,6 @@ namespace Pawnmorph.UserInterface
 			Vector2 size = new Vector2(UI.screenWidth * 0.9f, UI.screenHeight * 0.8f);
 			_table.LineFont = PawnmorpherMod.Settings.GenebankWindowFont ?? GameFont.Tiny;
 
-
-
 			base.windowRect = new Rect(location, size);
 		}
 
@@ -144,6 +137,7 @@ namespace Pawnmorph.UserInterface
 				this.Close();
 			}
 
+			// Add columns
 			var colRace = _table.AddColumn(COLUMN_RACE, COLUMN_RACE_WIDTH_FRACT);
 			colRace.IsFixedWidth = false;
 			var colMorph = _table.AddColumn(COLUMN_MORPH, COLUMN_MORPH_SIZE);
@@ -155,25 +149,27 @@ namespace Pawnmorph.UserInterface
 					x.OrderByDescending(y => (int)y.Tag);
 			});
 
-
+			// Add rows
 			IReadOnlyList<GenebankEntry<PawnKindDef>> taggedAnimals = _chamberDatabase.GetEntryItems<PawnKindDef>();
+			IReadOnlyList<MutationDef> sequencedMutations = _chamberDatabase.StoredMutations;
 			for (int i = taggedAnimals.Count - 1; i >= 0; i--)
 			{
 				GenebankEntry<PawnKindDef> entry = taggedAnimals[i];
 				PawnKindDef animal = entry.Value;
 
+				// Skip if entry has no mutations.
 				IReadOnlyList<MutationDef> allMutations = animal.GetAllMutationsFrom();
 				int totalMutations = allMutations.Count;
 				if (totalMutations == 0)
 					continue;
 
-				IReadOnlyList<MutationDef> sequencedMutations = _chamberDatabase.StoredMutations;
-
 				TableRow<PawnKindDef> row = new TableRow<PawnKindDef>(animal);
 
+				// animal data
 				string searchText = animal.label;
 				row[colRace] = animal.LabelCap;
 
+				// morph data
 				MorphDef morph = MorphUtilities.TryGetBestMorphOfAnimal(animal.race);
 				Log.Message($"{animal.LabelCap} - {morph?.LabelCap}");
 				if (morph != null)
@@ -182,7 +178,7 @@ namespace Pawnmorph.UserInterface
 					row[colMorph] = morph.LabelCap;
 				}
 
-
+				// Mutations data
 				int taggedMutations = allMutations.Intersect(sequencedMutations).Count();
 				row[colMutations] = $"{taggedMutations}/{totalMutations}";
 				row.Tag = totalMutations - taggedMutations;
@@ -200,13 +196,13 @@ namespace Pawnmorph.UserInterface
 		{
 			inRect.SplitVerticallyWithMargin(out Rect mainRect, out Rect detailsRect, out float _, SPACING, rightWidth: PREVIEW_SIZE + PROGRESS_COLUMN_WIDTH + SPACING);
 
+			// Draw table
 			Widgets.DrawBoxSolidWithOutline(mainRect, Color.black, Color.gray);
 			_table.Draw(mainRect.ContractedBy(SPACING));
 
-
-
 			detailsRect.SplitVerticallyWithMargin(out Rect controlColumnRect, out Rect progressRect, out float _, SPACING, rightWidth: PROGRESS_COLUMN_WIDTH);
 
+			// Draw previews
 			Rect previewBox = new Rect(controlColumnRect.x, controlColumnRect.y, PREVIEW_SIZE, PREVIEW_SIZE);
 			Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
 			_animalPreview.Draw(previewBox.ContractedBy(3));
@@ -214,7 +210,6 @@ namespace Pawnmorph.UserInterface
 			previewBox.y = previewBox.yMax + SPACING;
 			Widgets.DrawBoxSolidWithOutline(previewBox, Color.black, Color.gray);
 			_morphPreview.Draw(previewBox.ContractedBy(3));
-
 
 			// Draw control panel
 			float curY = previewBox.yMax + SPACING;
@@ -240,6 +235,9 @@ namespace Pawnmorph.UserInterface
 			buttonRect.height = 30;
 			if (Widgets.ButtonText(buttonRect, BUTTON_SEQUENCE))
 				StartSequence();
+
+			// Draw progress tube
+			//TODO
 		}
 
 		private void DrawPreviewButtons(Rect inRect)
@@ -268,24 +266,29 @@ namespace Pawnmorph.UserInterface
 			TooltipHandler.TipRegion(buttonRect, ROTATE_CCW_LOC_STRING);
 		}
 
+		/// <summary>
+		/// Set sequence target and update UI.
+		/// </summary>
 		private void StartSequence()
 		{
 			_sequencer.TargetAnimal = _selectedAnimal;
 			UpdateControlPanel();
 		}
 
-
-
+		/// <summary>
+		/// Refresh control panel elements.
+		/// </summary>
 		private void UpdateControlPanel()
 		{
 			if (_sequencer.TargetAnimal == null) 
 			{
+				_sequenceTargetAnimalLabel = null;
 				_sequencedMutationsLabel = null;
 				_sequencedMutationsTooltip = null;
 				return;
 			}
-			_sequenceTargetAnimalLabel = "SequencingProgress".Translate(_sequencer.TargetAnimal.label.Named("animal")) + ".";
 
+			_sequenceTargetAnimalLabel = "SequencingProgress".Translate(_sequencer.TargetAnimal.label.Named("animal")) + ".";
 
 			IReadOnlyList<MutationDef> allMutations = _sequencer.TargetAnimal.GetAllMutationsFrom();
 			IReadOnlyList<MutationDef> sequencedMutations = _chamberDatabase.StoredMutations;
