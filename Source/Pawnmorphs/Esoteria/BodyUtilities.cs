@@ -166,18 +166,19 @@ namespace Pawnmorph
 			if (p == null) throw new ArgumentNullException(nameof(p));
 			if (record == null) throw new ArgumentNullException(nameof(record));
 
+			float maxPartHealth = record.def.GetMaxHealth(p);
+
 			if (p.def.race.Animal || p.def.race.IsMechanoid)
-				return record.def.hitPoints;
+				return maxPartHealth;
 
 			if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
-				return record.def.hitPoints;
+				return maxPartHealth;
 
 			MutationTracker mTracker = p.GetMutationTracker(false); //use mTracker so we only check mutations, a bit faster 
 			if (mTracker == null)
-				return record.def.hitPoints;
+				return maxPartHealth;
 
 			float offset = 0;
-			float maxPartHealth = record.def.GetMaxHealth(p);
 			float multiplier = 0;
 			foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
 			{
