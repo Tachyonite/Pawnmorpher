@@ -39,7 +39,7 @@ namespace Pawnmorph.UserInterface
 
 		private const float SPACING = 10f;
 		private const int PREVIEW_SIZE = 200;
-		private const float PROGRESS_COLUMN_WIDTH = 200f;
+		private const float PROGRESS_COLUMN_WIDTH = 0f;//200f;
 
 		private readonly Table<TableRow<PawnKindDef>> _table;
 		private ChamberDatabase _chamberDatabase;
@@ -190,6 +190,14 @@ namespace Pawnmorph.UserInterface
 
 			_table.LineFont = PawnmorpherMod.Settings.GenebankWindowFont ?? GameFont.Tiny;
 			_table.Refresh();
+
+
+
+			if (_sequencer.TargetAnimal != null)
+			{
+				Select(_sequencer.TargetAnimal);
+				UpdateControlPanel();
+			}
 		}
 
 		public override void DoWindowContents(Rect inRect)
