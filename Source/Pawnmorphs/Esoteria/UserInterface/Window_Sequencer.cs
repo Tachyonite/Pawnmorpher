@@ -20,7 +20,6 @@ using Pawnmorph.ThingComps;
 
 namespace Pawnmorph.UserInterface
 {
-	[HotSwappable]
 	internal class Window_Sequencer : Window
 	{
 		private readonly string COLUMN_RACE = "SequenceTableColumnRace".Translate();
