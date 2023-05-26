@@ -155,14 +155,15 @@ namespace Pawnmorph.ThingComps
 
 			MutationDef mutation = _scratchList.RandomElement();
 
-			_genebank.TryAddToDatabase(new MutationGenebankEntry(mutation));
-
-			TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
-																 _targetAnimal.Named("animal")
-																);
-			Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
-			if (_scratchList.Count - 1 == 0)
-				ClearTarget();
+			if (_genebank.TryAddToDatabase(new MutationGenebankEntry(mutation)))
+			{
+				TaggedString msg = MUTATION_GATHERED_LABEL.Translate(mutation.Named("mutation"),
+																	 _targetAnimal.Named("animal")
+																	);
+				Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
+				if (_scratchList.Count - 1 == 0)
+					ClearTarget();
+			}
 		}
 
 		private void ClearTarget()
