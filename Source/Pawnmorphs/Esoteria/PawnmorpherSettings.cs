@@ -189,8 +189,8 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref GenebankWindowFont, nameof(GenebankWindowFont));
 
 
-			Scribe_Values.Look(ref SequencingMultiplier, nameof(SequencingMultiplier));
-			Scribe_Values.Look(ref AutoSequenceAnimalGenome, nameof(AutoSequenceAnimalGenome));
+			Scribe_Values.Look(ref SequencingMultiplier, nameof(SequencingMultiplier), 1f);
+			Scribe_Values.Look(ref AutoSequenceAnimalGenome, nameof(AutoSequenceAnimalGenome), false);
 
 
 			Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));

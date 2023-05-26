@@ -69,7 +69,7 @@ namespace Pawnmorph.ThingComps
 			if (this.Props.scanSpeedStat != null)
 				this.lastUserSpeed = worker.GetStatValue(this.Props.scanSpeedStat, true);
 
-			this.daysWorkingSinceLastFinding += this.lastUserSpeed / TimeMetrics.TICKS_PER_DAY;
+			this.daysWorkingSinceLastFinding += this.lastUserSpeed * PawnmorpherMod.Settings.SequencingMultiplier / TimeMetrics.TICKS_PER_DAY;
 			if (!this.TickDoesFind(this.lastUserSpeed))
 				return;
 			this.DoFind(worker);
@@ -177,7 +177,7 @@ namespace Pawnmorph.ThingComps
 		public override void PostExposeData()
 		{
 			base.PostExposeData();
-			Scribe_Values.Look(ref _targetAnimal, "TargetAnimal");
+			Scribe_Defs.Look(ref _targetAnimal, "TargetAnimal");
 
 			if (Scribe.mode == LoadSaveMode.LoadingVars)
 			{

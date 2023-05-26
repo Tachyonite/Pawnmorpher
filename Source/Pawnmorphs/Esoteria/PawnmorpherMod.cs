@@ -128,7 +128,7 @@ namespace Pawnmorph
 
 
 			TreeNode_FilterBox sequencerNode = coreNode.AddChild("PMSequencer");
-			sequencerNode.AddChild("PMSequencerMultipler", "PMSequencerMultiplerTooltip", callback: (in Rect x) => Widgets.HorizontalSlider(x, ref settings.SequencingMultiplier, new FloatRange(0.1f, 5), settings.SequencingMultiplier.ToStringPercent(), 0.1f));
+			sequencerNode.AddChild("PMSequencerMultipler", "PMSequencerMultiplerTooltip", callback: (in Rect x) => settings.SequencingMultiplier = Widgets.HorizontalSlider(x, settings.SequencingMultiplier, 0.1f, 10, true, settings.SequencingMultiplier.ToStringPercent(), 0.1f.ToStringPercent(), 10f.ToStringPercent(), 0.1f));
 			sequencerNode.AddChild("PMSequencerAutoAnimalGenome", "PMSequencerAutoAnimalGenomeTooltip", callback: (in Rect x) => Widgets.Checkbox(x.position, ref settings.AutoSequenceAnimalGenome));
 
 			result.Add(coreNode);

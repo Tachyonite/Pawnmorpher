@@ -48,9 +48,17 @@ namespace Pawnmorph.UserInterface
 		private void ToggleNodes(bool expand)
 		{
 			for (int i = _items.Count - 1; i >= 0; i--)
-				_items[i].SetOpen(-1, expand);
+				ToggleNode(_items[i], expand);
 
 			UpdateVisibleNodes();
+		}
+
+		private void ToggleNode(TreeNode node, bool expand)
+		{
+			node.SetOpen(-1, expand);
+
+			for (int j = node.children.Count - 1; j >= 0; j--)
+				ToggleNode(node.children[j], expand);
 		}
 
 		private void UpdateFilter()
