@@ -11,6 +11,18 @@
     <!-- Scanner -->
     <PMAnimalPickerGizmo_Scanner>Select Animal</PMAnimalPickerGizmo_Scanner>
     <PMAnimalPickerGizmoDescription_Scanner>Select a tagged animal's genome for mutation sequencing.</PMAnimalPickerGizmoDescription_Scanner>
+
+
+    <UserSequenceAbility>User sequencing speed</UserSequenceAbility>
+    <SequencingProgress>Sequencing {animal}</SequencingProgress>
+    <SequencingComplete>{animal} sequenced!</SequencingComplete>
+    <SequenceButtonStart>Sequence!</SequenceButtonStart>
+    <SequenceTableColumnRace>Race</SequenceTableColumnRace>
+    <SequenceTableColumnMorph>Morph</SequenceTableColumnMorph>
+    <SequenceTableColumnMutations>Mutations</SequenceTableColumnMutations>
+
+
+
     <!-- Animal Selector -->
     <PMAnimalPickerGizmoNoChoices>No available choices</PMAnimalPickerGizmoNoChoices>
 

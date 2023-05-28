@@ -671,6 +671,8 @@ namespace Pawnmorph
 				{
 					HashGiverUtils.GiveShortHash(thingDef);
 				}
+
+				MorphUtilities.Initialize();
 			}
 			catch (MissingMethodException e)
 			{

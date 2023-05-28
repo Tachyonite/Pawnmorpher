@@ -250,7 +250,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			if (selectedRows.Count == 1)
 			{
-				_selectedTemplate = (selectedRows[0].Def as GenebankEntry<MutationTemplate>).Value;
+				_selectedTemplate = (selectedRows[0].RowObject as GenebankEntry<MutationTemplate>).Value;
 			}
 
 

@@ -3,9 +3,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using AlienRace;
 using Pawnmorph.Chambers;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Hediffs.MutationRetrievers;
 using Pawnmorph.ThingComps;
 using RimWorld;
 using Verse;
@@ -20,6 +22,8 @@ namespace Pawnmorph.Jobs
 	public class Driver_UseGenome : JobDriver
 	{
 		private const string NO_MORE_MUTATIONS_MESSAGE = "PMNoMoreMutations";
+		private const string TAGGED_MUTATIONS_MESSAGE = "MutationAddedToDatabase";
+		private const string TAGGED_ANIMAL_MESSAGE = "PMAnimalAddedToDatabase";
 
 		const TargetIndex MUTAGEN_BENCH_INDEX = TargetIndex.A;
 		const TargetIndex GENOME_INDEX = TargetIndex.B;
@@ -92,8 +96,24 @@ namespace Pawnmorph.Jobs
 				}
 
 				bool added = db.TryAddToDatabase(new AnimalGenebankEntry(animalComp.Animal));
-				if (animalComp.ConsumedOnUse && added)
-					Genome.Destroy();
+				if (added)
+				{
+					if (PawnmorpherMod.Settings.AutoSequenceAnimalGenome)
+					{
+						foreach (MutationDef item in animalComp.Animal.GetAllMutationsFrom())
+						{
+							// Try add until fail.
+							if (db.TryAddToDatabase(new MutationGenebankEntry(item)) == false)
+								break;
+						}
+					}
+
+					if (animalComp.ConsumedOnUse)
+						Genome.Destroy();
+
+					TaggedString msg = TAGGED_ANIMAL_MESSAGE.Translate(animalComp.Animal.Named("animal"));
+					Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
+				}
 			}
 			else
 			{
@@ -118,10 +138,16 @@ namespace Pawnmorph.Jobs
 					return mDef.RestrictionLevel <= mCategory.restrictionLevel && mDef.RestrictionLevel != RestrictionLevel.Always;
 				}
 
+				MutationDef mutation = validMutations.RandomElement();
+				bool added = db.TryAddToDatabase(new MutationGenebankEntry(mutation));
+				if (added)
+				{
+					if (mutationComp.Mutation.genomeConsumedOnUse)
+						Genome.Destroy();
 
-				bool added = db.TryAddToDatabase(new MutationGenebankEntry(validMutations.RandomElement()));
-				if (mutationComp.Mutation.genomeConsumedOnUse && added)
-					Genome.Destroy();
+					TaggedString msg = TAGGED_MUTATIONS_MESSAGE.Translate(mutation.Named("Mutation"));
+					Messages.Message(msg, MessageTypeDefOf.PositiveEvent);
+				}
 			}
 		}
 	}

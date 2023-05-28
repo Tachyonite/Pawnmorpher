@@ -19,7 +19,7 @@ namespace Pawnmorph.UserInterface.Preview
 		}
 
 
-		public PawnPreview(int height, int width, PawnKindDef thing)
+		public PawnPreview(int height, int width, PawnKindDef thing = null)
 			: base(height, width)
 		{
 			SetThing(thing);

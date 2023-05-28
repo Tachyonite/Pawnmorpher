@@ -54,4 +54,9 @@
 	<PMBlacklistFormerHumansAddedBy>Added by {0}</PMBlacklistFormerHumansAddedBy>
 	<PMDebug>Debug</PMDebug>
 	<PMDebugLevel>Debug level</PMDebugLevel>
+	<PMSequencer>Sequencer</PMSequencer>
+	<PMSequencerMultipler>Sequencing multiplier</PMSequencerMultipler>
+	<PMSequencerMultiplerTooltip>Speed multiplier when sequencing mutations.</PMSequencerMultiplerTooltip>
+	<PMSequencerAutoAnimalGenome>Auto sequence animal genomes</PMSequencerAutoAnimalGenome>
+	<PMSequencerAutoAnimalGenomeTooltip>Automatically sequence all mutations from animal genome when downloaded.</PMSequencerAutoAnimalGenomeTooltip>
 </LanguageData>

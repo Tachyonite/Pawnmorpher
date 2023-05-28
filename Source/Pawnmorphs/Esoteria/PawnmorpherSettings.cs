@@ -119,6 +119,13 @@ namespace Pawnmorph
 		public Dictionary<string, bool> optionalPatches;
 
 
+
+
+
+
+
+		#region Genebank
+
 		/// <summary>
 		/// The saved genebank window size
 		/// </summary>
@@ -134,6 +141,23 @@ namespace Pawnmorph
 		/// The saved genebank font size
 		/// </summary>
 		public Verse.GameFont? GenebankWindowFont;
+
+		#endregion
+
+		#region Sequencer
+
+		/// <summary>
+		/// The sequencing speed multiplier
+		/// </summary>
+		public float SequencingMultiplier = 1f;
+
+		/// <summary>
+		/// Automatically sequence all mutations when downloading animal genome.
+		/// </summary>
+		public bool AutoSequenceAnimalGenome = false;
+
+		#endregion
+
 
 		/// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
 		public override void ExposeData()
@@ -163,6 +187,11 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
 			Scribe_Values.Look(ref GenebankWindowLocation, nameof(GenebankWindowLocation));
 			Scribe_Values.Look(ref GenebankWindowFont, nameof(GenebankWindowFont));
+
+
+			Scribe_Values.Look(ref SequencingMultiplier, nameof(SequencingMultiplier), 1f);
+			Scribe_Values.Look(ref AutoSequenceAnimalGenome, nameof(AutoSequenceAnimalGenome), false);
+
 
 			Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
 			Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));

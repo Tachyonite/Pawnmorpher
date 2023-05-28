@@ -37,6 +37,17 @@
     <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\1.4\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
@@ -894,6 +905,7 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TableBox\TableRow.cs" />
     <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
     <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
     <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
@@ -917,6 +929,7 @@
     <Compile Include="UserInterface\TableBox\Table.cs" />
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
+    <Compile Include="UserInterface\Window_Sequencer.cs" />
     <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
@@ -937,6 +950,7 @@
     <Compile Include="Utilities\TimedCache.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />

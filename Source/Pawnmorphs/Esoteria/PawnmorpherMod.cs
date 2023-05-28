@@ -124,6 +124,13 @@ namespace Pawnmorph
 
 			coreNode.AddChild(nameof(PawnmorpherSettings.hostileKeepFactionTfChance), null, (in Rect x) => Widgets.HorizontalSlider(x, ref settings.hostileKeepFactionTfChance, new FloatRange(0, 1), settings.hostileKeepFactionTfChance.ToStringByStyle(ToStringStyle.PercentOne)), true);
 
+
+
+
+			TreeNode_FilterBox sequencerNode = coreNode.AddChild("PMSequencer");
+			sequencerNode.AddChild("PMSequencerMultipler", "PMSequencerMultiplerTooltip", callback: (in Rect x) => settings.SequencingMultiplier = Widgets.HorizontalSlider(x, settings.SequencingMultiplier, 0.1f, 10, true, settings.SequencingMultiplier.ToStringPercent(), 0.1f.ToStringPercent(), 10f.ToStringPercent(), 0.1f));
+			sequencerNode.AddChild("PMSequencerAutoAnimalGenome", "PMSequencerAutoAnimalGenomeTooltip", callback: (in Rect x) => Widgets.Checkbox(x.position, ref settings.AutoSequenceAnimalGenome));
+
 			result.Add(coreNode);
 
 

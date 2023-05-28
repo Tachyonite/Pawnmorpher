@@ -33,7 +33,7 @@ namespace Pawnmorph.UserInterface.Preview
 		/// </summary>
 		/// <param name="gender">The gender.</param>
 		/// <param name="bodyType">Type of the body.</param>
-		public void SetGender(Gender gender, BodyTypeDef bodyType)
+		public void SetGender(Gender gender, BodyTypeDef bodyType = null)
 		{
 			if (bodyType == null)
 			{
