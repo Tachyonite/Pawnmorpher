@@ -59,7 +59,7 @@ namespace Pawnmorph.UserInterface.Settings
 			{
 				if (_settingsReference.TryGetValue(x.defName, out string raceDefName) && _patchedMorphs.Contains(x) == false)
 				{
-					return x.ExplicitHybridRace as AlienRace.ThingDef_AlienRace;
+					return aliens.FirstOrDefault(y => y.defName == raceDefName);
 				}
 
 				return null;
@@ -97,7 +97,7 @@ namespace Pawnmorph.UserInterface.Settings
 					listing.LabelDouble(morph.LabelCap, $"{morph.ExplicitHybridRace.LabelCap} ({morph.ExplicitHybridRace.modContentPack?.Name})", "PMRaceReplacementLocked".Translate());
 					return;
 				}
-
+				
 				ThingDef alien = _selectedReplacements[morph];
 				if (listing.ButtonTextLabeled(morph.LabelCap, alien == null ? "" : $"{alien.LabelCap} ({alien.modContentPack?.Name})"))
 				{
