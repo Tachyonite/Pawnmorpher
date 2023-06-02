@@ -209,7 +209,15 @@ namespace Pawnmorph
 				if (Math.Abs(influence.Value - maxInfluence) < EPSILON)
 					GUI.color = Color.cyan;
 				var nVal = influence.Value / maxRaceInfluence;
-				string text = $"{influence.Key.LabelCap} ({nVal.ToStringPercent()})";
+
+				string label = null;
+				if (influence.Key is MorphDef morph)
+					label = morph.ExplicitHybridRace?.LabelCap;
+
+				if (label == null)
+					label = influence.Key.LabelCap;
+
+				string text = $"{label} ({nVal.ToStringPercent()})";
 				float rectHeight = Text.CalcHeight(text, width);
 				Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
 				curPos.y += rectHeight;
