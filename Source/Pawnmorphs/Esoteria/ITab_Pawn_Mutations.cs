@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using static UnityEngine.ParticleSystem;
 
 namespace Pawnmorph
 {
+	[HotSwappable]
 	class ITab_Pawn_Mutations : ITab
 	{
 		// Constants
@@ -182,47 +185,66 @@ namespace Pawnmorph
 			var influences = mutationTracker.ToList();
 
 			// Determine the remaining human influence.
-			float humInf = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
-			foreach (var influence in influences)
-				humInf -= influence.Value;
-			var maxRaceInfluence = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
+			float maxRaceInfluence = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
+
+			float humInf = maxRaceInfluence;
+			int influencesCount = influences.Count;
+			for (int i = influences.Count - 1; i >= 0; i--)
+				humInf -= influences[i].Value;
+
 			// If the remaining human influence is greater than 0.0001, print its influence first.
 			// (0.0001 is used to compensate for floating point number's occasional lack of precision.)
-			if (humInf > EPSILON)
+			bool renderHuman = false;
+			if (influencesCount > 0)
+			{
+				// List the morph influences upon the pawn in descending order.
+				bool first = true;
+				foreach (var influence in influences.OrderByDescending(x => x.Value))
+				{
+					var nVal = influence.Value / maxRaceInfluence;
+					if (humInf / maxRaceInfluence > nVal)
+					{
+						GUI.color = Color.green;
+						DrawInfluenceRow(ref curPos, width, "Human", humInf / maxRaceInfluence);
+						renderHuman = true;
+					}
+
+					// Set the greatest influence's color to cyan
+					if (first)
+					{
+						GUI.color = Color.cyan;
+						first = false;
+					}
+
+					string label = null;
+					if (influence.Key is MorphDef morph)
+						label = morph.ExplicitHybridRace?.LabelCap;
+
+					if (label == null)
+						label = influence.Key.LabelCap;
+
+					DrawInfluenceRow(ref curPos, width, label, nVal);
+				}
+
+			}
+
+			//float maxInfluence = influences.MaxBy(x => x.Value).Value;
+
+			if (renderHuman == false && humInf > EPSILON)
 			{
 				GUI.color = Color.green;
-				string text = $"Human ({(humInf / maxRaceInfluence).ToStringPercent()})";
-				float rectHeight = Text.CalcHeight(text, width);
-				Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
-				curPos.y += rectHeight;
-				GUI.color = Color.white;
+				DrawInfluenceRow(ref curPos, width, "Human", humInf / maxRaceInfluence);
 			}
 
-			if (influences.Count == 0) return;
+		}
 
-			float maxInfluence = influences.MaxBy(x => x.Value).Value;
-
-			// List the morph influences upon the pawn in descending order.
-			foreach (var influence in influences.OrderByDescending(x => x.Value))
-			{
-				// Set the greatest influence's color to cyan
-				if (Math.Abs(influence.Value - maxInfluence) < EPSILON)
-					GUI.color = Color.cyan;
-				var nVal = influence.Value / maxRaceInfluence;
-
-				string label = null;
-				if (influence.Key is MorphDef morph)
-					label = morph.ExplicitHybridRace?.LabelCap;
-
-				if (label == null)
-					label = influence.Key.LabelCap;
-
-				string text = $"{label} ({nVal.ToStringPercent()})";
-				float rectHeight = Text.CalcHeight(text, width);
-				Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
-				curPos.y += rectHeight;
-				GUI.color = Color.white;
-			}
+		private void DrawInfluenceRow(ref Vector2 curPos, float width, string label, float value)
+		{
+			string text = $"{label} ({value.ToStringPercent()})";
+			float rectHeight = Text.CalcHeight(text, width);
+			Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
+			curPos.y += rectHeight;
+			GUI.color = Color.white;
 		}
 
 		private void DrawMorphTraitsList(ref Vector2 curPos, float width)
