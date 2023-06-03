@@ -22,7 +22,7 @@ namespace Pawnmorph.Hediffs
 		/// <value>
 		/// The tooltip description.
 		/// </value>
-		public virtual string Description
+		public override string Description
 		{
 			get
 			{
@@ -56,7 +56,6 @@ namespace Pawnmorph.Hediffs
 				return _descriptionBuilder.ToString();
 			}
 		}
-
 
 		/// <summary>
 		/// Controls the base portion of the label (the part not in parentheses)

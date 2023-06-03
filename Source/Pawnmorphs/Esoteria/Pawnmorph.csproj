@@ -37,6 +37,17 @@
     <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\1.4\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
@@ -333,6 +344,7 @@
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
+    <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
     <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
     <Compile Include="PMStyleDefOf.cs" />
     <Compile Include="HPatches\Optional\PawnScaling.cs" />
@@ -440,7 +452,6 @@
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
-    <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
@@ -595,6 +606,7 @@
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
     <Compile Include="SlurryNetDefOf.cs" />
+    <Compile Include="StatWorkers\StatParts\StatPart_MarketValue.cs" />
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
     <Compile Include="ThingComps\AnimalSelectorComp.cs" />
@@ -612,6 +624,7 @@
     <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
     <Compile Include="ThingComps\SapienceTracker.cs" />
     <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="Things\Genome_Animal.cs" />
     <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
     <Compile Include="UserInterface\Dialog_Textbox.cs" />
     <Compile Include="UserInterface\FilterTreeBox.cs" />
@@ -892,6 +905,7 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TableBox\TableRow.cs" />
     <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
     <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
     <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
@@ -915,6 +929,7 @@
     <Compile Include="UserInterface\TableBox\Table.cs" />
     <Compile Include="UserInterface\TableBox\TableColumn.cs" />
     <Compile Include="UserInterface\Window_Genebank.cs" />
+    <Compile Include="UserInterface\Window_Sequencer.cs" />
     <Compile Include="Utilities\Cached.cs" />
     <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
@@ -935,6 +950,7 @@
     <Compile Include="Utilities\TimedCache.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />

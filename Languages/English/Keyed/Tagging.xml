@@ -5,6 +5,6 @@
     <PMMutationTagged>Mutation "{mutation}" sequenced from {animal}.</PMMutationTagged>
     <PMNothingTaggable>{animal} has nothing worth recording.</PMNothingTaggable>
     <PMMutationNotEnoughSpace>{animal} has mutations that can be recorded, but there is not enough space to store them.</PMMutationNotEnoughSpace>
-    <PMAnimalAddedToDatabase>{animal} added to the genebank database.</PMAnimalAddedToDatabase>
-    <MutationAddedToDatabase>{Mutation} added to the genebank.</MutationAddedToDatabase>
+    <PMAnimalAddedToDatabase>{animal} got added to the genebank database.</PMAnimalAddedToDatabase>
+    <MutationAddedToDatabase>{Mutation} got added to the genebank.</MutationAddedToDatabase>
 </LanguageData>

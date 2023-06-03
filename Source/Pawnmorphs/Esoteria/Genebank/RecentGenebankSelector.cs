@@ -103,7 +103,7 @@ namespace Pawnmorph.Genebank
 			});
 			if (RowFilter != null)
 			{
-				browseDialog.RowFilter += (item) => RowFilter(item.Def);
+				browseDialog.RowFilter += (item) => RowFilter(item.RowObject);
 			}
 			Find.WindowStack.Add(browseDialog);
 		}

@@ -242,7 +242,7 @@ namespace Pawnmorph
 		{
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
 
-			return (pawn.GetSapienceState() != null || pawn.RaceProps.Humanlike) && EnabledRaces.Contains(pawn.def);
+			return (pawn.RaceProps.Humanlike || pawn.GetSapienceState() != null) && EnabledRaces.Contains(pawn.def);
 		}
 
 		/// <summary>

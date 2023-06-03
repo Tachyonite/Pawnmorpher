@@ -24,6 +24,8 @@ namespace Pawnmorph
 	public static class MorphUtilities
 	{
 		[NotNull] private static readonly List<ThoughtDef> _allMorphSleepingThoughts;
+		[NotNull] private static readonly Dictionary<PawnKindDef, MorphDef> _morphByAnimalKind;
+
 
 
 
@@ -55,10 +57,17 @@ namespace Pawnmorph
 
 			//get all sleeping thoughts for morph groups 
 			_allMorphSleepingThoughts = DefDatabase<MorphGroupDef>.AllDefs.SelectMany(MorphGroupThoughtSelectorFunc).ToList();
-
 			//get the associated races lookup 
 
-			foreach (MorphDef morph in AllMorphs)
+		}
+
+		[NotNull]
+		private static readonly Dictionary<ThingDef, List<MorphDef>> _associatedAnimalsLookup =
+			new Dictionary<ThingDef, List<MorphDef>>();
+
+		public static void Initialize()
+		{
+			foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefsListForReading)
 			{
 				//first check the race 
 				if (!_associatedAnimalsLookup.TryGetValue(morph.race, out var lst))
@@ -81,13 +90,7 @@ namespace Pawnmorph
 					lst.Add(morph);
 				}
 			}
-
 		}
-
-		[NotNull]
-		private static readonly Dictionary<ThingDef, List<MorphDef>> _associatedAnimalsLookup =
-			new Dictionary<ThingDef, List<MorphDef>>();
-
 
 		/// <summary>
 		/// Gets the maximum influence for the given body def.
@@ -234,10 +237,6 @@ namespace Pawnmorph
 			}
 		}
 
-
-
-
-
 		/// <summary>
 		/// Determines whether this instance is a chimera.
 		/// </summary>
@@ -369,20 +368,6 @@ namespace Pawnmorph
 		[CanBeNull]
 		public static MorphDef TryGetBestMorphOfAnimal([NotNull] this ThingDef race)
 		{
-			if (race == null) throw new ArgumentNullException(nameof(race));
-
-			MorphDef mDef = null;
-			foreach (MorphDef allMorph in AllMorphs)
-			{
-				if (allMorph.race == race)
-				{
-					mDef = allMorph;
-					break;
-				}
-			}
-
-			if (mDef == null) return mDef;
-
 			return _associatedAnimalsLookup.TryGetValue(race)?.FirstOrDefault();
 
 		}

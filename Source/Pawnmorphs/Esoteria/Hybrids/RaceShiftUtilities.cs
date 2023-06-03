@@ -454,9 +454,11 @@ namespace Pawnmorph.Hybrids
 			{
 				// Reversion
 				// Revert endo genes to original.
-				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
 				pawn.genes.Endogenes.Clear();
-				pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
+
+				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
+				if (graphicsComp != null)
+					pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
 
 				if (PawnmorpherMod.Settings.generateEndoGenesForAliens)
 				{

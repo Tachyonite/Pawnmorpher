@@ -131,6 +131,24 @@ namespace Pawnmorph
 			}
 		}
 
+		public override string LabelInBrackets
+		{
+			get
+			{
+				MutationStage stage = CurrentMutationStage;
+				if (stage != null)
+				{
+					if (PawnmorpherMod.Settings.enableMutationAdaptedStageLabel == false)
+					{
+						if (stage.minSeverity == 1)
+							return string.Empty;
+					}
+				}
+
+				return base.LabelInBrackets;
+			}
+		}
+
 		/// <inheritdoc />
 		public override string DebugString()
 		{

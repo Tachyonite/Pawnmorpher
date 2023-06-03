@@ -27,5 +27,10 @@ namespace Pawnmorph.Genebank.Model
 		/// <param name="reason">A string for returning the reason why an entry cannot be added</param>
 		/// <returns>True if the entry can be added to database, false if it cannot</returns>
 		bool CanAddToDatabase(ChamberDatabase database, out string reason);
+
+		/// <summary>
+		/// Returns true if this entry is still valid, or should be removed.
+		/// </summary>
+		bool IsValid();
 	}
 }

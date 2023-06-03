@@ -43,11 +43,10 @@ namespace Pawnmorph.UserInterface
 
 			Text.Font = GameFont.Tiny;
 			Listing_Standard lineListing = new Listing_Standard();
-			float lineHeight = Text.LineHeight + lineListing.verticalSpacing;
+			float lineHeight = 30 + lineListing.verticalSpacing + lineListing.CurHeight;
 
 			Rect listbox = new Rect(0, 0, inRect.width - 20, (_filteredList.Filtered.Count + 1) * lineHeight);
 			Widgets.BeginScrollView(new Rect(x, curY, inRect.width, height), ref _scrollPosition, listbox);
-
 
 			// Begin listcontrol and add empty gap for all the space above scrollbox.
 			lineListing.Begin(listbox);

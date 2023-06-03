@@ -84,6 +84,11 @@ namespace Pawnmorph
 		public bool generateEndoGenesForAliens = true;
 
 		/// <summary>
+		/// Whether or not to show stage label for fully adapted/grown mutations.
+		/// </summary>
+		public bool enableMutationAdaptedStageLabel = true;
+
+		/// <summary>
 		/// The current log level
 		/// </summary>
 		public LogLevel logLevel = LogLevel.Warnings;
@@ -114,6 +119,13 @@ namespace Pawnmorph
 		public Dictionary<string, bool> optionalPatches;
 
 
+
+
+
+
+
+		#region Genebank
+
 		/// <summary>
 		/// The saved genebank window size
 		/// </summary>
@@ -130,6 +142,23 @@ namespace Pawnmorph
 		/// </summary>
 		public Verse.GameFont? GenebankWindowFont;
 
+		#endregion
+
+		#region Sequencer
+
+		/// <summary>
+		/// The sequencing speed multiplier
+		/// </summary>
+		public float SequencingMultiplier = 1f;
+
+		/// <summary>
+		/// Automatically sequence all mutations when downloading animal genome.
+		/// </summary>
+		public bool AutoSequenceAnimalGenome = false;
+
+		#endregion
+
+
 		/// <summary> The part that writes our settings to file. Note that saving is by ref. </summary>
 		public override void ExposeData()
 		{
@@ -139,6 +168,7 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref enableMutagenDiseases, "enableMutagenDiseases", true);
 			Scribe_Values.Look(ref enableMutagenMeteor, "enableMutagenMeteor", true);
 			Scribe_Values.Look(ref enableWildFormers, "enableWildFormers", true);
+			Scribe_Values.Look(ref enableMutationAdaptedStageLabel, "enableMutationAdaptedStageLabel", true);
 			Scribe_Values.Look(ref transformChance, "transformChance");
 			Scribe_Values.Look(ref formerChance, "formerChance");
 			Scribe_Values.Look(ref partialChance, "partialChance");
@@ -157,6 +187,11 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref GenebankWindowSize, nameof(GenebankWindowSize));
 			Scribe_Values.Look(ref GenebankWindowLocation, nameof(GenebankWindowLocation));
 			Scribe_Values.Look(ref GenebankWindowFont, nameof(GenebankWindowFont));
+
+
+			Scribe_Values.Look(ref SequencingMultiplier, nameof(SequencingMultiplier), 1f);
+			Scribe_Values.Look(ref AutoSequenceAnimalGenome, nameof(AutoSequenceAnimalGenome), false);
+
 
 			Scribe_Collections.Look(ref visibleRaces, nameof(visibleRaces));
 			Scribe_Collections.Look(ref raceReplacements, nameof(raceReplacements));

@@ -113,7 +113,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 				float? minTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMin)?.value;
 				float? maxTemp = animal.race.statBases.SingleOrDefault(x => x.stat == StatDefOf.ComfyTemperatureMax)?.value;
 				if (minTemp.HasValue && maxTemp.HasValue)
-					row[colTemperature] = $"{GenTemperature.CelsiusTo(minTemp.Value, Prefs.TemperatureMode)}-{GenText.ToStringTemperature(maxTemp.Value, "")}";
+					row[colTemperature] = $"{GenTemperature.CelsiusTo(minTemp.Value, Prefs.TemperatureMode)}~{GenText.ToStringTemperature(maxTemp.Value, "")}";
 
 				// life expectancy
 				row[colLifespan] = Mathf.FloorToInt(animal.RaceProps.lifeExpectancy).ToString();
@@ -170,7 +170,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		{
 			PawnKindDef selectedRace = null;
 			if (selectedRows.Count == 1)
-				selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
+				selectedRace = (selectedRows[0].RowObject as GenebankEntry<PawnKindDef>).Value;
 
 			_previewNorth.PawnKindDef = selectedRace;
 			_previewEast.PawnKindDef = selectedRace;
@@ -185,7 +185,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		{
 			if (selectedRows.Count == 1)
 			{
-				PawnKindDef selectedRace = (selectedRows[0].Def as GenebankEntry<PawnKindDef>).Value;
+				PawnKindDef selectedRace = (selectedRows[0].RowObject as GenebankEntry<PawnKindDef>).Value;
 
 
 				_stringBuilder.Clear();

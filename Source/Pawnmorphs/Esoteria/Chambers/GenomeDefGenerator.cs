@@ -53,8 +53,6 @@ namespace Pawnmorph.Chambers
 		{
 			get
 			{
-				if (_allImplicitGenomes == null) GenerateGenomes();
-
 				return _allImplicitGenomes;
 			}
 		}
@@ -73,8 +71,8 @@ namespace Pawnmorph.Chambers
 		{
 			get
 			{
-				return MorphDef.AllDefs.Where(m => m.categories?.Contains(MorphCategoryDefOf.Chimera) != false)
-							   .SelectMany(AllPKForMorph)
+				return MorphDef.AllDefs.Where(m => m.categories == null || m.categories?.Contains(MorphCategoryDefOf.Chimera) == false)
+							   .SelectMany(x => x.FeralPawnKinds)
 							   .Distinct();
 			}
 		}
@@ -113,12 +111,12 @@ namespace Pawnmorph.Chambers
 				_allImplicitGenomes.Add(tDef);
 			}
 
-			foreach (PawnKindDef pk in AllPKsWithGenomes)
-			{
-				ThingDef tDef = GenerateAnimalGenome(pk);
-				_genomeDict[pk] = tDef;
-				_allImplicitGenomes.Add(tDef);
-			}
+			//foreach (PawnKindDef pk in AllPKsWithGenomes)
+			//{
+			//	ThingDef tDef = GenerateAnimalGenome(pk);
+			//	_genomeDict[pk] = tDef;
+			//	_allImplicitGenomes.Add(tDef);
+			//}
 
 
 			foreach (ThingDef allImplicitGenome in _allImplicitGenomes)
@@ -189,21 +187,6 @@ namespace Pawnmorph.Chambers
 			};
 
 			tDef.comps = comps;
-		}
-
-		[NotNull]
-		private static IEnumerable<PawnKindDef> AllPKForMorph([NotNull] MorphDef morphDef)
-		{
-			foreach (PawnKindDef pawnKindDef in DefDatabase<PawnKindDef>.AllDefs)
-			{
-				if (pawnKindDef.race == morphDef.race)
-				{
-					yield return pawnKindDef;
-					continue;
-				}
-
-				if (morphDef.associatedAnimals?.Contains(pawnKindDef.race) == true) yield return pawnKindDef;
-			}
 		}
 
 		[NotNull]

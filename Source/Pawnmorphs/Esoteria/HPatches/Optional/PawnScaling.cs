@@ -18,12 +18,25 @@ namespace Pawnmorph.HPatches.Optional
 		static bool _enabled = false;
 		static Pawn _currentPawn;
 		static float _currentScaledBodySize;
-		static float _scaleMultiplier;
-		static float _maxSize;
-		static float _minSize;
+		static float _scaleMultiplier = 1f;
+		static float _maxSize = 5f;
+		static float _minSize = 0.3f;
 		static bool _useBodysize;
 
 		public string Caption => "PMPawnScalingCaption".Translate();
+
+
+
+		[DebugAction(category = "Pawnmorpher", actionType = DebugActionType.Action)]
+		static void ResetScaleCache()
+		{
+			var curMap = Find.CurrentMap;
+			foreach (Pawn pawn in curMap.mapPawns.AllPawnsSpawned)
+			{
+				if (pawn.def.race.Humanlike)
+					ResolveAllGraphics(pawn);
+			}
+		}
 
 		static bool Prepare(MethodBase original)
 		{
@@ -143,13 +156,15 @@ namespace Pawnmorph.HPatches.Optional
 		{
 			float bodySize = GetScale(__instance);
 			// Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
-			if (__instance.RaceProps.Humanlike && bodySize != 1)
+			if (__instance.RaceProps.Humanlike && bodySize > 1)
 			{
 				// Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
 				// Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
 				// Only offset when standing.
 				if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
-					drawLoc.z += bodySize / 2f;
+				{
+					drawLoc.z += bodySize / 4f;
+				}
 			}
 		}
 

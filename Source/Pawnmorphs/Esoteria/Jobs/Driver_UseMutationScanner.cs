@@ -42,7 +42,7 @@ namespace Pawnmorph.Jobs
 				Pawn actor = work.actor;
 				_ = (Building)actor.CurJob.targetA.Thing;
 				scannerComp.Used(actor);
-				actor.skills.Learn(SkillDefOf.Intellectual, 0.035f);
+				actor.skills?.Learn(SkillDefOf.Intellectual, 0.035f);
 				actor.GainComfortFromCellIfPossible(chairsOnly: true);
 			};
 			work.PlaySustainerOrSound(scannerComp.Props.soundWorking);

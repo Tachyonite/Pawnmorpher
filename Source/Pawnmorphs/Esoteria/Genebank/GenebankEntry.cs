@@ -19,7 +19,6 @@ namespace Pawnmorph.Genebank.Model
 		/// </summary>
 		public T Value => _value;
 
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="GenebankEntry{T}"/> class.
 		/// </summary>
@@ -77,5 +76,9 @@ namespace Pawnmorph.Genebank.Model
 			return _value.GetHashCode();
 		}
 
+		bool IGenebankEntry.IsValid()
+		{
+			return _value != null;
+		}
 	}
 }
