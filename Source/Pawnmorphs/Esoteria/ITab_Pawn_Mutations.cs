@@ -202,7 +202,7 @@ namespace Pawnmorph
 				foreach (var influence in influences.OrderByDescending(x => x.Value))
 				{
 					var nVal = influence.Value / maxRaceInfluence;
-					if (humInf / maxRaceInfluence > nVal)
+					if (renderHuman == false && humInf / maxRaceInfluence > nVal)
 					{
 						GUI.color = Color.green;
 						DrawInfluenceRow(ref curPos, width, "Human", humInf / maxRaceInfluence);
@@ -357,12 +357,12 @@ namespace Pawnmorph
 			Widgets.BeginScrollView(outRect, ref logScrollPosition, viewRect, true);
 
 			var cachedLogDisplay = GetMutationLogs(PawnToShowMutationsFor);
-			foreach (ITab_Pawn_Log_Utility.LogLineDisplayable line in cachedLogDisplay)
+			foreach (KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable> line in cachedLogDisplay)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
-				line.AppendTo(stringBuilder);
+				line.Value.AppendTo(stringBuilder);
 				stringBuilder.Length--;
-				DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());
+				DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString(), line.Key);
 			}
 
 			// Set the scroll view height
@@ -373,16 +373,17 @@ namespace Pawnmorph
 			Widgets.EndScrollView();
 		}
 
-		IEnumerable<ITab_Pawn_Log_Utility.LogLineDisplayable> GetMutationLogs(Pawn pawn)
+		List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>> logCache = new List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>>();
+		List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>> GetMutationLogs(Pawn pawn)
 		{
+			logCache.Clear();
 			MutationTracker tracker = pawn.GetMutationTracker();
 			if (tracker != null)
 			{
-				foreach (MutationLogEntry mutationLogEntry in tracker.MutationLog)
-				{
-					yield return new ITab_Pawn_Log_Utility.LogLineDisplayableLog(mutationLogEntry, pawn);
-				}
+				logCache.AddRange(tracker.MutationLog.Select(x => new KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>(x, new ITab_Pawn_Log_Utility.LogLineDisplayableLog(x, pawn))));
+				logCache.Reverse();
 			}
+			return logCache;
 		}
 
 
@@ -403,7 +404,7 @@ namespace Pawnmorph
 			GUI.color = Color.white;
 		}
 
-		private void DrawMutLogEntry(ref Vector2 curPos, float width, string text)
+		private void DrawMutLogEntry(ref Vector2 curPos, float width, string text, MutationLogEntry entry)
 		{
 			// Set up the drawing rect
 			Rect entryRect = new Rect(curPos.x, curPos.y, width, Text.CalcHeight(text, width));
@@ -415,6 +416,20 @@ namespace Pawnmorph
 
 			// Draw the entry's text.
 			Widgets.Label(entryRect, text);
+
+			if (entry.Causes.Location.HasValue)
+			{
+				if (Mouse.IsOver(entryRect))
+				{
+					Widgets.DrawHighlight(entryRect);
+					TargetHighlighter.Highlight(entry.Causes.Location.Value);
+				}
+
+				if (Widgets.ButtonInvisible(entryRect))
+				{
+					CameraJumper.TryJump(entry.Causes.Location.Value);
+				}
+			}
 
 			// Update the location for the next entry.
 			curPos.y += entryRect.height;

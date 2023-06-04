@@ -101,7 +101,7 @@ namespace Pawnmorph
 		/// <summary>
 		/// Gets the mutation log for this pawn.
 		/// </summary>
-		public IEnumerable<MutationLogEntry> MutationLog => _mutationLog;
+		public IReadOnlyCollection<MutationLogEntry> MutationLog => _mutationLog;
 
 
 		/// <summary>

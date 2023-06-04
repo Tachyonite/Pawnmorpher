@@ -119,7 +119,7 @@ namespace Pawnmorph
 		/// <param name="cause">The cause.</param>
 		/// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
 		/// <returns>if the mutation was added or not</returns>
-		public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null, bool addLogEntry = true)
+		public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null)
 		{
 			if (!mutagenDef.CanInfect(pawn)) return false;
 			if (!hediff.IsValidFor(pawn)) return false;
