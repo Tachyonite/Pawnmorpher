@@ -261,51 +261,26 @@ namespace Pawnmorph
 				yield return $"type {mutagenType.Name} is not a subtype of Mutagen";
 		}
 
-
-		[NotNull]
-		private static readonly Dictionary<MutationDef, List<BodyPartDef>> _scratchDict =
-			new Dictionary<MutationDef, List<BodyPartDef>>();
-
-
 		private void HandlePostMutationEffects(Pawn pawn, in MutationResult res, AncillaryMutationEffects? aEffects, Hediff cause)
 		{
-			bool doLog = aEffects?.AddLogEntry ?? AncillaryMutationEffects.Default.AddLogEntry;
 			if (res)
 			{
 				this.TryApplyAspects(pawn);
 
-			}
-
-			if (doLog && res)
-			{
-				_scratchDict.Clear();
+				var mBase = cause as Hediff_MutagenicBase;
 				foreach (Hediff_AddedMutation mutation in res)
 				{
-					if (!_scratchDict.TryGetValue(mutation.Def, out List<BodyPartDef> lst))
-					{
-						lst = new List<BodyPartDef>();
-						_scratchDict[mutation.Def] = lst;
-					}
-
-					if (!lst.Contains(mutation.Part.def)) lst.Add(mutation.Part.def);
-				}
-
-				var mBase = cause as Hediff_MutagenicBase;
-
-				foreach (KeyValuePair<MutationDef, List<BodyPartDef>> keyValuePair in _scratchDict)
-				{
-					var logEntry = new MutationLogEntry(pawn, keyValuePair.Key, this, keyValuePair.Value);
 					if (cause != null)
 					{
 						if (mBase != null)
 						{
-							logEntry.Causes.Add(mBase.Causes);
+							mutation.Causes.Add(mBase.Causes);
+
+							if (mBase.Causes.Location.HasValue)
+								mutation.Causes.SetLocation(mBase.Causes.Location.Value);
 						}
-						logEntry.Causes.Add(MutationCauses.HEDIFF_PREFIX, cause.def);
+						mutation.Causes.Add(MutationCauses.HEDIFF_PREFIX, cause.def);
 					}
-
-
-					Find.PlayLog?.Add(logEntry);
 				}
 			}
 		}

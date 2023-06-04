@@ -89,6 +89,14 @@ namespace Pawnmorph
 			_pawn = pawn;
 			_mutationDef = mutationDef;
 		}
+
+		public MutationLogEntry(Pawn pawn, Hediff_AddedMutation mutation)
+			: this(pawn, mutation.def, mutation.Part.def)
+		{
+			_causes = mutation.Causes;
+		}
+
+
 		/// <summary>
 		/// true if this log is about the given thing.
 		/// </summary>

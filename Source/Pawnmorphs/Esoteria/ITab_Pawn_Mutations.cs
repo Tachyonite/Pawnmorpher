@@ -102,7 +102,7 @@ namespace Pawnmorph
 			Vector2 col2 = new Vector2(viewRect.width / 3, col1.y);
 			Vector2 col3 = new Vector2(viewRect.width / 3 * 2, col2.y);
 			float colWidth = viewRect.width / 3 - 10f;
-
+			
 			// Draw the headers for all three columns (labels are provided by the xml).
 			DrawColumnHeader(ref col1, colWidth, "MorphsITabHeader".Translate());
 			DrawColumnHeader(ref col2, colWidth, "TraitsITabHeader".Translate());
@@ -375,9 +375,13 @@ namespace Pawnmorph
 
 		IEnumerable<ITab_Pawn_Log_Utility.LogLineDisplayable> GetMutationLogs(Pawn pawn)
 		{
-			foreach (MutationLogEntry mutationLogEntry in Find.PlayLog.AllEntries.Where(e => e.Concerns(pawn)).OfType<MutationLogEntry>())
+			MutationTracker tracker = pawn.GetMutationTracker();
+			if (tracker != null)
 			{
-				yield return new ITab_Pawn_Log_Utility.LogLineDisplayableLog(mutationLogEntry, pawn);
+				foreach (MutationLogEntry mutationLogEntry in tracker.MutationLog)
+				{
+					yield return new ITab_Pawn_Log_Utility.LogLineDisplayableLog(mutationLogEntry, pawn);
+				}
 			}
 		}
 

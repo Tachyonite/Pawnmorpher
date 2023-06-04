@@ -54,8 +54,6 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 			var scratchList = new List<MutationDef>();
 			foreach (Pawn pawn in pawns)
 			{
-				Pawn_HealthTracker health = pawn.health;
-				if (health == null) continue;
 				int mutationCount = GetMutationCount(pawn, outcome);
 				if (mutationCount == 0) continue;
 				scratchList.Clear();
@@ -63,13 +61,15 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 
 				int mAdded = 0, tries = 0;
 				const int maxTries = 100;
+				HediffSet hediffSet = pawn.health.hediffSet;
 				while (mAdded < mutationCount && tries < maxTries && scratchList.Count > 0)
 				{
 					tries++;
 
 					MutationDef mut = scratchList.RandomElement();
 					scratchList.Remove(mut);
-					if (health.hediffSet.GetFirstHediffOfDef(mut) != null) continue;
+					if (hediffSet.GetFirstHediffOfDef(mut) != null) 
+						continue;
 
 					var res = MutationUtilities.AddMutation(pawn, mut);
 
@@ -168,12 +168,17 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		{
 			RitualRole role = jobRitual.GetRole(RoleTags.TARGET_TAG);
 			IEnumerable<Pawn> enumer;
-			if (role == null) enumer = jobRitual.assignments.Participants.Where(p => MutagenDefOf.defaultMutagen.CanInfect(p));
+			if (role == null) 
+				enumer = jobRitual.assignments.Participants.Where(p => MutagenDefOf.defaultMutagen.CanInfect(p));
 			else
 				enumer = (jobRitual.assignments?.AssignedPawns(role)).MakeSafe();
 
 			_scratchList.Clear();
 			_scratchList.AddRange(enumer);
+
+			// Remove invalid pawns.
+			_scratchList.RemoveAll(x => x.health == null || x.Dead);
+
 			float maxOutcome = jobRitual?.Ritual?.def?.ritualPatternBase?.ritualOutcomeEffect?.outcomeChances
 									   ?.MaxBy(c => c.positivityIndex)
 									   ?.positivityIndex
@@ -183,7 +188,8 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 							 / (maxOutcome * 1.3f);
 			int max = Mathf.CeilToInt(_scratchList.Count * Rand.Range(0.1f + outcomeAdj, 0.4f + outcomeAdj));
 			int take = Mathf.Max(0, max);
-			if (take == 0) yield break;
+			if (take == 0) 
+				yield break;
 
 
 			var i = 0;
