@@ -138,12 +138,10 @@ namespace Pawnmorph.HPatches.Optional
 
 				if (_useBodysize)
 				{
-					_currentScaledBodySize = pawn.BodySize;
+					_currentScaledBodySize = pawn.BodySize / pawn.RaceProps.baseBodySize;
 				}
 				else
 					_currentScaledBodySize = StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f;
-
-				_currentScaledBodySize /= pawn.RaceProps.baseBodySize;
 
 				_currentScaledBodySize = Mathf.Sqrt(_currentScaledBodySize);
 				_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
