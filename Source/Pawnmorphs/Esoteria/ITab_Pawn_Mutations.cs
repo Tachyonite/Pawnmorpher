@@ -63,7 +63,7 @@ namespace Pawnmorph
 
 		protected bool ShouldShowTab(Pawn pawn)
 		{
-			var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
+			var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker()?.AllMutations.Count() ?? 0) > 0);
 			shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
 			if (shouldShow) return true;
 
@@ -89,7 +89,7 @@ namespace Pawnmorph
 
 			// Draw the header.
 			Vector2 col1 = new Vector2(0f, 0f);
-			if (SelPawn.GetMutationTracker(false) != null)
+			if (SelPawn.GetMutationTracker() != null)
 				DrawMutTabHeader(ref col1, mainView.width);
 
 

@@ -291,7 +291,7 @@ namespace Pawnmorph.DebugUtils
 		[DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
 		static void ReduceSapience(Pawn pawn)
 		{
-			var sTracker = pawn?.GetComp<SapienceTracker>();
+			var sTracker = pawn?.GetSapienceTracker();
 			if (sTracker == null) return;
 
 			sTracker.SetSapience(Mathf.Max(0, sTracker.Sapience - 0.2f));
@@ -300,7 +300,7 @@ namespace Pawnmorph.DebugUtils
 		[DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
 		static void IncreaseSapience(Pawn pawn)
 		{
-			var sTracker = pawn?.GetComp<SapienceTracker>();
+			var sTracker = pawn?.GetSapienceTracker();
 			if (sTracker == null) return;
 
 			sTracker.SetSapience(sTracker.Sapience + 0.2f);

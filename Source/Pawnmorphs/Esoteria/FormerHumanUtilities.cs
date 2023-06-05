@@ -817,6 +817,8 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		/// <returns></returns>
 		[CanBeNull]
+		[PrepatcherField]
+		[InjectComponent]
 		public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
 		{
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -1317,7 +1319,7 @@ namespace Pawnmorph
 		/// <exception cref="NotImplementedException"></exception>
 		public static void MakePermanentlyFeral([NotNull] Pawn pawn)
 		{
-			var comp = pawn.GetComp<SapienceTracker>();
+			var comp = pawn.GetSapienceTracker();
 			if (comp == null) return;
 			if (comp.CurrentState?.StateDef.canGoPermanentlyFeral != true || comp.IsPermanentlyFeral) return;
 			comp.MakePermanentlyFeral();
