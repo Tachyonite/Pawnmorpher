@@ -8,6 +8,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.Grammar;
 
@@ -43,6 +44,7 @@ namespace Pawnmorph
 
 
 		[NotNull] private List<CauseEntry> _entries;
+		private GlobalTargetInfo? _location;
 
 		/// <summary>
 		///     Initializes a new instance of the <see cref="MutationCauses" /> class.
@@ -50,7 +52,32 @@ namespace Pawnmorph
 		public MutationCauses()
 		{
 			_entries = new List<CauseEntry>();
+			_location = null;
 		}
+
+		/// <summary>
+		/// Sets the source location.
+		/// </summary>
+		/// <param name="cell">The location of whatever caused the mutation.</param>
+		/// <param name="map">The map that contains the cell.</param>
+		public void SetLocation(IntVec3 cell, Map map)
+		{
+			_location = new GlobalTargetInfo(cell, map);
+		}
+
+		/// <summary>
+		/// Sets the source location.
+		/// </summary>
+		/// <param name="location">The global location of whatever caused the mutation.</param>
+		public void SetLocation(GlobalTargetInfo location)
+		{
+			_location = location;
+		}
+
+		/// <summary>
+		/// Gets the associated location. (If any)
+		/// </summary>
+		public GlobalTargetInfo? Location => _location;
 
 		/// <summary>Returns an enumerator that iterates through a collection.</summary>
 		/// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
@@ -73,6 +100,15 @@ namespace Pawnmorph
 		public void ExposeData()
 		{
 			Scribe_Collections.Look(ref _entries, "entries", LookMode.Deep);
+
+			GlobalTargetInfo location = GlobalTargetInfo.Invalid;
+			if (_location.HasValue)
+				location = _location.Value;
+
+			Scribe_TargetInfo.Look(ref location, nameof(_location));
+
+			if (location.IsValid)
+				_location = location;
 		}
 
 		/// <summary>

@@ -119,15 +119,11 @@ namespace Pawnmorph
 		/// <param name="cause">The cause.</param>
 		/// <param name="addLogEntry">if set to <c>true</c> [add log entry].</param>
 		/// <returns>if the mutation was added or not</returns>
-		public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null, bool addLogEntry = true)
+		public bool TryApply(Pawn pawn, MutagenDef mutagenDef, List<Hediff> outAddedHediffs = null, Hediff cause = null)
 		{
 			if (!mutagenDef.CanInfect(pawn)) return false;
 			if (!hediff.IsValidFor(pawn)) return false;
 			bool added = PawnmorphHediffGiverUtility.TryApply(pawn, hediff, partsToAffect, canAffectAnyLivePart, countToAffect, outAddedHediffs);
-			if (addLogEntry && added && partsToAffect != null)
-			{
-				AddMutationLogFor(pawn, mutagenDef);
-			}
 
 			if (added)
 			{
@@ -138,12 +134,6 @@ namespace Pawnmorph
 				}
 			}
 			return added;
-		}
-
-		private void AddMutationLogFor(Pawn pawn, MutagenDef mutagenDef)
-		{
-			var log = new MutationLogEntry(pawn, hediff, mutagenDef, partsToAffect);
-			Find.PlayLog.Add(log);
 		}
 
 		/// <summary>tries to apply the mutations to the given body part records</summary>
@@ -176,7 +166,6 @@ namespace Pawnmorph
 			var hediffInst = HediffMaker.MakeHediff(hediff, pawn, recordToAdd);
 			pawn.health.AddHediff(hediffInst, recordToAdd);
 			DoMutationAddedEffects(pawn);
-			AddMutationLogFor(pawn, mutagen);
 
 			return true;
 		}
