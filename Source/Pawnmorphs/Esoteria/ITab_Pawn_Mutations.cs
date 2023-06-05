@@ -425,7 +425,7 @@ namespace Pawnmorph
 				int ticksAgo = entry.Age;
 				
 				if (ticksAgo > TimeMetrics.TICKS_PER_DAY)
-					tooltip = $"PmHoursAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_DAY);
+					tooltip = $"PmDaysAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_DAY);
 				if (ticksAgo > TimeMetrics.TICKS_PER_HOUR)
 					tooltip = $"PmHoursAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_HOUR);
 				else
