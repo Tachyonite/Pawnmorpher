@@ -38,7 +38,7 @@ namespace Pawnmorph.UserInterface
 
 		private const float SPACING = 10f;
 		private const int PREVIEW_SIZE = 200;
-		private const float PROGRESS_COLUMN_WIDTH = 0f;//200f;
+		private const float PROGRESS_COLUMN_WIDTH = 200f;
 
 		private readonly Table<TableRow<PawnKindDef>> _table;
 		private ChamberDatabase _chamberDatabase;
@@ -50,6 +50,7 @@ namespace Pawnmorph.UserInterface
 		private string _sequencedMutationsTooltip;
 		private string _sequenceTargetAnimalLabel;
 		private MutationSequencerComp _sequencer;
+		private Texture2D _progressFillTexture;
 
 		public Window_Sequencer(MutationSequencerComp sequencer)
 		{
@@ -61,6 +62,7 @@ namespace Pawnmorph.UserInterface
 			_table = new Table<TableRow<PawnKindDef>>((item, text) => item.SearchString.Contains(text));
 			_table.SelectionChanged += Table_SelectionChanged;
 			_table.MultiSelect = false;
+			_progressFillTexture = SolidColorMaterials.NewSolidColorTexture(0.423f, 0.6705f, 0.188f, 1);
 
 			_animalPreview = new PawnPreview(PREVIEW_SIZE, PREVIEW_SIZE)
 			{
@@ -127,8 +129,6 @@ namespace Pawnmorph.UserInterface
 		public override void PostOpen()
 		{
 			base.PostOpen();
-
-
 			_chamberDatabase = Find.World.GetComponent<ChamberDatabase>();
 			if (_chamberDatabase == null)
 			{
@@ -244,7 +244,16 @@ namespace Pawnmorph.UserInterface
 				StartSequence();
 
 			// Draw progress tube
-			//TODO
+			DrawProgressBar(progressRect);
+		}
+
+		private void DrawProgressBar(Rect rect)
+		{
+			Rect result = rect;
+			result.height *= _sequencer.Progress;
+			result.y = rect.yMax - result.height;
+			GUI.DrawTexture(result, _progressFillTexture);
+			GUI.DrawTexture(rect, PMTextures.SquencerStrand);
 		}
 
 		private void DrawPreviewButtons(Rect inRect)

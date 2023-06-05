@@ -63,5 +63,8 @@ namespace Pawnmorph
 		/// Gets a green mutagenic hazard logo.
 		/// </summary>
 		public static Texture2D MutagenicHazardLow { get; } = ContentFinder<Texture2D>.Get("UI/MutagenicHazardLow");
+
+
+		public static Texture2D SquencerStrand { get; } = ContentFinder<Texture2D>.Get("UI/SequencerProgressStrand");
 	}
 }

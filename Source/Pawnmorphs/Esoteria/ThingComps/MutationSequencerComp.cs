@@ -201,7 +201,12 @@ namespace Pawnmorph.ThingComps
 			if (_animalSequenced)
 				return text + "SequencingComplete".Translate(_targetAnimal.LabelCap.Named("animal"));
 
-			return text + "SequencingProgress".Translate(_targetAnimal.label.Named("animal")) + ": " + (daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays).ToStringPercent();
+			return text + "SequencingProgress".Translate(_targetAnimal.label.Named("animal")) + ": " + Progress.ToStringPercent();
 		}
+
+		/// <summary>
+		/// Gets the current sequencing progress.
+		/// </summary>
+		public float Progress => daysWorkingSinceLastFinding / Props.scanFindGuaranteedDays;
 	}
 }
