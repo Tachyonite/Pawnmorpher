@@ -100,6 +100,15 @@ namespace Pawnmorph
 		public void ExposeData()
 		{
 			Scribe_Collections.Look(ref _entries, "entries", LookMode.Deep);
+
+			GlobalTargetInfo location = GlobalTargetInfo.Invalid;
+			if (_location.HasValue)
+				location = _location.Value;
+
+			Scribe_TargetInfo.Look(ref location, nameof(_location));
+
+			if (location.IsValid)
+				_location = location;
 		}
 
 		/// <summary>

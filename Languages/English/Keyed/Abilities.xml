@@ -2,4 +2,6 @@
     <FailFly_Roofed>Cannot fly from under roof.</FailFly_Roofed>
     <FailFly_Lift>Mutations do not provide enough lift to fly.</FailFly_Lift>
     <Fail_Downed>Downed.</Fail_Downed>
+    <Cooldown_Hours>Cooling down: {0}h</Cooldown_Hours>
+    <Cooldown_Seconds>Cooling down: {0}s</Cooldown_Seconds>
 </LanguageData>

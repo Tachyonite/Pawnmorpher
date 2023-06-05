@@ -417,6 +417,26 @@ namespace Pawnmorph
 			// Draw the entry's text.
 			Widgets.Label(entryRect, text);
 
+
+
+			TipSignal tip = new TipSignal(() =>
+			{
+				string tooltip;
+				int ticksAgo = entry.Age;
+				
+				if (ticksAgo > TimeMetrics.TICKS_PER_DAY)
+					tooltip = $"PmHoursAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_DAY);
+				if (ticksAgo > TimeMetrics.TICKS_PER_HOUR)
+					tooltip = $"PmHoursAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_HOUR);
+				else
+					tooltip = $"PmLessThanHour".Translate();
+
+				return tooltip;
+
+			}, (int)curPos.y * 37);
+			TooltipHandler.TipRegion(entryRect, tip);
+
+
 			if (entry.Causes.Location.HasValue)
 			{
 				if (Mouse.IsOver(entryRect))

@@ -77,6 +77,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 					{
 						added.Causes.TryAddCause("ritualOutcome", def);
 						added.Causes.TryAddPrecept(jobRitual.Ritual);
+						added.Causes.SetLocation(jobRitual.Spot, jobRitual.Map);
 					}
 
 					mAdded++;

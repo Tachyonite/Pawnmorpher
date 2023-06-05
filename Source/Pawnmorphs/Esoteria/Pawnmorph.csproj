@@ -342,6 +342,7 @@
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="HPatches\WorldPawnsPatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
     <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />

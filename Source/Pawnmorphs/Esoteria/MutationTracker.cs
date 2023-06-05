@@ -347,11 +347,16 @@ namespace Pawnmorph
 			List<MutationLogEntry> tmpList = new List<MutationLogEntry>(_mutationLog);
 			Scribe_Collections.Look(ref tmpList, "pm_mutationLog", LookMode.Deep);
 
+
+			if (Scribe.mode == LoadSaveMode.LoadingVars)
+			{
+				if (tmpList != null)
+					_mutationLog = new Queue<MutationLogEntry>(tmpList);
+			}
+
+
 			if (Scribe.mode == LoadSaveMode.PostLoadInit)
 			{
-				if (tmpList == null)
-					_mutationLog = new Queue<MutationLogEntry>(tmpList);
-
 				// Generate lookup dict manually during load for backwards compatibility.
 				if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) 
 					return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
@@ -473,6 +478,14 @@ namespace Pawnmorph
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Deletes all entries from the pawn's mutation log.
+		/// </summary>
+		internal void ClearMutationLog()
+		{
+			_mutationLog.Clear();
 		}
 	}
 }

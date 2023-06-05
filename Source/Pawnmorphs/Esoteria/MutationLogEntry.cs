@@ -30,7 +30,7 @@ namespace Pawnmorph
 		public const string MUTAGEN_CAUSE_STRING = "mutagen_cause";
 
 		private HediffDef _mutationDef;
-		private List<BodyPartDef> _mutatedRecords;
+		private BodyPartRecord _bodyPart;
 		private Pawn _pawn;
 		private MutationCauses _causes;
 
@@ -64,11 +64,10 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="mutationDef">The mutation definition.</param>
 		/// <param name="mutagenCause">The cause for this mutation (optional)</param>
-		/// <param name="mutatedParts">The mutated parts.</param>
-		public MutationLogEntry(Pawn pawn, HediffDef mutationDef, [CanBeNull] MutagenDef mutagenCause,
-								IEnumerable<BodyPartDef> mutatedParts)
+		/// <param name="bodypart">The mutated body part.</param>
+		public MutationLogEntry(Pawn pawn, HediffDef mutationDef, [CanBeNull] MutagenDef mutagenCause, BodyPartRecord bodypart)
 		{
-			_mutatedRecords = mutatedParts.ToList();
+			_bodyPart = bodypart;
 			_pawn = pawn;
 			_mutationDef = mutationDef;
 			_causes = new MutationCauses();
@@ -82,16 +81,21 @@ namespace Pawnmorph
 		/// </summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="mutationDef">The mutation definition.</param>
-		/// <param name="mutatedParts">The mutated parts.</param>
-		public MutationLogEntry(Pawn pawn, HediffDef mutationDef, params BodyPartDef[] mutatedParts)
+		/// <param name="bodypart">The mutated part.</param>
+		public MutationLogEntry(Pawn pawn, HediffDef mutationDef, BodyPartRecord bodypart)
 		{
-			_mutatedRecords = mutatedParts.ToList();
+			_bodyPart = bodypart;
 			_pawn = pawn;
 			_mutationDef = mutationDef;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MutationLogEntry"/> class.
+		/// </summary>
+		/// <param name="pawn">The pawn that was mutated.</param>
+		/// <param name="mutation">The mutation itself.</param>
 		public MutationLogEntry(Pawn pawn, Hediff_AddedMutation mutation)
-			: this(pawn, mutation.def, mutation.Part.def)
+			: this(pawn, mutation.def, mutation.Part)
 		{
 			_causes = mutation.Causes;
 		}
@@ -115,10 +119,9 @@ namespace Pawnmorph
 			base.ExposeData();
 
 			Scribe_Defs.Look(ref _mutationDef, nameof(_mutationDef));
-			Scribe_Collections.Look(ref _mutatedRecords, nameof(_mutatedRecords), LookMode.Def);
+			Scribe_BodyParts.Look(ref _bodyPart, nameof(_bodyPart));
 			Scribe_References.Look(ref _pawn, nameof(_pawn));
 			Scribe_Deep.Look(ref _causes, "causes");
-			if (Scribe.mode == LoadSaveMode.PostLoadInit) _mutatedRecords = _mutatedRecords ?? new List<BodyPartDef>();
 		}
 
 		/// <summary>
@@ -143,8 +146,7 @@ namespace Pawnmorph
 		/// <returns> A string that represents the current object. </returns>
 		public override string ToString()
 		{
-			return
-				$"{_pawn.Name}: {string.Join(",", _mutatedRecords.Select(r => r.LabelCap).ToArray())} -> {_mutationDef.LabelCap}";
+			return $"{_pawn.Name}: {_bodyPart.LabelCap} -> {_mutationDef.LabelCap}";
 		}
 
 		private const string UNKNOWN_CAUSE = "PmUnkownMutagenCause";
@@ -178,9 +180,19 @@ namespace Pawnmorph
 				AddCustomRules(grammarRequest.Rules);
 
 				IEnumerable<Rule> pawnR = GrammarUtility.RulesForPawn(PAWN_IDENTIFIER, _pawn, grammarRequest.Constants);
-				BodyPartRecord partR = BodyDefOf.Human.AllParts.Where(r => _mutatedRecords.Contains(r.def)).RandomElement();
-				IEnumerable<Rule> partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, partR);
-				IEnumerable<Rule> mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, partR);
+
+				IEnumerable<Rule> partRules;
+				IEnumerable<Rule> mutR;
+				if (_bodyPart != null)
+				{
+					partRules = GrammarUtility.RulesForBodyPartRecord(PART_LABEL, _bodyPart);
+					mutR = GrammarUtility.RulesForHediffDef(MUTATION_IDENTIFIER, _mutationDef, _bodyPart);
+				}
+				else
+				{
+					partRules = Enumerable.Empty<Rule>();
+					mutR = Enumerable.Empty<Rule>();
+				}
 
 				if (_causes != null)
 				{
