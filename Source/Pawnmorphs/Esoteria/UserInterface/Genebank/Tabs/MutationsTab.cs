@@ -20,48 +20,32 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		private const float ABILITY_SIZE = 100;
 		private const float STAGE_BUTTON_SIZE = 30;
 
-		private static readonly string TAB_COLUMN_MUTATION = "PM_Genebank_MutationTab_Column_Mutation".Translate();
+		private readonly string TAB_COLUMN_MUTATION = "PM_Genebank_MutationTab_Column_Mutation".Translate();
 
-		private static readonly string TAB_COLUMN_BODYPART = "PM_Genebank_MutationTab_Column_BodyPart".Translate();
-		private static readonly float TAB_COLUMN_BODYPART_SIZE;
+		private readonly string TAB_COLUMN_BODYPART = "PM_Genebank_MutationTab_Column_BodyPart".Translate();
+		private readonly float TAB_COLUMN_BODYPART_SIZE;
 
-		private static readonly string TAB_COLUMN_ANIMAL = "PM_Genebank_MutationTab_Column_Animal".Translate();
-		private static readonly float TAB_COLUMN_ANIMAL_SIZE;
+		private readonly string TAB_COLUMN_ANIMAL = "PM_Genebank_MutationTab_Column_Animal".Translate();
+		private readonly float TAB_COLUMN_ANIMAL_SIZE;
 
-		private static readonly string TAB_COLUMN_PARAGON = "PM_Genebank_MutationTab_Column_Paragon".Translate();
-		private static readonly float TAB_COLUMN_PARAGON_SIZE;
+		private readonly string TAB_COLUMN_PARAGON = "PM_Genebank_MutationTab_Column_Paragon".Translate();
+		private readonly float TAB_COLUMN_PARAGON_SIZE;
 
-		private static readonly string TAB_COLUMN_ABILITIES = "PM_Genebank_MutationTab_Column_Abilities".Translate();
-		private static readonly float TAB_COLUMN_ABILITIES_SIZE;
+		private readonly string TAB_COLUMN_ABILITIES = "PM_Genebank_MutationTab_Column_Abilities".Translate();
+		private readonly float TAB_COLUMN_ABILITIES_SIZE;
 
-		private static readonly string TAB_COLUMN_STATS = "PM_Genebank_MutationTab_Column_Stats".Translate();
+		private readonly string TAB_COLUMN_STATS = "PM_Genebank_MutationTab_Column_Stats".Translate();
 
-		private static readonly string DESCRIPTION_STAGES = "PM_Genebank_MutationTab_Details_Stages".Translate();
-		private static readonly float DESCRIPTION_STAGES_SIZE;
+		private readonly string DESCRIPTION_STAGES = "PM_Genebank_MutationTab_Details_Stages".Translate();
+		private readonly float DESCRIPTION_STAGES_SIZE;
 
-		private static readonly string DESCRIPTION_ATTACKS = "PM_Genebank_MutationTab_Details_Attacks".Translate();
-		private static readonly string DESCRIPTION_ABILITIES = "PM_Genebank_MutationTab_Details_Abilities".Translate();
-		private static readonly float DESCRIPTION_ABILITIES_SIZE;
-		private static readonly string DESCRIPTION_OTHERS = "PM_Genebank_MutationTab_Details_OtherInfluences".Translate();
-		private static readonly string DESCRIPTION_COOLDOWN = "PM_Genebank_MutationTab_Details_AbilityCooldown".Translate();
-		private static readonly string DESCRIPTION_HOURS = "LetterHour".Translate();
-		private static readonly string DESCRIPTION_DPS = "PM_Genebank_MutationTab_Details_DamagePerSecond".Translate();
-
-
-		static MutationsTab()
-		{
-			Text.Font = GameFont.Small;
-			TAB_COLUMN_PARAGON_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_PARAGON).x, 60f);
-			TAB_COLUMN_ABILITIES_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ABILITIES).x, 100f);
-
-			TAB_COLUMN_BODYPART_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_BODYPART).x, 100f);
-			TAB_COLUMN_ANIMAL_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ANIMAL).x, 100f);
-
-			Text.Font = GameFont.Medium;
-			DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
-			DESCRIPTION_ABILITIES_SIZE = Text.CalcSize(DESCRIPTION_ABILITIES).x;
-		}
-
+		private readonly string DESCRIPTION_ATTACKS = "PM_Genebank_MutationTab_Details_Attacks".Translate();
+		private readonly string DESCRIPTION_ABILITIES = "PM_Genebank_MutationTab_Details_Abilities".Translate();
+		private readonly float DESCRIPTION_ABILITIES_SIZE;
+		private readonly string DESCRIPTION_OTHERS = "PM_Genebank_MutationTab_Details_OtherInfluences".Translate();
+		private readonly string DESCRIPTION_COOLDOWN = "PM_Genebank_MutationTab_Details_AbilityCooldown".Translate();
+		private readonly string DESCRIPTION_HOURS = "LetterHour".Translate();
+		private readonly string DESCRIPTION_DPS = "PM_Genebank_MutationTab_Details_DamagePerSecond".Translate();
 
 
 		HumanlikePreview _previewNorth;
@@ -79,7 +63,21 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		Dictionary<string, string> _dpsCache;
 		private IReadOnlyList<GeneRowItem> _selectedRows;
 
-		public override void Initialize(ChamberDatabase databank)
+        public MutationsTab()
+        {
+			Text.Font = GameFont.Small;
+			TAB_COLUMN_PARAGON_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_PARAGON).x, 60f);
+			TAB_COLUMN_ABILITIES_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ABILITIES).x, 100f);
+
+			TAB_COLUMN_BODYPART_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_BODYPART).x, 100f);
+			TAB_COLUMN_ANIMAL_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_ANIMAL).x, 100f);
+
+			Text.Font = GameFont.Medium;
+			DESCRIPTION_STAGES_SIZE = Text.CalcSize(DESCRIPTION_STAGES).x;
+			DESCRIPTION_ABILITIES_SIZE = Text.CalcSize(DESCRIPTION_ABILITIES).x;
+		}
+
+        public override void Initialize(ChamberDatabase databank)
 		{
 			_databank = databank;
 			_stages = new List<MutationStage>();

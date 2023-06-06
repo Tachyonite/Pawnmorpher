@@ -16,9 +16,9 @@ namespace Pawnmorph.UserInterface
 	{
 		private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
 		private const float SPACING = 10f;
-		private static readonly string BUTTON_SELECT = "PM_Genebank_DeleteButton".Translate();
-		private static readonly float BUTTON_SELECT_SIZE;
-		static Dialog_BrowseGenebank()
+		private readonly string BUTTON_SELECT = "PM_Genebank_DeleteButton".Translate();
+		private readonly float BUTTON_SELECT_SIZE;
+		public Dialog_BrowseGenebank()
 		{
 			BUTTON_SELECT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_SELECT).x, 100f);
 		}
