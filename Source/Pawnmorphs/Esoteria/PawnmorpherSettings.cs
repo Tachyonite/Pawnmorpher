@@ -119,7 +119,7 @@ namespace Pawnmorph
 		public Dictionary<string, bool> optionalPatches;
 
 
-
+		public int mutationLogLength = 10;
 
 
 
@@ -181,6 +181,7 @@ namespace Pawnmorph
 			Scribe_Values.Look(ref hazardousChaobulbs, nameof(hazardousChaobulbs), true);
 			Scribe_Values.Look(ref hostileKeepFactionTfChance, nameof(hostileKeepFactionTfChance));
 			Scribe_Values.Look(ref generateEndoGenesForAliens, nameof(generateEndoGenesForAliens), true);
+			Scribe_Values.Look(ref mutationLogLength, nameof(mutationLogLength), 10);
 
 
 
