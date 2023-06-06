@@ -441,7 +441,7 @@ namespace Pawnmorph.Utilities
 				CodeInstruction opNext = codeInstructions[i + 1];
 				if (opCur == null || opNext == null) continue;
 				//the segment we're interested in always start with pawn.get_RaceProps() (ie pawn.RaceProps) 
-				if (((opCur.opcode == OpCodes.Callvirt || opCur.opcode == OpCodes.Call) && (MethodInfo)opCur.operand == RimworldGetRaceMethod) ||
+				if (((opCur.opcode == OpCodes.Callvirt || opCur.opcode == OpCodes.Call) && opCur.operand as MethodInfo == RimworldGetRaceMethod) ||
 					(opCur.opcode == OpCodes.Ldfld && (FieldInfo)opCur.operand == _thingDefField &&
 					 opNext.opcode == OpCodes.Ldfld && (FieldInfo)opNext.operand == _thingDefRaceField))
 				{
