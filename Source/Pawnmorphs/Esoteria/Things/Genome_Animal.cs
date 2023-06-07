@@ -23,6 +23,11 @@ namespace Pawnmorph.Things
 		public override void PostMake()
 		{
 			base.PostMake();
+			SelectAnimal();
+		}
+
+		private void SelectAnimal()
+		{
 			IReadOnlyList<PawnKindDef> animals = null;
 			var modExtension = def.GetModExtension<ModExtensions.AnimalFilterModExtension>();
 			if (modExtension != null)
@@ -66,6 +71,9 @@ namespace Pawnmorph.Things
 		{
 			base.ExposeData();
 			Scribe_Defs.Look(ref _animalKind, "animalKind");
+
+			if (_animalKind == null)
+				SelectAnimal();
 		}
 	}
 }
