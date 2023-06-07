@@ -12,40 +12,50 @@ namespace Pawnmorph.UserInterface
 {
 	internal class Window_Genebank : Window
 	{
-		private static Type _priorMode = typeof(MutationsTab);
-		private static readonly string HEADER = "PM_Genebank_Header".Translate();
-		private static readonly string CAPACITY_AVAILABLE = "PM_Genebank_AvailableHeader".Translate();
-		private static readonly string CAPACITY_TOTAL = "PM_Genebank_TotalHeader".Translate();
-		private static readonly float CAPACITY_WIDTH;
+		private Type _priorMode = typeof(MutationsTab);
+		private readonly string HEADER = "PM_Genebank_Header".Translate();
+		private readonly string CAPACITY_AVAILABLE = "PM_Genebank_AvailableHeader".Translate();
+		private readonly string CAPACITY_TOTAL = "PM_Genebank_TotalHeader".Translate();
+		private readonly float CAPACITY_WIDTH;
 
 
-		private static readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
-		private static readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
-		private static readonly string TAB_TEMPLATES_HEADER = "PM_Genebank_TemplateTab_Caption".Translate();
+		private readonly string TAB_MUTATIONS_HEADER = "PM_Genebank_MutationTab_Caption".Translate();
+		private readonly string TAB_ANIMALS_HEADER = "PM_Genebank_AnimalsTab_Caption".Translate();
+		private readonly string TAB_TEMPLATES_HEADER = "PM_Genebank_TemplateTab_Caption".Translate();
 
-		private static readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
-		private static readonly float COLUMN_SIZE_SIZE;
+		private readonly string COLUMN_SIZE = "PM_Column_Stats_Size".Translate();
+		private readonly float COLUMN_SIZE_SIZE;
 
-		private static readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
-		private static readonly float BUTTON_DELETE_SIZE;
+		private readonly string BUTTON_DELETE = "PM_Genebank_DeleteButton".Translate();
+		private readonly float BUTTON_DELETE_SIZE;
 
-		private static readonly string BUTTON_FONT = "PM_Genebank_FontButton".Translate();
-		private static readonly float BUTTON_FONT_SIZE;
-		private static readonly string BUTTON_FONT_TINY = "PM_Genebank_FontButtonTiny".Translate();
-		private static readonly string BUTTON_FONT_SMALL = "PM_Genebank_FontButtonSmall".Translate();
-		private static readonly string BUTTON_FONT_MEDIUM = "PM_Genebank_FontButtonMedium".Translate();
+		private readonly string BUTTON_FONT = "PM_Genebank_FontButton".Translate();
+		private readonly float BUTTON_FONT_SIZE;
+		private readonly string BUTTON_FONT_TINY = "PM_Genebank_FontButtonTiny".Translate();
+		private readonly string BUTTON_FONT_SMALL = "PM_Genebank_FontButtonSmall".Translate();
+		private readonly string BUTTON_FONT_MEDIUM = "PM_Genebank_FontButtonMedium".Translate();
 
 		private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
 		private const float SPACING = 10f;
 		private const float HEADER_HEIGHT = 150;
 
-		static Window_Genebank()
+		public Window_Genebank()
 		{
 			Text.Font = GameFont.Small;
 			CAPACITY_WIDTH = Math.Max(Text.CalcSize(CAPACITY_AVAILABLE).x, Text.CalcSize(CAPACITY_TOTAL).x) * 2 + SPACING * 2;
 			COLUMN_SIZE_SIZE = Mathf.Max(Text.CalcSize(COLUMN_SIZE).x, 100f);
 			BUTTON_DELETE_SIZE = Mathf.Max(Text.CalcSize(BUTTON_DELETE).x, 100f);
 			BUTTON_FONT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_FONT).x, 80f);
+
+
+			_tabs = new List<TabRecord>();
+			_table = new Table<GeneRowItem>((item, text) => item.SearchString.Contains(text));
+			_table.SelectionChanged += Table_SelectionChanged;
+			_table.MultiSelect = true;
+
+			this.resizeable = true;
+			this.draggable = true;
+			this.doCloseX = true;
 		}
 
 		private readonly List<TabRecord> _tabs;
@@ -56,17 +66,6 @@ namespace Pawnmorph.UserInterface
 		private ChamberDatabase _chamberDatabase;
 		private GenebankTab _currentTab;
 
-		public Window_Genebank()
-		{
-			_tabs = new List<TabRecord>();
-			_table = new Table<GeneRowItem>((item, text) => item.SearchString.Contains(text));
-			_table.SelectionChanged += Table_SelectionChanged;
-			_table.MultiSelect = true;
-
-			this.resizeable = true;
-			this.draggable = true;
-			this.doCloseX = true;
-		}
 
 		private void Table_SelectionChanged(object sender, IReadOnlyList<GeneRowItem> e)
 		{

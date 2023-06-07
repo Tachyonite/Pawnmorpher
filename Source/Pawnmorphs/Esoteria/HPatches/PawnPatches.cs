@@ -76,24 +76,6 @@ namespace Pawnmorph.HPatches
 			return true;
 		}
 
-		[HarmonyPatch(nameof(Pawn.IsColonist), MethodType.Getter), HarmonyPrefix]
-		static bool FixIsColonist(ref bool __result, [NotNull] Pawn __instance)
-		{
-			// This should probably be replaced with a transpiler.
-
-			// Don't do additional checks for pawns of other factions.
-			if (__instance.Faction?.def.isPlayer == true)
-			{
-				__result = __instance.GetIntelligence() == Intelligence.Humanlike;
-				if (__result && __instance.IsSlave == true)
-					__result = __instance.guest.SlaveIsSecure;
-
-				return false;
-			}
-			return true;
-		}
-
-
 		[NotNull]
 		private static Dictionary<Pawn, TimedCache<List<IWorkModifier>>> _workModifierCache = new Dictionary<Pawn, TimedCache<List<IWorkModifier>>>();
 

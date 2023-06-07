@@ -39,7 +39,7 @@ namespace Pawnmorph.ThingComps
 
 		bool IsMutagenInfused
 		{
-			get { return parent.GetComp<AspectTracker>()?.Contains(AspectDefOf.MutagenInfused, 0) == true; }
+			get { return (parent as Pawn)?.GetAspectTracker()?.Contains(AspectDefOf.MutagenInfused, 0) == true; }
 		}
 
 

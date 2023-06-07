@@ -15,27 +15,27 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 	internal class AnimalsTab : GenebankTab
 	{
 
-		private static readonly string TAB_COLUMN_RACE = "PM_Genebank_AnimalsTab_Column_Race".Translate();
+		private readonly string TAB_COLUMN_RACE = "PM_Genebank_AnimalsTab_Column_Race".Translate();
 
-		private static readonly string TAB_COLUMN_TEMPERATURE = "PM_Genebank_AnimalsTab_Column_Temperature".Translate();
-		private static readonly float TAB_COLUMN_TEMPERATURE_SIZE;
+		private readonly string TAB_COLUMN_TEMPERATURE = "PM_Genebank_AnimalsTab_Column_Temperature".Translate();
+		private readonly float TAB_COLUMN_TEMPERATURE_SIZE;
 
-		private static readonly string TAB_COLUMN_LIFESPAN = "PM_Genebank_AnimalsTab_Column_Lifespan".Translate();
-		private static readonly float TAB_COLUMN_LIFESPAN_SIZE;
+		private readonly string TAB_COLUMN_LIFESPAN = "PM_Genebank_AnimalsTab_Column_Lifespan".Translate();
+		private readonly float TAB_COLUMN_LIFESPAN_SIZE;
 
-		private static readonly string TAB_COLUMN_DIET = "PM_Genebank_AnimalsTab_Column_Diet".Translate();
-		private static readonly float TAB_COLUMN_DIET_SIZE;
+		private readonly string TAB_COLUMN_DIET = "PM_Genebank_AnimalsTab_Column_Diet".Translate();
+		private readonly float TAB_COLUMN_DIET_SIZE;
 
-		private static readonly string TAB_COLUMN_VALUE = "PM_Genebank_AnimalsTab_Column_Value".Translate();
-		private static readonly float TAB_COLUMN_VALUE_SIZE;
+		private readonly string TAB_COLUMN_VALUE = "PM_Genebank_AnimalsTab_Column_Value".Translate();
+		private readonly float TAB_COLUMN_VALUE_SIZE;
 
-		private static readonly string TAB_COLUMN_MUTATIONS = "PM_Genebank_AnimalsTab_Column_Mutations".Translate();
-		private static readonly float TAB_COLUMN_MUTATIONS_SIZE;
+		private readonly string TAB_COLUMN_MUTATIONS = "PM_Genebank_AnimalsTab_Column_Mutations".Translate();
+		private readonly float TAB_COLUMN_MUTATIONS_SIZE;
 
-		private static readonly string DESCRIPTION_MUTATIONS = "PM_Genebank_AnimalsTab_Details_Mutations".Translate();
+		private readonly string DESCRIPTION_MUTATIONS = "PM_Genebank_AnimalsTab_Details_Mutations".Translate();
 
 
-		static AnimalsTab()
+		public AnimalsTab()
 		{
 			Text.Font = GameFont.Small;
 			TAB_COLUMN_TEMPERATURE_SIZE = Mathf.Max(Text.CalcSize(TAB_COLUMN_TEMPERATURE).x, 100f);
