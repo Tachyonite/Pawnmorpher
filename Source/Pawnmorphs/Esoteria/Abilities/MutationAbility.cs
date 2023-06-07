@@ -224,9 +224,9 @@ namespace Pawnmorph.Abilities
 		private void UpdateCooldownText()
 		{
 			if (_currentCooldown > Utilities.TimeMetrics.TICKS_PER_HOUR)
-				Gizmo.disabledReason = $"Cooling down: {_currentCooldown / Utilities.TimeMetrics.TICKS_PER_HOUR}h";
+				Gizmo.disabledReason = $"Cooldown_Hours".Translate(_currentCooldown / Utilities.TimeMetrics.TICKS_PER_HOUR);
 			else
-				Gizmo.disabledReason = $"Cooling down: {_currentCooldown / 60}s";
+				Gizmo.disabledReason = $"Cooldown_Seconds".Translate(_currentCooldown / Utilities.TimeMetrics.TICKS_PER_REAL_SECOND);
 		}
 
 		/// <summary>

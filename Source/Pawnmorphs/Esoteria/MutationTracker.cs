@@ -28,6 +28,8 @@ namespace Pawnmorph
 
 		[NotNull] private readonly Dictionary<AnimalClassBase, float> _influenceDict = new Dictionary<AnimalClassBase, float>();
 
+		private Queue<MutationLogEntry> _mutationLog = new Queue<MutationLogEntry>(20);
+
 		/// <summary>
 		/// Gets or sets a value indicating whether debug messages are enabled.
 		/// </summary>
@@ -96,7 +98,10 @@ namespace Pawnmorph
 		/// <summary> Get the current influence associated with the given key. </summary>
 		public float this[MorphDef key] => _influenceDict.TryGetValue(key);
 
-
+		/// <summary>
+		/// Gets the mutation log for this pawn.
+		/// </summary>
+		public IReadOnlyCollection<MutationLogEntry> MutationLog => _mutationLog;
 
 
 		/// <summary>
@@ -299,7 +304,19 @@ namespace Pawnmorph
 			MutationsCount += 1;
 			_influencesDirty = true;
 
+			LogMutation(mutation);
 			NotifyCompsAdded(mutation);
+		}
+
+		private void LogMutation(Hediff_AddedMutation mutation)
+		{
+			var logEntry = new MutationLogEntry(Pawn, mutation);
+
+			_mutationLog.Enqueue(logEntry);
+			while (_mutationLog.Count > PawnmorpherMod.Settings.mutationLogLength)
+			{
+				_mutationLog.Dequeue();
+			}
 		}
 
 		private void RecalcInfluences()
@@ -327,10 +344,22 @@ namespace Pawnmorph
 		{
 			base.PostExposeData();
 
-			if (Scribe.mode == LoadSaveMode.PostLoadInit)
-			// Generate lookup dict manually during load for backwards compatibility.
+			List<MutationLogEntry> tmpList = new List<MutationLogEntry>(_mutationLog);
+			Scribe_Collections.Look(ref tmpList, "pm_mutationLog", LookMode.Deep);
+
+
+			if (Scribe.mode == LoadSaveMode.LoadingVars)
 			{
-				if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
+				if (tmpList != null)
+					_mutationLog = new Queue<MutationLogEntry>(tmpList);
+			}
+
+
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			{
+				// Generate lookup dict manually during load for backwards compatibility.
+				if (!MutagenDefOf.defaultMutagen.CanInfect(Pawn)) 
+					return; //tracker is added on some kinds of pawns that can't get mutations, like mechanoids 
 
 				RecalculateMutationInfluences();
 			}
@@ -359,7 +388,7 @@ namespace Pawnmorph
 				if (!(parentAllComp is IMutationEventReceiver receiver)) continue;
 				receiver.MutationAdded(mutation, this);
 			}
-
+			
 			//notify hediffs & comps 
 			var hediffs = Pawn.health?.hediffSet?.hediffs;
 			if (hediffs != null)
@@ -449,6 +478,14 @@ namespace Pawnmorph
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Deletes all entries from the pawn's mutation log.
+		/// </summary>
+		internal void ClearMutationLog()
+		{
+			_mutationLog.Clear();
 		}
 	}
 }
