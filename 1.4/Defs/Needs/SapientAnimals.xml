@@ -13,7 +13,7 @@
 		<listPriority>1000</listPriority>
 		<major>true</major>
 		<freezeWhileSleeping>true</freezeWhileSleeping>
-		<showForCaravanMembers>true</showForCaravanMembers>
+		<showForCaravanMembers>false</showForCaravanMembers>
 	</NeedDef>
 
 </Defs>
