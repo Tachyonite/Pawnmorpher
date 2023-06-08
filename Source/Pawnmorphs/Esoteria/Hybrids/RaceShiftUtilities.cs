@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.GraphicSys;
@@ -20,6 +21,7 @@ namespace Pawnmorph.Hybrids
 	/// <summary>
 	/// a collection of utilities around changing a pawn's race 
 	/// </summary>
+	[HotSwappable]
 	public static class RaceShiftUtilities
 	{
 		class CompPropComparer : IEqualityComparer<CompProperties>
@@ -221,10 +223,7 @@ namespace Pawnmorph.Hybrids
 			if (pawn.story.traits == null)
 				pawn.story.traits = new TraitSet(pawn);
 
-			float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
-
 			pawn.def = race;
-			pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
 
 			if (removed && !map.listerThings.Contains(pawn))
 				map.listerThings.Add(pawn);
@@ -251,8 +250,28 @@ namespace Pawnmorph.Hybrids
 			if (graphicsComp?.Scanned == true)
 				graphicsComp.RestoreGraphics();
 
-			//if (race != ThingDefOf.Human) 
-			ValidateExplicitRaceChange(pawn, race, oldRace);
+			// Update racial styles
+			try
+			{
+				ValidateExplicitRaceChange(pawn, race, oldRace);
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while updating styles for {pawn.LabelCap}: {e}");
+			}
+
+			// Convert age
+			try
+			{
+				float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
+				pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while converting age of pawn {pawn.LabelCap}: {e}");
+			}
+
+
 
 			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
 			{
@@ -262,17 +281,34 @@ namespace Pawnmorph.Hybrids
 					pawn.story.hairDef = morphHair;
 			}
 
-			HandleRaceRestrictions(pawn, race);
+			// Update race restrictions
+			try
+			{
+				HandleRaceRestrictions(pawn, race);
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while handling race restrictions for {pawn.LabelCap}: {e}");
+			}
+
 
 			//check if the body def changed and handle any apparel changes 
-			if (oldRace.race.body != race.race.body)
+			try
 			{
-				ValidateApparelForChangedPawn(pawn, oldRace);
+				if (oldRace.race.body != race.race.body)
+				{
+					ValidateApparelForChangedPawn(pawn, oldRace);
 
-				MorphDef morph = oldMorph ?? newMorph;
-				if (morph != null)
-					FixHediffs(pawn, oldRace, morph);
+					MorphDef morph = oldMorph ?? newMorph;
+					if (morph != null)
+						FixHediffs(pawn, oldRace, morph);
+				}
 			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while updating body of {pawn.LabelCap}: {e}");
+			}
+
 
 			var mTracker = pawn.GetComp<MorphTrackingComp>();
 			if (mTracker != null)
@@ -280,8 +316,18 @@ namespace Pawnmorph.Hybrids
 				mTracker.SetNeedsRaceCheck();
 			}
 
+
 			// Update skin color and if turning from explicit race to human then generate new human skin color.
-			HandleGraphicsChanges(pawn, newMorph);
+			try
+			{
+				HandleGraphicsChanges(pawn, newMorph);
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while updating skin color for {pawn.LabelCap}: {e}");
+			}
+
+
 
 			//no idea what HarmonyPatches.Patch.ChangeBodyType is for, not listed in pasterbin
 
@@ -292,15 +338,21 @@ namespace Pawnmorph.Hybrids
 					graphicsComp.ScanGraphics();
 			}
 
-
 			foreach (Hediff_AddedMutation mutation in pawn.health.hediffSet.hediffs.OfType<Hediff_AddedMutation>())
 			{
 				mutation.ApplyVisualAdjustment();
 			}
 
-			if (reRollTraits && race is ThingDef_AlienRace alienDef)
-				ReRollRaceTraits(pawn, alienDef);
-
+			// Roll traits
+			try
+			{
+				if (reRollTraits && race is ThingDef_AlienRace alienDef)
+					ReRollRaceTraits(pawn, alienDef);
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while re-rolling race traits for {pawn.LabelCap}: {e}");
+			}
 
 			if (gUpdater != null)
 				gUpdater.EndUpdate();
@@ -845,15 +897,6 @@ namespace Pawnmorph.Hybrids
 				comp.ColorChannels["hair"].first = morph.GetHairColorOverride(pawn) ?? pawn.story.HairColor;
 				comp.ColorChannels["hair"].second = morph.GetHairColorOverrideSecond(pawn) ?? comp.ColorChannels["hair"].second;
 			}
-			//else if (pawn.def is AlienRace.ThingDef_AlienRace alien)
-			//{
-			//	foreach (var channel in alien.GetPartGenerator().colorChannels)
-			//	{
-			//		comp.ColorChannels[channel.name] = comp.GenerateChannel(channel);
-			//	}
-			//}
-
-			//pawn.story.HairColor = comp.ColorChannels["hair"].first;
 		}
 
 		/// <summary>
