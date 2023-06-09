@@ -834,6 +834,19 @@ namespace Pawnmorph.DebugUtils
 			}
 		}
 
+		[DebugAction("Pawnmorpher", "Reload graphics", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void ResetMutationProgression()
+		{
+			IEnumerable<Thing> things = Find.CurrentMap.thingGrid
+							.ThingsAt(UI.MouseCell())
+							.OfType<Thing>();
+
+			foreach (Thing thing in things)
+			{
+				var data = thing.def.graphicData;
+				thing.Graphic.Init(new GraphicRequest(data.graphicClass, data.texPath, data.shaderType.Shader, data.drawSize, data.color, data.colorTwo, data, 0, data.shaderParameters, data.maskPath));
+			}
+		}
 
 		[DebugAction(category: PM_CATEGORY, name: "Invalidate intelligence.", actionType = DebugActionType.ToolMapForPawns)]
 		private static void InvalidateIntelligence(Pawn pawn)
@@ -848,6 +861,9 @@ namespace Pawnmorph.DebugUtils
 			{
 				PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
 				pawn?.needs?.AddOrRemoveNeedsAsAppropriate();
+
+				if (pawn.IsColonist)
+					Find.ColonistBar?.MarkColonistsDirty();
 			});
 		}
 	}
