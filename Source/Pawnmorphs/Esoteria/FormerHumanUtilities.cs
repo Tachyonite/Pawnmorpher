@@ -938,16 +938,6 @@ namespace Pawnmorph
 			if (original.Faction == Faction.OfPlayer && animal.Faction != original.Faction)
 				animal.SetFaction(original.Faction);
 
-			PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
-
-			if (animal.needs == null)
-			{
-				Log.Error(nameof(animal.needs));
-				return;
-			}
-
-			animal.needs.AddOrRemoveNeedsAsAppropriate();
-
 			TransferEverything(original, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
 
 			animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
@@ -962,10 +952,20 @@ namespace Pawnmorph
 			}
 
 			nC.SetInitialLevel(sapienceLevel);
-			animal.needs.AddOrRemoveNeedsAsAppropriate();
+			animal.InvalidateIntelligence();
 
 			//nC.CurLevelPercentage = sapienceLevel;
 			ResetTraining(animal);
+
+			PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+
+			if (animal.needs == null)
+			{
+				Log.Error(nameof(animal.needs));
+				return;
+			}
+
+			animal.needs.AddOrRemoveNeedsAsAppropriate();
 		}
 
 		/// <summary>

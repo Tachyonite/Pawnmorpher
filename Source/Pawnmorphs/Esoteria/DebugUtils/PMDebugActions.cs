@@ -833,5 +833,22 @@ namespace Pawnmorph.DebugUtils
 				mutation.SeverityAdjust?.Restart();
 			}
 		}
+
+
+		[DebugAction(category: PM_CATEGORY, name: "Invalidate intelligence.", actionType = DebugActionType.ToolMapForPawns)]
+		private static void InvalidateIntelligence(Pawn pawn)
+		{
+			Intelligence oldInt = pawn.GetIntelligence();
+			pawn.InvalidateIntelligence();
+			Intelligence newInt = pawn.GetIntelligence();
+
+
+			Log.Message($"Recalculated intelligence for {pawn.LabelCap}: from {oldInt} to {newInt}");
+			HPatches.PawnPatches.QueuePostTickAction(pawn, () =>
+			{
+				PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+				pawn?.needs?.AddOrRemoveNeedsAsAppropriate();
+			});
+		}
 	}
 }
