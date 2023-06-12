@@ -16,8 +16,9 @@ namespace Pawnmorph.UserInterface
 	{
 		private const float MAIN_COLUMN_WIDTH_FRACT = 0.60f;
 		private const float SPACING = 10f;
-		private readonly string BUTTON_SELECT = "PM_Genebank_DeleteButton".Translate();
+		private readonly string BUTTON_SELECT = "PM_Genebank_SelectButton".Translate();
 		private readonly float BUTTON_SELECT_SIZE;
+
 		public Dialog_BrowseGenebank()
 		{
 			BUTTON_SELECT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_SELECT).x, 100f);
@@ -53,6 +54,7 @@ namespace Pawnmorph.UserInterface
 		/// <param name="tab">The genebank tab to show.</param>
 		/// <param name="onCloseCallback">Callback called when window is closed with selected row.</param>
 		public Dialog_BrowseGenebank(GenebankTab tab, Action<IGenebankEntry> onCloseCallback = null)
+			: this()
 		{
 			_tab = tab;
 
@@ -114,7 +116,7 @@ namespace Pawnmorph.UserInterface
 			Text.Font = GameFont.Small;
 
 			Widgets.DrawLineHorizontal(footer.x, footer.y - SPACING, footer.width);
-			if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_SELECT_SIZE, footer.height), "Select")) //BUTTON_SELECT))
+			if (Widgets.ButtonText(new Rect(footer.x, footer.y, BUTTON_SELECT_SIZE, footer.height), BUTTON_SELECT))
 			{
 				SelectRow();
 			}

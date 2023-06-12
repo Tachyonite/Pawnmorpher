@@ -139,7 +139,7 @@ namespace Pawnmorph.ThingComps
 
 
             _recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
-			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
+			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions().ToList();
 			_recentAnimalsSelector.RowFilter = (row) =>
 			{
 				PawnKindDef animal = row as PawnKindDef;
@@ -181,6 +181,9 @@ namespace Pawnmorph.ThingComps
 			_cachedGizmo.defaultLabel = Props.labelKey.Translate();
 			_cachedGizmo.defaultDesc = Props.descriptionKey.Translate();
 			_cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
+
+			_chosenKind = null;
+			AnimalChosen?.Invoke(null);
 		}
 
         private void GizmoAction()
@@ -194,15 +197,11 @@ namespace Pawnmorph.ThingComps
             ChoseAnimal((e as AnimalGenebankEntry).Value);
 		}
 
-		private IList<FloatMenuOption> GetForcedOptions()
+		private IEnumerable<FloatMenuOption> GetForcedOptions()
         {
             if (Props.alwaysAvailable != null)
             {
-				int count = Props.alwaysAvailable.Count;
-                FloatMenuOption[] collection = new FloatMenuOption[count];
-
-
-				for (int i = 0; i < count; i++)
+				for (int i = 0; i < Props.alwaysAvailable.Count; i++)
                 {
                     PawnKindDef item = Props.alwaysAvailable[i];
 
@@ -213,11 +212,14 @@ namespace Pawnmorph.ThingComps
 					else
 					    label = item.LabelCap;
 
-					collection[i] = new FloatMenuOption(item.LabelCap, () => ChoseAnimal(item));
+					yield return new FloatMenuOption(label, () => ChoseAnimal(item));
 				}
-                return collection;
             }
-            return new FloatMenuOption[0];
+
+			if (Props.allowRandom)
+			{
+				yield return new FloatMenuOption("Random", ResetSelection);
+			}
 		}
 
 		private void ChoseAnimal(PawnKindDef chosenKind)
@@ -283,6 +285,12 @@ namespace Pawnmorph.ThingComps
 		///     Tooltip of selector button gizmo. Localised key.
 		/// </summary>
 		public string descriptionKey;
+
+
+		/// <summary>
+		/// Whether or not random should be an available option.
+		/// </summary>
+		public bool allowRandom;
 
 
 		/// <summary>
