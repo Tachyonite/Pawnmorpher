@@ -744,11 +744,6 @@ namespace Pawnmorph.Hybrids
 					{
 						rd.recipeUsers.Add(ar);
 					}
-					ThingFilter defaultIngredientFilter = rd.defaultIngredientFilter;
-					if (defaultIngredientFilter != null && !defaultIngredientFilter.Allows(ThingDefOf.Meat_Human))
-					{
-						rd.defaultIngredientFilter.SetAllow(ar.race.meatDef, allow: false);
-					}
 				});
 				ar.recipes.RemoveDuplicates();
 			}
