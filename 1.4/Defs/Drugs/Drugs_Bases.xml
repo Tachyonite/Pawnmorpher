@@ -72,6 +72,9 @@
 			<MarketValue>1000</MarketValue>
 			<WorkToMake>6000</WorkToMake>
 		</statBases>
+		<thingCategories>
+			<li>Injector</li>
+		</thingCategories>
 		<recipeMaker>
 			<researchPrerequisite>PowerfulInjectors</researchPrerequisite>
 			<recipeUsers>
