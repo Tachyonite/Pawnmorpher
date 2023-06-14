@@ -18,18 +18,6 @@ namespace Pawnmorph
 
 		private Pawn Pawn => (Pawn)parent;
 
-		/// <summary>
-		/// flag to check if the pawn needs to have their comps check for any comps added or removed by a race change
-		/// </summary>
-		// hacky solution, but we can't do comp check with the rest of race checks because we have to guarantee that the parent isn't iterating through
-		// their comps when we add or remove them 
-		internal void SetNeedsRaceCheck()
-		{
-			PawnPatches.QueueRaceCheck(Pawn);
-
-		}
-
-
 		void Awake()
 		{
 			var comp = parent.Map?.GetComponent<MorphTracker>();

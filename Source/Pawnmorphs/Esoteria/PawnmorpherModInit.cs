@@ -109,9 +109,9 @@ namespace Pawnmorph
 					if (MutagenDefOf.defaultMutagen.CanInfect(currentDef))
 					{
 						currentDef.comps.Add(new CompProperties(trackerType));
-						currentDef.comps.Add(new CompProperties(aspectType));
 					}
 
+					currentDef.comps.Add(new CompProperties(aspectType));
 					currentDef.comps.Add(new CompProperties(sapienceType));
 				}
 			}

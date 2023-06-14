@@ -309,14 +309,6 @@ namespace Pawnmorph.Hybrids
 				Log.Error($"Error while updating body of {pawn.LabelCap}: {e}");
 			}
 
-
-			var mTracker = pawn.GetComp<MorphTrackingComp>();
-			if (mTracker != null)
-			{
-				mTracker.SetNeedsRaceCheck();
-			}
-
-
 			// Update skin color and if turning from explicit race to human then generate new human skin color.
 			try
 			{

@@ -52,7 +52,7 @@
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
       <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,7 +71,7 @@
     </Reference>
     <Reference Include="MultiplayerAPI">
       <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
