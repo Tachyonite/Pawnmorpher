@@ -142,7 +142,11 @@ namespace Pawnmorph.TfSys
 				original.CarriedBy.carryTracker.TryDropCarriedThing(original.CarriedBy.Position, ThingPlaceMode.Direct, out _);
 
 			if (request.addMutationToOriginal)
+			{
 				TryAddMutationsToPawn(original, request.cause, request.outputDef);
+				original.GetMutationTracker().RecalculateMutationInfluences();
+				original.CheckRace(false, false, false);
+			}
 
 			var reactionStatus = original.GetFormerHumanReactionStatus();
 			Faction faction;

@@ -834,6 +834,20 @@ namespace Pawnmorph.DebugUtils
 			}
 		}
 
+#if DEBUG
+		[DebugAction("Pawnmorpher", "List all comps", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void Listcomps(Pawn pawn)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.AppendLine("Comps for pawn " + pawn.LabelCap);
+			foreach (var item in pawn.AllComps)
+			{
+				stringBuilder.AppendLine(item.GetType().Name);
+			}
+			Log.Message(stringBuilder.ToString());
+		}
+#endif
+
 		[DebugAction("Pawnmorpher", "Reload graphics", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void ResetMutationProgression()
 		{
