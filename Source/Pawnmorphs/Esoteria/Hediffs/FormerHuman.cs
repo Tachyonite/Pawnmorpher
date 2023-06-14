@@ -10,7 +10,7 @@ namespace Pawnmorph.Hediffs
 	///     hediff class for the former human hediff
 	/// </summary>
 	/// <seealso cref="Verse.HediffWithComps" />
-	public class FormerHuman : HediffWithComps
+	public class FormerHuman : Hediff_Descriptive
 	{
 		private int? _lastStage;
 
