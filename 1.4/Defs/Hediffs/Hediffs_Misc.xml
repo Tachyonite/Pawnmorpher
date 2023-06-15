@@ -34,9 +34,11 @@
 				<severityPerDay>-2</severityPerDay>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
-				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+				<removeTypes>
+					<li>Pawnmorph.Hediffs.MorphTf</li>
+					<li>Pawnmorph.Hediffs.Hediff_MutagenicBase</li>
+				</removeTypes>
 			</li>
-
 		</comps>
 		<stages>
 			<li>

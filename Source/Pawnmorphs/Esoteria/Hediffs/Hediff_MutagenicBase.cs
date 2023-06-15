@@ -174,7 +174,7 @@ namespace Pawnmorph.Hediffs
 				_causes.Add(MutationCauses.WEAPON_PREFIX, weaponSource);
 			}
 
-			_causes.SetLocation(pawn.GetCorrectPosition(), pawn.GetCorrectMap());
+			_causes.SetLocation(pawn);
 			if (def.stages != null && def.stages.Count > 0)
 				CheckCurrentStage(null, def.stages[base.CurStageIndex]);
 		}

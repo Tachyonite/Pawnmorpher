@@ -63,6 +63,16 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->drinking strange milk</li>
+                        <li>caused_by->after</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 	<!-- ========== mutagenic Eggs ========== -->
@@ -98,6 +108,16 @@
 				</li>
 			</outcomeDoers>
 		</ingestible>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->eating a strange egg</li>
+                        <li>caused_by->after</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
 	</ThingDef>
 
 </Defs>

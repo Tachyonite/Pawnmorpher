@@ -29,6 +29,11 @@ namespace Pawnmorph
 		/// </summary>
 		public const string MUTAGEN_CAUSE_STRING = "mutagen_cause";
 
+		/// <summary>
+		/// identifier for a block of text representing the default caused by part of the mutation log. 
+		/// </summary>
+		public const string MUTAGEN_CAUSED_BY_STRING = "caused_by";
+
 		private HediffDef _mutationDef;
 		private BodyPartRecord _bodyPart;
 		private Pawn _pawn;
@@ -201,13 +206,13 @@ namespace Pawnmorph
 
 				if (grammarRequest.HasRule(MUTAGEN_CAUSE_STRING))
 				{
-
-					grammarRequest.Rules.Add(new Rule_String("caused_by", "caused by"));
+					if (grammarRequest.HasRule(MUTAGEN_CAUSED_BY_STRING) == false)
+						grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSED_BY_STRING, "Log_CausedBy".Translate()));
 					//grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, UNKNOWN_CAUSE.Translate()));
 				}
 				else
 				{
-					grammarRequest.Rules.Add(new Rule_String("caused_by", ""));
+					grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSED_BY_STRING, ""));
 					grammarRequest.Rules.Add(new Rule_String(MUTAGEN_CAUSE_STRING, ""));
 				}
 

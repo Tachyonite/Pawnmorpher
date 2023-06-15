@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -49,6 +50,11 @@ namespace Pawnmorph
 
 			hediff.Severity = num;
 			pawn.health.AddHediff(hediff, null, null);
+
+			if (hediff is Hediff_MutagenicBase mutagen)
+			{
+				mutagen.Causes.Add(string.Empty, ingested.def);
+			}
 		}
 	}
 }

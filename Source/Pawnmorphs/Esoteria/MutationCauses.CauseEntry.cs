@@ -124,7 +124,7 @@ namespace Pawnmorph
 
 				//in addition to sub classing there should be a way to add additional rules via xml 
 				//probably a CauseRuleExtension or something 
-				return GetFromDef(causeDef, additionalPrefix);
+				return GetFromDef(causeDef, pfx);
 			}
 
 			/// <summary>Returns a string that represents the current object.</summary>
