@@ -49,12 +49,18 @@ namespace Pawnmorph
 				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
 
 			hediff.Severity = num;
-			pawn.health.AddHediff(hediff, null, null);
 
-			if (hediff is Hediff_MutagenicBase mutagen)
-			{
-				mutagen.Causes.Add(string.Empty, ingested.def);
-			}
+
+			MutationCauses causes = null;
+			if (hediff is Hediff_MutagenicBase mutagenicBase)
+				causes = mutagenicBase.Causes;
+			else if (hediff is Hediff_AddedMutation mutation)
+				causes = mutation.Causes;
+
+			if (causes != null)
+				causes.TryAddCause(string.Empty, ingested.def);
+
+			pawn.health.AddHediff(hediff, null, null);
 		}
 	}
 }

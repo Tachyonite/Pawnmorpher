@@ -24,6 +24,8 @@ namespace Pawnmorph
 
 		public static RulePackDef DefaultHornMutationLogPack;
 
+		public static RulePackDef InjectorCauseLogPack;
+
 		public static RulePackDef GetDefaultPackForMutation(HediffDef mutation)
 		{
 			if (mutation.defName.Contains("Tail")) return DefaultTailMutationLogPack;

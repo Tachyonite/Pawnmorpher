@@ -343,6 +343,9 @@ namespace Pawnmorph.Hediffs
 							res.sourceHediffDef = def;
 							res.Causes.Add(_causes);
 							res.Causes.Add(MutationCauses.HEDIFF_PREFIX, def);
+
+							if (Causes.Location.HasValue)
+								res.Causes.SetLocation(Causes.Location.Value);
 						}
 
 						// Notify the observers of any added mutations
