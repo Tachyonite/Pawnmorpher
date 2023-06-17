@@ -195,10 +195,6 @@ namespace Pawnmorph.Hybrids
 
 			AspectTracker aTracker = pawn.GetAspectTracker();
 
-			AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
-			if (oldMorphAspectDef != null && aTracker != null)
-				aTracker.Remove(oldMorphAspectDef);
-
 			TransformerUtility.ScaleInjuriesToNewRace(pawn, race);
 
 			//var pos = pawn.Position;
@@ -233,9 +229,22 @@ namespace Pawnmorph.Hybrids
 			//add the group hediff if applicable 
 			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
 
+
+
+			AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
 			AspectDef aspectDef = newMorph?.group?.aspectDef;
-			if (aspectDef != null) 
-				aTracker?.Add(aspectDef);
+			if (aTracker != null)
+			{
+				// If source morph has the same group trait as target morph, then do nothing.
+				if (oldMorphAspectDef != aspectDef)
+				{
+					if (oldMorphAspectDef != null)
+						aTracker.Remove(oldMorphAspectDef);
+
+					if (aspectDef != null)
+						aTracker?.Add(aspectDef);
+				}
+			}
 
 			if (map != null)
 			{
