@@ -197,10 +197,7 @@ namespace Pawnmorph.Hybrids
 
 			AspectDef oldMorphAspectDef = oldMorph?.group?.aspectDef;
 			if (oldMorphAspectDef != null && aTracker != null)
-			{
-				Aspect aspect = aTracker.GetAspect(oldMorphAspectDef);
-				if (aspect != null) aTracker.Remove(aspect);
-			}
+				aTracker.Remove(oldMorphAspectDef);
 
 			TransformerUtility.ScaleInjuriesToNewRace(pawn, race);
 
@@ -237,7 +234,8 @@ namespace Pawnmorph.Hybrids
 			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
 
 			AspectDef aspectDef = newMorph?.group?.aspectDef;
-			if (aspectDef != null) aTracker?.Add(aspectDef);
+			if (aspectDef != null) 
+				aTracker?.Add(aspectDef);
 
 			if (map != null)
 			{
@@ -690,7 +688,7 @@ namespace Pawnmorph.Hybrids
 
 				if (add)
 				{
-					var degree = def.degreeDatas[alienTraitEntry.degree];
+					var degree = def.DataAtDegree(alienTraitEntry.degree);
 
 					traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
 					if (degree.skillGains != null)
