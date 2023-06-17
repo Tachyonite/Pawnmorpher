@@ -42,9 +42,6 @@
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<surfaceType>Item</surfaceType>
 		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
-		<inspectorTabs>
-			<li>Pawnmorph.ITabs.InjectorBills</li>
-		</inspectorTabs>
 		<recipes>
 			<li>Make_ComponentsFromSlurry</li>
 			<li>Make_GenekitColorPicker</li>
