@@ -1,6 +1,6 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/HediffDef.xsd">
 	<HediffDef Abstract="true" Name="MorphParent">
-		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
 		<defaultLabelColor>(77,68,179)</defaultLabelColor>
 		<scenarioCanAdd>true</scenarioCanAdd>
 		<isBad>false</isBad>

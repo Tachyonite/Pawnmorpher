@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -148,7 +149,20 @@ namespace Pawnmorph.Things
 				comps = comps
 			};
 
+			AddMutagenCause(tDef);
+
 			return tDef;
+		}
+
+		private static void AddMutagenCause(ThingDef tDef)
+		{
+			if (tDef.modExtensions == null)
+				tDef.modExtensions = new List<DefModExtension>();
+
+			tDef.modExtensions.Add(new MutationCauseExtension()
+			{
+				rulePackDef = PMRulePackDefOf.InjectorCauseLogPack
+			});
 		}
 
 		private static string CreateInjectorDefName(MorphDef mDef)

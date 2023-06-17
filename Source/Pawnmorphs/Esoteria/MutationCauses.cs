@@ -68,6 +68,15 @@ namespace Pawnmorph
 		/// <summary>
 		/// Sets the source location.
 		/// </summary>
+		/// <param name="thing">The thing to take location from.</param>
+		public void SetLocation(Thing thing)
+		{
+			_location = new GlobalTargetInfo(thing.GetCorrectPosition(), thing.GetCorrectMap());
+		}
+
+		/// <summary>
+		/// Sets the source location.
+		/// </summary>
 		/// <param name="location">The global location of whatever caused the mutation.</param>
 		public void SetLocation(GlobalTargetInfo location)
 		{

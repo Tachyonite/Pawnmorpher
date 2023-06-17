@@ -15,7 +15,7 @@ namespace Pawnmorph.Hediffs
 		/// <summary>
 		/// The type of hediff to remove 
 		/// </summary>
-		public Type removeType; //the type of hediff to remove 
+		public List<Type> removeTypes; //the type of hediff to remove 
 
 		/// <summary>
 		/// a black list of hediffs to ignore 
@@ -34,7 +34,7 @@ namespace Pawnmorph.Hediffs
 				yield return configError;
 			}
 
-			if (removeType == null)
+			if (removeTypes == null)
 			{
 				yield return "remove type is null";
 			}
@@ -65,7 +65,7 @@ namespace Pawnmorph.Hediffs
 			List<Hediff> hediffs = Pawn.health.hediffSet.hediffs;
 
 			foreach (Hediff hediff in hediffs)
-				if (!Props.blackList.Contains(hediff.def) && Props.removeType.IsInstanceOfType(hediff))
+				if (!Props.blackList.Contains(hediff.def) && Props.removeTypes.Any(x => x.IsInstanceOfType(hediff)))
 				{
 					Pawn.health.RemoveHediff(hediff); //we can only remove one hediff per tick 
 					return;

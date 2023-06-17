@@ -266,22 +266,6 @@ namespace Pawnmorph
 			if (res)
 			{
 				this.TryApplyAspects(pawn);
-
-				var mBase = cause as Hediff_MutagenicBase;
-				foreach (Hediff_AddedMutation mutation in res)
-				{
-					if (cause != null)
-					{
-						if (mBase != null)
-						{
-							mutation.Causes.Add(mBase.Causes);
-
-							if (mBase.Causes.Location.HasValue)
-								mutation.Causes.SetLocation(mBase.Causes.Location.Value);
-						}
-						mutation.Causes.Add(MutationCauses.HEDIFF_PREFIX, cause.def);
-					}
-				}
 			}
 		}
 

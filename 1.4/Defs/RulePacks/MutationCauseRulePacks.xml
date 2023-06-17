@@ -1,0 +1,16 @@
+
+<Defs>
+	<RulePackDef>
+        <defName>InjectorCauseLogPack</defName>
+        <rulePack>
+            <rulesStrings>
+				        <li>mutagen_cause->getting jabbed by an injector</li>
+				        <li>mutagen_cause->an injector</li>
+				        <li>caused_by->from</li>
+                <li>caused_by->caused by</li>
+                <li>caused_by->because of</li>
+                <li>caused_by->after</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>
