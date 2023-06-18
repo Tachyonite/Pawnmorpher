@@ -19,7 +19,7 @@ namespace Pawnmorph
 	/// <summary>
 	///     need that represents a sapient animal's control or humanity left
 	/// </summary>
-	[StaticConstructorOnStartup]
+	[StaticConstructorOnStartup, HotSwappable]
 	public class Need_Control : Need_Seeker
 	{
 		/// <summary>
@@ -68,6 +68,8 @@ namespace Pawnmorph
 		{
 			TrySubscribe();
 		}
+
+		public override bool ShowOnNeedList => CurLevel < 1;
 
 		private bool _subscribed;
 

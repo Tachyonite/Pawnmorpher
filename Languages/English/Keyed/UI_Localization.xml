@@ -15,4 +15,8 @@
 	<!-- Info Card -->
 	<PmMorphInfo_NoMorph>No Morphs</PmMorphInfo_NoMorph>
 	<PmMorphInfo_MorphDisplay>{MORPH}</PmMorphInfo_MorphDisplay>
+	
+	<PmDaysAgo>{0} days ago</PmDaysAgo>
+	<PmHoursAgo>{0} hours ago</PmHoursAgo>
+	<PmLessThanHour>Less than an hour ago</PmLessThanHour>
 </LanguageData>

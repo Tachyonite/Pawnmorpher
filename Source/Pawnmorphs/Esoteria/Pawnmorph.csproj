@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
       <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -342,6 +343,7 @@
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="HPatches\WorldPawnsPatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
     <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />

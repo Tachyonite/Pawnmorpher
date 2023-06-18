@@ -7,6 +7,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
+using Prepatcher;
 using Verse;
 
 namespace Pawnmorph
@@ -22,6 +23,8 @@ namespace Pawnmorph
 		/// <param name="pawn"></param>
 		/// <returns></returns>
 		[CanBeNull]
+		[PrepatcherField]
+		[InjectComponent]
 		public static AspectTracker GetAspectTracker([NotNull] this Pawn pawn)
 		{
 			return CompCacher<AspectTracker>.GetCompCached(pawn);

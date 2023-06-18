@@ -291,7 +291,7 @@ namespace Pawnmorph.DebugUtils
 		[DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
 		static void ReduceSapience(Pawn pawn)
 		{
-			var sTracker = pawn?.GetComp<SapienceTracker>();
+			var sTracker = pawn?.GetSapienceTracker();
 			if (sTracker == null) return;
 
 			sTracker.SetSapience(Mathf.Max(0, sTracker.Sapience - 0.2f));
@@ -300,7 +300,7 @@ namespace Pawnmorph.DebugUtils
 		[DebugAction(category = PM_CATEGORY, actionType = DebugActionType.ToolMapForPawns)]
 		static void IncreaseSapience(Pawn pawn)
 		{
-			var sTracker = pawn?.GetComp<SapienceTracker>();
+			var sTracker = pawn?.GetSapienceTracker();
 			if (sTracker == null) return;
 
 			sTracker.SetSapience(sTracker.Sapience + 0.2f);
@@ -832,6 +832,53 @@ namespace Pawnmorph.DebugUtils
 			{
 				mutation.SeverityAdjust?.Restart();
 			}
+		}
+
+#if DEBUG
+		[DebugAction("Pawnmorpher", "List all comps", actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void Listcomps(Pawn pawn)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.AppendLine("Comps for pawn " + pawn.LabelCap);
+			foreach (var item in pawn.AllComps)
+			{
+				stringBuilder.AppendLine(item.GetType().Name);
+			}
+			Log.Message(stringBuilder.ToString());
+		}
+#endif
+
+		[DebugAction("Pawnmorpher", "Reload graphics", actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		private static void ResetMutationProgression()
+		{
+			IEnumerable<Thing> things = Find.CurrentMap.thingGrid
+							.ThingsAt(UI.MouseCell())
+							.OfType<Thing>();
+
+			foreach (Thing thing in things)
+			{
+				var data = thing.def.graphicData;
+				thing.Graphic.Init(new GraphicRequest(data.graphicClass, data.texPath, data.shaderType.Shader, data.drawSize, data.color, data.colorTwo, data, 0, data.shaderParameters, data.maskPath));
+			}
+		}
+
+		[DebugAction(category: PM_CATEGORY, name: "Invalidate intelligence.", actionType = DebugActionType.ToolMapForPawns)]
+		private static void InvalidateIntelligence(Pawn pawn)
+		{
+			Intelligence oldInt = pawn.GetIntelligence();
+			pawn.InvalidateIntelligence();
+			Intelligence newInt = pawn.GetIntelligence();
+
+
+			Log.Message($"Recalculated intelligence for {pawn.LabelCap}: from {oldInt} to {newInt}");
+			HPatches.PawnPatches.QueuePostTickAction(pawn, () =>
+			{
+				PawnComponentsUtility.AddAndRemoveDynamicComponents(pawn);
+				pawn?.needs?.AddOrRemoveNeedsAsAppropriate();
+
+				if (pawn.IsColonist)
+					Find.ColonistBar?.MarkColonistsDirty();
+			});
 		}
 	}
 }

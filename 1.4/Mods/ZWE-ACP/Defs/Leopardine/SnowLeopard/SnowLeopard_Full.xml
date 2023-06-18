@@ -7,7 +7,6 @@
         <stages>
             <li Class="Pawnmorph.Hediffs.HediffStage_Transformation">
                 <label>reeling</label>
-                <hungerRateFactor>1.6</hungerRateFactor>
                 <painOffset>0.05</painOffset>
                 <capMods>
                     <li>

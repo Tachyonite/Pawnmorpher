@@ -8,11 +8,11 @@ namespace Pawnmorph.UserInterface.TableBox
 {
 	internal class Table<T> where T : ITableRow
 	{
-		private static readonly string SEARCH_PLACEHOLDER = "TableControlSearchPlaceholder".Translate();
-		private static readonly float SEARCH_PLACEHOLDER_SIZE;
+		private readonly string SEARCH_PLACEHOLDER = "TableControlSearchPlaceholder".Translate();
+		private readonly float SEARCH_PLACEHOLDER_SIZE;
 
 
-		static Table()
+		public Table()
 		{
 			Text.Font = GameFont.Small;
 			SEARCH_PLACEHOLDER_SIZE = Text.CalcSize(SEARCH_PLACEHOLDER).x;

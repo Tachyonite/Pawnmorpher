@@ -635,6 +635,9 @@ namespace Pawnmorph.Chambers
 
 		private void AnimalChosen(PawnKindDef pawnkinddef)
 		{
+			if (pawnkinddef == null)
+				return;
+
 			_lastTfRequest = pawnkinddef;
 			_currentUse = ChamberUse.Tf;
 

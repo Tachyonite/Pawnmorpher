@@ -100,16 +100,16 @@ namespace Pawnmorph.ThingComps
 					animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
 				}
 
-				// Apply special filtering
-				if (SpeciesFilter != null)
-				{
-					animals = animals.Where(x => SpeciesFilter(x));
-				}
-
 				// Add always available animals
 				if (Props.alwaysAvailable != null)
 				{
 					animals = animals.Union(Props.alwaysAvailable);
+				}
+
+				// Apply special filtering
+				if (SpeciesFilter != null)
+				{
+					animals = animals.Where(x => SpeciesFilter(x));
 				}
 
 				return animals;
@@ -128,17 +128,8 @@ namespace Pawnmorph.ThingComps
 		public override void Initialize(CompProperties props)
 		{
 			base.Initialize(props);
-
-            _cachedGizmo = new Command_Action()
-            {
-                action = GizmoAction,
-                icon = PMTextures.AnimalSelectorIcon,
-                defaultLabel = Props.labelKey.Translate(),
-                defaultDesc = Props.descriptionKey.Translate()
-            };
-
-
-            _recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
+			_recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
+			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
 			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
 			_recentAnimalsSelector.RowFilter = (row) =>
 			{
@@ -152,7 +143,14 @@ namespace Pawnmorph.ThingComps
 
 				return true;
 			};
-			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
+
+			_cachedGizmo = new Command_Action()
+			{
+				action = GizmoAction,
+				icon = PMTextures.AnimalSelectorIcon,
+				defaultLabel = Props.labelKey.Translate(),
+				defaultDesc = Props.descriptionKey.Translate()
+			};
 		}
 
 		/// <summary>
@@ -181,6 +179,9 @@ namespace Pawnmorph.ThingComps
 			_cachedGizmo.defaultLabel = Props.labelKey.Translate();
 			_cachedGizmo.defaultDesc = Props.descriptionKey.Translate();
 			_cachedGizmo.icon = PMTextures.AnimalSelectorIcon;
+
+			_chosenKind = null;
+			AnimalChosen?.Invoke(null);
 		}
 
         private void GizmoAction()
@@ -194,17 +195,20 @@ namespace Pawnmorph.ThingComps
             ChoseAnimal((e as AnimalGenebankEntry).Value);
 		}
 
-		private IList<FloatMenuOption> GetForcedOptions()
+		private IEnumerable<FloatMenuOption> GetForcedOptions()
         {
             if (Props.alwaysAvailable != null)
             {
-				int count = Props.alwaysAvailable.Count;
-                FloatMenuOption[] collection = new FloatMenuOption[count];
-
-
-				for (int i = 0; i < count; i++)
+				for (int i = 0; i < Props.alwaysAvailable.Count; i++)
                 {
                     PawnKindDef item = Props.alwaysAvailable[i];
+
+					// Apply special filtering
+					if (SpeciesFilter != null)
+					{
+						if (SpeciesFilter(item) == false)
+							continue;
+					}
 
 					string label;
 					AnimalSelectorOverrides overrides = item.GetModExtension<AnimalSelectorOverrides>();
@@ -213,11 +217,14 @@ namespace Pawnmorph.ThingComps
 					else
 					    label = item.LabelCap;
 
-					collection[i] = new FloatMenuOption(item.LabelCap, () => ChoseAnimal(item));
+					yield return new FloatMenuOption(label, () => ChoseAnimal(item));
 				}
-                return collection;
             }
-            return new FloatMenuOption[0];
+
+			if (Props.allowRandom)
+			{
+				yield return new FloatMenuOption("Random", ResetSelection);
+			}
 		}
 
 		private void ChoseAnimal(PawnKindDef chosenKind)
@@ -283,6 +290,12 @@ namespace Pawnmorph.ThingComps
 		///     Tooltip of selector button gizmo. Localised key.
 		/// </summary>
 		public string descriptionKey;
+
+
+		/// <summary>
+		/// Whether or not random should be an available option.
+		/// </summary>
+		public bool allowRandom;
 
 
 		/// <summary>

@@ -174,7 +174,7 @@ namespace Pawnmorph
 			if (p.def.TryGetRaceMutationSettings()?.immuneToAll == true)
 				return maxPartHealth;
 
-			MutationTracker mTracker = p.GetMutationTracker(false); //use mTracker so we only check mutations, a bit faster 
+			MutationTracker mTracker = p.GetMutationTracker(); //use mTracker so we only check mutations, a bit faster 
 			if (mTracker == null)
 				return maxPartHealth;
 

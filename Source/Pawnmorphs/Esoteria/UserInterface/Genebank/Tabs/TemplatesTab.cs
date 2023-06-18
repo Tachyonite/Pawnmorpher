@@ -25,19 +25,19 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 		Vector2 _detailsScrollPosition;
 
 
-		private static readonly string BUTTON_IMPORT = "PM_Genebank_TemplateTab_Button_Import".Translate();
-		private static readonly float BUTTON_IMPORT_SIZE;
+		private readonly string BUTTON_IMPORT = "PM_Genebank_TemplateTab_Button_Import".Translate();
+		private readonly float BUTTON_IMPORT_SIZE;
+			    
+		private readonly string BUTTON_EXPORT = "PM_Genebank_TemplateTab_Button_Export".Translate();
+		private readonly float BUTTON_EXPORT_SIZE;
+			    
+		private readonly string TAB_COLUMN_TEMPLATE = "PM_Genebank_TemplateTab_Column_Template".Translate();
+			    
+			    
+		private readonly string TAB_COLUMN_MUTATIONS = "PM_Genebank_TemplateTab_Column_Mutations".Translate();
+		private readonly float TAB_COLUMN_MUTATIONS_SIZE;
 
-		private static readonly string BUTTON_EXPORT = "PM_Genebank_TemplateTab_Button_Export".Translate();
-		private static readonly float BUTTON_EXPORT_SIZE;
-
-		private static readonly string TAB_COLUMN_TEMPLATE = "PM_Genebank_TemplateTab_Column_Template".Translate();
-
-
-		private static readonly string TAB_COLUMN_MUTATIONS = "PM_Genebank_TemplateTab_Column_Mutations".Translate();
-		private static readonly float TAB_COLUMN_MUTATIONS_SIZE;
-
-		static TemplatesTab()
+		public TemplatesTab()
 		{
 			BUTTON_IMPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_IMPORT).x, 100f);
 			BUTTON_EXPORT_SIZE = Mathf.Max(Text.CalcSize(BUTTON_EXPORT).x, 100f);

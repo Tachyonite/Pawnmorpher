@@ -67,7 +67,7 @@ namespace Pawnmorph
 		[NotNull] private static readonly List<PawnKindDef> _allResrictedFormerHumanPawnKinds;
 		[NotNull] private static readonly List<PawnKindDef> _allFormerHumanPawnKinds;
 
-		[NotNull] private static readonly Dictionary<int, TimedCache<Intelligence>> _intelligenceCache = new Dictionary<int, TimedCache<Intelligence>>(100);
+		[NotNull] private static readonly Dictionary<int, Intelligence> _intelligenceCache = new Dictionary<int, Intelligence>(100);
 
 
 
@@ -677,38 +677,18 @@ namespace Pawnmorph
 			return statValue;
 		}
 
-
-		/// <summary>
-		/// Gets the cached intelligence. If using prepatcher, this method will be replaced with a reference to a field member directly on pawn.
-		/// </summary>
-		/// <param name="target">The pawn in question.</param>
-		/// https://github.com/Zetrith/Prepatcher/wiki/Adding-fields
+		
+		private static Intelligence _placeholder = Intelligence.Animal;
 		[PrepatcherField]
-		[ValueInitializer(nameof(NewIntelligenceCache))]
-		public static TimedCache<Intelligence> GetCachedIntelligence(this Pawn target)
+		[Prepatcher.DefaultValue((Intelligence)99)]
+		public static ref Intelligence GetCachedIntelligence(this Pawn pawn)
 		{
-			if (_intelligenceCache.TryGetValue(target.thingIDNumber, out TimedCache<Intelligence> value) == false)
-				_intelligenceCache[target.thingIDNumber] = value = NewIntelligenceCache(target);
+			if (_intelligenceCache.TryGetValue(pawn.thingIDNumber, out Intelligence value))
+				_placeholder = value;
+			else
+				_placeholder = (Intelligence)99;
 
-			return value;
-		}
-
-		/// <summary>
-		/// Factory method to create a new intelligence cache. Made to allow prepatcher to initialize injected field.
-		/// </summary>
-		/// <param name="pawn">The pawn.</param>
-		/// <returns></returns>
-		public static TimedCache<Intelligence> NewIntelligenceCache(this Pawn pawn)
-		{
-			TimedCache<Intelligence> value = new TimedCache<Intelligence>(() =>
-			{
-				SapienceTracker sTracker = pawn.GetSapienceTracker();
-				if (sTracker == null)
-					return pawn.RaceProps.intelligence;
-
-				return sTracker.CurrentIntelligence;
-			});
-			return value;
+			return ref _placeholder;
 		}
 
 
@@ -718,12 +698,14 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">pawn</exception>
-		public static Intelligence GetIntelligence([NotNull] this Pawn pawn)
+		/// https://github.com/Zetrith/Prepatcher/wiki/Adding-fields
+		public static Intelligence GetIntelligence(this Pawn pawn)
 		{
-			if (pawn == null)
-				throw new ArgumentNullException(nameof(pawn));
+			Intelligence intelligence = GetCachedIntelligence(pawn);
+			if ((int)intelligence == 99)
+				intelligence = pawn.RaceProps.intelligence;
 
-			return GetCachedIntelligence(pawn).GetValue(600);
+			return intelligence;
 		}
 
 		/// <summary>
@@ -732,7 +714,15 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		public static void InvalidateIntelligence([NotNull] this Pawn pawn)
 		{
-			GetCachedIntelligence(pawn).Update();
+			Intelligence intelligence;
+			SapienceTracker sTracker = pawn.GetSapienceTracker();
+			if (sTracker != null)
+				intelligence = sTracker.CurrentIntelligence;
+			else
+				intelligence = pawn.RaceProps.intelligence;
+
+			GetCachedIntelligence(pawn) = intelligence;
+			_intelligenceCache[pawn.thingIDNumber] = intelligence;
 		}
 
 		/// <summary>
@@ -817,6 +807,8 @@ namespace Pawnmorph
 		/// <param name="pawn">The pawn.</param>
 		/// <returns></returns>
 		[CanBeNull]
+		[PrepatcherField]
+		[InjectComponent]
 		public static SapienceTracker GetSapienceTracker([NotNull] this Pawn pawn)
 		{
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -946,16 +938,6 @@ namespace Pawnmorph
 			if (original.Faction == Faction.OfPlayer && animal.Faction != original.Faction)
 				animal.SetFaction(original.Faction);
 
-			PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
-
-			if (animal.needs == null)
-			{
-				Log.Error(nameof(animal.needs));
-				return;
-			}
-
-			animal.needs.AddOrRemoveNeedsAsAppropriate();
-
 			TransferEverything(original, animal, passionTransferMode: PawnTransferUtilities.SkillPassionTransferMode.Set);
 
 			animal?.workSettings?.EnableAndInitializeIfNotAlreadyInitialized();
@@ -970,10 +952,20 @@ namespace Pawnmorph
 			}
 
 			nC.SetInitialLevel(sapienceLevel);
-			animal.needs.AddOrRemoveNeedsAsAppropriate();
+			animal.InvalidateIntelligence();
 
 			//nC.CurLevelPercentage = sapienceLevel;
 			ResetTraining(animal);
+
+			PawnComponentsUtility.AddAndRemoveDynamicComponents(animal);
+
+			if (animal.needs == null)
+			{
+				Log.Error(nameof(animal.needs));
+				return;
+			}
+
+			animal.needs.AddOrRemoveNeedsAsAppropriate();
 		}
 
 		/// <summary>
@@ -1317,7 +1309,7 @@ namespace Pawnmorph
 		/// <exception cref="NotImplementedException"></exception>
 		public static void MakePermanentlyFeral([NotNull] Pawn pawn)
 		{
-			var comp = pawn.GetComp<SapienceTracker>();
+			var comp = pawn.GetSapienceTracker();
 			if (comp == null) return;
 			if (comp.CurrentState?.StateDef.canGoPermanentlyFeral != true || comp.IsPermanentlyFeral) return;
 			comp.MakePermanentlyFeral();

@@ -138,8 +138,9 @@ namespace Pawnmorph.IncidentWorkers
 
 		private void AssignMutations(Pawn gordon)
 		{
-
 			MutationUtilities.AddAllMorphMutations(gordon, MorphDefOfs.SheepMorph, MutationUtilities.AncillaryMutationEffects.None).SetAllToNaturalMax();
+			gordon.GetMutationTracker().RecalculateMutationInfluences();
+			gordon.CheckRace(false, false, false);
 		}
 	}
 }

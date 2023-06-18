@@ -8,11 +8,11 @@
 		<altitudeLayer>Building</altitudeLayer>
 		<tickerType>Never</tickerType>
 		<graphicData>
-			<texPath>Things/Building/MutaniteHopper</texPath>
+			<texPath>Things/Building/PM_Pipe_Input</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(2,2)</drawSize>
+			<drawSize>(1,1)</drawSize>
 		</graphicData>
-		<uiIconPath>Things/Building/MutaniteHopper</uiIconPath>
+		<uiIconPath>Things/Building/PM_Pipe_Input</uiIconPath>
 		<uiIconScale>1</uiIconScale>
 		<inspectorTabs>
 			<li>ITab_Storage</li>

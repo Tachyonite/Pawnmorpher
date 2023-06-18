@@ -29,7 +29,7 @@ namespace Pawnmorph.Genebank
 		/// <summary>
 		/// Gets or sets additional options that will always be shown last.
 		/// </summary>
-		public IList<FloatMenuOption> AdditionalOptions { get; set; }
+		public IEnumerable<FloatMenuOption> AdditionalOptions { get; set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether browse button is enabled.

@@ -45,19 +45,14 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void MutatePawn(Pawn pawn, MutagenDef mutagen)
+		private void MutatePawn(Pawn pawn, MutagenDef mutagen)
 		{
-			HediffSet hediffSet = pawn.health.hediffSet;
-
 			if (!pawn.Spawned || !mutagen.CanInfect(pawn))
 				return;
 
-
-
-			pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
-
-			Hediff hediff = pawn.health.hediffSet.GetFirstHediffOfDef(MorphTransformationDefOf.FullRandomTF);
-			if (hediff is Hediff_MutagenicBase mBase) mBase.Causes.TryAddMutagenCause(MutagenDefOf.PM_MutaniteMutagen);
+			Hediff hediff = pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
+			if (hediff is Hediff_MutagenicBase mBase)
+				mBase.Causes.TryAddMutagenCause(MutagenDefOf.PM_MutaniteMutagen);
 
 			IntermittentMagicSprayer.ThrowMagicPuffDown(pawn.Position.ToVector3(), pawn.Map);
 		}

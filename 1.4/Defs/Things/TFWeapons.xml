@@ -282,6 +282,7 @@
 				<requiresTag>true</requiresTag>
 				<labelKey>PMAnimalPickerGizmo_Mutagun</labelKey>
 				<descriptionKey>PMAnimalPickerGizmoDescription_Mutagun</descriptionKey>
+				<allowRandom>true</allowRandom>
 				<raceFilter>
 					<filterList>
 						<li>PM_Chaothrumbo</li>

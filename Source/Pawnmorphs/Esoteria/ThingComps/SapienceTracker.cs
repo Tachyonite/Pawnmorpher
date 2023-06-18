@@ -140,6 +140,7 @@ namespace Pawnmorph.ThingComps
 
 
 			//need to refresh comps and needs for pawn here 
+
 			Pawn.needs?.AddOrRemoveNeedsAsAppropriate();
 			_sapienceState.Init(this);
 			SapienceLevel = FormerHumanUtilities.GetQuantizedSapienceLevel(initialLevel);
@@ -147,6 +148,8 @@ namespace Pawnmorph.ThingComps
 			Need_Control sNeed = SapienceNeed;
 			sNeed?.SetSapience(initialLevel);
 			_sapienceState.Enter();
+
+			FormerHumanUtilities.InvalidateIntelligence(Pawn);
 			if (Pawn.Faction == Faction.OfPlayer)
 				Find.ColonistBar?.MarkColonistsDirty();
 
@@ -251,6 +254,10 @@ namespace Pawnmorph.ThingComps
 
 				_sapienceState?.Init(this);
 				TrySubscribe();
+
+				FormerHumanUtilities.InvalidateIntelligence(Pawn);
+				if (Pawn.Faction == Faction.OfPlayer)
+					Find.ColonistBar?.MarkColonistsDirty();
 			}
 
 
@@ -295,11 +302,6 @@ namespace Pawnmorph.ThingComps
 					if (pawn.Drafted)
 						pawn.drafter.Drafted = false;
 				}
-
-
-				FormerHumanUtilities.InvalidateIntelligence(pawn);
-				PawnComponentsUtility.AddAndRemoveDynamicComponents(Pawn);
-				Find.ColonistBar.MarkColonistsDirty();
 			}
 		}
 

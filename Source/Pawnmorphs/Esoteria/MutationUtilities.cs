@@ -13,6 +13,7 @@ using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface;
 using Pawnmorph.Utilities;
+using Prepatcher;
 using RimWorld;
 using Verse;
 using static Pawnmorph.DebugUtils.DebugLogUtils;
@@ -252,7 +253,7 @@ namespace Pawnmorph
 		public static IEnumerable<Hediff_AddedMutation> GetAllMutations([NotNull] this Pawn p)
 		{
 			if (p == null) throw new ArgumentNullException(nameof(p));
-			var mTracker = p.GetMutationTracker(false);
+			var mTracker = p.GetMutationTracker();
 			if (mTracker != null) return mTracker.AllMutations;
 			return (p.health?.hediffSet?.hediffs?.OfType<Hediff_AddedMutation>()) ?? Enumerable.Empty<Hediff_AddedMutation>();
 		}
@@ -957,8 +958,6 @@ namespace Pawnmorph
 			return _mutationsByParts.TryGetValue(bodyPartDef) ?? Enumerable.Empty<MutationDef>();
 		}
 
-
-
 		/// <summary>
 		///     try to get the mutation tracker on this pawn, null if the pawn does not have a tracker
 		/// </summary>
@@ -966,10 +965,12 @@ namespace Pawnmorph
 		/// <param name="warnOnFail">if the pawn does not have a mutation tracker, display a warning message</param>
 		/// <returns></returns>
 		[CanBeNull]
-		public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn, bool warnOnFail = true)
+		[PrepatcherField]
+		[InjectComponent]
+		public static MutationTracker GetMutationTracker([NotNull] this Pawn pawn)
 		{
 			var comp = CompCacher<MutationTracker>.GetCompCached(pawn);
-			if (comp == null && warnOnFail) WarningOnce($"pawn {pawn.Name} of type {pawn.def.defName} does not have a mutation tracker comp", pawn.thingIDNumber);
+			if (comp == null) WarningOnce($"pawn {pawn.Name} of type {pawn.def.defName} does not have a mutation tracker comp", pawn.thingIDNumber);
 			return comp;
 		}
 

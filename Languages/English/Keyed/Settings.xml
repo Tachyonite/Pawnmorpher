@@ -59,4 +59,6 @@
 	<PMSequencerMultiplerTooltip>Speed multiplier when sequencing mutations.</PMSequencerMultiplerTooltip>
 	<PMSequencerAutoAnimalGenome>Auto sequence animal genomes</PMSequencerAutoAnimalGenome>
 	<PMSequencerAutoAnimalGenomeTooltip>Automatically sequence all mutations from animal genome when downloaded.</PMSequencerAutoAnimalGenomeTooltip>
+	<mutationLogLength>Mutation log length</mutationLogLength>
+	<mutationLogLengthTooltip>Max number of entries remembered by the mutation log.</mutationLogLengthTooltip>
 </LanguageData>

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using static UnityEngine.ParticleSystem;
 
 namespace Pawnmorph
 {
+	[HotSwappable]
 	class ITab_Pawn_Mutations : ITab
 	{
 		// Constants
@@ -60,7 +63,7 @@ namespace Pawnmorph
 
 		protected bool ShouldShowTab(Pawn pawn)
 		{
-			var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker(false)?.AllMutations.Count() ?? 0) > 0);
+			var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker()?.AllMutations.Count() ?? 0) > 0);
 			shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
 			if (shouldShow) return true;
 
@@ -86,7 +89,7 @@ namespace Pawnmorph
 
 			// Draw the header.
 			Vector2 col1 = new Vector2(0f, 0f);
-			if (SelPawn.GetMutationTracker(false) != null)
+			if (SelPawn.GetMutationTracker() != null)
 				DrawMutTabHeader(ref col1, mainView.width);
 
 
@@ -99,7 +102,7 @@ namespace Pawnmorph
 			Vector2 col2 = new Vector2(viewRect.width / 3, col1.y);
 			Vector2 col3 = new Vector2(viewRect.width / 3 * 2, col2.y);
 			float colWidth = viewRect.width / 3 - 10f;
-
+			
 			// Draw the headers for all three columns (labels are provided by the xml).
 			DrawColumnHeader(ref col1, colWidth, "MorphsITabHeader".Translate());
 			DrawColumnHeader(ref col2, colWidth, "TraitsITabHeader".Translate());
@@ -182,39 +185,66 @@ namespace Pawnmorph
 			var influences = mutationTracker.ToList();
 
 			// Determine the remaining human influence.
-			float humInf = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
-			foreach (var influence in influences)
-				humInf -= influence.Value;
-			var maxRaceInfluence = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
+			float maxRaceInfluence = MorphUtilities.GetMaxInfluenceOfRace(PawnToShowMutationsFor.def);
+
+			float humInf = maxRaceInfluence;
+			int influencesCount = influences.Count;
+			for (int i = influences.Count - 1; i >= 0; i--)
+				humInf -= influences[i].Value;
+
 			// If the remaining human influence is greater than 0.0001, print its influence first.
 			// (0.0001 is used to compensate for floating point number's occasional lack of precision.)
-			if (humInf > EPSILON)
+			bool renderHuman = false;
+			if (influencesCount > 0)
+			{
+				// List the morph influences upon the pawn in descending order.
+				bool first = true;
+				foreach (var influence in influences.OrderByDescending(x => x.Value))
+				{
+					var nVal = influence.Value / maxRaceInfluence;
+					if (renderHuman == false && humInf / maxRaceInfluence > nVal)
+					{
+						GUI.color = Color.green;
+						DrawInfluenceRow(ref curPos, width, "Human", humInf / maxRaceInfluence);
+						renderHuman = true;
+					}
+
+					// Set the greatest influence's color to cyan
+					if (first)
+					{
+						GUI.color = Color.cyan;
+						first = false;
+					}
+
+					string label = null;
+					if (influence.Key is MorphDef morph)
+						label = morph.ExplicitHybridRace?.LabelCap;
+
+					if (label == null)
+						label = influence.Key.LabelCap;
+
+					DrawInfluenceRow(ref curPos, width, label, nVal);
+				}
+
+			}
+
+			//float maxInfluence = influences.MaxBy(x => x.Value).Value;
+
+			if (renderHuman == false && humInf > EPSILON)
 			{
 				GUI.color = Color.green;
-				string text = $"Human ({(humInf / maxRaceInfluence).ToStringPercent()})";
-				float rectHeight = Text.CalcHeight(text, width);
-				Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
-				curPos.y += rectHeight;
-				GUI.color = Color.white;
+				DrawInfluenceRow(ref curPos, width, "Human", humInf / maxRaceInfluence);
 			}
 
-			if (influences.Count == 0) return;
+		}
 
-			float maxInfluence = influences.MaxBy(x => x.Value).Value;
-
-			// List the morph influences upon the pawn in descending order.
-			foreach (var influence in influences.OrderByDescending(x => x.Value))
-			{
-				// Set the greatest influence's color to cyan
-				if (Math.Abs(influence.Value - maxInfluence) < EPSILON)
-					GUI.color = Color.cyan;
-				var nVal = influence.Value / maxRaceInfluence;
-				string text = $"{influence.Key.LabelCap} ({nVal.ToStringPercent()})";
-				float rectHeight = Text.CalcHeight(text, width);
-				Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
-				curPos.y += rectHeight;
-				GUI.color = Color.white;
-			}
+		private void DrawInfluenceRow(ref Vector2 curPos, float width, string label, float value)
+		{
+			string text = $"{label} ({value.ToStringPercent()})";
+			float rectHeight = Text.CalcHeight(text, width);
+			Widgets.Label(new Rect(curPos.x, curPos.y, width, rectHeight), text);
+			curPos.y += rectHeight;
+			GUI.color = Color.white;
 		}
 
 		private void DrawMorphTraitsList(ref Vector2 curPos, float width)
@@ -327,12 +357,12 @@ namespace Pawnmorph
 			Widgets.BeginScrollView(outRect, ref logScrollPosition, viewRect, true);
 
 			var cachedLogDisplay = GetMutationLogs(PawnToShowMutationsFor);
-			foreach (ITab_Pawn_Log_Utility.LogLineDisplayable line in cachedLogDisplay)
+			foreach (KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable> line in cachedLogDisplay)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
-				line.AppendTo(stringBuilder);
+				line.Value.AppendTo(stringBuilder);
 				stringBuilder.Length--;
-				DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString());
+				DrawMutLogEntry(ref curPos, viewRect.width, stringBuilder.ToString(), line.Key);
 			}
 
 			// Set the scroll view height
@@ -343,12 +373,17 @@ namespace Pawnmorph
 			Widgets.EndScrollView();
 		}
 
-		IEnumerable<ITab_Pawn_Log_Utility.LogLineDisplayable> GetMutationLogs(Pawn pawn)
+		List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>> logCache = new List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>>();
+		List<KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>> GetMutationLogs(Pawn pawn)
 		{
-			foreach (MutationLogEntry mutationLogEntry in Find.PlayLog.AllEntries.Where(e => e.Concerns(pawn)).OfType<MutationLogEntry>())
+			logCache.Clear();
+			MutationTracker tracker = pawn.GetMutationTracker();
+			if (tracker != null)
 			{
-				yield return new ITab_Pawn_Log_Utility.LogLineDisplayableLog(mutationLogEntry, pawn);
+				logCache.AddRange(tracker.MutationLog.Select(x => new KeyValuePair<MutationLogEntry, ITab_Pawn_Log_Utility.LogLineDisplayable>(x, new ITab_Pawn_Log_Utility.LogLineDisplayableLog(x, pawn))));
+				logCache.Reverse();
 			}
+			return logCache;
 		}
 
 
@@ -369,7 +404,7 @@ namespace Pawnmorph
 			GUI.color = Color.white;
 		}
 
-		private void DrawMutLogEntry(ref Vector2 curPos, float width, string text)
+		private void DrawMutLogEntry(ref Vector2 curPos, float width, string text, MutationLogEntry entry)
 		{
 			// Set up the drawing rect
 			Rect entryRect = new Rect(curPos.x, curPos.y, width, Text.CalcHeight(text, width));
@@ -381,6 +416,40 @@ namespace Pawnmorph
 
 			// Draw the entry's text.
 			Widgets.Label(entryRect, text);
+
+
+
+			TipSignal tip = new TipSignal(() =>
+			{
+				string tooltip;
+				int ticksAgo = entry.Age;
+				
+				if (ticksAgo > TimeMetrics.TICKS_PER_DAY)
+					tooltip = $"PmDaysAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_DAY);
+				if (ticksAgo > TimeMetrics.TICKS_PER_HOUR)
+					tooltip = $"PmHoursAgo".Translate(ticksAgo / TimeMetrics.TICKS_PER_HOUR);
+				else
+					tooltip = $"PmLessThanHour".Translate();
+
+				return tooltip;
+
+			}, (int)curPos.y * 37);
+			TooltipHandler.TipRegion(entryRect, tip);
+
+
+			if (entry.Causes.Location.HasValue)
+			{
+				if (Mouse.IsOver(entryRect))
+				{
+					Widgets.DrawHighlight(entryRect);
+					TargetHighlighter.Highlight(entry.Causes.Location.Value);
+				}
+
+				if (Widgets.ButtonInvisible(entryRect))
+				{
+					CameraJumper.TryJump(entry.Causes.Location.Value);
+				}
+			}
 
 			// Update the location for the next entry.
 			curPos.y += entryRect.height;
