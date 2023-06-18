@@ -182,7 +182,7 @@ namespace Pawnmorph
 			float multiplier = 0;
 			foreach (Hediff_AddedMutation mutation in mTracker.AllMutations)
 			{
-				MutationStage mStage = mutation.CurrentMutationStage;
+				MutationStage mStage = mutation.CurStage as MutationStage;
 
 				if (mStage == null)
 					continue;
