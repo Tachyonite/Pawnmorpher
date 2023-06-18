@@ -16,6 +16,9 @@
 				<cornerBR>Damage/Corner</cornerBR>
 			</damageData>
 		</graphicData>
+		<inspectorTabs>
+			<li>ITab_Bills</li>
+		</inspectorTabs>
 		<castEdgeShadows>true</castEdgeShadows>
 		<staticSunShadowHeight>0.20</staticSunShadowHeight>
 		<costStuffCount>50</costStuffCount>
@@ -42,9 +45,6 @@
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<surfaceType>Item</surfaceType>
 		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
-		<inspectorTabs>
-			<li>Pawnmorph.ITabs.InjectorBills</li>
-		</inspectorTabs>
 		<recipes>
 			<li>Make_ComponentsFromSlurry</li>
 			<li>Make_GenekitColorPicker</li>
