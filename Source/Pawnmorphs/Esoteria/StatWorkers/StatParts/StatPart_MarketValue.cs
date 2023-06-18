@@ -37,7 +37,7 @@ namespace Pawnmorph.StatWorkers.StatParts
 						MutationTracker tracker = pawn.GetMutationTracker();
 						if (tracker != null)
 						{
-							IList<Hediff_AddedMutation> mutations = tracker.Mutations;
+							IList<Hediff_AddedMutation> mutations = tracker.AllMutations;
 							if (mutations != null)
 							{
 								for (int i = mutations.Count - 1; i >= 0; i--)
@@ -73,7 +73,7 @@ namespace Pawnmorph.StatWorkers.StatParts
 						if (tracker != null)
 						{
 							string text = "";
-							IList<Hediff_AddedMutation> mutations = tracker.Mutations;
+							IList<Hediff_AddedMutation> mutations = tracker.AllMutations;
 							if (mutations != null)
 							{
 								Hediff_AddedMutation mutation;
