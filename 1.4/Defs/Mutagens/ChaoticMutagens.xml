@@ -53,6 +53,9 @@
         <causeRulePack>
             <rulesStrings>
                 <li>mutagen_cause->bulidup from [weapon_label]</li>
+                <li>caused_by->caused by</li>
+                <li>caused_by->because of</li>
+                <li>caused_by->after</li>
             </rulesStrings>
         </causeRulePack>
     </Pawnmorph.MutagenDef>
@@ -63,6 +66,9 @@
         <causeRulePack>
             <rulesStrings>
                 <li>mutagen_cause->bulidup from mutagenic fallout</li>
+                <li>caused_by->caused by</li>
+                <li>caused_by->because of</li>
+                <li>caused_by->after</li>
             </rulesStrings>
         </causeRulePack>
     </Pawnmorph.MutagenDef>
@@ -73,6 +79,10 @@
             <rulesStrings>
                 <li>mutagen_cause->standing too close to mutanite</li>
                 <li>mutagen_cause->licking weird glowing rocks</li>
+				        <li>caused_by->from</li>
+                <li>caused_by->caused by</li>
+                <li>caused_by->because of</li>
+                <li>caused_by->after</li>
             </rulesStrings>
         </causeRulePack>
     </Pawnmorph.MutagenDef>
@@ -87,6 +97,10 @@
         <causeRulePack>
             <rulesStrings>
                 <li>mutagen_cause->failed chaobulb harvest</li>
+				        <li>caused_by->from</li>
+                <li>caused_by->caused by</li>
+                <li>caused_by->because of</li>
+                <li>caused_by->after</li>
             </rulesStrings>
         </causeRulePack>
     </Pawnmorph.MutagenDef>

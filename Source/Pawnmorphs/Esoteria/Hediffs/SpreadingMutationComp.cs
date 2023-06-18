@@ -89,7 +89,18 @@ namespace Pawnmorph.Hediffs
 			if (CanInfect(record))
 			{
 				var hediff = HediffMaker.MakeHediff(Def, Pawn, record);
+				if (hediff is Hediff_AddedMutation mutation)
+				{
+					// Include the skin mutation as the actual cause.
+					mutation.Causes.Add(string.Empty, parent.def);
+
+					// Include the source body part too.
+					mutation.Causes.Add("SOURCEPART", parent.Part.def);
+				}
+
+
 				Pawn.health.AddHediff(hediff, record);
+
 				return true;
 			}
 
