@@ -4,7 +4,7 @@
 		<defName>SpitInEyes</defName>
 		<requiredCapacity>SpitInEyes</requiredCapacity>
 		<verb>
-			<verbClass>Verb_MeleeApplyHediff</verbClass>
+			<verbClass>Pawnmorph.Verbs.Verb_MeleeApplyMutagenicHediff</verbClass>
 			<bodypartTagTarget>SightSource</bodypartTagTarget>
 			<minIntelligence>ToolUser</minIntelligence>
 			<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
@@ -14,13 +14,19 @@
 		<combatLogRulesDeflect>Maneuver_SpitMaterialInEyes_MeleeDeflect</combatLogRulesDeflect>
 		<combatLogRulesMiss>Maneuver_SpitMaterialInEyes_MeleeMiss</combatLogRulesMiss>
 		<combatLogRulesDodge>Maneuver_SpitMaterialInEyes_MeleeDodge</combatLogRulesDodge>
+
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>PM_FightingMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</ManeuverDef>
 	
 	<ManeuverDef>
 		<defName>SpitInMouth</defName>
 		<requiredCapacity>SpitInEyes</requiredCapacity>
 		<verb>
-			<verbClass>Verb_MeleeApplyHediff</verbClass>
+			<verbClass>Pawnmorph.Verbs.Verb_MeleeApplyMutagenicHediff</verbClass>
 			<bodypartTagTarget>SightSource</bodypartTagTarget>
 			<minIntelligence>ToolUser</minIntelligence>
 			<impactFleck>DustPuff</impactFleck>
@@ -31,6 +37,12 @@
 		<combatLogRulesDeflect>Maneuver_SpitMaterialInMouth_MeleeDeflect</combatLogRulesDeflect>
 		<combatLogRulesMiss>Maneuver_SpitMaterialInMouth_MeleeMiss</combatLogRulesMiss>
 		<combatLogRulesDodge>Maneuver_SpitMaterialInMouth_MeleeDodge</combatLogRulesDodge>
+		
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
+				<mutagen>PM_FightingMutagen</mutagen>
+			</li>
+		</modExtensions>
 	</ManeuverDef>
 
 	<RulePackDef>
@@ -74,12 +86,9 @@
 			<rulesStrings>
 				<li>r_logentry->[INITIATOR_definite] spat a mechanite-infused spray at [RECIPIENT_definite]'s face, [talkedabout].</li>
 				<li>r_logentry(p=0.2)->[INITIATOR_definite] spat an aimed spray of mutagen-laced saliva in [RECIPIENT_definite]'s face, [talkedabout].</li>
-				
-				
-				<li>[talkedabout]->which seems to be getting hairier.</li>
-				<li>[talkedabout]->and now their ears itch.</li>
-				<li>[talkedabout]->and now their face feels funny.</li>
-				
+				<li>talkedabout->which seems to be getting hairier.</li>
+				<li>talkedabout->and now their ears itch.</li>
+				<li>talkedabout->and now their face feels funny.</li>
 			</rulesStrings>
 		</rulePack>
 	</RulePackDef>

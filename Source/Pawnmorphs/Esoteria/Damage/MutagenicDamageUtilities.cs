@@ -4,6 +4,7 @@
 using System;
 using JetBrains.Annotations;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Interfaces;
 using UnityEngine;
 using Verse;
 
@@ -52,7 +53,7 @@ namespace Pawnmorph.Damage
 
 			if (!mutagen.CanInfect(pawn)) return;
 
-			ApplyMutagen(originalDamage, damageInfo, pawn, mutagenicDef, severityPerDamage, result);
+			ApplyMutagen(originalDamage, damageInfo, pawn, mutagenicDef, mutagen, severityPerDamage, result);
 		}
 
 		/// <summary>
@@ -82,6 +83,19 @@ namespace Pawnmorph.Damage
 
 			Hediff hediff = HediffMaker.MakeHediff(mutationHediffDef, pawn);
 			hediff.Severity = severityToAdd;
+
+			if (hediff is ICaused caused)
+			{
+				if (dInfo.Weapon != null)
+					caused.Causes.Add(MutationCauses.WEAPON_PREFIX, dInfo.Weapon);
+
+				if (mutagen != null)
+					caused.Causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen);
+
+				if (dInfo.Def != null)
+					caused.Causes.Add(string.Empty, dInfo.Def);
+			}
+
 			pawn.health.AddHediff(hediff);
 		}
 
@@ -115,7 +129,7 @@ namespace Pawnmorph.Damage
 			return dInfo;
 		}
 
-		private static void ApplyMutagen(float damage, DamageInfo info, Pawn pawn, HediffDef mutagen, float severityPerDamage,
+		private static void ApplyMutagen(float damage, DamageInfo info, Pawn pawn, HediffDef mutagen, MutagenDef mutagenDef, float severityPerDamage,
 										 DamageWorker.DamageResult result)
 		{
 			Hediff hediff = HediffMaker.MakeHediff(mutagen, pawn);
@@ -126,6 +140,18 @@ namespace Pawnmorph.Damage
 																   //0 is immune 
 																   //Add our own mutagenic sensitivity stat to? 
 			hediff.Severity = severityToAdd;
+
+			if (hediff is ICaused caused)
+			{
+				if (info.Weapon != null)
+					caused.Causes.Add(MutationCauses.WEAPON_PREFIX, info.Weapon);
+				
+				if (mutagen != null)
+					caused.Causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagenDef);
+
+				if (info.Def != null)
+					caused.Causes.Add(string.Empty, info.Def);
+			}
 
 			Log.Message($"original damage:{damage}, reducedDamage{info.Amount}, severity:{severityToAdd}");
 

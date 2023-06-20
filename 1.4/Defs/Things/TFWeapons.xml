@@ -102,11 +102,6 @@
 			<cooldownTime>2</cooldownTime>
 			</li>
         </tools>
-		<modExtensions>
-			<li Class="Pawnmorph.DefExtensions.MutagenExtension">
-				<mutagen>PM_WeaponChaoticMutagen</mutagen>
-			</li>
-		</modExtensions>
 	</ThingDef>
 
 	<ThingDef ParentName="BaseHumanMakeableGun">

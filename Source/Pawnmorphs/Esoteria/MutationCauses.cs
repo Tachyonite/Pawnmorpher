@@ -155,6 +155,18 @@ namespace Pawnmorph
 		}
 
 		/// <summary>
+		/// Determines whether given prefix is already contained.
+		/// </summary>
+		/// <param name="prefix">The prefix.</param>
+		/// <returns>
+		///   <c>true</c> if specific prefix already exists otherwise, <c>false</c>.
+		/// </returns>
+		public bool Contains(string prefix)
+		{
+			return _entries.Any(x => x.prefix == prefix);
+		}
+
+		/// <summary>
 		///     Adds the specified cause with the specified prefix.
 		/// </summary>
 		/// <param name="prefix">The prefix.</param>

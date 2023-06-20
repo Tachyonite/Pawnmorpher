@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Pawnmorph.Hediffs;
+using Pawnmorph.Interfaces;
 using RimWorld;
 using Verse;
 
@@ -39,14 +39,8 @@ namespace Pawnmorph
 				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
 				hediff.Severity = num;
 
-				MutationCauses causes = null;
-				if (hediff is Hediff_MutagenicBase mutagenicBase)
-					causes = mutagenicBase.Causes;
-				else if (hediff is Hediff_AddedMutation mutation)
-					causes = mutation.Causes;
-
-				if (causes != null)
-					causes.TryAddCause(string.Empty, ingested.def);
+				if (hediff is ICaused caused)
+					caused.Causes.TryAddCause(string.Empty, ingested.def);
 
 				pawn.health.AddHediff(hediff, null, null);
 			}

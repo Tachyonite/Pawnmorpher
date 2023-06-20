@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Interfaces;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Pawnmorph
 	///     hediff representing a mutation
 	/// </summary>
 	/// <seealso cref="Verse.HediffWithComps" />
-	public class Hediff_AddedMutation : Hediff_StageChanges
+	public class Hediff_AddedMutation : Hediff_StageChanges, ICaused
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
 

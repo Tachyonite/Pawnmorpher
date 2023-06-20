@@ -345,6 +345,7 @@
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="HPatches\WorldPawnsPatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
+    <Compile Include="Interfaces\ICaused.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
     <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
     <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
@@ -953,6 +954,7 @@
     <Compile Include="Utilities\TreeUtilities.cs" />
     <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
+    <Compile Include="Verbs\Verb_MeleeApplyMutagenicHediff.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
