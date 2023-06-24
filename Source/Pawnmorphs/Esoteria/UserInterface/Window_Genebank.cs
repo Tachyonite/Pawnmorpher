@@ -12,7 +12,7 @@ namespace Pawnmorph.UserInterface
 {
 	internal class Window_Genebank : Window
 	{
-		private Type _priorMode = typeof(MutationsTab);
+		static Type _priorMode = typeof(MutationsTab);
 		private readonly string HEADER = "PM_Genebank_Header".Translate();
 		private readonly string CAPACITY_AVAILABLE = "PM_Genebank_AvailableHeader".Translate();
 		private readonly string CAPACITY_TOTAL = "PM_Genebank_TotalHeader".Translate();

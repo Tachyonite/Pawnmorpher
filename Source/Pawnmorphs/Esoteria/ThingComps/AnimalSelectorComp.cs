@@ -82,40 +82,6 @@ namespace Pawnmorph.ThingComps
 		/// </value>
 		[CanBeNull] public PawnKindDef ChosenKind => _chosenKind;
 
-		/// <summary>
-		/// Gets all animals selectable according to the selection mode.
-		/// </summary>
-		/// <value>
-		/// All animals selectable.
-		/// </value>
-		public IEnumerable<PawnKindDef> AllAnimalsSelectable
-		{
-			get
-			{
-				IEnumerable<PawnKindDef> animals = Props.requiresTag ? Database.TaggedAnimals : Props.AllAnimals;
-
-				// Filter out excluded animals
-				if (Props.raceFilter != null)
-				{
-					animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
-				}
-
-				// Add always available animals
-				if (Props.alwaysAvailable != null)
-				{
-					animals = animals.Union(Props.alwaysAvailable);
-				}
-
-				// Apply special filtering
-				if (SpeciesFilter != null)
-				{
-					animals = animals.Where(x => SpeciesFilter(x));
-				}
-
-				return animals;
-			}
-		}
-
 		private ChamberDatabase Database => Find.World.GetComponent<ChamberDatabase>();
 
 		private RecentGenebankSelector<AnimalsTab> _recentAnimalsSelector;
