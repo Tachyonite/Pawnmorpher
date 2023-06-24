@@ -100,16 +100,16 @@ namespace Pawnmorph.ThingComps
 					animals = animals.Where(x => Props.raceFilter.PassesFilter(x));
 				}
 
-				// Apply special filtering
-				if (SpeciesFilter != null)
-				{
-					animals = animals.Where(x => SpeciesFilter(x));
-				}
-
 				// Add always available animals
 				if (Props.alwaysAvailable != null)
 				{
 					animals = animals.Union(Props.alwaysAvailable);
+				}
+
+				// Apply special filtering
+				if (SpeciesFilter != null)
+				{
+					animals = animals.Where(x => SpeciesFilter(x));
 				}
 
 				return animals;
@@ -128,18 +128,9 @@ namespace Pawnmorph.ThingComps
 		public override void Initialize(CompProperties props)
 		{
 			base.Initialize(props);
-
-            _cachedGizmo = new Command_Action()
-            {
-                action = GizmoAction,
-                icon = PMTextures.AnimalSelectorIcon,
-                defaultLabel = Props.labelKey.Translate(),
-                defaultDesc = Props.descriptionKey.Translate()
-            };
-
-
-            _recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
-			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions().ToList();
+			_recentAnimalsSelector = new RecentGenebankSelector<AnimalsTab>(5, Database);
+			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
+			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
 			_recentAnimalsSelector.RowFilter = (row) =>
 			{
 				PawnKindDef animal = row as PawnKindDef;
@@ -152,7 +143,14 @@ namespace Pawnmorph.ThingComps
 
 				return true;
 			};
-			_recentAnimalsSelector.OnSelected += RecentAnimalsSelector_OnSelected;
+
+			_cachedGizmo = new Command_Action()
+			{
+				action = GizmoAction,
+				icon = PMTextures.AnimalSelectorIcon,
+				defaultLabel = Props.labelKey.Translate(),
+				defaultDesc = Props.descriptionKey.Translate()
+			};
 		}
 
 		/// <summary>
@@ -204,6 +202,13 @@ namespace Pawnmorph.ThingComps
 				for (int i = 0; i < Props.alwaysAvailable.Count; i++)
                 {
                     PawnKindDef item = Props.alwaysAvailable[i];
+
+					// Apply special filtering
+					if (SpeciesFilter != null)
+					{
+						if (SpeciesFilter(item) == false)
+							continue;
+					}
 
 					string label;
 					AnimalSelectorOverrides overrides = item.GetModExtension<AnimalSelectorOverrides>();
