@@ -99,7 +99,7 @@ namespace Pawnmorph.ThingComps
 			_recentAnimalsSelector.AdditionalOptions = GetForcedOptions();
 			_recentAnimalsSelector.RowFilter = (row) =>
 			{
-				PawnKindDef animal = row as PawnKindDef;
+				PawnKindDef animal = (row as GenebankEntry<PawnKindDef>).Value;
 
 				if (Props.raceFilter?.PassesFilter(animal) == false)
 					return false;
