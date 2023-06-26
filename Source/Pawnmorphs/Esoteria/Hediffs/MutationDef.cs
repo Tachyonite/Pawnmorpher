@@ -300,6 +300,16 @@ namespace Pawnmorph.Hediffs
 			{
 				yield return "No classInfluence has been assigned.";
 			}
+
+			if (parts == null || parts.Count == 0)
+			{
+				yield return "No body parts assigned to mutation.";
+			}
+
+			if (Layer == null)
+			{
+				yield return "No layer assigned to mutation. Make sure it has a RemoveFromPartCompProperties with layer assigned.";
+			}
 		}
 
 

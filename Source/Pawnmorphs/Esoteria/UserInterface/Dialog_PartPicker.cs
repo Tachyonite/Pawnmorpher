@@ -577,6 +577,9 @@ namespace Pawnmorph.UserInterface
 
 		private void DrawPartEntry(ref float curY, Rect partListViewRect, List<BodyPartRecord> parts, string label, bool skinEntry = false)
 		{
+			if (parts.Count == 0)
+				return;
+
 			List<Hediff_AddedMutation> mutations;
 			string buttonLabel;
 			Widgets.ListSeparator(ref curY, partListViewRect.width, label);
