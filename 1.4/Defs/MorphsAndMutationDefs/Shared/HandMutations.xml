@@ -34,7 +34,7 @@
 	</Pawnmorph.Hediffs.MutationDef>
 -->
 
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
 		<defName>EtherPawHand</defName>
 		<label>paw</label>
