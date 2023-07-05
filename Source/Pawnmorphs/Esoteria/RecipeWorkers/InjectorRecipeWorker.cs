@@ -9,7 +9,6 @@ namespace Pawnmorph.RecipeWorkers
 	/// Recipe worker that adds the tagging condition to making injectors.
 	/// </summary>
 	/// <seealso cref="Verse.RecipeWorker" />
-	[StaticConstructorOnStartup]
 	internal class InjectorRecipeWorker : RecipeWorker
 	{
 		static PawnmorpherSettings _settings;
@@ -17,7 +16,7 @@ namespace Pawnmorph.RecipeWorkers
 		/// <summary>
 		/// Assigns this recipe worker to all injector recipes.
 		/// </summary>
-		static InjectorRecipeWorker()
+		internal static void PatchInjectors()
 		{
 			_settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
 
