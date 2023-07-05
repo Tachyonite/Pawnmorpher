@@ -7,10 +7,10 @@ using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
-using Pawnmorph.DefExtensions;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.RecipeWorkers;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -83,8 +83,8 @@ namespace Pawnmorph
 					throw new ModInitializationException($"while generating genomes caught exception {e.GetType().Name}", e);
 				}
 
+				InjectorRecipeWorker.PatchInjectors();
 			}
-
 			catch (Exception e)
 			{
 				throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}", e);
