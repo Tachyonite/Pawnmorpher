@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.Interfaces;
 using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace Pawnmorph
 	///     hediff representing a mutation
 	/// </summary>
 	/// <seealso cref="Verse.HediffWithComps" />
-	public class Hediff_AddedMutation : Hediff_StageChanges
+	public class Hediff_AddedMutation : Hediff_StageChanges, ICaused
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
 
@@ -135,7 +136,7 @@ namespace Pawnmorph
 		{
 			get
 			{
-				MutationStage stage = CurrentMutationStage;
+				HediffStage stage = CurStage;
 				if (stage != null)
 				{
 					if (PawnmorpherMod.Settings.enableMutationAdaptedStageLabel == false)
@@ -237,14 +238,22 @@ namespace Pawnmorph
 
 			// Use a for loop here because this is a hot path and creating enumerators is causing too much overhead
 			// ReSharper disable once ForCanBeConvertedToForeach
-			for (var i = 0; i < abilities.Count; i++)
+			for (int i = abilities.Count - 1; i >= 0; i--)
 				abilities[i].Tick();
 
-			if (shouldRemove == false && pawn.IsHashIntervalTick(10))
+			if (shouldRemove == false && pawn.IsHashIntervalTick(60))
 			{
-				foreach (HediffComp hediffComp in comps.MakeSafe())
-					if (hediffComp.CompShouldRemove)
-						shouldRemove = true;
+				if (comps != null)
+				{
+					for (int i = comps.Count - 1; i >= 0; i--)
+					{
+						if (comps[i].CompShouldRemove)
+						{
+							shouldRemove = true;
+							break;
+						}
+					}
+				}
 			}
 		}
 
@@ -341,11 +350,12 @@ namespace Pawnmorph
 
 				GenerateAbilities(base.CurStage);
 
-				if (CurrentMutationStage != null)
-					CurrentMutationStage.OnLoad(this);
+				MutationStage stage = CurrentMutationStage;
+				if (stage != null)
+					stage.OnLoad(this);
 
 
-				TickBase = Def.RunBaseLogic || CurrentMutationStage?.RunBaseLogic == true;
+				TickBase = Def.RunBaseLogic || stage?.RunBaseLogic == true;
 			}
 
 		}

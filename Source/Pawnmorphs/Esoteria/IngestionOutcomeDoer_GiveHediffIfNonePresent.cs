@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Pawnmorph.Interfaces;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -56,6 +57,11 @@ namespace Pawnmorph
 				if (divideByBodySize) num /= pawn.BodySize;
 				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
 				hediff.Severity = num;
+
+
+				if (hediff is ICaused caused)
+					caused.Causes.TryAddCause(string.Empty, ingested.def);
+
 				pawn.health.AddHediff(hediff, null, null);
 			}
 		}

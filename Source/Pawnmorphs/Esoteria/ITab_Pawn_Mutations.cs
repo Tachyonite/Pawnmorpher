@@ -63,12 +63,14 @@ namespace Pawnmorph
 
 		protected bool ShouldShowTab(Pawn pawn)
 		{
-			var shouldShow = (pawn.IsColonist || pawn.IsPrisonerOfColony) && ((pawn.GetMutationTracker()?.AllMutations.Count() ?? 0) > 0);
-			shouldShow |= (pawn.GetAspectTracker()?.AspectCount ?? 0) > 0;
-			if (shouldShow) return true;
+			if ((pawn.GetAspectTracker()?.AspectCount ?? 0) > 0)
+				return true;
 
-			return pawn.IsFormerHuman();
-			//just always showing for former humans for now 
+			// Former humans currently don't have mutation tracker.
+			if (pawn.IsFormerHuman() == false && (pawn.GetMutationTracker()?.AllMutations.Count ?? 0) > 0)
+				return true;
+
+			return false;
 		}
 
 

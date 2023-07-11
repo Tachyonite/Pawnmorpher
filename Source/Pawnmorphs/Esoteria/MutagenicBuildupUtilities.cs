@@ -163,10 +163,12 @@ namespace Pawnmorph
 			fHediff.Severity = finalSev;
 
 			float aSev = Mathf.Max(sev, 0.01f); //prevent division by zero 
-			if (adjustValue / aSev > 0.5f && fHediff is Hediff_MutagenicBase mutagenicBase && !mutagenicBase.Causes.HasDefCause(mutagen))
+			if (fHediff is Hediff_MutagenicBase mutagenicBase)
 			{
-				mutagenicBase.Causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen);
+				mutagenicBase.Causes.TryAddMutagenCause(mutagen);
+				mutagenicBase.Causes.SetLocation(pawn);
 			}
+
 			return finalSev - sev;
 		}
 	}

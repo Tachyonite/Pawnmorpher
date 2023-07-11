@@ -50,6 +50,11 @@ namespace Pawnmorph
 			if (!pawn.Spawned || !mutagen.CanInfect(pawn))
 				return;
 
+			// If pawn does not have any sensitivity
+			float? mutagenSensitivity = Utilities.StatsUtility.GetStat(pawn, PMStatDefOf.MutagenSensitivity, 300);
+			if (mutagenSensitivity == null || mutagenSensitivity <= 0)
+				return;
+
 			Hediff hediff = pawn.health.AddHediff(MorphTransformationDefOf.FullRandomTF);
 			if (hediff is Hediff_MutagenicBase mBase)
 				mBase.Causes.TryAddMutagenCause(MutagenDefOf.PM_MutaniteMutagen);

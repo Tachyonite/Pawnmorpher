@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs.Composable;
 using Pawnmorph.Hediffs.Utility;
+using Pawnmorph.Interfaces;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -19,7 +20,7 @@ namespace Pawnmorph.Hediffs
 	/// </summary>
 	/// <seealso cref="Verse.Hediff" />
 	/// <seealso cref="Pawnmorph.Hediffs.Hediff_Descriptive" />
-	public class Hediff_MutagenicBase : Hediff_StageChanges, IMutagenicHediff
+	public class Hediff_MutagenicBase : Hediff_StageChanges, IMutagenicHediff, ICaused
 	{
 		// Used to track what kind of stage we're in, so we don't have to check
 		// every tick
@@ -165,30 +166,18 @@ namespace Pawnmorph.Hediffs
 			ResetMutationList();
 			ResetSpreadList();
 
-			if (weaponSource != null)
+			if (weaponSource != null && _causes.Contains(MutationCauses.WEAPON_PREFIX) == false)
 			{
 				MutagenDef mutSource = weaponSource.GetModExtension<MutagenExtension>()?.mutagen;
-
-				if (mutSource != null) SetMutagenCause(mutSource);
+				if (mutSource != null)
+					_causes.TryAddMutagenCause(mutSource);
 
 				_causes.Add(MutationCauses.WEAPON_PREFIX, weaponSource);
 			}
 
-			_causes.SetLocation(pawn.GetCorrectPosition(), pawn.GetCorrectMap());
+			_causes.SetLocation(pawn);
 			if (def.stages != null && def.stages.Count > 0)
 				CheckCurrentStage(null, def.stages[base.CurStageIndex]);
-		}
-
-
-		/// <summary>
-		/// Sets the mutagen cause.
-		/// </summary>
-		/// <param name="mutagen">The mutagen.</param>
-		/// <exception cref="ArgumentNullException">mutagen</exception>
-		public void SetMutagenCause([NotNull] MutagenDef mutagen)
-		{
-			if (mutagen == null) throw new ArgumentNullException(nameof(mutagen));
-			_causes.Add(MutationCauses.MUTAGEN_PREFIX, mutagen);
 		}
 
 		/// <summary>
@@ -343,6 +332,9 @@ namespace Pawnmorph.Hediffs
 							res.sourceHediffDef = def;
 							res.Causes.Add(_causes);
 							res.Causes.Add(MutationCauses.HEDIFF_PREFIX, def);
+
+							if (Causes.Location.HasValue)
+								res.Causes.SetLocation(Causes.Location.Value);
 						}
 
 						// Notify the observers of any added mutations

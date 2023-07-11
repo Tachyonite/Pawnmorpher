@@ -289,7 +289,7 @@ namespace Pawnmorph
 				}
 			}
 
-			foreach (MorphTf hediffMorph in hS2.OfType<MorphTf>()) //do this second so the morph hediff can cleanup properly 
+			foreach (Hediff hediffMorph in hS2.Where(x => x is Hediff_MutagenicBase || x is MorphTf)) //do this second so the morph hediff can cleanup properly 
 			{
 				pawn.health.RemoveHediff(hediffMorph); //remove ongoing morph hediffs 
 			}

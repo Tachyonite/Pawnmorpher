@@ -381,7 +381,10 @@ Intelliboost is unable to restore the consciousness of permanantly feral humans,
 				<showHoursToRecover>true</showHoursToRecover>
 			</li>
 			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
-				<removeType>Pawnmorph.Hediffs.MorphTf</removeType>
+				<removeTypes>
+					<li>Pawnmorph.Hediffs.MorphTf</li>
+					<li>Pawnmorph.Hediffs.Hediff_MutagenicBase</li>
+				</removeTypes>
 			</li>
 
 		</comps>

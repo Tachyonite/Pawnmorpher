@@ -9,60 +9,6 @@
 			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
 		</graphics>
 		<stagePatches>
-			<li function="modify">
-				<stageKey>adapting</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>adapted</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
-				</values>
-			</li>
-			<li function="modify">
-				<stageKey>paragon</stageKey>
-				<values>
-					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
-				</values>
-			</li>
-		</stagePatches>
-		<!-- 
-			Current throws grammar rule exceptions. 
-		
-			Bad string pass when reading rule [talkedabout]->which seems to be getting hairier.
-			Bad string pass when reading rule [talkedabout]->and now their ears itch.
-			Bad string pass when reading rule [talkedabout]->and now their face feels funny.
-		
-		-->
-		<!-- <comps>
-			<li Class="HediffCompProperties_VerbGiver">
-				<tools>
-					<li>
-						<label>spit</label>
-						<capacities>
-							<li>SpitInEyes</li>
-						</capacities>
-						<hediff>PawnmorphAlpacaTFPartial</hediff>
-						<cooldownTime>0.8</cooldownTime>
-						<power>1</power>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-					<li>
-						<label>gob</label>
-						<capacities>
-							<li>SpitInMouth</li>
-						</capacities>
-						<hediff>PawnmorphAlpacaTF</hediff>
-						<cooldownTime>2</cooldownTime>
-						<power>1</power>
-						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
-					</li>
-				</tools>
-			</li>
-		</comps>
-		<stagePatches>
 			<li function="initial">
 				<stageKey>pressing</stageKey>
 				<values>
@@ -156,7 +102,33 @@
 					</verbOverrides>
 				</values>
 			</li>
-		</stagePatches> -->
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>spit</label>
+						<capacities>
+							<li>SpitInEyes</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTFPartial</hediff>
+						<cooldownTime>0.8</cooldownTime>
+						<power>1</power>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>gob</label>
+						<capacities>
+							<li>SpitInMouth</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTF</hediff>
+						<cooldownTime>2</cooldownTime>
+						<power>1</power>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
 	</Pawnmorph.Hediffs.MutationDef>
 	
 	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">

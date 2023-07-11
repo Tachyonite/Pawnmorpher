@@ -342,9 +342,11 @@
     <Compile Include="Genebank\RecentGenebankSelector.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="HPatches\WorldPawnsPatches.cs" />
     <Compile Include="Interfaces\IConfigurableObject.cs" />
+    <Compile Include="Interfaces\ICaused.cs" />
     <Compile Include="ModExtensions\AdministerableExtension.cs" />
     <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
     <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
@@ -354,8 +356,8 @@
     <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
     <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
-    <Compile Include="HPatches\RecipeDefPatch.cs" />
     <Compile Include="Jobs\Giver_Producer.cs" />
+    <Compile Include="RecipeWorkers\InjectorRecipeWorker.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
     <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
@@ -596,7 +598,6 @@
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
     <Compile Include="ICauseRulePackContainer.cs" />
-    <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
@@ -954,6 +955,7 @@
     <Compile Include="Utilities\TreeUtilities.cs" />
     <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
+    <Compile Include="Verbs\Verb_MeleeApplyMutagenicHediff.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
@@ -999,6 +1001,7 @@
     <Folder Include="Alerts\" />
     <Folder Include="Chambers\NewFolder1\" />
     <Folder Include="Events\" />
+    <Folder Include="ITabs\" />
   </ItemGroup>
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">

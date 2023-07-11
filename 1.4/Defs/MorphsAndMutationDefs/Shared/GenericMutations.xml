@@ -471,6 +471,16 @@
 		<categories>
 			<li>Minor</li>
 		</categories>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->[PAWN_possessive] [SOURCEPART_label]</li>
+                    	<li>caused_by->spreading from</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
 	</Pawnmorph.Hediffs.MutationDef>
 
 	<!-- Misc - Suggestion: only the last stage has values, pain in growing -->

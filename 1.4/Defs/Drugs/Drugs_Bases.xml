@@ -80,12 +80,18 @@
 			<recipeUsers>
 				<li>PM_InjectorLab</li>
 			</recipeUsers>
+			
 		</recipeMaker>
 		<costList>
 			<MechaniteSlurry>6</MechaniteSlurry>
 			<Mutanite>2</Mutanite>
 			<Neutroamine>10</Neutroamine>
 		</costList>
+    <modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+				<rulePackDef>InjectorCauseLogPack</rulePackDef>
+			</li>
+    </modExtensions>
 	</ThingDef>
 	
 

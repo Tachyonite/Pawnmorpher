@@ -1,6 +1,7 @@
 ﻿// IngestionOutcomeDoer_GiveHediff.cs created by Iron Wolf for Pawnmorph on 08/12/2021 9:10 AM
 // last updated 08/12/2021  9:10 AM
 
+using Pawnmorph.Interfaces;
 using RimWorld;
 using Verse;
 
@@ -29,7 +30,12 @@ namespace Pawnmorph
 			severity = severity < 0 ? hediffDef.initialSeverity : severity;
 			var h = HediffMaker.MakeHediff(hediffDef, pawn);
 			h.Severity = severity;
+
+
 			pawn?.health?.AddHediff(h);
+
+			if (h is ICaused caused)
+				caused.Causes.TryAddCause(string.Empty, ingested.def);
 		}
 
 	}

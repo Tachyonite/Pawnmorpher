@@ -68,6 +68,15 @@ namespace Pawnmorph
 		/// <summary>
 		/// Sets the source location.
 		/// </summary>
+		/// <param name="thing">The thing to take location from.</param>
+		public void SetLocation(Thing thing)
+		{
+			_location = new GlobalTargetInfo(thing.GetCorrectPosition(), thing.GetCorrectMap());
+		}
+
+		/// <summary>
+		/// Sets the source location.
+		/// </summary>
 		/// <param name="location">The global location of whatever caused the mutation.</param>
 		public void SetLocation(GlobalTargetInfo location)
 		{
@@ -143,6 +152,18 @@ namespace Pawnmorph
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Determines whether given prefix is already contained.
+		/// </summary>
+		/// <param name="prefix">The prefix.</param>
+		/// <returns>
+		///   <c>true</c> if specific prefix already exists otherwise, <c>false</c>.
+		/// </returns>
+		public bool Contains(string prefix)
+		{
+			return _entries.Any(x => x.prefix == prefix);
 		}
 
 		/// <summary>
