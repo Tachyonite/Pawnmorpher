@@ -678,7 +678,7 @@ namespace Pawnmorph.Hybrids
 
 
 			var traitsToAdd = allAlienTraits;
-			foreach (AlienTraitEntry alienTraitEntry in traitsToAdd)
+			foreach (AlienChanceEntry<TraitDef> alienTraitEntry in traitsToAdd)
 			{
 				var def = alienTraitEntry.defName;
 				if (traitSet.HasTrait(def)) continue; //don't add traits that are already added 

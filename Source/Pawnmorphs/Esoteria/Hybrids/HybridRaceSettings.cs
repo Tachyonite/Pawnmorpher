@@ -263,7 +263,7 @@ namespace Pawnmorph.Hybrids
 			/// 
 			/// </summary>
 			//should this be deprecated? 
-			public List<AlienTraitEntry> forcedTraits;
+			public List<AlienChanceEntry<TraitDef>> forcedTraits;
 			//public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
 		}
 
