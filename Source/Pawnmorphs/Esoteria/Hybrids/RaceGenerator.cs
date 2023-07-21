@@ -263,7 +263,6 @@ namespace Pawnmorph.Hybrids
 
 				CreateImplicitMeshes(race);
 				race.ResolveReferences();
-				DoHarStuff(race);
 				yield return race;
 			}
 
@@ -647,6 +646,17 @@ namespace Pawnmorph.Hybrids
 			if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
 			return _raceLookupTable.ContainsKey(raceDef);
 		}
+
+
+		public static void DoHarStuff()
+		{
+			foreach (ThingDef_AlienRace race in _raceLookupTable.Keys)
+			{
+				DoHarStuff(race);
+			}
+		}
+
+
 
 		// AlienRace.HarmonyPatches..cctor
 		private static void DoHarStuff(ThingDef_AlienRace ar)
