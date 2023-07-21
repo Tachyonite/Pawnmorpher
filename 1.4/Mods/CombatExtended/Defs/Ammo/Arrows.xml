@@ -9,7 +9,6 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <statBases>
-      <Mass>0.034</Mass>
       <MarketValue>2.58</MarketValue>
     </statBases>
     <ammoClass>MutaniteArrow</ammoClass>
@@ -25,7 +24,6 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>MutagenicArrowDamage</damageDef>
-      <speed>20</speed>
       <damageAmountBase>7</damageAmountBase>
       <armorPenetrationSharp>0.5</armorPenetrationSharp>
       <armorPenetrationBlunt>3.02</armorPenetrationBlunt>
@@ -42,7 +40,6 @@
     </graphicData>
     <projectile Class="CombatExtended.ProjectilePropertiesCE">
       <damageDef>MutagenicArrowDamage</damageDef>
-      <speed>24</speed>
       <damageAmountBase>9</damageAmountBase>
       <armorPenetrationSharp>1.0</armorPenetrationSharp>
       <armorPenetrationBlunt>5.9</armorPenetrationBlunt>
