@@ -7,8 +7,12 @@
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<mutationMemory>EtherThrumboSnout</mutationMemory>
 		<graphics>
-			<MuzzleMale>Parts/Thrumbo/Thrumbo_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Thrumbo/Thrumbo_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Thrumbo/Thrumbo_Muzzle_Male</Male>
+					<Female>Parts/Thrumbo/Thrumbo_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 			<BirdJawOrnament>Parts/Thrumbo/Thrumbo_Headfluff</BirdJawOrnament>
 		</graphics>
 		<stagePatches>
@@ -144,9 +148,9 @@
 		<mutationMemory>EtherThrumboEar</mutationMemory>
 		<graphics>
 			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

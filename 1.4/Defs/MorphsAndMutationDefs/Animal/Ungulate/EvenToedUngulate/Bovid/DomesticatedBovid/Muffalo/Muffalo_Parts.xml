@@ -13,7 +13,7 @@
 				<stageKey>initial</stageKey>
 				<values>
 					<graphics>
-						<BirdJawOrnament>Parts/None/None</BirdJawOrnament>
+						<BirdJawOrnament></BirdJawOrnament>
 					</graphics>				
 				</values>
 			</li>
@@ -21,7 +21,7 @@
 				<stageKey>pressing</stageKey>
 				<values>
 					<graphics>
-						<BirdJawOrnament>Parts/None/None</BirdJawOrnament>
+						<BirdJawOrnament></BirdJawOrnament>
 					</graphics>				
 				</values>
 			</li>
@@ -42,9 +42,9 @@
 		<label>muffalo ear</label>
 		<graphics>
 			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
