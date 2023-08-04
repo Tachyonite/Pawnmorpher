@@ -558,7 +558,7 @@
                     <bodyAddons>
                         <li>
                             <!-- Body Tails -->
-                            <path></path>
+                            <path>Parts/None/None</path>
                             <bodyPart>TailLeg</bodyPart>
                             <inFrontOfBody>true</inFrontOfBody>
                             <layerInvert>false</layerInvert>
