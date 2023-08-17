@@ -4,8 +4,12 @@
 		<classInfluence>FennecFoxMorph</classInfluence>
 		<label>fennec fox muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/FoxFennec/FennecFox_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/FoxFennec/FennecFox_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/FoxFennec/FennecFox_Muzzle_Male</Male>
+					<Female>Parts/FoxFennec/FennecFox_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

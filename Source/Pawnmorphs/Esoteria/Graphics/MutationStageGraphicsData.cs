@@ -1,9 +1,13 @@
 ﻿// MutationGraphicsData.cs created by Iron Wolf for Pawnmorph on 08/15/2021 12:52 PM
 // last updated 08/15/2021  12:52 PM
 
+using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
+using AlienRace.ExtendedGraphics;
 using HarmonyLib;
 using JetBrains.Annotations;
+using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
 
@@ -12,7 +16,7 @@ namespace Pawnmorph.GraphicSys
 	/// <summary>
 	/// simple class containing data about a specific set of mutations graphics 
 	/// </summary>
-	public class MutationGraphicsData : ExtendedHediffGraphic
+	public class MutationStageGraphicsData : ExtendedHediffSeverityGraphic
 	{
 		/// <summary>
 		/// The anchor identifier

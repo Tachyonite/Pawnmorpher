@@ -4,8 +4,12 @@
 		<defName>EtherCougarJaw</defName>
 		<label>cougar snout</label>
 		<graphics>
-			<MuzzleMale>Parts/Cougar/Cougar_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Cougar/Cougar_Muzzle_Male</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Cougar/Cougar_Muzzle_Male</Male>
+					<Female>Parts/Cougar/Cougar_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -15,9 +19,9 @@
 		<label>cougar ear</label>
 		<graphics>
 			<LeftEar>Parts/Cougar/Cougar_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Cougar/Cougar_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

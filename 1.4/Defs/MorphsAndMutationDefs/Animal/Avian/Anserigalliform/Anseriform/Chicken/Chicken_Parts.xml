@@ -4,8 +4,12 @@
 		<classInfluence>ChookMorph</classInfluence>
 		<label>chicken beak</label>
 		<graphics>
-			<MuzzleMale>Parts/Chicken/Chicken_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Chicken/Chicken_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Female>Parts/Chicken/Chicken_Muzzle_Female</Female>
+					<Male>Parts/Chicken/Chicken_Muzzle_Male</Male>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -34,8 +38,12 @@
 		<classInfluence>ChookMorph</classInfluence>
 		<label>chicken tailfeathers</label>
 		<graphics>
-			<MaleTail>Parts/Chicken/Chicken_Tail_Male</MaleTail>
-			<FemaleTail>Parts/Chicken/Chicken_Tail_Female</FemaleTail>
+			<Tail>
+				<genderGraphics>
+					<Female>Parts/Chicken/Chicken_Tail_Female</Female>
+					<Male>Parts/Chicken/Chicken_Tail_Male</Male>
+				</genderGraphics>
+			</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

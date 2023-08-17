@@ -13,7 +13,7 @@
 		<defName>EtherIguanaTail</defName>
 		<label>iguana tail</label>
 		<graphics>
-			<Tail>Parts/None/None</Tail>
+			<Tail></Tail>
 			<BodyExtendingTail>Parts/Iguana/Iguana_Tail</BodyExtendingTail>
 		</graphics>
 		<stagePatches>

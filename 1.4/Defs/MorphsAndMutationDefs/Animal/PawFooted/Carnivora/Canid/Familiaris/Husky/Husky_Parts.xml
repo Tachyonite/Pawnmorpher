@@ -4,8 +4,12 @@
 		<defName>EtherHuskyMuzzle</defName>
 		<label>husky muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/Husky/Husky_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Husky/Husky_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Husky/Husky_Muzzle_Male</Male>
+					<Female>Parts/Husky/Husky_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -15,9 +19,9 @@
 		<label>husky ear</label>
 		<graphics>
 			<LeftEar>Parts/Husky/Husky_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Husky/Husky_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

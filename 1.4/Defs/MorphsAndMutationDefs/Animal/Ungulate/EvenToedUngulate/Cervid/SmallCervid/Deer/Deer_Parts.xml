@@ -5,8 +5,12 @@
 		<label>deer snout</label>
 		<mutationTale>GrewDeerMuzzle</mutationTale>
 		<graphics>
-			<MuzzleMale>Parts/Deer/Deer_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Deer/Deer_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Deer/Deer_Muzzle_Male</Male>
+					<Female>Parts/Deer/Deer_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -36,9 +40,9 @@
 		<label>deer ear</label>
 		<graphics>
 			<LeftEar>Parts/Deer/Deer_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Deer/Deer_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
