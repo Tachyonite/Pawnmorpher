@@ -286,6 +286,7 @@ namespace Pawnmorph.ThingComps
 
 		private void SapienceLevelChanges(Need_Control sender, Pawn pawn, SapienceLevel oldLevel, SapienceLevel currentLevel)
 		{
+			FormerHumanUtilities.InvalidateIntelligence(Pawn);
 			if (pawn.Faction?.def.isPlayer != true)
 				return;
 
