@@ -134,7 +134,6 @@
               <Bulk>8.17</Bulk>
             </statBases>
             <ammoClass>GrenadeMutagenic</ammoClass>
-            <detonateProjectile>Bullet_81mmMortarShell_TF</detonateProjectile>
             <comps>
               <!--Default values -->
               <li Class="CompProperties_Explosive">
@@ -402,6 +401,8 @@
             <explosionRadius>8.5</explosionRadius>
             <applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
             <damageAmountBase>12</damageAmountBase>
+            <suppressionFactor>3.0</suppressionFactor>
+            <dangerFactor>2.0</dangerFactor>
             <speed>100</speed>
             <explosionDamageFalloff>true</explosionDamageFalloff>
             <explosionEffect>ExtinguisherExplosion</explosionEffect>
@@ -502,6 +503,9 @@
             <postExplosionSpawnChance>1</postExplosionSpawnChance>
             <speed>12</speed>
             <screenShakeFactor>0</screenShakeFactor>
+            <suppressionFactor>3.0</suppressionFactor>
+            <dangerFactor>2.0</dangerFactor>
+            <airborneSuppressionFactor>0.25</airborneSuppressionFactor>
           </projectile>
         </value>
       </li>
