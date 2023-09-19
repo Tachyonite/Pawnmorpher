@@ -35,9 +35,9 @@
 		<graphics>
 			<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
 			<LeftEar>Parts/Monkey/Monkey_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Monkey/Monkey_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

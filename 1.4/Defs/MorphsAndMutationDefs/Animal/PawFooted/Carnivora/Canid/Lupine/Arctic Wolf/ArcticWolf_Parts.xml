@@ -4,8 +4,12 @@
 		<defName>EtherArcticWolfJaw</defName>
 		<label>arctic wolf muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/WolfArctic/Awolf_Muzzle</MuzzleMale>
-			<MuzzleFemale>Parts/WolfArctic/Awolf_Female_Muzzle</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/WolfArctic/Awolf_Muzzle</Male>
+					<Female>Parts/WolfArctic/Awolf_Female_Muzzle</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 

@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 	
 	<!-- Muzzle - Suggestion: 50% of stats for adapting -->
 	
@@ -426,6 +426,7 @@
 		<parts>
 			<li>Torso</li>
 			<li>Head</li>
+			<li>Neck</li>
 			<li>Ear</li>
 			<li>Arm</li>
 			<li>Hand</li>

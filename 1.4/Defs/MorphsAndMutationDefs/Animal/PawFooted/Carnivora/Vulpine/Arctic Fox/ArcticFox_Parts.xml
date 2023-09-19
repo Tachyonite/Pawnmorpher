@@ -4,8 +4,12 @@
 		<classInfluence>ArcticFoxMorph</classInfluence>
 		<label>arctic fox muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/FoxArctic/ArcticFox_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/FoxArctic/ArcticFox_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/FoxArctic/ArcticFox_Muzzle_Male</Male>
+					<Female>Parts/FoxArctic/ArcticFox_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 	

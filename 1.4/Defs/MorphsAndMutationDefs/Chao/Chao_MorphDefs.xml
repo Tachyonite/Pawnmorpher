@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
   <Pawnmorph.MorphDef ParentName="ChimeraMorph">
     <defName>ChaocowMorph</defName>
     <description>A human variant with a large number of random mutations. With such a mish-mash of changes there is no easy way to categorize them, but based on key features like the ability to produce morph-milk, this one can be considered a "chaocow".</description>

@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 
 	<!-- Flexible spine -->
 
@@ -96,7 +96,7 @@
 				<values>
 					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though.</description>
 					<graphics>
-						<Spines>Parts/None/None</Spines>
+						<Spines></Spines>
 					</graphics>
 				</values>
 			</li>
@@ -148,8 +148,8 @@
 				<values>
 					<description>Thick plates of bone are beginning to grow out from [PAWN_nameDef]'s chest and back.</description>
 					<graphics>
-						<Spines>Parts/None/None</Spines>
-						<SpinesBehind>Parts/None/None</SpinesBehind>
+						<Spines></Spines>
+						<SpinesBehind></SpinesBehind>
 					</graphics>
 				</values>
 			</li>

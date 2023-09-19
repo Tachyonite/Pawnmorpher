@@ -1,4 +1,4 @@
-<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutationDef.xsd">
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
 
 	<!-- Ear hole -->
 	
@@ -12,10 +12,10 @@
 			<li>Reptile</li>
 		</classInfluences>
 		<graphics>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
-			<RightEar>Parts/None/None</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-			<LeftEar>Parts/None/None</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar></RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+			<LeftEar></LeftEar>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -23,10 +23,10 @@
 				<values>
 					<description>[PAWN_nameDef]'s ear is shrinking.</description>
 					<graphics>
-						<LeftEarBehind>Parts/None/None</LeftEarBehind>
-						<RightEar>Parts/None/None</RightEar>
-						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-						<LeftEar>Parts/None/None</LeftEar>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
 					</graphics>
 				</values>
 			</li>
@@ -36,10 +36,10 @@
 					<label>missing</label>
 					<description>[PAWN_nameDef] no longer has a visible ear.</description>
 					<graphics>
-						<LeftEarBehind>Parts/None/None</LeftEarBehind>
-						<RightEar>Parts/None/None</RightEar>
-						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-						<LeftEar>Parts/None/None</LeftEar>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
 					</graphics>
 				</values>
 			</li>
@@ -48,10 +48,10 @@
 				<values>
 					<description>[PAWN_nameDef]'s ear looks more and more like an animal ear hole.</description>
 					<graphics>
-						<LeftEarBehind>Parts/None/None</LeftEarBehind>
-						<RightEar>Parts/None/None</RightEar>
-						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-						<LeftEar>Parts/None/None</LeftEar>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
 					</graphics>
 				</values>
 			</li>
@@ -60,10 +60,10 @@
 				<values>
 					<description>[PAWN_nameDef] now has a ear hole.</description>
 					<graphics>
-						<LeftEarBehind>Parts/None/None</LeftEarBehind>
-						<RightEar>Parts/None/None</RightEar>
-						<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
-						<LeftEar>Parts/None/None</LeftEar>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
 					</graphics>
 				</values>
 			</li>

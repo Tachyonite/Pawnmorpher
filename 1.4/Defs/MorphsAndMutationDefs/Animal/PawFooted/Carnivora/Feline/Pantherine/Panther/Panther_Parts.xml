@@ -4,8 +4,12 @@
 		<defName>EtherPantherJaw</defName>
 		<label>panther muzzle</label>
 		<graphics>
-			<MuzzleMale>Parts/Panther/Panther_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Panther/Panther_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Panther/Panther_Muzzle_Male</Male>
+					<Female>Parts/Panther/Panther_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -15,9 +19,9 @@
 		<label>panther ear</label>
 		<graphics>
 			<LeftEar>Parts/Panther/Panther_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Panther/Panther_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

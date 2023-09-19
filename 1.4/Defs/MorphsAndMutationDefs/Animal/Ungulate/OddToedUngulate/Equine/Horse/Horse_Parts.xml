@@ -4,8 +4,12 @@
 		<defName>EtherHorseSnout</defName>
 		<label>horse snout</label>
 		<graphics>
-			<MuzzleMale>Parts/Horse/Horse_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Horse/Horse_Muzzle_Female</MuzzleFemale>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Horse/Horse_Muzzle_Male</Male>
+					<Female>Parts/Horse/Horse_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
 
@@ -15,9 +19,9 @@
 		<label>horse ear</label>
 		<graphics>
 			<LeftEar>Parts/Horse/Horse_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Horse/Horse_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

@@ -214,7 +214,7 @@
 		<!-- <mutationTale>TODO</mutationTale>
 		<mutationMemory>TODO</mutationMemory> -->
 		<graphics>
-			<Horns>Parts/None/None</Horns>
+			<Horns></Horns>
 		</graphics>
 		<categories>
 			<li>Combo</li>

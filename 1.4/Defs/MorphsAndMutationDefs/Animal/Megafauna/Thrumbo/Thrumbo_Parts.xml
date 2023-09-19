@@ -1,5 +1,4 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
-	
 	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
 		<classInfluence>ThrumboMorph</classInfluence>
 		<defName>EtherThrumboSnout</defName>
@@ -7,9 +6,12 @@
 		<mutationTale>GrewThrumboMuzzle</mutationTale>
 		<mutationMemory>EtherThrumboSnout</mutationMemory>
 		<graphics>
-			<MuzzleMale>Parts/Thrumbo/Thrumbo_Muzzle_Male</MuzzleMale>
-			<MuzzleFemale>Parts/Thrumbo/Thrumbo_Muzzle_Female</MuzzleFemale>
-			<BirdJawOrnament>Parts/Thrumbo/Thrumbo_Headfluff</BirdJawOrnament>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Thrumbo/Thrumbo_Muzzle_Male</Male>
+					<Female>Parts/Thrumbo/Thrumbo_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
 		</graphics>
 		<stagePatches>
 			<li function="modify">
@@ -144,9 +146,9 @@
 		<mutationMemory>EtherThrumboEar</mutationMemory>
 		<graphics>
 			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
-			<LeftEarBehind>Parts/None/None</LeftEarBehind>
+			<LeftEarBehind></LeftEarBehind>
 			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
-			<RightEarBehindHead>Parts/None/None</RightEarBehindHead>
+			<RightEarBehindHead></RightEarBehindHead>
 		</graphics>
 		<stagePatches>
 			<li function="modify">

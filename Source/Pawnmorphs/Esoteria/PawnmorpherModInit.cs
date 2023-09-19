@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using AlienRace;
+using AlienRace.ExtendedGraphics;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.DebugUtils;
@@ -16,6 +17,7 @@ using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using static AlienRace.AlienPartGenerator;
 //just a typedef to shorten long type name 
 using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic;
 
@@ -84,6 +86,7 @@ namespace Pawnmorph
 				}
 
 				InjectorRecipeWorker.PatchInjectors();
+				RaceGenerator.DoHarStuff();
 			}
 			catch (Exception e)
 			{
@@ -268,9 +271,12 @@ namespace Pawnmorph
 								addon.hediffGraphics = new List<HediffGraphic>();
 
 							addon.hediffGraphics.Add(hediffGraphic);
+
 							AppendPools(hediffGraphic, addon);
 						}
 					}
+
+
 				}
 			}
 			catch (Exception e)
@@ -279,45 +285,48 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void AppendPools(HediffGraphic hediffGraphic, TaggedBodyAddon bodyAddon)
+		private static void AppendPools(HediffGraphic hediffGraphic, BodyAddon addon)
 		{
-			while (
-				ContentFinder<Texture2D>.Get(hediffGraphic.path + (hediffGraphic.variantCount == 0 ? "" : hediffGraphic.variantCount.ToString()) + "_north",
-											 false)
-			 != null)
-				hediffGraphic.variantCount++;
-			//Log.Message($"Variants found for {hediffGraphic.path}: {hediffGraphic.variantCount}");
-			if (hediffGraphic.variantCount == 0)
-				Log.Warning($"No hediff graphics found at {hediffGraphic.path} for hediff {hediffGraphic.hediff} in");
-
-			if (hediffGraphic.severity != null)
-				foreach (AlienPartGenerator.ExtendedHediffSeverityGraphic bahsg in hediffGraphic.severity)
+			Stack<IEnumerator<IExtendedGraphic>> stack = new Stack<IEnumerator<IExtendedGraphic>>();
+			AppendPools(addon, hediffGraphic, hediffGraphic);
+			stack.Push(hediffGraphic.GetSubGraphics());
+			while (stack.Count > 0)
+			{
+				IEnumerator<IExtendedGraphic> enumerator = stack.Pop();
+				while (enumerator.MoveNext())
 				{
-					while (
-						ContentFinder<Texture2D>
-						   .Get(bahsg.path + (bahsg.variantCount == 0 ? "" : bahsg.variantCount.ToString()) + "_north", false)
-					 != null)
-						bahsg.variantCount++;
-					//Log.Message($"Variants found for {bahsg.path} at severity {bahsg.severity}: {bahsg.variantCount}");
-					if (bahsg.variantCount == 0)
-						Log.Warning($"No hediff graphics found at {bahsg.path} at severity {bahsg.severity} for hediff {hediffGraphic.hediff} in ");
+					IExtendedGraphic current = enumerator.Current;
+					if (current == null)
+					{
+						break;
+					}
+					AppendPools(addon, hediffGraphic, current);
+
+					stack.Push(current.GetSubGraphics());
+					//Log.Warning($"No hediff graphics found at {hediffGraphic.path} at severity {hediffGraphic.severity} for hediff {hediffGraphic.hediff} in ");
 				}
+			}
+		}
+
+		private static void AppendPools(BodyAddon addon, HediffGraphic baseGraphic, IExtendedGraphic current)
+		{
+			while (ContentFinder<Texture2D>.Get(current.GetPath() + (current.GetVariantCount() == 0 ? "" : baseGraphic.variantCount.ToString()) + "_north",
+									 false) != null)
+			{
+				if (current.GetPathCount() == 0)
+					current.Init();
+
+				current.IncrementVariantCount();
+				addon.VariantCountMax = current.GetVariantCount();
+			}
 		}
 
 		private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
 		{
 			List<MutationGraphicsData> mainData = mutation.graphics.MakeSafe().Where(g => g.anchorID == anchorID).ToList();
 
-			List<(string path, float minSeverity)> stageData = mutationStages.Where(s => !s.graphics.NullOrEmpty())
-																			 .SelectMany(s => s.graphics
-																				.Where(g => g.anchorID == anchorID)
-																				.Select(g => (g.path, s.minSeverity)))
-																			 .ToList();
-
-			string mainPath = mainData.LastOrDefault()?.path ?? stageData.LastOrDefault().path; //get the main path 
-
-
 			//either the path in the main data or the fist severity graphic 
+			string mainPath = mainData.LastOrDefault()?.GetPath() ?? mutationStages.MakeSafe().SelectMany(x => x.graphics.MakeSafe().Select(y => y?.GetPath()))?.LastOrDefault(x => x != null); //get the main path 
 			if (mainPath == null)
 			{
 				Log.Error($"found invalid graphic data in {mutation.defName}! unable to find data for anchor \"{anchorID}\"");
@@ -325,53 +334,53 @@ namespace Pawnmorph
 			}
 
 
-			var hGraphic = new HediffGraphic
+			var hGraphic = mainData.FirstOrDefault();
+			if (hGraphic == null)
 			{
-				hediff = mutation,
-				path = mainPath
-			};
+				hGraphic = new MutationGraphicsData();
+				hGraphic.path = null;
+			}
+			hGraphic.hediff = mutation;
 
-			var severityLst =
-				new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
+			var severityLst = new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
 			for (var index = mutationStages.Count - 1; index >= 0; index--)
 			{
 				MutationStage stage = mutationStages[index];
-				//if (mainData.Count > 0 || stageData.Count > 0)
-				//{
-				//    Log.Warning($"Found multiple graphics entries for {mutation.defName}-{anchorID} ({stage.label}): {{{String.Join(", ", mainData.Select(x => x.path))}}} {{{String.Join(", ", stage.graphics?.Select(x => x.path) ?? new List<string>())}}}");
-				//}
-
-
-				string path = null;
-				if (stage.graphics != null)
+				MutationStageGraphicsData stageGraphics;
+				if (stage.graphics != null && stage.graphics.Count > 0)
 				{
-					// Hide anchor graphics from mutation layer if not defined on specific stage.
-					path = stage.graphics.LastOrDefault(s => s.anchorID == anchorID)?.path ?? "Parts/None/None";
+					// Stage has defined graphics for this stage, use that and hide all addons not explicitly defined in the stage.
+					// All or nothing.
+					stageGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
+					if (stageGraphics == null)
+					{
+						// Graphics were not defined for this anchor point.
+						stageGraphics = new MutationStageGraphicsData();
+					}
 				}
 				else
 				{
 					// If no graphics are defined on stage then default to whatever is set on mutation.
-					path = mainPath;
+					stageGraphics = new MutationStageGraphicsData();
+					stageGraphics.path = hGraphic.path;
+					stageGraphics.hediffGraphics = hGraphic.hediffGraphics;
+					stageGraphics.backstoryGraphics = hGraphic.backstoryGraphics;
+					stageGraphics.ageGraphics = hGraphic.ageGraphics;
+					stageGraphics.damageGraphics = hGraphic.damageGraphics;
+					stageGraphics.genderGraphics = hGraphic.genderGraphics;
+					stageGraphics.traitGraphics = hGraphic.traitGraphics;
+					stageGraphics.bodytypeGraphics = hGraphic.bodytypeGraphics;
+					stageGraphics.headtypeGraphics = hGraphic.headtypeGraphics;
+					stageGraphics.geneGraphics = hGraphic.geneGraphics;
+					stageGraphics.raceGraphics = hGraphic.raceGraphics;
 				}
 
-				//Log.Warning($"Selected {path} for stage {stage.label}({stage.minSeverity})");
-
-				// fill the severity graphics if they are present in descending order
-				if (string.IsNullOrWhiteSpace(path) == false)
-					severityLst.Add(new AlienPartGenerator.ExtendedHediffSeverityGraphic
-					{
-						path = path,
-						severity = stage.minSeverity
-					});
+				stageGraphics.severity = stage.minSeverity;
+				severityLst.Add(stageGraphics);
 			}
 
 			hGraphic.severity = severityLst;
 			return hGraphic;
-		}
-
-		private static void SetupInjectors()
-		{
-			throw new NotImplementedException();
 		}
 
 		private static void CheckForModConflicts()
