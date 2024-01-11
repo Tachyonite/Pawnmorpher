@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -40,6 +41,10 @@ namespace Pawnmorph
 
 			Log.Message($"initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
 
+#if DEBUG
+			Stopwatch stopwatch = Stopwatch.StartNew();
+			DateTime startTime = DateTime.Now;
+#endif
 
 
 			try
@@ -92,6 +97,10 @@ namespace Pawnmorph
 			{
 				throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}", e);
 			}
+
+#if DEBUG
+			Log.Message($"PM: Loading finished: {stopwatch.ElapsedMilliseconds}, {startTime.TimeOfDay} to {DateTime.Now.TimeOfDay}");
+#endif
 		}
 
 		private static void AddComponents()
