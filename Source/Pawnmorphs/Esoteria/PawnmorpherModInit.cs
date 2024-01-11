@@ -703,14 +703,16 @@ namespace Pawnmorph
 		/// <summary>called when the settings are changed</summary>
 		public static void NotifySettingsChanged()
 		{
-			PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
-			IncidentDef mutagenIncident = IncidentDef.Named("MutagenicShipPartCrash");
+			PawnmorpherSettings settings = PawnmorpherMod.Settings;
 
-
-			if (!settings.enableMutagenShipPart)
-				mutagenIncident.baseChance = 0.0f;
-			else
-				mutagenIncident.baseChance = 2.0f;
+			IncidentDef mutagenIncident = PMIncidentDefOf.MutagenicShipPartCrash;
+			if (mutagenIncident != null)
+			{
+				if (!settings.enableMutagenShipPart)
+					mutagenIncident.baseChance = 0.0f;
+				else
+					mutagenIncident.baseChance = 2.0f;
+			}
 
 			if (!settings.enableFallout)
 				PMIncidentDefOf.MutagenicFallout.baseChance = 0;
