@@ -311,6 +311,8 @@ namespace Pawnmorph.Chambers
 				comp.SpeciesFilter = (x) => x.GetModExtension<ChamberAnimalTfController>()?.CanInitiateTransformation(pawn, x, this) ?? true;
 		}
 
+		// ThingDefs with classes derived from MutaChamber
+		private static IList<ThingDef> chamberDefs;
 
 		/// <summary>
 		///     Finds the Mutachamber casket for.
@@ -323,37 +325,37 @@ namespace Pawnmorph.Chambers
 		public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false,
 													 ChamberUse? use = null)
 		{
-			IEnumerable<ThingDef> enumerable = from def in DefDatabase<ThingDef>.AllDefs
-											   where typeof(MutaChamber).IsAssignableFrom(def.thingClass)
-											   select def;
-			foreach (ThingDef item in enumerable)
+			if (chamberDefs == null)
+				chamberDefs = DefDatabase<ThingDef>.AllDefs.Where(x => typeof(MutaChamber).IsAssignableFrom(x.thingClass)).ToList();
+
+
+			bool Validator(Thing x)
 			{
-				bool Validator(Thing x)
+				var mutaChamber = (MutaChamber)x;
+				if ((use == null || use == mutaChamber.CurrentUse) 
+					&& mutaChamber.CanAcceptPawns
+					&& mutaChamber.Flickable.SwitchIsOn)
 				{
-					int result;
-					var mutaChamber = (MutaChamber)x;
-					if (mutaChamber.CanAcceptPawns
-					 && mutaChamber.Flickable.SwitchIsOn
-					 && (use == null || use == mutaChamber.CurrentUse))
-					{
-						Pawn p2 = traveler;
-						LocalTargetInfo target = x;
-						bool ignoreOtherReservations2 = ignoreOtherReservations;
-						result = p2.CanReserve(target, 1, -1, null, ignoreOtherReservations2) ? 1 : 0;
-					}
-					else
-					{
-						result = 0;
-					}
-
-					return result != 0;
+					bool ignoreOtherReservations2 = ignoreOtherReservations;
+					return traveler.CanReserve(x, 1, -1, null, ignoreOtherReservations2);
 				}
+				return false;
+			}
 
-				var building_MutagenChamber =
-					(MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(item),
+			for (int i = 0; i < chamberDefs.Count; i++)
+			{
+				ThingDef def = chamberDefs[i];
+
+				var chambers = p.Map.listerThings.ThingsOfDef(def);
+				if (chambers.Any() == false)
+					continue;
+
+				var building_MutagenChamber = (MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(def),
 																   PathEndMode.InteractionCell, TraverseParms.For(traveler),
 																   9999f, Validator);
-				if (building_MutagenChamber != null) return building_MutagenChamber;
+
+				if (building_MutagenChamber != null) 
+					return building_MutagenChamber;
 			}
 
 			return null;

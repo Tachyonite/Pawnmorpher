@@ -24,6 +24,8 @@ namespace Pawnmorph
 		[HarmonyPatch("AddHumanlikeOrders")]
 		internal static class AddHumanlikeOrdersPatch
 		{
+			private static ValueTuple<Pawn, bool> _pawnCanTransformCache = (null, false);
+
 			[HarmonyPrefix]
 			private static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
 			{
@@ -33,14 +35,18 @@ namespace Pawnmorph
 						LocalTargetInfo localTargetInfo4 = localTargetInfo3;
 						var victim = (Pawn)localTargetInfo4.Thing;
 						MutagenDef mutagen = MutagenDefOf.MergeMutagen;
-						if (mutagen.CanTransform(victim)
-						 && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true))
+
+						// As long as the target remains unchanged, then cache mutability state.
+						if (_pawnCanTransformCache.Item1 != victim)
+							_pawnCanTransformCache = (victim, mutagen.CanTransform(victim) 
+								&& pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true));
+
+						if (_pawnCanTransformCache.Item2)
 						{
 							if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Tf) != null)
 							{
-								string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-								JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-								Action action3 = delegate
+								string label = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
+								Action action = delegate
 								{
 									var building_chamber =
 										MutaChamber.FindMutaChamberFor(victim, pawn);
@@ -53,25 +59,20 @@ namespace Pawnmorph
 										return;
 									}
 
-									var job = new Job(jDef, victim, building_chamber);
+									var job = new Job(Mutagen_JobDefOf.CarryToMutagenChamber, victim, building_chamber);
 									job.count = 1;
 									pawn.jobs.TryTakeOrderedJob(job);
 								};
-								string label = text4;
-								Action action2 = action3;
-								Pawn revalidateClickTarget = victim;
-								opts.Add(FloatMenuUtility
-											.DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
+								opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, victim),
 																	 pawn, victim));
 							}
+
 							if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Merge) != null)
 							{
-								string text4 = "PMCarryToChamberMerge".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-								JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-								Action action3 = delegate
+								string label = "PMCarryToChamberMerge".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
+								Action action = delegate
 								{
-									var building_chamber =
-										MutaChamber.FindMutaChamberFor(victim, pawn);
+									var building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn);
 									if (building_chamber == null)
 										building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
 									if (building_chamber == null)
@@ -81,15 +82,11 @@ namespace Pawnmorph
 										return;
 									}
 
-									var job = new Job(jDef, victim, building_chamber);
+									var job = new Job(Mutagen_JobDefOf.CarryToMutagenChamber, victim, building_chamber);
 									job.count = 1;
 									pawn.jobs.TryTakeOrderedJob(job);
 								};
-								string label = text4;
-								Action action2 = action3;
-								Pawn revalidateClickTarget = victim;
-								opts.Add(FloatMenuUtility
-											.DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
+								opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, victim),
 																	 pawn, victim));
 							}
 						}
