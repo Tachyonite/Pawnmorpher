@@ -322,8 +322,7 @@ namespace Pawnmorph.Chambers
 		/// <param name="ignoreOtherReservations">if set to <c>true</c> [ignore other reservations].</param>
 		/// <param name="use">The use.</param>
 		/// <returns></returns>
-		public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false,
-													 ChamberUse? use = null)
+		public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false, ValueTuple<ChamberUse, ChamberUse>? use = null)
 		{
 			if (chamberDefs == null)
 				chamberDefs = DefDatabase<ThingDef>.AllDefs.Where(x => typeof(MutaChamber).IsAssignableFrom(x.thingClass)).ToList();
@@ -332,22 +331,37 @@ namespace Pawnmorph.Chambers
 			bool Validator(Thing x)
 			{
 				var mutaChamber = (MutaChamber)x;
-				if ((use == null || use == mutaChamber.CurrentUse) 
+				ChamberUse currentUse = mutaChamber.CurrentUse;
+				if ((use == null || use.Value.Item1 == currentUse || use.Value.Item2 == currentUse) 
 					&& mutaChamber.CanAcceptPawns
 					&& mutaChamber.Flickable.SwitchIsOn)
 				{
-					bool ignoreOtherReservations2 = ignoreOtherReservations;
-					return traveler.CanReserve(x, 1, -1, null, ignoreOtherReservations2);
+					return traveler.CanReserve(x, 1, -1, null, ignoreOtherReservations);
 				}
 				return false;
 			}
 
+			// For each type of chamber defs.
 			for (int i = 0; i < chamberDefs.Count; i++)
 			{
 				ThingDef def = chamberDefs[i];
 
 				var chambers = p.Map.listerThings.ThingsOfDef(def);
-				if (chambers.Any() == false)
+				int chambersCount = chambers.Count;
+				if (chambersCount == 0)
+					continue;
+
+				bool anyTargets = false;
+				for (int chamberIndex = chambers.Count - 1; chamberIndex >= 0; chamberIndex--)
+				{
+					// Check if any chambers are available before doing pathing.
+					if (Validator(chambers[chamberIndex]))
+					{
+						anyTargets = true;
+						break;
+					}
+				}
+				if (anyTargets == false)
 					continue;
 
 				var building_MutagenChamber = (MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(def),
