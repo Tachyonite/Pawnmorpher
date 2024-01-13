@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -20,7 +21,6 @@ using Pawnmorph.Thoughts;
 using Pawnmorph.Utilities;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine.SocialPlatforms;
 using Verse;
 using Verse.AI;
 
@@ -46,6 +46,10 @@ namespace Pawnmorph
 
 		static PawnmorphPatches()
 		{
+#if DEBUG
+			Stopwatch stopwatch = Stopwatch.StartNew();
+#endif
+
 
 			_animalTabWorkerMethod =
 				typeof(PawnmorphPatches).GetMethod(nameof(AnimalTabWorkerMethod), BindingFlags.Static | BindingFlags.NonPublic);
@@ -123,7 +127,7 @@ namespace Pawnmorph
 			}
 			catch (Exception e)
 			{
-				Log.Error($"Pawnmorpher cannot preform harmony patches! caught {e.GetType().Name}\n{e}");
+				Log.Error($"Pawnmorpher cannot perform harmony patches! caught {e.GetType().Name}\n{e}");
 			}
 
 			try
@@ -132,12 +136,17 @@ namespace Pawnmorph
 			}
 			catch (Exception e)
 			{
-				Log.Error($"Pawnmorpher cannot preform debugging patches! caught {e.GetType().Name}\n{e}");
+				Log.Error($"Pawnmorpher cannot perform debugging patches! caught {e.GetType().Name}\n{e}");
 			}
 
 			ConversionUtilityPatches.PreformPatches(harmonyInstance);
 			ThoughtWorkerPatches.DoPatches(harmonyInstance);
 			InteractionPatches.PatchDelegateMethods(harmonyInstance);
+
+#if DEBUG
+			stopwatch.Stop();
+			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Harmony patching finished in {stopwatch.ElapsedMilliseconds}ms");
+#endif
 		}
 
 		private static void PatchMods([NotNull] Harmony harmonyInstance)

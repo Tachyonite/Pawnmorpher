@@ -39,11 +39,10 @@ namespace Pawnmorph
 		static PawnmorpherModInit() // The one true constructor.
 		{
 
-			Log.Message($"initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
+			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
 
 #if DEBUG
 			Stopwatch stopwatch = Stopwatch.StartNew();
-			DateTime startTime = DateTime.Now;
 #endif
 
 
@@ -99,7 +98,8 @@ namespace Pawnmorph
 			}
 
 #if DEBUG
-			Log.Message($"PM: Loading finished: {stopwatch.ElapsedMilliseconds}, {startTime.TimeOfDay} to {DateTime.Now.TimeOfDay}");
+			stopwatch.Stop();
+			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Loading finished in {stopwatch.ElapsedMilliseconds}ms");
 #endif
 		}
 
