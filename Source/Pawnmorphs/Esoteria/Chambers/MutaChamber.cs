@@ -311,6 +311,8 @@ namespace Pawnmorph.Chambers
 				comp.SpeciesFilter = (x) => x.GetModExtension<ChamberAnimalTfController>()?.CanInitiateTransformation(pawn, x, this) ?? true;
 		}
 
+		// ThingDefs with classes derived from MutaChamber
+		private static IList<ThingDef> chamberDefs;
 
 		/// <summary>
 		///     Finds the Mutachamber casket for.
@@ -320,40 +322,54 @@ namespace Pawnmorph.Chambers
 		/// <param name="ignoreOtherReservations">if set to <c>true</c> [ignore other reservations].</param>
 		/// <param name="use">The use.</param>
 		/// <returns></returns>
-		public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false,
-													 ChamberUse? use = null)
+		public static MutaChamber FindMutaChamberFor(Pawn p, Pawn traveler, bool ignoreOtherReservations = false, ValueTuple<ChamberUse, ChamberUse>? use = null)
 		{
-			IEnumerable<ThingDef> enumerable = from def in DefDatabase<ThingDef>.AllDefs
-											   where typeof(MutaChamber).IsAssignableFrom(def.thingClass)
-											   select def;
-			foreach (ThingDef item in enumerable)
+			if (chamberDefs == null)
+				chamberDefs = DefDatabase<ThingDef>.AllDefs.Where(x => typeof(MutaChamber).IsAssignableFrom(x.thingClass)).ToList();
+
+
+			bool Validator(Thing x)
 			{
-				bool Validator(Thing x)
+				var mutaChamber = (MutaChamber)x;
+				ChamberUse currentUse = mutaChamber.CurrentUse;
+				if ((use == null || use.Value.Item1 == currentUse || use.Value.Item2 == currentUse) 
+					&& mutaChamber.CanAcceptPawns
+					&& mutaChamber.Flickable.SwitchIsOn)
 				{
-					int result;
-					var mutaChamber = (MutaChamber)x;
-					if (mutaChamber.CanAcceptPawns
-					 && mutaChamber.Flickable.SwitchIsOn
-					 && (use == null || use == mutaChamber.CurrentUse))
-					{
-						Pawn p2 = traveler;
-						LocalTargetInfo target = x;
-						bool ignoreOtherReservations2 = ignoreOtherReservations;
-						result = p2.CanReserve(target, 1, -1, null, ignoreOtherReservations2) ? 1 : 0;
-					}
-					else
-					{
-						result = 0;
-					}
-
-					return result != 0;
+					return traveler.CanReserve(x, 1, -1, null, ignoreOtherReservations);
 				}
+				return false;
+			}
 
-				var building_MutagenChamber =
-					(MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(item),
+			// For each type of chamber defs.
+			for (int i = 0; i < chamberDefs.Count; i++)
+			{
+				ThingDef def = chamberDefs[i];
+
+				var chambers = p.Map.listerThings.ThingsOfDef(def);
+				int chambersCount = chambers.Count;
+				if (chambersCount == 0)
+					continue;
+
+				bool anyTargets = false;
+				for (int chamberIndex = chambers.Count - 1; chamberIndex >= 0; chamberIndex--)
+				{
+					// Check if any chambers are available before doing pathing.
+					if (Validator(chambers[chamberIndex]))
+					{
+						anyTargets = true;
+						break;
+					}
+				}
+				if (anyTargets == false)
+					continue;
+
+				var building_MutagenChamber = (MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(def),
 																   PathEndMode.InteractionCell, TraverseParms.For(traveler),
 																   9999f, Validator);
-				if (building_MutagenChamber != null) return building_MutagenChamber;
+
+				if (building_MutagenChamber != null) 
+					return building_MutagenChamber;
 			}
 
 			return null;

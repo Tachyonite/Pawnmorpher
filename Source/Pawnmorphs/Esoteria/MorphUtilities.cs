@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Hybrids;
+using Pawnmorph.RecipeWorkers;
 using Pawnmorph.Utilities;
 using RimWorld;
 using Verse;
@@ -69,6 +70,12 @@ namespace Pawnmorph
 		{
 			foreach (MorphDef morph in DefDatabase<MorphDef>.AllDefsListForReading)
 			{
+				if (morph.race == null)
+				{
+					Log.Error($"{morph.defName} has null animal assigned.");
+					continue;
+				}
+
 				//first check the race 
 				if (!_associatedAnimalsLookup.TryGetValue(morph.race, out var lst))
 				{
@@ -81,6 +88,12 @@ namespace Pawnmorph
 				//now the associated animals 
 				foreach (ThingDef aAnimal in morph.associatedAnimals.MakeSafe())
 				{
+					if (aAnimal == null)
+					{
+						Log.Error($"{morph.defName} has associated null animal.");
+						continue;
+					}
+
 					if (!_associatedAnimalsLookup.TryGetValue(aAnimal, out lst))
 					{
 						lst = new List<MorphDef>();

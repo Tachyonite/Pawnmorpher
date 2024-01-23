@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -38,8 +39,11 @@ namespace Pawnmorph
 		static PawnmorpherModInit() // The one true constructor.
 		{
 
-			Log.Message($"initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
+			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
 
+#if DEBUG
+			Stopwatch stopwatch = Stopwatch.StartNew();
+#endif
 
 
 			try
@@ -92,6 +96,11 @@ namespace Pawnmorph
 			{
 				throw new ModInitializationException($"while initializing Pawnmorpher caught exception {e.GetType().Name}", e);
 			}
+
+#if DEBUG
+			stopwatch.Stop();
+			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Loading finished in {stopwatch.ElapsedMilliseconds}ms");
+#endif
 		}
 
 		private static void AddComponents()
@@ -694,14 +703,16 @@ namespace Pawnmorph
 		/// <summary>called when the settings are changed</summary>
 		public static void NotifySettingsChanged()
 		{
-			PawnmorpherSettings settings = LoadedModManager.GetMod<PawnmorpherMod>().GetSettings<PawnmorpherSettings>();
-			IncidentDef mutagenIncident = IncidentDef.Named("MutagenicShipPartCrash");
+			PawnmorpherSettings settings = PawnmorpherMod.Settings;
 
-
-			if (!settings.enableMutagenShipPart)
-				mutagenIncident.baseChance = 0.0f;
-			else
-				mutagenIncident.baseChance = 2.0f;
+			IncidentDef mutagenIncident = PMIncidentDefOf.MutagenicShipPartCrash;
+			if (mutagenIncident != null)
+			{
+				if (!settings.enableMutagenShipPart)
+					mutagenIncident.baseChance = 0.0f;
+				else
+					mutagenIncident.baseChance = 2.0f;
+			}
 
 			if (!settings.enableFallout)
 				PMIncidentDefOf.MutagenicFallout.baseChance = 0;
