@@ -37,8 +37,6 @@ namespace Pawnmorph.Hybrids
 		public RaceRestrictionSettings restrictionSettings;
 		/// <summary>The graphics settings</summary>
 		public GraphicsSettings graphicsSettings;
-		/// <summary>The trait settings</summary>
-		public TraitSettings traitSettings;
 
 		/// <summary>
 		/// The explicit hybrid race
@@ -250,21 +248,6 @@ namespace Pawnmorph.Hybrids
 		{
 			/// <summary>The food overrides</summary>
 			public List<FoodCategoryOverride> foodOverrides = new List<FoodCategoryOverride>();
-		}
-
-		//should this be deprecated?        
-		/// <summary>
-		/// obsolete
-		/// </summary>
-		[Obsolete]
-		public class TraitSettings
-		{
-			/// <summary>
-			/// 
-			/// </summary>
-			//should this be deprecated? 
-			public List<AlienChanceEntry<TraitDef>> forcedTraits;
-			//public List<string> disallowedTraits; removing traits not supported right now, rimworld doesn't like it when you remove them  
 		}
 
 		/// <summary>

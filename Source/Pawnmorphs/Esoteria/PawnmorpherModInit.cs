@@ -496,10 +496,8 @@ namespace Pawnmorph
 
 			foreach (AlienPartGenerator.OffsetNamed hDefaultOffset in hSettings.offsetDefaults)
 			{
-				if (aSettings.offsetDefaults.All(a => a.name != hDefaultOffset.name))
-				{
+				if (aSettings.offsetDefaults.Any(a => a.name != hDefaultOffset.name))
 					aSettings.offsetDefaults.Add(hDefaultOffset);
-				}
 			}
 
 		}
