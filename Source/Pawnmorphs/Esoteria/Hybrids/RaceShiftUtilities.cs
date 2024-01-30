@@ -678,10 +678,10 @@ namespace Pawnmorph.Hybrids
 
 
 			var traitsToAdd = allAlienTraits;
-			foreach (AlienChanceEntry<TraitDef> alienTraitEntry in traitsToAdd)
+			foreach (AlienChanceEntry<TraitWithDegree> alienTraitEntry in traitsToAdd)
 			{
-				var def = alienTraitEntry.defName;
-				if (traitSet.HasTrait(def)) continue; //don't add traits that are already added 
+				var trait = alienTraitEntry.defName;
+				if (traitSet.HasTrait(trait.def)) continue; //don't add traits that are already added 
 
 				var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);
 
@@ -697,9 +697,9 @@ namespace Pawnmorph.Hybrids
 
 				if (add)
 				{
-					var degree = def.DataAtDegree(alienTraitEntry.degree);
+					var degree = trait.def.DataAtDegree(trait.degree);
 
-					traitSet.GainTrait(new Trait(def, alienTraitEntry.degree, true));
+					traitSet.GainTrait(new Trait(trait.def, trait.degree, true));
 					if (degree.skillGains != null)
 						UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually
 				}

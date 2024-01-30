@@ -294,13 +294,10 @@ namespace Pawnmorph.Hybrids
 		/// <returns></returns>
 		private static GeneralSettings GenerateHybridGeneralSettings(GeneralSettings human, MorphDef morph, ThingDef_AlienRace impliedRace)
 		{
-			var traitSettings = morph.raceSettings.traitSettings;
 			return new GeneralSettings
 			{
 				alienPartGenerator = GenerateHybridGenerator(human.alienPartGenerator, morph, impliedRace),
-				humanRecipeImport = true,
-				forcedRaceTraitEntries = traitSettings?.forcedTraits
-				// Black list is not currently supported, Rimworld doesn't like it when you remove traits.
+				humanRecipeImport = true
 			};
 		}
 
@@ -310,10 +307,8 @@ namespace Pawnmorph.Hybrids
 			{
 				bodyTypes = human.bodyTypes.MakeSafe().ToList(),
 				headTypes = human.headTypes.MakeSafe().ToList(),
-				offsetDefaults = human.offsetDefaults.MakeSafe().ToList(),
 				headOffset = human.headOffset,
 				headOffsetSpecific = human.headOffsetSpecific,
-				headOffsetDirectional = human.headOffsetDirectional,
 				bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
 				colorChannels = human.colorChannels,
 				alienProps = impliedRace
@@ -497,7 +492,7 @@ namespace Pawnmorph.Hybrids
 			GeneralSettings generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace);
 			return new ThingDef_AlienRace.AlienSettings
 			{
-				generalSettings = GenerateHybridGeneralSettings(human.generalSettings, morph, impliedRace),
+				generalSettings = generalSettings,
 				graphicPaths = GenerateGraphicPaths(human.graphicPaths, morph, generalSettings),
 				styleSettings = human.styleSettings,
 				raceRestriction = GenerateHybridRestrictionSettings(human.raceRestriction, morph),
@@ -652,7 +647,14 @@ namespace Pawnmorph.Hybrids
 		{
 			foreach (ThingDef_AlienRace race in _raceLookupTable.Keys)
 			{
-				DoHarStuff(race);
+				try
+				{
+					DoHarStuff(race);
+				}
+				catch (Exception e)
+				{
+					Log.Error($"[Pawnmorpher] Failed to properly add {race.defName} to HAR.\n" + e);
+				}
 			}
 		}
 
@@ -743,7 +745,6 @@ namespace Pawnmorph.Hybrids
 				}
 				ThingCategoryDefOf.CorpsesHumanlike.ResolveReferences();
 			}
-			ar.alienRace.generalSettings.alienPartGenerator.GenerateMeshsAndMeshPools();
 			if (ar.alienRace.generalSettings.humanRecipeImport && ar != ThingDefOf.Human)
 			{
 				(ar.recipes ?? (ar.recipes = new List<RecipeDef>())).AddRange(ThingDefOf.Human.recipes.Where((RecipeDef rd) => !rd.targetsBodyPart || rd.appliedOnFixedBodyParts.NullOrEmpty() || rd.appliedOnFixedBodyParts.Any((BodyPartDef bpd) => ar.race.body.AllParts.Any((BodyPartRecord bpr) => bpr.def == bpd))));
