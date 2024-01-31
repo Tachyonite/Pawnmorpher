@@ -19,8 +19,12 @@ namespace Pawnmorph.HPatches
 			GraphicsUpdaterComp graphicsComp = ___pawn.TryGetComp<GraphicsUpdaterComp>();
 			if (graphicsComp != null)
 			{
-				graphicsComp.GeneOverrideColor = ___pawn.story.skinColorOverride;
-				graphicsComp.RefreshGraphics();
+				UnityEngine.Color? currentColor = ___pawn.story.skinColorOverride;
+				if (currentColor != graphicsComp.GeneOverrideColor)
+				{
+					graphicsComp.GeneOverrideColor = currentColor;
+					graphicsComp.RefreshGraphics();
+				}
 			}
 		}
 

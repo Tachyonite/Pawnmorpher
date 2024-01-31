@@ -29,18 +29,24 @@ namespace Pawnmorph.HPatches
 		static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
 		{
 			var hediffs = __instance.health?.hediffSet?.hediffs;
-			if (hediffs == null) return;
+			if (hediffs == null) 
+				return;
 
-			foreach (Hediff hediff in hediffs)
+			for (int i = hediffs.Count - 1; i >= 0; i--)
 			{
+				Hediff hediff = hediffs[i];
 				if (hediff is IWorkModifier wM)
 				{
 					__result |= ~wM.AllowedWorkTags;
 				}
 				else
 				{
-					foreach (HediffStage hediffStage in hediff.def.stages.MakeSafe())
+					if (hediff.def?.stages == null)
+						continue;
+
+					for (int stageIndex = hediff.def.stages.Count - 1; stageIndex >= 0; stageIndex--)
 					{
+						HediffStage hediffStage = hediff.def.stages[stageIndex];
 						if (hediffStage is IWorkModifier sWM)
 						{
 							__result |= ~sWM.AllowedWorkTags;

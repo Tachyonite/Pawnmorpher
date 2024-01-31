@@ -26,8 +26,9 @@ namespace Pawnmorph.ThinkNodes
 		/// <returns></returns>
 		protected override bool Satisfied(Pawn pawn)
 		{
-			var saLevel = pawn.GetQuantizedSapienceLevel();
-			if (saLevel == null) return false;
+			SapienceLevel? saLevel = pawn?.GetQuantizedSapienceLevel();
+			if (saLevel == null)
+				saLevel = SapienceLevel.PermanentlyFeral;
 			return filter.PassesFilter(saLevel.Value);
 		}
 	}
