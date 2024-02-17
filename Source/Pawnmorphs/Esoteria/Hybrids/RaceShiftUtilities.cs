@@ -224,7 +224,6 @@ namespace Pawnmorph.Hybrids
 			if (map != null)
 				RegionListersUpdater.RegisterInRegions(pawn, map);
 
-			map?.mapPawns.UpdateRegistryForPawn(pawn);
 
 			//add the group hediff if applicable 
 			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
@@ -372,6 +371,7 @@ namespace Pawnmorph.Hybrids
 			{
 				raceChangeEventReceiver.OnRaceChange(oldRace);
 			}
+			map?.mapPawns.UpdateRegistryForPawn(pawn);
 		}
 
 		private static void HandleRaceRestrictions(Pawn pawn, ThingDef race)
