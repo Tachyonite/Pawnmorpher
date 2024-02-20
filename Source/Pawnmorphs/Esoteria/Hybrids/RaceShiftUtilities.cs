@@ -256,6 +256,25 @@ namespace Pawnmorph.Hybrids
 			if (graphicsComp?.Scanned == true)
 				graphicsComp.RestoreGraphics();
 
+
+			// Convert age
+			try
+			{
+				// If the new race has a significant difference in number of life stages, CurLifeStage will be null, and Notify_LifeStageStarted will throw an exception.
+				// Circumvented by temporarily changing the program state to Entry, which will prevent the game from trying to call Notify_LifeStageStarted.
+				if (pawn.ageTracker.CurLifeStage == null)
+					Current.ProgramState = ProgramState.Entry;
+
+				float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
+				pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
+
+				Current.ProgramState = ProgramState.Playing;
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while converting age of pawn {pawn.LabelCap}: {e}");
+			}
+
 			// Update racial styles
 			try
 			{
@@ -265,18 +284,6 @@ namespace Pawnmorph.Hybrids
 			{
 				Log.Error($"Error while updating styles for {pawn.LabelCap}: {e}");
 			}
-
-			// Convert age
-			try
-			{
-				float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
-				pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
-			}
-			catch (Exception e)
-			{
-				Log.Error($"Error while converting age of pawn {pawn.LabelCap}: {e}");
-			}
-
 
 
 			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
