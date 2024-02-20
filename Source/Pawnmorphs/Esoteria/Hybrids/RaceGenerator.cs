@@ -504,9 +504,9 @@ namespace Pawnmorph.Hybrids
 		private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph, GeneralSettings generalSettings)
 		{
 			GraphicPaths temp = new GraphicPaths();
-
+			
 			temp.head.headtypeGraphics = new List<AlienPartGenerator.ExtendedHeadtypeGraphic>();
-			foreach (HeadTypeDef item2 in generalSettings.alienPartGenerator.HeadTypes)
+			foreach (HeadTypeDef item2 in DefDatabase<HeadTypeDef>.AllDefsListForReading)
 			{
 				temp.head.headtypeGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
 				{
@@ -514,8 +514,6 @@ namespace Pawnmorph.Hybrids
 					path = item2.graphicPath,
 				});
 			}
-
-
 			return temp;
 		}
 
