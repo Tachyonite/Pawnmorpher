@@ -704,9 +704,23 @@ namespace Pawnmorph.Hybrids
 
 				if (add)
 				{
-					var degree = trait.def.DataAtDegree(trait.degree);
+					int traitDegree = trait.degree;
 
-					traitSet.GainTrait(new Trait(trait.def, trait.degree, true));
+					// Handle legacy mods.
+#pragma warning disable CS0618 // Type or member is obsolete
+					if (traitDegree == 0)
+						traitDegree = alienTraitEntry.degree;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+					// If trait has degrees and the degree is not valid, then get degree of first trait entry.
+					if (trait.def.degreeDatas.Count > 0 && trait.def.degreeDatas.Any(x => x.degree == traitDegree) == false)
+					{
+						traitDegree = trait.def.degreeDatas[0].degree;
+					}
+
+					traitSet.GainTrait(new Trait(trait.def, traitDegree, true));
+
+					var degree = trait.def.DataAtDegree(traitDegree);
 					if (degree.skillGains != null)
 						UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually
 				}
