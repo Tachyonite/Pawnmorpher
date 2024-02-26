@@ -23,6 +23,8 @@ namespace Pawnmorph
 		FilterTreeBox _treeBox;
 		Vector2 _sliderScrollPosition;
 
+		public static PawnmorphGameComp WorldComp;
+
 		/// <summary>
 		/// A convenience property to get the settings statically
 		/// </summary>

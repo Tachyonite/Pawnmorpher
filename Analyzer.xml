@@ -1,0 +1,17 @@
+<Analyzer>
+    <Pawnmorpher>
+        <Methods>
+            <li>Pawnmorph.FormerHumanUtilities:GetIntelligence</li>
+            <li>Pawnmorph.FormerHumanUtilities:InvalidateIntelligence</li>
+            <li>Pawnmorph.FormerHumanUtilities:IsFormerHuman</li>
+            <li>Pawnmorph.Abilities.MutationAbility:Tick</li>
+            <li>Pawnmorph.Hediff_AddedMutation:Tick</li>
+            <li>Pawnmorph.Hediff_AddedMutation:PostTick</li>
+            <li>Pawnmorph.Hediffs.Comp_MutationSeverityAdjust:CompPostTick</li>
+            <li>Pawnmorph.Hediffs.SpreadingMutationComp:CompPostTick</li>
+            <li>Pawnmorph.AspectTracker:CompTick</li>
+            <li>Pawnmorph.Utilities.StatsUtility:GetStat</li>
+            <li>Pawnmorph.PawnmorphGameComp:WorldComponentTick</li>
+        </Methods>
+    </Pawnmorpher>
+</Analyzer>

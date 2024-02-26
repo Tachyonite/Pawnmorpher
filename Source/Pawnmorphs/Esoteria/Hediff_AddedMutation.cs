@@ -36,8 +36,10 @@ namespace Pawnmorph
 		[NotNull] private MutationCauses _causes = new MutationCauses();
 
 		private Comp_MutationSeverityAdjust _sevAdjComp;
+		private SpreadingMutationComp _spreadingMutationComp;
 
 		private bool _waitingForUpdate;
+		private bool _tickComponents = true;
 
 		/// <summary>
 		/// Constructor
@@ -50,7 +52,6 @@ namespace Pawnmorph
 		public override void PostMake()
 		{
 			base.PostMake();
-			TickBase = Def?.RunBaseLogic ?? false;
 		}
 
 		/// <summary>
@@ -76,6 +77,21 @@ namespace Pawnmorph
 
 				return _mDef;
 			}
+		}
+
+		private void Initialize()
+		{
+			TickBase = Def.RunBaseLogic || CurrentMutationStage?.RunBaseLogic == true;
+			//TODO This should be refactored eventually. Possibly by moving Severity Adjust over to CompBase and then adding a "Requires Ticking" property.
+			_tickComponents = comps.Any( x => x is SpreadingMutationComp == false 
+										&& x is Comp_MutationSeverityAdjust == false
+										&& x is RemoveFromPartComp == false);
+			_sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
+			_spreadingMutationComp = this.TryGetComp<SpreadingMutationComp>();
+			PawnmorpherMod.WorldComp.RegisterMutation(this);
+
+			if (_tickComponents)
+				Log.Warning("Ticking comps: " + string.Join(", ", comps.Select(x => x.GetType().Name)));
 		}
 
 		/// <summary>
@@ -214,9 +230,19 @@ namespace Pawnmorph
 		{
 			get
 			{
-				if (_sevAdjComp == null) _sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
-
 				return _sevAdjComp;
+			}
+		}
+
+		/// <summary>
+		/// Gets the spreading mutation comp if any.
+		/// </summary>
+		[CanBeNull]
+		public SpreadingMutationComp SpreadingMutation
+		{
+			get
+			{
+				return _spreadingMutationComp;
 			}
 		}
 
@@ -355,7 +381,7 @@ namespace Pawnmorph
 					stage.OnLoad(this);
 
 
-				TickBase = Def.RunBaseLogic || stage?.RunBaseLogic == true;
+				Initialize();
 			}
 
 		}
@@ -374,6 +400,7 @@ namespace Pawnmorph
 		// After the hediff has been applied.
 		{
 			base.PostAdd(dinfo); // Do the inherited method.
+			Initialize();
 			if (PawnGenerator.IsBeingGenerated(pawn) || !pawn.Spawned
 			) //if the pawn is still being generated do not update graphics until it's done 
 			{
@@ -395,6 +422,7 @@ namespace Pawnmorph
 				}
 
 			ApplyVisualAdjustment();
+
 		}
 
 		/// <summary>
@@ -453,6 +481,8 @@ namespace Pawnmorph
 					}
 				}
 			}
+
+			PawnmorpherMod.WorldComp.UnregisterMutation(this);
 		}
 
 		/// <summary>
@@ -460,7 +490,9 @@ namespace Pawnmorph
 		/// </summary>
 		public override void PostTick()
 		{
-			base.PostTick();
+			if (_tickComponents)
+				base.PostTick();
+
 			if (_waitingForUpdate)
 			{
 				UpdatePawnInfo();

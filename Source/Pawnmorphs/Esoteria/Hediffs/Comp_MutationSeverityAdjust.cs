@@ -94,7 +94,7 @@ namespace Pawnmorph.Hediffs
 			}
 		}
 
-
+		
 
 		/// <summary>
 		///     Gets a value indicating whether the parent hediff should be removed.
@@ -173,16 +173,9 @@ namespace Pawnmorph.Hediffs
 			Restart(); //restart adjusting if halted
 		}
 
-		/// <summary>
-		///     called every tick
-		/// </summary>
-		/// <param name="severityAdjustment">The severity adjustment.</param>
-		public override void CompPostTick(ref float severityAdjustment)
+		public void UpdateComp()
 		{
-			if (Pawn.IsHashIntervalTick(200))
-			{
-				severityAdjustment += SeverityChangePerDay() / 300f; // 60000 / 200
-			}
+			parent.Severity += SeverityChangePerDay() / 300f; // 60000 / 200
 		}
 
 		/// <summary>

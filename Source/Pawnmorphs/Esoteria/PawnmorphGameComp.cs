@@ -8,7 +8,6 @@ using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
-using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.Utilities;
@@ -46,6 +45,13 @@ namespace Pawnmorph
 		//hacky, will find a better solution later 
 		internal bool sheepChefEventFired;
 
+		List<Hediff_AddedMutation> _managedMutations = new List<Hediff_AddedMutation>(300);
+
+		float _currentSpreadableProgress = 0;
+		float _currentSeverityProgress = 0;
+		int _currentSpreadableIterator = 0;
+		int _currentSeverityIterator = 0;
+		int _cleanTicker = 0;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PawnmorphGameComp"/> class.
@@ -53,6 +59,7 @@ namespace Pawnmorph
 		/// <param name="world">The world.</param>
 		public PawnmorphGameComp(World world) : base(world)
 		{
+			PawnmorpherMod.WorldComp = this;
 		}
 
 		private List<TransformedPawn> TransformedPawnsLst //scribe can set _transformedPawns to null in an old save 
@@ -257,6 +264,93 @@ namespace Pawnmorph
 		public void TagPawn(PawnKindDef pawnkind)
 		{
 			if (!taggedAnimals.Contains(pawnkind)) taggedAnimals.Add(pawnkind);
+		}
+
+		public override void WorldComponentTick()
+		{
+			base.WorldComponentTick();
+			try
+			{
+				_cleanTicker++;
+				if (_cleanTicker == 60)
+				{
+					_cleanTicker = 0;
+                    for (int i = _managedMutations.Count - 1; i >= 0; i--)
+					{
+						Hediff_AddedMutation mutation = _managedMutations[i];
+						if (mutation.pawn.Discarded || mutation.pawn.Destroyed)
+						{
+							_managedMutations.Remove(mutation);
+						}
+					}
+                }
+
+				int count = _managedMutations.Count;
+				_currentSpreadableProgress += count / 60f;
+				int spreadableUpdates = (int)_currentSpreadableProgress;
+				if (spreadableUpdates > 1)
+				{
+					for (int i = 0; i < spreadableUpdates; i++)
+					{
+						_currentSpreadableIterator++;
+						if (_currentSpreadableIterator >= count) 
+							_currentSpreadableIterator = 0;
+
+						Hediff_AddedMutation mutation = _managedMutations[_currentSpreadableIterator];
+						
+						// This whole operation is somewhat performance intensive, so only do it once a second
+						mutation.SpreadingMutation?.UpdateComp();
+					}
+					_currentSpreadableProgress -= spreadableUpdates;
+				}
+
+				// Each tick, add updates per tick fraction to progress.
+				// When at least 1 progress needs updating, process.
+				_currentSeverityProgress += count / 200f;
+				int severityUpdates = (int)_currentSeverityProgress;
+				if (severityUpdates > 1)
+				{
+					for (int i = 0; i < severityUpdates; i++)
+					{
+						_currentSeverityIterator++;
+						if (_currentSeverityIterator >= count) 
+							_currentSeverityIterator = 0;
+
+						Hediff_AddedMutation mutation = _managedMutations[_currentSeverityIterator];
+
+						// Called every 200 ticks
+						mutation.SeverityAdjust?.UpdateComp();
+					}
+
+					_currentSeverityProgress -= severityUpdates;
+				}
+			}
+			catch (Exception)
+			{
+				Log.Warning($"Current stats: Registered: {_managedMutations.Count}, spread: {_currentSpreadableProgress}-{_currentSpreadableIterator}, severity: {_currentSeverityProgress}-{_currentSeverityIterator}");
+				throw;
+			}
+		}
+
+		public override string ToString()
+		{
+			return base.ToString() + " " + _managedMutations.Count;
+		}
+
+		/// <summary>
+		/// Registers the mutation to have Spreadable and severity adjustment components updated.
+		/// </summary>
+		public void RegisterMutation(Hediff_AddedMutation mutation)
+		{
+			_managedMutations.Add(mutation);
+		}
+
+		/// <summary>
+		/// Unregisters the mutation from the managed list.
+		/// </summary>
+		public void UnregisterMutation(Hediff_AddedMutation mutation)
+		{
+			_managedMutations.Remove(mutation);
 		}
 	}
 }
