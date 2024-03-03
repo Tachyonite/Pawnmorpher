@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
@@ -795,6 +796,7 @@ namespace Pawnmorph
 		/// <returns></returns>
 		/// <exception cref="System.ArgumentNullException">pawn</exception>
 		[CanBeNull]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SapienceState GetSapienceState([NotNull] this Pawn pawn)
 		{
 			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
@@ -1016,6 +1018,7 @@ namespace Pawnmorph
 		/// <returns>
 		///     <c>true</c> if the specified pawn is an animal; otherwise, <c>false</c>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsAnimal([NotNull] this Pawn pawn)
 		{
 			return pawn.GetIntelligence() == Intelligence.Animal;
@@ -1068,6 +1071,7 @@ namespace Pawnmorph
 		/// <returns>
 		///     <c>true</c> if this pawn is blocked by fences; otherwise, <c>false</c>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsFenceBlocked([NotNull] this Pawn pawn)
 		{
 			return pawn.RaceProps.FenceBlocked && !pawn.IsHumanlike();
@@ -1081,6 +1085,7 @@ namespace Pawnmorph
 		/// <returns>
 		///   <c>true</c> if the given pawn is former human; otherwise, <c>false</c>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsFormerHuman([NotNull] this Pawn pawn, bool countPermanentlyFeral = true)
 		{
 			SapienceState sState = pawn.GetSapienceState();
@@ -1096,7 +1101,7 @@ namespace Pawnmorph
 		///     <c>true</c> if the specified pawn is humanlike; otherwise, <c>false</c>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">pawn</exception>
-		//[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsHumanlike([NotNull] this Pawn pawn)
 		{
 			return pawn.GetIntelligence() == Intelligence.Humanlike;
@@ -1123,7 +1128,7 @@ namespace Pawnmorph
 		/// </summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <returns></returns>
-		//[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsRoamer([NotNull] this Pawn pawn)
 		{
 			return pawn.RaceProps.Roamer && !pawn.IsHumanlike();
@@ -1153,6 +1158,7 @@ namespace Pawnmorph
 		/// <returns>
 		///     <c>true</c> if the given pawn is a tool user ; otherwise, <c>false</c>.
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsToolUser([NotNull] this Pawn pawn)
 		{
 			return pawn.GetIntelligence() >= Intelligence.ToolUser;

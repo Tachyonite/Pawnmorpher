@@ -332,11 +332,6 @@ namespace Pawnmorph
 			}
 		}
 
-		public override string ToString()
-		{
-			return base.ToString() + " " + _managedMutations.Count;
-		}
-
 		/// <summary>
 		/// Registers the mutation to have Spreadable and severity adjustment components updated.
 		/// </summary>

@@ -90,8 +90,10 @@ namespace Pawnmorph
 			_spreadingMutationComp = this.TryGetComp<SpreadingMutationComp>();
 			PawnmorpherMod.WorldComp.RegisterMutation(this);
 
+#if DEBUG
 			if (_tickComponents)
 				Log.Warning("Ticking comps: " + string.Join(", ", comps.Select(x => x.GetType().Name)));
+#endif
 		}
 
 		/// <summary>
