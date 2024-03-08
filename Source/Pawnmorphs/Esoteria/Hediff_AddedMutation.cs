@@ -27,6 +27,16 @@ namespace Pawnmorph
 		public string mutationDescription;
 
 		/// <summary>
+		/// The severity adjust component. Null if pawn has none.
+		/// </summary>
+		public Comp_MutationSeverityAdjust SeverityAdjust;
+
+		/// <summary>
+		/// The spreading mutation component. Null if pawn has none.
+		/// </summary>
+		public SpreadingMutationComp SpreadingMutation;
+
+		/// <summary>
 		///     if this part should be removed or not
 		/// </summary>
 		protected bool shouldRemove;
@@ -35,8 +45,6 @@ namespace Pawnmorph
 
 		[NotNull] private MutationCauses _causes = new MutationCauses();
 
-		private Comp_MutationSeverityAdjust _sevAdjComp;
-		private SpreadingMutationComp _spreadingMutationComp;
 
 		private bool _waitingForUpdate;
 		private bool _tickComponents = true;
@@ -86,9 +94,11 @@ namespace Pawnmorph
 			_tickComponents = comps.Any( x => x is SpreadingMutationComp == false 
 										&& x is Comp_MutationSeverityAdjust == false
 										&& x is RemoveFromPartComp == false);
-			_sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
-			_spreadingMutationComp = this.TryGetComp<SpreadingMutationComp>();
-			PawnmorpherMod.WorldComp.RegisterMutation(this);
+			SeverityAdjust = this.TryGetComp<Comp_MutationSeverityAdjust>();
+			SpreadingMutation = this.TryGetComp<SpreadingMutationComp>();
+
+			if (pawn.Destroyed == false && pawn.Discarded == false)
+				PawnmorpherMod.WorldComp.RegisterMutation(this);
 
 #if DEBUG
 			if (_tickComponents)
@@ -220,34 +230,6 @@ namespace Pawnmorph
 		///     <c>true</c> if this instance is a core mutation; otherwise, <c>false</c>.
 		/// </value>
 		public bool IsCoreMutation => this.TryGetComp<RemoveFromPartComp>()?.Layer == MutationLayer.Core;
-
-		/// <summary>
-		///     Gets the severity adjust comp
-		/// </summary>
-		/// <value>
-		///     The severity adjust comp
-		/// </value>
-		[CanBeNull]
-		public Comp_MutationSeverityAdjust SeverityAdjust
-		{
-			get
-			{
-				return _sevAdjComp;
-			}
-		}
-
-		/// <summary>
-		/// Gets the spreading mutation comp if any.
-		/// </summary>
-		[CanBeNull]
-		public SpreadingMutationComp SpreadingMutation
-		{
-			get
-			{
-				return _spreadingMutationComp;
-			}
-		}
-
 
 		/// <summary>
 		///     Gets or sets a value indicating whether progression is halted or not.

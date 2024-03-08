@@ -226,7 +226,7 @@ namespace Pawnmorph.Hediffs
 			if (parent.Severity < minSeverity) sevPerDay = Mathf.Max(0, sevPerDay);
 
 
-			return sevPerDay * Mathf.Max(StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 300) ?? 1, 0); //take the mutagen sensitivity stat into account 
+			return sevPerDay * Mathf.Max(StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 500) ?? 1, 0); //take the mutagen sensitivity stat into account 
 		}
 
 

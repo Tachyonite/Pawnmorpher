@@ -51,7 +51,6 @@ namespace Pawnmorph
 		float _currentSeverityProgress = 0;
 		int _currentSpreadableIterator = 0;
 		int _currentSeverityIterator = 0;
-		int _cleanTicker = 0;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PawnmorphGameComp"/> class.
@@ -271,45 +270,32 @@ namespace Pawnmorph
 			base.WorldComponentTick();
 			try
 			{
-				_cleanTicker++;
-				if (_cleanTicker == 60)
-				{
-					_cleanTicker = 0;
-                    for (int i = _managedMutations.Count - 1; i >= 0; i--)
-					{
-						Hediff_AddedMutation mutation = _managedMutations[i];
-						if (mutation.pawn.Discarded || mutation.pawn.Destroyed)
-						{
-							_managedMutations.Remove(mutation);
-						}
-					}
-                }
-
 				int count = _managedMutations.Count;
 				_currentSpreadableProgress += count / 60f;
-				int spreadableUpdates = (int)_currentSpreadableProgress;
-				if (spreadableUpdates > 1)
+				if (_currentSpreadableProgress > 1)
 				{
+					float spreadableUpdates = _currentSpreadableProgress - 1;
 					for (int i = 0; i < spreadableUpdates; i++)
 					{
 						_currentSpreadableIterator++;
 						if (_currentSpreadableIterator >= count) 
 							_currentSpreadableIterator = 0;
-
-						Hediff_AddedMutation mutation = _managedMutations[_currentSpreadableIterator];
 						
+						Hediff_AddedMutation mutation = _managedMutations[_currentSpreadableIterator];
+
 						// This whole operation is somewhat performance intensive, so only do it once a second
-						mutation.SpreadingMutation?.UpdateComp();
+						if (mutation.pawn.Dead == false)
+							mutation.SpreadingMutation?.UpdateComp();
+						_currentSpreadableProgress--;
 					}
-					_currentSpreadableProgress -= spreadableUpdates;
 				}
 
 				// Each tick, add updates per tick fraction to progress.
 				// When at least 1 progress needs updating, process.
 				_currentSeverityProgress += count / 200f;
-				int severityUpdates = (int)_currentSeverityProgress;
-				if (severityUpdates > 1)
+				if (_currentSeverityProgress > 1)
 				{
+					float severityUpdates = _currentSeverityProgress - 1;
 					for (int i = 0; i < severityUpdates; i++)
 					{
 						_currentSeverityIterator++;
@@ -319,10 +305,10 @@ namespace Pawnmorph
 						Hediff_AddedMutation mutation = _managedMutations[_currentSeverityIterator];
 
 						// Called every 200 ticks
-						mutation.SeverityAdjust?.UpdateComp();
+						if (mutation.pawn.Dead == false)
+							mutation.SeverityAdjust?.UpdateComp();
+						_currentSeverityProgress--;
 					}
-
-					_currentSeverityProgress -= severityUpdates;
 				}
 			}
 			catch (Exception)
@@ -337,7 +323,8 @@ namespace Pawnmorph
 		/// </summary>
 		public void RegisterMutation(Hediff_AddedMutation mutation)
 		{
-			_managedMutations.Add(mutation);
+			if (_managedMutations.Contains(mutation) == false)
+				_managedMutations.Add(mutation);
 		}
 
 		/// <summary>
@@ -345,7 +332,8 @@ namespace Pawnmorph
 		/// </summary>
 		public void UnregisterMutation(Hediff_AddedMutation mutation)
 		{
-			_managedMutations.Remove(mutation);
+			if (_managedMutations.Contains(mutation))
+				_managedMutations.Remove(mutation);
 		}
 	}
 }

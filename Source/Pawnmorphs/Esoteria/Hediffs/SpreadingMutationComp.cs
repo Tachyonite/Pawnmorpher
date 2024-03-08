@@ -26,7 +26,7 @@ namespace Pawnmorph.Hediffs
 				// Have the mutagen sensitivity stat affect the rate of spread
 				// This stat is expensive to calculate, but we're only checking once a second
 				// Don't worry about division by zero, MTBEventOccurs handles infinity correctly
-				var mtb = Props.mtb / StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 300) ?? 0;
+				var mtb = Props.mtb / StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 1000) ?? 0;
 
 				if (!Rand.MTBEventOccurs(mtb, 60000f, 60f)) return;
 
