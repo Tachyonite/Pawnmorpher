@@ -25,6 +25,33 @@ namespace Pawnmorph.HPatches
 			_workModifierCache.Clear();
 		}
 
+
+		[HarmonyPatch(nameof(Pawn.Destroy)), HarmonyPostfix]
+		static void PawnDestroyedPostfix(Pawn __instance)
+		{
+			if (__instance.Discarded == false && __instance.RaceProps.Humanlike)
+				UnregisterMutations(__instance);
+		}
+
+
+		[HarmonyPatch(nameof(Pawn.Discard)), HarmonyPostfix]
+		static void PawnDiscardPostfix(Pawn __instance)
+		{
+			if (__instance.Destroyed == false && __instance.RaceProps.Humanlike)
+				UnregisterMutations(__instance);
+		}
+
+
+		private static void UnregisterMutations(Pawn pawn)
+		{
+			IList<Hediff_AddedMutation> mutations = pawn.GetMutationTracker()?.AllMutations;
+			if (mutations == null)
+				return;
+
+			for (int i = mutations.Count - 1; i >= 0; i--)
+				PawnmorpherMod.WorldComp.UnregisterMutation(mutations[i]);
+		}
+
 		[HarmonyPatch(nameof(Pawn.CombinedDisabledWorkTags), MethodType.Getter), HarmonyPostfix]
 		static void FixCombinedDisabledWorkTags(ref WorkTags __result, [NotNull] Pawn __instance)
 		{
