@@ -11,6 +11,10 @@
 			<li>Pawnmorph.Hediff_AddedMutation</li>
             <li>Pawnmorph.Abilities.MutationAbility</li>
             <li>Pawnmorph.PawnmorphGameComp</li>
+			<li>Verse.Hediff</li>
+			<li>Verse.HediffWithComps</li>
+			<li>Pawnmorph.Hediffs.Hediff_Descriptive</li>
+			<li>Pawnmorph.Hediffs.Hediff_StageChanges</li>
 		</Types>
 
 		<!-- Specific methods -->
@@ -30,9 +34,9 @@
 		</DerivedMethods-->
 
 		<!-- All methods of subclasses -->
-		<!--DerivedTypes>
-			<li></li>
-		</DerivedTypes-->
+		<DerivedTypes>
+			<li>Pawnmorph.Abilities.MutationAbility</li>
+		</DerivedTypes>
 
 		<!-- All methods of types nested within specified types -->
 		<!--NestedTypes>

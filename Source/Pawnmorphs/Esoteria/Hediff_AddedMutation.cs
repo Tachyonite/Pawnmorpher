@@ -20,6 +20,7 @@ namespace Pawnmorph
 	public class Hediff_AddedMutation : Hediff_StageChanges, ICaused
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
+		private int _shouldRemoveAgeTicks;
 
 		/// <summary>
 		///     The mutation description
@@ -93,7 +94,8 @@ namespace Pawnmorph
 			//TODO This should be refactored eventually. Possibly by moving Severity Adjust over to CompBase and then adding a "Requires Ticking" property.
 			_tickComponents = comps.Any( x => x is SpreadingMutationComp == false 
 										&& x is Comp_MutationSeverityAdjust == false
-										&& x is RemoveFromPartComp == false);
+										&& x is RemoveFromPartComp == false
+										&& x is Comp_MutationDependency == false);
 			SeverityAdjust = this.TryGetComp<Comp_MutationSeverityAdjust>();
 			SpreadingMutation = this.TryGetComp<SpreadingMutationComp>();
 
@@ -102,7 +104,7 @@ namespace Pawnmorph
 
 #if DEBUG
 			if (_tickComponents)
-				Log.Warning("Ticking comps: " + string.Join(", ", comps.Select(x => x.GetType().Name)));
+				Log.Warning($"Ticking comps on {def.defName} for {pawn.Name}: " + string.Join(", ", comps.Select(x => x.GetType().Name)));
 #endif
 		}
 
@@ -159,6 +161,11 @@ namespace Pawnmorph
 				return label;
 			}
 		}
+
+		/// <summary>
+		/// Mutations are always visible, so don't spent time checking comps.
+		/// </summary>
+		public override bool Visible => true;
 
 		public override string LabelInBrackets
 		{
@@ -251,8 +258,9 @@ namespace Pawnmorph
 			for (int i = abilities.Count - 1; i >= 0; i--)
 				abilities[i].Tick();
 
-			if (shouldRemove == false && pawn.IsHashIntervalTick(60))
+			if (shouldRemove == false && ++_shouldRemoveAgeTicks > 120)
 			{
+				_shouldRemoveAgeTicks = 0;
 				if (comps != null)
 				{
 					for (int i = comps.Count - 1; i >= 0; i--)
