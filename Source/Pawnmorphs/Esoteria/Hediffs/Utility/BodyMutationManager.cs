@@ -89,7 +89,7 @@ namespace Pawnmorph.Hediffs.Utility
 		/// <param name="mutations">The new mutations to use.</param>
 		public void ResetMutationList(IEnumerable<MutationEntry> mutations)
 		{
-			this.mutations = mutations.ToList();
+			this.mutations = mutations.InRandomOrder().ToList();
 			RegenerateBodyPartMutationCache();
 			ResetBodyPartMutationList();
 		}
@@ -117,7 +117,12 @@ namespace Pawnmorph.Hediffs.Utility
 		{
 			IEnumerable<MutationEntry> mutationList;
 			if (BodyPart == null)
-				mutationList = wholeBodyMutationCache;
+			{
+				if (wholeBodyMutationCache.Count > 0)
+					mutationList = wholeBodyMutationCache;
+				else
+					mutationList = mutations;
+			}
 			else
 				mutationList = bodyPartMutationCache[BodyPart.def];
 

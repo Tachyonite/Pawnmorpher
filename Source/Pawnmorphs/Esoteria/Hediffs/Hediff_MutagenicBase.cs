@@ -275,12 +275,41 @@ namespace Pawnmorph.Hediffs
 			do
 			{
 				var bodyPart = bodyMutationManager.BodyPart;
-				if (!pawn.RaceProps.body.AllParts.Contains(bodyPart))
+				if (bodyPart != null)
 				{
-					// If the pawn's race changes the mutation order may no longer be valid 
-					// Reset it and try again later
-					ResetSpreadList();
-					return MutationResult.Empty;
+					if (!pawn.RaceProps.body.AllParts.Contains(bodyPart))
+					{
+						// If the pawn's race changes the mutation order may no longer be valid 
+						// Reset it and try again later
+						ResetSpreadList(); 
+						return MutationResult.Empty;
+					}
+				}
+				else
+				{
+					// If mutation manager does not have a body part, select the first random body part from the next mutation that the pawn actually has.
+					IEnumerable<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts.InRandomOrder();
+					List<BodyPartDef> mutationParts = bodyMutationManager.Mutation.mutation.parts;
+					for (int x = mutationParts.Count - 1; x >= 0; x--)
+					{
+						foreach (BodyPartRecord partRecord in bodyParts)
+						{
+							if (mutationParts[x] == partRecord.def)
+							{
+								bodyPart = partRecord;
+								break;
+							}
+						}
+
+						if (bodyPart != null)
+							break;
+					}
+
+					if (bodyPart == null)
+					{
+						bodyMutationManager.NextMutation();
+						return MutationResult.Empty;
+					}
 				}
 
 				// Notify the observers first, since they may add/remove/change mutations
