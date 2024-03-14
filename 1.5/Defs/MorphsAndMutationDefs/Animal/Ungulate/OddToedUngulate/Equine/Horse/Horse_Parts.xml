@@ -1,0 +1,52 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineJawPart">
+		<classInfluence>HorseMorph</classInfluence>
+		<defName>EtherHorseSnout</defName>
+		<label>horse snout</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Horse/Horse_Muzzle_Male</Male>
+					<Female>Parts/Horse/Horse_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineEarPart">
+		<classInfluence>HorseMorph</classInfluence>
+		<defName>EtherHorseEar</defName>
+		<label>horse ear</label>
+		<graphics>
+			<LeftEar>Parts/Horse/Horse_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Horse/Horse_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, equine ear sits atop [PAWN_nameDef]'s head, like that of a horse.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineTailPart">
+		<classInfluence>HorseMorph</classInfluence>
+		<defName>EtherHorseTail</defName>
+		<label>horse tail</label>
+		<graphics>
+			<Tail>Parts/Horse/Horse_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A horselike tail. It swats at flies occasionally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

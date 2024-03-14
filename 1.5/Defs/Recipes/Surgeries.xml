@@ -1,0 +1,54 @@
+<Defs>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PM_ApplyHaltCream</defName>
+        <label>apply halt cream</label>
+        <description>Apply halt cream to a mutation</description>
+        <workerClass>Pawnmorph.RecipeWorkers.ApplyHaltingCream</workerClass>
+        <jobString>Applying halt cream.</jobString>
+        <workAmount>1000</workAmount>
+        <anesthetize>false</anesthetize>
+        <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+        <dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>PM_HaltCream</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+            <thingDefs>
+                <li>PM_HaltCream</li>
+            </thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+    <RecipeDef ParentName="SurgeryFlesh">
+        <defName>PM_ApplyAdaptionCream</defName>
+        <label>apply adaption cream</label>
+        <description>Apply adaption cream to a mutation</description>
+        <workerClass>Pawnmorph.RecipeWorkers.ApplyAdaptationCream</workerClass>
+        <jobString>Applying adaption cream.</jobString>
+        <workAmount>1300</workAmount>
+        <anesthetize>false</anesthetize>
+        <surgerySuccessChanceFactor>99999</surgerySuccessChanceFactor>
+        <dontShowIfAnyIngredientMissing>true</dontShowIfAnyIngredientMissing>
+        <ingredients>
+            <li>
+                <filter>
+                    <thingDefs>
+                        <li>PM_AdaptionCream</li>
+                    </thingDefs>
+                </filter>
+                <count>1</count>
+            </li>
+        </ingredients>
+        <fixedIngredientFilter>
+			<thingDefs>
+				<li>PM_AdaptionCream</li>
+			</thingDefs>
+        </fixedIngredientFilter>
+    </RecipeDef>
+</Defs>

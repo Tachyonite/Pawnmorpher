@@ -1,0 +1,48 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantidaeJawPart">
+		<classInfluence>ElephantMorph</classInfluence>
+		<defName>EtherTrunk</defName>
+		<label>elephant trunk</label>
+		<graphics>
+			<Muzzle>Parts/Elephant/Elephant_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantidaeEarPart">
+		<classInfluence>ElephantMorph</classInfluence>
+		<defName>EtherElephantEar</defName>
+		<label>elephant ear</label>
+		<graphics>
+			<LeftEar>Parts/Elephant/Elephant_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Elephant/Elephant_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Elephant/Elephant_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Elephant/Elephant_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Wow, with such a big ear, [PAWN_nameDef] looks like a dumbo, doesn't [PAWN_pronoun].</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ElephantidaeTailPart">
+		<classInfluence>ElephantMorph</classInfluence>
+		<defName>EtherElephantTail</defName>
+		<label>elephant tail</label>
+		<graphics>
+			<Tail>Parts/Elephant/Elephant_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long tail that swishes gently at flies that gather.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

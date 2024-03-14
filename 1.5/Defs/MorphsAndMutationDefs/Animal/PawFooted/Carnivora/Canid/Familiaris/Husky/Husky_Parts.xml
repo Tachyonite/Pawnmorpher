@@ -1,0 +1,36 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisJawPart">
+		<classInfluence>HuskyMorph</classInfluence>
+		<defName>EtherHuskyMuzzle</defName>
+		<label>husky muzzle</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Husky/Husky_Muzzle_Male</Male>
+					<Female>Parts/Husky/Husky_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisEarPart">
+		<classInfluence>HuskyMorph</classInfluence>
+		<defName>EtherHuskyEar</defName>
+		<label>husky ear</label>
+		<graphics>
+			<LeftEar>Parts/Husky/Husky_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Husky/Husky_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisTailPart">
+		<classInfluence>HuskyMorph</classInfluence>
+		<defName>EtherHuskyTail</defName>
+		<label>husky tail</label>
+		<graphics>
+			<Tail>Parts/Husky/Husky_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

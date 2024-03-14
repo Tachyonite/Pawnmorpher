@@ -1,0 +1,9 @@
+<Defs>
+  <HairDef>
+    <defName>PM_HairHidden</defName>
+    <label>no hair</label>
+    <styleGender>Any</styleGender>
+    <texPath></texPath>
+    <noGraphic>true</noGraphic>
+  </HairDef>
+</Defs>

@@ -1,0 +1,9 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="EvenToedUngulateMorph" Name="CapridMorph">
+		<classification>Caprid</classification>
+		<categories>
+			<li>Production</li>
+		</categories>
+		<group>HerbivoreHerding</group>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,29 @@
+<Defs>
+    <ThoughtDef>
+        <defName>LeopardRevertedMemory</defName>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>It's good to be back to normal.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Dammit, I wanted to be a big cat!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Finally, I'm back to my normal self...</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Dammit, I wanted to be a big cat!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

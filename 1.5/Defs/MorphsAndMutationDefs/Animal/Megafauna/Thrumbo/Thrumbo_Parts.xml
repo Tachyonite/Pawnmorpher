@@ -1,0 +1,180 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaJawPart">
+		<classInfluence>ThrumboMorph</classInfluence>
+		<defName>EtherThrumboSnout</defName>
+		<label>thrumbo snout</label>
+		<mutationTale>GrewThrumboMuzzle</mutationTale>
+		<mutationMemory>EtherThrumboSnout</mutationMemory>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Thrumbo/Thrumbo_Muzzle_Male</Male>
+					<Female>Parts/Thrumbo/Thrumbo_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>The changes to [PAWN_nameDef]'s face continue. Broad tree munching teeth have started to form in a powerful new snout.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, luxuriously fluffy and inspiring a commanding gaze. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaHornPart">
+		<defName>EtherThrumboHorn</defName>
+		<label>thrumbohorn</label>
+		<classInfluence>ThrumboMorph</classInfluence>
+		<description>A razor-sharp thrumbo horn.</description>
+		<mutationTale>GrewThrumboHorn</mutationTale>
+		<mutationMemory>EtherThrumboHorn</mutationMemory>
+		<value>30</value>
+		<spawnThingOnRemoved>ThrumboHorn</spawnThingOnRemoved>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+                    <description>Something is pressing out from below [PAWN_nameDef]'s scalp, in the middle of the forehead.</description>
+					<verbOverrides>
+                        <li>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0</chanceFactor>
+                            <power>0</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+                    <label>nub</label>
+                    <description>[PAWN_nameDef] has grown a small hard nub on [PAWN_possessive] forehead. Maybe good for a headbutt but not much else.</description>
+					<graphics>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_A</Horns>
+					</graphics>
+					<verbOverrides>
+                        <li>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0</chanceFactor>
+                            <power>0</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+                    <description>[PAWN_nameDef] has grown what looks like a small version of a thrumbo's horn. Not quite as sharp or powerful as a fully grown thrumbo horn, but can still inflict some damage.</description>
+					<graphics>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_B</Horns>
+					</graphics>
+                    <statOffsets>
+                        <MeleeArmorPenetration>0.1</MeleeArmorPenetration>
+                    </statOffsets>
+					<verbOverrides>
+                        <li>
+                            <label>thrumbo horn</label>
+							<chanceFactor>0.5</chanceFactor>
+                            <power>10</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+                    <label></label>
+                    <description>A large and majestic horn near identical to what you find on a thrumbo adorns [PAWN_nameDef]'s head. It is a very powerful and sharp horn.</description>
+					<graphics>
+						<Horns>Parts/Thrumbo/Thrumbo_Horn_C</Horns>
+					</graphics>
+                    <statOffsets>
+                        <MeleeArmorPenetration>0.3</MeleeArmorPenetration>
+                    </statOffsets>
+					<verbOverrides>
+                        <li>
+                            <label>thrumbo horn</label>
+							<chanceFactor>1</chanceFactor>
+                            <power>18.12</power>
+                        </li>
+                    </verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>thrumbo horn</label>
+						<capacities>
+							<li>Scratch</li>
+							<li>Stab</li>
+							<li>Cut</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaEarPart">
+		<classInfluence>ThrumboMorph</classInfluence>
+		<defName>EtherThrumboEar</defName>
+		<label>thrumbo ear</label>
+		<mutationMemory>EtherThrumboEar</mutationMemory>
+		<graphics>
+			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A white-furred, rounded and beautiful thrumbo ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MegafaunaTailPart">
+		<classInfluence>ThrumboMorph</classInfluence>
+		<defName>EtherThrumboTail</defName>
+		<label>thrumbo tail</label>
+		<mutationMemory>EtherThrumboTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Thrumbo/Thrumbo_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy thrumbo tail, coated in supple, sleek fur.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,0 +1,67 @@
+<Defs>
+	<HediffDef ParentName="ImplantHediffBase">
+		<defName>SapienceLimiterHediff</defName>
+		<label>sapiostore mesh</label>
+		<description>An implanted sapiostore mesh.</description>
+		<stages>
+			<li>
+				<statOffsets>
+					<SapientAnimalA>-2</SapientAnimalA>
+					<SapienceLimit>0</SapienceLimit>
+				</statOffsets>
+			</li>
+		</stages>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.TFTransferable"/>
+		</modExtensions>
+		<spawnThingOnRemoved>SapientChip</spawnThingOnRemoved>
+	</HediffDef>
+	<RecipeDef ParentName="SurgeryInstallImplantBase">
+		<defName>InstallInstinctLimiter</defName>
+		<label>install sapiostore mesh</label>
+		<description>Install a sapiostore mesh.</description>
+		<descriptionHyperlinks>
+			<ThingDef>SapientChip</ThingDef>
+		</descriptionHyperlinks>
+		<jobString>Installing sapiostore mesh.</jobString>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>SapientChip</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>SapientChip</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<appliedOnFixedBodyParts>
+			<li>Brain</li>
+		</appliedOnFixedBodyParts>
+		<addsHediff>SapienceLimiterHediff</addsHediff>
+	</RecipeDef>
+	<ThingDef ParentName="BodyPartProstheticBase">
+		<defName>SapientChip</defName>
+		<label>sapiostore mesh</label>
+		<description>A powerful and rare implant that acts as a mesh between mutagenic mechanites in a pawn's system and the brain. Provides a backup and restore point for intelligence, gradually restoring sapience and prevents further loss of sapience.\n\nTransfers between forms if reverted or changed.</description>
+		<descriptionHyperlinks>
+			<RecipeDef>InstallInstinctLimiter</RecipeDef>
+		</descriptionHyperlinks>
+		<thingSetMakerTags>
+			<li>RewardStandardLowFreq</li>
+		</thingSetMakerTags>
+		<costList>
+			<Steel>50</Steel>
+			<Plasteel>20</Plasteel>
+			<Morphsilk>5</Morphsilk>
+			<ComponentSpacer>2</ComponentSpacer>
+		</costList>
+		<techHediffsTags>
+			<li>Advanced</li>
+		</techHediffsTags>
+	</ThingDef>
+</Defs>

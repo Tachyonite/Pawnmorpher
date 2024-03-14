@@ -1,0 +1,12 @@
+<Defs>
+    <IncidentDef>
+        <defName>PM_SheepChef</defName>
+        <label>A ram approaches...</label>
+        <category>Misc</category>
+        <targetTags>
+            <li>Map_PlayerHome</li>
+        </targetTags>
+        <workerClass>Pawnmorph.IncidentWorkers.SheepChef</workerClass>
+        <baseChance>0.2</baseChance>
+    </IncidentDef>
+</Defs>

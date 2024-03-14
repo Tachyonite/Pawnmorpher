@@ -1,0 +1,67 @@
+<Defs>
+	<ThingDef Abstract="true" Name="AnimalGenomeBase">
+		<thingClass>Pawnmorph.Things.Genome_Animal</thingClass>
+		<category>Item</category>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Item/Genecard</texPath>
+		</graphicData>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
+		<stackLimit>10</stackLimit>
+		<thingCategories>
+			<li>PM_MutationGenome</li>
+		</thingCategories>
+		<thingSetMakerTags>
+			<li>Genome</li>
+		</thingSetMakerTags>
+		<selectable>true</selectable>
+		<altitudeLayer>Item</altitudeLayer>
+		<tickerType>Never</tickerType>
+		<rotatable>false</rotatable>
+		<pathCost>14</pathCost>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<tradeTags>
+			<li>Genome</li>
+		</tradeTags>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>1</Flammability>
+			<Mass>0.3</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="Pawnmorph.Chambers.AnimalGenomeStorageCompProps" />
+		</comps>
+	</ThingDef>
+
+	<ThingDef ParentName="AnimalGenomeBase">
+		<defName>PM_AnimalGenome</defName>
+		<label>Animal genome</label>
+		<description>Contains an animal's genome that can be downloaded into genebank.</description>
+		<statBases>
+			<MarketValue>100</MarketValue>
+			<SellPriceFactor>0.1</SellPriceFactor>
+		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AnimalFilterModExtension">
+				<allowNormal>true</allowNormal>
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	
+	<ThingDef ParentName="AnimalGenomeBase">
+		<defName>PM_RestrictedAnimalGenome</defName>
+		<label>Animal genome - Restricted</label>
+		<description>Contains a restricted animal's genome that can be downloaded into genebank.</description>
+		<statBases>
+			<MarketValue>1000</MarketValue>
+			<SellPriceFactor>0.2</SellPriceFactor>
+		</statBases>
+		<modExtensions>
+			<li Class="Pawnmorph.ModExtensions.AnimalFilterModExtension">
+				<allowRestricted>true</allowRestricted>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

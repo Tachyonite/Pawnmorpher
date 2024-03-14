@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ==================== Ammo ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="40x46mmGrenadeBase">
+    <defName>Ammo_40x46mmGrenade_Mutagenic</defName>
+    <label>40x46mm grenade (Mutagenic)</label>
+    <graphicData>
+      <texPath>Things/Ammo/GrenadeLauncher/Mutagenic</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.16</MarketValue>
+    </statBases>
+    <ammoClass>GrenadeMutagenic</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+    <detonateProjectile>Bullet_40x46mmGrenade_Mutagenic</detonateProjectile>
+  </ThingDef>
+  <!-- ================== Projectiles ================== -->
+  <ThingDef ParentName="Base40x46mmGrenadeBullet">
+    <defName>Bullet_40x46mmGrenade_Mutagenic</defName>
+    <label>40x46mm grenade (Mutagenic)</label>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <explosionRadius>2</explosionRadius>
+      <damageDef>MutagenCloud</damageDef>
+      <preExplosionSpawnThingDef>Gas_Mutagen</preExplosionSpawnThingDef>
+      <preExplosionSpawnChance>1</preExplosionSpawnChance>
+      <postExplosionSpawnThingDef>PM_Filth_Slurry</postExplosionSpawnThingDef>
+      <postExplosionSpawnChance>0.8</postExplosionSpawnChance>
+    </projectile>
+  </ThingDef>
+  <!-- ==================== Recipes ========================== -->
+  <RecipeDef ParentName="LauncherAmmoRecipeBase">
+    <defName>MakeAmmo_40x46mmGrenade_Mutagenic</defName>
+    <label>make 40x46mm mutagenic grenades x100</label>
+    <description>Craft 100 40x46mm mutagenic grenades.</description>
+    <jobString>Making 40x46mm mutagenic grenades.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Steel</li>
+          </thingDefs>
+        </filter>
+        <count>50</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MechaniteSlurry</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>ComponentIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Steel</li>
+        <li>MechaniteSlurry</li>
+        <li>ComponentIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_40x46mmGrenade_Mutagenic>100</Ammo_40x46mmGrenade_Mutagenic>
+    </products>
+    <workAmount>7400</workAmount>
+  </RecipeDef>
+</Defs>

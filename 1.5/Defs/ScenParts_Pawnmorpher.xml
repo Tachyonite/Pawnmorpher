@@ -1,0 +1,20 @@
+<Defs>
+	<ScenPartDef>
+		<defName>ForcedAspect</defName>
+		<label>forced aspect</label>
+		<scenPartClass>Pawnmorph.ScenarioParts.ScenPart_ForcedAspect</scenPartClass>
+		<category>PlayerPawnModifier</category>
+		<selectionWeight>1.0</selectionWeight>
+		<summaryPriority>459</summaryPriority>
+	</ScenPartDef>
+
+	<ScenPartDef>
+		<defName>ForcedSapience</defName>
+		<label>forced sapience</label>
+		<scenPartClass>Pawnmorph.ScenarioParts.ScenPart_ForcedSapience</scenPartClass>
+		<category>PlayerPawnModifier</category>
+		<selectionWeight>1.0</selectionWeight>
+		<summaryPriority>459</summaryPriority>
+	</ScenPartDef>
+	
+</Defs>

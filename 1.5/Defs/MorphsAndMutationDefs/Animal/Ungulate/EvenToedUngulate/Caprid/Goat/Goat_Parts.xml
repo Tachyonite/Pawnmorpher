@@ -1,0 +1,84 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridJawPart">
+		<classInfluence>GoatMorph</classInfluence>
+		<defName>EtherGoatSnout</defName>
+		<label>goat snout</label>
+		<graphics>
+			<Muzzle>Parts/Goat/Goat_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
+		<classInfluence>GoatMorph</classInfluence>
+		<defName>EtherGoatEar</defName>
+		<label>goat ear</label>
+		<graphics>
+			<LeftEar>Parts/Goat/Goat_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Goat/Goat_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Goat/Goat_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Goat/Goat_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy, caprine ear sits at the side of [PAWN_nameDef]'s head, like that of a goat.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridTailPart">
+		<classInfluence>GoatMorph</classInfluence>
+		<defName>EtherGoatTail</defName>
+		<label>goat tail</label>
+		<graphics>
+			<Tail>Parts/Goat/Goat_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A Goatlike tail. It's very wooly but short and not incredibly useful.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridHornPart">
+		<defName>EtherGoatHorns</defName>
+		<classInfluence>GoatMorph</classInfluence>
+		<label>goat horns</label>
+		<description>The curved horns of a goat. They start small, but will eventually grow to full size. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Curved horns has grown from [PAWN_nameDef]'s head, while still not fully grown they already add heft to any unfortunate subjected to a headbutt.</description>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_B</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>Having reached full size, [PAWN_nameDef]'s horns will allow him to dominate any game of king of the hill.</description>
+					<graphics>
+						<Horns>Parts/Goat/GoatHorns_C</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

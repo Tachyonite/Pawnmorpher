@@ -1,0 +1,5 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef Abstract="true" Name="GroupThoughtBase">
+        <workerClass>Pawnmorph.Thoughts.Worker_HasAspect</workerClass>
+    </ThoughtDef>
+</Defs>

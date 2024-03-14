@@ -1,0 +1,84 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherBovidMuzzle</defName>
+		<stages>
+			<li>
+				<label>Bovid muzzle</label>
+				<description>It sure makes sallads better...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid muzzle</label>
+				<description>Eating veggies has never been better!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid muzzle</label>
+				<description>This will go away on its own right...?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid muzzle</label>
+				<description>I'll never want for anything but grass ever again!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherBovidEar</defName>
+		<stages>
+			<li>
+				<label>Bovid ears</label>
+				<description>I think I can hear the wind through the grass more intensely than before....</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid ears</label>
+				<description>Oh I think I can hear some good grass with these!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid ears</label>
+				<description>Hope no one tries to put a tag in these!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherBovidTail</defName>
+		<stages>
+			<li>
+				<label>Bovid tail</label>
+				<description>This won't help against megascarabs will it?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid tail</label>
+				<description>I like feeling it flick back and forth on its own like that!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Bovid tail</label>
+				<description>I don't think I'll be able to hide this...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

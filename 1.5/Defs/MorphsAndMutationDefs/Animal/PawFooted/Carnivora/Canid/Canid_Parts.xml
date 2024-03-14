@@ -1,0 +1,57 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidJawPart" ParentName="CarnivoraJawPart" Abstract="true">
+		<mutationTale>GrewCanidMuzzle</mutationTale>
+		<mutationMemory>EtherCanidMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly canine apperance. In place at its tip is now a cold, wet nose.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.35</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Eating</capacity>
+							<offset>+0.5</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidEarPart" ParentName="CarnivoraEarPart" Abstract="true">
+		<mutationTale>EarsChangedCanid</mutationTale>
+		<mutationMemory>EtherCanidEar</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="CanidTailPart" ParentName="CarnivoraTailPart" Abstract="true">
+		<mutationMemory>EtherCanidTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>
