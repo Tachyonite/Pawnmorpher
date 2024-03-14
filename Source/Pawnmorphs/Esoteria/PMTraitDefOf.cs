@@ -17,5 +17,7 @@ namespace Pawnmorph
 
 		public static TraitDef MutationAffinity;
 		public static TraitDef PM_PridefulTrait;
+
+		public static TraitDef Cannibal;
 	}
 }

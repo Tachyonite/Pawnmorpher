@@ -405,7 +405,7 @@ namespace Pawnmorph.TfSys
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Collections.Look(ref originals, true, nameof(originals), LookMode.Deep);
+			Scribe_Collections.Look(ref originals, nameof(originals), true, LookMode.Deep);
 			Scribe_References.Look(ref meld, nameof(meld), true);
 			Scribe_References.Look(ref factionResponsible, nameof(factionResponsible));
 		}

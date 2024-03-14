@@ -23,10 +23,11 @@ namespace Pawnmorph.Buildings
 		/// <summary>
 		/// Draws this instance.
 		/// </summary>
-		public override void Draw()
+		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
 		{
+			base.DrawAt(drawLoc, flip);
+
 			const float upFactor = 0.05f;
-			base.Draw();
 			CompResourceStorage comp = GetComp<CompResourceStorage>();
 			GenDraw.FillableBarRequest r = new GenDraw.FillableBarRequest
 			{

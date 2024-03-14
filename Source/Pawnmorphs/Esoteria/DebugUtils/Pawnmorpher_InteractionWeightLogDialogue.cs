@@ -4,8 +4,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LudeonTK;
 using Pawnmorph.Social;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 #pragma warning disable 01591
@@ -53,13 +55,13 @@ namespace Pawnmorph.DebugUtils
 		/// <summary>
 		/// Does the listing items.
 		/// </summary>
-		protected override void DoListingItems()
+		protected override void DoListingItems(Rect inRect, float columnWidth)
 		{
 			if (Current.ProgramState == ProgramState.Playing)
 			{
 				foreach (PMInteractionDef pmInteractionDef in _interactionDefs)
 				{
-					DebugAction(pmInteractionDef.defName, () => ListInteractionWeights(pmInteractionDef), false);
+					DebugAction(pmInteractionDef.defName, columnWidth, () => ListInteractionWeights(pmInteractionDef), false);
 				}
 			}
 		}

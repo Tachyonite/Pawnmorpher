@@ -194,7 +194,7 @@ namespace Pawnmorph.Abilities
 		{
 			string disabledReason = OnIsDisabled();
 			if (String.IsNullOrWhiteSpace(disabledReason))
-				Gizmo.disabled = false;
+				Gizmo.Disabled = false;
 			else
 			{
 				Gizmo.Disable(disabledReason);

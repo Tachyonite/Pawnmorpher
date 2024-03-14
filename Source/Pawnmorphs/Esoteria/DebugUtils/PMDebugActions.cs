@@ -8,6 +8,7 @@ using System.Text;
 using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Chambers;
 using Pawnmorph.FormerHumans;
 using Pawnmorph.Genebank.Model;

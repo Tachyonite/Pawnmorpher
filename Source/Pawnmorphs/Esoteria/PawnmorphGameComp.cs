@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AlienRace;
+using HarmonyLib;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hybrids;
@@ -96,9 +97,11 @@ namespace Pawnmorph
 				return;
 			}
 
+            System.Reflection.MethodInfo initIfNeeded = AccessTools.Method(typeof(DrugPolicy), "InitializeIfNeeded");
+			object[] arguments = [true];
 			foreach (DrugPolicy drugPolicy in drugDB.AllPolicies.MakeSafe())
 			{
-				drugPolicy.InitializeIfNeeded(true);
+				initIfNeeded.Invoke(drugPolicy, arguments);
 			}
 		}
 

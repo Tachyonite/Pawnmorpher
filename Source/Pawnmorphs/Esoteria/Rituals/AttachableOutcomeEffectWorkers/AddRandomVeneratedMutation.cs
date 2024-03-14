@@ -34,6 +34,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// </summary>
 		protected const string MEMBER_TAG = "Member";
 
+
 		/// <summary>
 		///     Applies the effect on the given ritual .
 		/// </summary>
@@ -43,7 +44,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// <param name="extraOutcomeDesc">The extra outcome desc.</param>
 		/// <param name="letterLookTargets">The letter look targets.</param>
 		/// <exception cref="System.NotImplementedException"></exception>
-		public override void Apply(Dictionary<Pawn, int> totalPresence, LordJob_Ritual jobRitual, OutcomeChance outcome,
+		public override void Apply(Dictionary<Pawn, int> totalPresence, LordJob_Ritual jobRitual, RitualOutcomePossibility outcome,
 								   out string extraOutcomeDesc,
 								   ref LookTargets letterLookTargets)
 		{
@@ -115,7 +116,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="outcomeChance">The outcome chance.</param>
 		/// <returns></returns>
-		protected virtual int GetMutationCount([NotNull] Pawn pawn, [NotNull] OutcomeChance outcomeChance)
+		protected virtual int GetMutationCount([NotNull] Pawn pawn, [NotNull] RitualOutcomePossibility outcomeChance)
 		{
 			return outcomeChance.positivityIndex * Rand.Range(1, 3);
 		}
@@ -131,7 +132,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// <returns></returns>
 		[NotNull]
 		protected virtual IEnumerable<MutationDef> GetMutationsToAdd([NotNull] Pawn target, [NotNull] LordJob_Ritual jobRitual,
-																	 [NotNull] OutcomeChance outcome, out ThingDef chosenAnimal)
+																	 [NotNull] RitualOutcomePossibility outcome, out ThingDef chosenAnimal)
 		{
 			Ideo ideo = jobRitual.Ritual.ideo;
 			if (ideo == null)
@@ -165,7 +166,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// <param name="outcome">The outcome.</param>
 		/// <returns></returns>
 		[NotNull]
-		protected virtual IEnumerable<Pawn> GetTargets([NotNull] LordJob_Ritual jobRitual, [NotNull] OutcomeChance outcome)
+		protected virtual IEnumerable<Pawn> GetTargets([NotNull] LordJob_Ritual jobRitual, [NotNull] RitualOutcomePossibility outcome)
 		{
 			RitualRole role = jobRitual.GetRole(RoleTags.TARGET_TAG);
 			IEnumerable<Pawn> enumer;
@@ -229,7 +230,7 @@ namespace Pawnmorph.Rituals.AttachableOutcomeEffectWorkers
 		/// </summary>
 		/// <param name="ritual">The ritual.</param>
 		/// <param name="outcome">The outcome.</param>
-		protected virtual void InitRitual([NotNull] LordJob_Ritual ritual, [NotNull] OutcomeChance outcome)
+		protected virtual void InitRitual([NotNull] LordJob_Ritual ritual, [NotNull] RitualOutcomePossibility outcome)
 		{
 		}
 	}

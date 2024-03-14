@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using AlienRace;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -264,10 +265,10 @@ namespace Pawnmorph.Chambers
 		/// <summary>
 		///     Draws this instance.
 		/// </summary>
-		public override void Draw()
+		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
 		{
 			FillableDrawer?.PreDraw();
-			base.Draw();
+			base.DrawAt(drawLoc, flip);
 		}
 
 
@@ -1105,7 +1106,7 @@ namespace Pawnmorph.Chambers
 
 		private void UpdateGlow(CompGlower glowerComp, Map map, bool lit)
 		{
-			map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
+			map.mapDrawer.MapMeshDirty(Position, MapMeshFlagDefOf.Things);
 
 			if (lit)
 				map.glowGrid.RegisterGlower(glowerComp);

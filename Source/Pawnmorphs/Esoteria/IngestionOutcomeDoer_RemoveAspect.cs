@@ -17,7 +17,7 @@ namespace Pawnmorph
 		/// <summary>Does the ingestion outcome special.</summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="ingested">The ingested.</param>
-		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int count)
 		{
 			var aspectT = pawn.GetAspectTracker();
 			if (aspectT == null) return;

@@ -333,6 +333,7 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="DefOfs\PM_BodyPartDefOf.cs" />
     <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
     <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
     <Compile Include="Genebank\GenebankEntry.cs" />
@@ -555,7 +556,7 @@
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
-    <Compile Include="HPatches\PawnGraphicSetPatch.cs" />
+    <Compile Include="HPatches\PawnRenderNode_AnimalPartPatch.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnObserverPatches.cs" />
@@ -1007,12 +1008,12 @@
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.4.3682</Version>
+      <Version>1.5.4033-beta</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.2.2</Version>
+      <Version>2.3.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

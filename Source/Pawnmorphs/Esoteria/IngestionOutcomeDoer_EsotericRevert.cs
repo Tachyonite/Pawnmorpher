@@ -22,7 +22,8 @@ namespace Pawnmorph
 		/// <summary>Does the ingestion outcome special.</summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="ingested">The ingested.</param>
-		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		/// <param name="ingestedCount">The ingested amount.</param>
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
 		{
 			var gComp = Find.World.GetComponent<PawnmorphGameComp>();
 
