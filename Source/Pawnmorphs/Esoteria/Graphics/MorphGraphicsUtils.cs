@@ -284,9 +284,8 @@ namespace Pawnmorph.GraphicSys
 		{
 			if (Current.ProgramState != ProgramState.Playing)
 				return; //make sure we don't refresh the graphics while the game is loading
-			pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+			pawn.Drawer.renderer.SetAllGraphicsDirty();
 			if (pawn.jobs == null) return; //needed for weird bug where jobs is null on initialization  
-			if (pawn.IsColonist) PortraitsCache.SetDirty(pawn);
 		}
 	}
 }

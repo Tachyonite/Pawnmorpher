@@ -334,6 +334,7 @@
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
     <Compile Include="DefOfs\PM_BodyPartDefOf.cs" />
+    <Compile Include="DefOfs\PM_ThoughtDefOf.cs" />
     <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
     <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
     <Compile Include="Genebank\GenebankEntry.cs" />
@@ -1008,7 +1009,7 @@
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.5.4033-beta</Version>
+      <Version>1.5.4035-beta</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

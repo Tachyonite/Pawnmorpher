@@ -541,7 +541,7 @@ namespace Pawnmorph.Hybrids
 					if (pawn.genes.GetHairColorGene() == null)
 					{
 						Color? hairColor;
-						GeneDef geneDef2 = PawnHairColors.RandomHairColorGene(pawn.story.SkinColorBase);
+						GeneDef geneDef2 = PawnHairColors.RandomHairColorGeneFor(pawn);
 						if (geneDef2 != null)
 						{
 							pawn.genes.AddGene(geneDef2, xenogene: false);
@@ -605,9 +605,6 @@ namespace Pawnmorph.Hybrids
 			// Regenerate in case target race has different channels.
 			// Default is "skin" and "hair" but might also have "eyes" or "tail"
 			alienComp.ColorChannels.Clear();
-
-			// Update hair with new hairstyle.
-			pawn.Drawer.renderer.graphics.CalculateHairMats();
 		}
 
 
@@ -687,7 +684,7 @@ namespace Pawnmorph.Hybrids
 			var traitsToAdd = allAlienTraits;
 			foreach (AlienChanceEntry<TraitWithDegree> alienTraitEntry in traitsToAdd)
 			{
-				var trait = alienTraitEntry.defName;
+				var trait = alienTraitEntry.entry;
 				if (traitSet.HasTrait(trait.def)) continue; //don't add traits that are already added 
 
 				var add = (Rand.RangeInclusive(0, 100) <= alienTraitEntry.chance);
@@ -706,12 +703,6 @@ namespace Pawnmorph.Hybrids
 				{
 					int traitDegree = trait.degree;
 
-					// Handle legacy mods.
-#pragma warning disable CS0618 // Type or member is obsolete
-					if (traitDegree == 0)
-						traitDegree = alienTraitEntry.degree;
-#pragma warning restore CS0618 // Type or member is obsolete
-
 					// If trait has degrees and the degree is not valid, then get degree of first trait entry.
 					if (trait.def.degreeDatas.Count > 0 && trait.def.degreeDatas.Any(x => x.degree == traitDegree) == false)
 					{
@@ -727,15 +718,15 @@ namespace Pawnmorph.Hybrids
 			}
 		}
 
-		static void UpdateSkillsPostAdd(Pawn pawn, Dictionary<SkillDef, int> skillDict)
+		static void UpdateSkillsPostAdd(Pawn pawn, IList<SkillGain> skillgains)
 		{
 			var skills = pawn.skills;
 			if (skills == null) return;
 
-			foreach (KeyValuePair<SkillDef, int> keyValuePair in skillDict)
+			foreach (SkillGain skill in skillgains)
 			{
-				var skRecord = skills.GetSkill(keyValuePair.Key);
-				skRecord.Level += keyValuePair.Value;
+				var skRecord = skills.GetSkill(skill.skill);
+				skRecord.Level += skill.amount;
 			}
 		}
 

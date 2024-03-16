@@ -11,7 +11,7 @@ using Verse;
 namespace Pawnmorph.DefOfs
 {
 	/// <summary>
-	///     def of for animal classifications
+	///     def of for body parts
 	/// </summary>
 	[DefOf]
 	public static class PM_BodyPartDefOf

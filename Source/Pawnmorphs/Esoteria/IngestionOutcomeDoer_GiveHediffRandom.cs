@@ -46,7 +46,7 @@ namespace Pawnmorph
 				num = hediffDef.initialSeverity;
 
 			if (divideByBodySize)
-				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
+				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num, false);
 
 			hediff.Severity = num;
 

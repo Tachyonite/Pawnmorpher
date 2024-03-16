@@ -53,7 +53,7 @@ namespace Pawnmorph
 
 		private void DoPawnsMutagenicDamage(Map map)
 		{
-			List<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
+			IReadOnlyList<Pawn> allPawnsSpawned = map.mapPawns.AllPawnsSpawned;
 			var mutagen = def.GetModExtension<MutagenExtension>()?.mutagen ?? MutagenDefOf.defaultMutagen;
 			for (int i = 0; i < allPawnsSpawned.Count; i++)
 			{

@@ -22,7 +22,7 @@ namespace Pawnmorph.ThingComps
 					if (pawn != null)
 					{
 						pawn.Rotation = Rot4.South;
-						pawn.DrawAt(GenThing.TrueCenter(parent.Position, Rot4.South, parent.def.size, Props.Altitude) + Offset);
+						pawn.DrawNowAt(GenThing.TrueCenter(parent.Position, Rot4.South, parent.def.size, Props.Altitude) + Offset);
 					}
 				}
 			}

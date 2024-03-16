@@ -99,7 +99,7 @@ namespace Pawnmorph.Hybrids
 				meatDef = animal.meatDef,
 				meatLabel = animal.meatLabel,
 				useMeatFrom = animal.useMeatFrom,
-				deathActionWorkerClass = animal.deathActionWorkerClass, // Boommorphs should explode.
+				deathAction = animal.deathAction, // Boommorphs should explode.
 				corpseDef = human.corpseDef,
 				packAnimal = animal.packAnimal
 			};
@@ -308,7 +308,7 @@ namespace Pawnmorph.Hybrids
 				bodyTypes = human.bodyTypes.MakeSafe().ToList(),
 				headTypes = human.headTypes.MakeSafe().ToList(),
 				headOffset = human.headOffset,
-				headOffsetSpecific = human.headOffsetSpecific,
+				headOffsetDirectional = human.headOffsetDirectional,
 				bodyAddons = GenerateBodyAddons(human.bodyAddons, morph),
 				colorChannels = human.colorChannels,
 				alienProps = impliedRace
@@ -368,7 +368,7 @@ namespace Pawnmorph.Hybrids
 			foreach (AlienPartGenerator.BodyAddon addon in human)
 			{
 				addon.scaleWithPawnDrawsize = true;
-
+				
 				AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
 				{
 					path = addon.path,
@@ -378,23 +378,27 @@ namespace Pawnmorph.Hybrids
 					angle = addon.angle,
 					inFrontOfBody = addon.inFrontOfBody,
 					layerInvert = addon.layerInvert,
-					drawnOnGround = addon.drawnOnGround,
-					drawnInBed = addon.drawnInBed,
-					drawForMale = addon.drawForMale,
-					drawForFemale = addon.drawForFemale,
 					drawSize = addon.drawSize,
 					variantCount = addon.variantCount,
 					defaultOffset = addon.defaultOffset,
 					defaultOffsets = addon.defaultOffsets,
-					hediffGraphics = addon.hediffGraphics,
-					backstoryGraphics = addon.backstoryGraphics,
-					hiddenUnderApparelFor = addon.hiddenUnderApparelFor,
-					hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
-					backstoryRequirement = addon.backstoryRequirement,
 					drawRotated = addon.drawRotated,
 					drawSizePortrait = addon.drawSizePortrait,
 					scaleWithPawnDrawsize = addon.scaleWithPawnDrawsize,
-					alignWithHead = addon.alignWithHead
+					alignWithHead = addon.alignWithHead,
+					allowColorOverride = addon.allowColorOverride,
+					bodyPartLabel = addon.bodyPartLabel,
+					colorOverrideOne = addon.colorOverrideOne,
+					colorOverrideTwo = addon.colorOverrideTwo,
+					colorPostFactor = addon.colorPostFactor,
+					conditions = addon.conditions,
+					extendedGraphics = addon.extendedGraphics,
+					femaleOffsets = addon.femaleOffsets,
+					paths = addon.paths,
+					pathsFallback = addon.pathsFallback,
+					userCustomizable = addon.userCustomizable,
+					useSkipFlags = addon.useSkipFlags,
+
 				};
 				if (temp.ColorChannel != addon.ColorChannel)
 					colorChannel.SetValue(temp, addon.ColorChannel);
@@ -504,11 +508,11 @@ namespace Pawnmorph.Hybrids
 		private static GraphicPaths GenerateGraphicPaths(GraphicPaths humanGraphicPaths, MorphDef morph, GeneralSettings generalSettings)
 		{
 			GraphicPaths temp = new GraphicPaths();
-			
-			temp.head.headtypeGraphics = new List<AlienPartGenerator.ExtendedHeadtypeGraphic>();
+
+			temp.head.extendedGraphics = new List<AlienRace.ExtendedGraphics.AbstractExtendedGraphic>();
 			foreach (HeadTypeDef item2 in DefDatabase<HeadTypeDef>.AllDefsListForReading)
 			{
-				temp.head.headtypeGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
+				temp.head.extendedGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
 				{
 					headType = item2,
 					path = item2.graphicPath,

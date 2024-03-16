@@ -1128,7 +1128,7 @@ namespace Pawnmorph
 			List<AlienPartGenerator.BodyAddon> bodyAddons =
 				((ThingDef_AlienRace)ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons;
 			var hediffDefs =
-				bodyAddons.SelectMany(add => add.hediffGraphics ?? Enumerable.Empty<AlienPartGenerator.ExtendedHediffGraphic>())
+				bodyAddons.SelectMany(add => add.extendedGraphics.OfType<AlienPartGenerator.ExtendedHediffGraphic>() ?? Enumerable.Empty<AlienPartGenerator.ExtendedHediffGraphic>())
 						  .Select(h => h.hediff);
 
 			return hediffDefs;

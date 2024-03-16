@@ -142,9 +142,9 @@ namespace Pawnmorph
 		protected void MakeFeral()
 		{
 			var restriction = Pawn.foodRestriction;
-			var curRestriction = restriction?.CurrentFoodRestriction;
+			var curRestriction = restriction?.CurrentFoodPolicy;
 			if (curRestriction == null) return;
-			restriction.CurrentFoodRestriction = null;
+			restriction.CurrentFoodPolicy = null;
 		}
 
 		internal void SetDef([NotNull] SapienceStateDef def)
