@@ -12,14 +12,8 @@
 			<li>FreeMutant</li>
 		</spawnCategories>
 		<skillGains>
-			<li>
-				<key>Intellectual</key>
-				<value>3</value>
-			</li>
-			<li>
-				<key>Social</key>
-				<value>2</value>
-			</li>
+			<Intellectual>3</Intellectual>
+			<Social>2</Social>
 		</skillGains>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">

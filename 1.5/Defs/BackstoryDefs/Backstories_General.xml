@@ -178,14 +178,8 @@
 			<li>FreeMutant</li>
 		</spawnCategories>
 		<skillGains>
-			<li>
-				<key>Shooting</key>
-				<value>3</value>
-			</li>
-			<li>
-				<key>Melee</key>
-				<value>3</value>
-			</li>
+			<Shooting>3</Shooting>
+			<Melee>3</Melee>
 		</skillGains>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">
@@ -210,14 +204,8 @@
 			<li>FreeMutant</li>
 		</spawnCategories>
 		<skillGains>
-			<li>
-				<key>Social</key>
-				<value>-2</value>
-			</li>
-			<li>
-				<key>Animals</key>
-				<value>2</value>
-			</li>
+			<Social>-2</Social>
+			<Animals>2</Animals>
 		</skillGains>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">

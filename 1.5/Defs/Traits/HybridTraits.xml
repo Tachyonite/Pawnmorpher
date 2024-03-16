@@ -7,14 +7,8 @@
 				<label>natural hunter</label>
 				<description>{PAWN_nameDef} is now a natural hunter.</description> <!--could use some work -->
 				<skillGains>
-					<li>
-						<key>Shooting</key>
-						<value>1</value> <!-- value need balancing  -->
-					</li>
-					<li>
-						<key>Animals</key>
-						<value>1</value>
-					</li>
+					<Shooting>1</Shooting>
+					<Animals>1</Animals>
 				</skillGains>
 			</li>
 		</degreeDatas>

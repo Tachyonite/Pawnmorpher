@@ -12,18 +12,9 @@
 			<li>FreeMutant</li>
 		</spawnCategories>
 		<skillGains>
-			<li>
-				<key>Melee</key>
-				<value>5</value>
-			</li>
-			<li>
-				<key>Social</key>
-				<value>3</value>
-			</li>
-			<li>
-				<key>Intellectual</key>
-				<value>-2</value>
-			</li>
+			<Melee>5</Melee>
+			<Social>3</Social>
+			<Intellectual>-2</Intellectual>
 		</skillGains>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">
@@ -49,18 +40,9 @@
 			<li>FreeMutant</li>
 		</spawnCategories>
 		<skillGains>
-			<li>
-				<key>Melee</key>
-				<value>2</value>
-			</li>
-			<li>
-				<key>Social</key>
-				<value>-2</value>
-			</li>
-			<li>
-				<key>Intellectual</key>
-				<value>2</value>
-			</li>
+			<Melee>2</Melee>
+			<Social>-2</Social>
+			<Intellectual>2</Intellectual>
 		</skillGains>
 		<modExtensions>
 			<li Class="Pawnmorph.MorphPawnKindExtension">
