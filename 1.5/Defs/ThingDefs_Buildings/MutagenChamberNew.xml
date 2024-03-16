@@ -62,7 +62,7 @@
                 </fuelFilter>
                 <initialFuelPercent>0</initialFuelPercent>
             </li>
-            <li Class="PipeSystem.CompProperties_RefillWithPipes">
+            <li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core" Class="PipeSystem.CompProperties_RefillWithPipes">
                 <pipeNet>PM_SlurryNet</pipeNet>
                 <thing>MechaniteSlurry</thing>
             </li>

@@ -41,11 +41,15 @@
 		<li IfModActive="vanillaexpanded.backgrounds">1.4/Mods/VBE</li>
 		<li IfModActive="roolo.giddyupcore">1.4/Mods/GiddyUp</li>
 		<li IfModActive="Owlchemist.GiddyUp">1.4/Mods/GiddyUp-2</li>
-
-
-
 		<li IfModActive="zmodw.zwanimals,acpteam.acpvanillastyle">1.4/Mods/ZWE-ACP</li>
 		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.4/Mods/ADogSaidAnimalProsthetics</li>
 		<li IfModActive="CETeam.CombatExtended">1.4/Mods/CombatExtended</li>
+	</v1.4>
+	<v1.5>
+		<li>/</li>
+		<li>1.4</li>
+		<li IfModActive="Ludeon.RimWorld.Ideology">1.4/Mods/Ideology</li>
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.4/Mods/Royalty</li>
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.5/Mods/VEFramework</li>
 	</v1.4>
 </loadFolders>

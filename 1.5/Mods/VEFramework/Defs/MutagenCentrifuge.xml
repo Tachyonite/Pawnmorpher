@@ -35,9 +35,9 @@
                 <explosiveRadius>8</explosiveRadius>
                 <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
             </li>
-			<li Class="PipeSystem.CompProperties_Resource">
+		<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core"  Class="PipeSystem.CompProperties_Resource">
 				<pipeNet>PM_SlurryNet</pipeNet>
-			</li>
+		</li>
         </comps>
         <altitudeLayer>Building</altitudeLayer>
         <statBases>
