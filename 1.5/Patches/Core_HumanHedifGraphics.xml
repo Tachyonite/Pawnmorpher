@@ -8,14 +8,17 @@
 				<anchorID>Muzzle</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hiddenUnderApparelFor>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Jaw</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<hiddenUnderApparelFor>
+						<li>FullHead</li>
+					</hiddenUnderApparelFor>
+				</conditions>
 				<offsets>
 					<south>
 						<layerOffset>-0.328</layerOffset>
@@ -34,14 +37,18 @@
 				<anchorID>MuzzleMale</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<drawForMale>true</drawForMale>
-				<drawForFemale>false</drawForFemale>
-				<hiddenUnderApparelFor>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Jaw</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<hiddenUnderApparelFor>
+						<li>FullHead</li>
+					</hiddenUnderApparelFor>
+					<Gender>Male</Gender>
+				</conditions>
 				<offsets>
 					<south>
 						<layerOffset>-0.328</layerOffset>
@@ -53,8 +60,6 @@
 						<layerOffset>-0.328</layerOffset>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Female Muzzles -->
@@ -62,14 +67,18 @@
 				<anchorID>MuzzleFemale</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<drawForMale>false</drawForMale>
-				<drawForFemale>true</drawForFemale>
-				<hiddenUnderApparelFor>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Jaw</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<hiddenUnderApparelFor>
+						<li>FullHead</li>
+					</hiddenUnderApparelFor>
+					<Gender>Female</Gender>
+				</conditions>
 				<offsets>
 					<south>
 						<layerOffset>-0.328</layerOffset>
@@ -81,8 +90,6 @@
 						<layerOffset>-0.328</layerOffset>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Bird jaw ornament -->
@@ -90,13 +97,18 @@
 				<anchorID>BirdJawOrnament</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<hiddenUnderApparelFor>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Jaw</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<hiddenUnderApparelFor>
+						<li>FullHead</li>
+					</hiddenUnderApparelFor>
+				</conditions>
 				<offsets>
 					<south>
 						<layerOffset>-0.328</layerOffset>
@@ -108,8 +120,6 @@
 						<layerOffset>-0.328</layerOffset>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear -->
@@ -117,51 +127,63 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftEar</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Ear</bodyPart>
-				<bodyPartLabel>left ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Ear</bodyPart>
+						<bodyPartLabel>left ear</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Left Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>Ear</bodyPart>
-				<bodyPartLabel>left ear</bodyPartLabel>
 				<anchorID>LeftEarBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Ear</bodyPart>
+						<bodyPartLabel>left ear</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>Ear</bodyPart>
-				<bodyPartLabel>right ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<anchorID>RightEar</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Ear</bodyPart>
+						<bodyPartLabel>right ear</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Ear (Behind Head) -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>Ear</bodyPart>
-				<bodyPartLabel>right ear</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<anchorID>RightEarBehindHead</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Ear</bodyPart>
+						<bodyPartLabel>right ear</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Tails -->
@@ -169,12 +191,15 @@
 				<anchorID>Tail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<drawnInBed>false</drawnInBed>
-				<drawForMale>true</drawForMale> <!--Leave this here, it is hacky but necessary-->
-				<drawForFemale>true</drawForFemale> <!--Leave this here, it is hacky but necessary-->
+				<conditions>
+					<BodyPart>
+						<bodyPartLabel>tail</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -204,8 +229,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Tails -->
@@ -213,13 +236,19 @@
 				<anchorID>MaleTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
-				<drawForMale>true</drawForMale>
-				<drawForFemale>false</drawForFemale>
-				<!--Leave this here, it is hacky but necessary-->
+				<conditions>
+					<BodyPart>
+						<bodyPartLabel>tail</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+					  <drawnOnGround>true</drawnOnGround>
+					  <drawnInBed>false</drawnInBed>
+					</Posture>
+					<Gender>Male</Gender>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -250,8 +279,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Female Tails -->
@@ -259,13 +286,19 @@
 				<anchorID>FemaleTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
-				<drawForMale>false</drawForMale>
-				<drawForFemale>true</drawForFemale>
-				<!--Leave this here, it is hacky but necessary-->
+				<conditions>
+					<BodyPart>
+						<bodyPartLabel>tail</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+					  <drawnOnGround>true</drawnOnGround>
+					  <drawnInBed>false</drawnInBed>
+					</Posture>
+					<Gender>Female</Gender>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -295,8 +328,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Behind-body tails -->
@@ -304,10 +335,18 @@
 				<path>Parts/None/None</path>
 				<anchorID>BehindBodyTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPartLabel>tail</bodyPartLabel>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPartLabel>tail</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+					  <drawnOnGround>true</drawnOnGround>
+					  <drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -337,19 +376,25 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Body-extending tails -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPartLabel>tail</bodyPartLabel>
+				<anchorID>BodyExtendingTail</anchorID>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
-				<anchorID>BodyExtendingTail</anchorID>
 				<colorChannel>SkinHair</colorChannel>
+				<conditions>
+					<BodyPart>
+						<bodyPartLabel>tail</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+					  <drawnOnGround>true</drawnOnGround>
+					  <drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<north>
 						<bodyTypes>
@@ -371,8 +416,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Headspikes -->
@@ -380,10 +423,15 @@
 				<anchorID>Headspikes</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Head</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Skullspikes -->
@@ -391,12 +439,15 @@
 				<anchorID>Skullspike</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Head</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Horns -->
@@ -404,19 +455,19 @@
 				<anchorID>Horns</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Skull</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<south>
 						<layerOffset>0.1</layerOffset>
 					</south>
 				</offsets>
-				<hediffGraphics>
-					<!-- SPECIAL COMBINATION PIECES -->
-					<EtherComboHornbill>Parts/COMBINATIONS/Hornbill/Hornbill</EtherComboHornbill>
-					<!-- REGULAR PAWN PIECES -->				 
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Foreground) -->
@@ -424,16 +475,21 @@
 				<anchorID>CobraHood</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<hiddenUnderApparelFor>
-					<li>UpperHead</li>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Head</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Apparel>
+						<hiddenUnderApparelFor>
+							<li>UpperHead</li>
+							<li>FullHead</li>
+						</hiddenUnderApparelFor>
+					</Apparel>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Cobra Hood (Background) -->
@@ -441,15 +497,20 @@
 				<anchorID>CobraHoodBackground</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hiddenUnderApparelFor>
-					<li>UpperHead</li>
-					<li>FullHead</li>
-				</hiddenUnderApparelFor>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Head</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Apparel>
+						<hiddenUnderApparelFor>
+							<li>UpperHead</li>
+							<li>FullHead</li>
+						</hiddenUnderApparelFor>
+					</Apparel>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Udders -->
@@ -457,9 +518,18 @@
 				<colorChannel>SkinHair</colorChannel>
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>Waist</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Waist</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+						<drawnOnGround>true</drawnOnGround>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -478,18 +548,24 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Wings -->
 				<debug>false</debug>
 				<path>Parts/None/None</path>
-				<bodyPart>Arm</bodyPart>
 				<anchorID>Wings</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<inFrontOfBody>true</inFrontOfBody>
-				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Arm</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+						<drawnOnGround>true</drawnOnGround>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<north/>
 					<south/>
@@ -503,8 +579,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Spines -->
@@ -512,9 +586,14 @@
 				<anchorID>Spines</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Spine</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<south/>
 					<north/>
@@ -526,8 +605,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Spine Behind-->
@@ -535,10 +612,18 @@
 				<anchorID>SpinesBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Spine</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+						<drawnOnGround>true</drawnOnGround>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -552,8 +637,6 @@
 					<north/>
 					<east/>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos -->
@@ -561,10 +644,18 @@
 				<anchorID>Torso</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Torso</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+						<drawnOnGround>true</drawnOnGround>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<south/>
 					<north>
@@ -578,8 +669,6 @@
 						</bodyTypes>
 					</east>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Torsos Behind-->
@@ -587,10 +676,18 @@
 				<anchorID>TorsoBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Torso</bodyPart>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+					<Posture>
+						<drawnOnGround>true</drawnOnGround>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
+				</conditions>
 				<offsets>
 					<south>
 						<bodyTypes>
@@ -604,16 +701,19 @@
 					<north/>
 					<east/>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Left Arm -->
 				<path>Parts/None/None</path>
 				<anchorID>LeftArm</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Arm</bodyPart>
-				<bodyPartLabel>left arm</bodyPartLabel>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Arm</bodyPart>
+						<bodyPartLabel>left arm</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<east>
 						<layerOffset>-0.1</layerOffset>
@@ -656,9 +756,6 @@
 						</bodyTypes>
 					</south>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
-
 				<inFrontOfBody>true</inFrontOfBody>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -666,8 +763,13 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftArmBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Arm</bodyPart>
-				<bodyPartLabel>left arm</bodyPartLabel>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Arm</bodyPart>
+						<bodyPartLabel>left arm</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<east>
 						<bodyTypes>
@@ -707,16 +809,19 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>false</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm -->
 				<path>Parts/None/None</path>
 				<anchorID>RightArm</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Arm</bodyPart>
-				<bodyPartLabel>right arm</bodyPartLabel>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Arm</bodyPart>
+						<bodyPartLabel>right arm</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<east>
 						<layerOffset>-0.1</layerOffset>
@@ -760,16 +865,19 @@
 					</south>
 				</offsets>
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Male Right Arm (Behind Body) -->
 				<path>Parts/None/None</path>
 				<anchorID>RightArmBehind</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Arm</bodyPart>
-				<bodyPartLabel>right arm</bodyPartLabel>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Arm</bodyPart>
+						<bodyPartLabel>right arm</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 				<offsets>
 					<east>
 						<bodyTypes>
@@ -808,8 +916,6 @@
 						</bodyTypes>
 					</south>
 				</offsets>
-				<hediffGraphics>
-				</hediffGraphics>
 				<inFrontOfBody>false</inFrontOfBody>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
@@ -817,24 +923,30 @@
 				<path>Parts/None/None</path>
 				<anchorID>LeftEye</anchorID>
 				<colorChannel>SkinHair</colorChannel>
-				<bodyPart>Eye</bodyPart>
-				<bodyPartLabel>left eye</bodyPartLabel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Eye</bodyPart>
+						<bodyPartLabel>left eye</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Right Eye -->
 				<path>Parts/None/None</path>
-				<bodyPart>Eye</bodyPart>
-				<bodyPartLabel>right eye</bodyPartLabel>
 				<anchorID>RightEye</anchorID>
 				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
-				<hediffGraphics>
-				</hediffGraphics>
+				<conditions>
+					<BodyPart>
+						<bodyPart>Eye</bodyPart>
+						<bodyPartLabel>right eye</bodyPartLabel>
+						<drawWithoutPart>false</drawWithoutPart>
+					</BodyPart>
+				</conditions>
 			</li>
 		</value>
 	</Operation>

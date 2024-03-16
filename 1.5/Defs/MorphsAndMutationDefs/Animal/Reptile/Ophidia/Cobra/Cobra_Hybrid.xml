@@ -431,7 +431,7 @@
         </corePart>
     </BodyDef>
 
-    <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="HumanRace">
+    <ThingDef Class="AlienRace.ThingDef_AlienRace" ParentName="Human">
         <defName>SnakeMorph</defName>
         <label>naga</label>
         <description>A snakelike human, with a large and powerful tail that has replaced its legs. This allows for viper-quick movement, and while you might expect them to lack arms, most cobramorphs do retain their arms. In many respects, they are a mutagenic-born mythological naga.</description>
@@ -557,15 +557,20 @@
                     </colorChannels>
                     <bodyAddons>
                         <li>
-                            <!-- Body Tails -->
-                            <path>Parts/None/None</path>
-                            <bodyPart>TailLeg</bodyPart>
+                            <path>Parts/Cobra/Cobra_Tail</path>
+                            <conditions>
+                                <BodyPart>
+                                    <bodyPart>TailLeg</bodyPart>
+                                    <drawWithoutPart>false</drawWithoutPart>
+                                </BodyPart>
+                                <Hediff>EtherSnakeTail</Hediff>
+                                <Posture>
+                                  <drawnOnGround>true</drawnOnGround>
+                                  <drawnInBed>false</drawnInBed>
+                                </Posture>
+                            </conditions>
                             <inFrontOfBody>true</inFrontOfBody>
                             <layerInvert>false</layerInvert>
-                            <drawnInBed>false</drawnInBed>
-                            <hediffGraphics>
-                                <EtherSnakeTail>Parts/Cobra/Cobra_Tail</EtherSnakeTail>
-                            </hediffGraphics>
 							<offsets>
 								<south/>
 								<north>
