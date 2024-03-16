@@ -47,9 +47,9 @@
 	</v1.4>
 	<v1.5>
 		<li>/</li>
-		<li>1.4</li>
-		<li IfModActive="Ludeon.RimWorld.Ideology">1.4/Mods/Ideology</li>
-		<li IfModActive="Ludeon.RimWorld.Royalty">1.4/Mods/Royalty</li>
+		<li>1.5</li>
+		<li IfModActive="Ludeon.RimWorld.Ideology">1.5/Mods/Ideology</li>
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.5/Mods/Royalty</li>
 		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.5/Mods/VEFramework</li>
-	</v1.4>
+	</v1.5>
 </loadFolders>
