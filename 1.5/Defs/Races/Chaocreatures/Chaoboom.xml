@@ -84,7 +84,9 @@
 		<race>
 			<body>Chaoboom</body>
 			<herdAnimal>false</herdAnimal>
-			<deathActionWorkerClass>EtherGun.DeathActionWorker_MutagenicExplosion</deathActionWorkerClass>
+			<deathAction>
+				<workerClass>EtherGun.DeathActionWorker_MutagenicExplosion</workerClass>
+			</deathAction>
 			<baseHealthScale>2.0</baseHealthScale>
 			<foodType>OmnivoreAnimal, OmnivoreRoughAnimal</foodType>
 			<wildness>0.50</wildness>

@@ -15,7 +15,7 @@ namespace Pawnmorph.DefOfs
 	{
 		static PM_ThoughtDefOf()
 		{
-			DefOfHelper.EnsureInitializedInCtor(typeof(ThoughtDef));
+			DefOfHelper.EnsureInitializedInCtor(typeof(PM_ThoughtDefOf));
 		}
 
 		public static ThoughtDef AteHumanlikeMeatDirect;

@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\1.4\Assemblies\</OutputPath>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,14 +64,6 @@
       <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="PipeSystem">
-      <HintPath>..\..\Dependencies\PipeSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MultiplayerAPI">
-      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
@@ -342,7 +334,6 @@
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="Genebank\RecentGenebankSelector.cs" />
-    <Compile Include="Graphics\MutationStageGraphicsData.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
@@ -362,7 +353,6 @@
     <Compile Include="Jobs\Giver_Producer.cs" />
     <Compile Include="RecipeWorkers\InjectorRecipeWorker.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
-    <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />
     <Compile Include="AnimalClassUtilities.cs" />
@@ -385,8 +375,6 @@
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BodyUtilities.cs" />
-    <Compile Include="Buildings\MutagenTank.cs" />
-    <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
     <Compile Include="Chambers\AnimalTfControllers\ChaoThrumbo.cs" />
@@ -590,7 +578,6 @@
     <Compile Include="IncidentWorker\LiquidSlurry.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
-    <Compile Include="IncidentWorker\MutagenicLeak.cs" />
     <Compile Include="IncidentWorker\SheepChef.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
@@ -611,7 +598,6 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
-    <Compile Include="SlurryNetDefOf.cs" />
     <Compile Include="StatWorkers\StatParts\StatPart_MarketValue.cs" />
     <Compile Include="ThingComps\AddAspectEffectProps.cs" />
     <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
@@ -678,7 +664,6 @@
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
-    <Compile Include="PlaceWorkers\Centrifuge.cs" />
     <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
     <Compile Include="Plants\SpecialHarvestFailPlant.cs" />
     <Compile Include="PMBackstoryDefOf.cs" />
@@ -962,7 +947,6 @@
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
     <Compile Include="Social\PMInteractionWeightsDef.cs" />

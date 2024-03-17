@@ -534,7 +534,6 @@ namespace Pawnmorph
 			 && pawn.IsColonist)
 			{
 				pawn.Drawer.renderer.SetAllGraphicsDirty();
-				PortraitsCache.SetDirty(pawn);
 			}
 		}
 	}

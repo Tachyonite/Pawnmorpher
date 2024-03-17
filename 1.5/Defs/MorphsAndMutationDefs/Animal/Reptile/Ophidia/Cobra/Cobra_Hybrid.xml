@@ -519,7 +519,7 @@
             <manhunterOnTameFailChance>0.02</manhunterOnTameFailChance>
 
             <soundMeleeHitPawn>Pawn_Melee_Punch_HitPawn</soundMeleeHitPawn>
-            <soundMeleeHitBuilding>Pawn_Melee_Punch_HitBuilding</soundMeleeHitBuilding>
+            <soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
             <soundMeleeMiss>Pawn_Melee_Punch_Miss</soundMeleeMiss>
         </race>
         <alienRace>

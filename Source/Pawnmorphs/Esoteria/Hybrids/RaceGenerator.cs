@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AlienRace;
+using AlienRace.ExtendedGraphics;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
@@ -101,9 +102,12 @@ namespace Pawnmorph.Hybrids
 				useMeatFrom = animal.useMeatFrom,
 				deathAction = animal.deathAction, // Boommorphs should explode.
 				corpseDef = human.corpseDef,
-				packAnimal = animal.packAnimal
+				packAnimal = animal.packAnimal,
+				renderTree = human.renderTree,
+				startingAnimation = human.startingAnimation,
+				soundMoving = human.soundMoving,
 			};
-
+			Log.Warning("render tree is: " + properties.renderTree?.root?.nodeClass);
 			typeof(RaceProperties).GetField("bloodDef", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.BloodDef);
 			typeof(RaceProperties).GetField("fleshType", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.FleshType);
 
@@ -365,6 +369,7 @@ namespace Pawnmorph.Hybrids
 			bodyParts.Add("Waist");
 
 			FieldInfo colorChannel = HarmonyLib.AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "colorChannel");
+
 			foreach (AlienPartGenerator.BodyAddon addon in human)
 			{
 				addon.scaleWithPawnDrawsize = true;
@@ -372,7 +377,6 @@ namespace Pawnmorph.Hybrids
 				AlienPartGenerator.BodyAddon temp = new AlienPartGenerator.BodyAddon()
 				{
 					path = addon.path,
-					bodyPart = addon.bodyPart,
 					offsets = GenerateBodyAddonOffsets(addon.offsets, morph),
 					linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
 					angle = addon.angle,
@@ -387,7 +391,6 @@ namespace Pawnmorph.Hybrids
 					scaleWithPawnDrawsize = addon.scaleWithPawnDrawsize,
 					alignWithHead = addon.alignWithHead,
 					allowColorOverride = addon.allowColorOverride,
-					bodyPartLabel = addon.bodyPartLabel,
 					colorOverrideOne = addon.colorOverrideOne,
 					colorOverrideTwo = addon.colorOverrideTwo,
 					colorPostFactor = addon.colorPostFactor,
@@ -403,7 +406,8 @@ namespace Pawnmorph.Hybrids
 				if (temp.ColorChannel != addon.ColorChannel)
 					colorChannel.SetValue(temp, addon.ColorChannel);
 
-				if (headParts.Contains(temp.bodyPartLabel))
+				List<string> tempPartLabels = temp.conditions.OfType<ConditionBodyPart>().Select(x => x.bodyPartLabel).ToList();
+				if (tempPartLabels.Any(headParts.Contains))
 				{
 					if (headSize != null)
 						temp.drawSize = headSize.GetValueOrDefault();
@@ -424,7 +428,7 @@ namespace Pawnmorph.Hybrids
 					}
 				}
 
-				if (bodySize != null && bodyParts.Contains(temp.bodyPartLabel))
+				if (bodySize != null && tempPartLabels.Any(bodyParts.Contains))
 				{
 					temp.drawSize = bodySize.GetValueOrDefault();
 				}
@@ -512,11 +516,13 @@ namespace Pawnmorph.Hybrids
 			temp.head.extendedGraphics = new List<AlienRace.ExtendedGraphics.AbstractExtendedGraphic>();
 			foreach (HeadTypeDef item2 in DefDatabase<HeadTypeDef>.AllDefsListForReading)
 			{
-				temp.head.extendedGraphics.Add(new AlienPartGenerator.ExtendedHeadtypeGraphic
+				var graphic = new AlienPartGenerator.ExtendedConditionGraphic
 				{
-					headType = item2,
 					path = item2.graphicPath,
-				});
+				};
+
+				graphic.conditions.Add(new ConditionHeadType { headType = item2 });
+				temp.head.extendedGraphics.Add(graphic);
 			}
 			return temp;
 		}

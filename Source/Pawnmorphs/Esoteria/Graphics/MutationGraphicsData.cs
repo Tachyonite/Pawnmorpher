@@ -4,6 +4,7 @@
 using System.Xml;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Pawnmorph.Hediffs;
 using Verse;
 using static AlienRace.AlienPartGenerator;
 
@@ -12,15 +13,19 @@ namespace Pawnmorph.GraphicSys
 	/// <summary>
 	/// simple class containing data about a specific set of mutations graphics 
 	/// </summary>
-	public class MutationGraphicsData : ExtendedHediffGraphic
+	public class MutationGraphicsData : ExtendedConditionGraphic
 	{
 		/// <summary>
 		/// The anchor identifier
 		/// </summary>
 		public string anchorID;
+		public string path;
+		public MutationDef hediff;
+		
+
 
 		[UsedImplicitly]
-		public new void LoadDataFromXmlCustom(XmlNode xmlRoot)
+		public virtual void LoadDataFromXmlCustom(XmlNode xmlRoot)
 		{
 			anchorID = xmlRoot.Name;
 			Traverse traverse = Traverse.Create(this);

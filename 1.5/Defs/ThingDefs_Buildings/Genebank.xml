@@ -3,6 +3,7 @@
     <defName>PM_Genebank</defName>
     <label>genebank</label>
     <description>A morphsilk tape-reel storage device that's optimised for storing genetic information. Can store 64 kMutabytes of information.</description>
+    <disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
     <graphicData>
       <texPath>Things/Building/GeneticStorage/GeneticStorage</texPath>
       <graphicClass>Graphic_Multi</graphicClass>

@@ -20,7 +20,6 @@ using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
 //just a typedef to shorten long type name 
-using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic;
 
 namespace Pawnmorph
 {
@@ -270,7 +269,7 @@ namespace Pawnmorph
 							continue;
 						}
 
-						HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
+						ExtendedConditionGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
 						if (hediffGraphic == null)
 							continue;
 
@@ -294,7 +293,7 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void AppendPools(HediffGraphic hediffGraphic, BodyAddon addon)
+		private static void AppendPools(ExtendedConditionGraphic hediffGraphic, BodyAddon addon)
 		{
 			Stack<IEnumerator<IExtendedGraphic>> stack = new Stack<IEnumerator<IExtendedGraphic>>();
 			AppendPools(addon, hediffGraphic, hediffGraphic);
@@ -317,7 +316,7 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void AppendPools(BodyAddon addon, HediffGraphic baseGraphic, IExtendedGraphic current)
+		private static void AppendPools(BodyAddon addon, ExtendedConditionGraphic baseGraphic, IExtendedGraphic current)
 		{
 			while (ContentFinder<Texture2D>.Get(current.GetPath() + (current.GetVariantCount() == 0 ? "" : baseGraphic.variantCount.ToString()) + "_north",
 									 false) != null)
@@ -330,7 +329,7 @@ namespace Pawnmorph
 			}
 		}
 
-		private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
+		private static ExtendedConditionGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
 		{
 			List<MutationGraphicsData> mainData = mutation.graphics.MakeSafe().Where(g => g.anchorID == anchorID).ToList();
 
@@ -349,13 +348,13 @@ namespace Pawnmorph
 				hGraphic = new MutationGraphicsData();
 				hGraphic.path = null;
 			}
-			hGraphic.hediff = mutation;
+			hGraphic.conditions.Add(new ConditionHediff() { hediff = mutation });
 
-			var severityLst = new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
+			var severityLst = new List<AlienPartGenerator.ExtendedConditionGraphic>();
 			for (var index = mutationStages.Count - 1; index >= 0; index--)
 			{
 				MutationStage stage = mutationStages[index];
-				MutationStageGraphicsData stageGraphics;
+				MutationGraphicsData stageGraphics;
 				if (stage.graphics != null && stage.graphics.Count > 0)
 				{
 					// Stage has defined graphics for this stage, use that and hide all addons not explicitly defined in the stage.
@@ -364,22 +363,26 @@ namespace Pawnmorph
 					if (stageGraphics == null)
 					{
 						// Graphics were not defined for this anchor point.
-						stageGraphics = new MutationStageGraphicsData();
+						stageGraphics = new MutationGraphicsData();
 					}
 				}
 				else
 				{
 					// If no graphics are defined on stage then default to whatever is set on mutation.
-					stageGraphics = new MutationStageGraphicsData();
+					stageGraphics = new MutationGraphicsData();
 					stageGraphics.path = hGraphic.path;
 					stageGraphics.extendedGraphics = hGraphic.extendedGraphics;
 				}
 
-				stageGraphics.severity = stage.minSeverity;
+				ConditionHediffSeverity severityCondition = new ConditionHediffSeverity();
+				severityCondition.severity = stage.minSeverity;
+				severityCondition.hediff = mutation;
+
+				stageGraphics.conditions.Add(severityCondition);
 				severityLst.Add(stageGraphics);
 			}
 
-			hGraphic.severity = severityLst;
+			hGraphic.extendedGraphics.AddRange(severityLst);
 			return hGraphic;
 		}
 
@@ -501,7 +504,7 @@ namespace Pawnmorph
 			{
 				if (bodyAddon.extendedGraphics == null || bodyAddon.extendedGraphics.Count == 0) continue;
 				bool found = false;
-				foreach (var hDef in bodyAddon.extendedGraphics.OfType<HediffGraphic>().Select(h => h.hediff))
+				foreach (var hDef in bodyAddon.extendedGraphics.OfType<ExtendedConditionGraphic>().SelectMany(h => h.conditions.OfType<ConditionHediff>().Select(x => x.hediff)))
 				{
 					if (hDef == null) continue;
 					if (hDef is MutationDef) //make sure we only grab addons that are mutations 
@@ -579,7 +582,6 @@ namespace Pawnmorph
 			{
 				anchorID = aID,
 				angle = addon.angle,
-				bodyPart = addon.bodyPart,
 				debug = addon.debug,
 				drawSize = addon.drawSize,
 				path = addon.path,

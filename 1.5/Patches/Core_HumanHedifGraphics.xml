@@ -15,9 +15,11 @@
 						<bodyPart>Jaw</bodyPart>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
-					<hiddenUnderApparelFor>
-						<li>FullHead</li>
-					</hiddenUnderApparelFor>
+					<Apparel>
+						<hiddenUnderApparelFor>
+							<li>FullHead</li>
+						</hiddenUnderApparelFor>
+					</Apparel>
 				</conditions>
 				<offsets>
 					<south>
@@ -44,9 +46,11 @@
 						<bodyPart>Jaw</bodyPart>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
-					<hiddenUnderApparelFor>
-						<li>FullHead</li>
-					</hiddenUnderApparelFor>
+					<Apparel>
+						<hiddenUnderApparelFor>
+							<li>FullHead</li>
+						</hiddenUnderApparelFor>
+					</Apparel>
 					<Gender>Male</Gender>
 				</conditions>
 				<offsets>
@@ -74,10 +78,12 @@
 						<bodyPart>Jaw</bodyPart>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
+				<Apparel>
 					<hiddenUnderApparelFor>
 						<li>FullHead</li>
 					</hiddenUnderApparelFor>
-					<Gender>Female</Gender>
+				</Apparel>
+				<Gender>Female</Gender>
 				</conditions>
 				<offsets>
 					<south>
@@ -105,9 +111,11 @@
 						<bodyPart>Jaw</bodyPart>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
-					<hiddenUnderApparelFor>
-						<li>FullHead</li>
-					</hiddenUnderApparelFor>
+					<Apparel>
+						<hiddenUnderApparelFor>
+							<li>FullHead</li>
+						</hiddenUnderApparelFor>
+					</Apparel>
 				</conditions>
 				<offsets>
 					<south>

@@ -36,7 +36,6 @@ namespace Pawnmorph
 
 
 		public static ThingDef PM_ChaoThrumboGenome;
-		public static ThingDef PM_MutagenTank;
 
 		public static ThingDef PM_Filth_Slurry;
 		public static ThingDef PM_NewMutagenicChamber;

@@ -67,7 +67,7 @@ namespace Pawnmorph.Hediffs
 		/// <summary>
 		/// The graphic for this stage 
 		/// </summary>
-		public List<MutationStageGraphicsData> graphics;
+		public List<MutationGraphicsData> graphics;
 
 		/// <summary>
 		/// Overrides to allow changing values of mutation verbs.

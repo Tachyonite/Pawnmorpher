@@ -2,6 +2,7 @@
     <ThingDef ParentName="BuildingBase">
         <defName>PM_GenebankLarge</defName>
         <label>Advanced genebank</label>
+        <disableImpassableShotOverConfigError>true</disableImpassableShotOverConfigError>
         <description>A morphsilk tape-reel storage device that's optimised for storing genetic information. This advanced version can store 256 kMutabytes of information.</description>
         <graphicData>
             <texPath>Things/Building/GeneticStorageAdvanced/GenebankAdvanced</texPath>

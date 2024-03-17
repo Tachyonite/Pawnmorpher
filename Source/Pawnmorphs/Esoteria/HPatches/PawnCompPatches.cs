@@ -84,21 +84,21 @@ namespace Pawnmorph.HPatches
 		}
 
 
-		[HarmonyPatch(typeof(PawnRenderer), "DrawBodyGenes")]
-		private static class PawnRenderBodyGenesPrefix
-		{
-			// Disable rendering Biotech genes for pawns with animal race.
-			private static bool Prefix([NotNull] Pawn ___pawn)
-			{
-				if (___pawn.RaceProps.Animal && Hybrids.RaceGenerator.IsMorphRace(___pawn.def) == false)
-				{
-					// pawn is animal type and not a hybrid.
-					return false;
-				}
+		//[HarmonyPatch(typeof(PawnRenderer), "DrawBodyGenes")]
+		//private static class PawnRenderBodyGenesPrefix
+		//{
+		//	// Disable rendering Biotech genes for pawns with animal race.
+		//	private static bool Prefix([NotNull] Pawn ___pawn)
+		//	{
+		//		if (___pawn.RaceProps.Animal && Hybrids.RaceGenerator.IsMorphRace(___pawn.def) == false)
+		//		{
+		//			// pawn is animal type and not a hybrid.
+		//			return false;
+		//		}
 
-				return true;
-			}
-		}
+		//		return true;
+		//	}
+		//}
 
 
 		[HarmonyPatch(typeof(Pawn_FilthTracker), nameof(Pawn_FilthTracker.Notify_EnteredNewCell))]
