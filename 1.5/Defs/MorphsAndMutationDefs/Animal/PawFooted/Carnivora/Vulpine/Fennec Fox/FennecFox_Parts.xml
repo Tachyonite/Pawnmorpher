@@ -5,10 +5,10 @@
 		<label>fennec fox muzzle</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/FoxFennec/FennecFox_Muzzle_Male</Male>
-					<Female>Parts/FoxFennec/FennecFox_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Male">Parts/FoxFennec/FennecFox_Muzzle_Male</Gender>
+					<Gender FOR="Female">Parts/FoxFennec/FennecFox_Muzzle_Female</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

@@ -341,45 +341,42 @@ namespace Pawnmorph
 				return null;
 			}
 
+			ExtendedConditionGraphic hGraphic = new ExtendedConditionGraphic();
 
-			var hGraphic = mainData.FirstOrDefault();
-			if (hGraphic == null)
-			{
-				hGraphic = new MutationGraphicsData();
-				hGraphic.path = null;
-			}
+			var anchorGraphics = mainData.FirstOrDefault();
+			hGraphic.path = anchorGraphics?.path ?? mainPath;
+			if (anchorGraphics != null)
+				hGraphic.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+
 			hGraphic.conditions.Add(new ConditionHediff() { hediff = mutation });
 
 			var severityLst = new List<AlienPartGenerator.ExtendedConditionGraphic>();
 			for (var index = mutationStages.Count - 1; index >= 0; index--)
 			{
 				MutationStage stage = mutationStages[index];
-				MutationGraphicsData stageGraphics;
+				ExtendedConditionGraphic stageGraphics;
 				if (stage.graphics != null && stage.graphics.Count > 0)
 				{
 					// Stage has defined graphics for this stage, use that and hide all addons not explicitly defined in the stage.
 					// All or nothing.
-					stageGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
-					if (stageGraphics == null)
+					stageGraphics = new ExtendedConditionGraphic();
+					ConditionHediffSeverity severityCondition = new ConditionHediffSeverity
 					{
-						// Graphics were not defined for this anchor point.
-						stageGraphics = new MutationGraphicsData();
+						severity = stage.minSeverity,
+						hediff = mutation
+					};
+					stageGraphics.conditions.Add(severityCondition);
+
+
+					var stageMutationGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
+					if (stageMutationGraphics != null)
+					{
+						stageGraphics.path = stageMutationGraphics.path;
+						stageGraphics.extendedGraphics.AddRange(stageMutationGraphics.extendedGraphics);
 					}
-				}
-				else
-				{
-					// If no graphics are defined on stage then default to whatever is set on mutation.
-					stageGraphics = new MutationGraphicsData();
-					stageGraphics.path = hGraphic.path;
-					stageGraphics.extendedGraphics = hGraphic.extendedGraphics;
+					severityLst.Add(stageGraphics);
 				}
 
-				ConditionHediffSeverity severityCondition = new ConditionHediffSeverity();
-				severityCondition.severity = stage.minSeverity;
-				severityCondition.hediff = mutation;
-
-				stageGraphics.conditions.Add(severityCondition);
-				severityLst.Add(stageGraphics);
 			}
 
 			hGraphic.extendedGraphics.AddRange(severityLst);

@@ -5,10 +5,10 @@
 		<label>megatherine snout</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/Megasloth/Megasloth_Muzzle_Male</Male>
-					<Female>Parts/Megasloth/Megasloth_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Female">Parts/Megasloth/Megasloth_Muzzle_Female</Gender>
+					<Gender For="Male">Parts/Megasloth/Megasloth_Muzzle_Male</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 		<mutationMemory>EtherMegaslothSnout</mutationMemory>

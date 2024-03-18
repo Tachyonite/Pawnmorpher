@@ -5,10 +5,10 @@
 		<label>timber wolf muzzle</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/WolfTimber/Twolf_Muzzle</Male>
-					<Female>Parts/WolfTimber/Twolf_Female_Muzzle</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Female">Parts/WolfTimber/Twolf_Female_Muzzle</Gender>
+					<Gender For="Male">Parts/WolfTimber/Twolf_Muzzle</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

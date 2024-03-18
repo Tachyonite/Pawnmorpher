@@ -5,10 +5,10 @@
 		<label>horse snout</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/Horse/Horse_Muzzle_Male</Male>
-					<Female>Parts/Horse/Horse_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Male">Parts/Horse/Horse_Muzzle_Male</Gender>
+					<Gender FOR="Female">Parts/Horse/Horse_Muzzle_Female</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

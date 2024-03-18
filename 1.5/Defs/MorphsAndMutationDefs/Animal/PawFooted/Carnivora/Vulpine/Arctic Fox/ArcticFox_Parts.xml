@@ -5,10 +5,10 @@
 		<label>arctic fox muzzle</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/FoxArctic/ArcticFox_Muzzle_Male</Male>
-					<Female>Parts/FoxArctic/ArcticFox_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Male">Parts/FoxArctic/ArcticFox_Muzzle_Male</Gender>
+					<Gender FOR="Female">Parts/FoxArctic/ArcticFox_Muzzle_Female</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

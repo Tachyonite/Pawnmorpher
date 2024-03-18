@@ -5,10 +5,10 @@
 		<label>chicken beak</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Female>Parts/Chicken/Chicken_Muzzle_Female</Female>
-					<Male>Parts/Chicken/Chicken_Muzzle_Male</Male>
-				</genderGraphics>
+				<extendedGraphics>	
+					<Gender For="Female">Parts/Chicken/Chicken_Muzzle_Female</Gender>
+					<Gender For="Male">Parts/Chicken/Chicken_Muzzle_Male</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 		<stagePatches>
@@ -39,10 +39,8 @@
 		<label>chicken tailfeathers</label>
 		<graphics>
 			<Tail>
-				<genderGraphics>
-					<Female>Parts/Chicken/Chicken_Tail_Female</Female>
-					<Male>Parts/Chicken/Chicken_Tail_Male</Male>
-				</genderGraphics>
+				<Gender For="Female">Parts/Chicken/Chicken_Tail_Female</Gender>
+				<Gender For="Male">Parts/Chicken/Chicken_Tail_Male</Gender>
 			</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

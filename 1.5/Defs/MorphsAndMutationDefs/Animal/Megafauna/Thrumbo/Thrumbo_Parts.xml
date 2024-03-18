@@ -7,10 +7,10 @@
 		<mutationMemory>EtherThrumboSnout</mutationMemory>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/Thrumbo/Thrumbo_Muzzle_Male</Male>
-					<Female>Parts/Thrumbo/Thrumbo_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Female">Parts/Thrumbo/Thrumbo_Muzzle_Female</Gender>
+					<Gender For="Male">Parts/Thrumbo/Thrumbo_Muzzle_Male</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 		<stagePatches>

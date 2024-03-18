@@ -5,10 +5,10 @@
 		<label>cougar snout</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/Cougar/Cougar_Muzzle_Male</Male>
-					<Female>Parts/Cougar/Cougar_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Male">Parts/Cougar/Cougar_Muzzle_Male</Gender>
+					<Gender FOR="Female">Parts/Cougar/Cougar_Muzzle_Female</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

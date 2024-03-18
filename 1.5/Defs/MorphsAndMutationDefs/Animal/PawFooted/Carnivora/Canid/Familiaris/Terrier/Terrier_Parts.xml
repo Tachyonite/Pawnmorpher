@@ -5,10 +5,10 @@
 		<label>terrier muzzle</label>
 		<graphics>
 			<Muzzle>
-				<genderGraphics>
-					<Male>Parts/Terrier/Terrier_Muzzle_Male</Male>
-					<Female>Parts/Terrier/Terrier_Muzzle_Female</Female>
-				</genderGraphics>
+				<extendedGraphics>
+					<Gender For="Female">Parts/Terrier/Terrier_Muzzle_Female</Gender>
+					<Gender For="Male">Parts/Terrier/Terrier_Muzzle_Male</Gender>
+				</extendedGraphics>
 			</Muzzle>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>
