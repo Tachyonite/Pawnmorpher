@@ -107,7 +107,6 @@ namespace Pawnmorph.Hybrids
 				startingAnimation = human.startingAnimation,
 				soundMoving = human.soundMoving,
 			};
-			Log.Warning("render tree is: " + properties.renderTree?.root?.nodeClass);
 			typeof(RaceProperties).GetField("bloodDef", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.BloodDef);
 			typeof(RaceProperties).GetField("fleshType", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(properties, animal.FleshType);
 
