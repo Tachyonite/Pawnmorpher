@@ -7,7 +7,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/FoxFennec/FennecFox_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/FoxFennec/FennecFox_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/FoxFennec/FennecFox_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>

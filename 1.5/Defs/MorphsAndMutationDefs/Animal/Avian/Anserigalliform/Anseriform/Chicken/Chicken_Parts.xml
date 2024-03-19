@@ -39,8 +39,10 @@
 		<label>chicken tailfeathers</label>
 		<graphics>
 			<Tail>
-				<Gender For="Female">Parts/Chicken/Chicken_Tail_Female</Gender>
-				<Gender For="Male">Parts/Chicken/Chicken_Tail_Male</Gender>
+				<extendedGraphics>
+					<Gender For="Female">Parts/Chicken/Chicken_Tail_Female</Gender>
+					<Gender For="Male">Parts/Chicken/Chicken_Tail_Male</Gender>
+				</extendedGraphics>
 			</Tail>
 		</graphics>
 	</Pawnmorph.Hediffs.MutationDef>

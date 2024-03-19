@@ -7,7 +7,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/Horse/Horse_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/Horse/Horse_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/Horse/Horse_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>

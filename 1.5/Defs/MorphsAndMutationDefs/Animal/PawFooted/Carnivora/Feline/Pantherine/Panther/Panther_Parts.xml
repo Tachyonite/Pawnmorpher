@@ -7,7 +7,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/Panther/Panther_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/Panther/Panther_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/Panther/Panther_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>

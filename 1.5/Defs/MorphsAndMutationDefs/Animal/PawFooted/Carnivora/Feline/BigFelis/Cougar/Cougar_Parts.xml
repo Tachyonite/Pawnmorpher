@@ -7,7 +7,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/Cougar/Cougar_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/Cougar/Cougar_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/Cougar/Cougar_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>

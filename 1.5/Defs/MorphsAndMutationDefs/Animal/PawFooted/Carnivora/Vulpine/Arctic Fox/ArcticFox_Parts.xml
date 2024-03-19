@@ -7,7 +7,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/FoxArctic/ArcticFox_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/FoxArctic/ArcticFox_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/FoxArctic/ArcticFox_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>

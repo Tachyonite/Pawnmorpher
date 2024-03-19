@@ -8,7 +8,7 @@
 			<Muzzle>
 				<extendedGraphics>
 					<Gender For="Male">Parts/Deer/Deer_Muzzle_Male</Gender>
-					<Gender FOR="Female">Parts/Deer/Deer_Muzzle_Female</Gender>
+					<Gender For="Female">Parts/Deer/Deer_Muzzle_Female</Gender>
 				</extendedGraphics>
 			</Muzzle>
 		</graphics>
