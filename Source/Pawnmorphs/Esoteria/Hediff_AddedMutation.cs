@@ -299,6 +299,8 @@ namespace Pawnmorph
 
 			if (newStage is IExecutableStage exeStage)
 				exeStage.EnteredStage(this);
+
+			pawn.Drawer.renderer.SetAllGraphicsDirty();
 		}
 
 

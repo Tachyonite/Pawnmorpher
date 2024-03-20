@@ -9,6 +9,7 @@ using Pawnmorph.Genebank.Model;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -20,6 +21,7 @@ namespace Pawnmorph.UserInterface
 	/// part picker dialogue windo
 	/// </summary>
 	/// <seealso cref="Verse.Window" />
+	[HotSwappable]
 	public partial class Dialog_PartPicker : Window
 	{
 
@@ -913,16 +915,31 @@ namespace Pawnmorph.UserInterface
 			{
 				recachePreview = false;
 
-				RenderPawn();
+				Color? hybridColor = CalculatePawnSkin();
 
-				if (camera == null)
-					InitCamera();
+				if (hybridColor.HasValue)
+					alienComp.ColorChannels["skin"].first = hybridColor.Value;
+				else
+				{
+					alienComp.ColorChannels["skin"].first = initialPawnColors.Item1;
+					alienComp.ColorChannels["skin"].second = initialPawnColors.Item2;
+				}
+				alienComp.CompTick();
 
-				camera.gameObject.SetActive(true);
-				camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
-				camera.orthographicSize = alienComp.customDrawSize.x;
-				camera.Render();
-				camera.gameObject.SetActive(false);
+
+				pawn.Drawer.renderer.SetAllGraphicsDirty();
+				previewImage = PortraitsCache.Get(pawn, new Vector2(PREVIEW_SIZE.x, PREVIEW_SIZE.y), previewRot, new Vector3(0f, 0f, 0.15f), 1.1f, supersample: true, compensateForUIScale: true, toggleClothesEnabled, toggleClothesEnabled, healthStateOverride: PawnHealthState.Mobile);
+
+				//RenderPawn();
+
+				//if (camera == null)
+				//	InitCamera();
+
+				//camera.gameObject.SetActive(true);
+				//camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
+				//camera.orthographicSize = alienComp.customDrawSize.x;
+				//camera.Render();
+				//camera.gameObject.SetActive(false);
 			}
 			else
 			{
@@ -960,6 +977,26 @@ namespace Pawnmorph.UserInterface
 		// Taken from RenderingTool.RenderPawnInternal in CharacterEditor
 		private void RenderPawn()
 		{
+
+			PawnDrawParms drawParms = new PawnDrawParms();
+			drawParms.pawn = pawn;
+			drawParms.posture = PawnPosture.Standing;
+			drawParms.matrix = Matrix4x4.TRS(new Vector3(PREVIEW_POSITION_X, pawn.Position.y, 0f), Quaternion.AngleAxis(0f, Vector3.up), Vector3.one);
+			
+			PawnRenderFlags renderFlags = PawnRenderFlags.DrawNow;
+			if (toggleClothesEnabled)
+				renderFlags |= PawnRenderFlags.Clothes | PawnRenderFlags.Headgear;
+
+			drawParms.flags = renderFlags;
+
+			
+			pawn.Drawer.renderer.renderTree.EnsureInitialized(renderFlags);
+			pawn.Drawer.renderer.renderTree.ParallelPreDraw(drawParms);
+			pawn.Drawer.renderer.renderTree.SetDirty();
+			pawn.Drawer.renderer.renderTree.Draw(drawParms);
+
+
+
 			//Color? hybridColor = CalculatePawnSkin();
 
 			//if (hybridColor.HasValue)
@@ -1083,11 +1120,9 @@ namespace Pawnmorph.UserInterface
 				previewImage = new RenderTexture(PREVIEW_SIZE.x, PREVIEW_SIZE.y, 24);
 				camera.targetTexture = previewImage;
 			}
+
+			
 		}
-
-
-
-
 		private void ApplyTemplate(MutationTemplate template)
 		{
 			IReadOnlyList<MutationDef> taggedMutations = _database.StoredMutations;

@@ -345,8 +345,6 @@ namespace Pawnmorph
 
 			var anchorGraphics = mainData.FirstOrDefault();
 			hGraphic.path = anchorGraphics?.path ?? mainPath;
-			if (anchorGraphics != null)
-				hGraphic.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
 
 			hGraphic.conditions.Add(new ConditionHediff() { hediff = mutation });
 
@@ -354,32 +352,37 @@ namespace Pawnmorph
 			for (var index = mutationStages.Count - 1; index >= 0; index--)
 			{
 				MutationStage stage = mutationStages[index];
-				ExtendedConditionGraphic stageGraphics;
+
+				var stageGraphics = new ExtendedConditionGraphic();
+				stageGraphics.conditions.Add(new ConditionHediffSeverity { severity = stage.minSeverity });
+
+				bool hasGraphics = false;
+				// Check for stage-specific graphics
 				if (stage.graphics != null && stage.graphics.Count > 0)
 				{
-					// Stage has defined graphics for this stage, use that and hide all addons not explicitly defined in the stage.
-					// All or nothing.
-					stageGraphics = new ExtendedConditionGraphic();
-					ConditionHediffSeverity severityCondition = new ConditionHediffSeverity
-					{
-						severity = stage.minSeverity,
-						hediff = mutation
-					};
-					stageGraphics.conditions.Add(severityCondition);
-
-
 					var stageMutationGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
 					if (stageMutationGraphics != null)
 					{
 						stageGraphics.path = stageMutationGraphics.path;
 						stageGraphics.extendedGraphics.AddRange(stageMutationGraphics.extendedGraphics);
+						hasGraphics = true;
 					}
-					severityLst.Add(stageGraphics);
 				}
 
+				if (hasGraphics == false)
+				{
+					// If stage has no defined graphics, then default to mutation.
+					if (anchorGraphics != null)
+						stageGraphics.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+				}
+
+				severityLst.Add(stageGraphics);
 			}
 
-			hGraphic.extendedGraphics.AddRange(severityLst);
+			if (mutationStages.Count == 0)
+				hGraphic.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+
+			hGraphic.extendedGraphics.InsertRange(0, severityLst);
 			return hGraphic;
 		}
 
