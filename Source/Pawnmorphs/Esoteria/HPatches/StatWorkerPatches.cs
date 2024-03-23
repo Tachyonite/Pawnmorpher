@@ -57,7 +57,7 @@ namespace Pawnmorph.HPatches
 					if (PmShouldSkipStatWorker(pawn))
 						return __result;
 
-					ulong lookupID = (ulong)pawn.thingIDNumber << 32 | ___stat.index;
+					ulong lookupID = (ulong)pawn.thingIDNumber << 32 | ___stat.shortHash;
 
 					if (_cache.TryGetValue(lookupID, out TimedCache<float> cachedStat) == false)
 					{

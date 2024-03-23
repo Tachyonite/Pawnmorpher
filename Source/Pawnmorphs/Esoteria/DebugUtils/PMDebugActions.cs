@@ -14,6 +14,7 @@ using Pawnmorph.FormerHumans;
 using Pawnmorph.Genebank.Model;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
+using Pawnmorph.HPatches;
 using Pawnmorph.Hybrids;
 using Pawnmorph.TfSys;
 using Pawnmorph.ThingComps;
@@ -472,6 +473,8 @@ namespace Pawnmorph.DebugUtils
 
 			AdaptAllMutations(pawn);
 			RaceShiftUtilities.ChangePawnToMorph(pawn, morph);
+
+			StatWorkerPatches.GetValueUnfinalizedPatch.Invalidate(pawn);
 		}
 
 		private static void GivePawnRandomMutations([CanBeNull] MorphDef morph)

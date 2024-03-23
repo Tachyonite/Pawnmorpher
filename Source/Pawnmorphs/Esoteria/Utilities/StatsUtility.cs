@@ -117,7 +117,7 @@ namespace Pawnmorph.Utilities
 		public static string GetPawnDebugString(Pawn pawn)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			Dictionary<ushort, StatDef> statDefs = DefDatabase<StatDef>.AllDefs.ToDictionary(x => x.index);
+			Dictionary<ushort, StatDef> statDefs = DefDatabase<StatDef>.AllDefs.ToDictionary(x => x.shortHash);
 
 			foreach (ulong cacheId in _statCache.Keys)
 			{
