@@ -364,9 +364,9 @@ namespace Pawnmorph.Chambers
 				if (anyTargets == false)
 					continue;
 
-				var building_MutagenChamber = (MutaChamber)GenClosest.ClosestThingReachable(p.Position, p.Map, ThingRequest.ForDef(def),
+				MutaChamber building_MutagenChamber = GenClosest.ClosestThing_Global_Reachable(p.Position, p.Map, chambers,
 																   PathEndMode.InteractionCell, TraverseParms.For(traveler),
-																   9999f, Validator);
+																   9999f, Validator) as MutaChamber;
 
 				if (building_MutagenChamber != null) 
 					return building_MutagenChamber;

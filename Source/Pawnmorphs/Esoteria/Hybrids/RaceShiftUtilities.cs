@@ -224,7 +224,6 @@ namespace Pawnmorph.Hybrids
 			if (map != null)
 				RegionListersUpdater.RegisterInRegions(pawn, map);
 
-			map?.mapPawns.UpdateRegistryForPawn(pawn);
 
 			//add the group hediff if applicable 
 			MorphDef newMorph = RaceGenerator.GetMorphOfRace(race);
@@ -257,6 +256,25 @@ namespace Pawnmorph.Hybrids
 			if (graphicsComp?.Scanned == true)
 				graphicsComp.RestoreGraphics();
 
+
+			// Convert age
+			try
+			{
+				// If the new race has a significant difference in number of life stages, CurLifeStage will be null, and Notify_LifeStageStarted will throw an exception.
+				// Circumvented by temporarily changing the program state to Entry, which will prevent the game from trying to call Notify_LifeStageStarted.
+				if (pawn.ageTracker.CurLifeStage == null)
+					Current.ProgramState = ProgramState.Entry;
+
+				float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
+				pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
+
+				Current.ProgramState = ProgramState.Playing;
+			}
+			catch (Exception e)
+			{
+				Log.Error($"Error while converting age of pawn {pawn.LabelCap}: {e}");
+			}
+
 			// Update racial styles
 			try
 			{
@@ -266,18 +284,6 @@ namespace Pawnmorph.Hybrids
 			{
 				Log.Error($"Error while updating styles for {pawn.LabelCap}: {e}");
 			}
-
-			// Convert age
-			try
-			{
-				float currentConvertedAge = TransformerUtility.ConvertAge(pawn, race.race);
-				pawn.ageTracker.AgeBiologicalTicks = (long)(currentConvertedAge * TimeMetrics.TICKS_PER_YEAR); // 3600000f ticks per year.;
-			}
-			catch (Exception e)
-			{
-				Log.Error($"Error while converting age of pawn {pawn.LabelCap}: {e}");
-			}
-
 
 
 			if (newMorph?.raceSettings?.hairstyles?.Count > 0)
@@ -372,6 +378,7 @@ namespace Pawnmorph.Hybrids
 			{
 				raceChangeEventReceiver.OnRaceChange(oldRace);
 			}
+			map?.mapPawns.UpdateRegistryForPawn(pawn);
 		}
 
 		private static void HandleRaceRestrictions(Pawn pawn, ThingDef race)
@@ -697,9 +704,23 @@ namespace Pawnmorph.Hybrids
 
 				if (add)
 				{
-					var degree = trait.def.DataAtDegree(trait.degree);
+					int traitDegree = trait.degree;
 
-					traitSet.GainTrait(new Trait(trait.def, trait.degree, true));
+					// Handle legacy mods.
+#pragma warning disable CS0618 // Type or member is obsolete
+					if (traitDegree == 0)
+						traitDegree = alienTraitEntry.degree;
+#pragma warning restore CS0618 // Type or member is obsolete
+
+					// If trait has degrees and the degree is not valid, then get degree of first trait entry.
+					if (trait.def.degreeDatas.Count > 0 && trait.def.degreeDatas.Any(x => x.degree == traitDegree) == false)
+					{
+						traitDegree = trait.def.degreeDatas[0].degree;
+					}
+
+					traitSet.GainTrait(new Trait(trait.def, traitDegree, true));
+
+					var degree = trait.def.DataAtDegree(traitDegree);
 					if (degree.skillGains != null)
 						UpdateSkillsPostAdd(pawn, degree.skillGains); //need to update the skills manually
 				}

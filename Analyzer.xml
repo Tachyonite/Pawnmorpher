@@ -1,0 +1,46 @@
+<Analyzer>
+    <Pawnmorpher>
+		<!-- Settings, Tick, Update, GUI or Modder. Defaults to Modder -->
+		<!--Category>Modder</Category-->
+
+		<!-- On hover tooltip for the sidebar entry -->
+		<!-- <Tooltip></Tooltip> -->
+		
+		<!-- All methods in types -->
+		<Types>
+			<li>Pawnmorph.Hediff_AddedMutation</li>
+            <li>Pawnmorph.Abilities.MutationAbility</li>
+            <li>Pawnmorph.PawnmorphGameComp</li>
+			<li>Verse.Hediff</li>
+			<li>Verse.HediffWithComps</li>
+			<li>Pawnmorph.Hediffs.Hediff_Descriptive</li>
+			<li>Pawnmorph.Hediffs.Hediff_StageChanges</li>
+		</Types>
+
+		<!-- Specific methods -->
+        <Methods>
+            <li>Pawnmorph.FormerHumanUtilities:GetIntelligence</li>
+            <li>Pawnmorph.FormerHumanUtilities:InvalidateIntelligence</li>
+            <li>Pawnmorph.FormerHumanUtilities:IsFormerHuman</li>
+            <li>Pawnmorph.Hediffs.Comp_MutationSeverityAdjust:UpdateComp</li>
+            <li>Pawnmorph.Hediffs.SpreadingMutationComp:UpdateComp</li>
+            <li>Pawnmorph.AspectTracker:CompTick</li>
+            <li>Pawnmorph.Utilities.StatsUtility:GetStat</li>
+        </Methods>
+
+		<!-- Specific methods of all subclasses -->
+		<!--DerivedMethods>
+			<li></li>
+		</DerivedMethods-->
+
+		<!-- All methods of subclasses -->
+		<DerivedTypes>
+			<li>Pawnmorph.Abilities.MutationAbility</li>
+		</DerivedTypes>
+
+		<!-- All methods of types nested within specified types -->
+		<!--NestedTypes>
+			<li></li> 
+		</NestedTypes-->
+	</Pawnmorpher>
+</Analyzer>

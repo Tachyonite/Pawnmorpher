@@ -527,7 +527,7 @@
     <Compile Include="HPatches\BillPatches.cs" />
     <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
-    <Compile Include="HPatches\CorpsePatch.cs" />
+    <Compile Include="HPatches\Optional\CorpsePatch.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />

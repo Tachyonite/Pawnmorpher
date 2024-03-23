@@ -77,17 +77,20 @@ namespace Pawnmorph.Hediffs
 				ageTicks++;
 
 			// As long as we're within these bounds, the stage hasn't changed yet
-			float sev = Severity;
+			float sev = base.severityInt;
 			if (sev < minStageSeverity || sev >= maxStageSeverity)
-			{
-				int newStageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
-				var oldStage = cachedStage;
-				RecacheStage(newStageIndex);
-				OnStageChanged(oldStage, cachedStage);
+				UpdateStage();
+		}
 
-				foreach (var comp in ObserverComps)
-					comp.OnStageChanged(oldStage, cachedStage);
-			}
+		private void UpdateStage()
+		{
+			int newStageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
+			var oldStage = cachedStage;
+			RecacheStage(newStageIndex);
+			OnStageChanged(oldStage, cachedStage);
+
+			foreach (var comp in ObserverComps)
+				comp.OnStageChanged(oldStage, cachedStage);
 		}
 
 		/// <summary>

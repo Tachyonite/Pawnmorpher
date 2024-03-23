@@ -44,6 +44,17 @@ Although it induces rapid and uncontrollable mutations, some desperate individua
 				<listOrder>1000</listOrder>
 			</li>
 		</comps>
-
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->being injected with raw slurry</li>
+                        <li>mutagen_cause->an injection of raw slurry</li>
+                        <li>caused_by->after</li>
+                        <li>caused_by->from</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
 	</ThingDef>
 </Defs>
