@@ -373,7 +373,10 @@ namespace Pawnmorph
 				{
 					// If stage has no defined graphics, then default to mutation.
 					if (anchorGraphics != null)
+					{
+						stageGraphics.path = anchorGraphics.path;
 						stageGraphics.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+					}
 				}
 
 				severityLst.Add(stageGraphics);
