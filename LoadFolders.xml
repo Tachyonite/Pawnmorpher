@@ -50,6 +50,6 @@
 		<li>1.5</li>
 		<li IfModActive="Ludeon.RimWorld.Ideology">1.5/Mods/Ideology</li>
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.5/Mods/Royalty</li>
-		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.4/Mods/VEF</li>
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.5/Mods/VEF</li>
 	</v1.5>
 </loadFolders>
