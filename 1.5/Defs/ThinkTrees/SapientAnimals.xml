@@ -1,0 +1,95 @@
+<Defs>
+    <ThinkTreeDef>
+        <!-- Animal constant replacer to support switching to humanlike combat response for sapient former humans. -->
+        <defName>PM_AnimalConstant</defName>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+                <li Class="ThinkNode_Subtree">
+                  <treeDef>Despawned</treeDef>
+                </li>
+                <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
+                    <filter>
+                        <isBlackList>false</isBlackList>
+                        <filterList>
+                            <li>Conflicted</li>
+                            <li>MostlyFeral</li>
+                            <li>Feral</li>
+                            <li>PermanentlyFeral</li>
+                        </filterList>
+                    </filter>
+                    <subNodes>
+                        <li Class="ThinkNode_Subtree">
+                          <treeDef>AnimalConstant</treeDef>
+                        </li>
+                    </subNodes>
+                </li>
+                <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
+                    <filter>
+                        <isBlackList>true</isBlackList>
+                        <filterList>
+                            <li>Conflicted</li>
+                            <li>MostlyFeral</li>
+                            <li>Feral</li>
+                            <li>PermanentlyFeral</li>
+                        </filterList>
+                    </filter>
+                    <subNodes>
+                        <li Class="ThinkNode_Subtree">
+                          <treeDef>HumanlikeConstant</treeDef>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <!-- this is going to be injected into the animal think tree -->
+        <defName>FormerHumanThinkTreeSegment</defName>
+        <insertTag>Animal_PreWander</insertTag>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+                <li Class="Pawnmorph.ThinkNodes.ConditionalOfFormerHuman">
+                    <filter>
+                        <isBlackList>true</isBlackList>
+                        <filterList>
+                            <li>PermanentlyFeral</li>
+                            <li>Feral</li>
+                        </filterList>
+                    </filter>
+                    <subNodes>
+                        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+                            <subNodes>
+                                <li Class="ThinkNode_Tagger">
+                                    <tagToGive>SatisfyingNeeds</tagToGive>
+                                    <subNodes>
+                                        <li Class="Pawnmorph.Jobs.Giver_SapientAnimalJoy" />
+                                    </subNodes>
+                                </li>
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>SapientAnimalMainTreeSegment</defName>
+        <insertTag>Animal_PreMain</insertTag>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalSapientAnimal">
+            <mustBeColonist>true</mustBeColonist>
+            <mustBeFullySapient>true</mustBeFullySapient>
+            <subNodes>
+                <li Class="ThinkNode_ConditionalColonist">
+                    <subNodes>
+                      <li Class="ThinkNode_Subtree">
+                        <treeDef>MainColonistBehaviorCore</treeDef>
+                        <leaveJoinableLordIfIssuesJob>true</leaveJoinableLordIfIssuesJob>
+                      </li>
+                    </subNodes>
+                  </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+</Defs>

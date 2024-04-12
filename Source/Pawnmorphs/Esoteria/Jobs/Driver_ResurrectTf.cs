@@ -82,7 +82,7 @@ namespace Pawnmorph.Jobs
 		private void Resurrect()
 		{
 			Pawn innerPawn = this.Corpse.InnerPawn;
-			ResurrectionUtility.Resurrect(innerPawn); //make sure pawn is alive again 
+			ResurrectionUtility.TryResurrect(innerPawn); //make sure pawn is alive again 
 
 			var mutagen = MutagenDefOf.defaultMutagen;
 			PawnKindDef animalKind;

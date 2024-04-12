@@ -4,7 +4,9 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Hediffs;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.DebugUtils
@@ -61,12 +63,11 @@ namespace Pawnmorph.DebugUtils
 			MutationUtilities.AddMutation(_pawn, _mutationDef);
 		}
 
-
-		protected override void DoListingItems()
+		protected override void DoListingItems(Rect inRect, float columnWidth)
 		{
 			foreach ((string label, Action action) in GenerateActions())
 			{
-				DebugAction(label, action, false);
+				DebugAction(label, columnWidth, action, false);
 			}
 		}
 

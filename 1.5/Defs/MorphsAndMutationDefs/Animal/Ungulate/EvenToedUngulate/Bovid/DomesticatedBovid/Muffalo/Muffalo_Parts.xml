@@ -1,0 +1,132 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidJawPart">
+		<mutationMemory>EtherMuffaloJaw</mutationMemory>
+		<classInfluence>MuffaloMorph</classInfluence>
+		<defName>EtherMuffaloSnout</defName>
+		<label>muffalo snout</label>
+		<graphics>
+			<Muzzle>Parts/Muffalo/Muffalo_Muzzle</Muzzle>
+			<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_B</BirdJawOrnament>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament></BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament></BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<BirdJawOrnament>Parts/Muffalo/Muffalo_Headfloof_A</BirdJawOrnament>
+					</graphics>				
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidEarPart">
+		<classInfluence>MuffaloMorph</classInfluence>
+		<defName>EtherMuffaloEar</defName>
+		<label>muffalo ear</label>
+		<graphics>
+			<LeftEar>Parts/Muffalo/Muffalo_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Muffalo/Muffalo_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large wooly ear that belongs to a muffalo. Who knew muffalo had ears beneath all that wool?</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="DomesticatedBovidTailPart">
+		<classInfluence>MuffaloMorph</classInfluence>
+		<defName>EtherMuffaloTail</defName>
+		<label>muffalo tail</label>
+		<graphics>
+			<Tail>Parts/Yak/Yak_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A muffalolike tail. It swats at flies and hangs low at their legs.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherMuffaloWooly</defName>
+		<classInfluence>MuffaloMorph</classInfluence>
+		<label>thick fur</label>
+		<description>Thick fur grows over the body constantly. It can be shaved, but keeping it short is a futile effort.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<mutationTale>StartsGrowingWool</mutationTale>
+		<mutationMemory>EtherWooly</mutationMemory>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ShavedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_ShaveSelf</jobGiver>
+				<etherBondThought>ShavedMyselfBond</etherBondThought>
+				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolMuffalo</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>2</daysToProduce>
+						<amount>15</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>12</amount>
+						<hungerRateFactor>1.3</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>7</amount>
+						<hungerRateFactor>1.6</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>4</amount>
+						<thought>ProductiveBliss</thought>
+						<hungerRateFactor>2.0</hungerRateFactor>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<parts>
+			<li>Torso</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

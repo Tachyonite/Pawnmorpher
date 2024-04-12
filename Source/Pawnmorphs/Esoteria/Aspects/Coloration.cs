@@ -116,8 +116,8 @@ namespace Pawnmorph.Aspects
 				}
 				else
 				{
-					this.Pawn.Drawer.renderer.graphics.SetAllGraphicsDirty();
-					this.Pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+					this.Pawn.Drawer.renderer.SetAllGraphicsDirty();
+					//this.Pawn.Drawer.renderer.ResolveAllGraphics();
 				}
 			}
 			else
@@ -130,20 +130,21 @@ namespace Pawnmorph.Aspects
 		/// Apply this coloration to a pawn directly.
 		/// </summary>
 		/// <param name="graphics">Pawn's graphics set</param>
-		public void TryDirectRecolorAnimal(PawnGraphicSet graphics)
+		public Graphic TryDirectRecolorAnimal(Graphic graphics)
 		{
 			if (this.Pawn != null && this.Pawn.RaceProps != null && !this.Pawn.RaceProps.Humanlike)
 			{
 				if (ColorSet.skinColor.HasValue || ColorSet.skinColorTwo.HasValue)
 				{
-					graphics.nakedGraphic = graphics.nakedGraphic.GetColoredVersion(graphics.nakedGraphic.Shader, ColorSet.skinColor.HasValue ? ColorSet.skinColor.Value : graphics.nakedGraphic.color, ColorSet.skinColorTwo.HasValue ? ColorSet.skinColorTwo.Value : graphics.nakedGraphic.colorTwo);
+					return graphics.GetColoredVersion(graphics.Shader, ColorSet.skinColor.HasValue ? ColorSet.skinColor.Value : graphics.color, ColorSet.skinColorTwo.HasValue ? ColorSet.skinColorTwo.Value : graphics.colorTwo);
 				}
-				if (this.Pawn.IsColonist || this.Pawn.IsColonistAnimal())
-				{
-					PortraitsCache.SetDirty(this.Pawn);
-					Find.ColonistBar.MarkColonistsDirty();
-				}
+				//if (this.Pawn.IsColonist || this.Pawn.IsColonistAnimal())
+				//{
+				//	PortraitsCache.SetDirty(this.Pawn);
+				//	Find.ColonistBar.MarkColonistsDirty();
+				//}
 			}
+			return graphics;
 		}
 
 		/// <summary>

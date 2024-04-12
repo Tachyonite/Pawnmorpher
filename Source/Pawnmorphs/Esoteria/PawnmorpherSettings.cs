@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Pawnmorph.DebugUtils;
 using Pawnmorph.FormerHumans;
-using Pawnmorph.UserInterface.TreeBox;
 using UnityEngine;
 using Verse;
 
@@ -15,6 +15,8 @@ namespace Pawnmorph
 	/// <seealso cref="Verse.ModSettings" />
 	public class PawnmorpherSettings : ModSettings
 	{
+		private List<Interfaces.IConfigurableObject> _configurableObjects;
+
 		private const bool DEFAULT_FALLOUT_SETTING = true;
 
 		/// <summary>
@@ -220,11 +222,38 @@ namespace Pawnmorph
 
 		internal IEnumerable<Interfaces.IConfigurableObject> GetAllConfigurableObjects()
 		{
+			if (_configurableObjects == null)
+				_configurableObjects = LoadConfigurableObjects().ToList();
+
+			return _configurableObjects;
+		}
+
+		private IEnumerable<Interfaces.IConfigurableObject> LoadConfigurableObjects()
+		{
 			// Discover all configurable objects.
+			Type[] types;
 			Type iConfigurable = typeof(Interfaces.IConfigurableObject);
-			foreach (Type type in System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => iConfigurable.IsAssignableFrom(x) && x.IsInterface == false && x.IsAbstract == false))
+			try
 			{
-				yield return (Interfaces.IConfigurableObject)Activator.CreateInstance(type);
+				types = Assembly.GetExecutingAssembly().GetTypes();
+			}
+			catch (ReflectionTypeLoadException loadException)
+			{
+				types = loadException.Types;
+			}
+
+			foreach (Type type in types.Where(x => x != null && iConfigurable.IsAssignableFrom(x) && x.IsInterface == false && x.IsAbstract == false))
+			{
+				Interfaces.IConfigurableObject configurable;
+				try
+				{
+					configurable = (Interfaces.IConfigurableObject)Activator.CreateInstance(type);
+				}
+				catch
+				{
+					continue;
+				}
+				yield return configurable;
 			}
 		}
 	}

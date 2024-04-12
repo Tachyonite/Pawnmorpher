@@ -1,0 +1,231 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <!--
+        this file contains thoughts animalsitic pawns always have so long as they remain in this state
+        these are equivalent to the FH_Persistent thoughts
+    -->
+
+
+    <ThoughtDef Abstract="true" Name="AnimalisticPersistentThoughtBase">
+        <workerClass>Pawnmorph.Thoughts.Worker_Sapience</workerClass>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.SapienceStateRestriction">
+                <state>Animalistic</state>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
+        <defName>AnimalisticThoughtPersistant</defName>
+        <nullifyingTraits>
+            <li>MutationAffinity</li>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+
+        <stages>
+            <li>
+                <!-- Sapient -->
+                <label>sapient</label>
+                <description>I can think clearly, whatever.</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Sapient -->
+                <label>minor instinct</label>
+                <description>My head feels weird...it's like a strange voice in the back of my mind.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Conflicted -->
+                <label>conflicted mind</label>
+                <description>I think I should just...get on all fours.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Feral -->
+                <label>hard...to...think</label>
+                <description>Should I...give in to the thoughts?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Feral -->
+                <label>feral</label>
+                <description>...food?</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <!--
+        this thought is for animalistic pawns with mutation affinity
+    -->
+    <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
+        <defName>MA_AnimalisticThoughtPersistant</defName>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <requiredTraits>
+            <li>MutationAffinity</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <!-- Sapient -->
+                <label>sapient</label>
+                <description>My human mind is as strong as ever!</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Sapient -->
+                <label>minor instinct</label>
+                <description>A gentle tug at my mind, telling me to let go. It's tempting.</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Conflicted -->
+                <label>conflicted mind</label>
+                <description>I think these mutations are...starting to get the better of my mind.</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Feral -->
+                <label>hard to think</label>
+                <description>Should keep...focused. But...why?</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Feral -->
+                <label>feral</label>
+                <description>...food?</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <!--
+        this thought is for animalistic pawns with body purist
+    -->
+    <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
+        <defName>BP_AnimalisticThoughtPersistant</defName>
+        <nullifyingTraits>
+            <li>MutationAffinity</li>
+        </nullifyingTraits>
+        <requiredTraits>
+            <li>BodyPurist</li>
+        </requiredTraits>
+        <stages>
+            <li>
+                <!-- Sapient -->
+                <label>sapient</label>
+                <description>My human mind is as strong as ever!</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Sapient -->
+                <label>minor instinct</label>
+                <description>Why do I feel so strange? Like my mind is melting...</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Conflicted -->
+                <label>conflicted mind</label>
+                <description>These sights and smells are overwhelming and horrid!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Feral -->
+                <label>hard to think</label>
+                <description>No! I can't...give up now...but this instinct is strong!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Feral -->
+                <label>feral</label>
+                <description>...food?</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <invert>true</invert>
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <!--
+        this thought is for animalistic pawns with PrimalWish
+    -->
+    <ThoughtDef ParentName="AnimalisticPersistentThoughtBase">
+        <defName>PW_AnimalisticThoughtPersistant</defName>
+        <nullifyingTraits>
+            <li>BodyPurist</li>
+        </nullifyingTraits>
+        <stages>
+            <li>
+                <!-- Sapient -->
+                <label>sapient</label>
+                <description>My human mind is as strong as ever...which is boring.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Sapient -->
+                <label>minor instinct</label>
+                <description>My senses feel keener, and these animal thoughts are electric!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Conflicted -->
+                <label>healthy instinct</label>
+                <description>Everything is so rich...a new experience...I could get used to this...!</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Mostly Feral -->
+                <label>loving instinct</label>
+                <description>Hard to keep my focus...but why should I?</description>
+                <baseMoodEffect>20</baseMoodEffect>
+            </li>
+            <li>
+                <!-- Feral -->
+                <label>feral</label>
+                <description>...happy!</description>
+                <baseMoodEffect>50</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.AspectRestriction">
+                <aspectEntries>
+                    <li>
+                        <aspectDef>PrimalWish</aspectDef>
+                    </li>
+                </aspectEntries>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+</Defs>

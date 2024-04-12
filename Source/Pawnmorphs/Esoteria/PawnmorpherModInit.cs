@@ -20,7 +20,6 @@ using UnityEngine;
 using Verse;
 using static AlienRace.AlienPartGenerator;
 //just a typedef to shorten long type name 
-using HediffGraphic = AlienRace.AlienPartGenerator.ExtendedHediffGraphic;
 
 namespace Pawnmorph
 {
@@ -270,16 +269,16 @@ namespace Pawnmorph
 							continue;
 						}
 
-						HediffGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
+						ExtendedConditionGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
 						if (hediffGraphic == null)
 							continue;
 
 						foreach (TaggedBodyAddon addon in dict[anchor])
 						{
-							if (addon.hediffGraphics == null)
-								addon.hediffGraphics = new List<HediffGraphic>();
+							if (addon.extendedGraphics == null)
+								addon.extendedGraphics = new List<AbstractExtendedGraphic>();
 
-							addon.hediffGraphics.Add(hediffGraphic);
+							addon.extendedGraphics.Add(hediffGraphic);
 
 							AppendPools(hediffGraphic, addon);
 						}
@@ -294,11 +293,11 @@ namespace Pawnmorph
 			}
 		}
 
-		private static void AppendPools(HediffGraphic hediffGraphic, BodyAddon addon)
+		private static void AppendPools(ExtendedConditionGraphic hediffGraphic, BodyAddon addon)
 		{
 			Stack<IEnumerator<IExtendedGraphic>> stack = new Stack<IEnumerator<IExtendedGraphic>>();
 			AppendPools(addon, hediffGraphic, hediffGraphic);
-			stack.Push(hediffGraphic.GetSubGraphics());
+			stack.Push(hediffGraphic.GetSubGraphics().GetEnumerator());
 			while (stack.Count > 0)
 			{
 				IEnumerator<IExtendedGraphic> enumerator = stack.Pop();
@@ -311,13 +310,13 @@ namespace Pawnmorph
 					}
 					AppendPools(addon, hediffGraphic, current);
 
-					stack.Push(current.GetSubGraphics());
+					stack.Push(current.GetSubGraphics().GetEnumerator());
 					//Log.Warning($"No hediff graphics found at {hediffGraphic.path} at severity {hediffGraphic.severity} for hediff {hediffGraphic.hediff} in ");
 				}
 			}
 		}
 
-		private static void AppendPools(BodyAddon addon, HediffGraphic baseGraphic, IExtendedGraphic current)
+		private static void AppendPools(BodyAddon addon, ExtendedConditionGraphic baseGraphic, IExtendedGraphic current)
 		{
 			while (ContentFinder<Texture2D>.Get(current.GetPath() + (current.GetVariantCount() == 0 ? "" : baseGraphic.variantCount.ToString()) + "_north",
 									 false) != null)
@@ -330,7 +329,7 @@ namespace Pawnmorph
 			}
 		}
 
-		private static HediffGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
+		private static ExtendedConditionGraphic GenerateGraphicsFor([NotNull] List<MutationStage> mutationStages, [NotNull] MutationDef mutation, string anchorID)
 		{
 			List<MutationGraphicsData> mainData = mutation.graphics.MakeSafe().Where(g => g.anchorID == anchorID).ToList();
 
@@ -342,53 +341,51 @@ namespace Pawnmorph
 				return null;
 			}
 
+			ExtendedConditionGraphic hGraphic = new ExtendedConditionGraphic();
 
-			var hGraphic = mainData.FirstOrDefault();
-			if (hGraphic == null)
-			{
-				hGraphic = new MutationGraphicsData();
-				hGraphic.path = null;
-			}
-			hGraphic.hediff = mutation;
+			var anchorGraphics = mainData.FirstOrDefault();
+			hGraphic.path = anchorGraphics?.path ?? mainPath;
 
-			var severityLst = new List<AlienPartGenerator.ExtendedHediffSeverityGraphic>();
+			hGraphic.conditions.Add(new ConditionHediff() { hediff = mutation });
+
+			var severityLst = new List<AlienPartGenerator.ExtendedConditionGraphic>();
 			for (var index = mutationStages.Count - 1; index >= 0; index--)
 			{
 				MutationStage stage = mutationStages[index];
-				MutationStageGraphicsData stageGraphics;
+
+				var stageGraphics = new ExtendedConditionGraphic();
+				stageGraphics.conditions.Add(new ConditionHediffSeverity { severity = stage.minSeverity });
+
+				bool hasGraphics = false;
+				// Check for stage-specific graphics
 				if (stage.graphics != null && stage.graphics.Count > 0)
 				{
-					// Stage has defined graphics for this stage, use that and hide all addons not explicitly defined in the stage.
-					// All or nothing.
-					stageGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
-					if (stageGraphics == null)
+					var stageMutationGraphics = stage.graphics.LastOrDefault(s => s.anchorID == anchorID);
+					if (stageMutationGraphics != null)
 					{
-						// Graphics were not defined for this anchor point.
-						stageGraphics = new MutationStageGraphicsData();
+						stageGraphics.path = stageMutationGraphics.path;
+						stageGraphics.extendedGraphics.AddRange(stageMutationGraphics.extendedGraphics);
+						hasGraphics = true;
 					}
 				}
-				else
+
+				if (hasGraphics == false)
 				{
-					// If no graphics are defined on stage then default to whatever is set on mutation.
-					stageGraphics = new MutationStageGraphicsData();
-					stageGraphics.path = hGraphic.path;
-					stageGraphics.hediffGraphics = hGraphic.hediffGraphics;
-					stageGraphics.backstoryGraphics = hGraphic.backstoryGraphics;
-					stageGraphics.ageGraphics = hGraphic.ageGraphics;
-					stageGraphics.damageGraphics = hGraphic.damageGraphics;
-					stageGraphics.genderGraphics = hGraphic.genderGraphics;
-					stageGraphics.traitGraphics = hGraphic.traitGraphics;
-					stageGraphics.bodytypeGraphics = hGraphic.bodytypeGraphics;
-					stageGraphics.headtypeGraphics = hGraphic.headtypeGraphics;
-					stageGraphics.geneGraphics = hGraphic.geneGraphics;
-					stageGraphics.raceGraphics = hGraphic.raceGraphics;
+					// If stage has no defined graphics, then default to mutation.
+					if (anchorGraphics != null)
+					{
+						stageGraphics.path = anchorGraphics.path;
+						stageGraphics.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+					}
 				}
 
-				stageGraphics.severity = stage.minSeverity;
 				severityLst.Add(stageGraphics);
 			}
 
-			hGraphic.severity = severityLst;
+			if (mutationStages.Count == 0)
+				hGraphic.extendedGraphics.AddRange(anchorGraphics.extendedGraphics);
+
+			hGraphic.extendedGraphics.InsertRange(0, severityLst);
 			return hGraphic;
 		}
 
@@ -508,9 +505,9 @@ namespace Pawnmorph
 			var addons = ((ThingDef_AlienRace)ThingDefOf.Human).alienRace.generalSettings.alienPartGenerator.bodyAddons.MakeSafe();
 			foreach (AlienPartGenerator.BodyAddon bodyAddon in addons)
 			{
-				if (bodyAddon.hediffGraphics == null || bodyAddon.hediffGraphics.Count == 0) continue;
+				if (bodyAddon.extendedGraphics == null || bodyAddon.extendedGraphics.Count == 0) continue;
 				bool found = false;
-				foreach (var hDef in bodyAddon.hediffGraphics.Select(h => h.hediff))
+				foreach (var hDef in bodyAddon.extendedGraphics.OfType<ExtendedConditionGraphic>().SelectMany(h => h.conditions.OfType<ConditionHediff>().Select(x => x.hediff)))
 				{
 					if (hDef == null) continue;
 					if (hDef is MutationDef) //make sure we only grab addons that are mutations 
@@ -570,8 +567,8 @@ namespace Pawnmorph
 						continue;
 				}
 
-				var cpy = CloneAddon(bodyAddon);
-				partGen.bodyAddons.Add(cpy);
+				//var cpy = CloneAddon(bodyAddon);
+				partGen.bodyAddons.Add(bodyAddon);
 			}
 
 		}
@@ -588,35 +585,19 @@ namespace Pawnmorph
 			{
 				anchorID = aID,
 				angle = addon.angle,
-				backstoryGraphics = addon.backstoryGraphics.MakeSafe().ToList(),
-				backstoryRequirement = addon.backstoryRequirement,
-				bodyPart = addon.bodyPart,
 				debug = addon.debug,
-				drawForFemale = addon.drawForFemale,
-				drawForMale = addon.drawForMale,
-				drawnInBed = addon.drawnInBed,
-				drawnOnGround = addon.drawnOnGround,
 				drawSize = addon.drawSize,
-				hiddenUnderApparelFor = addon.hiddenUnderApparelFor.MakeSafe().ToList(),
 				path = addon.path,
 				offsets = addon.offsets ?? new AlienPartGenerator.DirectionalOffset(),
 				linkVariantIndexWithPrevious = addon.linkVariantIndexWithPrevious,
 				inFrontOfBody = addon.inFrontOfBody,
 				layerInvert = addon.layerInvert,
 				variantCount = addon.variantCount,
-				hediffGraphics = addon.hediffGraphics.MakeSafe().ToList(),
-				ageGraphics = addon.ageGraphics.MakeSafe().ToList(),
-				damageGraphics = addon.damageGraphics.MakeSafe().ToList(),
-				bodytypeGraphics = addon.bodytypeGraphics.MakeSafe().ToList(),
-				genderGraphics = addon.genderGraphics.MakeSafe().ToList(),
-				headtypeGraphics = addon.headtypeGraphics.MakeSafe().ToList(),
-				traitGraphics = addon.traitGraphics.MakeSafe().ToList(),
 				alignWithHead = addon.alignWithHead,
 
 				ColorChannel = addon.ColorChannel,
-
-
-				hiddenUnderApparelTag = addon.hiddenUnderApparelTag,
+				
+				conditions = addon.conditions,
 				defaultOffsets = addon.defaultOffsets,
 				defaultOffset = addon.defaultOffset,
 				drawSizePortrait = addon.drawSizePortrait,

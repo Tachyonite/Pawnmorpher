@@ -68,10 +68,10 @@ namespace Pawnmorph.Utilities
 		/// <returns></returns>
 		public static StatEventRegistry GetEvents(StatDef statDef)
 		{
-			if (_events.TryGetValue(statDef.index, out var events) == false)
+			if (_events.TryGetValue(statDef.shortHash, out var events) == false)
 			{
 				events = new StatEventRegistry();
-				_events[statDef.index] = events;
+				_events[statDef.shortHash] = events;
 			}
 
 			return events;
@@ -86,7 +86,7 @@ namespace Pawnmorph.Utilities
 		/// <returns>Null if no value is cached and pawn isn't spawned because GetStatValueForPawn throws error in that case.</returns>
 		public static float? GetStat(Pawn pawn, StatDef statDef, int maxAge)
 		{
-			ulong lookupID = (ulong)pawn.thingIDNumber << 32 | statDef.index;
+			ulong lookupID = (ulong)pawn.thingIDNumber << 32 | statDef.shortHash;
 
 
 			if (_statCache.TryGetValue(lookupID, out TimedCache<float> cachedValue) == false)
@@ -106,7 +106,7 @@ namespace Pawnmorph.Utilities
 
 		private static void CachedValue_ValueChanged(Pawn pawn, StatDef statDef, float oldValue, float newValue)
 		{
-			if (_events.TryGetValue(statDef.index, out var events))
+			if (_events.TryGetValue(statDef.shortHash, out var events))
 				((IInvokable)events).Invoke(pawn, statDef, oldValue, newValue);
 		}
 
@@ -117,7 +117,7 @@ namespace Pawnmorph.Utilities
 		public static string GetPawnDebugString(Pawn pawn)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			Dictionary<ushort, StatDef> statDefs = DefDatabase<StatDef>.AllDefs.ToDictionary(x => x.index);
+			Dictionary<ushort, StatDef> statDefs = DefDatabase<StatDef>.AllDefs.ToDictionary(x => x.shortHash);
 
 			foreach (ulong cacheId in _statCache.Keys)
 			{

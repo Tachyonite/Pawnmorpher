@@ -24,7 +24,7 @@ namespace Pawnmorph.Work
 			if (!MutagenDefOf.MergeMutagen.CanTransform(prisoner))
 			{
 				Messages.Message(NON_TRANSFORMABLE_PAWN_MESSAGE.Translate(prisoner), prisoner, MessageTypeDefOf.RejectInput);
-				guest.interactionMode = PrisonerInteractionModeDefOf.NoInteraction;
+				guest.SetExclusiveInteraction(PrisonerInteractionModeDefOf.MaintainOnly);
 				return false;
 			}
 
@@ -85,7 +85,7 @@ namespace Pawnmorph.Work
 				return null;
 			}
 
-			if (guest.interactionMode != PMPrisonerInteractionModeDefOf.PM_Transform)
+			if (guest.ExclusiveInteractionMode != PMPrisonerInteractionModeDefOf.PM_Transform)
 			{
 				if (logging)
 					Log.Message($"{prisoner.Name} is not set to be transformed");

@@ -1,0 +1,10 @@
+
+<Patch>
+    <Operation Class="PatchOperationAdd"> 
+        <success>Always</success>
+        <xpath>/Defs/ItemProcessor.ItemAcceptedDef[defName = "IP_CheesePressFirstItem"]/items</xpath>
+        <value>
+            <li>TFMilk</li>
+        </value>
+    </Operation>
+</Patch>

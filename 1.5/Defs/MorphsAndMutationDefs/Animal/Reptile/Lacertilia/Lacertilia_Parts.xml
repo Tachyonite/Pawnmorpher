@@ -1,0 +1,58 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaJawPart" ParentName="ReptileJawPart" Abstract="true">
+		<mutationMemory>EtherLacertiliaSnout</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. The strange shape makes speaking very difficult.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.2</AimingDelayFactor>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.15</AimingDelayFactor>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has grown out into a big lizard snout, complete with a long forked tongue. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<AimingDelayFactor>-0.10</AimingDelayFactor>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="LacertiliaTailPart" ParentName="ReptileTailPart" Abstract="true">
+		<mutationMemory>EtherLacertiliaTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.025</ArmorRating_Sharp>
+						<ShootingAccuracyPawn>+0.075</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.05</ArmorRating_Sharp>
+						<ShootingAccuracyPawn>+0.15</ShootingAccuracyPawn>
+				</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

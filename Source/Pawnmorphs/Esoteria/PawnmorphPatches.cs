@@ -669,7 +669,7 @@ namespace Pawnmorph
 				AteThought cannibalThought = morphDef.raceSettings?.thoughtSettings?.ateAnimalThought;
 				if (cannibalThought == null) return;
 				if (ingester?.story?.traits == null) return;
-				bool cannibal = ingester.story.traits.HasTrait(TraitDefOf.Cannibal);
+				bool cannibal = ingester.story.traits.HasTrait(PMTraitDefOf.Cannibal);
 
 				if (cannibal == false)
 				{
@@ -733,7 +733,7 @@ namespace Pawnmorph
 			var ext = ingester.def.GetModExtension<FormerHumanSettings>();
 			FoodThoughtSettings foodSettings = ext?.foodThoughtSettings;
 
-			bool isCannibal = ingester.story?.traits?.HasTrait(TraitDefOf.Cannibal) ?? false;
+			bool isCannibal = ingester.story?.traits?.HasTrait(PMTraitDefOf.Cannibal) ?? false;
 
 
 			//assign the correct cannibal thoughts, one for pawns without the cannibal trait the other for pawns with it 

@@ -3,7 +3,9 @@
 
 using System.Linq;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Hediffs;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.DebugUtils
@@ -22,18 +24,18 @@ namespace Pawnmorph.DebugUtils
 			Find.WindowStack.Add(new DebugMenu_AddMutation(mutationDef, _pawn));
 		}
 
-		protected override void DoListingItems()
+		protected override void DoListingItems(Rect inRect, float columnWidth)
 		{
 			var grouping = MutationDef.AllMutations.SelectMany(x => x.ClassInfluences.Select(y => (x, y))).GroupBy(m => m.y, m => m.x);
 
 			foreach (IGrouping<AnimalClassBase, MutationDef> group in grouping)
 			{
 				var label = group.Key.defName;
-				DoLabel(label);
+				DebugLabel(label, columnWidth);
 				foreach (MutationDef mutationDef in group)
 				{
 					var mDef = mutationDef;
-					DebugAction(mDef.defName, () => AddMutationAction(mDef), false);
+					DebugAction(mDef.defName, columnWidth, () => AddMutationAction(mDef), false);
 				}
 			}
 		}

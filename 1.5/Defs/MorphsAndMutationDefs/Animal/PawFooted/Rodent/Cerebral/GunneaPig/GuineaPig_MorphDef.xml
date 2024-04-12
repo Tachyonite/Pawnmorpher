@@ -1,0 +1,24 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CerebralMorph">
+		<defName>GuineaPigMorph</defName>
+		<label>guineapigmorph</label>
+		<description>A smaller, guinea pig humanoid. These former humans share many characteristics with guinea pigs, usually making them fragile in combat, but their dextrous paws make them good crafters and artists.</description>
+		<race>GuineaPig</race>
+		<categories>
+			<li>Arid</li>
+			<li>Temperate</li>
+			<li>Tropical</li>
+		</categories>
+		<fullTransformation>PawnmorphGuineaPigTF</fullTransformation>
+		<partialTransformation>PawnmorphGuineaPigTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(110,95,82)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>GuineaPigTransformationMemory</transformationMemory>
+			<revertedMemory>GuineaPigRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

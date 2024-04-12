@@ -7,7 +7,7 @@ using RimWorld;
 
 namespace Pawnmorph.HPatches
 {
-	[HarmonyPatch(typeof(DrugPolicy), nameof(DrugPolicy.InitializeIfNeeded))]
+	[HarmonyPatch(typeof(DrugPolicy), "InitializeIfNeeded")]
 	static class DrupPolicyPatches
 	{
 		static void Prefix(bool overwriteExisting, ref List<DrugPolicyEntry> ___entriesInt)

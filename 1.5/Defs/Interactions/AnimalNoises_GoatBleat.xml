@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Goat</defName>
+		<requiredMutationsAny>
+            <li>EtherGoatSnout</li>
+			<!-- <li>EtherIbexJaw</li> -->
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bleat as a human with just a muzzle. A muzzled human will bleat half as often as chatting and a full morph will bleat twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+            <li>
+				<key>EtherGoatSnout</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+            <li>
+				<key>EtherGoatTail</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+            <li>
+				<key>EtherGoatEar</key>
+				<value>0.125</value>
+			</li>
+
+            <!-- Horns -->
+            <li>
+				<key>EtherGoatHorns</key>
+				<value>0.125</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+            <li>
+				<key>GoatMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMGoatBleat_Chitchat</defName>
+		<label>bleat</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat</symbol>
+		<initiatorThought>PawnmorphGoatBleat</initiatorThought>
+		<recipientThought>PawnmorphGoatBleat</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [noisedat] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+				<li>noisedat(p=4)->bleated at</li>
+				<li>noisedat->bleated to</li>
+				<li>noisedat->baaed at</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->baaed about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->hooves</li>
+				<li>animaltopic->horns</li>
+				<li>animaltopic->goats</li>
+				<li>animaltopic->does</li>
+				<li>animaltopic->bucks</li>
+				<li>animaltopic->billies</li>
+				<li>animaltopic->climbing</li>
+				<li>animaltopic->headbutting</li>
+				<li>animaltopic->nature</li>
+				<li>animaltopic->mountains</li>
+				<li>animaltopic->fields</li>
+				<li>animaltopic->grazing</li>
+				<li>animaltopic->grass</li>
+				<li>animaltopic->predators</li>
+				<li>animaltopic->screams</li>
+				<li>animaltopic->jumping</li>
+				<li>animaltopic->kibble</li>
+				<li>animaltopic->snout pets</li>
+				<li>animaltopic->back pets</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphGoatBleat</defName>
+		<stages>
+			<li>
+				<label>bleat</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMGoatBleat_DeepTalk</defName>
+		<label>deep bleat</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat_DeepTalk</symbol>
+		<initiatorThought>PMGoatBleat_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMGoatBleat_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming a goat morph</li>
+				<li>animallife->being a goat morph</li>
+				<li>animallife->hoof hands</li>
+				<li>animallife->goats</li>
+				<li>animallife->bleating</li>
+				<li>animallife->running</li>
+				<li>animallife->horns</li>
+				<li>animallife->grass</li>
+				<li>animallife->grazing</li>
+				<li>animallife->mountain climbing</li>
+				<li>animallife->snout pets</li>
+				<li>animallife->jumping</li>
+				<li>animallife->leaves</li>
+				<li>animallife->foraging</li>
+				<li>animallife->sprinting</li>
+				<li>animallife->vegetarianism</li>
+                <li>animallife->jumping</li>
+				<li>animallife->wide peripheral vision</li>
+				<li>animallife->horns</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMGoatBleat_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep bleat</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two ungulate morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMGoatBleat_DeepTalkUngulate</defName>
+		<label>deep bleat with ungulate</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat_DeepTalk</symbol>
+		<initiatorThought>PMGoatBleat_DeepTalkUngulateMemory</initiatorThought>
+		<recipientThought>PMGoatBleat_DeepTalkUngulateMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming goat morphs</li>
+				<li>animallife->being goat morphs</li>
+				<li>animallife->hoof hands</li>
+				<li>animallife->goats</li>
+				<li>animallife->bleating</li>
+				<li>animallife->running</li>
+				<li>animallife->horns</li>
+				<li>animallife->grass</li>
+				<li>animallife->grazing</li>
+				<li>animallife->mountain climbing</li>
+				<li>animallife->snout pets</li>
+				<li>animallife->jumping</li>
+				<li>animallife->leaves</li>
+				<li>animallife->foraging</li>
+				<li>animallife->sprinting</li>
+				<li>animallife->vegetarianism</li>
+                <li>animallife->jumping</li>
+				<li>animallife->wide peripheral vision</li>
+				<li>animallife->horns</li>
+				
+				<li>secretanimallife->running away from predators</li>
+				<li>secretanimallife->herding</li>
+				<li>secretanimallife->headbutting</li>
+				<li>secretanimallife->identifying predators</li>
+				<li>secretanimallife->screaming</li>
+				<li>secretanimallife->jumping</li>
+				<li>secretanimallife->brushing techniques</li>
+				<li>secretanimallife->horn polishing</li>
+				<li>secretanimallife->horn sharpening</li>
+				<li>secretanimallife->fur care</li>
+				<li>secretanimallife->free range pastures</li>
+				<li>secretanimallife->sprinting techniques</li>
+				<li>secretanimallife->jumping skills</li>
+				<li>secretanimallife->survival skills</li>
+				<li>secretanimallife->headbutting contests</li>
+				<li>secretanimallife->screaming contests</li>
+				<li>secretanimallife->eating paper waste</li>
+				<li>secretanimallife->climbing hills</li>
+                <li>secretanimallife->climbing cliffs</li>
+				<li>secretanimallife->goat towers</li>
+				<li>secretanimallife->stylish goatees</li>
+				<li>secretanimallife->unusually long tongues</li>
+				<li>secretanimallife->bugs in the reality simulation</li>
+				
+				<li>ungulatebehavior->bleated understandingly at [RECIPIENT_nameDef]</li>
+				<li>ungulatebehavior->bleated with [RECIPIENT_nameDef]</li>
+				<li>ungulatebehavior->and [RECIPIENT_nameDef] bumped heads and nuzzled</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Goat</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMGoatBleat_DeepTalkUngulateMemory</defName>
+		<stages>
+			<li>
+				<label>herd kin</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMGoatBleat_Slight</defName>
+		<label>ungulate slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat_Slight</symbol>
+		<recipientThought>PMGoatBleat_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>noisedat->baaed at</li>
+				<li>noisedat->screamed at</li>
+				<li>noisedat->screamed aggressively at</li>
+				<li>noisedat->bleated annoyingly at</li>
+				<li>noisedat->bleated aggressively at</li>
+				<li>noisedat->feinted a headbutt at</li>
+								
+				<li>noisedabout->screamed about</li>
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->bleated unhappily about</li>
+				<li>noisedabout->screamed because of</li>
+				<li>noisedabout->bleated because of</li>
+				<li>noisedabout->feinted a headbutt because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->favorite farm animal</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] kibble</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_objective]</li>
+				
+				<li>annoyingbehavior->brushed up against [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->made a loud bleat at [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->bumped [INITIATOR_possessive] head into [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMGoatBleat_Slight</defName>
+		<stages>
+			<li>
+				<label>bleated</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMGoatBleat_Insult</defName>
+		<label>ungulate insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat_Insult</symbol>
+		<recipientThought>PMGoatBleat_Insult</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->bleated that [Target] was</li>
+
+				<li>noisedat->baaed at</li>
+				<li>noisedat->screamed at</li>
+				<li>noisedat->screamed aggressively at</li>
+				<li>noisedat->bleated annoyingly at</li>
+				<li>noisedat->bleated aggressively at</li>
+				<li>noisedat->feinted a headbutt at</li>
+								
+				<li>noisedabout->screamed about</li>
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->bleated unhappily about</li>
+				<li>noisedabout->screamed because of</li>
+				<li>noisedabout->bleated because of</li>
+				<li>noisedabout->feinted a headbutt because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sudden movements</li>
+				<li>animalcharacteristic->favorite farm animal</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] kibble</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_objective]</li>
+				
+				<li>insult->a lion</li>
+				<li>insult->a wolf</li>
+				<li>insult->a bear</li>
+				<li>insult->a trophy hunter</li>
+				<li>insult->a trucker</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMGoatBleat_Insult</defName>
+		<stages>
+			<li>
+				<label>bleated at</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMGoatBleat_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMGoatBleat_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>bleated at</label>
+				<description>I've been rudely bleated at! What an awful animal!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMGoatBleat_KindWords</defName>
+		<label>kind bleats</label>
+		<symbol>Things/Mote/SpeechSymbols/Goat_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMGoatBleat_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->bleated that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->baaed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->screamed that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->calmness</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->pacifism</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->treats</li>
+				
+				<li>complimentedtargets->bleated happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->bleated approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->wagged [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->screamed happily because of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->[KindAdverb] bumped [INITIATOR_possessive] head at</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] bleated at</li>
+				<li>kindbehavior->shook [INITIATOR_possessive] tail at</li>
+				
+				<li>ungulatecompliment->a [adj] field</li>
+				<li>ungulatecompliment->a [adj] cliff</li>
+				<li>ungulatecompliment->a [adj] pasture</li>
+				<li>ungulatecompliment->a [adj] hay field</li>
+				<li>ungulatecompliment->[adj] horns</li>
+				
+				<li>adj(p=8)->[KindAdj]</li>
+				<li>adj->friendly</li>
+				<li>adj->large</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Goat</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMGoatBleat_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind bleat</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMGoatBleat_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMGoatBleat_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind bleat</label>
+				<description>I've been complimented! What a nice animal!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults aimed at ungulatemorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMGoatBleat_DirectedInsult</defName>
+		<label>directed ungulate insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->bad breath</li>
+				<li>animalcharacteristic->horns</li>
+				<li>animalcharacteristic->blank stare</li>
+				<li>animalcharacteristic->hooves</li>
+				<li>animalcharacteristic->tendancy to scream</li>
+				<li>animalcharacteristic->orney attitude</li>
+				<li>animalcharacteristic->ears</li>
+				<li>animalcharacteristic->smell</li>
+				<li>animalcharacteristic->goatee</li>
+				<li>animalcharacteristic->climbing skill</li>
+				<li>animalcharacteristic->cowardly mannerisms</li>
+				<li>animalcharacteristic->horizontal pupils</li>
+
+				<li>insultcomparison->a screamer</li>
+				<li>insultcomparison->a hay processor</li>
+				<li>insultcomparison->a paper shredder</li>
+                <li>insultcomparison->a future sweater</li>
+				<li>insultcomparison->a hippie</li>
+				<li>insultcomparison->a garbage disposal</li>
+				<li>insultcomparison->a can opener</li>
+				<li>insultcomparison->a salt licker</li>
+				<li>insultcomparison->a dumb animal</li>
+				<li>insultcomparison->a hay muncher</li>
+				<li>insultcomparison->an angry sheep</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->accused [RECIPIENT_nameDef] of eating a document</li>
+				<li>insult->said [RECIPIENT_nameDef] is loud and annoying</li>
+				<li>insult->loudly clarified that [RECIPIENT_nameDef] is not the greatest of all time</li>
+				<li>insult->tried to sneak behind [RECIPIENT_nameDef] and scare [RECIPIENT_objective]</li>
+				
+				<li>insultingjoketopics->goats eating paper</li>
+                <li>insultingjoketopics->horns getting stuck together</li>
+				<li>insultingjoketopics->goats falling off cliffs</li>
+                <li>insultingjoketopics->scaring goats</li>
+                <li>insultingjoketopics->fainting goats</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Goat</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+</Defs>

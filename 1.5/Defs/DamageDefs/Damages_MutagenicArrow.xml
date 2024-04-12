@@ -1,0 +1,24 @@
+<Defs>
+	<DamageDef>
+		<defName>MutagenicArrowDamage</defName>
+		<label>mutagenic arrow</label>
+		<workerClass>Pawnmorph.Damage.Worker_MutagenicInjury</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been shot to death by an arrow.</deathMessage>
+		<hediff>Cut</hediff>
+		<hediffSolid>Crack</hediffSolid>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+		<isRanged>true</isRanged>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+		<modExtensions>
+			<li Class="Pawnmorph.Damage.MutagenicDamageExtension">
+				<mutagenicBuildup>MutagenicBuildup_Weapon</mutagenicBuildup>
+				<severityPerDamage>0.01</severityPerDamage>
+				<mutagen>PM_WeaponChaoticMutagen</mutagen>
+			</li>
+		</modExtensions>
+	</DamageDef>
+</Defs>

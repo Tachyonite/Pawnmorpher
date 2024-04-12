@@ -1,0 +1,63 @@
+﻿<Defs>
+	<ThoughtDef>
+		<!-- Opinion offset furries will have toward mutated pawns. -->
+		<defName>FurryAppreciation</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_FurryAppreciation</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<!-- Stages are split between a total morph influence of [0,1] but must have at least 1 mutation -->
+			<li>
+				<label>mutation affinity appreciation</label>
+				<baseOpinionOffset>2</baseOpinionOffset>
+			</li>
+			<li>
+				<label>mutation affinity appreciation</label>
+				<baseOpinionOffset>5</baseOpinionOffset>
+			</li>
+			<li>
+				<label>mutation affinity appreciation</label>
+				<baseOpinionOffset>10</baseOpinionOffset>
+			</li>
+			<li>
+				<label>mutation affinity appreciation</label>
+				<baseOpinionOffset>12</baseOpinionOffset>
+			</li>
+			<li>
+				<label>mutation affinity appreciation</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+  
+	<ThoughtDef>
+		<!-- Opinion offset body purists will have toward mutated pawns. -->
+		<defName>BodyPuristDisgustMutation</defName>
+		<thoughtClass>Thought_SituationalSocial</thoughtClass>
+		<workerClass>Pawnmorph.Thoughts.Worker_BodyPuristDisgust</workerClass>
+		<validWhileDespawned>true</validWhileDespawned>
+		<stages>
+			<!-- Stages are split between a total morph influence of [0,1] but must have at least 1 mutation-->
+			<li>
+				<label>body purist disgust</label>
+				<baseOpinionOffset>-8</baseOpinionOffset>
+			</li>
+			<li>
+				<label>body purist disgust</label>
+				<baseOpinionOffset>-16</baseOpinionOffset>
+			</li>
+			<li>
+				<label>body purist disgust</label>
+				<baseOpinionOffset>-24</baseOpinionOffset>
+			</li>
+			<li>
+				<label>body purist disgust</label>
+				<baseOpinionOffset>-32</baseOpinionOffset>
+			</li>
+			<li>
+				<label>body purist disgust</label>
+				<baseOpinionOffset>-40</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

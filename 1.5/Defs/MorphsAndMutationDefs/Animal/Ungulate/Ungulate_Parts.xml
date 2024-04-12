@@ -1,0 +1,39 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="UngulateJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Something is starting to happen to [PAWN_nameDef]'s face. [PAWN_pronoun] has been rubbing [PAWN_possessive] nose a lot, and it looks like it's starting to grow! Has [PAWN_pronoun] noticed?</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s nose is getting wider and flatter, but that's nothing compared to what's happening to [PAWN_possessive] jaws. They've begun to surge outwards, bones growing and warping and teeth shifting. [PAWN_possessive] whole face is changing!</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/TinySnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>It's undeniable now, [PAWN_nameDef] is growing a snout. Broad nostrils, thick lips, and a large jaw adorn [PAWN_possessive] face.</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="UngulateEarPart" ParentName="AnimalEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="UngulateTailPart" ParentName="AnimalTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="UngulateHornPart" ParentName="AnimalHornPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

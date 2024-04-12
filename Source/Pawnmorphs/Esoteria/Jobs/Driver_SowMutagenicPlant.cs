@@ -88,7 +88,7 @@ namespace Pawnmorph.Jobs
 		private void SowPlant(Plant lPlant, Pawn actor)
 		{
 			lPlant.Growth = 0.0001f;
-			Map.mapDrawer.MapMeshDirty(lPlant.Position, MapMeshFlag.Things);
+			Map.mapDrawer.MapMeshDirty(lPlant.Position, MapMeshFlagDefOf.Things);
 			actor.records.Increment(RecordDefOf.PlantsSown);
 			Find.HistoryEventsManager.RecordEvent(new HistoryEvent(HistoryEventDefOf.SowedPlant,
 																   actor.Named(HistoryEventArgsNames.Doer)));

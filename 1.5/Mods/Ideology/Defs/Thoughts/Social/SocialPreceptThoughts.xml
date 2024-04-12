@@ -1,0 +1,122 @@
+<Defs>
+    <ThoughtDef Name="PM_FormerHumanPrecept_Social_Base" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.Worker_FormerHuman_Social</workerClass>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    </ThoughtDef>
+
+    <ThoughtDef Name="PM_VeneratedFormerHumanPrecept_Social_Base" ParentName="PM_FormerHumanPrecept_Social_Base" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.Worker_VeneratedFormerHuman_Social</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef Name="PM_VeneratedMutationPrecept_Social_Base" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.Worker_VeneratedMutation_Social</workerClass>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    </ThoughtDef>
+
+    <ThoughtDef Name="PM_MutationPrecept_Social_Base" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.Worker_HasMutations_Social</workerClass>
+        <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    </ThoughtDef>
+
+    <!-- Former Human -->
+
+    <ThoughtDef ParentName="PM_FormerHumanPrecept_Social_Base">
+        <defName>PM_FormerHuman_Disapprove_Social</defName>
+        <stages>
+            <li>
+                <label>is animal</label>
+                <baseOpinionOffset>-18</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="PM_FormerHumanPrecept_Social_Base">
+        <defName>PM_FormerHuman_Approve_Social</defName>
+        <stages>
+            <li>
+                <label>is animal</label>
+                <baseOpinionOffset>18</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_VeneratedFormerHumanPrecept_Social_Base">
+        <defName>PM_FormerHuman_Venerated_Social</defName>
+        <stages>
+            <li>
+                <label>is animal</label>
+                <baseOpinionOffset>10</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Mutations -->
+
+    <ThoughtDef ParentName="PM_MutationPrecept_Social_Base">
+        <defName>PM_HasMutation_Approved_Social</defName>
+        <stages>
+            <li>
+                <label>lightly mutated</label>
+                <baseOpinionOffset>2</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated</label>
+                <baseOpinionOffset>4</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated</label>
+                <baseOpinionOffset>4</baseOpinionOffset>
+            </li>
+            <li>
+                <label>heavily mutated</label>
+                <baseOpinionOffset>8</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_MutationPrecept_Social_Base">
+        <defName>PM_HasMutation_Disapprove_Social</defName>
+        <stages>
+            <li>
+                <label>lightly mutated</label>
+                <baseOpinionOffset>-2</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated</label>
+                <baseOpinionOffset>-4</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated</label>
+                <baseOpinionOffset>-4</baseOpinionOffset>
+            </li>
+            <li>
+                <label>heavily mutated</label>
+                <baseOpinionOffset>-8</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_MutationPrecept_Social_Base">
+        <defName>PM_HasMutation_Venerated_Approved_Social</defName>
+        <stages>
+            <li>
+                <label>lightly mutated (venerated)</label>
+                <baseOpinionOffset>4</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated (venerated)</label>
+                <baseOpinionOffset>8</baseOpinionOffset>
+            </li>
+            <li>
+                <label>mutated (venerated)</label>
+                <baseOpinionOffset>8</baseOpinionOffset>
+            </li>
+            <li>
+                <label>heavily mutated (venerated)</label>
+                <baseOpinionOffset>16</baseOpinionOffset>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

@@ -40,7 +40,7 @@ namespace Pawnmorph.Jobs
 		{
 			this.FailOnDestroyedOrNull(TargetIndex.A);
 			this.FailOnBurningImmobile(TargetIndex.B);
-			this.FailOn(() => ((Pawn)(Thing)GetActor().CurJob.GetTarget(TargetIndex.A)).guest.interactionMode != PMPrisonerInteractionModeDefOf.PM_Transform);
+			this.FailOn(() => ((Pawn)(Thing)GetActor().CurJob.GetTarget(TargetIndex.A)).guest.ExclusiveInteractionMode != PMPrisonerInteractionModeDefOf.PM_Transform);
 			this.FailOnAggroMentalState(TargetIndex.A);
 			yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch).FailOn(() => !Prisoner.IsPrisonerOfColony || !Prisoner.guest.PrisonerIsSecure).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
 			yield return Toils_Haul.StartCarryThing(TargetIndex.A);

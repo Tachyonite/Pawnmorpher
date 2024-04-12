@@ -36,7 +36,7 @@ namespace Pawnmorph.HPatches
 		}
 
 
-		[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap_NewTemp))]
+		[HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap))]
 		static class FixBestFoodSourceForFormerHumans
 		{
 			[NotNull]

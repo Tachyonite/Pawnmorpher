@@ -1,0 +1,112 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>WargAteCorpse</defName>
+        <showBubble>true</showBubble>
+        <icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <stages>
+            <li>
+                <label>Ate corpse</label>
+                <description>Ugh, this is disgusting. I don't want to do this...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>Ate corpse</label>
+                <description>Ugh, this isn't the best meal ever...but it's tasty.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Ate corpse</label>
+                <description>Something wants me to like the taste...and I think I do.</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>Ate corpse</label>
+                <description>Mmhh...it's so succulent and meaty...</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <!-- stages can be ommited -->
+                <label>Ate corpse</label>
+                <description>...food!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <raceFilter>
+                    <isBlackList>false</isBlackList>
+                    <filterList>
+                        <li>Warg</li>
+                    </filterList>
+                </raceFilter>
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>SapientAnimalAteRawFood</defName>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>ate raw food</label>
+                <description>Being an animal doesn't make this taste any more appealing.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate raw food</label>
+                <description>It's alright...still gross, but more tolerable than before.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate raw food</label>
+                <description>Hm...it's decent...it's just hard to think normally when I'm eating it...</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate raw food</label>
+                <description>It's good...mmm!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <!-- this thought is now only valid for sapient animals -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>SapientAnimalAteKibble</defName>
+        <showBubble>true</showBubble>
+        <icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>ate kibble</label>
+                <description>I had to eat animal feed, now that I'm like this. I still want proper meals!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate kibble</label>
+                <description>I had to eat animal feed, now that I'm like this.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate kibble</label>
+                <description>I ate animal feed, and it was...alright? That should concern me...</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate kibble</label>
+                <description>It's food?</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <!-- this thought is now only valid for former humans -->
+            </li>
+        </modExtensions>
+    </ThoughtDef>
+
+</Defs>
