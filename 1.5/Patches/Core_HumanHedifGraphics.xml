@@ -201,12 +201,16 @@
 				<path>Parts/None/None</path>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
-				<drawnInBed>false</drawnInBed>
 				<conditions>
 					<BodyPart>
 						<bodyPartLabel>tail</bodyPartLabel>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
+					<Posture>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
+						<drawnInBed>false</drawnInBed>
+					</Posture>
 				</conditions>
 				<offsets>
 					<south>
@@ -252,8 +256,9 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-					  <drawnOnGround>true</drawnOnGround>
-					  <drawnInBed>false</drawnInBed>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
+						<drawnInBed>false</drawnInBed>
 					</Posture>
 					<Gender>Male</Gender>
 				</conditions>
@@ -302,8 +307,9 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-					  <drawnOnGround>true</drawnOnGround>
-					  <drawnInBed>false</drawnInBed>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
+						<drawnInBed>false</drawnInBed>
 					</Posture>
 					<Gender>Female</Gender>
 				</conditions>
@@ -351,8 +357,9 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-					  <drawnOnGround>true</drawnOnGround>
-					  <drawnInBed>false</drawnInBed>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
+						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
 				<offsets>
@@ -399,8 +406,9 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-					  <drawnOnGround>true</drawnOnGround>
-					  <drawnInBed>false</drawnInBed>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
+						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
 				<offsets>
@@ -527,14 +535,14 @@
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<inFrontOfBody>true</inFrontOfBody>
-				<drawnInBed>false</drawnInBed>
 				<conditions>
 					<BodyPart>
 						<bodyPart>Waist</bodyPart>
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-						<drawnOnGround>true</drawnOnGround>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
 						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
@@ -570,7 +578,8 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-						<drawnOnGround>true</drawnOnGround>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
 						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
@@ -628,7 +637,8 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-						<drawnOnGround>true</drawnOnGround>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
 						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
@@ -660,7 +670,8 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-						<drawnOnGround>true</drawnOnGround>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
 						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>
@@ -692,7 +703,8 @@
 						<drawWithoutPart>false</drawWithoutPart>
 					</BodyPart>
 					<Posture>
-						<drawnOnGround>true</drawnOnGround>
+						<drawnStanding>true</drawnStanding>
+						<drawnLaying>true</drawnLaying>
 						<drawnInBed>false</drawnInBed>
 					</Posture>
 				</conditions>

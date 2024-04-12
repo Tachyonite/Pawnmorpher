@@ -565,8 +565,9 @@
                                 </BodyPart>
                                 <Hediff>EtherSnakeTail</Hediff>
                                 <Posture>
-                                  <drawnOnGround>true</drawnOnGround>
-                                  <drawnInBed>false</drawnInBed>
+                                    <drawnStanding>true</drawnStanding>
+                                    <drawnLaying>true</drawnLaying>
+                                    <drawnInBed>false</drawnInBed>
                                 </Posture>
                             </conditions>
                             <inFrontOfBody>true</inFrontOfBody>

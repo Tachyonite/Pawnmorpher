@@ -51,5 +51,9 @@
 		<li IfModActive="Ludeon.RimWorld.Ideology">1.5/Mods/Ideology</li>
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.5/Mods/Royalty</li>
 		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.5/Mods/VEF</li>
+		<li IfModActive="vanillaexpanded.backgrounds">1.5/Mods/VBE</li>
+		<li IfModActive="VanillaExpanded.VCookE">1.5/Mods/VCE</li>
+		<li IfModActive="ACPteam.ACPVanillaStyle">1.5/Mods/ZWE-ACP</li>
+		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.5/Mods/ADogSaidAnimalProsthetics</li>
 	</v1.5>
 </loadFolders>

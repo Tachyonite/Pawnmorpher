@@ -1,19 +1,6 @@
 <Defs>
-	<ResearchProjectDef Name="PMResearch" Abstract="True">
-		<tab>Pawnmorpher</tab>
-		<techLevel>Industrial</techLevel>
-		<baseCost>500</baseCost>
-	</ResearchProjectDef>
-
-
-	<ResearchProjectDef Name="PMSpaceResearch" ParentName="PMResearch" Abstract="True">
-		<techLevel>Spacer</techLevel>
-		<baseCost>1000</baseCost>
-		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-	</ResearchProjectDef>
-
 	<!--=== Column 4 ===-->
-
+	
 	<ResearchProjectDef ParentName="PMSpaceResearch">
 		<defName>PM_MutagenStorage</defName>
 		<label>Mutagen Storage</label>

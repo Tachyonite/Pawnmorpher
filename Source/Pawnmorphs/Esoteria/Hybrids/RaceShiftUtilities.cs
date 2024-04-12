@@ -563,7 +563,7 @@ namespace Pawnmorph.Hybrids
 				for (int i = 0; i < pawn.genes.Endogenes.Count; i++)
 				{
 					Gene gene = pawn.genes.Endogenes[i];
-					if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+					if (RaceRestrictionSettings.CanHaveGene(gene.def, race, false) == false)
 						pawn.genes.Endogenes.Remove(gene);
 				}
 			}
@@ -572,7 +572,7 @@ namespace Pawnmorph.Hybrids
 			for (int i = 0; i < pawn.genes.Xenogenes.Count; i++)
 			{
 				Gene gene = pawn.genes.Xenogenes[i];
-				if (RaceRestrictionSettings.CanHaveGene(gene.def, race) == false)
+				if (RaceRestrictionSettings.CanHaveGene(gene.def, race, true) == false)
 					pawn.genes.Endogenes.Remove(gene);
 			}
 		}

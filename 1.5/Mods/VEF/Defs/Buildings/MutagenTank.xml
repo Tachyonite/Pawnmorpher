@@ -4,7 +4,7 @@
 		<thingClass>Pawnmorph.Buildings.MutagenTank</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<label>mutagen tank</label>
-			<tickerType>Normal</tickerType>
+		<tickerType>Normal</tickerType>
 		<description>Stores liquid slurry in quantities enough to supply a chamber. Can be filled via a network of mutagen conduits, supplied by either a mutagen hopper or a vent pump.</description>
 		<graphicData>
 			<texPath>Things/Building/MutagenTank/MutagenTank</texPath>
@@ -13,7 +13,7 @@
 		</graphicData>
 		<altitudeLayer>Building</altitudeLayer>
 		<passability>Impassable</passability>
-		<fillPercent>0.6</fillPercent>
+		<fillPercent>1</fillPercent>
 		<rotatable>false</rotatable>
 		<statBases>
 			<MaxHitPoints>70</MaxHitPoints>

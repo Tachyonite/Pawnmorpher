@@ -22,7 +22,7 @@ namespace Pawnmorph
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
 		private int _shouldRemoveAgeTicks;
-
+		
 		/// <summary>
 		///     The mutation description
 		/// </summary>

@@ -1,0 +1,28 @@
+<Defs>
+    <ThoughtDef>
+        <defName>SnowLeopardMorphTranformationMemory</defName>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>Became snepmorph</label>
+                <description>I feel like I should be jumping around in the snow.</description>
+                <visible>True</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became snepmorph</label>
+                <description>I've got a built-in winter coat, with a cool design to boot!</description>
+                <visible>True</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became snepmorph</label>
+                <description>Ughhh... why am I so clumsy now?</description>
+                <visible>True</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>
