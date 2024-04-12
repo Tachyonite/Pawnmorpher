@@ -70,7 +70,7 @@ namespace Pawnmorph.IngestionEffects
 		/// </summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="ingested">The ingested.</param>
-		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int count)
 		{
 			if (pawn?.health == null)
 				return;

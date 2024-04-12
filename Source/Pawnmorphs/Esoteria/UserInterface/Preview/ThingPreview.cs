@@ -24,7 +24,7 @@ namespace Pawnmorph.UserInterface.Preview
 				return;
 
 			_thing.Rotation = _rotation;
-			_thing.DrawAt(drawPosition);
+			_thing.DrawNowAt(drawPosition);
 		}
 
 		protected override void OnRefresh()

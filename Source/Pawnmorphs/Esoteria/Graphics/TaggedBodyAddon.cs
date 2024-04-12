@@ -15,6 +15,5 @@ namespace Pawnmorph.GraphicSys
 		/// The anchor identifier
 		/// </summary>
 		public string anchorID;
-
 	}
 }

@@ -1,0 +1,39 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="DomesticatedBovidJawPart" ParentName="BovidJawPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="DomesticatedBovidEarPart" ParentName="BovidEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="DomesticatedBovidTailPart" ParentName="BovidTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="DomesticatedBovidHornPart" ParentName="BovidHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>1</chanceFactor>
+							<power>14</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

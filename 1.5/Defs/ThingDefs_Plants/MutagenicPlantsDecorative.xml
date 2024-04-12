@@ -1,0 +1,321 @@
+﻿<Defs>
+
+	<ChemicalDef>
+		<defName>TFPlantAddiction</defName>
+		<label>mutagenic plants</label>
+		<addictionHediff>TFPlantAddiction</addictionHediff>
+	</ChemicalDef>
+
+	<NeedDef ParentName="DrugAddictionNeedBase">
+		<defName>Chemical_TFPlant</defName>
+		<needClass>Need_Chemical</needClass>
+		<label>mutaplant</label>
+		<description>This person is under the strange effects of mutagenic plants. They will require more (which will change them), but failure to keep them sated will push them over the edge.</description>
+		<listPriority>45</listPriority>
+		<fallPerDay>0.15</fallPerDay>
+	</NeedDef>
+
+	<HediffDef ParentName="AddictionBase">
+		<defName>TFPlantAddiction</defName>
+		<hediffClass>Hediff_Addiction</hediffClass>
+		<label>mutaplant need</label>
+		<description>This person has a developed a dependancy on mutagenic plants. Take care to not let them go without it, as withdrawal symtoms risk them transforming into an animal.</description>
+		<causesNeed>Chemical_TFPlant</causesNeed>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-0.0333</severityPerDay>
+			</li>
+		</comps>
+		<stages>
+			<li>
+			</li>
+			<li>
+				<label>withdrawal</label>
+				<hungerRateFactorOffset>-0.7</hungerRateFactorOffset>
+				<socialFightChanceFactor>25</socialFightChanceFactor>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<offset>-0.3</offset>
+					</li>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.1</offset>
+					</li>
+				</capMods>
+				<hediffGivers>
+					<li Class="Pawnmorph.HediffGiver_TF">
+						<hediff>TransformedHuman</hediff>
+						<pawnkinds>
+							<li>Alpaca</li>
+							<li>Bear_Grizzly</li>
+							<li>Bear_Polar</li>
+							<li>Boomalope</li>
+							<li>Cat</li>
+							<li>Chicken</li>
+							<li>Cobra</li>
+							<li>Cougar</li>
+							<li>Cow</li>
+							<li>Deer</li>
+							<li>Fox_Red</li>
+							<li>Fox_Arctic</li>
+							<li>Fox_Fennec</li>
+							<li>Husky</li>
+							<li>Iguana</li>
+							<li>Lynx</li>
+							<li>Monkey</li>
+							<li>Panther</li>
+							<li>Pig</li>
+							<li>Rat</li>
+							<li>Warg</li>
+							<li>WildBoar</li>
+							<li>Wolf_Timber</li>
+							<li>Wolf_Arctic</li>
+						</pawnkinds>
+						<tale>TransformationMisc</tale>
+					</li>
+				</hediffGivers>
+				<mentalStateGivers>
+					<li>
+						<mentalState>Binging_Food</mentalState>
+						<mtbDays>5</mtbDays>
+					</li>
+				</mentalStateGivers>
+				<statOffsets>
+					<GlobalLearningFactor>-0.9</GlobalLearningFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+	<ThingDef ParentName="PlantBase">
+		<defName>Plant_MutatedGrass</defName>
+		<label>mutagrass</label>
+		<description>Wild, somewhat mutated grass. A product of groundwater contamination. Can be sown, but only useful for decoration.</description>
+		<statBases>
+			<MaxHitPoints>85</MaxHitPoints>
+			<Flammability>1.3</Flammability>
+			<Nutrition>0.15</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>Plants/MutatedGrass</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<hideAtSnowDepth>0.5</hideAtSnowDepth>
+		<ingestible />
+		<plant>
+			<fertilityMin>0.05</fertilityMin>
+			<fertilitySensitivity>0.3</fertilitySensitivity>
+			<growDays>2.5</growDays>
+			<harvestWork>40</harvestWork>
+			<maxMeshCount>9</maxMeshCount>
+			<visualSizeRange>0.4~0.6</visualSizeRange>
+			<topWindExposure>0.4</topWindExposure>
+			<wildOrder>1</wildOrder>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
+		</plant>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(24,183,177,0)</glowColor>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+				<priority>1</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>false</mustBeHarvestable>
+				
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Grass</li>
+					</filterList>
+				</sourcePlantFilter>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+
+	<ThingDef ParentName="PlantBase">
+		<defName>Plant_MutatedBrambles</defName>
+		<label>mutabrambles</label>
+		<description>Tangled, red-thorned, woody shoots topped with blue flowers. Brambles grow in clusters, and slow down anyone moving over them.</description>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Nutrition>0.2</Nutrition>
+		</statBases>
+		<pathCost>15</pathCost>
+		<graphicData>
+			<texPath>Plants/MutatedBramble</texPath>
+			<drawSize>1.7</drawSize>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<ingestible />
+		<plant>
+			<fertilitySensitivity>0.7</fertilitySensitivity>
+			<growDays>3</growDays>
+			<harvestWork>60</harvestWork>
+			<maxMeshCount>4</maxMeshCount>
+			<visualSizeRange>0.7~0.85</visualSizeRange>
+			<topWindExposure>0.15</topWindExposure>
+			<wildClusterRadius>4</wildClusterRadius>
+			<wildClusterWeight>200</wildClusterWeight>
+			<wildOrder>1</wildOrder>
+			<wildEqualLocalDistribution>false</wildEqualLocalDistribution>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
+		</plant>
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>2</glowRadius>
+				<glowColor>(188,40,41,0)</glowColor>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+				<priority>1</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>false</mustBeHarvestable>
+
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Brambles</li>
+					</filterList>
+				</sourcePlantFilter>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="PlantBase">
+		<defName>Plant_MutatedBush</defName>
+		<label>mutant bush</label>
+		<description>An otherworldly shrub, looks nice but not much use beyond that.</description>
+		<statBases>
+			<MaxHitPoints>85</MaxHitPoints>
+			<Beauty>4</Beauty>
+			<Nutrition>0.18</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>Plants/MutatedBush</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<neverMultiSelect>false</neverMultiSelect>
+		<fillPercent>0.20</fillPercent>
+		<pathCost>30</pathCost>
+		<plant>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilitySensitivity>0.5</fertilitySensitivity>
+			<growDays>6</growDays>
+			<wildClusterRadius>5</wildClusterRadius>
+			<wildClusterWeight>250</wildClusterWeight>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<topWindExposure>0.3</topWindExposure>
+			<wildOrder>2</wildOrder>
+			<sowResearchPrerequisites>
+				<li>MutagenicPlantSowing</li>
+			</sowResearchPrerequisites>
+			<sowTags>
+				<li>Ground</li>
+			</sowTags>
+		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				1 is a high priority so this plant take precidence over Chaobulb 
+				-->
+				<priority>5</priority>
+				<!-- if true the source plant must be something that can be havested -->
+				<mustBeHarvestable>false</mustBeHarvestable>
+
+				<sourcePlantFilter>
+					<isBlackList>false</isBlackList> <!-- make the filter use a white list -->
+					<filterList> <!-- glowvine will only come from healroot  -->
+						<li>Plant_Bush</li>
+					</filterList>
+				</sourcePlantFilter>
+
+				<!-- 
+					other fields not used here 
+					mustBeTree - source plant must be a tree 
+				-->
+			</li>
+		</modExtensions>
+	</ThingDef>
+
+	<ThingDef ParentName="PlantBase">
+		<defName>Plant_GnarledTree</defName>
+		<label>GnarledTree</label>
+		<description>A tree that's been twisted into an eerie shape by mutagens. Gnarled wood is useless, brittle and flaky, disintegrating when chopped.</description>
+		<statBases>
+			<MaxHitPoints>85</MaxHitPoints>
+			<Beauty>4</Beauty>
+			<Nutrition>0.18</Nutrition>
+		</statBases>
+		<graphicData>
+			<texPath>Plants/GnarledTree</texPath>
+			<graphicClass>Graphic_Random</graphicClass>
+		</graphicData>
+		<selectable>true</selectable>
+		<neverMultiSelect>false</neverMultiSelect>
+		<fillPercent>0.20</fillPercent>
+		<pathCost>30</pathCost>
+		<plant>
+			<fertilityMin>0.5</fertilityMin>
+			<fertilitySensitivity>0.5</fertilitySensitivity>
+			<growDays>6</growDays>
+			<leaflessGraphicPath>Plants/GnarledTree</leaflessGraphicPath>
+			<immatureGraphicPath>Plants/GnarledTree</immatureGraphicPath>
+			<wildClusterRadius>5</wildClusterRadius>
+			<wildClusterWeight>250</wildClusterWeight>
+			<visualSizeRange>0.95~1.7</visualSizeRange>
+			<topWindExposure>0.3</topWindExposure>
+			<wildOrder>2</wildOrder>
+		</plant>
+		<modExtensions>
+			<li Class="Pawnmorph.DefExtensions.MutantPlantExtension">
+				<!-- when substituing plants for mutant version of themselves, this value is used to determing 
+				the order in which possible substitutes are picked. lower priority values are checked first, mutant plants 
+				with the same priority value are picked randomly 
+				5 is low priority so this plant will only be chosen if a more specific plant is not chosen first 
+				-->
+				<priority>5</priority>
+				<!-- the source plant must be a tree -->
+				<mustBeTree>true</mustBeTree>
+			</li>
+		</modExtensions>
+	</ThingDef>
+</Defs>

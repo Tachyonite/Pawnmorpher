@@ -247,7 +247,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 
 			foreach (StatDrawEntry item in Verse.HediffStatsUtility.SpecialDisplayStats(stage, null))
 			{
-				if (item.ShouldDisplay)
+				if (item.ShouldDisplay())
 					_stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
 			}
 

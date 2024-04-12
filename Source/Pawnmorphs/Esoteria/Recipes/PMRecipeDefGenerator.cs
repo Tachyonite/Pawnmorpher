@@ -22,7 +22,7 @@ namespace Pawnmorph.Recipes
 
 		[NotNull] private static readonly List<RecipeDef> _generatedRecipeDefs = new List<RecipeDef>();
 
-		[NotNull] private static readonly object[] _argList = new object[2];
+		[NotNull] private static readonly object[] _argList = new object[3];
 
 		static PMRecipeDefGenerator()
 		{
@@ -115,10 +115,11 @@ namespace Pawnmorph.Recipes
 			return recipeDef;
 		}
 
-		private static RecipeDef CreateRecipeDefFromMaker(ThingDef def, int adjustedCount = 1)
+		private static RecipeDef CreateRecipeDefFromMaker(ThingDef def, int adjustedCount = 1, bool hotReload = false)
 		{
 			_argList[0] = def;
 			_argList[1] = adjustedCount;
+			_argList[2] = hotReload;
 			return (RecipeDef)_createRecipeDefFromMaker.Invoke(null, _argList);
 		}
 	}

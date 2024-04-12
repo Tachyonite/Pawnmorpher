@@ -1,0 +1,54 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralJawPart">
+		<classInfluence>GuineaPigMorph</classInfluence>
+		<defName>EtherGuineaPigJaw</defName>
+		<label>guinea pig snout</label>
+		<mutationMemory>EtherGuineaPigJaw</mutationMemory>
+		<mutationTale>GrewGuineaPigMuzzle</mutationTale>
+		<graphics>
+			<Muzzle>Parts/GuineaPig/GuineaPig_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A whiskered snout graces [PAWN_nameDef]'s face with a cute little button nose, like that of a guinea pig. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A whiskered snout graces [PAWN_nameDef]'s face with a cute little button nose, like that of a guinea pig. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A whiskered snout graces [PAWN_nameDef]'s face with a cute little button nose, like that of a guinea pig. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
+		<classInfluence>GuineaPigMorph</classInfluence>
+		<defName>EtherGuineaPigEar</defName>
+		<label>guinea pig ear</label>
+		<mutationMemory>EtherGuineaPigEar</mutationMemory>
+		<mutationTale>EarsBecomeGuineaPigEars</mutationTale>
+		<graphics>
+			<LeftEar>Parts/GuineaPig/GuineaPig_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/GuineaPig/GuineaPig_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/GuineaPig/GuineaPig_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/GuineaPig/GuineaPig_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy ear flops about on the side of [PAWN_nameDef]'s head.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

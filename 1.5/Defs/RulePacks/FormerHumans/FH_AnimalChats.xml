@@ -1,0 +1,75 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
+
+    <RulePackDef>
+        <defName>SapientAnimalChatRules</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>animalTalk->gruffed a story about [TalkTopicAny] to</li>
+                <li>animalTalk->sighed softly at</li>
+                <li>animalTalk->sat down next to</li>
+                <li>animalTalk->curled up for a moment next to</li>
+                <li>animalTalk->pawed at</li>
+                <li>animalTalk->spoke about [TalkTopicAny] with</li>
+                <li>animalTalk->moaned about [TalkTopicAny] with</li>
+                <li>animalTalk->lamented about life with</li>
+                <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [animalLife].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [animalLife].</li>
+                <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [TalkTopicAny].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] lay by [INITIATOR_nameDef] and talked to [INITIATOR_objective] about [TalkTopicAny].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [TalkTopicAny].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [animalLife].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>MostlySapientAnimalChatRules</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>animalTalk->sighed softly at</li>
+                <li>animalTalk->nuzzled</li>
+                <li>animalTalk->rubbed against</li>
+                <li>animalTalk->sat down next to</li>
+                <li>animalTalk->curled up for a moment next to</li>
+                <li>animalTalk->pawed at</li>
+                <li>animalTalk->tried and failed to speak to</li>
+                <li>animalTalk->attempted to talk to</li>
+                <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [animalLife].</li>
+                <li>r_logentry->[INITIATOR_nameDef] sat near [RECIPIENT_nameDef] and talked to [RECIPIENT_objective] about [TalkTopicAny].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [TalkTopicAny].</li>
+                <li>r_logentry->[RECIPIENT_nameDef] talked with [INITIATOR_nameDef] about [animalLife].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>ConflictedAnimalChatRules</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>animalTalk->sighed softly at</li>
+                <li>animalTalk->whined for attention from</li>
+                <li>animalTalk->nuzzled</li>
+                <li>animalTalk->rubbed against</li>
+                <li>animalTalk->sat down next to</li>
+                <li>animalTalk->curled up for a moment next to</li>
+                <li>animalTalk->pawed at</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>MostlyFeralAnimalChatRules</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>animalTalk->whined for attention from</li>
+                <li>animalTalk->nuzzled</li>
+                <li>animalTalk->rubbed against</li>
+                <li>animalTalk->sat down next to</li>
+                <li>animalTalk->curled up for a moment next to</li>
+                <li>animalTalk->pawed at</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+
+</Defs>

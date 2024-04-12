@@ -1,0 +1,58 @@
+<Defs>
+    <ThingDef ParentName="RoughPlantBase">
+        <defName>Mutasalt</defName>
+        <label>mutanite salt</label>
+        <description>Mutanite that's been ground up into a fine powder, that can be sprinked over foods to give chaotic mutations to anyone who eats them...</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Mutasalt</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <MarketValue>100</MarketValue>
+            <Nutrition>1</Nutrition>
+            <Flammability>1.3</Flammability>
+        </statBases>
+        <thingCategories>
+            <li>VCE_Condiments</li>
+        </thingCategories>
+        <ingestible>
+            <preferability>NeverForNutrition</preferability>
+            <specialThoughtAsIngredient>PM_ConsumedDigestibleFullRandomTF</specialThoughtAsIngredient>
+        </ingestible>
+    </ThingDef>
+    <ThingDef ParentName="MealBase">
+        <defName>Mutacheese</defName>
+        <label>cowmorph cheese</label>
+        <description>A mutagenic mechanite cheese created by pressing cowmorph milk. This isn't edible, but if consumed it will act as an organic equivalent of a cowmorph syringe.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Mutacheese</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <tradeability>Sellable</tradeability>
+        <stackLimit>10</stackLimit>
+        <statBases>
+            <MarketValue>500</MarketValue>
+            <Mass>1</Mass>
+            <Nutrition>0.9</Nutrition>
+        </statBases>
+        <thingCategories>
+            <li>VCE_Cheese</li>
+        </thingCategories>
+        <ingestible>
+            <foodType>Meal</foodType>
+            <preferability>NeverForNutrition</preferability>
+            <tasteThought>VCE_PM_AteCowmorphCheese</tasteThought>
+            <ingestEffect>EatMeat</ingestEffect>
+            <ingestSound>Meal_Eat</ingestSound>
+            <maxNumToIngestAtOnce>1</maxNumToIngestAtOnce>
+            <joy>0.03</joy>
+            <joyKind>Gluttonous</joyKind>
+        </ingestible>
+        <comps>
+            <li>
+                <compClass>CompQuality</compClass>
+            </li>
+            <li Class="VanillaCookingExpanded.CompProperties_StackByQuality" />
+        </comps>
+    </ThingDef>
+</Defs>

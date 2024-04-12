@@ -1,0 +1,69 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeysJawPart">
+		<classInfluence>MonkeyMorph</classInfluence>
+		<defName>EtherMonkeyJaw</defName>
+		<label>monkey snout</label>
+		<graphics>
+			<Muzzle>Parts/Monkey/Monkey_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has elongated into a monkey-like visage, making them look less evolved. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has elongated into a monkey-like visage, making them look less evolved. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has elongated into a monkey-like visage, making them look less evolved. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeysEarPart">
+		<classInfluence>MonkeyMorph</classInfluence>
+		<defName>EtherMonkeyEar</defName>
+		<label>monkey ear</label>
+		<graphics>
+			<!--Monkey ears do not need a behind-the-head version due to them being occluded by all normal heads.-->
+			<LeftEar>Parts/Monkey/Monkey_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Monkey/Monkey_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>Though somewhat engorged, this ear looks somewhat like [PAWN_nameDef]'s own ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="MonkeysTailPart">
+		<classInfluence>MonkeyMorph</classInfluence>
+		<defName>EtherMonkeyTail</defName>
+		<label>monkey tail</label>
+		<description>A monkey tail. Bananas.</description>
+		<graphics>
+			<Tail>Parts/Monkey/Monkey_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long dextrous tail extends from the base of [PAWN_nameDef]'s spine. It would help with climbing abiltiy, but nobody knows how to on the rim.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

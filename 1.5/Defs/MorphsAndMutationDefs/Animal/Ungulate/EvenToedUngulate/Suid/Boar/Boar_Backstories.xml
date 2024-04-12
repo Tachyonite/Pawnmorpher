@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>BoarmorphGeneral</defName>
+		<title>forest boar</title>
+		<titleShort>boarmorph</titleShort>
+		<description>[PAWN_nameDef] ate some suspect mushrooms next to a chemical spill in the woods, and found [PAWN_objective]self to be quite a bit more porcine.</description>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>BoarMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

@@ -1,0 +1,47 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineJawPart">
+		<classInfluence>DonkeyMorph</classInfluence>
+		<defName>EtherDonkeySnout</defName>
+		<label>donkey snout</label>
+		<graphics>
+			<Muzzle>Parts/Donkey/Donkey_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineEarPart">
+		<classInfluence>DonkeyMorph</classInfluence>
+		<defName>EtherDonkeyEar</defName>
+		<label>donkey ear</label>
+		<graphics>
+			<LeftEar>Parts/Donkey/Donkey_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Donkey/Donkey_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Donkey/Donkey_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Donkey/Donkey_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, fuzzy, equine ear sits atop [PAWN_nameDef]'s head with tufts of fur, like that of a donkey.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="EquineTailPart">
+		<classInfluence>DonkeyMorph</classInfluence>
+		<defName>EtherDonkeyTail</defName>
+		<label>donkey tail</label>
+		<graphics>
+			<Tail>Parts/Donkey/Donkey_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A donkeylike tail. It swats at flies occasionally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

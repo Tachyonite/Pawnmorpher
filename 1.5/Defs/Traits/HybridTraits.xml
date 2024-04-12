@@ -1,0 +1,16 @@
+﻿<Defs>
+	<TraitDef>
+		<defName>NaturalHunter</defName>
+		<commonality>0.01</commonality> <!-- should make it impossible to get normally -->
+		<degreeDatas>
+			<li>
+				<label>natural hunter</label>
+				<description>{PAWN_nameDef} is now a natural hunter.</description> <!--could use some work -->
+				<skillGains>
+					<Shooting>1</Shooting>
+					<Animals>1</Animals>
+				</skillGains>
+			</li>
+		</degreeDatas>
+	</TraitDef>
+</Defs>

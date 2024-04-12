@@ -68,7 +68,7 @@ namespace Pawnmorph.HPatches
 
 			if (_registeredGizmosMerged.TryGetValue(__instance, out bool merged) && merged)
 			{
-				__instance.disabled = true;
+				__instance.Disable();
 				return false;
 			}
 

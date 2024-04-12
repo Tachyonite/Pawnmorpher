@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThoughtDef>
+    <defName>FriendPermFeralThought</defName>
+    <durationDays>10</durationDays>
+	  <nullifyingTraits>
+		  <li>Psychopath</li>
+	  </nullifyingTraits>
+    <stages>
+      <li>
+        <label>friend permanently feral</label>
+        <description>My friend is stuck in the body of an animal...forever!</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>RivalPermFeralThought</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>rival permanently feral</label>
+        <description>My rival can never come back from that beastly form now. It suits them.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

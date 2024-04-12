@@ -1,0 +1,52 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="FelineJawPart" ParentName="CarnivoraJawPart" Abstract="true">
+		<mutationMemory>EtherFelineJaw</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face is growing into a muzzle with a distinctly feline apperance. A dense pack of whiskers has sprouted out from the top of [PAWN_possessive] fluffy lips.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FelineEarPart" ParentName="CarnivoraEarPart" Abstract="true">
+		<mutationMemory>EtherFelineEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.125</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.1</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.25</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.2</HuntingStealth>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FelineTailPart" ParentName="CarnivoraTailPart" Abstract="true">
+		<mutationMemory>EtherFelineTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

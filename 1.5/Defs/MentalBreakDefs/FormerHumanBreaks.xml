@@ -1,0 +1,54 @@
+<Defs>
+    <MentalBreakDef>
+        <defName>HuntingBreak</defName>
+        <mentalState>HuntingBreak</mentalState>
+        <baseCommonality>0.333</baseCommonality>
+        <intensity>Major</intensity>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>true</isBlackList>
+                    <filterList>
+                        <li>Sapient</li>
+                    </filterList>
+                </filter>
+            </li>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>20</baseInstinctOffset>
+            </li>
+        </modExtensions>
+      </MentalBreakDef>
+      <MentalStateDef ParentName="BaseMentalState">
+        <defName>HuntingBreak</defName>
+        <stateClass>Pawnmorph.Mental.State_Hunting</stateClass>
+        <workerClass>Pawnmorph.Mental.StateWorker_Hunt</workerClass>
+        <label>hunting</label>
+        <category>Aggro</category>
+        <colonistsOnly>false</colonistsOnly>
+        <minTicksBeforeRecovery>6200</minTicksBeforeRecovery>
+        <recoveryMtbDays>0.078</recoveryMtbDays>
+        <maxTicksBeforeRecovery>9000</maxTicksBeforeRecovery>
+        <recoverFromSleep>true</recoverFromSleep>
+        <moodRecoveryThought>SapientAnimalHuntingBreakCatharsis</moodRecoveryThought>
+        <blockNormalThoughts>true</blockNormalThoughts>
+        <nameColor>(0.98,0.48,0.16)</nameColor>
+        <recoveryMessage>{0} has finished hunting {prey}</recoveryMessage>
+        <beginLetter>{0} is hunting {prey}</beginLetter> <!-- could use work -->
+        <beginLetterDef>NegativeEvent</beginLetterDef>
+        <baseInspectLine>Mental state: Hunting</baseInspectLine>
+        <allowBeatfire>true</allowBeatfire>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.FormerHumanRestriction">
+                <filter>
+                    <isBlackList>true</isBlackList>
+                    <filterList>
+                        <li>Sapient</li>
+                    </filterList>
+                </filter>
+            </li>
+            <li Class="Pawnmorph.DefExtensions.InstinctEffector">
+                <baseInstinctOffset>20</baseInstinctOffset>
+            </li>
+        </modExtensions>
+      </MentalStateDef>
+</Defs>

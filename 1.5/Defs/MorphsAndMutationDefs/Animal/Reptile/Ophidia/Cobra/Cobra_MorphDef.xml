@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="OphidiaMorph">
+		<defName>SnakeMorph</defName>
+		<label>cobramorph</label>
+		<description>A large, muscular morph whose head and lower body are that of a snake. They have a venomous bite, so be mindful not to get on their bad side.</description>
+		<race>Cobra</race>
+		<categories>
+			<li>Tropical</li>
+		</categories>
+		<fullTransformation>PawnmorphSnakeTF</fullTransformation>
+		<partialTransformation>PawnmorphSnakeTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(99,85,74)</skinColorOverride>
+				<hairColorOverride>(0,0,0,0)</hairColorOverride>
+			</graphicsSettings>
+			<explicitHybridRace>SnakeMorph</explicitHybridRace>
+			<transferHumanBodyAddons>false</transferHumanBodyAddons>
+			<requiredMutations>
+				<li>EtherSnakeTail</li>
+			</requiredMutations>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CobraTransformationMemory</transformationMemory>
+			<revertedMemory>CobraRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -357,7 +357,6 @@ namespace Pawnmorph.Hediffs
 
 						foreach (Hediff_AddedMutation res in mutationResult) //make sure the mutation knows where it came from 
 						{                                                   //should this be a part of AddMutationAndAspects? so many overloads already, need a good solution 
-							res.source = _causes.GetAllCauses<ThingDef>().FirstOrDefault()?.causeDef;
 							res.sourceHediffDef = def;
 							res.Causes.Add(_causes);
 							res.Causes.Add(MutationCauses.HEDIFF_PREFIX, def);

@@ -1,0 +1,8 @@
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/StatDef[@Name="MarketValueBase"]/parts</xpath>
+		<value>
+			<li Class="Pawnmorph.StatWorkers.StatParts.StatPart_MarketValue"/>
+		</value>
+	</Operation>
+</Patch>

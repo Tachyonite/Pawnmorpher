@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>TurkeymorphGeneral</defName>
+		<title>turkey</title>
+		<titleShort>turkeymorph</titleShort>
+		<description>[PAWN_nameDef] was genetically modified against [PAWN_pronoun] will to be used in a fancy meal by a rich cannibal.</description>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>TurkeyMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

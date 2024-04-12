@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/TinyMuzzle</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialMuzzle</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedEarPart" ParentName="AnimalEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawFootedTailPart" ParentName="AnimalTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

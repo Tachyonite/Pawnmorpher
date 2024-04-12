@@ -1,0 +1,133 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+    
+	<!-- Mutations  -->
+	
+    <PreceptDef>
+        <defName>PM_MutationsAbhorrent</defName>
+        <issue>PM_Mutation</issue>
+        <label>abhorrent</label>
+        <description>The physical alteration of the human form via mutagens is a digusting practice that violates the body and invites unwanted animal impulses.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <associatedMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </associatedMemes>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>MutationGained</eventDef>
+                <thought>PM_FleshPuristMutated</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMutated</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Morphed</eventDef>
+                <thought>PM_FleshPuristMorphed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphed</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>DeMorphed</eventDef>
+                <thought>PM_FleshPuristMorphedReverted</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphedReverted</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_HasMutation_Disapprove_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>PM_MutationsDisliked</defName>
+        <issue>PM_Mutation</issue>
+        <label>disliked</label>
+        <description>People should not alter their body with dangerous and untested mutagens that cannot be easily reversed.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <comps> <!-- disliked only get thoughts for not being human -->
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Morphed</eventDef>
+                <thought>PM_FleshPuristMorphed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphed</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>DeMorphed</eventDef>
+                <thought>PM_FleshPuristMorphedReverted</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyMorphedReverted</thought>
+                    </li>
+                </entries>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>PM_MutationsNeutral</defName>
+        <issue>PM_Mutation</issue>
+        <label>neutral</label>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <description>Alteration of the body via mutagens is a part of life on this world. Those affected by it should be neither hated nor praised. Anyone choosing to alter their form is doing so at their own risk.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+        <impact>Low</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>PM_MutationsLoved</defName>
+        <issue>PM_Mutation</issue>
+        <label>desirable</label>
+        <description>The human form is limiting, and the power of mutagens will enable people to advance themselves and become who they want to be.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>20</displayOrderInIssue>
+        <displayOrderInImpact>1000</displayOrderInImpact>
+        <associatedMemes>
+            <li>NaturePrimacy</li>
+        </associatedMemes>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>MutationGained</eventDef>
+                <thought>PM_NaturePrimacyMutated</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Morphed</eventDef>
+                <thought>PM_NaturePrimacyMorphed</thought>
+            </li>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>DeMorphed</eventDef>
+                <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+            <li Class="PreceptComp_SituationalThought">
+                <thought>PM_HasMutation_Approved_Social</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+    
+</Defs>

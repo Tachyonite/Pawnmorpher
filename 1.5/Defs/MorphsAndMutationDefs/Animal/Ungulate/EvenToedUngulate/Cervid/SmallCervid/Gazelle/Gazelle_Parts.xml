@@ -1,0 +1,101 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidJawPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleJaw</defName>
+		<label>gazelle snout</label>
+		<graphics>
+			<Muzzle>Parts/Gazelle/Gazelle_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pushed out into graceful, narrow snout like one might find on a gazelle. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidEarPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleEar</defName>
+		<label>gazelle ear</label>
+		<graphics>
+			<LeftEar>Parts/Gazelle/Gazelle_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Gazelle/Gazelle_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Gazelle/Gazelle_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Gazelle/Gazelle_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is growing longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has grown into a long, pointed, gazelle ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidTailPart">
+		<classInfluence>GazelleMorph</classInfluence>
+		<defName>EtherGazelleTail</defName>
+		<label>gazelle tail</label>
+		<graphics>
+			<Tail>Parts/Gazelle/Gazelle_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a small gazelle tail.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="SmallCervidHornPart">
+		<defName>EtherGazelleAntlers</defName>
+		<label>gazelle antlers</label>
+		<description>Large, graceful, gazelle horns</description>
+		<classInfluence>GazelleMorph</classInfluence>
+		<mutationTale>GrewAntlers</mutationTale>
+		<!-- <mutationMemory>TODO</mutationMemory> -->
+		<graphics>
+			<Horns>Parts/Gazelle/Gazelle_Horns</Horns>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<description>Slender horns are sprouting form the top of  [PAWN_nameDef]'s head. Already they're forming a graceful arch and add significant power to any attack.</description>
+					
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s antlers are the envy of anyone around. Far from helpless though [PAWN_nameDef] can easily dispatch of anyone that displeases them.</description>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

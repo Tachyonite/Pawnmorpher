@@ -1,0 +1,49 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>MechaniteSlurry</defName>
+		<label>mechanite slurry</label>
+		<description>Mechanites suspended in an organic binding agent composes this pseudofluid. It is strongly recommended not to ingest raw slurry, as it will cause constant, rapid, and uncontrolled mutation. With further processing, it can be refined into safer and more controlled forms.
+
+Although it induces rapid and uncontrollable mutations, some desperate individuals are known to injest it in the hopes it may provide them useful mutations, or simply because they enjoy the transformation process. Some rimworld warlords are known to feed prisoners slurry to make them into production slaves, or simply as a form of sadistic entertainment.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Drug/Slurry</texPath>
+		</graphicData>
+		<statBases>
+			<MarketValue>55</MarketValue>
+			<MutaniteConcentration>0.07</MutaniteConcentration>
+		</statBases>
+		<thingCategories>
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<drugCategory>None</drugCategory>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>FullRandomTFAnyOutcome</hediffDef>
+					<severity>1.00</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker Inherit="False" IsNull="true" />
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveDamageType>MutagenCloud</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
+
+	</ThingDef>
+</Defs>

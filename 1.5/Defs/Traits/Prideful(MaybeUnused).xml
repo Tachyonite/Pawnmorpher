@@ -1,0 +1,13 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <TraitDef>
+        <defName>PM_PridefulTrait</defName>
+        <commonality>0</commonality>
+        <degreeDatas>
+            <li>
+                <label>prideful</label>
+                <description>[PAWN_nameDef]'s sees [PAWN_objective]self as the natural leader of [PAWN_possessive] pride and as a consequence looks down on others and is easily offended.</description>
+                <socialFightChanceFactor>4</socialFightChanceFactor>
+            </li>
+        </degreeDatas>
+    </TraitDef>
+</Defs>

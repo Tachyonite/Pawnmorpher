@@ -1,0 +1,46 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase" Abstract="True" Name="EarMutationBase">
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears changing</li>
+				<li>image->[PAWN_nameFull] examines [PAWN_possessive] ears [circumstance_group] </li>
+				<li>circumstance_group->as [PAWN_possessive] ears twitch</li>
+				<li>circumstance_group->while someone touches [PAWN_possessive] ears</li>
+				<li>desc_sentence->[PAWN_pronoun] is playing with them.</li>
+				<li>desc_sentence->[PAWN_pronoun] new ears twitch.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="EarMutationBase">
+		<defName>EarsChangedMisc</defName>
+		<label>ears changed</label>
+	</TaleDef>
+	<TaleDef ParentName="EarMutationBase">
+		<defName>EarsChangedCanid</defName>
+		<label>grew dog ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears growing fur and becoming pointed</li>
+				<li>tale_noun->[PAWN_nameDef] growing dog ears</li>
+				<li>tale_noun->[PAWN_nameDef]'s ears changing to those of a canine</li>
+				<li>image->[PAWN_nameFull] looks distracted by the sounds coming [circumstance_group]</li>
+				<li>circumstance_group->[PAWN_possessive] canine ears lie flat in fear</li>
+				<li>circumstance_group->[PAWN_possessive] canine ears pricked up </li>
+				<li>desc_sentence->[PAWN_pronoun] is distracted by their improved hearing.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="EarMutationBase">
+		<defName>EarsChangedFeline</defName>
+		<label>grew cat ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears growing fur and becoming pointed</li>
+				<li>tale_noun->[PAWN_nameDef] growing cat ears</li>
+				<li>image->[PAWN_nameFull] ears begin turning toward loud noises [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] seems distracted by the loud noises [circumstance_group]</li>
+				<li>circumstance_group->while someone tries to scratch [PAWN_possessive] ears</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

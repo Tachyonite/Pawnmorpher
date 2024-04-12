@@ -1,0 +1,25 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="GalliformMorph">
+		<defName>DuckMorph</defName>
+		<label>duckmorph</label>
+		<description>A human who now shares many features with ducks due to exposure to mechanite mutagens. Usually found covered in feathers and with a duck beak.</description>
+		<race>Duck</race>
+		<categories>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphDuckTF</fullTransformation>
+		<partialTransformation>PawnmorphDuckTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(139,103,81)</skinColorOverride>
+				<femaleSkinColorOverride>(207,176,156)</femaleSkinColorOverride>
+				<hairColorOverride>(48,126,78)</hairColorOverride>
+				<femaleHairColorOverride>(207,176,156)</femaleHairColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>DuckTransformationMemory</transformationMemory>
+			<revertedMemory>DuckRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

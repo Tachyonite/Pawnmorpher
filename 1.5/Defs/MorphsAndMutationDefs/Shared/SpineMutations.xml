@@ -1,0 +1,202 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+
+	<!-- Flexible spine -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>A very flexible spine.</description>
+		<defName>EtherFlexibleSpine</defName>
+		<classInfluences>
+			<li>Feline</li>
+			<li>Monkeys</li>
+		</classInfluences>
+		<label>flexible spine</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back hurts a bit. Nothing too bad.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<label>changing</label>
+					<description>[PAWN_nameDef] has difficulties controlling [PAWN_possessive] balance. It hurts whenever [PAWN_pronoun] is moving.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s spine has become flexible. [PAWN_pronoun] would likely win a contortion contest.</description>
+					<partEfficiencyOffset>0.15</partEfficiencyOffset>
+					<statOffsets>
+						<MeleeDodgeChance>15</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Reinforced Spine -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>A reinforced spine.</description>
+		<defName>EtherReinforcedSpine</defName>
+		<classInfluence>Equine</classInfluence>
+		<label>reinforced spine</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back hurts a bit. Nothing too bad.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<label>changing</label>
+					<description>[PAWN_nameDef]'s back is very painful, like if [PAWN_possessive]'s spine was rearranging.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s spine is stronger than ever. [PAWN_pronoun] is now able to carry a lot, and fast!</description>
+					<partEfficiencyOffset>0.2</partEfficiencyOffset>
+					<statOffsets>
+						<CaravanRidingSpeedFactor>0.75</CaravanRidingSpeedFactor>
+						<CarryingCapacity>125</CarryingCapacity>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Hump -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHump" ParentName ="PawnmorphGenericOrganPart">
+		<description>A hump of a dromedary</description>
+		<defName>EtherDromedaryHump</defName>
+		<classInfluences>
+			<li>DromedaryMorph</li>
+		</classInfluences>
+		<label>hump</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a strange ache in their back. Nothing too bad though.</description>
+					<graphics>
+						<Spines></Spines>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>Reserves of fat has been diverted to [PAWN_nameDef]'s back where a noticiable hump has emerged. It'll keep [PAWN_objective] fed in a pinch.</description>
+					<graphics>
+						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
+					</graphics>
+					<statOffsets>
+						<ComfyTemperatureMax>15</ComfyTemperatureMax>
+					</statOffsets>
+					<hungerRateFactor>0.25</hungerRateFactor>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s hump has grown so that [PAWN_objective] can go days without food. The increased circulation also helps [PAWN_objective] cool off.</description>
+					<graphics>
+						<Spines>Parts/Dromedary/Dromedary_Hump</Spines>
+					</graphics>
+					<statOffsets>
+						<ComfyTemperatureMax>30</ComfyTemperatureMax>
+					</statOffsets>
+					<hungerRateFactor>0.5</hungerRateFactor>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+    
+	<!-- Tortoise Shell -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphShell" ParentName ="PawnmorphGenericOrganPart">
+		<description>A thick and scaled shell. The ultimate cumbersome defense on the Rimworld!</description>
+		<defName>EtherTortoiseShell</defName>
+		<mutationMemory>EtherTestudinidaeShell</mutationMemory>
+		<classInfluences>
+			<li>TortoiseMorph</li>
+		</classInfluences>
+		<label>tortoise shell</label>
+		<parts>
+			<li>Spine</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Thick plates of bone are beginning to grow out from [PAWN_nameDef]'s chest and back.</description>
+					<graphics>
+						<Spines></Spines>
+						<SpinesBehind></SpinesBehind>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>The two halves of the bone plates have formed a precursor shell around [PAWN_nameDef]'s body. It's still fragile at the moment, but thickening constantly.</description>
+					<graphics>
+						<Spines>Parts/Tortoise/Tortoise_Shell</Spines>
+						<SpinesBehind>Parts/Tortoise/Tortoise_Shell_Behind</SpinesBehind>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A thick and scaled shell for unmatched protection against predators encases [PAWN_nameDef]'s body. [PAWN_pronoun] has a strange urge to live in a sewer.</description>
+					<graphics>
+						<Spines>Parts/Tortoise/Tortoise_Shell</Spines>
+						<SpinesBehind>Parts/Tortoise/Tortoise_Shell_Behind</SpinesBehind>
+					</graphics>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.2</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>With rigorous acclimation training [PAWN_pronoun] has regained speed and dexterity beyond [PAWN_objective] could have dreamed! [PAWN_possessive] dreams to to live in a sewer and a study martial arts.</description>
+				<graphics>
+					<Spines>Parts/Tortoise/Tortoise_Shell</Spines>
+					<SpinesBehind>Parts/Tortoise/Tortoise_Shell_Behind</SpinesBehind>
+				</graphics>
+				<statOffsets>
+					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

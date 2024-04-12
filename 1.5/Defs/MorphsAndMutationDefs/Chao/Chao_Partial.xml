@@ -1,0 +1,32 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/ComposableHediffs.xsd">
+	<HediffDef ParentName="NewPartialAspectedMorphParent">
+		<defName>FullRandomTF</defName>
+		<label>chaomorph partial</label>
+		<description>This person has mechanites in their blood that are providing them with all sorts of mutations.</description>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
+				<painOffset>0.3</painOffset>
+				<vomitMtbDays>1</vomitMtbDays>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Sight</capacity>
+						<offset>-0.05</offset>
+					</li>
+					<li>
+						<capacity>Manipulation</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
+				<mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_All"></mutationTypes>
+				<mutationRate Class="Pawnmorph.Hediffs.Composable.MutRate_PartialStacks">
+					<meanMutationsPerDay>15</meanMutationsPerDay>
+				</mutationRate>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

@@ -9,6 +9,7 @@ using Pawnmorph.Genebank.Model;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.UserInterface.PartPicker;
+using Pawnmorph.Utilities;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -20,6 +21,7 @@ namespace Pawnmorph.UserInterface
 	/// part picker dialogue windo
 	/// </summary>
 	/// <seealso cref="Verse.Window" />
+	[HotSwappable]
 	public partial class Dialog_PartPicker : Window
 	{
 
@@ -913,16 +915,31 @@ namespace Pawnmorph.UserInterface
 			{
 				recachePreview = false;
 
-				RenderPawn();
+				Color? hybridColor = CalculatePawnSkin();
 
-				if (camera == null)
-					InitCamera();
+				if (hybridColor.HasValue)
+					alienComp.ColorChannels["skin"].first = hybridColor.Value;
+				else
+				{
+					alienComp.ColorChannels["skin"].first = initialPawnColors.Item1;
+					alienComp.ColorChannels["skin"].second = initialPawnColors.Item2;
+				}
+				alienComp.CompTick();
 
-				camera.gameObject.SetActive(true);
-				camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
-				camera.orthographicSize = alienComp.customDrawSize.x;
-				camera.Render();
-				camera.gameObject.SetActive(false);
+
+				pawn.Drawer.renderer.SetAllGraphicsDirty();
+				previewImage = PortraitsCache.Get(pawn, new Vector2(PREVIEW_SIZE.x, PREVIEW_SIZE.y), previewRot, new Vector3(0f, 0f, 0.15f), 1.1f, supersample: true, compensateForUIScale: true, toggleClothesEnabled, toggleClothesEnabled, healthStateOverride: PawnHealthState.Mobile);
+
+				//RenderPawn();
+
+				//if (camera == null)
+				//	InitCamera();
+
+				//camera.gameObject.SetActive(true);
+				//camera.transform.position = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 1f, 0f);
+				//camera.orthographicSize = alienComp.customDrawSize.x;
+				//camera.Render();
+				//camera.gameObject.SetActive(false);
 			}
 			else
 			{
@@ -960,100 +977,120 @@ namespace Pawnmorph.UserInterface
 		// Taken from RenderingTool.RenderPawnInternal in CharacterEditor
 		private void RenderPawn()
 		{
-			Color? hybridColor = CalculatePawnSkin();
 
-			if (hybridColor.HasValue)
-				alienComp.ColorChannels["skin"].first = hybridColor.Value;
-			else
-			{
-				alienComp.ColorChannels["skin"].first = initialPawnColors.Item1;
-				alienComp.ColorChannels["skin"].second = initialPawnColors.Item2;
-			}
-			alienComp.CompTick();
-
-			PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
-			graphics.ResolveAllGraphics();
-
-			Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
-
-			Mesh bodyMesh = HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(pawn).MeshAt(previewRot);
-			Vector3 bodyOffset = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
-
-			foreach (Material mat in graphics.MatsBodyBaseAt(previewRot, false))
-			{
-				Material damagedMat = graphics.flasher.GetDamagedMat(mat);
-				GenDraw.DrawMeshNowOrLater(bodyMesh, bodyOffset, quaternion, damagedMat, false);
-				bodyOffset.y += 0.00390625f;
-				if (!toggleClothesEnabled)
-				{
-					break;
-				}
-			}
-			Vector3 vector3 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
-			Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
-			if (graphics.headGraphic != null)
-			{
-				Mesh mesh2 = HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(previewRot);
-				Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
-				Material material = graphics.HeadMatAt(previewRot);
-
-				GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
-
-				Mesh hairMesh = HumanlikeMeshPoolUtility.GetHumanlikeHairSetForPawn(pawn).MeshAt(previewRot);
-				Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
-				bool isWearingHat = false;
-				if (toggleClothesEnabled)
-				{
-					foreach (ApparelGraphicRecord apparel in graphics.apparelGraphics)
-					{
-						if (apparel.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead)
-						{
-							Material hatMat = graphics.flasher.GetDamagedMat(apparel.graphic.MatAt(previewRot));
-							if (apparel.sourceApparel.def.apparel.hatRenderedFrontOfFace)
-							{
-								isWearingHat = true;
-								hairOffset.y += 0.03f;
-								GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hatMat, false);
-							}
-							else
-							{
-								Vector3 hatOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
-								GenDraw.DrawMeshNowOrLater(hairMesh, hatOffset, quaternion, hatMat, false);
-							}
-						}
-					}
-				}
-				if (!isWearingHat)
-				{
-					// Draw hair
-					Material hairMat = graphics.HairMatAt(previewRot);
-					GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
-				}
-			}
+			PawnDrawParms drawParms = new PawnDrawParms();
+			drawParms.pawn = pawn;
+			drawParms.posture = PawnPosture.Standing;
+			drawParms.matrix = Matrix4x4.TRS(new Vector3(PREVIEW_POSITION_X, pawn.Position.y, 0f), Quaternion.AngleAxis(0f, Vector3.up), Vector3.one);
+			
+			PawnRenderFlags renderFlags = PawnRenderFlags.DrawNow;
 			if (toggleClothesEnabled)
-			{
-				foreach (ApparelGraphicRecord graphicsSet in graphics.apparelGraphics)
-				{
-					if (graphicsSet.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Shell)
-					{
-						Material clothingMat = graphics.flasher.GetDamagedMat(graphicsSet.graphic.MatAt(previewRot));
-						GenDraw.DrawMeshNowOrLater(bodyMesh, vector3, quaternion, clothingMat, false);
-					}
-				}
-			}
+				renderFlags |= PawnRenderFlags.Clothes | PawnRenderFlags.Headgear;
 
-			Vector3 hOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
-			HarmonyPatches.DrawAddons(PawnRenderFlags.Clothes, vector3, hOffset, pawn, quaternion, previewRot);
-			if (toggleClothesEnabled)
-			{
-				if (pawn.apparel != null)
-				{
-					foreach (Apparel apparel in pawn.apparel.WornApparel)
-					{
-						apparel.DrawWornExtras();
-					}
-				}
-			}
+			drawParms.flags = renderFlags;
+
+			
+			pawn.Drawer.renderer.renderTree.EnsureInitialized(renderFlags);
+			pawn.Drawer.renderer.renderTree.ParallelPreDraw(drawParms);
+			pawn.Drawer.renderer.renderTree.SetDirty();
+			pawn.Drawer.renderer.renderTree.Draw(drawParms);
+
+
+
+			//Color? hybridColor = CalculatePawnSkin();
+
+			//if (hybridColor.HasValue)
+			//	alienComp.ColorChannels["skin"].first = hybridColor.Value;
+			//else
+			//{
+			//	alienComp.ColorChannels["skin"].first = initialPawnColors.Item1;
+			//	alienComp.ColorChannels["skin"].second = initialPawnColors.Item2;
+			//}
+			//alienComp.CompTick();
+
+			//PawnGraphicSet graphics = pawn.Drawer.renderer.graphics;
+			//graphics.ResolveAllGraphics();
+
+			//Quaternion quaternion = Quaternion.AngleAxis(0f, Vector3.up);
+
+			//Mesh bodyMesh = HumanlikeMeshPoolUtility.GetHumanlikeBodySetForPawn(pawn).MeshAt(previewRot);
+			//Vector3 bodyOffset = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + 0.007575758f, 0f);
+
+			//foreach (Material mat in graphics.MatsBodyBaseAt(previewRot, false))
+			//{
+			//	Material damagedMat = graphics.flasher.GetDamagedMat(mat);
+			//	GenDraw.DrawMeshNowOrLater(bodyMesh, bodyOffset, quaternion, damagedMat, false);
+			//	bodyOffset.y += 0.00390625f;
+			//	if (!toggleClothesEnabled)
+			//	{
+			//		break;
+			//	}
+			//}
+			//Vector3 vector3 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.026515152f : 0.022727273f), 0f);
+			//Vector3 vector4 = new Vector3(PREVIEW_POSITION_X, pawn.Position.y + (previewRot == Rot4.North ? 0.022727273f : 0.026515152f), 0f);
+			//if (graphics.headGraphic != null)
+			//{
+			//	Mesh mesh2 = HumanlikeMeshPoolUtility.GetHumanlikeHeadSetForPawn(pawn).MeshAt(previewRot);
+			//	Vector3 headOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
+			//	Material material = graphics.HeadMatAt(previewRot);
+
+			//	GenDraw.DrawMeshNowOrLater(mesh2, vector4 + headOffset, quaternion, material, false);
+
+			//	Mesh hairMesh = HumanlikeMeshPoolUtility.GetHumanlikeHairSetForPawn(pawn).MeshAt(previewRot);
+			//	Vector3 hairOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + 0.030303031f, headOffset.z);
+			//	bool isWearingHat = false;
+			//	if (toggleClothesEnabled)
+			//	{
+			//		foreach (ApparelGraphicRecord apparel in graphics.apparelGraphics)
+			//		{
+			//			if (apparel.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Overhead)
+			//			{
+			//				Material hatMat = graphics.flasher.GetDamagedMat(apparel.graphic.MatAt(previewRot));
+			//				if (apparel.sourceApparel.def.apparel.hatRenderedFrontOfFace)
+			//				{
+			//					isWearingHat = true;
+			//					hairOffset.y += 0.03f;
+			//					GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hatMat, false);
+			//				}
+			//				else
+			//				{
+			//					Vector3 hatOffset = new Vector3(PREVIEW_POSITION_X + headOffset.x, pawn.Position.y + (previewRot == Rot4.North ? 0.003787879f : 0.03409091f), headOffset.z);
+			//					GenDraw.DrawMeshNowOrLater(hairMesh, hatOffset, quaternion, hatMat, false);
+			//				}
+			//			}
+			//		}
+			//	}
+			//	if (!isWearingHat)
+			//	{
+			//		// Draw hair
+			//		Material hairMat = graphics.HairMatAt(previewRot);
+			//		GenDraw.DrawMeshNowOrLater(hairMesh, hairOffset, quaternion, hairMat, false);
+			//	}
+			//}
+			//if (toggleClothesEnabled)
+			//{
+			//	foreach (ApparelGraphicRecord graphicsSet in graphics.apparelGraphics)
+			//	{
+			//		if (graphicsSet.sourceApparel.def.apparel.LastLayer == ApparelLayerDefOf.Shell)
+			//		{
+			//			Material clothingMat = graphics.flasher.GetDamagedMat(graphicsSet.graphic.MatAt(previewRot));
+			//			GenDraw.DrawMeshNowOrLater(bodyMesh, vector3, quaternion, clothingMat, false);
+			//		}
+			//	}
+			//}
+
+			//Vector3 hOffset = quaternion * pawn.Drawer.renderer.BaseHeadOffsetAt(previewRot);
+			//HarmonyPatches.DrawAddons(PawnRenderFlags.Clothes, vector3, hOffset, pawn, quaternion, previewRot);
+			//if (toggleClothesEnabled)
+			//{
+			//	if (pawn.apparel != null)
+			//	{
+			//		foreach (Apparel apparel in pawn.apparel.WornApparel)
+			//		{
+			//			apparel.DrawWornExtras();
+			//		}
+			//	}
+			//}
 		}
 
 		internal void InitCamera()
@@ -1083,11 +1120,9 @@ namespace Pawnmorph.UserInterface
 				previewImage = new RenderTexture(PREVIEW_SIZE.x, PREVIEW_SIZE.y, 24);
 				camera.targetTexture = previewImage;
 			}
+
+			
 		}
-
-
-
-
 		private void ApplyTemplate(MutationTemplate template)
 		{
 			IReadOnlyList<MutationDef> taggedMutations = _database.StoredMutations;

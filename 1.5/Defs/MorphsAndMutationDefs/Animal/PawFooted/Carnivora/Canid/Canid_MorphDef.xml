@@ -1,0 +1,6 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CarnivoraMorph" Name="CanidMorph">
+		<classification>Canid</classification>
+		<group>Canines</group>
+	</Pawnmorph.MorphDef>
+</Defs>

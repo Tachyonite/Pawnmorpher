@@ -100,7 +100,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 					x.OrderBy(y => int.Parse(y[column].Replace("$", "")));
 				else
 					x.OrderByDescending(y => int.Parse(y[column].Replace("$", "")));
-			}););
+			});
 			var colMutations = table.AddColumn(TAB_COLUMN_MUTATIONS, TAB_COLUMN_MUTATIONS_SIZE);
 			//Nutrition requirements?
 
@@ -197,7 +197,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 				_stringBuilder.Clear();
 				foreach (StatDrawEntry item in selectedRace.RaceProps.SpecialDisplayStats(selectedRace.race, StatRequest.ForEmpty()))
 				{
-					if (item.ShouldDisplay)
+					if (item.ShouldDisplay())
 						_stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
 				}
 

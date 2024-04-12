@@ -1,0 +1,55 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+    
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>DuckTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I'm- QUACK! covered in feathers- QUACK!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>They way these feathers feel is amazing! Now where can I find some bread...</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Oh man, I look like some kind of monster. I want revenge on the QUACK that did this to me.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Quack quack qauck quack.</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>DuckRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more feathers...</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But the feathers! My beak! I would have preferred to stay that way.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Hands at last. I can go the rest of my life without eating bread.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+	
+</Defs>
