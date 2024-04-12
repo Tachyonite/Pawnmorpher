@@ -63,7 +63,7 @@ namespace Pawnmorph.Hediffs.Composable
 		/// <param name="hediff">The hediff doing the transformation.</param>
 		public override IEnumerable<BodyPartRecord> GetSpreadList(Hediff_MutagenicBase hediff)
 		{
-			return hediff.pawn.RaceProps.body.AllParts.InRandomOrder();
+			return null;
 		}
 
 		/// <summary>

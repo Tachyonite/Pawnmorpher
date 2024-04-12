@@ -94,7 +94,13 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 					x.OrderByDescending(y => int.Parse(y[column]));
 			});
 			var colDiet = table.AddColumn(TAB_COLUMN_DIET, TAB_COLUMN_DIET_SIZE);
-			var colValue = table.AddColumn(TAB_COLUMN_VALUE, TAB_COLUMN_VALUE_SIZE);
+			var colValue = table.AddColumn(TAB_COLUMN_VALUE, TAB_COLUMN_VALUE_SIZE, (x, ascending, column) =>
+			{
+				if (ascending)
+					x.OrderBy(y => int.Parse(y[column].Replace("$", "")));
+				else
+					x.OrderByDescending(y => int.Parse(y[column].Replace("$", "")));
+			}););
 			var colMutations = table.AddColumn(TAB_COLUMN_MUTATIONS, TAB_COLUMN_MUTATIONS_SIZE);
 			//Nutrition requirements?
 

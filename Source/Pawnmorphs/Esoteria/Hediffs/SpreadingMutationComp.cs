@@ -19,26 +19,14 @@ namespace Pawnmorph.Hediffs
 		private const int RECHECK_PART_PERIOD = 1000;
 		private int _doneTick = 0;
 
-		/// <summary>called after its parent has been updated.</summary>
-		/// <param name="severityAdjustment">The severity adjustment.</param>
-		public override void CompPostTick(ref float severityAdjustment)
+		public void UpdateComp()
 		{
-			base.CompPostTick(ref severityAdjustment);
-
-			if (_finishedSearching)
-			{
-				if (Find.TickManager.TicksGame - _doneTick > RECHECK_PART_PERIOD)
-					_finishedSearching = false;
-				return;
-			}
-
-			// This whole operation is somewhat performance intensive, so only do it once a second
-			if (Pawn.IsHashIntervalTick(60))
+			if (_finishedSearching == false)
 			{
 				// Have the mutagen sensitivity stat affect the rate of spread
 				// This stat is expensive to calculate, but we're only checking once a second
 				// Don't worry about division by zero, MTBEventOccurs handles infinity correctly
-				var mtb = Props.mtb / Pawn.GetStatValue(PMStatDefOf.MutagenSensitivity);
+				var mtb = Props.mtb / StatsUtility.GetStat(Pawn, PMStatDefOf.MutagenSensitivity, 1000) ?? 0;
 
 				if (!Rand.MTBEventOccurs(mtb, 60000f, 60f)) return;
 
@@ -48,6 +36,8 @@ namespace Pawnmorph.Hediffs
 				_finishedSearching = true; //searched all available parts, don't bother looking anymore 
 				_doneTick = Find.TickManager.TicksGame;
 			}
+			else if (Find.TickManager.TicksGame - _doneTick > RECHECK_PART_PERIOD)
+				_finishedSearching = false;
 		}
 
 

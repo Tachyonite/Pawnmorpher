@@ -21,6 +21,7 @@ namespace Pawnmorph.UserInterface.Settings
 
 
 		FilterListBox<(Type, OptionalPatchAttribute)> _patchListBox;
+		List<Type> _validTypes;
 
 		Dictionary<string, bool> _settingsReference;
 		Dictionary<string, bool> _settingsReferenceSession;
@@ -53,6 +54,7 @@ namespace Pawnmorph.UserInterface.Settings
 				}
 			}
 
+			_validTypes = new List<Type>(types.Select(x => x.Item1));
 			var list = new ListFilter<(Type, OptionalPatchAttribute)>(types.OrderBy(x => x.Item2.Caption, StringComparer.CurrentCulture), (item, filterText) => item.Item2.Caption.ToLower().Contains(filterText));
 			_patchListBox = new FilterListBox<(Type, OptionalPatchAttribute)>(list);
 		}
@@ -104,7 +106,12 @@ namespace Pawnmorph.UserInterface.Settings
 		{
 			Find.WindowStack.Add(new Dialog_Popup("PMRequiresRestart".Translate(), new Vector2(300, 100)));
 			_settingsReference.Clear();
-			_settingsReference.AddRange(_settingsReferenceSession);
+
+			for (int i = 0; i < _validTypes.Count; i++)
+			{
+				string type = _validTypes[i].FullName;
+				_settingsReference[type] = _settingsReferenceSession[type];
+			}
 		}
 
 		public override void OnCancelKeyPressed()

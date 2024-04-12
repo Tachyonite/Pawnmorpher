@@ -20,11 +20,22 @@ namespace Pawnmorph
 	public class Hediff_AddedMutation : Hediff_StageChanges, ICaused
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
+		private int _shouldRemoveAgeTicks;
 
 		/// <summary>
 		///     The mutation description
 		/// </summary>
 		public string mutationDescription;
+
+		/// <summary>
+		/// The severity adjust component. Null if pawn has none.
+		/// </summary>
+		public Comp_MutationSeverityAdjust SeverityAdjust;
+
+		/// <summary>
+		/// The spreading mutation component. Null if pawn has none.
+		/// </summary>
+		public SpreadingMutationComp SpreadingMutation;
 
 		/// <summary>
 		///     if this part should be removed or not
@@ -35,9 +46,9 @@ namespace Pawnmorph
 
 		[NotNull] private MutationCauses _causes = new MutationCauses();
 
-		private Comp_MutationSeverityAdjust _sevAdjComp;
 
 		private bool _waitingForUpdate;
+		private bool _tickComponents = true;
 
 		/// <summary>
 		/// Constructor
@@ -50,7 +61,6 @@ namespace Pawnmorph
 		public override void PostMake()
 		{
 			base.PostMake();
-			TickBase = Def?.RunBaseLogic ?? false;
 		}
 
 		/// <summary>
@@ -76,6 +86,26 @@ namespace Pawnmorph
 
 				return _mDef;
 			}
+		}
+
+		private void Initialize()
+		{
+			TickBase = Def.RunBaseLogic || CurrentMutationStage?.RunBaseLogic == true;
+			//TODO This should be refactored eventually. Possibly by moving Severity Adjust over to CompBase and then adding a "Requires Ticking" property.
+			_tickComponents = comps.Any( x => x is SpreadingMutationComp == false 
+										&& x is Comp_MutationSeverityAdjust == false
+										&& x is RemoveFromPartComp == false
+										&& x is Comp_MutationDependency == false);
+			SeverityAdjust = this.TryGetComp<Comp_MutationSeverityAdjust>();
+			SpreadingMutation = this.TryGetComp<SpreadingMutationComp>();
+
+			if (pawn.Destroyed == false && pawn.Discarded == false)
+				PawnmorpherMod.WorldComp.RegisterMutation(this);
+
+#if DEBUG
+			if (_tickComponents)
+				Log.Warning($"Ticking comps on {def.defName} for {pawn.Name}: " + string.Join(", ", comps.Select(x => x.GetType().Name)));
+#endif
 		}
 
 		/// <summary>
@@ -131,6 +161,11 @@ namespace Pawnmorph
 				return label;
 			}
 		}
+
+		/// <summary>
+		/// Mutations are always visible, so don't spent time checking comps.
+		/// </summary>
+		public override bool Visible => true;
 
 		public override string LabelInBrackets
 		{
@@ -204,24 +239,6 @@ namespace Pawnmorph
 		public bool IsCoreMutation => this.TryGetComp<RemoveFromPartComp>()?.Layer == MutationLayer.Core;
 
 		/// <summary>
-		///     Gets the severity adjust comp
-		/// </summary>
-		/// <value>
-		///     The severity adjust comp
-		/// </value>
-		[CanBeNull]
-		public Comp_MutationSeverityAdjust SeverityAdjust
-		{
-			get
-			{
-				if (_sevAdjComp == null) _sevAdjComp = this.TryGetComp<Comp_MutationSeverityAdjust>();
-
-				return _sevAdjComp;
-			}
-		}
-
-
-		/// <summary>
 		///     Gets or sets a value indicating whether progression is halted or not.
 		/// </summary>
 		/// <value>
@@ -241,8 +258,9 @@ namespace Pawnmorph
 			for (int i = abilities.Count - 1; i >= 0; i--)
 				abilities[i].Tick();
 
-			if (shouldRemove == false && pawn.IsHashIntervalTick(60))
+			if (shouldRemove == false && ++_shouldRemoveAgeTicks > 120)
 			{
+				_shouldRemoveAgeTicks = 0;
 				if (comps != null)
 				{
 					for (int i = comps.Count - 1; i >= 0; i--)
@@ -355,7 +373,7 @@ namespace Pawnmorph
 					stage.OnLoad(this);
 
 
-				TickBase = Def.RunBaseLogic || stage?.RunBaseLogic == true;
+				Initialize();
 			}
 
 		}
@@ -374,6 +392,7 @@ namespace Pawnmorph
 		// After the hediff has been applied.
 		{
 			base.PostAdd(dinfo); // Do the inherited method.
+			Initialize();
 			if (PawnGenerator.IsBeingGenerated(pawn) || !pawn.Spawned
 			) //if the pawn is still being generated do not update graphics until it's done 
 			{
@@ -395,6 +414,7 @@ namespace Pawnmorph
 				}
 
 			ApplyVisualAdjustment();
+
 		}
 
 		/// <summary>
@@ -453,6 +473,8 @@ namespace Pawnmorph
 					}
 				}
 			}
+
+			PawnmorpherMod.WorldComp.UnregisterMutation(this);
 		}
 
 		/// <summary>
@@ -460,7 +482,9 @@ namespace Pawnmorph
 		/// </summary>
 		public override void PostTick()
 		{
-			base.PostTick();
+			if (_tickComponents)
+				base.PostTick();
+
 			if (_waitingForUpdate)
 			{
 				UpdatePawnInfo();
