@@ -146,7 +146,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>[PAWN_nameDef]'s enhanced brain is so adept at logical problem solving [PAWN_objective] can solve differencial equations on the fly, calculating ballistics trajectories is a comparatively simple matter.</description>
+				<description>[PAWN_nameDef]'s enhanced brain is so adept at logical problem solving [PAWN_objective] can solve differential equations on the fly, calculating ballistics trajectories is a comparatively simple matter.</description>
 				<statOffsets>
 					<HackingSpeed MayRequire="ludeon.rimworld.ideology">0.75</HackingSpeed>
 					<ResearchSpeed>0.20</ResearchSpeed>
