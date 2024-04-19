@@ -13,10 +13,10 @@
 
 	<TaleDef ParentName="LegMutationTaleBase">
 		<defName>LegBecameDigitgrade</defName>
-		<label>leg became digitgrade</label>
+		<label>leg became digitigrade</label>
 		<rulePack>
 			<rulesStrings>
-				<li>tale_noun->[PAWN_nameDef]'s legs became digitgrade</li>
+				<li>tale_noun->[PAWN_nameDef]'s legs became digitigrade</li>
 				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_possessive] to walk on [PAWN_possessive] toes [circumstance_group]</li>
 			</rulesStrings>
 		</rulePack>

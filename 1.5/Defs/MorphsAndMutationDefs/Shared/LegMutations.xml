@@ -127,8 +127,8 @@
 	<Pawnmorph.Hediffs.MutationDef Name="EtherDigitgradeLeg" ParentName="EtherAnimalLeg">
 		<defName>EtherDigitgradeLeg</defName>
 		<classInfluence>Carnivora</classInfluence>
-		<label>digitgrade</label>
-		<description>A digitgrade leg.</description>
+		<label>digitigrade</label>
+		<description>A digitigrade leg.</description>
 		<mutationTale>LegBecameDigitgrade</mutationTale>
 		<stagePatches>
 			<li function="modify">

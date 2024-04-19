@@ -156,7 +156,7 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
-				<description>[PAWN_nameDef] has mastered [PAWN_objective]'s wings and can effortlessly fly long distances like a migratory bird. As an added bonus food is easily spottable from above.</description>
+				<description>[PAWN_nameDef] has mastered [PAWN_possessive] wings and can effortlessly fly long distances like a migratory bird. As an added bonus food is easily spottable from above.</description>
 				<graphics>
 					<Wings>Parts/Chicken/Chicken_Wings</Wings>
 				</graphics>
