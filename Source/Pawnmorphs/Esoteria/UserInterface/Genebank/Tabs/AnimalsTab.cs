@@ -100,7 +100,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 					x.OrderBy(y => int.Parse(y[column].Replace("$", "")));
 				else
 					x.OrderByDescending(y => int.Parse(y[column].Replace("$", "")));
-			}););
+			});
 			var colMutations = table.AddColumn(TAB_COLUMN_MUTATIONS, TAB_COLUMN_MUTATIONS_SIZE);
 			//Nutrition requirements?
 
