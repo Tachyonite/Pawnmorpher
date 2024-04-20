@@ -1,0 +1,79 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>MutaniteCentrifuge</defName>
+        <label>mutanite centrifuge</label>
+        <thingClass>Pawnmorph.Buildings.MutaniteCentrifuge</thingClass>
+        <description>When mutagenic slurry is piped in, the centrifuge compresses the mechanites extracted from them into mutanite. Consumes a lot of power. Resources are placed in the side chambers and separated into their individual components via centrifuge, before the mechanites are strained out through a morphsilk filter and pumped into the large chamber for slow compression.\n\nThe process is quite lossy.\n\nSetup: Connect the centrifuge to a mutagen tank using slurry pipes. Warning: turning on 'high power mode' causes mutagenic effects in a radius around it.</description>
+        <graphicData>
+            <texPath>Things/Building/MutaniteCentrifuge</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(4, 4)</drawSize>
+            <shadowData>
+                <volume>(1.4, 0.4, 1.4)</volume>
+                <offset>(0,0,-0.1)</offset>
+            </shadowData>
+        </graphicData>
+        <costList>
+            <Steel>500</Steel>
+            <Plasteel>50</Plasteel>
+            <Morphsilk>20</Morphsilk>
+            <ComponentIndustrial>8</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <comps>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>1500</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+            <li Class="CompProperties_Breakdownable" />
+            <li Class="CompProperties_Flickable" />
+            <li Class="CompProperties_Explosive">
+                <explosiveRadius>8</explosiveRadius>
+                <explosiveDamageType>MutagenCloud_Large</explosiveDamageType>
+            </li>
+		<li MayRequire="OskarPotocki.VanillaFactionsExpanded.Core"  Class="PipeSystem.CompProperties_Resource">
+				<pipeNet>PM_SlurryNet</pipeNet>
+		</li>
+        </comps>
+        <altitudeLayer>Building</altitudeLayer>
+        <statBases>
+            <MarketValue>1500</MarketValue>
+            <MaxHitPoints>200</MaxHitPoints>
+            <Flammability>1.0</Flammability>
+            <Beauty>-10</Beauty>
+            <Mass>35</Mass>
+            <WorkToBuild>8000</WorkToBuild>
+        </statBases>
+        <thingSetMakerTags>
+            <li>RewardStandardHighFreq</li>
+        </thingSetMakerTags>
+        <placeWorkers>
+            <li>Pawnmorph.PlaceWorkers.Centrifuge</li>
+        </placeWorkers>
+        <tickerType>Normal</tickerType>
+        <size>(3, 3)</size>
+        <fillPercent>1.0</fillPercent>
+        <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+        <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+        <passability>Impassable</passability>
+        <rotatable>false</rotatable>
+        <canOverlapZones>false</canOverlapZones>
+        <tradeability>Sellable</tradeability>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <tradeTags>
+            <li>ExoticBuilding</li>
+        </tradeTags>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenicBuildupSourceSettings">
+                <maxBuildup>0.5</maxBuildup>
+            </li>
+        </modExtensions>
+        <researchPrerequisites>
+            <li>MutagenCentrifuging</li>
+        </researchPrerequisites>
+    </ThingDef>
+</Defs>

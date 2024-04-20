@@ -1,0 +1,22 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="BigCervidMorph">
+		<defName>ElkMorph</defName>
+		<label>elkmorph</label>
+		<description>A humanoid with many elk-like characteristics resulting from exposure to elk specific mutagens. They sometimes feel lonely without others of their kind.</description>
+		<race>Elk</race>
+		<categories>
+			<li>Cold</li>
+		</categories>
+		<fullTransformation>PawnmorphElkTF</fullTransformation>
+		<partialTransformation>PawnmorphElkTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(150,86,8)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>ElkTransformationMemory</transformationMemory>
+			<revertedMemory>ElkRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

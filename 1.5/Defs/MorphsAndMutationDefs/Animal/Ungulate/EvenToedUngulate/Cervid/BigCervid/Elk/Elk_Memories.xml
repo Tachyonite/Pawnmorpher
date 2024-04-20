@@ -1,0 +1,159 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/ThoughtDef.xsd">
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ElkTransformationMemory</defName>
+				<stages>
+						<li>
+								<label>Became elk morph</label>
+								<description>Great, now I look like a big, shaggy lump.</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>I feel so majestic, so imposing. This is awesome!</description>
+								<baseMoodEffect>+3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>An elk? Isn't that just a big deer? Oh I don't care! Just make it stop!</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+						<li>
+								<label>Became elk morph</label>
+								<description>A good start, how far can I go?</description>
+								<baseMoodEffect>+1</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>ElkRevertedMemory</defName>
+				<stages>
+						<li>
+								<label>Reverted</label>
+								<description>It's me, I'm back!</description>
+								<baseMoodEffect>3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>No! My magesty!</description>
+								<baseMoodEffect>-3</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>Oh the humanity! MY humanity! Yay!</description>
+								<baseMoodEffect>10</baseMoodEffect>
+						</li>
+						<li>
+								<label>Reverted</label>
+								<description>But I was so close to perfection...</description>
+								<baseMoodEffect>-5</baseMoodEffect>
+						</li>
+				</stages>
+		</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+			<durationDays>1</durationDays>
+			<defName>EtherElkJaw</defName>
+			<stages>
+					<li>
+							<label>Elk face</label>
+							<description>I can barely talk with this thing...</description>
+							<visible>true</visible>
+							<baseMoodEffect>-1</baseMoodEffect>
+					</li>
+					<li>
+							<label>Elk face</label>
+							<description>...This is kinda cool, I guess?</description>
+							<visible>true</visible>
+							<baseMoodEffect>2</baseMoodEffect>
+					</li>
+					<li>
+							<label>Elk face</label>
+							<description>What happened to my face?!?</description>
+							<visible>true</visible>
+							<baseMoodEffect>-3</baseMoodEffect>
+					</li>
+			</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElkEar</defName>
+		<stages>
+			<li>
+				<label>Elk ears</label>
+				<description>Will they ever stop itching?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elk ears</label>
+				<description>I can hear so well now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elk ears</label>
+				<description>These things are so twitchy, get them off me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElkTail</defName>
+		<stages>
+			<li>
+				<label>Elk tail</label>
+				<description>Is this stubby little thing...a tail?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elk tail</label>
+				<description>It's so small and fluffy!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Elk tail</label>
+				<description>At least I can hide it.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+		<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherElkAntlers</defName>
+		<stages>
+			<li>
+				<label>Antlers</label>
+				<description>How am I supposed to rest on my pillow?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>Behold! Are they not impressive?</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>These things are horrible. I'm so top heavy now I can hardly walk in a straight line.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Antlers</label>
+				<description>With these, I'd be right at home in the forest.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

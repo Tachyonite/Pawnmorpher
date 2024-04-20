@@ -1,0 +1,47 @@
+<Defs>
+<!--Unused? It's not used by the mutagun or mutarifle-->
+	<HediffDef>
+		<defName>PawnmorphGunshotTF</defName>
+		<hediffClass>Pawnmorph.Hediffs.MorphTf</hediffClass>
+		<description>This pawn has been shot with a powerful, fast-acting dose of mutagenic mechanites and is highly likely to change into something very quickly, which may leave them paralysed for a time.</description>
+		<label>ethermorph</label>
+		<makesAlert>true</makesAlert>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<isBad>false</isBad>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>1</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-5</severityPerDay>
+			</li>
+			<li Class="HediffCompProperties_Immunizable" />
+		</comps>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.RandomMorphFullTfStage">
+				<label>reeling</label>
+				<painOffset>0.05</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.05</offset>
+					</li>
+				</capMods>
+				<changeChance>90</changeChance>
+				<morph>Animal</morph>
+			</li>
+			<li>
+				<label>transformation-paralysis</label>
+				<minSeverity>0.5</minSeverity>
+				<hungerRateFactor>1.6</hungerRateFactor>
+				<painOffset>0.8</painOffset>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<setMax>0.05</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+</Defs>

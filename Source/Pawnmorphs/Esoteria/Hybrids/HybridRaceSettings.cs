@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using AlienRace;
 using JetBrains.Annotations;
+using Pawnmorph.DefOfs;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using UnityEngine;
@@ -301,10 +302,10 @@ namespace Pawnmorph.Hybrids
 			{
 				blackList = blackList ?? new List<ThoughtDef>();
 
-				blackList.Add(ThoughtDefOf.AteHumanlikeMeatDirect);
-				blackList.Add(ThoughtDefOf.AteHumanlikeMeatAsIngredient);
-				blackList.Add(ThoughtDefOf.ButcheredHumanlikeCorpse);
-				blackList.Add(ThoughtDefOf.KnowButcheredHumanlikeCorpse);
+				blackList.Add(PM_ThoughtDefOf.AteHumanlikeMeatDirect);
+				blackList.Add(PM_ThoughtDefOf.AteHumanlikeMeatAsIngredient);
+				blackList.Add(PM_ThoughtDefOf.ButcheredHumanlikeCorpse);
+				blackList.Add(PM_ThoughtDefOf.KnowButcheredHumanlikeCorpse);
 			}
 
 			if (thoughtSettings.canEatRaw)

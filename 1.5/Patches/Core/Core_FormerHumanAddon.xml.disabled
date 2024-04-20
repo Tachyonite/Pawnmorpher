@@ -1,0 +1,21 @@
+<Patch>
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]</xpath>
+			<value>
+				<comps>
+					<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman" />
+				</comps>
+			</value>
+		</nomatch>
+
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/comps</xpath>
+			<value>
+				<li Class="Pawnmorph.ThingComps.CompProperties_CanBeFormerHuman" />
+			</value>
+		</match>
+	</Operation>
+</Patch>
+

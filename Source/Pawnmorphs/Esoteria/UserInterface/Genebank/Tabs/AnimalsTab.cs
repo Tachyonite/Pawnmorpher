@@ -197,7 +197,7 @@ namespace Pawnmorph.UserInterface.Genebank.Tabs
 				_stringBuilder.Clear();
 				foreach (StatDrawEntry item in selectedRace.RaceProps.SpecialDisplayStats(selectedRace.race, StatRequest.ForEmpty()))
 				{
-					if (item.ShouldDisplay)
+					if (item.ShouldDisplay())
 						_stringBuilder.AppendLine(item.LabelCap + ": " + item.ValueString);
 				}
 

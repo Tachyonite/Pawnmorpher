@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
+using AlienRace;
 using HarmonyLib;
 using JetBrains.Annotations;
 using RimWorld;
+using UnityEngine;
 using Verse;
+using static AlienRace.AlienPartGenerator;
 
 namespace Pawnmorph.HPatches
 {
@@ -26,6 +30,26 @@ namespace Pawnmorph.HPatches
 		private static void LoadGamePostFix()
 		{
 			FixMissingNarrowHeads();
+
+			// Fix HAR bug for adding PM into existing save.
+			// HAR breaks when adding additional color channels to existing save.
+			foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawns)
+			{
+				AlienComp comp = pawn.TryGetComp<AlienComp>();
+				AlienPartGenerator apg = (pawn.def as ThingDef_AlienRace)?.alienRace.generalSettings.alienPartGenerator;
+				if (apg == null)
+					continue;
+
+				// https://github.com/erdelf/AlienRaces/blob/d9104a6089953230a0cad7a7573c2e995e01d125/Source/AlienRace/AlienRace/AlienPartGenerator.cs#L560C1-L565C26
+				foreach (ColorChannelGenerator channel in apg.colorChannels)
+				{
+					if (!comp.ColorChannels.ContainsKey(channel.name))
+					{
+						comp.ColorChannels.Add(channel.name, new ExposableValueTuple<Color, Color>(Color.white, Color.white));
+						comp.ColorChannels[channel.name] = comp.GenerateChannel(channel, comp.ColorChannels[channel.name]);
+					}
+				}
+			}
 		}
 		private static void FixMissingNarrowHeads()
 		{

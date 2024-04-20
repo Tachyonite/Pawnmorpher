@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutagenDef.xsd">
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>defaultMutagen</defName>
+	</Pawnmorph.MutagenDef>
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>PM_ChamberMutagen</defName>
+		<canInfectAnimals>true</canInfectAnimals>
+		<canInfectMechanoids>true</canInfectMechanoids>
+		<immunizingHediffs Inherit="false" xsi:nil="true" />
+		<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->being in a chamber</li>
+				<li>mutagen_cause->mutachamber</li>
+			</rulesStrings>
+		</causeRulePack>
+	</Pawnmorph.MutagenDef>
+
+	<Pawnmorph.MutagenDef>
+		<defName>MergeMutagen</defName>
+		<label>merge mutagen</label>
+		<mutagenType>Pawnmorph.TfSys.MergeMutagen</mutagenType>
+		<revertedThoughtGood>WasMergedRelieved</revertedThoughtGood>
+		<revertedThoughtBad>WasMerged</revertedThoughtBad>
+		<transformedSapienceState>MergedPawn</transformedSapienceState>
+		<appliesTfParalysis>false</appliesTfParalysis>
+		<damageProperties>
+			<apparelDamageOffset>100</apparelDamageOffset>
+			<spawnedBiproductMult>0.5</spawnedBiproductMult>
+			<apparelDamageMultiplier>1.5</apparelDamageMultiplier>
+		</damageProperties>
+		<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->being in a chamber</li>
+				<li>mutagen_cause->mutachamber</li>
+			</rulesStrings>
+		</causeRulePack>
+	</Pawnmorph.MutagenDef>
+
+
+	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
+		<defName>AspectGivingMutagen</defName>
+	</Pawnmorph.MutagenDef>
+
+
+
+	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
+		<defName>HealerMutagen</defName>
+		<!-- TODO aspects that can be added by the healer mecha serum -->
+	</Pawnmorph.MutagenDef>
+</Defs>

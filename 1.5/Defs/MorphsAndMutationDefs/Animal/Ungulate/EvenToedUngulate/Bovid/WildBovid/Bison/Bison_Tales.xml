@@ -1,0 +1,14 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrowBisonMuzzle</defName>
+		<label>grew bison muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] facing turning into a bison muzzle</li>
+				<li>tale_noun->[PAWN_nameDef] growing thick fur on [PAWN_possessive] head</li>
+				<li>image->[PAWN_nameDef]'s face begins to push out into a muzzle [circumstance_group]</li>
+				<li>image->[PAWN_nameDef]'s excited yells turn into moos [circumstance_group]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

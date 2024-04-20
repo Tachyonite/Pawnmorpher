@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using AlienRace;
+using LudeonTK;
 using Pawnmorph.Interfaces;
 using Pawnmorph.UserInterface.TreeBox;
 using Pawnmorph.Utilities;
@@ -16,7 +17,6 @@ namespace Pawnmorph.HPatches.Optional
 	class PawnScaling : IConfigurableObject
 	{
 		static bool _enabled = false;
-		static Pawn _currentPawn;
 		static float _currentScaledBodySize;
 		static float _scaleMultiplier = 1f;
 		static float _maxSize = 5f;
@@ -34,7 +34,7 @@ namespace Pawnmorph.HPatches.Optional
 			foreach (Pawn pawn in curMap.mapPawns.AllPawnsSpawned)
 			{
 				if (pawn.def.race.Humanlike)
-					ResolveAllGraphics(pawn);
+					SetDirtyPostfix(pawn);
 			}
 		}
 
@@ -51,10 +51,12 @@ namespace Pawnmorph.HPatches.Optional
 		// Trigger pawn graphics update at the end of the tick if body size stat changes.
 		private static void PawnScaling_StatChanged(Verse.Pawn pawn, RimWorld.StatDef stat, float oldValue, float newValue)
 		{
-			LongEventHandler.ExecuteWhenFinished(() =>
+			if (pawn.RaceProps.Humanlike == false)
+				return;
+
+			PawnPatches.QueuePostTickAction(pawn, () =>
 			{
-				_currentPawn = null;
-				ResolveAllGraphics(pawn);
+				pawn.Drawer.renderer.SetAllGraphicsDirty();
 			});
 		}
 
@@ -79,10 +81,10 @@ namespace Pawnmorph.HPatches.Optional
 			SetCompScales(__instance, (Pawn)__instance.parent, GetScale((Pawn)__instance.parent));
 		}
 
-
+		// Might be able to replace with GraphicMeshSet GetHumanlikeBodySetForPawn
 		[HarmonyLib.HarmonyAfter(new string[] { "erdelf.HumanoidAlienRaces" })]
-		[HarmonyLib.HarmonyPatch(typeof(Verse.PawnGraphicSet), nameof(Verse.PawnGraphicSet.ResolveAllGraphics)), HarmonyLib.HarmonyPostfix]
-		private static void ResolveAllGraphics(Pawn ___pawn)
+		[HarmonyLib.HarmonyPatch(typeof(Verse.PawnRenderTree), nameof(Verse.PawnRenderTree.SetDirty)), HarmonyLib.HarmonyPostfix]
+		private static void SetDirtyPostfix(Pawn ___pawn)
 		{
 			float bodysize = GetScale(___pawn);
 			if (bodysize == 1)
@@ -96,17 +98,6 @@ namespace Pawnmorph.HPatches.Optional
 			};
 		}
 
-		// Apply scale to body addon offsets.
-		[HarmonyLib.HarmonyPatch(typeof(AlienRace.HarmonyPatches), nameof(AlienRace.HarmonyPatches.DrawAddonsFinalHook)), HarmonyLib.HarmonyPostfix]
-		private static void DrawAddonsFinalHook(Pawn pawn, ref Vector3 offsetVector)
-		{
-			float value = GetScale(pawn);
-			offsetVector.x *= value;
-			// Don't affect y layer
-			offsetVector.z *= value;
-		}
-
-
 		[HarmonyLib.HarmonyAfter(new string[] { "erdelf.HumanoidAlienRaces" })]
 		[HarmonyLib.HarmonyPatch(typeof(RimWorld.PawnCacheRenderer), nameof(RimWorld.PawnCacheRenderer.RenderPawn)), HarmonyLib.HarmonyPrefix]
 		private static void CacheRenderPawnPrefix(Pawn pawn, ref float cameraZoom, bool portrait)
@@ -117,69 +108,43 @@ namespace Pawnmorph.HPatches.Optional
 			}
 		}
 
-		[HarmonyLib.HarmonyPatch(typeof(GlobalTextureAtlasManager), nameof(GlobalTextureAtlasManager.TryGetPawnFrameSet)), HarmonyLib.HarmonyPrefix]
-		private static bool TryGetPawnFrameSetPrefix(Pawn pawn)
-		{
-			if (GetScale(pawn) > 1.0f)
-				return false;
-
-			return true;
-		}
-
-
 		// Calculate the scale multiplier based on Pawnmorpher's BodySize multiplier
-		// TODO: Add a toggle to allow scaling by any body size difference compared to normal instead
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private static float GetScale(Pawn pawn)
 		{
-			if (_currentPawn != pawn)
+			if (_useBodysize)
 			{
-				_currentPawn = pawn;
-
-				if (_useBodysize)
-				{
-					_currentScaledBodySize = pawn.BodySize / pawn.RaceProps.baseBodySize;
-				}
-				else
-					_currentScaledBodySize = StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f;
-
-				_currentScaledBodySize = Mathf.Sqrt(_currentScaledBodySize);
-				_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
-				_currentScaledBodySize = Mathf.Clamp(_currentScaledBodySize, _minSize, _maxSize);
+				_currentScaledBodySize = pawn.BodySize / pawn.RaceProps.baseBodySize;
 			}
+			else
+				_currentScaledBodySize = StatsUtility.GetStat(pawn, PMStatDefOf.PM_BodySize, 300) ?? 1f;
+
+			_currentScaledBodySize = Mathf.Sqrt(_currentScaledBodySize);
+			_currentScaledBodySize = (_currentScaledBodySize - 1) * _scaleMultiplier + 1;
+			_currentScaledBodySize = Mathf.Clamp(_currentScaledBodySize, _minSize, _maxSize);
 
 			return _currentScaledBodySize;
 		}
 
 		// Offset rendered pawn from actual position to move selection box to their feet.
-		[HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.DrawAt)), HarmonyLib.HarmonyPrefix]
-		private static void DrawAt(ref Vector3 drawLoc, Pawn __instance)
+		[HarmonyLib.HarmonyPatch(typeof(PawnRenderer), "GetBodyPos"), HarmonyLib.HarmonyPostfix]
+		private static void DrawAt(PawnPosture posture, ref Vector3 __result, Pawn ___pawn)
 		{
-			float bodySize = GetScale(__instance);
-			// Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
-			if (__instance.RaceProps.Humanlike && bodySize > 1)
+			// Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
+			// Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
+			// Only offset when standing.
+			if (posture == RimWorld.PawnPosture.Standing)
 			{
-				// Draw location is the full position not an offset, so find offset based on scale assing a ratio of 1 to 1.
-				// Offset drawn pawn sprite with half the height upward. 1 bodysize = 1 height.
-				// Only offset when standing.
-				if (__instance.GetPosture() == RimWorld.PawnPosture.Standing)
+				if (___pawn.RaceProps.Humanlike == false)
+					return;
+
+				float bodySize = GetScale(___pawn);
+				// Don't offset draw position of animals sprites, and only care about those with more than 1 body size.
+				if (bodySize > 1)
 				{
-					drawLoc.z += bodySize / 4f;
+					__result.z += bodySize / 4f;
 				}
 			}
-		}
-
-		// Apply scale offset to head position.
-		[HarmonyLib.HarmonyPatch(typeof(PawnRenderer), nameof(PawnRenderer.BaseHeadOffsetAt)), HarmonyLib.HarmonyPostfix]
-		private static void BaseHeadOffsetAt(ref Vector3 __result, Pawn ___pawn)
-		{
-			float bodySize = GetScale(___pawn);
-			if (bodySize == 1)
-				return;
-
-			float size = Mathf.Floor(bodySize * 10) / 10;
-			__result.z = __result.z * size;
-			__result.x = __result.x * size;
 		}
 
 		public void GenerateMenu(TreeNode_FilterBox node)

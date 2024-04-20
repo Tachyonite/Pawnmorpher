@@ -280,3 +280,5 @@ __pycache__/
 /Documentation/latex
 /Source/Pawnmorphs/MigrationBackup/88b43dee/Pawnmorph
 /1.1/ModIntegrations/*/Assemblies/PMCompactHediffIIntegration.dll
+/1.5/Mods/VEF/Assemblies/Pawnmorphs.Pipesystem.dll
+/1.5/Mods/VEF/Assemblies/0Harmony.dll

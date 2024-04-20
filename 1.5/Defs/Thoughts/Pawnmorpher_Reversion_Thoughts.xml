@@ -1,0 +1,25 @@
+﻿<Defs>
+	<ThoughtDef>
+		<defName>FriendRevertedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>friend reverted</label>
+				<description>My friend is human again! Praise Randy!</description>
+				<baseMoodEffect>15</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>RivalRevertedThought</defName>
+		<durationDays>10</durationDays>
+		<stages>
+			<li>
+				<label>rival reverted</label>
+				<description>Agh, it was somewhat fun seeing them on all-fours though!</description>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+</Defs>

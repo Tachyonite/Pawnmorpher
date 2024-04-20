@@ -34,7 +34,7 @@ namespace Pawnmorph
 		/// <summary>Does the ingestion outcome special.</summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="ingested">The ingested.</param>
-		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int count)
 		{
 			if (!pawn.health.hediffSet.hediffs.Any(x => hediffDefs.Contains(x.def)))
 			{
@@ -55,7 +55,7 @@ namespace Pawnmorph
 				else
 					num = _hediffDef.initialSeverity;
 				if (divideByBodySize) num /= pawn.BodySize;
-				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num);
+				AddictionUtility.ModifyChemicalEffectForToleranceAndBodySize(pawn, toleranceChemical, ref num, false);
 				hediff.Severity = num;
 
 

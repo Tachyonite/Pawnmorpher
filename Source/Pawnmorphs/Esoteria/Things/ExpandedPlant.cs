@@ -100,7 +100,7 @@ namespace Pawnmorph.Things
 				growthInt += GrowthPerTick * 2000f;
 				if (growthInt > 1f) growthInt = 1f;
 				if ((!wasMature && LifeStage == PlantLifeStage.Mature || (int)(oldGrowthInt * 10f) != (int)(growthInt * 10f))
-				 && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlag.Things);
+				 && CurrentlyCultivated()) Map.mapDrawer.MapMeshDirty(Position, MapMeshFlagDefOf.Things);
 			}
 
 			if (!HasEnoughLightToGrow)

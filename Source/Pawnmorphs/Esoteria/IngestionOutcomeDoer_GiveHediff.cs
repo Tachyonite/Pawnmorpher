@@ -25,7 +25,7 @@ namespace Pawnmorph
 		/// <summary>Does the ingestion outcome special.</summary>
 		/// <param name="pawn">The pawn.</param>
 		/// <param name="ingested">The ingested.</param>
-		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int count)
 		{
 			severity = severity < 0 ? hediffDef.initialSeverity : severity;
 			var h = HediffMaker.MakeHediff(hediffDef, pawn);

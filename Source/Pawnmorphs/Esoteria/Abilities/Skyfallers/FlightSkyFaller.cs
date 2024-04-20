@@ -27,7 +27,7 @@ namespace Pawnmorph.Abilities.Skyfallers
 			_target = target;
 		}
 
-		public override void DrawAt(Vector3 drawLoc, bool flip = false)
+		protected override void DrawAt(Vector3 drawLoc, bool flip = false)
 		{
 			Pawn pawn = innerContainer[0] as Pawn;
 

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Beaver</defName>
+		<requiredMutationsAny>
+			<li>EtherAlphabeaverJaw</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to grunt as a human with just a muzzle. A muzzled human will grunt half as often as chatting and a full morph will grunt twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherAlphabeaverJaw</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherAlphabeaverTail</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+			<li>
+				<key>EtherAlphabeaverEar</key>
+				<value>0.125</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>AlphabeaverMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+
+
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMBeaver_Chitchat</defName>
+		<label>whine</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver</symbol>
+		<initiatorThought>PMBeaver_ChitchatMemory</initiatorThought>
+		<recipientThought>PMBeaver_ChitchatMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+				
+				<li>noisedat(p=4)->whined at</li>
+				<li>noisedat->grunted at</li>
+				<li>noisedat->mewed at</li>
+				<li>noisedat->barked at</li>
+				<li>noisedat->squeaked to</li>
+				<li>noisedat->twitched [INITIATOR_possessive] whiskers at</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->whined about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->squeaked about</li>
+				<li>noisedabout->barked about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->stick</li>
+				<li>animaltopic->beavers</li>
+				<li>animaltopic->alphabeavers</li>
+				<li>animaltopic->building</li>
+				<li>animaltopic->dams</li>
+				<li>animaltopic->rivers</li>
+				<li>animaltopic->swimming</li>
+				<li>animaltopic->whiskers</li>
+				<li>animaltopic->tree bark</li>
+				<li>animaltopic->trees</li>
+				<li>animaltopic->something to chew on</li>
+				<li>animaltopic->gnawing habits</li>
+				<li>animaltopic->sticks</li>
+				<li>animaltopic->mud</li>
+				<li>animaltopic->trees</li>
+				<li>animaltopic->kibble</li>
+				<li>animaltopic->scaly tails</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PMBeaver_ChitchatMemory</defName>
+		<stages>
+			<li>
+				<label>whine</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBeaver_DeepTalk</defName>
+		<label>deep whine</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver_DeepTalk</symbol>
+		<initiatorThought>PMBeaver_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMBeaver_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming an alphabeavermorph</li>
+				<li>animallife->being a alphabeavermorph</li>
+				<li>animallife->keeping hands</li>
+				<li>animallife->scaly tails</li>
+				<li>animallife->eating trees</li>
+				<li>animallife->sticks</li>
+				<li>animallife->logs</li>
+				<li>animallife->building</li>
+				<li>animallife->dams</li>
+				<li>animallife->lodges</li>
+				<li>animallife->tree bark</li>
+				<li>animallife->tail care</li>
+				<li>animallife->gnawing</li>
+				<li>animallife->webbed feet</li>
+				<li>animallife->incisors</li>
+				<li>animallife->swimming</li>
+				<li>animallife->crafting</li>
+				<li>animallife->sustainable forestry</li>
+				<li>animallife->night vision</li>
+				
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBeaver_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep whine</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two beaver morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBeaver_DeepTalkBeaver</defName>
+		<label>deep whine with beaver</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver_DeepTalk</symbol>
+		<initiatorThought>PMBeaver_DeepTalkBeaverMemory</initiatorThought>
+		<recipientThought>PMBeaver_DeepTalkBeaverMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming alphabeavermorphs</li>
+				<li>animallife->being alphabeavermorphs</li>
+				<li>animallife->keeping hands</li>
+				<li>animallife->scaly tails</li>
+				<li>animallife->eating trees</li>
+				<li>animallife->sticks</li>
+				<li>animallife->logs</li>
+				<li>animallife->building</li>
+				<li>animallife->dams</li>
+				<li>animallife->lodges</li>
+				<li>animallife->tree bark</li>
+				<li>animallife->tail care</li>
+				<li>animallife->gnawing</li>
+				<li>animallife->webbed feet</li>
+				<li>animallife->incisors</li>
+				<li>animallife->swimming</li>
+				<li>animallife->crafting</li>
+				<li>animallife->sustainable forestry</li>
+				<li>animallife->night vision</li>
+				
+				<li>secretanimallife->dam designs</li>
+				<li>secretanimallife->lodge designs</li>
+				<li>secretanimallife->carpentering</li>
+				<li>secretanimallife->wood flavors</li>
+				<li>secretanimallife->wood textures</li>
+				<li>secretanimallife->chewing things</li>
+				<li>secretanimallife->chewing techniques</li>
+				<li>secretanimallife->building dams</li>
+				<li>secretanimallife->dam collapses</li>
+				<li>secretanimallife->different tree types</li>
+				<li>secretanimallife->the annoying sound of running water</li>
+				<li>secretanimallife->vegetarianism</li>
+				<li>secretanimallife->keeping busy</li>
+				<li>secretanimallife->fur care</li>
+				<li>secretanimallife->swimming strokes</li>
+				<li>secretanimallife->underwater vision</li>
+				<li>secretanimallife->breath holding contests</li>
+				<li>secretanimallife->the best hiding spots</li>
+				
+				<li>animalbehavior->squeaked understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->grunted with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] barked at eachother</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Beaver</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBeaver_DeepTalkBeaverMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMBeaver_Slight</defName>
+		<label>beaver slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver_Slight</symbol>
+		<recipientThought>PMBeaver_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>noisedat->grunted at</li>
+				<li>noisedat->growled at</li>
+				<li>noisedat->gnashed [INITIATOR_possessive] teeth at</li>
+				<li>noisedat->slapped [INITIATOR_possessive] tail at</li>
+				<li>noisedat->squeaked aggressively at</li>
+				
+				<li>noisedat->barked about</li>
+				<li>noisedat->grunted about</li>
+				<li>noisedat->growled about</li>
+				<li>noisedat->gnashed [INITIATOR_possessive] teeth at</li>
+				<li>noisedat->slapped [INITIATOR_possessive] tail at</li>
+				<li>noisedat->squeaked aggressively about</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->engineering ability</li>
+				<li>animalcharacteristic->sense of design</li>
+				<li>animalcharacteristic->[Refusal] to pet [INITIATOR_objective]</li>
+				
+				<li>annoyingbehavior->loudly slapped [INITIATOR_possessive] tail on the ground near [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->made a rude grunt at [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->whined repeatedly at [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->loudly gnawed on a stick while walking by [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->waved a stick threateningly at [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMBeaver_Slight</defName>
+		<stages>
+			<li>
+				<label>growl</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBeaver_Insult</defName>
+		<label>beaver insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver_Insult</symbol>
+		<recipientThought>PMBeaver_Insult</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->squeaked that [Target] was</li>
+				<li>noisedtargetwas->grunted that [Target] was</li>
+				<li>noisedtargetwas->barked that [Target] was</li>
+
+				<li>target(p=4)->[RECIPIENT_nameDef]</li>
+				<li>target->[RECIPIENT_nameDef]'s [PersonFamily]</li>
+				
+				<li>noisedat->hissed at</li>
+				<li>noisedat->grunted at</li>
+				<li>noisedat->barked aggressively at</li>
+				<li>noisedat->barked annoyingly at</li>
+				<li>noisedat->slapped [INITIATOR_possessive] tail on the ground at</li>
+								
+				<li>noisedabout->hissed about</li>
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->barked unhappily about</li>
+				<li>noisedabout->barked because of</li>
+				<li>noisedabout->squeaked because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->engineering ability</li>
+				<li>animalcharacteristic->sense of design</li>
+				<li>animalcharacteristic->[refusal] to pet [INITIATOR_objective]</li>
+				<li>animalcharacteristic->[refusal] to stop gnawing on things</li>
+				
+				<li>refusal->refusal</li>
+				<li>refusal->unwillingness</li>
+				
+				<li>insult->a pile of rotting wood</li>
+				<li>insult->a tree stump</li>
+				<li>insult->stale water</li>
+				<li>insult->a wolf</li>
+				<li>insult->a fox</li>
+				<li>insult->a furrier</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMBeaver_Insult</defName>
+		<stages>
+			<li>
+				<label>grunted at</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBeaver_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMBeaver_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>grunted at</label>
+				<description>I've been insultingly grunted at! What an awful beaver!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMBeaver_KindWords</defName>
+		<label>kind beaver barks</label>
+		<symbol>Things/Mote/SpeechSymbols/Beaver_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMBeaver_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->squeaked that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->teeth</li>
+				<li>animalcharacteristic->scent</li>
+				<li>animalcharacteristic->sheen</li>
+				<li>animalcharacteristic->warmth</li>
+				<li>animalcharacteristic->shiny thing collection</li>
+				
+				<li>complimentedtargets->barked happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->barked approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->grunted approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->grunted happily because of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->barked happily because of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nuzzled [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->[KindAdverb] rubbed their hands</li>
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] squeaked at</li>
+				<li>kindbehavior->wiggled [INITIATOR_possessive] tail at</li>
+				
+				<li>compliment->a [adj] pinewood</li>
+				<li>compliment->a [adj] oak tree</li>
+				<li>compliment->a [adj] maple tree</li>
+				<li>compliment->a [adj] flowing river</li>
+				<li>compliment->a [adj] birch tree</li>
+				<li>compliment->[adj] fresh-cut lumber</li>
+				
+				<li>adj(p=8)->[KindAdj]</li>
+				<li>adj->delicious</li>
+				<li>adj->dam-quality</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Beaver</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMBeaver_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind bark</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBeaver_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMBeaver_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind bark</label>
+				<description>I've been complimented! What a nice beaver!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults aimed at alphabeavermorphs -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBeaverGrunt_DirectedInsult</defName>
+		<label>directed beaver insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->short stature</li>
+				<li>animalcharacteristic->beady eyes</li>
+				<li>animalcharacteristic->twitchy nose</li>
+				<li>animalcharacteristic->buck teeth</li>
+				<li>animalcharacteristic->size</li>
+				<li>animalcharacteristic->twitchy mannerisms</li>
+				<li>animalcharacteristic->inability to sit still</li>
+				<li>animalcharacteristic->eating habits</li>
+				<li>animalcharacteristic->construction skill</li>
+				<li>animalcharacteristic->woodcutting skill</li>
+
+				<li>insultcomparison->a river polluter</li>
+				<li>insultcomparison->a tree muncher</li>
+				<li>insultcomparison->a giant termite</li>
+				<li>insultcomparison->a tree plague</li>
+				<li>insultcomparison->a lumberjack</li>
+				<li>insultcomparison->a chainsaw</li>
+				<li>insultcomparison->a pest</li>
+				<li>insultcomparison->a squeaky toy</li>
+				<li>insultcomparison->a shrimp</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_nameDef] is too jumpy</li>
+				<li>insult->accused [RECIPIENT_nameDef] of gnawing [INITIATOR_possessive] stuff</li>
+				<li>insult->said [RECIPIENT_nameDef]'s tail is weird</li>
+
+				<li>insultingjoketopics->dam permits</li>
+				<li>insultingjoketopics->trees being inedible</li>
+				<li>insultingjoketopics->high-fiber diets</li>
+				<li>insultingjoketopics->alphabeaver tails</li>
+				<li>insultingjoketopics->clearcutting forests</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Beaver</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+</Defs>

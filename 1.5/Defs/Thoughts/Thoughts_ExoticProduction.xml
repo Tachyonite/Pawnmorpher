@@ -1,0 +1,40 @@
+<Defs>
+
+<!--Egglayer-->
+	<ThoughtDef>
+		<defName>ExoticProduced</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>produced</label>
+				<description>This is humiliating.</description>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>ExoticProducedBond</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>produced</label>
+				<description>Buh...better...</description>
+				<baseMoodEffect>+10</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef>
+		<defName>ExoticProducedBroken</defName>
+		<durationDays>0.2</durationDays>
+		<stages>
+			<li>
+				<label>produced</label>
+				<description>W...what did I...</description>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

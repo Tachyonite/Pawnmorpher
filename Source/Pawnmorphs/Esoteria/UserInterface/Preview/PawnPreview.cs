@@ -65,7 +65,7 @@ namespace Pawnmorph.UserInterface.Preview
 			if (_pawn == null)
 				return;
 
-			_pawn.Drawer.renderer.graphics.ResolveAllGraphics();
+			_pawn.Drawer.renderer.SetAllGraphicsDirty();
 		}
 	}
 }

@@ -1,0 +1,17 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="WolfMorphBase">
+		<defName>ArcticWolfMorph</defName>
+		<label>arcticwolfmorph</label>
+		<race>Wolf_Arctic</race>
+		<categories>
+			<li>Cold</li>
+		</categories>
+		<fullTransformation>PawnmorphArcticWolfTF</fullTransformation>
+		<partialTransformation>PawnmorphArcticWolfTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(249,242,221)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

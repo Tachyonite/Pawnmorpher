@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using HarmonyLib;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Utilities;
 using RimWorld;

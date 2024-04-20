@@ -4,6 +4,7 @@ using Pawnmorph;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
+using Verse.AI.Group;
 
 namespace EtherGun
 {
@@ -33,7 +34,7 @@ namespace EtherGun
 		/// called when the attached pawn dies.
 		/// </summary>
 		/// <param name="corpse">The corpse.</param>
-		public override void PawnDied(Corpse corpse)
+		public override void PawnDied(Corpse corpse, Lord _)
 		{
 			GenExplosion.DoExplosion(radius: (corpse.InnerPawn.ageTracker.CurLifeStageIndex == 0) ? 2.9f : ((corpse.InnerPawn.ageTracker.CurLifeStageIndex != 1) ? 5.9f : 3.9f), center: corpse.Position, map: corpse.Map, damType: DamageDefOf.Flame, instigator: corpse.InnerPawn);
 			List<Thing> thingList = GenRadial.RadialDistinctThingsAround(corpse.PositionHeld, corpse.Map, (corpse.InnerPawn.ageTracker.CurLifeStageIndex == 0) ? 2.9f : ((corpse.InnerPawn.ageTracker.CurLifeStageIndex != 1) ? 5.9f : 3.9f), true).ToList();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
+using Pawnmorph.DefOfs;
 using Pawnmorph.GraphicSys;
 using Pawnmorph.Hediffs;
 using Pawnmorph.Interfaces;
@@ -21,7 +22,7 @@ namespace Pawnmorph
 	{
 		private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
 		private int _shouldRemoveAgeTicks;
-
+		
 		/// <summary>
 		///     The mutation description
 		/// </summary>
@@ -298,6 +299,8 @@ namespace Pawnmorph
 
 			if (newStage is IExecutableStage exeStage)
 				exeStage.EnteredStage(this);
+
+			pawn.Drawer.renderer.SetAllGraphicsDirty();
 		}
 
 
@@ -424,7 +427,7 @@ namespace Pawnmorph
 		{
 			if (Def.RemoveComp?.layer == MutationLayer.Core)
 			{
-				if (Part.def == BodyPartDefOf.Head && pawn.story.hairDef != PMStyleDefOf.PM_HairHidden)
+				if (Part.def == PM_BodyPartDefOf.Head && pawn.story.hairDef != PMStyleDefOf.PM_HairHidden)
 				{
 					// Hide hair
 					var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
@@ -432,7 +435,7 @@ namespace Pawnmorph
 						initialGraphics.HairDef = pawn.story.hairDef;
 					pawn.story.hairDef = PMStyleDefOf.PM_HairHidden;
 				}
-				else if (Part.def == BodyPartDefOf.Jaw && pawn.style.CanWantBeard && pawn.style.beardDef != PMStyleDefOf.PM_BeardHidden)
+				else if (Part.def == PM_BodyPartDefOf.Jaw && pawn.style.CanWantBeard && pawn.style.beardDef != PMStyleDefOf.PM_BeardHidden)
 				{
 					// Hide beard
 					var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
@@ -460,12 +463,12 @@ namespace Pawnmorph
 					var initialGraphics = pawn.GetComp<InitialGraphicsComp>();
 					if (initialGraphics != null)
 					{
-						if (Part.def == BodyPartDefOf.Head)
+						if (Part.def == PM_BodyPartDefOf.Head)
 						{
 							// Revert hair
 							pawn.story.hairDef = initialGraphics.HairDef;
 						}
-						else if (Part.def == BodyPartDefOf.Jaw)
+						else if (Part.def == PM_BodyPartDefOf.Jaw)
 						{
 							// Revert beard
 							pawn.style.beardDef = initialGraphics.BeardDef;
@@ -532,8 +535,7 @@ namespace Pawnmorph
 			 && MutationUtilities.AllMutationsWithGraphics.Contains(def)
 			 && pawn.IsColonist)
 			{
-				pawn.Drawer.renderer.graphics.ResolveAllGraphics();
-				PortraitsCache.SetDirty(pawn);
+				pawn.Drawer.renderer.SetAllGraphicsDirty();
 			}
 		}
 	}

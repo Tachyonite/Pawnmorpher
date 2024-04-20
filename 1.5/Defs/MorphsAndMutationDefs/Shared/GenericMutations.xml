@@ -1,0 +1,514 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	
+	<!-- Muzzle - Suggestion: 50% of stats for adapting -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphJawPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph muzzle.</description>
+		<mutationTale>GrewMuzzleMisc</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>pressing</key>
+				<label>pressing out</label>
+				<minSeverity>0.1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<label>growing</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Jaw</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Ear - Suggestion: 50% of stats for adapting -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEarPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph ear.</description>
+		<mutationTale>EarsChangedMisc</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>pressing</key>
+				<label>pressing out</label>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<label>growing</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<label>grown</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Ear</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Tail - Suggestion: 50% of stats for adapting -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphTailPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph tail.</description>
+		<mutationTale>GrewTail</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>pressing</key>
+				<label>pressing out</label>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<label>growing</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<label>grown</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.8</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Eyes  - Suggestion: 0% - 0% - 50% - 100%, pain and lose of part effenciency before adapted -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphEyePart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph eye.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>unfamiliar</key>
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Eye</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Arm -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphArmPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph arm.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>readjusting</key>
+				<label>readjusting</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>unfamiliar</key>
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.2</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Arm</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Hand -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHandPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph hand.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>readjusting</key>
+				<label>readjusting</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>unfamiliar</key>
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Hand</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Leg -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphLegPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph leg.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>readjusting</key>
+				<label>readjusting</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.25</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Leg</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Foot -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphFootPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph foot.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>readjusting</key>
+				<label>readjusting</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>unfamiliar</key>
+				<label>unfamiliar</label>
+				<minSeverity>0.3</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapting</key>
+				<label>adapting</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>adapted</key>
+				<label>adapted</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Foot</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Horns -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphHornPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph horn.</description>
+		<mutationTale>GrewAntlers</mutationTale>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<label>initial</label>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>nubs</key>
+				<label>horn nubs</label>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>short</key>
+				<label>short horns</label>
+				<minSeverity>0.5</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>horns</key>
+				<label>horns</label>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.05</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+			<li>Skull</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Torso - Suggestion: only the last stage has values, pain in growing -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphTorsoPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph torso.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.15</severityPerDay>
+			</li>
+		</comps>
+		<parts>
+            <li>Torso</li>
+		</parts>
+		<categories>
+			<li>Major</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Skin - Suggestion: 0% - 25% - 50% - 75% - 100% -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinBasePart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
+		<description>A covered limb.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Neck</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>0.33</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layer>Skin</layer>
+			</li>
+			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
+				<mtb>2</mtb>
+				<maxTreeSearchDepth>1</maxTreeSearchDepth>
+			</li>
+		</comps>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>light</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>dusting</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>thin</key>
+				<minSeverity>0.4</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>patches</key>
+				<minSeverity>0.6</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>full</key>
+				<minSeverity>0.8</minSeverity>
+			</li>
+		</stages>
+		<categories>
+			<li>Minor</li>
+		</categories>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutationCauseExtension">
+                <rulePack>
+                    <rulesStrings>
+                        <li>mutagen_cause->[PAWN_possessive] [SOURCEPART_label]</li>
+                    	<li>caused_by->spreading from</li>
+                    </rulesStrings>
+                </rulePack>
+            </li>
+        </modExtensions>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Misc - Suggestion: only the last stage has values, pain in growing -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphMiscPart" ParentName="PawnmorphPart" Abstract="true">
+		<description>A morph body part.</description>
+		<minSeverity>0</minSeverity>
+		<initialSeverity>0</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>initial</key>
+				<minSeverity>0</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>growing</key>
+				<minSeverity>0.2</minSeverity>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>grown</key>
+				<minSeverity>1</minSeverity>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationSeverityAdjust">
+				<severityPerDay>1</severityPerDay>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

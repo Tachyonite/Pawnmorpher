@@ -1,0 +1,36 @@
+<Defs>
+	<TaleDef ParentName="MutationTaleBase" Name="GrowTailBase" Abstract="true">
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a tail</li>
+				<li>image->[PAWN_nameFull] examining [PAWN_possessive] rear [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] looking behind [PAWN_possessive]self [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] yelling in fright [circumstance_group]</li>
+				<li>circumstance_group->as people look on in horror</li>
+				<li>circumstance_group->as people laugh nearby</li>
+				<li>circumstance_group->as people pull at [PAWN_possessive] new tail</li>
+				<li>desc_sentence->[PAWN_pronoun] seems totally unaware of what is around [PAWN_objective].</li>
+				<li>desc_sentence->[PAWN_pronoun] looks terrified at the new addition.</li>
+				<li>desc_sentence->[PAWN_pronoun] is confused at what it's doing there.</li>
+				<li>desc_sentence->[PAWN_pronoun] is trying to pull it off.</li>
+				<li>desc_sentence->[PAWN_pronoun] is trying to hide it from view.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="GrowTailBase">
+		<defName>GrewTail</defName>
+		<label>grew a tail</label>
+		<rulePack>
+			<rulesStrings>
+				<li>circumstance_phrase->as [PAWN_possessive] tail flicks, obviously</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail wags, unwillingly</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail wags, excited</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, scared</li>
+				<li>circumstance_phrase->as [PAWN_possessive] tail hangs between [PAWN_possessive] legs, embarrased</li>
+				<li>circumstance_phrase->as people pat the fur on [PAWN_nameDef]'s new tail</li>
+				<li>circumstance_phrase->while someone pats [PAWN_possessive] new tail</li>
+				<li>desc_sentence->[PAWN_pronoun] is playing with the fur on it.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

@@ -1,0 +1,14 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewPigMuzzle</defName>
+		<label>grew pig muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a pig snout</li>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming that of a pig's</li>
+				<li>image->[PAWN_nameFull] begins oinking involuntarily [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s yells turn into oinks [circumstance_group]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

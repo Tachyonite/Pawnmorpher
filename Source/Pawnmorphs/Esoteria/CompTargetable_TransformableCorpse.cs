@@ -31,7 +31,7 @@ namespace Pawnmorph
 				return false;
 			}
 
-			return base.BaseTargetValidator(x.Thing) && MutagenDefOf.defaultMutagen.CanTransform(c.InnerPawn);
+			return base.ValidateTarget(x.Thing) && MutagenDefOf.defaultMutagen.CanTransform(c.InnerPawn);
 		}
 
 		public override IEnumerable<Thing> GetTargets(Thing targetChosenByPlayer = null)

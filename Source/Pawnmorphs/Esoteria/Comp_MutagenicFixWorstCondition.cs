@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
+using Pawnmorph.DefOfs;
 using Pawnmorph.Hediffs;
 using RimWorld;
 using Verse;
@@ -43,7 +44,7 @@ namespace Pawnmorph
 		}
 
 		private float HandCoverageAbsWithChildren =>
-			ThingDefOf.Human.race.body.GetPartsWithDef(BodyPartDefOf.Hand).First().coverageAbsWithChildren;
+			ThingDefOf.Human.race.body.GetPartsWithDef(PM_BodyPartDefOf.Hand).First().coverageAbsWithChildren;
 
 		/// <summary>
 		/// Does the effect.
@@ -89,7 +90,7 @@ namespace Pawnmorph
 			}
 
 			Hediff_Injury hediff_Injury2 = FindPermanentInjury(usedBy, from x in usedBy.health.hediffSet.GetNotMissingParts()
-																	   where x.def == BodyPartDefOf.Eye
+																	   where x.def == PM_BodyPartDefOf.Eye
 																	   select x);
 			if (hediff_Injury2 != null)
 			{

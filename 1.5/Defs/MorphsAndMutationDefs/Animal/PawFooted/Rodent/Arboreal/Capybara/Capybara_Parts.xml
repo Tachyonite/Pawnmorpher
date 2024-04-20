@@ -1,0 +1,30 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealJawPart">
+		<classInfluence>CapybaraMorph</classInfluence>
+		<defName>EtherCapybaraJaw</defName>
+		<label>capybara snout</label>
+		<graphics>
+			<Muzzle>Parts/Capybara/Capybara_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="ArborealEarPart">
+		<classInfluence>CapybaraMorph</classInfluence>
+		<defName>EtherCapybaraEar</defName>
+		<label>capybara ear</label>
+		<graphics>
+			<LeftEar>Parts/Capybara/Capybara_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Capybara/Capybara_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Capybara/Capybara_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Capybara/Capybara_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear has turned into small round capybara ear.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>
