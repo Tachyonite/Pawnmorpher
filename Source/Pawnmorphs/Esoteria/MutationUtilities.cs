@@ -1178,16 +1178,25 @@ namespace Pawnmorph
 		[Pure]
 		public static bool CanApplyMutations([NotNull] this MutationDef mutationDef, [NotNull] Pawn pawn, BodyPartRecord addPart, MutagenDef mutagen = null)
 		{
-			if (mutationDef == null) throw new ArgumentNullException(nameof(mutationDef));
-			if (pawn == null) throw new ArgumentNullException(nameof(pawn));
+			if (mutationDef == null) 
+				throw new ArgumentNullException(nameof(mutationDef));
+
+			if (pawn == null) 
+				throw new ArgumentNullException(nameof(pawn));
+
+			if (mutationDef.parts.Contains(addPart.def) == false)
+				return false;
 
 			mutagen = mutagen ?? MutagenDefOf.defaultMutagen;
-			if (!mutagen.CanInfect(pawn)) return false;
+
+			if (!mutagen.CanInfect(pawn))
+				return false;
 
 			var hediffs = (pawn.health?.hediffSet?.hediffs).MakeSafe();
 			foreach (Hediff_AddedMutation mutation in hediffs.OfType<Hediff_AddedMutation>())
 			{
-				if (mutation.Blocks(mutationDef, addPart)) return false;
+				if (mutation.Blocks(mutationDef, addPart)) 
+					return false;
 			}
 
 			return mutationDef.IsValidFor(pawn);
