@@ -288,18 +288,10 @@ namespace Pawnmorph.Hediffs
 				else
 				{
 					// If mutation manager does not have a body part, select the first random body part from the next mutation that the pawn actually has.
-					IEnumerable<BodyPartRecord> bodyParts = pawn.RaceProps.body.AllParts.InRandomOrder();
 					List<BodyPartDef> mutationParts = bodyMutationManager.Mutation.mutation.parts;
 					for (int x = mutationParts.Count - 1; x >= 0; x--)
 					{
-						foreach (BodyPartRecord partRecord in bodyParts)
-						{
-							if (mutationParts[x] == partRecord.def)
-							{
-								bodyPart = partRecord;
-								break;
-							}
-						}
+						bodyPart = pawn.RaceProps.body.GetPartsWithDef(mutationParts[x]).RandomElement();
 
 						if (bodyPart != null)
 							break;
