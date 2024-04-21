@@ -48,7 +48,7 @@
 	</ResearchProjectDef>
 
 	<ResearchProjectDef>
-		<defName>SerumSynthesis</defName>
+		<defName>PMSerumSynthesis</defName>
 		<label>Serum synthesis</label>
 		<description>By careful recalibration of mechanite components, we may be able to make our own mutagenic serums. This costs mechanite slurry to do, and unlocks creation of basic mechanite serums. Also unlocks a bench for working with these mutagens, as the drug lab will not be suitable for further projects.</description>
 		<baseCost>600</baseCost>
@@ -73,7 +73,7 @@
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>0.70</researchViewY>
 		<prerequisites>
-			<li>SerumSynthesis</li>
+			<li>PMSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
 
@@ -87,7 +87,7 @@
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>1.40</researchViewY>
 		<prerequisites>
-			<li>SerumSynthesis</li>
+			<li>PMSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
 
@@ -101,7 +101,7 @@
 		<researchViewX>2.00</researchViewX>
 		<researchViewY>2.10</researchViewY>
 		<prerequisites>
-			<li>SerumSynthesis</li>
+			<li>PMSerumSynthesis</li>
 		</prerequisites>
 	</ResearchProjectDef>
 
