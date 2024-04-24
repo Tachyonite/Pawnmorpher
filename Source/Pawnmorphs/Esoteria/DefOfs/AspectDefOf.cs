@@ -12,6 +12,13 @@ namespace Pawnmorph
 	public static class AspectDefOf
 	{
 		/// <summary>
+		/// Aspect for the insect mind
+		/// </summary>
+		[UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
+		[MayRequire()]
+		public static AspectDef PMI_HiveMinded;
+
+		/// <summary>
 		/// aspect that represents the pawns 'EtherState'
 		/// </summary>
 		[UsedImplicitly(ImplicitUseKindFlags.Assign), NotNull]
