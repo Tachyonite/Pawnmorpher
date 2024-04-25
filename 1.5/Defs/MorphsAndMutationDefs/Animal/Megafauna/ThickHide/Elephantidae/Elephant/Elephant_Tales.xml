@@ -1,0 +1,59 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewElephantFace</defName>
+		<label>grew an elephant face</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] grew an elephant's trunk and tusks</li>
+				<li>tale_noun->[PAWN_nameDef]'s face became that of an elephants</li>
+				<li>image->[PAWN_nameFull]'s nose begins to push out into a long trunk [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s teeth begin to grow into large, ivory, tusks [circumstance_group]</li>
+				<li>circumstance_phrase->while someone eyes [PAWN_possessive] tusks greedily</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to pick something up with [PAWN_possessive] new trunk.</li>
+				<li>desc_sentence->[PAWN_pronoun] looks unnerved by with [PAWN_possessive] new trunk.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new tusks.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="EarMutationBase">
+		<defName>GrewElephantEars</defName>
+		<label>grew elephant ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears becoming those of an elephant</li>
+				<li>tale_noun->[PAWN_nameDef] growing elephant ears</li>
+				<li>image->[PAWN_nameFull]'s ears begin to grow [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s ears begin to shift and grow [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uneasy with the size of [PAWN_possessive] new ears.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins to flap [PAWN_possessive] elephant ears.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems oddly pleased with [PAWN_possessive] elephant ears.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="FootMutationBase">
+		<defName>GrewElephantFoot</defName>
+		<label>grew elephant foot</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] feet changing into that of an elephant</li>
+				<li>tale_noun->[PAWN_nameDef] growing elephant feet</li>
+				<li>image->[PAWN_nameFull] feet begin to shift into large stumpy feet [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems uncomfortable with [PAWN_possessive] new feet.</li>
+				<li>desc_sentence->[PAWN_pronoun] begins stomping about with [PAWN_possessive] new feet.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecameElephantFeet</defName>
+		<label>hands became elephant feet</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] hands becoming elephant feet</li>
+				<li>tale_noun->[PAWN_nameDef] hands becoming large stumpy feet</li>
+				<li>image->[PAWN_nameFull]'s hands begin to shift into stumpy things [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s fingers begin to shrink [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

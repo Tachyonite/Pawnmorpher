@@ -12,6 +12,8 @@
 	<enableMutagenMeteorCheckboxTooltip>Toggles the ability of mutonite meteors to mutate nearby pawns.</enableMutagenMeteorCheckboxTooltip>
 	<enableWildFormersCheckboxLabel>Enable Wild Former Humans</enableWildFormersCheckboxLabel>
 	<enableWildFormersCheckboxTooltip>Toggles animals spawning onto the map as former humans, allowing them to be reverted.</enableWildFormersCheckboxTooltip>
+	<enableMutationAdaptedStageLabelCheckboxLabel>Enable stage labels for adapted mutations.</enableMutationAdaptedStageLabelCheckboxLabel>
+	<enableMutationAdaptedStageLabelCheckboxTooltip>Enables stage labels on fully adjusted mutations. (Adapted, Grown, etc.)</enableMutationAdaptedStageLabelCheckboxTooltip>
 	<PMHazardousChaobulbs>Enable Hazardous Chaobulbs</PMHazardousChaobulbs>
 	<PMHazardousChaobulbsTooltip>If failed, chaobulb harvests can give mutagenic buildup.</PMHazardousChaobulbsTooltip>
 	<transformChanceSliderLabel>Chance for mutagens to fully transform pawns</transformChanceSliderLabel>
@@ -20,14 +22,43 @@
 	<maxMutationThoughtsSliderLabel>How many mutation related thoughts will show up at once</maxMutationThoughtsSliderLabel>
 	<friendlyManhunterTfChance>Chance for friendly pawns to go manhunter when transformed</friendlyManhunterTfChance>
 	<manhunterTfChance>Chance for pawns to go manhunter when transformed</manhunterTfChance>
+	<hostileKeepFactionTfChance>Chance for pawns of other factions to keep their faction when transformed</hostileKeepFactionTfChance>
+	<PMGenerateEndoGenesForAliens>Generate alien endo genes on first revert.</PMGenerateEndoGenesForAliens>
+	<PMGenerateEndoGenesForAliensTooltip>Generate endo genes (skin and hair color) when alien is reverted to human for the first time.</PMGenerateEndoGenesForAliensTooltip>
 	<PMInjectorsRequireTagging>Injectors Require Tagging</PMInjectorsRequireTagging>
 	<PMInjectorsRequireTaggingTooltip>If true, tagging animals is required to make injectors.</PMInjectorsRequireTaggingTooltip>
 	<PMEnableMutationVisualsButton>Show mutations on races.</PMEnableMutationVisualsButton>
 	<PMEnableMutationVisualsHeader>Enable mutations visuals for races.</PMEnableMutationVisualsHeader>
 	<PMEnableMutationVisualsText>Selected races will be patched to show mutations as if they were human, and depending on the race aesthetic results may vary.</PMEnableMutationVisualsText>
 	<PMRequiresRestart>Requires a game restart to take affect.</PMRequiresRestart>
-	<PMRaceReplacementButton>Set race replacements.</PMRaceReplacementButton>
-	<PMRaceReplacementHeader>Set race replacements for morphs.</PMRaceReplacementHeader>
-	<PMRaceReplacementText>These options allow replacing implicit morph races with races from other mods.</PMRaceReplacementText>
+	<PMRaceReplacementButton>Set morph replacements.</PMRaceReplacementButton>
+	<PMRaceReplacementHeader>Set morph replacements for morphs.</PMRaceReplacementHeader>
+	<PMRaceReplacementText>Here you can replace morphs with races from other installed HAR mods.\nThis may not work with all races, use with caution and test before using in a save.</PMRaceReplacementText>
 	<PMRaceReplacementLocked>Locked by patch.</PMRaceReplacementLocked>
+	<PMOptionalPatchesButton>Toggle optional patches.</PMOptionalPatchesButton>
+	<PMOptionalPatchesHeader>Toggle optional patches.</PMOptionalPatchesHeader>
+	<PMOptionalPatchesText>Enable or disable patches that are not strictly necessary for the mod to function.\nHover over a patch to see description.</PMOptionalPatchesText>
+	<PMFailedToParse>Failed to parse.</PMFailedToParse>
+	<PMAnimalAssociationsButton>Associate animals.</PMAnimalAssociationsButton>
+	<PMAnimalAssociationsHeader>Associate animals.</PMAnimalAssociationsHeader>
+	<PMAnimalAssociationsText>Associate additional animals with morphs that will act as both additional outcomes, source of sequencing morph mutations and unlocking the injector.</PMAnimalAssociationsText>
+	<PMBlacklistFormerHumansButton>Former human animals</PMBlacklistFormerHumansButton>
+	<PMBlacklistFormerHumansHeader>Can be former humans</PMBlacklistFormerHumansHeader>
+	<PMBlacklistFormerHumansText>Enable, restrict or disable animals from randomly appearing as former humans in game.\nAnimals associated with morphs can only be restricted.</PMBlacklistFormerHumansText>
+	<PMBlacklistFormerHumansEnabled>Enabled</PMBlacklistFormerHumansEnabled>
+	<PMBlacklistFormerHumansRestricted>Restricted</PMBlacklistFormerHumansRestricted>
+	<PMBlacklistFormerHumansDisabled>Disabled</PMBlacklistFormerHumansDisabled>
+	<PMBlacklistFormerHumansEnabledDescription>Can freely appear as former human in game.</PMBlacklistFormerHumansEnabledDescription>
+	<PMBlacklistFormerHumansRestrictedDescription>Can exist as former human but not spawn at random.</PMBlacklistFormerHumansRestrictedDescription>
+	<PMBlacklistFormerHumansDisabledDescription>Cannot exist as former human at all.</PMBlacklistFormerHumansDisabledDescription>
+	<PMBlacklistFormerHumansAddedBy>Added by {0}</PMBlacklistFormerHumansAddedBy>
+	<PMDebug>Debug</PMDebug>
+	<PMDebugLevel>Debug level</PMDebugLevel>
+	<PMSequencer>Sequencer</PMSequencer>
+	<PMSequencerMultipler>Sequencing multiplier</PMSequencerMultipler>
+	<PMSequencerMultiplerTooltip>Speed multiplier when sequencing mutations.</PMSequencerMultiplerTooltip>
+	<PMSequencerAutoAnimalGenome>Auto sequence animal genomes</PMSequencerAutoAnimalGenome>
+	<PMSequencerAutoAnimalGenomeTooltip>Automatically sequence all mutations from animal genome when downloaded.</PMSequencerAutoAnimalGenomeTooltip>
+	<mutationLogLength>Mutation log length</mutationLogLength>
+	<mutationLogLengthTooltip>Max number of entries remembered by the mutation log.</mutationLogLengthTooltip>
 </LanguageData>

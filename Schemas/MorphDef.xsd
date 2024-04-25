@@ -21,34 +21,7 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="raceSettings" minOccurs="0" maxOccurs="1">
-								<xs:complexType>
-									<xs:all>
-										<xs:element name="statModifiers" type="StatModifiersList" minOccurs="0" maxOccurs="1" />
-										<xs:element name="thoughtSettings" type="HybridThoughtSettings" maxOccurs="1" minOccurs="0" />
-										<xs:element name="graphicsSettings" minOccurs="0" maxOccurs="1">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="skinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="femaleSkinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="femaleSkinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="hairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="hairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="femaleHairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="femaleHairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="customDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
-													<xs:element name="customHeadDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="traitSettings" type="TraitSettings" minOccurs="0" maxOccurs="1" />
-										<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1" />
-										<xs:element name="transferHumanBodyAddons" type="xs:boolean" minOccurs="0" maxOccurs="1" />
-										<xs:element name="requiredMutations" type="ListOfStrings" minOccurs="0" maxOccurs="1" />
-									</xs:all>
-								</xs:complexType>
-							</xs:element>
+							<xs:element name="raceSettings" type="HybridRaceSettings" minOccurs="0" maxOccurs="1" />
 							<xs:element name="noInjector" type="xs:boolean" minOccurs="0" />
 							<xs:element name="injectorDef" type="xs:string" minOccurs="0" />
 							<xs:element name="transformSettings" type="TransformationSettings" minOccurs="0" maxOccurs="1" />
@@ -163,27 +136,6 @@
 			<xs:element name="revertedMemoryBP" type="xs:string" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="TraitSettings">
-		<xs:sequence>
-			<xs:element name="forcedTraits" minOccurs="0" maxOccurs="1">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="li" minOccurs="1" maxOccurs="unbounded">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="chance" type="xs:float" minOccurs="0" maxOccurs="1" />
-									<xs:element name="commonalityMale" type="xs:float" minOccurs="0" maxOccurs="1" />
-									<xs:element name="commonalityFemale" type="xs:float" minOccurs="0" maxOccurs="1" />
-									<xs:element name="defName" type="xs:string" maxOccurs="1" minOccurs="1" />
-									<xs:element name="degree" type="xs:int" maxOccurs="1" minOccurs="0" />
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="AddedAspect">
 		<xs:sequence>
 			<xs:element name="def" type="xs:string" minOccurs="1" maxOccurs="1" />
@@ -289,4 +241,91 @@
 			<xs:element name="recipeMaker" type="RecipeMaker" minOccurs="0" />
 		</xs:all>
 	</xs:complexType>
+
+	<xs:complexType name="HybridRaceSettings">
+		<xs:all>
+			<xs:element name="restrictionSettings" type="xs:anyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>https://github.com/erdelf/AlienRaces/wiki/Race-Restriction</xs:documentation>
+			  	</xs:annotation>
+			</xs:element>
+			<xs:element name="statModifiers" type="StatModifiersList" minOccurs="0" maxOccurs="1" />
+			<xs:element name="thoughtSettings" type="HybridThoughtSettings" maxOccurs="1" minOccurs="0" />
+			<xs:element name="graphicsSettings" type="GraphicsSettings" minOccurs="0" maxOccurs="1" />
+
+			<xs:element name="explicitHybridRace" type="xs:string" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>AlienRace.ThingDef_AlienRace def to use as hybrid race.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="transferHumanBodyAddons" type="xs:boolean" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>If true and explicitHybridRace is set, human hediff graphics will be added onto the explicit hybrid race.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="requiredMutations" type="ListOfStrings" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>A list of mutations that will be added to a pawn when they become a hybrid if they do not have them already.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="hairstyles" type="ListOfStrings" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>A list of hair styles that will be used as a pool and be randomly added to a pawn when they become a hybrid.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="coverPercent" type="xs:float" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>How much cover this race provides.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="forceRequiredMutations" type="xs:boolean" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>If true the required mutations will be added to the pawn when they become a hybrid, otherwise not having the required part will prevent the pawn from becoming a hybrid.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="lifeExpectancy" type="xs:string" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>Overrides life expectancy for pawn.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="baseHungerRate" type="xs:string" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>Overrides base hunger rate for pawn.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="bodyDef" type="xs:string" minOccurs="0" maxOccurs="1">
+          			<xs:annotation>
+            				<xs:documentation>Hybrid body reference.</xs:documentation>
+          			</xs:annotation>
+			</xs:element>
+			<xs:element name="comps" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					  <xs:documentation>Components added to the hybrid race.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="li" type="xs:anyType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="GraphicsSettings">
+		<xs:all>
+			<xs:element name="skinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="skinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="femaleSkinColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="femaleSkinColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="hairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="hairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="femaleHairColorOverride" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="femaleHairColorOverrideSecond" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="customDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="customHeadDrawSize" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+
+
+
 </xs:schema>

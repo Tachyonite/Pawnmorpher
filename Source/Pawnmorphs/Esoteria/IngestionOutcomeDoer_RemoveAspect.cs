@@ -6,27 +6,27 @@ using Verse;
 
 namespace Pawnmorph
 {
-   
-
-    /// <summary>
-    /// ingestion out come doer that adds an aspect to a pawn
-    /// </summary>
-    /// <seealso cref="RimWorld.IngestionOutcomeDoer" />
-    public class IngestionOutcomeDoer_RemoveAspects : IngestionOutcomeDoer
-    {
-        /// <summary>Does the ingestion outcome special.</summary>
-        /// <param name="pawn">The pawn.</param>
-        /// <param name="ingested">The ingested.</param>
-        protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
-        {
-            var aspectT = pawn.GetAspectTracker();
-            if (aspectT == null) return;
-
-            foreach (Aspect aspect in aspectT)
-                if (aspect.def.removedByReverter)
-                    aspectT.Remove(aspect); // It's ok to remove them in a foreach loop.
 
 
-        }
-    }
+	/// <summary>
+	/// ingestion out come doer that adds an aspect to a pawn
+	/// </summary>
+	/// <seealso cref="RimWorld.IngestionOutcomeDoer" />
+	public class IngestionOutcomeDoer_RemoveAspects : IngestionOutcomeDoer
+	{
+		/// <summary>Does the ingestion outcome special.</summary>
+		/// <param name="pawn">The pawn.</param>
+		/// <param name="ingested">The ingested.</param>
+		protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int count)
+		{
+			var aspectT = pawn.GetAspectTracker();
+			if (aspectT == null) return;
+
+			foreach (Aspect aspect in aspectT)
+				if (aspect.def.removedByReverter)
+					aspectT.Remove(aspect); // It's ok to remove them in a foreach loop.
+
+
+		}
+	}
 }

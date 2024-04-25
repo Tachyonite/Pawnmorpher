@@ -1,0 +1,33 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfJawBase">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfJaw</defName>
+		<label>arctic wolf muzzle</label>
+		<graphics>
+			<MuzzleMale>Parts/WolfArctic/Awolf_Muzzle</MuzzleMale>
+			<MuzzleFemale>Parts/WolfArctic/Awolf_Female_Muzzle</MuzzleFemale>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfEarPart">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfEar</defName>
+		<label>arctic wolf ear</label>
+		<graphics>
+			<LeftEar>Parts/WolfArctic/Awolf_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/WolfArctic/Awolf_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/WolfArctic/Awolf_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/WolfArctic/Awolf_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="WolfTailPart">
+		<classInfluence>ArcticWolfMorph</classInfluence>
+		<defName>EtherArcticWolfTail</defName>
+		<label>arctic wolf tail</label>
+		<graphics>
+			<Tail>Parts/WolfArctic/Awolf_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

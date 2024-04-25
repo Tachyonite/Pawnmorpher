@@ -1,0 +1,35 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxJawBase">
+		<defName>EtherArcticFoxMuzzle</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox muzzle</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/FoxArctic/ArcticFox_Muzzle_Male</Male>
+					<Female>Parts/FoxArctic/ArcticFox_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherArcticFoxEar</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox ear</label>
+		<graphics>
+			<LeftEar>Parts/FoxArctic/ArcticFox_Ear_Left</LeftEar>
+			<RightEar>Parts/FoxArctic/ArcticFox_Ear_Right</RightEar>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherArcticFluffyTail</defName>
+		<classInfluence>ArcticFoxMorph</classInfluence>
+		<label>arctic fox tail</label>
+		<graphics>
+			<Tail>Parts/FoxArctic/ArcticFox_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

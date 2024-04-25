@@ -14,190 +14,154 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+
 #pragma warning disable 1591
 namespace Pawnmorph
 {
-    internal static class FloatMenuMakerMapPatches
-    {
-        [HarmonyPatch(typeof(FloatMenuMakerMap))]
-        [HarmonyPatch("AddHumanlikeOrders")]
-        internal static class AddHumanlikeOrdersPatch
-        {
-            [HarmonyPrefix]
-            private static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
-            {
-                if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-                    foreach (LocalTargetInfo localTargetInfo3 in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true).MakeSafe())
-                    {
-                        LocalTargetInfo localTargetInfo4 = localTargetInfo3;
-                        var victim = (Pawn) localTargetInfo4.Thing;
-                        MutagenDef mutagen = MutagenDefOf.MergeMutagen;
-                        if (mutagen.CanTransform(victim)
-                         && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true))
-                        {
-                            if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Tf) != null)
-                            {
-                                string text4 = "CarryToChamber".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-                                JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-                                Action action3 = delegate
-                                {
-                                    var building_chamber =
-                                        MutaChamber.FindMutaChamberFor(victim, pawn);
-                                    if (building_chamber == null)
-                                        building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
-                                    if (building_chamber == null)
-                                    {
-                                        Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
-                                                         MessageTypeDefOf.RejectInput, false);
-                                        return;
-                                    }
+	internal static class FloatMenuMakerMapPatches
+	{
+		[HarmonyPatch(typeof(FloatMenuMakerMap))]
+		[HarmonyPatch("AddHumanlikeOrders")]
+		internal static class AddHumanlikeOrdersPatch
+		{
+			private static ValueTuple<Pawn, bool, string, string> _pawnCanTransformCache = (null, false, string.Empty, string.Empty);
 
-                                    var job = new Job(jDef, victim, building_chamber);
-                                    job.count = 1;
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                };
-                                string label = text4;
-                                Action action2 = action3;
-                                Pawn revalidateClickTarget = victim;
-                                opts.Add(FloatMenuUtility
-                                            .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
-                                                                     pawn, victim));
-                            }
-                            if (MutaChamber.FindMutaChamberFor(victim, pawn, true, ChamberUse.Merge) != null)
-                            {
-                                string text4 = "PMCarryToChamberMerge".Translate(localTargetInfo4.Thing.LabelCap, localTargetInfo4.Thing);
-                                JobDef jDef = Mutagen_JobDefOf.CarryToMutagenChamber;
-                                Action action3 = delegate
-                                {
-                                    var building_chamber =
-                                        MutaChamber.FindMutaChamberFor(victim, pawn);
-                                    if (building_chamber == null)
-                                        building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true);
-                                    if (building_chamber == null)
-                                    {
-                                        Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim,
-                                                         MessageTypeDefOf.RejectInput, false);
-                                        return;
-                                    }
+			[HarmonyPrefix]
+			private static bool Prefix_AddHumanlikeOrders(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)
+			{
+				if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+				{
+					IEnumerable<LocalTargetInfo> targets = GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true);
+					if (targets != null)
+					{
+						foreach (LocalTargetInfo localTargetInfo3 in targets)
+						{
+							LocalTargetInfo localTargetInfo4 = localTargetInfo3;
+							var victim = (Pawn)localTargetInfo4.Thing;
+							MutagenDef mutagen = MutagenDefOf.MergeMutagen;
 
-                                    var job = new Job(jDef, victim, building_chamber);
-                                    job.count = 1;
-                                    pawn.jobs.TryTakeOrderedJob(job);
-                                };
-                                string label = text4;
-                                Action action2 = action3;
-                                Pawn revalidateClickTarget = victim;
-                                opts.Add(FloatMenuUtility
-                                            .DecoratePrioritizedTask(new FloatMenuOption(label, action2, MenuOptionPriority.Default, null, revalidateClickTarget),
-                                                                     pawn, victim));
-                            }
-                        }
-                    }
+							// As long as the target remains unchanged, then cache mutability state.
+							if (_pawnCanTransformCache.Item1 != victim)
+								_pawnCanTransformCache = (victim, 
+														  mutagen.CanTransform(victim) && pawn.CanReserveAndReach(victim, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true),
+														  "CarryToChamber".Translate(victim.LabelCap, victim),
+														  "PMCarryToChamberMerge".Translate(victim.LabelCap, victim)
+														  );
 
-                return true;
-            }
-        }
+							if (_pawnCanTransformCache.Item2)
+							{
+								CarryToChamber(pawn, opts, victim, _pawnCanTransformCache.Item3, ValueTuple.Create(ChamberUse.Mutation, ChamberUse.Tf));
+								CarryToChamber(pawn, opts, victim, _pawnCanTransformCache.Item4, ValueTuple.Create(ChamberUse.Merge, ChamberUse.Merge));
+							}
+						}
+					}
+				}
+
+				return true;
+			}
+
+			private static void CarryToChamber(Pawn pawn, List<FloatMenuOption> opts, Pawn victim, string label, ValueTuple<ChamberUse, ChamberUse> useType)
+			{
+				// Is there any chambers including reserved that fit the requirements?
+				var mergeChamber = MutaChamber.FindMutaChamberFor(victim, pawn, true, useType);
+				if (mergeChamber != null)
+				{
+					Action action = delegate
+					{
+						// Is there any chambers that isn't already reserved? then prioritise that.
+						var building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, false, useType);
+
+						// If none is found then check for any reserved again.
+						// Chambers might no longer be avaiable between right clicking and selecting the option.
+						if (building_chamber == null)
+							building_chamber = MutaChamber.FindMutaChamberFor(victim, pawn, true, useType); 
+						
+						if (building_chamber == null)
+						{
+							Messages.Message("CannotCarryToChamber".Translate() + ": " + "NoChamber".Translate(), victim, MessageTypeDefOf.RejectInput, false);
+							return;
+						}
+
+						var job = new Job(Mutagen_JobDefOf.CarryToMutagenChamber, victim, building_chamber);
+						job.count = 1;
+						pawn.jobs.TryTakeOrderedJob(job);
+					};
+					opts.Add(FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, action, MenuOptionPriority.Default, null, victim),
+														 pawn, victim));
+				}
+			}
+		}
+
 #if true
-        [HarmonyPatch(typeof(FloatMenuMakerMap))]
-        [HarmonyPatch("CanTakeOrder")]
-        internal static class CanTakeOrderPatch
-        {
-            [HarmonyPostfix]
-            private static void MakePawnControllable(Pawn pawn, ref bool __result)
-            {
-                if (pawn?.Faction?.IsPlayer != true) return;
+		[HarmonyPatch(typeof(FloatMenuMakerMap))]
+		[HarmonyPatch("CanTakeOrder")]
+		internal static class CanTakeOrderPatch
+		{
+			[HarmonyPostfix]
+			private static void MakePawnControllable(Pawn pawn, ref bool __result)
+			{
+				if (pawn?.Faction?.IsPlayer != true) return;
 
-                if (!pawn.RaceProps.Animal) return;
-                var sTracker = pawn.GetSapienceTracker();
-                if (sTracker == null) return;
+				if (!pawn.RaceProps.Animal) return;
+				var sTracker = pawn.GetSapienceTracker();
+				if (sTracker == null) return;
 
-                switch (sTracker.CurrentIntelligence)
-                {
-                    case Intelligence.Animal:
-                        return;
-                    case Intelligence.ToolUser:
-                    case Intelligence.Humanlike:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+				switch (sTracker.CurrentIntelligence)
+				{
+					case Intelligence.Animal:
+						return;
+					case Intelligence.ToolUser:
+					case Intelligence.Humanlike:
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
 
 
-                __result = pawn.MentalState == null;
-            }
-        }
-   
+				__result = pawn.MentalState == null;
+			}
+		}
+
 #endif
-        [HarmonyPatch(typeof(FloatMenuMakerMap), nameof(FloatMenuMakerMap.ChoicesAtFor), typeof(Vector3), typeof(Pawn), typeof(bool))]
-        static class AddHumanlikeOrdersToSA
-        {
-            [NotNull]
-            private static readonly MethodInfo _isToolUser = typeof(FormerHumanUtilities).GetMethod(nameof(FormerHumanUtilities.IsHumanlike), new [] {typeof(Pawn)});
 
-            [NotNull] 
-            private static readonly MethodInfo _targetMethodSig = typeof(Pawn).GetProperty(nameof(Pawn.RaceProps)).GetGetMethod(); 
+		[HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders", typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>))]
+		static class AddHumanlikeOrders
+		{
+			[NotNull]
+			private static readonly MethodInfo originalMethod = AccessTools.DeclaredPropertyGetter(typeof(Thing), nameof(Thing.IngestibleNow));
 
-            [HarmonyTranspiler]
-            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                var codes = instructions.ToList(); //convert the code instructions to a list so we can do 2 at a time 
+			[NotNull]
+			private static readonly MethodInfo proxyMethod = typeof(AddHumanlikeOrders).GetMethod(nameof(IngestibleNowProxy));
 
-                for (var i = 0; i < codes.Count - 1; i++)
-                {
-                    int j = i + 1;
-                    CodeInstruction instI = codes[i];
-                    //need to be more specific because the patched method is longer, don't want to patch stuff we don't intend to 
-                    if (instI.opcode == OpCodes.Callvirt  && (MethodInfo) codes[i].operand == _targetMethodSig  && codes[j].opcode == OpCodes.Callvirt)
-                    {
-                        instI.opcode =
-                            OpCodes.Call; //replace the callVirt to get_RaceProps with call to FormerHumanUtilities.IsToolUser 
-                        instI.operand = _isToolUser; //set the method that the call op is going to call 
-                        codes[j].opcode = OpCodes.Nop; //replace the second  callVirt to a No op so we don't fuck up the stack 
-                    }
-                }
+			public static bool IngestibleNowProxy(Thing thing, Pawn pawn)
+			{
+				bool result = thing.IngestibleNow;
+				if (result && thing is Corpse corpse)
+				{
+					if (corpse.IsNotFresh() && StatsUtility.GetStat(pawn, PMStatDefOf.RottenFoodSensitivity, 300) >= 1.0f)
+						return false;
+				}
 
-                return codes;
-            }
-        }
+				return result;
+			}
 
-        [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders", typeof(Vector3), typeof(Pawn), typeof(List<FloatMenuOption>))]
-        static class AddHumanlikeOrders
-        {
-            [NotNull]
-            private static readonly MethodInfo originalMethod = AccessTools.DeclaredPropertyGetter(typeof(Thing), nameof(Thing.IngestibleNow));
+			[HarmonyTranspiler]
+			static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+			{
+				var codes = instructions.ToList();
 
-            [NotNull]
-            private static readonly MethodInfo proxyMethod = typeof(AddHumanlikeOrders).GetMethod(nameof(IngestibleNowProxy));
-
-            public static bool IngestibleNowProxy(Thing thing, Pawn pawn)
-            {
-                bool result = thing.IngestibleNow;
-                if (result && thing is Corpse corpse)
-                {
-                    if (corpse.IsNotFresh() && StatsUtility.GetStat(pawn, PMStatDefOf.RottenFoodSensitivity, 300) >= 1.0f)
-                        return false;
-                }
-
-                return result;
-            }
-
-            [HarmonyTranspiler]
-            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-            {
-                var codes = instructions.ToList();
-
-                for (var i = 3; i < codes.Count - 1; i++)
-                {
-                    if (codes[i].opcode == OpCodes.Callvirt && (MethodInfo)codes[i].operand == originalMethod)
-                    {
-                        codes[i].opcode = OpCodes.Call;
-                        codes[i].operand = proxyMethod;
-                        codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_1));
-                        break;
-                    }
-                }
-                return codes;
-            }
-        }
-    }
+				for (var i = 3; i < codes.Count - 1; i++)
+				{
+					if (codes[i].opcode == OpCodes.Callvirt && (MethodInfo)codes[i].operand == originalMethod)
+					{
+						codes[i].opcode = OpCodes.Call;
+						codes[i].operand = proxyMethod;
+						codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_1));
+						break;
+					}
+				}
+				return codes;
+			}
+		}
+	}
 }

@@ -1,0 +1,127 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RatTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>Became ratmorph</label>
+                <description>I feel like a lab rat... literally!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became ratmorph</label>
+                <description>Eeek!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became ratmorph</label>
+                <description>Am I gonna build a nest in my sleep or something?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>RatRevertedMemory</defName>
+		<stages>
+            <li>
+                <label>reverted</label>
+                <description>Back to normal! Those teeth were annoying.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw, but I kind of liked being a rat.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm never going to eat cheese again!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But I wanted to be a cute rat!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRatSnout</defName>
+		<stages>
+			<li>
+				<label>Ratty face</label>
+				<description>It's too sensitive for my liking. I'm almost overwhelmed with strong smells.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ratty face</label>
+				<description>A lot of people say rats are gross, but I think this looks good on me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Ratty face</label>
+				<description>I don't want to look like a squeaking PEST!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRatEar</defName>
+		<stages>
+			<li>
+				<label>Rat ears</label>
+				<description>They're upright at least.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat ears</label>
+				<description>Good for hearing possible enemies!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat ears</label>
+				<description>I want these cut off.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherRatTail</defName>
+		<stages>
+			<li>
+				<label>Rat tail</label>
+				<description>It trails behind me uselessly...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat tail</label>
+				<description>I wish it was better at something...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Rat tail</label>
+				<description>I feel dirty and like a thief, like this is a punishment...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>GrewBeak</defName>
+    <label>grew a beak</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef]'s lips hardening into a beak</li>
+        <li>tale_noun->[PAWN_nameDef]'s face growing into an avian beak</li>
+        <li>image->[PAWN_nameFull] yells becoming squawks [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] begins to bok involuntarily [circumstance_group]</li>
+        <li>desc_sentence->[PAWN_pronoun] lets out a few sad boks.</li>
+        <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new beak.</li>
+        <li>desc_sentence->[PAWN_pronoun] crows and tries to pull the beak off.</li>
+        <li>desc_sentence->[PAWN_pronoun] boks absentmindedly.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef ParentName="MutationTaleBase">
+    <defName>ArmsBecomeWings</defName>
+    <label>arms became wings</label>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->feathers growing from [PAWN_nameDef]'s arms</li>
+        <li>tale_noun->feathers covering [PAWN_nameDef]'s arms</li>
+        <li>image->[PAWN_nameFull] arms begins to change [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] arms change into wings [circumstance_group]</li>
+        <li>desc_sentence->[PAWN_pronoun] rubs [PAWN_possessive] new wings.</li>
+        <li>desc_sentence->[PAWN_pronoun] flaps [PAWN_possessive] new wings.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>LimbGrowsFeathers</defName>
+		<label>limb grows feathers</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s body being covered in feathers</li>
+				<li>tale_noun->[PAWN_nameDef] growing feathers all over [PAWN_possessive] body</li>
+				<li>image->[PAWN_nameFull] begins to itch themselves as feathers start growing [circumstance_group]</li>
+				<li>image->feathers begin to grow from [PAWN_nameFull]'s body [circumstance_group] </li>
+				<li>desc_sentence->[PAWN_pronoun] seems upset over [PAWN_possessive] new feathers.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleased with [PAWN_possessive] new feathers.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomeWingTips</defName>
+		<label>hands become wing tips</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] hands becoming wing tips</li>
+				<li>tale_noun->[PAWN_nameDef] hands morphing into wings</li>
+				<li>image->[PAWN_nameFull]'s fingers begin to merge together [circumstance_group]</li>
+				<li>image->feathers begin to cover [PAWN_nameFull]'s hands as they change [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] mourns the loss of [PAWN_possessive] thumbs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrewEgglayer</defName>
+		<label>grew egglayer</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] beginning to lay eggs</li>
+				<li>image->[PAWN_nameFull] sits down and begins laying eggs [circumstance_group]</li> <!-- tales for production events?-->
+				<li>image->[PAWN_nameFull] begins laying eggs in a make shift nest [circumstance_group]</li>
+				<li>circumstance_phrase->as someone begins collecting the eggs</li>
+				<li>circumstance_phrase->while hiding in a corner</li>
+				<li>desc_sentence->[PAWN_pronoun] is very embarrassed about laying eggs.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems surprisingly uncaring about laying eggs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

@@ -1,11 +1,2 @@
 <LanguageData>
-    <PMDBTaggedAnimal>Tagged Animals</PMDBTaggedAnimal>
-    <PMDBTaggedMutations>Tagged Mutations</PMDBTaggedMutations>
-    <PMGenebankTotalColumnHeader>storage space used</PMGenebankTotalColumnHeader>
-    <PMGenebankRemoveColumnHeader>remove from database</PMGenebankRemoveColumnHeader>
-    <PMGeneBankAnimalDefHeader>animal</PMGeneBankAnimalDefHeader>
-    <PMGenebankMutationDefInfoColumnHeader>mutation</PMGenebankMutationDefInfoColumnHeader>
-    <PMGenebankHeader>Genebank Storage</PMGenebankHeader>
-    <PMGenebankAvailableHeader>Available Storage</PMGenebankAvailableHeader>
-    <PMGenebankTotalHeader>Total Storage</PMGenebankTotalHeader>
 </LanguageData>

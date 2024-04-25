@@ -1,0 +1,30 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisJawPart">
+		<classInfluence>TerrierMorph</classInfluence>
+		<defName>EtherTerrierMuzzle</defName>
+		<label>terrier muzzle</label>
+		<graphics>
+			<MuzzleMale>Parts/Terrier/Terrier_Muzzle_Male</MuzzleMale>
+			<MuzzleFemale>Parts/Terrier/Terrier_Muzzle_Female</MuzzleFemale>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisEarPart">
+		<classInfluence>TerrierMorph</classInfluence>
+		<defName>EtherTerrierEar</defName>
+		<label>terrier ear</label>
+		<graphics>
+			<LeftEar>Parts/Terrier/Terrier_Ear_Left</LeftEar>
+			<RightEar>Parts/Terrier/Terrier_Ear_Right</RightEar>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisTailPart">
+		<classInfluence>TerrierMorph</classInfluence>
+		<defName>EtherTerrierTail</defName>
+		<label>terrier tail</label>
+		<graphics>
+			<Tail>Parts/Terrier/Terrier_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

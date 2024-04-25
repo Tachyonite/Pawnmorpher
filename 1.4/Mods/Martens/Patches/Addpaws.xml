@@ -1,0 +1,8 @@
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>Defs/Pawnmorph.Hediffs.MutationDef[defName="EtherDextrousPawHand"]/classInfluences</xpath>
+        <value>
+            <li>MartenMorph</li>
+        </value>
+    </Operation>
+</Patch>

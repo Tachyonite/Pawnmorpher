@@ -3,7 +3,7 @@
 	<ThingDef ParentName="PM_PillBase">
 		<defName>UdderPill</defName>
 		<label>mutapill, booster</label>
-		<description>A pill contianing reconfigured mechanites tuned specifically to boost production mutations. Taking them will cause a morph to produce resources more rapidly, at a cost of increased hunger. Taking multiple doses will further improve production rates, but is not recommended. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.
+		<description>A pill containing reconfigured mechanites tuned specifically to boost production mutations. Taking them will cause a morph to produce resources more rapidly, at a cost of increased hunger. Taking multiple doses will further improve production rates, but is not recommended. Side effects may include increased discomfort, hair growth, hunger, coma, and in rare cases, fiery explosions.
 
 Booster pills are illegal throughout civilized space, but are a staple for certain unethical farms to increase the yield of their "alternative livestock".</description>
 		<graphicData>

@@ -1,0 +1,153 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="UrsineJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<mutationMemory>EtherBearMuzzle</mutationMemory>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>teeth</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Bite</li>
+						</capacities>
+						<power>9.3</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change. A broad flat nose and a thick jaw have pressed out into the shape of a dangerous looking snout.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>4</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A large bear snout has grown on [PAWN_nameDef]'s face. Powerful jaw muscles and a brutal set of teeth make for a savage bite. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>9.3</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A large bear snout has grown on [PAWN_nameDef]'s face. Powerful jaw muscles and a brutal set of teeth make for a savage bite. Adapting to it has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>9.3</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A large bear snout has grown on [PAWN_nameDef]'s face. Powerful jaw muscles and a brutal set of teeth make for a savage bite. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<chanceFactor>1</chanceFactor>
+							<power>9.3</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="UrsineEarPart" ParentName="PawFootedEarPart" Abstract="true">
+		<mutationMemory>EtherBearEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A rounded, fuzzy ear, sits atop [PAWN_nameDef]'s head. It looks rather cute.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="UrsineTailPart" ParentName="PawFootedTailPart" Abstract="true">
+		<mutationMemory>EtherBearTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.025</ArmorRating_Sharp>
+				</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short tail, like that of a bear. Not much of a tail, really.</description>
+					<statOffsets>
+						<ArmorRating_Sharp>+0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+</Defs>

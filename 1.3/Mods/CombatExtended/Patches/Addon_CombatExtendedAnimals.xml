@@ -1,0 +1,1216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!--Updated version of the original patch. Most of this worked fine already.-->
+      <!-- ========== Base ========== -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[@Name="PMChaomorphBase"]/race/baseBodySize</xpath>
+        <value>
+          <baseBodySize>2.1</baseBodySize>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[@Name="PMChaomeldBase"]/race/baseBodySize</xpath>
+        <value>
+          <baseBodySize>2.15</baseBodySize>
+        </value>
+      </li>
+      <!-- ========== Chaoboar ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="Chaoboar"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaoboar"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.16</MeleeDodgeChance>
+          <MeleeCritChance>0.09</MeleeCritChance>
+          <MeleeParryChance>0.07</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaoboar"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>horns</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>26</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>tusk</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>25</power>
+              <cooldownTime>2</cooldownTime>
+              <linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.208</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>tusk</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>22</power>
+              <cooldownTime>1.89</cooldownTime>
+              <chanceFactor>0.65</chanceFactor>
+              <linkedBodyPartsGroup>TuskAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.39</armorPenetrationSharp>
+              <armorPenetrationBlunt>2.940</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left hoofhand</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>4</power>
+              <cooldownTime>1.26</cooldownTime>
+              <linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right hoofhand</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>4</power>
+              <cooldownTime>1.26</cooldownTime>
+              <linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== Chaoboom ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="Chaoboom"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaoboom"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.04</MeleeDodgeChance>
+          <MeleeCritChance>0.11</MeleeCritChance>
+          <MeleeParryChance>0.18</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaoboom"]/comps</xpath>
+        <value>
+          <li Class="CombatExtended.CompProperties_ShearableRenameable">
+            <compClass>CombatExtended.CompShearableRenameable</compClass>
+            <growthLabel>Secretion level</growthLabel>
+            <shearIntervalDays>10</shearIntervalDays>
+            <woolAmount>18</woolAmount>
+            <woolDef>FSX</woolDef>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaoboom"]</xpath>
+        <value>
+          <butcherProducts>
+            <FSX>21</FSX>
+          </butcherProducts>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaoboom"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>13</power>
+              <cooldownTime>1.65</cooldownTime>
+              <chanceFactor>0.6</chanceFactor>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horns</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.65</cooldownTime>
+              <chanceFactor>0.2</chanceFactor>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left hoof</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>9</power>
+              <cooldownTime>1.2</cooldownTime>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right hoof</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>9</power>
+              <cooldownTime>1.2</cooldownTime>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+              <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== Chaocow ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="Chaocow"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaocow"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>2.3</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaocow"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.09</MeleeDodgeChance>
+          <MeleeCritChance>0.38</MeleeCritChance>
+          <MeleeParryChance>0.27</MeleeParryChance>
+          <ArmorRating_Blunt>0.43</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaocow"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>13</power>
+              <cooldownTime>1.65</cooldownTime>
+              <chanceFactor>0.6</chanceFactor>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horns</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>tusk</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>25</power>
+              <cooldownTime>2</cooldownTime>
+              <linkedBodyPartsGroup>TuskAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.208</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.5</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>tusk</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>22</power>
+              <cooldownTime>1.89</cooldownTime>
+              <chanceFactor>0.65</chanceFactor>
+              <linkedBodyPartsGroup>TuskAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.39</armorPenetrationSharp>
+              <armorPenetrationBlunt>2.940</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.65</cooldownTime>
+              <chanceFactor>0.2</chanceFactor>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationSharp>0.178</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationSharp>0.178</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.423</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== Chaofox ========== -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaofox"]/statBases/MoveSpeed</xpath>
+        <value>
+          <MoveSpeed>7.9</MoveSpeed>
+          <!--Reduced from 10, to stay in rough proportion with Chaodino speed.-->
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaofox"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.18</MeleeDodgeChance>
+          <MeleeCritChance>0.63</MeleeCritChance>
+          <MeleeParryChance>0.23</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaofox"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.45</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.250</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>0.267</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.178</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>0.267</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.178</armorPenetrationSharp>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="Chaofox"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <!-- ========== Chaodino ========== -->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaodino"]/statBases/MoveSpeed</xpath>
+        <value>
+          <MoveSpeed>12.9</MoveSpeed>
+          <!--Reduced from 15, since CE uses km/h divided by 10 for MoveSpeed, and 150 km/h is more than twice the estimated speed of the fastest dinosaur as well as faster than the cheetah, the fastest living land animal.-->
+        </value>
+      </li>
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="Chaodino"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Birdlike</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Chaodino"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.23</MeleeDodgeChance>
+          <MeleeCritChance>2.07</MeleeCritChance>
+          <MeleeParryChance>0.28</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaodino"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>1</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaodino"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Chaodino"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19.2</power>
+              <cooldownTime>1.93</cooldownTime>
+              <linkedBodyPartsGroup>Beak</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>14</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <chanceFactor>0.6</chanceFactor>
+              <armorPenetrationSharp>0.213</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.250</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>1</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>0.5</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationSharp>0.225</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>18</power>
+              <cooldownTime>0.5</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationSharp>0.225</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.4</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== ChaomeldDog ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="ChaomeldDog"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ChaomeldDog"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.09</MeleeDodgeChance>
+          <MeleeCritChance>0.47</MeleeCritChance>
+          <MeleeParryChance>0.28</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaomeldDog"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19.2</power>
+              <cooldownTime>1.65</cooldownTime>
+              <chanceFactor>0.7</chanceFactor>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.213</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationBlunt>0.221</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== ChaomeldDragon ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="ChaomeldDragon"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ChaomeldDragon"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.09</MeleeDodgeChance>
+          <MeleeCritChance>0.47</MeleeCritChance>
+          <MeleeParryChance>0.28</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaomeldDragon"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>0.2</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaomeldDragon"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>1</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaomeldDragon"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19.2</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>dragonbreath</label>
+              <capacities>
+                <li>DragonBreath</li>
+              </capacities>
+              <power>23.4</power>
+              <cooldownTime>0.1</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>dragonbreath</label>
+              <capacities>
+                <li>DragonBreath</li>
+              </capacities>
+              <power>23.4</power>
+              <cooldownTime>0.1</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.1</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.221</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== ChaomeldCow ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="ChaomeldCow"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ChaomeldCow"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.09</MeleeDodgeChance>
+          <MeleeCritChance>0.38</MeleeCritChance>
+          <MeleeParryChance>0.27</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaomeldCow"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19.2</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>20</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.1</armorPenetrationSharp>
+              <armorPenetrationBlunt>0.221</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== ChaofusionRhino ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Birdlike</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>1</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>0.35</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>5</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.07</MeleeDodgeChance>
+          <MeleeCritChance>0.54</MeleeCritChance>
+          <MeleeParryChance>0.50</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="ChaofusionRhino"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19.2</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <chanceFactor>0.7</chanceFactor>
+              <armorPenetrationSharp>0.203</armorPenetrationSharp>
+              <armorPenetrationBlunt>1.440</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>8</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>10</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>0.125</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>26</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.341</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Poke</li>
+              </capacities>
+              <power>30</power>
+              <cooldownTime>1.65</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.221</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>37</power>
+              <cooldownTime>1.85</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.243</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>37</power>
+              <cooldownTime>1.85</cooldownTime>
+              <chanceFactor>0.65</chanceFactor>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.457</armorPenetrationSharp>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== ChaoThrumbo ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/statBases</xpath>
+        <value>
+          <MeleeDodgeChance>0.09</MeleeDodgeChance>
+          <MeleeCritChance>0.76</MeleeCritChance>
+          <MeleeParryChance>0.45</MeleeParryChance>
+          <Flammability>0.6</Flammability>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/statBases/ArmorRating_Blunt</xpath>
+        <value>
+          <ArmorRating_Blunt>25</ArmorRating_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/statBases/ArmorRating_Sharp</xpath>
+        <value>
+          <ArmorRating_Sharp>18</ArmorRating_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/statBases/ArmorRating_Heat</xpath>
+        <value>
+          <ArmorRating_Heat>0.8</ArmorRating_Heat>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>5</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="PM_Chaothrumbo"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Cut</li>
+              </capacities>
+              <power>62</power>
+              <cooldownTime>2.52</cooldownTime>
+              <linkedBodyPartsGroup>HornAttackTool</linkedBodyPartsGroup>
+              <armorPenetrationSharp>6</armorPenetrationSharp>
+              <armorPenetrationBlunt>20</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>horn</label>
+              <capacities>
+                <li>Stab</li>
+              </capacities>
+              <power>57</power>
+              <cooldownTime>2.52</cooldownTime>
+              <chanceFactor>0.65</chanceFactor>
+              <linkedBodyPartsGroup>HornAttackTool_2</linkedBodyPartsGroup>
+              <armorPenetrationSharp>16</armorPenetrationSharp>
+              <armorPenetrationBlunt>12</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claws</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>22</power>
+              <cooldownTime>2.13</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftLeg</linkedBodyPartsGroup>
+              <armorPenetrationSharp>4.2</armorPenetrationSharp>
+              <armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claws</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>22</power>
+              <cooldownTime>2.13</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightLeg</linkedBodyPartsGroup>
+              <armorPenetrationSharp>4.2</armorPenetrationSharp>
+              <armorPenetrationBlunt>14.640</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>19</power>
+              <cooldownTime>1.62</cooldownTime>
+              <chanceFactor>0.7</chanceFactor>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <armorPenetrationSharp>0.09</armorPenetrationSharp>
+              <armorPenetrationBlunt>2.016</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>2.52</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>6</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <!-- ========== Hellhound ========== -->
+      <li Class="PatchOperationAddModExtension">
+        <xpath>Defs/ThingDef[defName="EtherHellhound"]</xpath>
+        <value>
+          <li Class="CombatExtended.RacePropertiesExtensionCE">
+            <bodyShape>Quadruped</bodyShape>
+          </li>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="EtherHellhound"]/statBases/MoveSpeed</xpath>
+        <value>
+          <MoveSpeed>7</MoveSpeed>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="EtherHellhound"]/statBases</xpath>
+        <value>
+          <ArmorRating_Blunt>0.075</ArmorRating_Blunt>
+          <ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+          <MeleeDodgeChance>0.21</MeleeDodgeChance>
+          <MeleeCritChance>0.20</MeleeCritChance>
+          <MeleeParryChance>0.09</MeleeParryChance>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="EtherHellhound"]/tools</xpath>
+        <value>
+          <tools>
+            <li Class="CombatExtended.ToolCE">
+              <label>left claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.19</cooldownTime>
+              <linkedBodyPartsGroup>FrontLeftPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.75</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>right claw</label>
+              <capacities>
+                <li>Scratch</li>
+              </capacities>
+              <power>11</power>
+              <cooldownTime>1.19</cooldownTime>
+              <linkedBodyPartsGroup>FrontRightPaw</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <armorPenetrationBlunt>2.250</armorPenetrationBlunt>
+              <armorPenetrationSharp>0.75</armorPenetrationSharp>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>razorfangs</label>
+              <capacities>
+                <li>Bite</li>
+              </capacities>
+              <power>24</power>
+              <cooldownTime>1.46</cooldownTime>
+              <linkedBodyPartsGroup>Teeth</linkedBodyPartsGroup>
+              <surpriseAttack>
+                <extraMeleeDamages>
+                  <li>
+                    <def>Stun</def>
+                    <amount>20</amount>
+                  </li>
+                </extraMeleeDamages>
+              </surpriseAttack>
+              <chanceFactor>2</chanceFactor>
+              <armorPenetrationSharp>1.6</armorPenetrationSharp>
+              <armorPenetrationBlunt>8.863</armorPenetrationBlunt>
+            </li>
+            <li Class="CombatExtended.ToolCE">
+              <label>head</label>
+              <capacities>
+                <li>Blunt</li>
+              </capacities>
+              <power>4</power>
+              <cooldownTime>3.2</cooldownTime>
+              <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+              <chanceFactor>0.2</chanceFactor>
+              <armorPenetrationBlunt>1.225</armorPenetrationBlunt>
+            </li>
+          </tools>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="EtherHellhound"]/race/baseHealthScale</xpath>
+        <value>
+          <baseHealthScale>1.25</baseHealthScale>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/PawnKindDef[defName="EtherHellhound"]/combatPower</xpath>
+        <value>
+          <combatPower>140</combatPower>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

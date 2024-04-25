@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>OstrichmorphGeneral</defName>
+		<title>track runner</title>
+		<titleShort>ostrichmorph</titleShort>
+		<baseDesc>[PAWN_nameDef] was a runner in desperate need of a 1st place trophy. Unfortunately, the performance enhancing drugs did more than just make [PAWN_nameDef] a better runner.</baseDesc>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>OstrichMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

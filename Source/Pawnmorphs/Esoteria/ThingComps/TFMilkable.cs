@@ -7,62 +7,62 @@ using Verse;
 
 namespace Pawnmorph.ThingComps
 {
-    /// <summary>
-    /// thing comp for making certain animals drop tf milk if they are 'mutagen infused' 
-    /// </summary>
-    /// <seealso cref="RimWorld.CompMilkable" />
-    public class TFMilkable : CompMilkable
-    {
-        [NotNull]
-        private TFMilkableProps TFComp => (TFMilkableProps) props;
+	/// <summary>
+	/// thing comp for making certain animals drop tf milk if they are 'mutagen infused' 
+	/// </summary>
+	/// <seealso cref="RimWorld.CompMilkable" />
+	public class TFMilkable : CompMilkable
+	{
+		[NotNull]
+		private TFMilkableProps TFComp => (TFMilkableProps)props;
 
-        /// <summary>
-        /// Gets the resource definition.
-        /// </summary>
-        /// <value>
-        /// The resource definition.
-        /// </value>
-        protected override ThingDef ResourceDef
-        {
-            get
-            {
-                if (IsMutagenInfused)
-                {
-                    return TFComp.mutagenicProduct;
-                }
-                else
-                {
-                    return base.ResourceDef; 
-                }
-            }
-        }
+		/// <summary>
+		/// Gets the resource definition.
+		/// </summary>
+		/// <value>
+		/// The resource definition.
+		/// </value>
+		protected override ThingDef ResourceDef
+		{
+			get
+			{
+				if (IsMutagenInfused)
+				{
+					return TFComp.mutagenicProduct;
+				}
+				else
+				{
+					return base.ResourceDef;
+				}
+			}
+		}
 
-        bool IsMutagenInfused
-        {
-            get { return parent.GetComp<AspectTracker>()?.Contains(AspectDefOf.MutagenInfused, 0) == true;  }
-        }
+		bool IsMutagenInfused
+		{
+			get { return (parent as Pawn)?.GetAspectTracker()?.Contains(AspectDefOf.MutagenInfused, 0) == true; }
+		}
 
 
-    }
+	}
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="RimWorld.CompProperties_Milkable" />
-    public class TFMilkableProps : CompProperties_Milkable
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TFMilkableProps"/> class.
-        /// </summary>
-        public TFMilkableProps()
-        {
-            compClass = typeof(TFMilkable);
-        }
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <seealso cref="RimWorld.CompProperties_Milkable" />
+	public class TFMilkableProps : CompProperties_Milkable
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TFMilkableProps"/> class.
+		/// </summary>
+		public TFMilkableProps()
+		{
+			compClass = typeof(TFMilkable);
+		}
 
-        /// <summary>
-        /// The mutagenic product
-        /// </summary>
-        public ThingDef mutagenicProduct; 
+		/// <summary>
+		/// The mutagenic product
+		/// </summary>
+		public ThingDef mutagenicProduct;
 
-    }
+	}
 }

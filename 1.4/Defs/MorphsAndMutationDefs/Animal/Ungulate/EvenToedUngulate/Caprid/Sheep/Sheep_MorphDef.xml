@@ -1,0 +1,22 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CapridMorph">
+		<defName>SheepMorph</defName>
+		<label>sheepmorph</label>
+		<description>With cute, fluffy wool and cuboid pupils, sheepmorphs are a 'farm'-type morph who can be shorn for wool. They often have hooves and are covered in wool that makes them useful in cold biomes.</description>
+		<race>Sheep</race>
+		<categories>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphSheepTF</fullTransformation>
+		<partialTransformation>PawnmorphSheepTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(220,220,220)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>SheepTransformationMemory</transformationMemory>
+			<revertedMemory>SheepRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

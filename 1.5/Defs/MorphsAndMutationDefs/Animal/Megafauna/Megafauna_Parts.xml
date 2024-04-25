@@ -1,0 +1,50 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaJawPart" ParentName="AnimalJawPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has been rubbing his jaw and grunting in discomfort. Maybe [PAWN_pronoun] has a tooth ache?</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw, face, head, it's all growing! Flesh and bone twisting and pushing into something... big.</description>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<graphics>
+						<Muzzle>Parts/Partials/PartialMuzzle/PartialSnout</Muzzle>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaEarPart" ParentName="AnimalEarPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaTailPart" ParentName="AnimalTailPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="MegafaunaHornPart" ParentName="AnimalHornPart" Abstract="true">
+		<categories>
+			<li>Powerful</li>
+		</categories>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

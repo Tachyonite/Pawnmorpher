@@ -1,0 +1,35 @@
+<Defs>
+	<TaleDef Name="LegMutationTaleBase" ParentName="MutationTaleBase" Abstract="true">
+		<defName>LegBecame</defName>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s legs became that of an animal</li>
+				<li>image->[PAWN_nameFull]'s legs begin to change structure [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems unsteady on [PAWN_possessive] new legs.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems remarkably comfortable with [PAWN_possessive] new legs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="LegMutationTaleBase">
+		<defName>LegBecameDigitgrade</defName>
+		<label>leg became digitigrade</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s legs became digitigrade</li>
+				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_possessive] to walk on [PAWN_possessive] toes [circumstance_group]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="LegMutationTaleBase">
+		<defName>LegBecameUnguligrade</defName>
+		<label>leg became unguligrade</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s legs became unguligrade</li>
+				<li>image->[PAWN_nameFull]'s legs change structure, forcing [PAWN_possessive] to walk on [PAWN_possessive] nails [circumstance_group]</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

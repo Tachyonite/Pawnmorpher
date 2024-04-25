@@ -28,21 +28,6 @@
 			</li>
 		</value>
 	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>/Defs/ThingDef[@Name="BasePawn"]/comps</xpath>
-		<value>
-			<li>
-				<compClass>Pawnmorph.AspectTracker</compClass>
-			</li>
-			<li>
-				<compClass>Pawnmorph.MutationTracker</compClass>
-			</li>
-			<li>
-				<compClass>Pawnmorph.ThingComps.SapienceTracker</compClass>
-			</li>
-		</value>
-	</Operation>
 	
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/ThingDef[@Name="AnimalThingBase"]/recipes</xpath>

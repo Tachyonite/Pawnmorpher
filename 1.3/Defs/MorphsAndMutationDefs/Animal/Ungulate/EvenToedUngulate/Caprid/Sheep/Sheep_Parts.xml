@@ -1,0 +1,198 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridJawPart">
+		<classInfluence>SheepMorph</classInfluence>
+		<defName>EtherSheepSnout</defName>
+		<label>sheep snout</label>
+		<graphics>
+			<Muzzle>Parts/Sheep/Sheep_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face with squared off teeth great for chewing the cud. [PAWN_nameDef] smiles sheepishly whenever [PAWN_pronoun]'s caught in a baa. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridEarPart">
+		<classInfluence>SheepMorph</classInfluence>
+		<defName>EtherSheepEar</defName>
+		<label>sheep ear</label>
+		<graphics>
+			<LeftEar>Parts/Sheep/Sheep_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Sheep/Sheep_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Sheep/Sheep_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Sheep/Sheep_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ears are growing longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A fluffy, ovine ear flicks idly at the side of [PAWN_nameDef]'s head, like a sheep's.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridTailPart">
+		<classInfluence>SheepMorph</classInfluence>
+		<defName>EtherSheepTail</defName>
+		<label>sheep tail</label>
+		<graphics>
+			<Tail>Parts/Sheep/Sheep_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A sheeplike tail. It's very wooly but short and not incredibly useful.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWoolySheep</defName>
+		<classInfluence>SheepMorph</classInfluence>
+		<label>thick wool</label>
+		<description>Thick wool grows over the torso constantly, different from the comparatively lighter wool that grows elsewhere. It can be shaved without anyone's help.</description>
+		<maxSeverity>1</maxSeverity>
+		<initialSeverity>0.01</initialSeverity>
+		<parts>
+			<li>Torso</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ShavedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_ShaveSelf</jobGiver>
+				<etherBondThought>ShavedMyselfBond</etherBondThought>
+				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolSheep</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>5</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>4</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.3</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>3</amount>
+						<statOffsets>
+							<HungerRateMultiplier>0.6</HungerRateMultiplier>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>2</amount>
+						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<HungerRateMultiplier>1.0</HungerRateMultiplier>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CapridHornPart">
+		<defName>EtherSheepHorns</defName>
+		<classInfluence>SheepMorph</classInfluence>
+		<label>ram horns</label>
+		<description>The curled horns of a ram. They start small, but will eventually grow quite large. Horn growth does not require the constant work of mutagenic mechanites.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>nubs</stageKey>
+				<values>
+					<labelOverride>small horns</labelOverride>
+					<description>Small horns top [PAWN_nameDef]'s head, which add a sizeable heft to a headbutt. They are small for now, and will take many weeks to grow to full size.</description>
+					<graphics>
+						<Horns>Parts/Sheep/Sheep_Horns_A</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<labelOverride>curled horns</labelOverride>
+					<description>Hefty Ram horns grows [PAWN_nameDef]'s head. While they are still growing they already add a lot of power to his attacks.</description>
+					<graphics>
+						<Horns>Parts/Sheep/Sheep_Horns_B</Horns>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<description>A pair of Burly Ram horns crowns [PAWN_nameDef]'s head. The power they add will earn respect from even the fiercest of enemy.</description>
+					<graphics>
+						<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>Magnificent horns wreathes [PAWN_nameDef]'s head like a crown. They demand reverance from animals who innately understand the owner's whims.</description>
+				<graphics>
+					<Horns>Parts/Sheep/Sheep_Horns_C</Horns>
+				</graphics>
+				<statOffsets>
+					<TameAnimalChance>1</TameAnimalChance>
+					<TrainAnimalChance>0.5</TrainAnimalChance>
+				</statOffsets>
+				<verbOverrides>
+					<li>
+						<label>horns</label>
+						<power>5.5</power>
+					</li>
+				</verbOverrides>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

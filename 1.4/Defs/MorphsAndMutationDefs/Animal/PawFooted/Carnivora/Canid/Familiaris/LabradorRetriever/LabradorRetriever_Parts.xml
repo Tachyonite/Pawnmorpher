@@ -1,0 +1,31 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisJawPart">
+		<classInfluence>LabradorRetrieverMorph</classInfluence>
+		<defName>EtherLabradorRetrieverJaw</defName>
+		<label>labrador snout</label>
+		<graphics>
+			<Muzzle>Parts/LabradorRetriever/LabradorRetriever_Muzzle</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisEarPart">
+		<classInfluence>LabradorRetrieverMorph</classInfluence>
+		<defName>EtherLabradorRetrieverEar</defName>
+		<label>labrador ear</label>
+		<graphics>
+			<LeftEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/LabradorRetriever/LabradorRetriever_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/LabradorRetriever/LabradorRetriever_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/LabradorRetriever/LabradorRetriever_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FamiliarisTailPart">
+		<classInfluence>LabradorRetrieverMorph</classInfluence>
+		<defName>EtherLabradorRetrieverTail</defName>
+		<label>labrador tail</label>
+		<graphics>
+			<Tail>Parts/LabradorRetriever/LabradorRetriever_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

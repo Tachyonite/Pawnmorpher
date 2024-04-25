@@ -3,15 +3,15 @@
 
 namespace Pawnmorph.DebugUtils
 {
-    /// <summary>
-    /// interface for things that want to give more information about their state that won't fit in ToString
-    /// </summary>
-    public interface IDebugString
-    {
-        /// <summary>
-        /// returns a full, detailed, representation of the object in string form 
-        /// </summary>
-        /// <returns></returns>
-        string ToStringFull(); 
-    }
+	/// <summary>
+	/// interface for things that want to give more information about their state that won't fit in ToString
+	/// </summary>
+	public interface IDebugString
+	{
+		/// <summary>
+		/// returns a full, detailed, representation of the object in string form 
+		/// </summary>
+		/// <returns></returns>
+		string ToStringFull();
+	}
 }

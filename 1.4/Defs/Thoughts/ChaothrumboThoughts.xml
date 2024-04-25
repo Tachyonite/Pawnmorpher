@@ -1,0 +1,65 @@
+<Defs>
+    <ThoughtDef Name="ChaothrumboAmbientThought" Abstract="true">
+        <showBubble>true</showBubble>
+        <icon>Things/Mote/ThoughtSymbol/Skull</icon>
+        <durationDays>2</durationDays>
+        <stackLimit>2</stackLimit>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="ChaothrumboAmbientThought">
+        <defName>PM_CThrumboAmbient</defName>
+        <thoughtClass>Pawnmorph.Thoughts.Memory_FactionObservation</thoughtClass>
+        <stages>
+            <li>
+                <label>saw neutral chaothrumbo</label>
+                <description>It's a little terrifying, but it's not coming after us.</description>
+                <visible>true</visible>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+            <li>
+                <label>saw allied chaothrumbo</label>
+                <description>It's on our side, we're practically unstoppable.</description>
+                <visible>true</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>saw enemy chaothrumbo</label>
+                <description>Oh gods, it's huge! How in the hell do we stop that thing?!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+        <defName>PM_CThrumboTfThought</defName>
+        <stages>
+            <li>
+                <label>transformed</label>
+                <description>I...I'm a massive, unnatural creature...this is going to take some time to get used to.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed</label>
+                <description>I'm a massive, hulking mountain of flesh and fur and horns...I feel so powerful!</description>
+                <visible>true</visible>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>transformed</label>
+                <description>I'm a massive, hulking pile of flesh and fur and horns...this is horrific...I want to be my old self again, please!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-20</baseMoodEffect>
+            </li>
+            <li>
+                <label>Bow before me!</label>
+                <description>I'm a massive, hulking titan of flesh and fur and horns...this is the best thing that's ever happened to me!</description>
+                <visible>true</visible>
+                <baseMoodEffect>30</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

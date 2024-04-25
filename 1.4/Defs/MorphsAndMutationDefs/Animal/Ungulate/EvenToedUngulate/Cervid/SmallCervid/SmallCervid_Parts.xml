@@ -1,0 +1,73 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidJawPart" ParentName="CervidJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<statOffsets>
+						<PawnBeauty>1</PawnBeauty>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<statOffsets>
+						<PawnBeauty>1</PawnBeauty>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<statOffsets>
+						<PawnBeauty>1.2</PawnBeauty>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidEarPart" ParentName="CervidEarPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidTailPart" ParentName="CervidTailPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="SmallCervidHornPart" ParentName="CervidHornPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>short</stageKey>
+				<values>
+					<label>short antlers</label>
+					<statOffsets>
+						<PawnBeauty>+0.5</PawnBeauty>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>horns</stageKey>
+				<values>
+					<label></label>
+					<statOffsets>
+						<PawnBeauty>+1.0</PawnBeauty>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>horns</label>
+							<chanceFactor>1</chanceFactor>
+							<power>13.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

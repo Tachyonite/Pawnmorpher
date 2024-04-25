@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" Name="SensitiveFoodMorph">
+		<!-- abstract def for all morphs that have bad thoughts when they eat meat of the same animal -->
+		<raceSettings>
+			<thoughtSettings>
+				<ateAnimalThought>
+					<thought>MorphAteAnimalMeatDirect</thought>
+					<ingredientThought>MorphAteAnimalMeatAsIngredient</ingredientThought>
+				</ateAnimalThought>
+			</thoughtSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+
+	<Pawnmorph.MorphDef Abstract="true" Name="ChimeraMorph" ParentName="SensitiveFoodMorph">
+		<categories>
+			<li>Chimera</li>
+		</categories>
+		<noInjector>true</noInjector>
+		<fullTransformation>FullRandomTFAnyOutcome</fullTransformation>
+		<partialTransformation>FullRandomTF</partialTransformation>
+		<classification>Animal</classification>
+	</Pawnmorph.MorphDef>
+</Defs>

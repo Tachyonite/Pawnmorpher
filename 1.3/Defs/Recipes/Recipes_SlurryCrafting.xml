@@ -21,6 +21,14 @@
 			<li>MechaniteSlurry</li>
 		  </disallowedThingDefs>
 		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<categories>
+			  <li>Root</li>
+			</categories>
+			<disallowedThingDefs>
+			  <li>Mutanite</li>
+			</disallowedThingDefs>
+		  </defaultIngredientFilter>
 	</RecipeDef>
 	
 	<RecipeDef ParentName="Make_SlurryBase">

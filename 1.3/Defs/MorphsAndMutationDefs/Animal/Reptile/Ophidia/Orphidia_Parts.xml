@@ -1,0 +1,64 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="OphidiaJawPart" ParentName="ReptileJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. Adaptation has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>Long hollow fangs protrude from [PAWN_nameDef]'s elongated face, causing saliva to drip from between their scaly lips. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name="OphidiaTailPart" ParentName="ReptileTailPart" Abstract="true">
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s back feels a bit strange, but nothing that unusual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<description>A tail is growing behind [PAWN_nameDef].</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s tail is getting longer and longer. in the same time [PAWN_nameDef]'s legs feel shorter and weaker than before</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.10</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large and muscular tail has replaced [PAWN_nameDef]'s legs, making their lower half look like that of a snake.</description>
+					<statOffsets>
+						<ArmorRating_Sharp>0.15</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
@@ -7,148 +6,130 @@ using Verse;
 
 namespace Pawnmorph.Hediffs
 {
-    /// <summary>
-    /// An abstracty class for hediffs that need to do things on stage changes.
-    /// Also implements the IDescriptiveHediff interface
-    /// </summary>
-    public abstract class Hediff_StageChanges : Hediff_Descriptive
-    {
-        // Cache the stage index and stage, because CurStage/CurStageIndex both
-        // calculate it every time they're called and it can get expensive
-        private int cachedStageIndex = -1;
-        [Unsaved] private HediffStage cachedStage;
+	/// <summary>
+	/// An abstract class for hediffs that need to do things on stage changes.
+	/// Also implements the IDescriptiveHediff interface
+	/// </summary>
+	public abstract class Hediff_StageChanges : Hediff_Descriptive
+	{
+		// Cache the stage index and stage, because CurStage/CurStageIndex both
+		// calculate it every time they're called and it can get expensive
+		private int cachedStageIndex = -1;
+		[Unsaved] private HediffStage cachedStage;
+		// If the severity is within these bounds, we are still in the same stage.  Otherwise we've had a stage change.
+		[Unsaved] private float minStageSeverity = float.NegativeInfinity;
+		[Unsaved] private float maxStageSeverity = float.PositiveInfinity;
 
-        private List<Abilities.MutationAbility> abilities = new List<Abilities.MutationAbility>();
-        private List<IStageChangeObserverComp> observerComps;
-        private IEnumerable<IStageChangeObserverComp> ObserverComps
-        {
-            get
-            {
-                if (observerComps == null)
-                    observerComps = comps.MakeSafe().OfType<IStageChangeObserverComp>().ToList();
-                return observerComps;
-            }
-        }
 
-        // CurStageIndex is kind of expensive to calculate, so use the cache when possible
+		/// <summary>
+		/// Whether the base Hediff tick is called.  Should be false for anything that doesn't need the vanilla tick behavior for
+		/// performance reasons.
+		/// </summary>
+		protected bool TickBase = true;
 
-        /// <summary>
-        /// Gets the index of the current stage.
-        /// </summary>
-        /// <value>
-        /// The index of the current stage.
-        /// </value>
-        public override int CurStageIndex => cachedStageIndex;
+		private List<IStageChangeObserverComp> observerComps;
+		private IEnumerable<IStageChangeObserverComp> ObserverComps
+		{
+			get
+			{
+				if (observerComps == null)
+					observerComps = comps.MakeSafe().OfType<IStageChangeObserverComp>().ToList();
+				return observerComps;
+			}
+		}
 
-        /// <summary>
-        /// Gets the current stage.
-        /// </summary>
-        /// <value>
-        /// The current stage.
-        /// </value>
-        [CanBeNull]
-        public override HediffStage CurStage
-        {
-            get { return cachedStage ?? (cachedStage = def?.stages?[base.CurStageIndex]); }
-        }
+		// CurStageIndex is kind of expensive to calculate, so use the cache when possible
 
-        /// <summary>
-        /// Called after the hediff is created, but before it's added to a pawn
-        /// </summary>
-        public override void PostMake()
-        {
-            base.PostMake();
-            RecacheStage(base.CurStageIndex);
-        }
+		/// <summary>
+		/// Gets the index of the current stage.
+		/// </summary>
+		/// <value>
+		/// The index of the current stage.
+		/// </value>
+		public override int CurStageIndex => cachedStageIndex;
 
-        /// <summary>
-        /// Ticks this instance.
-        /// </summary>
-        public override void Tick()
-        {
-            base.Tick();
+		/// <summary>
+		/// Gets the current stage.
+		/// </summary>
+		/// <value>
+		/// The current stage.
+		/// </value>
+		[CanBeNull]
+		public override HediffStage CurStage => cachedStage;
 
-            int stageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
-            if (stageIndex != cachedStageIndex)
-            {
-                var oldStage = cachedStage;
-                RecacheStage(stageIndex);
-                OnStageChanged(oldStage, cachedStage);
-                GenerateAbilities(cachedStage);
+		/// <summary>
+		/// Called after the hediff is created, but before it's added to a pawn
+		/// </summary>
+		public override void PostMake()
+		{
+			base.PostMake();
+			RecacheStage(base.CurStageIndex);
+		}
 
-                foreach (var comp in ObserverComps)
-                    comp.OnStageChanged(oldStage, cachedStage);
-            }
+		/// <summary>
+		/// Ticks this instance.
+		/// </summary>
+		public override void Tick()
+		{
+			if (TickBase)
+				base.Tick();
+			else
+				ageTicks++;
 
-            foreach (Abilities.MutationAbility ability in abilities)
-            {
-                ability.Tick();
-            }
-        }
+			// As long as we're within these bounds, the stage hasn't changed yet
+			float sev = base.severityInt;
+			if (sev < minStageSeverity || sev >= maxStageSeverity)
+				UpdateStage();
+		}
 
-        private void GenerateAbilities(HediffStage stage)
-        {
-            if (stage is MutationStage mutationStage)
-            {
-                abilities = new List<Abilities.MutationAbility>();
-                if (mutationStage.abilities == null || mutationStage.abilities.Count == 0)
-                    return;
+		private void UpdateStage()
+		{
+			int newStageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
+			var oldStage = cachedStage;
+			RecacheStage(newStageIndex);
+			OnStageChanged(oldStage, cachedStage);
 
-                //Abilities.MutationAbility ability;
-                foreach (Abilities.MutationAbilityDef abilityDef in mutationStage.abilities)
-                {
-                    if (abilityDef.abilityClass.BaseType == typeof(Abilities.MutationAbility))
-                    {
-                        Abilities.MutationAbility ability = (Abilities.MutationAbility)Activator.CreateInstance(abilityDef.abilityClass, abilityDef);
-                        abilities.Add(ability);
-                        ability.Initialize(pawn);
-                    }
-                }
-            }
-        }
+			foreach (var comp in ObserverComps)
+				comp.OnStageChanged(oldStage, cachedStage);
+		}
 
-        public override IEnumerable<Gizmo> GetGizmos()
-        {
-            foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
+		/// <summary>
+		/// Reloads the stage cache
+		/// </summary>
+		/// <param name="stageIndex">Stage index.</param>
+		private void RecacheStage(int stageIndex)
+		{
+			cachedStageIndex = stageIndex;
+			if (def?.stages != null)
+			{
+				var stages = def.stages;
+				cachedStage = stages[cachedStageIndex];
+				minStageSeverity = cachedStage?.minSeverity ?? float.NegativeInfinity;
 
-            foreach (Abilities.MutationAbility item in abilities)
-                yield return item.Gizmo;
-        }
+				if (stages.Count > stageIndex + 1)
+					maxStageSeverity = stages[stageIndex + 1]?.minSeverity ?? float.PositiveInfinity;
+				else
+					maxStageSeverity = float.PositiveInfinity;
+			}
+		}
 
-        /// <summary>
-        /// Reloads the stage cache
-        /// </summary>
-        /// <param name="stageIndex">Stage index.</param>
-        private void RecacheStage(int stageIndex)
-        {
-            cachedStageIndex = stageIndex;
-            cachedStage = def?.stages?[cachedStageIndex];
-        }
+		/// <summary>
+		/// Called when the stage changes
+		/// </summary>
+		protected abstract void OnStageChanged([NotNull] HediffStage oldStage, [NotNull] HediffStage newStage);
 
-        /// <summary>
-        /// Called when the stage changes
-        /// </summary>
-        protected abstract void OnStageChanged([NotNull] HediffStage oldStage,  [NotNull] HediffStage newStage);
+		/// <summary>
+		/// Exposes data to be saved/loaded from XML upon saving the game
+		/// </summary>
+		public override void ExposeData()
+		{
+			base.ExposeData();
+			Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), base.CurStageIndex);
 
-        /// <summary>
-        /// Exposes data to be saved/loaded from XML upon saving the game
-        /// </summary>
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look(ref cachedStageIndex, nameof(cachedStageIndex), base.CurStageIndex);
-            Scribe_Collections.Look(ref abilities, nameof(abilities));
-
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            {
-                RecacheStage(cachedStageIndex);
-
-                // Null if not previously saved.
-                if (abilities == null)
-                    abilities = new List<Abilities.MutationAbility>();
-
-                GenerateAbilities(cachedStage);
-            }
-        }
-    }
+			if (Scribe.mode == LoadSaveMode.PostLoadInit)
+			{
+				RecacheStage(cachedStageIndex);
+			}
+		}
+	}
 }

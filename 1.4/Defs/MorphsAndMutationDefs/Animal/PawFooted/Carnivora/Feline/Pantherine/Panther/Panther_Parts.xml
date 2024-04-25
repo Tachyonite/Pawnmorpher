@@ -1,0 +1,52 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineJawPart">
+		<classInfluence>PantherMorph</classInfluence>
+		<defName>EtherPantherJaw</defName>
+		<label>panther muzzle</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Panther/Panther_Muzzle_Male</Male>
+					<Female>Parts/Panther/Panther_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineEarPart">
+		<classInfluence>PantherMorph</classInfluence>
+		<defName>EtherPantherEar</defName>
+		<label>panther ear</label>
+		<graphics>
+			<LeftEar>Parts/Panther/Panther_Ear_Left</LeftEar>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar>Parts/Panther/Panther_Ear_Right</RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A triangular, fuzzy ear graces [PAWN_nameDef]'s head. It coils back when [PAWN_pronoun] is getting ready to pounce.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PantherineTailPart">
+		<classInfluence>PantherMorph</classInfluence>
+		<defName>EtherPantherTail</defName>
+		<label>panther tail</label>
+		<graphics>
+			<Tail>Parts/Panther/Panther_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, sleek tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

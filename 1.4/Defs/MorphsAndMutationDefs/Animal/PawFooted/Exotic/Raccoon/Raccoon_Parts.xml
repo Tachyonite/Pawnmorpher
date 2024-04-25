@@ -1,0 +1,79 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticJawPart">
+		<classInfluence>RaccoonMorph</classInfluence>
+		<defName>EtherRaccoonJaw</defName>
+		<label>raccoon snout</label>
+		<graphics>
+			<Muzzle>Parts/Raccoon/Raccoon_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A short, pointed, and bandit-masked muzzle has replaced [PAWN_nameDef]'s usual face. [PAWN_possessive] keen nose picks up the smell of rubbish from miles away. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticEarPart">
+		<classInfluence>RaccoonMorph</classInfluence>
+		<defName>EtherRaccoonEar</defName>
+		<label>raccoon ear</label>
+		<graphics>
+			<LeftEar>Parts/Raccoon/Raccoon_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Raccoon/Raccoon_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Raccoon/Raccoon_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Raccoon/Raccoon_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A short and fuzzy round ear has replaced [PAWN_nameDef]'s normal ear.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ExoticTailPart">
+		<classInfluence>RaccoonMorph</classInfluence>
+		<defName>EtherRaccoonTail</defName>
+		<label>raccoon tail</label>
+		<graphics>
+			<Tail>Parts/Raccoon/Raccoon_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>The ringtail of a raccoon has grown out from [PAWN_nameDef]'s spine. It twitches when it senses rubbish.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

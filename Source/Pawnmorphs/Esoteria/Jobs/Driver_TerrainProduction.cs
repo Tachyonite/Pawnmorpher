@@ -11,72 +11,72 @@ using Verse.AI;
 
 namespace Pawnmorph.Jobs
 {
-    /// <summary>
-    ///     job driver for the 'find mushrooms' job
-    /// </summary>
-    /// <seealso cref="Verse.AI.JobDriver" />
-    public class Driver_TerrainProduction : JobDriver
-    {
-        /// <summary>
-        ///     Tries to make pre toil reservations.
-        /// </summary>
-        /// <param name="errorOnFailed">if set to <c>true</c> [error on failed].</param>
-        /// <returns></returns>
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
-        {
-            return true;
-        }
-        /// <summary>
-        /// Makes the new toils.
-        /// </summary>
-        /// <returns></returns>
-        protected override IEnumerable<Toil> MakeNewToils()
-        {
-            this.FailOn(() => !JoyUtility.EnjoyableOutsideNow(pawn));
-            Toil goToil = Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
-            goToil.tickAction = GotToToil;
+	/// <summary>
+	///     job driver for the 'find mushrooms' job
+	/// </summary>
+	/// <seealso cref="Verse.AI.JobDriver" />
+	public class Driver_TerrainProduction : JobDriver
+	{
+		/// <summary>
+		///     Tries to make pre toil reservations.
+		/// </summary>
+		/// <param name="errorOnFailed">if set to <c>true</c> [error on failed].</param>
+		/// <returns></returns>
+		public override bool TryMakePreToilReservations(bool errorOnFailed)
+		{
+			return true;
+		}
+		/// <summary>
+		/// Makes the new toils.
+		/// </summary>
+		/// <returns></returns>
+		protected override IEnumerable<Toil> MakeNewToils()
+		{
+			this.FailOn(() => !JoyUtility.EnjoyableOutsideNow(pawn));
+			Toil goToil = Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
+			goToil.tickAction = GotToToil;
 
-            var tComps = pawn.health.hediffSet.hediffs.Select(h => h.TryGetComp<Comp_TerrainProduction>())
-                             .Where(c => c != null)
-                             .ToList(); 
+			var tComps = pawn.health.hediffSet.hediffs.Select(h => h.TryGetComp<Comp_TerrainProduction>())
+							 .Where(c => c != null)
+							 .ToList();
 
 
-            yield return goToil;
-            
-            void OnEndToil()
-            {
-                if (job.targetQueueA.Count > 0)
-                {
-                    DebugLogUtils.LogMsg(LogLevel.Messages, "checking production now");
+			yield return goToil;
 
-                    if(tComps.Count > 0 && Rand.Range(0, 1f) < 0.4f) 
-                        tComps.RandomElement().ProduceNow();
-                    
-                    LocalTargetInfo targetA = job.targetQueueA[0];
-                    job.targetQueueA.RemoveAt(0);
-                    job.targetA = targetA;
-                    JumpToToil(goToil);
-                }
-            }
+			void OnEndToil()
+			{
+				if (job.targetQueueA.Count > 0)
+				{
+					DebugLogUtils.LogMsg(LogLevel.Messages, "checking production now");
 
-            yield return new Toil() {initAction = OnEndToil};
-            
-        }
+					if (tComps.Count > 0 && Rand.Range(0, 1f) < 0.4f)
+						tComps.RandomElement().ProduceNow();
 
-        void ProduceStuff()
-        {
-           
-        }
+					LocalTargetInfo targetA = job.targetQueueA[0];
+					job.targetQueueA.RemoveAt(0);
+					job.targetA = targetA;
+					JumpToToil(goToil);
+				}
+			}
 
-        private void GotToToil()
-        {
-            if (Find.TickManager.TicksGame > startTick + job.def.joyDuration)
-            {
-                EndJobWith(JobCondition.Succeeded);
-                return;
-            }
+			yield return new Toil() { initAction = OnEndToil };
 
-            JoyUtility.JoyTickCheckEnd(pawn);
-        }
-    }
+		}
+
+		void ProduceStuff()
+		{
+
+		}
+
+		private void GotToToil()
+		{
+			if (Find.TickManager.TicksGame > startTick + job.def.joyDuration)
+			{
+				EndJobWith(JobCondition.Succeeded);
+				return;
+			}
+
+			JoyUtility.JoyTickCheckEnd(pawn);
+		}
+	}
 }

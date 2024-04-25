@@ -1,0 +1,198 @@
+<Defs>
+    <ThinkTreeDef>
+        <defName>AnimalisticColonist</defName>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
+            <subNodes>
+                <li Class="ThinkNode_Priority">
+                    <subNodes>
+                        <li Class="ThinkNode_Tagger">
+                            <tagToGive>TrainedAnimalBehavior</tagToGive>
+                            <subNodes>
+                                <!-- Trained behavior: obedience: Follow and defend master -->
+                                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                                    <trainable>Obedience</trainable>
+                                    <subNodes>
+                                        <li Class="ThinkNode_ConditionalShouldFollowMaster">
+                                            <subNodes>
+                                                <li Class="JobGiver_AIDefendMaster">
+                                                    <attackMeleeThreatEvenIfNotHostile>true</attackMeleeThreatEvenIfNotHostile>
+                                                </li>
+                                                <li Class="JobGiver_AIFollowMaster" />
+                                                <li Class="JobGiver_WanderNearMaster" />
+                                            </subNodes>
+                                        </li>
+                                    </subNodes>
+                                </li>
+
+                                <!-- Trained behavior: Rescue-->
+                                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                                    <trainable>Rescue</trainable>
+                                    <subNodes>
+                                        <li Class="JobGiver_RescueNearby">
+                                            <radius>75</radius>
+                                        </li>
+                                    </subNodes>
+                                </li>
+                            </subNodes>
+                        </li>
+
+                        <!-- Take care of critical needs (below rescue - so heroic!)-->
+
+                        <li Class="ThinkNode_Tagger">
+                            <tagToGive>RestingForMedicalReasons</tagToGive>
+                            <subNodes>
+                                <li Class="JobGiver_PatientGoToBed" />
+                            </subNodes>
+                        </li>
+
+                        <li Class="JobGiver_SeekAllowedArea" />
+                        <li Class="JobGiver_SeekSafeTemperature" />
+
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>AnimalisticColonistMain</defName>
+        <insertTag>Humanlike_PreMain</insertTag>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
+            <subNodes>
+                <!-- Nuzzle randoms -->
+                <li Class="ThinkNode_ChancePerHour_Nuzzle">
+                    <subNodes>
+                        <li Class="ThinkNode_Tagger">
+                            <tagToGive>Misc</tagToGive>
+                            <subNodes>
+                                <li Class="JobGiver_Nuzzle" />
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+
+                <!-- Trained behavior: Haul-->
+                <li Class="ThinkNode_ChancePerHour_Constant">
+                    <mtbHours>1.5</mtbHours>
+                    <subNodes>
+                        <li Class="ThinkNode_ConditionalRequireCapacities">
+                            <requiredCapacities>
+                                <li>Manipulation</li>
+                            </requiredCapacities>
+                            <subNodes>
+                                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                                    <trainable>Haul</trainable>
+                                    <subNodes>
+                                        <li Class="ThinkNode_Tagger">
+                                            <tagToGive>TrainedAnimalBehavior</tagToGive>
+                                            <subNodes>
+                                                <li Class="JobGiver_Haul" />
+                                            </subNodes>
+                                        </li>
+                                    </subNodes>
+                                </li>
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>MainWildManBehaviorCoreFixed</defName>
+        <thinkRoot Class="ThinkNode_Priority">
+            <subNodes>
+
+                <li Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
+                    <invert>true</invert>
+                    <subNodes>
+                        <!-- Leave the colony -->
+                        <li Class="ThinkNode_ConditionalWildManNeedsToReachOutside">
+                            <subNodes>
+                                <li Class="JobGiver_ReachOutside" />
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+
+                <!-- Drop random gear or apparel -->
+                <li Class="ThinkNode_ChancePerHour_Constant">
+                    <mtbHours>10</mtbHours>
+                    <subNodes>
+                        <li Class="JobGiver_DropRandomGearOrApparel" />
+                    </subNodes>
+                </li>
+
+                <!-- Satisfy needs -->
+                <li Class="ThinkNode_Tagger">
+                    <tagToGive>SatisfyingNeeds</tagToGive>
+                    <subNodes>
+                        <li Class="ThinkNode_PrioritySorter">
+                            <subNodes>
+                                <li Class="JobGiver_GetFood" />
+                                <li Class="JobGiver_GetRest" />
+                                <li Class="JobGiver_SatisfyChemicalNeed" />
+                                <li Class="ThinkNode_Priority_GetJoy">
+                                    <subNodes>
+                                        <li Class="JobGiver_GetJoy" />
+                                    </subNodes>
+                                </li>
+                            </subNodes>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+
+    <ThinkTreeDef>
+        <defName>AnimalisticColonistWonder</defName>
+        <insertTag>Humanlike_PostMain</insertTag>
+
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalAnimalisticColonist">
+            <subNodes>
+                <li Class="ThinkNode_Tagger">
+                    <tagToGive>Idle</tagToGive>
+                    <subNodes>
+                        <!-- Wander near your current position if in hostile map -->
+                        <li Class="ThinkNode_ConditionalAnyEnemyInHostileMap">
+                            <subNodes>
+                                <li Class="JobGiver_WanderAnywhere">
+                                    <maxDanger>None</maxDanger>
+                                    <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                                </li>
+                            </subNodes>
+                        </li>
+
+                        <!-- Wander near colony -->
+                        <li Class="JobGiver_WanderColony">
+                            <maxDanger>None</maxDanger>
+                            <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                        </li>
+                    </subNodes>
+                </li>
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+
+    <ThinkTreeDef>
+        <defName>SapientAnimalFleeMap</defName>
+        <insertTag>Animal_PreWander</insertTag>
+        <thinkRoot Class="Pawnmorph.ThinkNodes.ConditionalFactionSapientAnimal">
+            <cutoff>MostlySapient</cutoff>
+            <subNodes>
+                <li Class="ThinkNode_Tagger">
+                    <tagToGive>Misc</tagToGive>
+                    <subNodes>
+                        <li Class="JobGiver_ExitMapBest">
+                            <defaultLocomotion>Walk</defaultLocomotion>
+                        </li>
+                    </subNodes>
+                </li>
+
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+</Defs>

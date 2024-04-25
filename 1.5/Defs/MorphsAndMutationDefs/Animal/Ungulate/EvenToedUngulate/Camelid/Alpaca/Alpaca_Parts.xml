@@ -1,0 +1,229 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidJawPart">
+		<classInfluence>AlpacaMorph</classInfluence>
+		<defName>EtherAlpacaSnout</defName>
+		<label>alpaca snout</label>
+		<mutationMemory>EtherAlpacaSnout</mutationMemory>
+		<mutationTale>GrewAlpacaMuzzle</mutationTale>
+		<graphics>
+			<Muzzle>Parts/Alpaca/Alpaca_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>0</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>0</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>1</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>0.5</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. Adapting to it has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>2</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>1.5</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, woolly and with lips perfect for spitting. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<verbOverrides>
+						<li>
+							<label>spit</label>
+							<chanceFactor>3</chanceFactor>
+						</li>
+						<li>
+							<label>gob</label>
+							<chanceFactor>2</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>spit</label>
+						<capacities>
+							<li>SpitInEyes</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTFPartial</hediff>
+						<cooldownTime>0.8</cooldownTime>
+						<power>1</power>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>gob</label>
+						<capacities>
+							<li>SpitInMouth</li>
+						</capacities>
+						<hediff>PawnmorphAlpacaTF</hediff>
+						<cooldownTime>2</cooldownTime>
+						<power>1</power>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidEarPart">
+		<classInfluence>AlpacaMorph</classInfluence>
+		<defName>EtherAlpacaEar</defName>
+		<label>alpaca ear</label>
+		<graphics>
+			<LeftEar>Parts/Alpaca/Alpaca_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Alpaca/Alpaca_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Alpaca/Alpaca_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Alpaca/Alpaca_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<mutationMemory>EtherAlpacaEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wooly ear twitches idly at the wind.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="CamelidTailPart">
+		<classInfluence>AlpacaMorph</classInfluence>
+		<defName>EtherAlpacaTail</defName>
+		<label>alpaca tail</label>
+		<graphics>
+			<Tail>Parts/Alpaca/Alpaca_Tail</Tail>
+		</graphics>
+		<mutationMemory>EtherAlpacaTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A alpaca's curly tail, it twitches when food is near.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherWooly</defName>
+		<classInfluence>AlpacaMorph</classInfluence>
+		<label>thick wool</label>
+		<description>Thick wool grows over the torso constantly. It can be shaved without anyone's help.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<mutationTale>StartsGrowingWool</mutationTale>
+		<mutationMemory>EtherWooly</mutationMemory>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ShavedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_ShaveSelf</jobGiver>
+				<etherBondThought>ShavedMyselfBond</etherBondThought>
+				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolAlpaca</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>5</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>4</amount>
+						<hungerRateFactor>1.3</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>3</amount>
+						<hungerRateFactor>1.6</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>2</amount>
+						<thought>ProductiveBliss</thought>
+						<hungerRateFactor>2.0</hungerRateFactor>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<parts>
+			<li>Torso</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

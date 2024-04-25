@@ -4,8 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using JetBrains.Annotations;
 using Pawnmorph.Chambers;
 using Pawnmorph.Hediffs;
@@ -17,121 +15,109 @@ using Verse;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    ///     static class that generates all implicit defs in the mod
-    /// </summary>
-    public static class PMImplicitDefGenerator
-    {
-        private static readonly MethodInfo GiveHashMethod;
+	/// <summary>
+	///     static class that generates all implicit defs in the mod
+	/// </summary>
+	public static class PMImplicitDefGenerator
+	{
+
+		[NotNull] private static readonly List<Def> _defList = new List<Def>();
+		[NotNull] private static readonly List<DefSt> _defSts = new List<DefSt>();
+
+		[NotNull] private static readonly object[] tmpArr = new object[2];
+
+		/// <summary>
+		///     Generates the implicit defs.
+		/// </summary>
+		public static void GenerateImplicitDefs()
+		{
+			//note: do not put hybrid race generation here. that needs to be handled in main initialization 
+
+			GenomeDefGenerator.GenerateGenomes(); //handles it's own hash's and resolve refs 
+			_defList.Clear();
+			MorphHediffGenerator.GenerateAllMorphHediffs();
+			InjectorGenerator.GenerateInjectorDefs();
+			//resolve non recipe def references on the generated defs 
+
+			_defList.AddRange(InjectorGenerator.GeneratedInjectorDefs);
+			_defList.AddRange(MorphHediffGenerator.AllGeneratedHediffDefs);
+
+			foreach (Def def in _defList) def?.ResolveReferences();
 
 
-        [NotNull] private static readonly List<Def> _defList = new List<Def>();
-        [NotNull] private static readonly List<DefSt> _defSts = new List<DefSt>();
-
-        [NotNull] private static readonly object[] tmpArr = new object[2];
+			PMRecipeDefGenerator.GenerateRecipeDefs();
+			foreach (RecipeDef allRecipe in PMRecipeDefGenerator.AllRecipes) allRecipe.ResolveReferences();
 
 
-        static PMImplicitDefGenerator()
-        {
-            GiveHashMethod = typeof(ShortHashGiver).GetMethod("GiveShortHash", BindingFlags.NonPublic | BindingFlags.Static);
-        }
+			_defList.AddRange(PMRecipeDefGenerator.AllRecipes);
+			//configErrors 
 
-        /// <summary>
-        ///     Generates the implicit defs.
-        /// </summary>
-        public static void GenerateImplicitDefs()
-        {
-            //note: do not put hybrid race generation here. that needs to be handled in main initialization 
+			foreach (Def def in _defList)
+			{
+				List<string> errStrList = def.ConfigErrors().MakeSafe().ToList();
+				if (errStrList.Count > 0)
+				{
+					string errStr = $"Errors in {def.defName}:\n{string.Join("\n", errStrList)}";
+					Log.Error(errStr);
+				}
+			}
 
-            GenomeDefGenerator.GenerateGenomes(); //handles it's own hash's and resolve refs 
-            _defList.Clear();
-            MorphHediffGenerator.GenerateAllMorphHediffs();
-            InjectorGenerator.GenerateInjectorDefs();
-            //resolve non recipe def references on the generated defs 
+			_defList.Clear();
+			//short hashs
+			GiveHashes(InjectorGenerator.GeneratedInjectorDefs);
+			GiveHashes(MorphHediffGenerator.AllGeneratedHediffDefs);
+			GiveHashes(PMRecipeDefGenerator.AllRecipes);
 
-            _defList.AddRange(InjectorGenerator.GeneratedInjectorDefs);
-            _defList.AddRange(MorphHediffGenerator.AllGeneratedHediffDefs);
+			//debug log 
+			//DebugOutput();
 
-            foreach (Def def in _defList) def?.ResolveReferences();
-           
-
-            PMRecipeDefGenerator.GenerateRecipeDefs();
-            foreach (RecipeDef allRecipe in PMRecipeDefGenerator.AllRecipes) allRecipe.ResolveReferences();
+			//register defs 
 
 
-            _defList.AddRange(PMRecipeDefGenerator.AllRecipes);
-            //configErrors 
+			DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
+			DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes);
 
-            foreach (Def def in _defList)
-            {
-                List<string> errStrList = def.ConfigErrors().MakeSafe().ToList();
-                if (errStrList.Count > 0)
-                {
-                    string errStr = $"Errors in {def.defName}:\n{string.Join("\n", errStrList)}";
-                    Log.Error(errStr);
-                }
-            }
+			foreach (ThingDef tDef in InjectorGenerator.GeneratedInjectorDefs)
+			{
+				DefGenerator.AddImpliedDef(tDef);
+			}
 
-            _defList.Clear();
-            //short hashs
-            _defSts.Clear();
-            _defSts.AddRange(InjectorGenerator.GeneratedInjectorDefs.Select(d => new DefSt(d, typeof(ThingDef))));
-            _defSts.AddRange(MorphHediffGenerator.AllGeneratedHediffDefs.Select(d => new DefSt(d, typeof(HediffDef))));
-            _defSts.AddRange(PMRecipeDefGenerator.AllRecipes.Select(d => new DefSt(d, typeof(RecipeDef))));
+			ResourceCounter.ResetDefs();
 
-            foreach (DefSt defSt in _defSts) GiveShortHash(defSt.def, defSt.type);
+		}
 
-            //debug log 
-            //DebugOutput();
+		private static void GiveHashes<T>(IEnumerable<T> items) where T : Def
+		{
+			foreach (T def in items)
+				HashGiverUtils.GiveShortHash(def);
+		}
 
-            //register defs 
+		//private static void DebugOutput()
+		//{
+		//    var joinEnm = _defSts.GroupBy(d => d.type);
+		//    StringBuilder builder = new StringBuilder();
+		//    foreach (IGrouping<Type, DefSt> grouping in joinEnm)
+		//    {
+		//        builder.AppendLine($"def type {grouping.Key.Name}:");
+		//        foreach (DefSt defSt in grouping)
+		//        {
+		//            builder.AppendLine($"\t{defSt.def.defName}");
+		//        }
+		//    }
 
+		//    Log.Message(builder.ToString());
+		//}
 
-            DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
-            DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes);
+		private struct DefSt
+		{
+			public readonly Def def;
+			public readonly Type type;
 
-            foreach (ThingDef tDef in InjectorGenerator.GeneratedInjectorDefs)
-            {
-                DefGenerator.AddImpliedDef(tDef);
-            }
-            
-            ResourceCounter.ResetDefs();
-
-        }
-
-        private static void DebugOutput()
-        {
-            var joinEnm = _defSts.GroupBy(d => d.type);
-            StringBuilder builder = new StringBuilder();
-            foreach (IGrouping<Type, DefSt> grouping in joinEnm)
-            {
-                builder.AppendLine($"def type {grouping.Key.Name}:");
-                foreach (DefSt defSt in grouping)
-                {
-                    builder.AppendLine($"\t{defSt.def.defName}");
-                }
-            }
-
-            Log.Message(builder.ToString());
-        }
-
-        private static void GiveShortHash([NotNull] Def def, [NotNull] Type type)
-        {
-            tmpArr[0] = def;
-            tmpArr[1] = type;
-            GiveHashMethod.Invoke(null, tmpArr);
-        }
-
-        private struct DefSt
-        {
-            public readonly Def def;
-            public readonly Type type;
-
-            public DefSt(Def d, Type tp)
-            {
-                def = d;
-                type = tp;
-            }
-        }
-    }
+			public DefSt(Def d, Type tp)
+			{
+				def = d;
+				type = tp;
+			}
+		}
+	}
 }

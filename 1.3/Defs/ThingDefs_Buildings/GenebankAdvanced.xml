@@ -1,0 +1,46 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_GenebankLarge</defName>
+        <label>Advanced genebank</label>
+        <description>A morphsilk tape-reel storage device that's optimised for storing genetic information. This advanced version can store 256 kMutabytes of information.</description>
+        <graphicData>
+            <texPath>Things/Building/GeneticStorageAdvanced/GenebankAdvanced</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <minifiedDef>MinifiedThing</minifiedDef>
+        <thingCategories>
+          <li>Buildings</li>
+        </thingCategories>
+        <defaultPlacingRot>South</defaultPlacingRot>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>Impassable</passability>
+        <fillPercent>0.6</fillPercent>
+        <statBases>
+            <MaxHitPoints>70</MaxHitPoints>
+            <WorkToBuild>100</WorkToBuild>
+            <Mass>5</Mass>
+            <Flammability>0.7</Flammability>
+        </statBases>
+        <size>(2,1)</size>
+        <costList>
+            <Steel>150</Steel>
+            <ComponentIndustrial>5</ComponentIndustrial>
+            <Morphsilk>10</Morphsilk>
+        </costList>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <uiIconScale>1</uiIconScale>
+        <researchPrerequisites>
+            <li>MutagenChambers</li>
+        </researchPrerequisites>
+        <comps>
+            <li Class="Pawnmorph.ThingComps.DatabaseStorageProperties">
+                <storageAmount>256</storageAmount>
+            </li>
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>50</basePowerConsumption>
+            </li>
+        </comps>
+    </ThingDef>
+</Defs>

@@ -1,0 +1,342 @@
+<Defs>
+    <ThoughtDef Name="PM_Precept_FormerHumanBase" Abstract="true">
+        <workerClass>Pawnmorph.Thoughts.Precept.PWorker_FormerHuman</workerClass>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanBase">
+        <defName>PM_Precept_SapientAnimalNakedDisliked</defName>
+        <stages>
+            <li>
+                <label>naked</label> <!-- Sapient -->
+                <description>I know I'm covered in fur but...c'mon!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <!--  you can now add varients for different sapient levels like in the example -->
+            <li>
+                <label>naked</label> <!-- Mostly Sapient -->
+                <description>It would help if I could put something on, even just to pretend...</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label> <!-- Conflicted -->
+                <description>Why do I feel weird out and about? Oh! Clothes!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label> <!-- Mostly Feral -->
+                <description>There's no other option, right?</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>naked</label> <!-- Feral -->
+                <description>Clothes?</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanBase">
+        <defName>PM_Precept_SapientAnimalNakedLiked</defName>
+        <stages>
+            <li>
+                <label>happily nude</label>
+                <description>Eh, I'm covered in fur, I don't care. This is more natural!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Nothin' between me and the world, it's just right.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>There's no other option right?</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Why would they want to put stuff over their fur...</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>happily nude</label>
+                <description>Clothes?</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- hunted thoughts -->
+
+    <ThoughtDef Name="PM_Precept_FormerHumanMemoryBase" Abstract="true">
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
+        <defName>PM_Precept_SapientAnimalHuntingMemoryAnimallike</defName> <!-- this is for hunting out of necessity (like starving) not for the hunting mental break-->
+
+        <stages>
+            <!-- using primal wish for now, might need rewording -->
+            <li>
+                <label>hunted</label>
+                <description>I don't want to get that hungry again...but hunting is fun!</description>
+                <visible>true</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Nothing like a good hunt to get the blood flowing.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Primal feelings...so strong, more hunt!</description>
+                <baseMoodEffect>20</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
+        <defName>PM_Precept_SapientAnimalHuntingMemoryStronglyAnimallike</defName> <!-- this is for hunting out of necessity for the strongly animalistic precept, they will hunt more often, not necessarily just when starving -->
+        <stages>
+            <!-- using primal wish for now, needs rewording -->
+            <li>
+                <label>hunted</label>
+                <description>Yes! I am truly becoming part of the circle of life!</description>
+                <visible>true</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>The thrill of the hunt makes me feel alive!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Primal feelings...so strong, more hunt!</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- ate corpse 
+    -->
+    <ThoughtDef Name="PM_Precept_FormerHumanAteCorpseBase" ParentName="PM_Precept_FormerHumanMemoryBase" Abstract="true">
+        <icon>Things/Mote/ThoughtSymbol/Food</icon>
+        <showBubble>true</showBubble>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanAteCorpseBase">
+        <defName>PM_Precept_FormerHumanAteCorpseDisliked</defName>
+
+        <stages>
+            <li>
+                <label>ate corpse</label>
+                <description>I gave in to my hunger and ate the raw corpse of a fresh kill. Eugh.</description>
+                <baseMoodEffect>-6</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>I gave in to my beastly thoughts and ate the raw corpse of a fresh kill. Eugh.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanAteCorpseBase">
+        <defName>PM_Precept_FormerHumanAteCorpseHumanlike</defName>
+        <stages>
+            <li>
+                <label>ate corpse</label>
+                <description>I gave in to my hunger and ate the raw corpse of a fresh kill. Eugh.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>I gave in to my beastly thoughts and ate the raw corpse of a fresh kill. Eugh.</description>
+                <baseMoodEffect>-6</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>0</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanAteCorpseBase">
+        <defName>PM_Precept_FormerHumanAteCorpseAnimallike</defName>
+        <stages>
+            <li>
+                <label>ate corpse</label>
+                <description>Hmm.. It’s kind of like juicy cold cuts..</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>The trick is to eat AROUND the hair</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <baseMoodEffect>2</baseMoodEffect>
+                <description>Maybe I could bury the leftovers.. Keep it for myself</description>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <baseMoodEffect>2</baseMoodEffect>
+                <description>Creamy marrow. Crunchy bones.</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanAteCorpseBase">
+        <defName>PM_Precept_FormerHumanAteCorpseStronglyAnimallike</defName>
+        <stages>
+            <li>
+                <label>ate corpse</label>
+                <description>Butchers have been perpetrating a sick scam on us since the dawn of time! </description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>I like my meat fresh. REALLY fresh.</description>
+                <baseMoodEffect>12</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <description>Humans like to hide from what they’re eating. I like to face it</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <baseMoodEffect>2</baseMoodEffect>
+                <description>Maybe I could bury the leftovers.. Keep it for myself</description>
+            </li>
+            <li>
+                <label>ate corpse</label>
+                <baseMoodEffect>2</baseMoodEffect>
+                <description>After the hunt… going back for more meat.</description>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <!-- Grazing -->
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
+        <defName>PM_Precept_SapientAnimalGrazingMemoryDisliked</defName> <!--Grazing when animalistic, will do it when starving  -->
+        <stages>
+            <li>
+                <label>grazed</label>
+                <description>This is demeaning. Salads were bad enough as it is!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Could I at least get a dressing to go with this?</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>I’m becoming a damn lawn-mower!</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Eugh, I’m so gassy.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Grass… Tastes bad</description>
+                <baseMoodEffect>0</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
+        <defName>PM_Precept_SapientAnimalGrazingMemoryAnimallike</defName> <!-- this is for hunting out of necessity for the  animalistic precept-->
+        <stages>
+            <li>
+                <label>grazed</label>
+                <description>I guess there IS such a thing as a free lunch!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>There’s a lot of chewing to do, but hey, it fills the time!</description>
+                <baseMoodEffect>1</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Grass, grass, or grass… I ride for free</description>
+                <baseMoodEffect>1</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Fresh and clean, tasty leaves.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_Precept_FormerHumanMemoryBase">
+        <defName>PM_Precept_SapientAnimalGrazingMemoryStronglyAnimallike</defName> <!-- this is for grazing for the strongly animalistic precept, they will graze more often, not necessarily just when starving -->
+        <stages>
+            <li>
+                <label>grazed</label>
+                <description>I form a crucial part in the circle of life! My duty is sacred!</description>
+                <visible>true</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Nature’s bounty is mine to claim.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>This is how it should be. Eating the rays of the sun.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+                <visible>true</visible>
+            </li>
+            <li>
+                <label>grazed</label>
+                <description>Crunch crunch crunch.</description>
+                <visible>true</visible>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

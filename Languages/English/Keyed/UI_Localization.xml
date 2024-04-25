@@ -6,6 +6,8 @@
 	<MutationLogButtonText>Log</MutationLogButtonText>
 	<MutationLogHeader>Mutation Log</MutationLogHeader>
 
+	<TableControlSearchPlaceholder>Search...</TableControlSearchPlaceholder>
+
 	<!-- Part Picker Stuff -->
 	<PPRemivingMutationDesc>Removing {MUTATION} mutation from {PAWN_nameDef}'s {PART}.</PPRemivingMutationDesc>
 	<PPAddingMutationDesc>Adding {MUTATION} mutation to {PAWN_nameDef}'s {PART} at a severity of {SEVERITY}.</PPAddingMutationDesc>
@@ -13,4 +15,8 @@
 	<!-- Info Card -->
 	<PmMorphInfo_NoMorph>No Morphs</PmMorphInfo_NoMorph>
 	<PmMorphInfo_MorphDisplay>{MORPH}</PmMorphInfo_MorphDisplay>
+	
+	<PmDaysAgo>{0} days ago</PmDaysAgo>
+	<PmHoursAgo>{0} hours ago</PmHoursAgo>
+	<PmLessThanHour>Less than an hour ago</PmLessThanHour>
 </LanguageData>

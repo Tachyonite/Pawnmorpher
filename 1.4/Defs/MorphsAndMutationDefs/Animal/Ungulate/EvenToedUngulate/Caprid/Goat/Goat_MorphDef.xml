@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="CapridMorph">
+		<defName>GoatMorph</defName>
+		<label>goatmorph</label>
+		<description>With a beard and cuboid pupils, goatmorphs are a 'farm'-type morph who are rowdy in combat. Female goatmorphs can produce milk.</description>
+		<race>Goat</race>
+		<categories>
+			<li>Domestic</li>
+		</categories>
+		<injectorProperties></injectorProperties>
+		<fullTransformation>PawnmorphGoatTF</fullTransformation>
+		<partialTransformation>PawnmorphGoatTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(220,220,220)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>GoatTransformationMemory</transformationMemory>
+			<revertedMemory>GoatRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

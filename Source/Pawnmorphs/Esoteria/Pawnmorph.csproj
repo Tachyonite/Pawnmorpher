@@ -9,16 +9,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pawnmorph</RootNamespace>
     <AssemblyName>Pawnmorph</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">..\..\..\..\..\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\1.3\Assemblies\</OutputPath>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\1.3\Assemblies\</OutputPath>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,18 +37,22 @@
     <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <!-- Base Dependencies -->
   <ItemGroup>
-    <Reference Include="MultiplayerAPI">
-      <HintPath>..\..\Dependencies\0MultiplayerAPI.dll</HintPath>
+    <Reference Include="0PrepatcherAPI">
+      <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="AlienRace">
-      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +60,18 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
+  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>$(RimworldFolder)\Managed\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
@@ -79,9 +95,6 @@
     <Reference Include="UnityEngine.AnimationModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ARModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>$(RimworldFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
@@ -312,12 +325,34 @@
     <Compile Include="Abilities\MutationAbilityState.cs" />
     <Compile Include="Abilities\MutationAbilityType.cs" />
     <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="DefOfs\PM_BodyPartDefOf.cs" />
+    <Compile Include="DefOfs\PM_ThoughtDefOf.cs" />
+    <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
+    <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
+    <Compile Include="Genebank\GenebankEntry.cs" />
+    <Compile Include="Genebank\IGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
+    <Compile Include="Genebank\RecentGenebankSelector.cs" />
+    <Compile Include="HPatches\GamePatches.cs" />
+    <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="HPatches\WorldPawnsPatches.cs" />
+    <Compile Include="Interfaces\IConfigurableObject.cs" />
+    <Compile Include="Interfaces\ICaused.cs" />
+    <Compile Include="ModExtensions\AdministerableExtension.cs" />
+    <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
+    <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
+    <Compile Include="PMStyleDefOf.cs" />
+    <Compile Include="HPatches\Optional\PawnScaling.cs" />
     <Compile Include="Hediffs\Hediff_Bullrush.cs" />
+    <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
+    <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
     <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
-    <Compile Include="HPatches\RecipeDefPatch.cs" />
     <Compile Include="Jobs\Giver_Producer.cs" />
+    <Compile Include="RecipeWorkers\InjectorRecipeWorker.cs" />
     <Compile Include="SkyFallerDefOf.cs" />
-    <Compile Include="AddMorphsToPawn.cs" />
     <Compile Include="AnimalClassDef.cs" />
     <Compile Include="AnimalClassDefOf.cs" />
     <Compile Include="AnimalClassUtilities.cs" />
@@ -340,18 +375,16 @@
     <Compile Include="AspectUtils.cs" />
     <Compile Include="BackstoryDefOf.cs" />
     <Compile Include="BodyUtilities.cs" />
-    <Compile Include="Buildings\MutagenTank.cs" />
-    <Compile Include="Buildings\MutaniteCentrifuge.cs" />
     <Compile Include="Building_TrapTransforming.cs" />
     <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
     <Compile Include="Chambers\AnimalTfControllers\ChaoThrumbo.cs" />
     <Compile Include="Chambers\ChamberAnimalTfController.cs" />
-    <Compile Include="Chambers\ChamberDatabase.cs" />
+    <Compile Include="Genebank\ChamberDatabase.cs" />
     <Compile Include="Chambers\ChamberJobDefOf.cs" />
     <Compile Include="Chambers\ChamberState.cs" />
     <Compile Include="Chambers\ChamberTfInitiationReport.cs" />
     <Compile Include="Chambers\ChamberUse.cs" />
-    <Compile Include="Chambers\DatabaseUtilities.cs" />
+    <Compile Include="Genebank\DatabaseUtilities.cs" />
     <Compile Include="Chambers\GenomeDefGenerator.cs" />
     <Compile Include="Chambers\MutaChamber.cs" />
     <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
@@ -414,7 +447,6 @@
     <Compile Include="DefExtensions\RestrictionExtension.cs" />
     <Compile Include="DefExtensions\MutationCauseExtension.cs" />
     <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
-    <Compile Include="DefExtensions\SapientAnimalNeed.cs" />
     <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
     <Compile Include="DefExtensions\TFTransferable.cs" />
     <Compile Include="DefExtensions\TraitRestriction.cs" />
@@ -485,7 +517,7 @@
     <Compile Include="HPatches\BillPatches.cs" />
     <Compile Include="HPatches\BiosculpterPatches.cs" />
     <Compile Include="HPatches\ConversionUtilityPatches.cs" />
-    <Compile Include="HPatches\CorpsePatch.cs" />
+    <Compile Include="HPatches\Optional\CorpsePatch.cs" />
     <Compile Include="HPatches\DebugPatches.cs" />
     <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
     <Compile Include="HPatches\DoorPatches.cs" />
@@ -497,7 +529,7 @@
     <Compile Include="HPatches\HealthUtilityPatch.cs" />
     <Compile Include="HPatches\Mods\CompactHediffs\CustomHealthCardUtilsPatch.cs" />
     <Compile Include="HPatches\SelectorPatch.cs" />
-    <Compile Include="HPatches\GiddyUpPatch.cs" />
+    <Compile Include="HPatches\Mods\Giddy-Up\GiddyUpPatch.cs" />
     <Compile Include="HPatches\HediffDefPatches.cs" />
     <Compile Include="HPatches\HediffPatches.cs" />
     <Compile Include="HPatches\HediffSetPatches.cs" />
@@ -513,7 +545,7 @@
     <Compile Include="HPatches\PawnComponentPatches.cs" />
     <Compile Include="HPatches\PawnGeneratorPatches.cs" />
     <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
-    <Compile Include="HPatches\PawnGraphicSetPatch.cs" />
+    <Compile Include="HPatches\PawnRenderNode_AnimalPartPatch.cs" />
     <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
     <Compile Include="HPatches\PawnCompPatches.cs" />
     <Compile Include="HPatches\PawnObserverPatches.cs" />
@@ -546,7 +578,6 @@
     <Compile Include="IncidentWorker\LiquidSlurry.cs" />
     <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
     <Compile Include="IncidentWorker\MutagenicFallout.cs" />
-    <Compile Include="IncidentWorker\MutagenicLeak.cs" />
     <Compile Include="IncidentWorker\SheepChef.cs" />
     <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
     <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
@@ -557,8 +588,6 @@
     <Compile Include="IngredientValueGetter_Mutanite.cs" />
     <Compile Include="IPMThingComp.cs" />
     <Compile Include="ICauseRulePackContainer.cs" />
-    <Compile Include="ISlurryReceiver.cs" />
-    <Compile Include="ITabs\InjectorBills.cs" />
     <Compile Include="IWorkModifier.cs" />
     <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
     <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
@@ -569,8 +598,34 @@
     <Compile Include="Jobs\Driver_UseGenome.cs" />
     <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
     <Compile Include="Jobs\Giver_FoodOptimized.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.cs" />
-    <Compile Include="MainTabWindow_ChamberDatabase.Interning.cs" />
+    <Compile Include="StatWorkers\StatParts\StatPart_MarketValue.cs" />
+    <Compile Include="ThingComps\AddAspectEffectProps.cs" />
+    <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
+    <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\DatabaseStorage.cs" />
+    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
+    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
+    <Compile Include="ThingComps\MutationSequencerComp.cs" />
+    <Compile Include="ThingComps\MutationSequencerProps.cs" />
+    <Compile Include="ThingComps\PlantIngesterListener.cs" />
+    <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
+    <Compile Include="ThingComps\SapienceTracker.cs" />
+    <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="Things\Genome_Animal.cs" />
+    <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
+    <Compile Include="UserInterface\Dialog_Textbox.cs" />
+    <Compile Include="UserInterface\FilterTreeBox.cs" />
+    <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
+    <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\MutationsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\TemplatesTab.cs" />
+    <Compile Include="UserInterface\MainTabWindow_ChamberDatabase.cs" />
     <Compile Include="MergedPawnUtilities.cs" />
     <Compile Include="ModInitializationException.cs" />
     <Compile Include="InstinctUtilities.cs" />
@@ -609,7 +664,6 @@
     <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
     <Compile Include="PawnmorpherModBase.cs" />
     <Compile Include="PawnTransferUtilities.cs" />
-    <Compile Include="PlaceWorkers\Centrifuge.cs" />
     <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
     <Compile Include="Plants\SpecialHarvestFailPlant.cs" />
     <Compile Include="PMBackstoryDefOf.cs" />
@@ -634,7 +688,6 @@
     <Compile Include="PMResearchProjectDefOf.cs" />
     <Compile Include="PMSoundDefOf.cs" />
     <Compile Include="PMStatDefOf.cs" />
-    <Compile Include="PMTexButton.cs" />
     <Compile Include="PMTextures.cs" />
     <Compile Include="PMThingCategoryDefOf.cs" />
     <Compile Include="PMThingUtilities.cs" />
@@ -665,35 +718,12 @@
     <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
     <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
     <Compile Include="SimplePawnColorSet.cs" />
-    <Compile Include="SlurryNet\SimpleSlurryNetStorageComp.cs" />
-    <Compile Include="SlurryNet\SimpleSlurryRefillerComp.cs" />
-    <Compile Include="SlurryNet\SlurryNet.cs" />
-    <Compile Include="SlurryNet\SlurryNetComp.cs" />
-    <Compile Include="SlurryNet\SlurryNetDrawer.cs" />
-    <Compile Include="SlurryNet\SlurryNetManager.cs" />
-    <Compile Include="SlurryNet\SlurryNetUtilities.cs" />
     <Compile Include="Social\Worker_FormerHuman.cs" />
     <Compile Include="StatWorkers\HasMorphStat.cs" />
     <Compile Include="StockGenerators\GenomeGenerator.cs" />
     <Compile Include="StockGenerator_Injectors.cs" />
     <Compile Include="TfSys\ManhunterTfSettings.cs" />
-    <Compile Include="ThingComps\AddAspectEffectProps.cs" />
-    <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
-    <Compile Include="ThingComps\AnimalSelectorComp.cs" />
     <Compile Include="DefExtensions\AnimalSelectorOverrides.cs" />
-    <Compile Include="ThingComps\DatabaseStorage.cs" />
-    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
-    <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
-    <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
-    <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
-    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
-    <Compile Include="ThingComps\MutationSequencerComp.cs" />
-    <Compile Include="ThingComps\MutationSequencerProps.cs" />
-    <Compile Include="ThingComps\PlantIngesterListener.cs" />
-    <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
-    <Compile Include="ThingComps\SapienceTracker.cs" />
-    <Compile Include="ThingComps\SlurryFueled.cs" />
-    <Compile Include="ThingComps\TFMilkable.cs" />
     <Compile Include="ThingDef_EtherBullet.cs" />
     <Compile Include="EtherState.cs" />
     <Compile Include="FactionUtilities.cs" />
@@ -866,20 +896,41 @@
     <Compile Include="ToolVerbUtilities.cs" />
     <Compile Include="TransformerUtility.cs" />
     <Compile Include="TransformPawn.cs" />
-    <Compile Include="User Interface\AddedMutations.cs" />
-    <Compile Include="User Interface\ButtonTexturesPM.cs" />
-    <Compile Include="User Interface\Dialog_PartPicker.cs" />
-    <Compile Include="User Interface\Dialog_Popup.cs" />
-    <Compile Include="User Interface\MutationData.cs" />
-    <Compile Include="User Interface\Settings\Dialog_RaceReplacements.cs" />
-    <Compile Include="User Interface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="UserInterface\TableBox\TableRow.cs" />
+    <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
+    <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
+    <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
+    <Compile Include="UserInterface\ButtonTexturesPM.cs" />
+    <Compile Include="UserInterface\Dialog_PartPicker.cs" />
+    <Compile Include="UserInterface\Dialog_Popup.cs" />
+    <Compile Include="UserInterface\FilterListBox.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationData.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplate.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplateData.cs" />
+    <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
+    <Compile Include="UserInterface\Preview\Preview.cs" />
+    <Compile Include="UserInterface\Preview\PawnPreview.cs" />
+    <Compile Include="UserInterface\Preview\ThingPreview.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_AnimalAssociations.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_BlacklistAnimal.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="UserInterface\TableBox\ITableRow.cs" />
+    <Compile Include="UserInterface\TableBox\Table.cs" />
+    <Compile Include="UserInterface\TableBox\TableColumn.cs" />
+    <Compile Include="UserInterface\Window_Genebank.cs" />
+    <Compile Include="UserInterface\Window_Sequencer.cs" />
     <Compile Include="Utilities\Cached.cs" />
+    <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
     <Compile Include="Utilities\Filter.cs" />
+    <Compile Include="Utilities\HashGiverUtils.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
     <Compile Include="Utilities\HediffDefUtilities.cs" />
     <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\ListedBackstoryDef.cs" />
     <Compile Include="Utilities\MathUtilities.cs" />
     <Compile Include="Utilities\PatchUtilities.cs" />
     <Compile Include="Utilities\PawnGeneratorUtility.cs" />
@@ -890,11 +941,12 @@
     <Compile Include="Utilities\TimedCache.cs" />
     <Compile Include="Utilities\TimeMetrics.cs" />
     <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Utilities\UtilityAttributes.cs" />
     <Compile Include="Verbs\Tag.cs" />
+    <Compile Include="Verbs\Verb_MeleeApplyMutagenicHediff.cs" />
     <Compile Include="WeatherOverlay_Mutagen.cs" />
     <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
     <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
-    <Compile Include="PawnmorphMPCompat.cs" />
     <Compile Include="Work\Giver_TransformPrisoner.cs" />
     <Compile Include="Work\Giver_WorkAtSequencer.cs" />
     <Compile Include="Social\PMInteractionWeightsDef.cs" />
@@ -924,8 +976,6 @@
     <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
     <Compile Include="HPatches\ThingDefPatches.cs" />
     <Compile Include="Obsolete\FormerHumanComps.cs" />
-    <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
-    <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
     <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
     <Compile Include="Letters\PMLetterDefOf.cs" />
     <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
@@ -936,14 +986,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Alerts\" />
+    <Folder Include="Chambers\NewFolder1\" />
+    <Folder Include="Events\" />
+    <Folder Include="ITabs\" />
+  </ItemGroup>
+  <!--Only use the Krafs stub if we can't access the real assembly -->
+  <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.5.4035-beta</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.3.3326</Version>
-    </PackageReference>
-    <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
-      <Version>9.0.0</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.3.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,141 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CowTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>Eugh, I feel so heavy all the time. I should diet.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>It’s gotta feel so good to moo as a cow. Probably feels really good to moo.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Please no, I just worked off all that weight! Why!?</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>While this is great, it'd be fun to try the full experience... right? Or maybe I'm not thinking as clearly now...</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>CowRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Yeah, that was... about enough of that.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw man, that was fun though. Still gonna moo for the hell of it.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'M A PERSON AGAIN!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Sure, take all the fun out of my life, why don't ya?</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherCowSnout</defName>
+		<stages>
+			<li>
+				<label>Cow face</label>
+				<description>It's hard to talk right with this giant muzzle in the way.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>Hehe...Moooooooooo...</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>I look and sound like a dumb animal!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Cow face</label>
+				<description>MOOOoooooo...MOOOoooooo...</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherHorns</defName>
+		<stages>
+			<li>
+				<label>Horns</label>
+				<description>Well, I guess I'm done wearing hats...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horns</label>
+				<description>You mess with the bull, you get the horns!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Horns</label>
+				<description>Maybe I can file them down...would they grow back?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherUdder</defName>
+		<stages>
+			<li>
+				<label>...udder?!</label>
+				<description>I regret everything, I don't like this at all.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>Oh, uhm. This is a strange turn of events, I have to think about this for a bit...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>OH GOD NO.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-10</baseMoodEffect>
+			</li>
+			<li>
+				<label>...udder?!</label>
+				<description>I mean, it's kind of cool. I feel like a real cow now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

@@ -3,39 +3,41 @@
 
 using System.Linq;
 using JetBrains.Annotations;
+using LudeonTK;
 using Pawnmorph.Hediffs;
+using UnityEngine;
 using Verse;
 
 namespace Pawnmorph.DebugUtils
 {
-    internal class DebugMenu_AddMutations : Dialog_DebugOptionLister
-    {
-        public DebugMenu_AddMutations([NotNull] Pawn pawn)
-        {
-            _pawn = pawn;
-        }
+	internal class DebugMenu_AddMutations : Dialog_DebugOptionLister
+	{
+		public DebugMenu_AddMutations([NotNull] Pawn pawn)
+		{
+			_pawn = pawn;
+		}
 
-        [NotNull] private readonly Pawn _pawn; 
+		[NotNull] private readonly Pawn _pawn;
 
-        void AddMutationAction([NotNull] MutationDef mutationDef)
-        {
-            Find.WindowStack.Add(new DebugMenu_AddMutation(mutationDef, _pawn)); 
-        }
+		void AddMutationAction([NotNull] MutationDef mutationDef)
+		{
+			Find.WindowStack.Add(new DebugMenu_AddMutation(mutationDef, _pawn));
+		}
 
-        protected override void DoListingItems()
-        {
-            var grouping = MutationDef.AllMutations.SelectMany(x => x.ClassInfluences.Select(y => (x, y))).GroupBy(m => m.y, m => m.x);
+		protected override void DoListingItems(Rect inRect, float columnWidth)
+		{
+			var grouping = MutationDef.AllMutations.SelectMany(x => x.ClassInfluences.Select(y => (x, y))).GroupBy(m => m.y, m => m.x);
 
-            foreach (IGrouping<AnimalClassBase, MutationDef> group in grouping)
-            {
-                var label = group.Key.defName;
-                DoLabel(label);
-                foreach (MutationDef mutationDef in group)
-                {
-                    var mDef = mutationDef;
-                    DebugAction(mDef.defName, () => AddMutationAction(mDef), false); 
-                }
-            }
-        }
-    }
+			foreach (IGrouping<AnimalClassBase, MutationDef> group in grouping)
+			{
+				var label = group.Key.defName;
+				DebugLabel(label, columnWidth);
+				foreach (MutationDef mutationDef in group)
+				{
+					var mDef = mutationDef;
+					DebugAction(mDef.defName, columnWidth, () => AddMutationAction(mDef), false);
+				}
+			}
+		}
+	}
 }

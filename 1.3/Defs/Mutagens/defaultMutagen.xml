@@ -2,6 +2,12 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MutagenDef.xsd">
 	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>defaultMutagen</defName>
+		<!--<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->getting jabbed by an injector</li>
+				<li>mutagen_cause->injector</li>
+			</rulesStrings>
+		</causeRulePack>-->
 	</Pawnmorph.MutagenDef>
 	<Pawnmorph.MutagenDef ParentName="SimpleMutagenBase">
 		<defName>PM_ChamberMutagen</defName>
@@ -40,6 +46,12 @@
 
 	<Pawnmorph.MutagenDef ParentName="AspectGivingMutagenBase">
 		<defName>AspectGivingMutagen</defName>
+		<!--<causeRulePack>
+			<rulesStrings>
+				<li>mutagen_cause->getting jabbed by an injector</li>
+				<li>mutagen_cause->injector</li>
+			</rulesStrings>
+		</causeRulePack>-->
 	</Pawnmorph.MutagenDef>
 
 

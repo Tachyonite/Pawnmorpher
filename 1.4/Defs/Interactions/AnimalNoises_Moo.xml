@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Cow</defName>
+		<requiredMutationsAny>
+			<li>EtherCowSnout</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.5 weight, ears 0.125 each (0.25 for both), tails 0.25, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to bark as a human with just a muzzle. A muzzled human will bark half as often as chatting and a full morph will bark twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherCowSnout</key>
+				<value>0.5</value>
+			</li>
+			
+			<!-- Tails -->
+			<li>
+				<key>EtherCowTail</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+			<li>
+				<key>EtherCowEar</key>
+				<value>0.125</value>
+			</li>
+
+			<!-- Other -->
+			<li>
+				<key>EtherUdder</key>
+				<value>0.5</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>CowMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMMoo_Chitchat</defName>
+		<label>moo</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo</symbol>
+		<initiatorThought>PawnmorphMoo</initiatorThought>
+		<recipientThought>PawnmorphMoo</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+				<li>noisedat(p=4)->mooed at</li>
+				<li>noisedat->whined at</li>
+				<li>noisedat->snorted at</li>
+				<li>noisedat->twitched [INITIATOR_possessive] tail at</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->mooed about</li>
+				<li>noisedabout->whined about</li>
+				<li>noisedabout->snorted about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->brushing [INITIATOR_possessive] back</li>
+				<li>animaltopic->cows</li>
+				<li>animaltopic->milk</li>
+				<li>animaltopic->hooves</li>
+				<li>animaltopic->oats</li>
+				<li>animaltopic->herds</li>
+				<li>animaltopic->horns</li>
+				<li>animaltopic->stables</li>
+				<li>animaltopic->hay</li>
+				<li>animaltopic->snout pats</li>
+				<li>animaltopic->eating grass</li>
+				<li>animaltopic->chewing cud</li>
+				<li>animaltopic->dairy farms</li>
+				<li>animaltopic->factory farming</li>
+				<li>animaltopic->cow rights</li>
+				<li>animaltopic->almond milk</li>
+				<li>animaltopic->cannibalism</li>
+				<li>animaltopic->whether [RECIPIENT_pronoun] eats steak</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PawnmorphMoo</defName> <!-- keeping def name for compatibility reasons -->
+		<stages>
+			<li>
+				<label>moo</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMMoo_DeepTalk</defName>
+		<label>deep moo</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_DeepTalk</symbol>
+		<initiatorThought>PMMoo_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMMoo_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming a cowmorph</li>
+				<li>animallife->being a cowmorph</li>
+				<li>animallife->having hooves</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->head pats</li>
+				<li>animallife->milk</li>
+				<li>animallife->hay</li>
+				<li>animallife->trotting</li>
+				<li>animallife->cow brushes</li>
+				<li>animallife->scratches</li>
+				<li>animallife->hoof care</li>
+				<li>animallife->grass flavors</li>
+				<li>animallife->horn polishing</li>
+				<li>animallife->the evils of cow tipping</li>
+				<li>animallife->hauling</li>
+				<li>animallife->milking gloves</li>
+				<li>animallife->grass</li>
+				<li>animallife->carrots</li>
+				<li>animallife->cow rights</li>
+				<li>animallife->whether eating cowmorph meat is cannibalism</li>
+				<li>animallife->living with hooves</li>
+				<li>animallife->peripheral vision</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMMoo_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep moo</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two cow morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMMoo_DeepTalkCow</defName>
+		<label>deep moo with cow</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_DeepTalk</symbol>
+		<initiatorThought>PMMoo_DeepTalkCowMemory</initiatorThought>
+		<recipientThought>PMMoo_DeepTalkCowMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming a cowmorph</li>
+				<li>animallife->being a cowmorph</li>
+				<li>animallife->having hooves</li>
+				<li>animallife->being brushed</li>
+				<li>animallife->head pats</li>
+				<li>animallife->milk</li>
+				<li>animallife->hay</li>
+				<li>animallife->trotting</li>
+				<li>animallife->cow brushes</li>
+				<li>animallife->scratches</li>
+				<li>animallife->hoof care</li>
+				<li>animallife->grass flavors</li>
+				<li>animallife->horn polishing</li>
+				<li>animallife->the evils of cow tipping</li>
+				<li>animallife->hauling</li>
+				<li>animallife->milking gloves</li>
+				<li>animallife->grass</li>
+				<li>animallife->carrots</li>
+				<li>animallife->cow rights</li>
+				<li>animallife->whether eating cowmorph meat is cannibalism</li>
+				<li>animallife->living with hooves</li>
+				<li>animallife->peripheral vision</li>
+				
+				<li>secretanimallife->mooing</li>
+				<li>secretanimallife->best resting spots</li>
+				<li>secretanimallife->milking techniques</li>
+				<li>secretanimallife->spotted fur</li>
+				<li>secretanimallife->being in a herd together</li>
+				<li>secretanimallife->sharing a stable</li>
+				<li>secretanimallife->gossip about chickens</li>
+				<li>secretanimallife->foraging</li>
+				<li>secretanimallife->fly swatting techniques</li>
+				<li>secretanimallife->cud chewing</li>
+				<li>secretanimallife->freedom</li>
+				<li>secretanimallife->bulls</li>
+				<li>secretanimallife->the best sun basking spots</li>
+				<li>secretanimallife->how steak actually tastes pretty good</li>
+				
+				<li>animalbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->mooed in unison with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] gave eachother a warming look</li>
+				<li>animalbehavior->hoof bumped with [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Cow</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMMoo_DeepTalkCowMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMMoo_Slight</defName>
+		<label>cow slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_Slight</symbol>
+		<recipientThought>PMMoo_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>noisedat->mooed at</li>
+				<li>noisedat->whined at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat->snorted annoyingly at</li>
+				<li>noisedat->mooed aggressively at</li>
+								
+				<li>noisedabout->mooed about</li>
+				<li>noisedabout->whined about</li>
+				<li>noisedabout->snorted unhappily about</li>
+				<li>noisedabout->snorted because of</li>
+				<li>noisedabout->mooed because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->milking gesture</li>
+				<li>animalcharacteristic->sudden movement</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
+				
+				<li>annoyingbehavior->stomped dust on [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->mooed loudly in [RECIPIENT_nameDef] face</li>
+				<li>annoyingbehavior->flicked [INITIATOR_possessive] tail towards [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->regurgitated a wad of cud and began chewing it, grossing out [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMMoo_Slight</defName>
+		<stages>
+			<li>
+				<label>whinny</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMMoo_Insult</defName>
+		<label>cow insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_Insult</symbol>
+		<recipientThought>PMMoo_InsultMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->mooed that [Target] was</li>
+				<li>noisedtargetwas->neighed that [Target] was</li>
+				<li>noisedtargetwas->snorted that [Target] was</li>
+
+				<li>noisedat->mooed at</li>
+				<li>noisedat->neighed at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat->snorted annoyingly at</li>
+				<li>noisedat->neighed aggressively at</li>
+								
+				<li>noisedabout->mooed about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout->mooed unhappily about</li>
+				<li>noisedabout->snorted because of</li>
+				<li>noisedabout->mooed because of</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->milking gesture</li>
+				<li>animalcharacteristic->[Refusal] to give [INITIATOR_objective] a carrot</li>
+				<li>animalcharacteristic->[Refusal] to brush [INITIATOR_objective]</li>
+				
+				<li>insult->cud</li>
+				<li>insult->a calf</li>
+				<li>insult->spoiled milk</li>
+				<li>insult->a steer</li>
+				<li>insult->a bully</li>
+				<li>insult->a meat-eater</li>
+				<li>insult->a cowboy</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMMoo_InsultMemory</defName>
+		<stages>
+			<li>
+				<label>mooed at</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMMoo_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMMoo_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>mooed at</label>
+				<description>I've been insultingly mooed at! What an awful cow!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMMoo_KindWords</defName>
+		<label>kind moos</label>
+		<symbol>Things/Mote/SpeechSymbols/Moo_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMMoo_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->mooed that [RECIPIENT_nameDef] was</li>
+				<li>noisedtargetwas->neighed that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->animals skill</li>
+				<li>animalcharacteristic->milking technique</li>
+				<li>animalcharacteristic->body language</li>
+				<li>animalcharacteristic->sugar cubes</li>
+				<li>animalcharacteristic->brushing technique</li>
+				
+				<li>complimentedtargets->mooed happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->mooed approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->swished [INITIATOR_possessive] tail at [RECIPIENT_nameDef]'s</li>
+				<li>complimentedtargets->nosed [RECIPIENT_nameDef] because of [RECIPIENT_possessive]</li>
+				
+				<li>kindbehavior->sung a [KindAdj] moo</li>
+				<li>kindbehavior->[KindAdverb] nosed</li>
+				<li>kindbehavior->[KindAdverb] mooed at</li>
+				<li>kindbehavior->swished [INITIATOR_possessive] tail at</li>
+				
+				<li>cowcompliment->a [KindAdj] sugarcube</li>
+				<li>cowcompliment->[KindAdj] milk</li>
+				<li>cowcompliment->[KindAdj] cream</li>
+				<li>cowcompliment->a [KindAdj] brush</li>
+				<li>cowcompliment->a [KindAdj] mud puddle</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Cow</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMMoo_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>kind moo</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMMoo_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMMoo_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>kind moo</label>
+				<description>I've been complimented! What a nice cow!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at cows -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMMoo_DirectedInsult</defName>
+		<label>directed cow insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->fur</li>
+				<li>animalcharacteristic->horns</li>
+				<li>animalcharacteristic->tail</li>
+				<li>animalcharacteristic->milk quality</li>
+				<li>animalcharacteristic->kibble breath</li>
+				<li>animalcharacteristic->big head</li>
+				<li>animalcharacteristic->stench</li>
+				<li>animalcharacteristic->[refusal] to stop mooing</li>
+
+				<li>insultcomparison->a hay muncher</li>
+				<li>insultcomparison->a steer</li>
+				<li>insultcomparison->a hoof head</li>
+				<li>insultcomparison->a heifer</li>
+				<li>insultcomparison->a one-[Man] dairy farm</li>
+				<li>insultcomparison->a milk courier</li>
+				<li>insultcomparison->a nutrient paste dispenser</li>
+				<li>insultcomparison->a hay processor</li>
+				<li>insultcomparison->a dairy mascot</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained that [RECIPIENT_nameDef] stomps too much</li>
+				<li>insult->yelled at [RECIPIENT_nameDef] to stop mooing</li>
+				<li>insult->tried to sneak behind and push [RECIPIENT_nameDef] over</li>
+
+				<li>insultingjoketopics->the size of cows</li>
+				<li>insultingjoketopics->steaks</li>
+				<li>insultingjoketopics->lactose intolerance</li>
+				<li>insultingjoketopics->an udder pun</li>
+				<li>insultingjoketopics->spherical cows</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Cow</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+</Defs>

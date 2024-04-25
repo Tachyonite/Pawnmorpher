@@ -1,0 +1,254 @@
+<!-- FOOT TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
+		<defName>EtherLeg</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> 
+-->
+
+
+
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
+		<defName>EtherThickArm</defName>
+		<label>thick arm</label>
+		<description>a very thick arm.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<classInfluences>
+			<li>Powerful</li>
+			<li>Ursine</li>
+		</classInfluences>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>This arm's muscles are growing thicker and stronger.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>This arm is a little clumsier, and a lot bigger.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
+						<PM_BodySize>0.01</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has grown a lot larger, making most tasks more difficult.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+						<PM_BodySize>0.025</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has grown a lot larger, and most tasks are a little more difficult - though the impact of this has been lessened with adaptation.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+						<MeleeHitChance>0.075</MeleeHitChance>
+						<PM_BodySize>0.025</PM_BodySize>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef> 
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
+		<defName>EtherWing</defName>
+		<label>wing</label>
+		<description>An avian wing.</description>
+		<classInfluence>Avian</classInfluence>
+		<mutationTale>ArmBecomsWing</mutationTale>
+		<mutationMemory>EtherWingMemory</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly longer then before.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arms has gotten significantly shorter and are clad in a soft down.</description>
+					<statOffsets>
+						<PM_Lift>0.25</PM_Lift>
+					</statOffsets>
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones.  It'll take some time for [PAWN_objective] to get used to them again.</description>
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
+					<statOffsets>
+						<PM_Lift>0.5</PM_Lift>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. [PAWN_pronoun] has adapted to using them, but the hollow bones limit [PAWN_possessive] ability to lift heavy things.</description>
+					<graphics>
+						<Wings>Parts/Chicken/Chicken_Wings</Wings>
+					</graphics>
+					<statOffsets>
+						<PM_Lift>0.5</PM_Lift>
+					</statOffsets>
+					<abilities>
+						<li>
+							<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
+							<label>Fly</label>
+							<description>Fly to somewhere on the map.</description>
+							<iconPath>UI/Buttons/PM_Icon_Flight</iconPath>
+							<cooldown>60000</cooldown>
+						</li>
+					</abilities>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef] has mastered [PAWN_possessive] wings and can effortlessly fly long distances like a migratory bird. As an added bonus food is easily spottable from above.</description>
+				<graphics>
+					<Wings>Parts/Chicken/Chicken_Wings</Wings>
+				</graphics>
+				<statOffsets>
+					<CaravanRidingSpeedFactor>1.5</CaravanRidingSpeedFactor>
+					<ForagedNutritionPerDay>+0.8</ForagedNutritionPerDay>
+					<PM_Lift>0.5</PM_Lift>
+				</statOffsets>
+				<abilities>
+					<li>
+						<abilityClass>Pawnmorph.Abilities.Flight</abilityClass>
+						<label>Fly</label>
+						<description>Fly to somewhere on the map.</description>
+						<iconPath>UI/Buttons/PM_Icon_Flight</iconPath>
+						<cooldown>60000</cooldown>
+					</li>
+				</abilities>
+			</li>
+		</stages>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
+				<mutationDependency>
+					<hediff>EtherWingTip</hediff>
+					<mtbDays>3</mtbDays>
+					<chance>5</chance>
+					<partsToAffect>
+						<li>Hand</li>
+					</partsToAffect>
+					<countToAffect>2</countToAffect>
+					<memory>WingTipMemory</memory>
+					<tale>HandsBecomeWingTips</tale>
+				</mutationDependency>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphArmPart">
+		<defName>EtherFlightlessWing</defName>
+		<label>flightless wing</label>
+		<description>A fightless avian wing.</description>
+		<classInfluence>Ratite</classInfluence>
+		<mutationTale>ArmBecomsWing</mutationTale>
+		<mutationMemory>EtherWingMemory</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm is significantly stiffer and visibly shorter then before.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arms has gotten significantly shorter and are clad in a soft down.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. It is far too small and weak to fly but has grown a lovely plumage.</description>
+					<statOffsets>
+						<MeleeHitChance>0.2</MeleeHitChance>
+						<MeleeDodgeChance>5</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing. It's flightless but the eye-catching plumage has become a great distraction should they find themself in a brawl!</description>
+					<statOffsets>
+						<MeleeHitChance>0.2</MeleeHitChance>
+						<MeleeDodgeChance>5</MeleeDodgeChance>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="Pawnmorph.Hediffs.CompProperties_MutationDependency">
+				<mutationDependency>
+					<hediff>EtherWingTip</hediff>
+					<mtbDays>3</mtbDays>
+					<chance>5</chance>
+					<partsToAffect>
+						<li>Hand</li>
+					</partsToAffect>
+					<countToAffect>2</countToAffect>
+					<memory>WingTipMemory</memory>
+					<tale>HandsBecomeWingTips</tale>
+				</mutationDependency>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

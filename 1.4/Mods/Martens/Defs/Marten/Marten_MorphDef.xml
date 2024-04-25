@@ -1,0 +1,42 @@
+<Defs>
+    <Pawnmorph.MorphDef ParentName="CarnivoraMorph">
+        <defName>MartenMorph</defName>
+        <label>martenmorph</label>
+        <description>The product of a mad scientist's attempt to create an army of super (cute) soldiers, martenmorphs are deceptively strong fighters, with suprising agility that makes them nigh untouchable in melee.</description>
+        <race>ZGF_RimMart</race>
+        <associatedAnimals>
+            <li>ZGF_BeechMart</li>
+            <li>ZGF_JapaneseMart</li>
+            <li>ZGF_NilgiriMart</li>
+            <li>ZGF_PineMart</li>
+            <li>ZGF_Sable</li>
+            <li>ZGF_YellowMart</li>
+            <li>ZGF_MegaMart</li>
+            <li>ZGF_Boommarten</li>
+        </associatedAnimals>
+        <classification>Carnivora</classification>
+        <categories>
+            <li>Cold</li>
+            <li>Temperate</li>
+            <li>Combat</li>
+        </categories>
+        <fullTransformation>PawnmorphMartenTF</fullTransformation>
+        <partialTransformation>PawnmorphMartenTFPartial</partialTransformation>
+        <addedAspects>
+            <li>
+                <def>MartenAspect</def>
+                <keepOnReversion>false</keepOnReversion>
+            </li>
+        </addedAspects>
+        <raceSettings>
+            <graphicsSettings>
+                <skinColorOverride>(142,95,57)</skinColorOverride>
+                <hairColorOverride>(254,154,71)</hairColorOverride>
+            </graphicsSettings>
+        </raceSettings>
+        <transformSettings>
+            <transformationMemory>MartenTransformationMemory</transformationMemory>
+            <revertedMemory>MartenRevertedMemory</revertedMemory>
+        </transformSettings>
+    </Pawnmorph.MorphDef>
+</Defs>

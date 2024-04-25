@@ -1,4 +1,4 @@
-<Defs>
+<!-- <Defs>
 	<AlienRace.ThingDef_AlienRace ParentName="BasePawn">
 		<defName>WolfMorphRace_Explicit</defName>
 		<label>wolfmorph (explicit)</label>
@@ -387,4 +387,4 @@
 			</generalSettings>
 		</alienRace>
 	</AlienRace.ThingDef_AlienRace>
-</Defs>
+</Defs> -->

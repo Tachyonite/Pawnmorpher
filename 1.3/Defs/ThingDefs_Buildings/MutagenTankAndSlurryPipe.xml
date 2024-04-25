@@ -1,0 +1,130 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_MutagenTank</defName>
+        <thingClass>Pawnmorph.Buildings.MutagenTank</thingClass>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <label>mutagen tank</label>
+        <description>Stores liquid slurry in quantities enough to supply a chamber. Can be filled via a network of mutagen conduits, supplied by either a mutagen hopper or a vent pump.</description>
+        <graphicData>
+            <texPath>Things/Building/MutagenTank/MutagenTank</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(2,2)</drawSize>
+        </graphicData>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>Impassable</passability>
+        <fillPercent>0.6</fillPercent>
+        <rotatable>false</rotatable>
+        <statBases>
+            <MaxHitPoints>70</MaxHitPoints>
+            <WorkToBuild>100</WorkToBuild>
+            <Mass>5</Mass>
+            <Flammability>0.7</Flammability>
+        </statBases>
+        <size>(1,1)</size>
+        <costList>
+            <Steel>100</Steel>
+            <Plasteel>10</Plasteel>
+            <ComponentIndustrial>2</ComponentIndustrial>
+        </costList>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <uiIconScale>1</uiIconScale>
+        <researchPrerequisites>
+            <li>PM_MutagenStorage</li>
+        </researchPrerequisites>
+        <comps>
+            <li Class="CompProperties_Refuelable">
+                <fuelConsumptionRate>1.7</fuelConsumptionRate>
+                <fuelCapacity>10.0</fuelCapacity>
+                <consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+                <fuelFilter>
+                    <thingDefs>
+                        <li>MechaniteSlurry</li>
+                    </thingDefs>
+                </fuelFilter>
+                <showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+                <initialFuelPercent>0</initialFuelPercent>
+            </li>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SimpleSlurryNetStorageComp</compClass>
+            </li>
+        </comps>
+    </ThingDef>
+	
+	<ThingDef ParentName="BuildingBase">
+        <defName>PM_SlurryPipe</defName>
+        <label>slurry pipe</label>
+        <description>A pipe that transmits slurry.</description>
+        <thingClass>Building</thingClass>
+        <category>Building</category>
+		<tickerType>Normal</tickerType>
+        <graphicData>
+            <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+            <linkType>Transmitter</linkType>
+            <linkFlags>
+                <li>PowerConduit</li>
+            </linkFlags>
+            <damageData>
+                <rect>(0,0.35,1,0.3)</rect>
+            </damageData>
+        </graphicData>
+        <uiIconPath>Things/Building/Linked/PowerConduit_MenuIcon</uiIconPath>
+        <uiIconScale>1</uiIconScale>
+        <building>
+            <ai_chillDestination>false</ai_chillDestination>
+            <isInert>true</isInert>
+            <isEdifice>false</isEdifice>
+            <blueprintGraphicData>
+                <texPath>Things/Building/MutagenPipe_Atlas</texPath>
+            </blueprintGraphicData>
+        </building>
+        <altitudeLayer>FloorEmplacement</altitudeLayer>
+        <passability>Standable</passability>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <statBases>
+            <MaxHitPoints>80</MaxHitPoints>
+            <WorkToBuild>35</WorkToBuild>
+            <Flammability>0.7</Flammability>
+            <Beauty>-2</Beauty>
+        </statBases>
+        <placingDraggableDimensions>1</placingDraggableDimensions>
+        <costList>
+            <Steel>1</Steel>
+        </costList>
+        <comps>
+            <li>
+                <compClass>Pawnmorph.SlurryNet.SlurryNetTransmitter</compClass>
+            </li>
+            <li Class="CompProperties_Glower">
+                <glowRadius>1</glowRadius>
+                <glowColor>(0, 255, 0,0)</glowColor>
+            </li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosiveDamageType>MutagenCloud_Tiny</explosiveDamageType>
+				<explosiveExpandPerStackcount>0.4</explosiveExpandPerStackcount>
+				<startWickHitPointsPercent>0.7</startWickHitPointsPercent>
+				<preExplosionSpawnThingDef>PM_Filth_Slurry</preExplosionSpawnThingDef>
+				<preExplosionSpawnChance>1</preExplosionSpawnChance>
+				<wickTicks>
+					<min>30</min>
+					<max>60</max>
+				</wickTicks>
+			</li>
+        </comps>
+        <researchPrerequisites>
+            <li>PM_MutagenStorage</li>
+        </researchPrerequisites>
+        <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+        <rotatable>false</rotatable>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+        <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <constructEffect>ConstructMetal</constructEffect>
+        <clearBuildingArea>false</clearBuildingArea>
+        <designationHotKey>Misc1</designationHotKey>
+
+    </ThingDef>
+</Defs>

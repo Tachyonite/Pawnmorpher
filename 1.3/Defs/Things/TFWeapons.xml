@@ -172,7 +172,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>1</damageAmountBase>
 			<stoppingPower>10</stoppingPower>
-			<speed>15</speed>
+			<speed>50</speed>
 		</projectile>
 		<AddHediffChance>0.7</AddHediffChance>
 		<HediffToAdd>SyringeRifleHediff</HediffToAdd>
@@ -196,7 +196,7 @@
 			<damageDef>Bullet</damageDef>
 			<damageAmountBase>1</damageAmountBase>
 			<stoppingPower>10</stoppingPower>
-			<speed>15</speed>
+			<speed>50</speed>
 		</projectile>
 	</ThingDef>
 

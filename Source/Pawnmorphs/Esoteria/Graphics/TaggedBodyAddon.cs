@@ -5,16 +5,15 @@ using AlienRace;
 
 namespace Pawnmorph.GraphicSys
 {
-    /// <summary>
-    /// subclass of har's body addon class to allow tagging unique addons for injection later
-    /// </summary>
-    /// <seealso cref="AlienRace.AlienPartGenerator.BodyAddon" />
-    public class TaggedBodyAddon : AlienPartGenerator.BodyAddon
-    {
-        /// <summary>
-        /// The anchor identifier
-        /// </summary>
-        public string anchorID; 
-        
-    }
+	/// <summary>
+	/// subclass of har's body addon class to allow tagging unique addons for injection later
+	/// </summary>
+	/// <seealso cref="AlienRace.AlienPartGenerator.BodyAddon" />
+	public class TaggedBodyAddon : AlienPartGenerator.BodyAddon
+	{
+		/// <summary>
+		/// The anchor identifier
+		/// </summary>
+		public string anchorID;
+	}
 }

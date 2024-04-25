@@ -1,0 +1,35 @@
+<Defs>
+	<RecipeDef>
+		<defName>Make_GenekitColorPicker</defName>
+		<label>fabricate dermal repigmentation genekit</label>
+		<description>Reshape mechanites into a dermal repigmentation genekit.</description>
+		<jobString>Fabricating dermal repigmentation genekit</jobString>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_Brewing</soundWorking>
+		<workAmount>300</workAmount>
+		<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>MechaniteSlurry</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>MechaniteSlurry</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<GenekitColorPicker>1</GenekitColorPicker>
+		</products>
+		<researchPrerequisite>AdvancedExtraction</researchPrerequisite>
+		<skillRequirements>
+			<Crafting>8</Crafting>
+		</skillRequirements>
+		<workSkill>Intellectual</workSkill>
+	</RecipeDef>
+</Defs>

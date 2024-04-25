@@ -1,0 +1,1058 @@
+<!-- HAND TEMPLATE
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherLeg</defName>
+		<label></label>
+		<description></description>
+		<classInfluence></classInfluence>
+		<mutationTale></mutationTale>
+		<mutationMemory></mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+-->
+
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherPawHand</defName>
+		<label>paw</label>
+		<description>A paw.</description>
+		<classInfluence>Canid</classInfluence>
+		<mutationTale>HandsBecomePaws</mutationTale>
+		<mutationMemory>CanidPawHandMemory</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>clawed</labelOverride>
+					<description>Each finger on this hand is tipped with a sharp claw.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>padded</labelOverride>
+					<description>In addition to claws, this hand is developing thick pads on the palm and each fingertip.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<labelOverride>inflexible handpaw</labelOverride>
+					<description>This hand looks more like a paw than a hand, but isn't completely useless.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has largely adapted to having paws, recovered some flexibility in the digits.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>6.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<!-- <stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity> --> <!-- adaption cream -->
+				<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+				<!-- <labelOverride>handpaw</labelOverride>
+				<description>Further adaptation to this paw has caused the digits to lengthen and gain flexibility again.  The long nails tend to snag on gloves, but otherwise [PAWN_nameDef] can use this handpaw about as well as a regular hand.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity> -->  <!-- paragon  -->
+				<!-- only pawns with the Paragon aspect can get this stage -->
+				<!-- <labelOverride>dextrous handpaw</labelOverride>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>Even further adaptation to this handpaw has given [PAWN_nameDef] incredibly fine motor control over [PAWN_possessive] paw-fingers.  [PAWN_pronoun] can grasp and manipulate things with [PAWN_possessive] nails more precisely than [PAWN_pronoun] ever could with regular fingers.</description>
+			</li>
+		</stages> -->
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>5.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart" Name="EtherHoofHand" Abstract="true">
+		<defName>AbstractEtherHoofHand</defName>
+		<label>hoof</label>
+		<description>A hoof-hand?</description>
+		<mutationMemory>EtherHoofHand</mutationMemory>
+		<mutationTale>HandsBecomeHooves</mutationTale>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>thick nails</labelOverride>
+					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>hoof-fingers</labelOverride>
+					<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Above a humanlike palm, two fingers have paired up and merged. This reduces manipulation, but not nearly as much as having a full hoof instead.</description>
+					<labelOverride>handhoof</labelOverride>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has adapted to using hooves, and will have slightly less trouble with working with them.</description>
+					<label>adapted</label>
+				</values>
+			</li>
+		</stagePatches>
+		<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+		<!-- 
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>handhoof</labelOverride>
+				<partEfficiencyOffset>-0.1</partEfficiencyOffset>
+				<description>Further adaptation has resulted in the hoof splitting apart and growing into two hoof-tipped fingers and a thumb.  They look strange, but they give [PAWN_nameDef] better manipulation than a regular hoof would.</description>
+			</li> -->
+
+			<!-- only pawns with the Paragon aspect can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>dextrous handhoof</labelOverride>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Even further adaptation to this handhoof has increased the flexibility of the hoof-fingers to the point where they function about as well as an ordinary hand.</description>
+			</li> 
+		</stages>
+		-->
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- EtherUnclovenHoofHand -->
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherHoofHand">
+		<defName>EtherHoofHand</defName>
+		<label>hoof</label>
+		<description>A hoof-hand?</description>
+		<classInfluence>OddToedUngulate</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.50</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.30</partEfficiencyOffset>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="EtherHoofHand">
+		<defName>EtherClovenHoofHand</defName>
+		<label>hoof</label>
+		<description>A hoof-hand?</description>
+		<classInfluence>EvenToedUngulate</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
+					<statOffsets>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherTrotterHand</defName>
+		<label>trotter</label>
+		<description>A trotter..hand?</description>
+		<classInfluence>Suid</classInfluence>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>thick nails</labelOverride>
+					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>hoof-fingers</labelOverride>
+					<description>Each finger on this hand has a large, dark hoof-like nail on it. Some of the fingers seem to be shortening.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition. The changes may take time to get used to</description>
+					<statOffsets>
+						<CookSpeed>0.05</CookSpeed>
+						<DrugCookingSpeed>0.05</DrugCookingSpeed>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+					<partEfficiencyOffset>-0.10</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition, making quantifying mixtures much easier. Adaption has helped offset the difficulties [PAWN_nameDef] has in using them.</description>
+					<statOffsets>
+						<CookSpeed>0.1</CookSpeed>
+						<DrugCookingSpeed>0.1</DrugCookingSpeed>
+						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<!-- <stages> -->
+			<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>handtrotter</labelOverride>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<description>Further adaptation has resulted in the trotter growing out into two hoof-tipped fingers and a thumb.  They look strange, but they give [PAWN_nameDef] better manipulation than a regular trotter would.</description>
+			</li> -->
+			<!-- only pawns with the Paragon aspect can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>dextrous handtrotter</labelOverride>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Even further adaptation to this handtrotter has increased the flexability of the hoof-fingers to the point where they function about as well as an ordinary hand.</description>
+			</li>
+		</stages> -->
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherFelineClaws</defName>
+		<label>feline</label>
+		<description>This hand has reshaped to become like a paw, complete with retractable claws.</description>
+		<classInfluence>Feline</classInfluence>
+		<mutationTale>HandsBecomeCatPaws</mutationTale>
+		<mutationMemory>EtherFelineClaws</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<label>clawed</label>
+					<description>[PAWN_nameDef]'s fingernails have become long, curved and pointed, like that of a feline.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<label>padded</label>
+					<description>Fleshy pads have appeared on [PAWN_nameDef]'s palm and fingers, giving the clawed hand a more catlike appearance. [PAWN_objective] thumb has grown weaker as well, making grasping things much more difficult.</description>
+				
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The mechanites have finished their work on [PAWN_nameDef]'s new cat-like paws, yet they still remain foreign and unfamiliar to [PAWN_objective] and will take some to get used to.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s hands have reshaped to become like paws, complete with retractable claws. This gives [PAWN_objective] a combat advantage, yet makes it harder to wipe [PAWN_possessive] ass.</description>
+					<statOffsets>
+						<MeleeWeapon_CooldownMultiplier>-0.25</MeleeWeapon_CooldownMultiplier>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+			<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>feline handpaw</labelOverride>
+				<partEfficiencyOffset>0</partEfficiencyOffset>
+				<description>Further adaption to this handpaw have increased the flexibility and precision of the digits, allowing [PAWN_nameDef] to use [PAWN_possessive] claws as delicately as [PAWN_pronoun] would fingers.  The paw now functions about as well as a hand again, as long as [PAWN_nameDef] is careful not to squeeze too hard.</description>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>dextrous feline handpaw</labelOverride>
+				<partEfficiencyOffset>0.1</partEfficiencyOffset>
+				<description>Even further adaption to this handpaw have given [PAWN_nameDef] a remarkable deftness with [PAWN_possessive] claw-tipped fingers.  The claws can rend [PAWN_possessive] foes with a swipe, and yet when working on delicate tasks they're even more gentle and precise than ordinary fingers would be.</description>
+			</li> -->
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherWingTip</defName>
+		<label>wingtip</label>
+		<classInfluence>Avian</classInfluence>
+		<description>A wing tip.</description>
+		<mutationMemory>WingTipMemory</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers feel weird.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have started shrinking alarmingly.</description>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<label>changing</label>
+					<description>[PAWN_nameDef]'s fingers have shrunken down significantly, making manipulating things much harder.</description>
+					<partEfficiencyOffset>-0.50</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have mostly disappeared into an almost-useless lump of bird-skinned flesh, with many feathers protruding from the nub.  </description>
+					<partEfficiencyOffset>-0.90</partEfficiencyOffset>
+					<!-- almost useless nub -->
+				</values>
+			</li>
+		</stagePatches>
+			<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<label>feather fingers</label>
+				<description>Further adaption to this wingtip has given [PAWN_nameDef] several stiff feathers that [PAWN_pronoun] can manipulate.  [PAWN_pronoun] can use them sort of like fingers, but being nothing more than feathers they have a hard time really grasping anything.</description>
+				<partEfficiencyOffset>-0.25</partEfficiencyOffset>
+			</li>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<label>paragon</label>
+				<description>Even further adaption has rendered [PAWN_nameDef]'s feather fingers remarkably stiff and flexible, and they now work almost as well as actual fingers.  [PAWN_nameDef] looks a lot like a cartoon character when [PAWN_pronoun] picks things up, but it's a small price to pay to have working hands again.</description>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+			</li> -->
+			<!-- still not quite as good as hands -->
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>Ursine</classInfluence>
+		<defName>EtherBearPawHand</defName>
+		<label>huge paw</label>
+		<description>Massive, clawed paws that belong on a bear rather than a human.  They are deadly in a fight, but are rather useless at fine manipulation.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>clawed</labelOverride>
+					<description>Each finger on this hand is tipped with a huge, sharp claw.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>large handpaw</labelOverride>
+					<description>In addition to massive claws, [PAWN_nameDef]'s hand is has grown noticably larger and developed thick pads on the palm and each fingertips, making it look more like a paw than a hand.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10.6</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] will be useless at fine manipulation until [PAWN_pronoun] adapts to them, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
+					<statOffsets>
+						<AimingDelayFactor>0.1</AimingDelayFactor>
+						<MeleeHitChance>0.05</MeleeHitChance>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>11.2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] has gotten used to having five fingers and no thumb, but the huge size still makes them more clumsy than someone with smaller paws.  At least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
+					<statOffsets>
+						<AimingDelayFactor>0.05</AimingDelayFactor>
+						<MeleeHitChance>0.1</MeleeHitChance>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>11.2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+			<!-- adaption cream -->
+			<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>1.5</minSeverity>
+				<labelOverride>huge handpaw</labelOverride>
+				<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+				<description>A massive, hand-like paw with deadly claws has replaced [PAWN_nameDef]'s hand.  Further adaption has resulted in the thumb returning to its usual place, giving [PAWN_objective] better manipulation than your average bear.  The size still makes it slightly more awkward to use than a regular hand, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands.</description>
+			</li> -->
+			<!-- paragon  -->
+			<!-- only pawns with the Paragon aspect can get this stage -->
+			<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>2.5</minSeverity>
+				<labelOverride>bear hand</labelOverride>
+				<partEfficiencyOffset>0.05</partEfficiencyOffset>
+				<description>A massive hand-like paw with deadly claws has replaced [PAWN_nameDef]'s hand.  Even further adaption has given the handpaw remarkable dexterity for its size without making it any less deadly.  [PAWN_pronoun] can easily swap from gently holding something to ripping it apart with [PAWN_possessive] bear hands.</description>
+			</li> -->
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+							<li>Blunt</li>
+						</capacities>
+						<power>0.0</power>
+						<cooldownTime>2.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart" Name="RodentHandPaw" Abstract="true">
+		<defName>EtherAbstractRodentPawHand</defName>
+		<description>a rodent handpaw.</description>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RodentHandPaw">
+		<defName>EtherDextrousPawHand</defName>
+		<label>dextrous handpaw</label>
+		<classInfluences>
+			<li>Rodent</li>
+			<li>RaccoonMorph</li>
+		</classInfluences>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>Small claws</labelOverride>
+					<description>Fine claws are developing from the nailbed here, and small callouses are growing on the fingerprintsand palm.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>Slim fingers</labelOverride>
+					<description>The fingers have slimmed and lengthed, splaying out a little with delicate claws and small pawpads growing in.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Slim fingers are tipped with delicate claws, assisting with fine motor controls.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.01</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>Slim fingers are tipped with delicate claws, assisting with much finer motor controls due to further adaptation.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.025</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="RodentHandPaw">
+		<defName>EtherGreenPawHand</defName>
+		<label>arboreal handpaw</label>
+		<classInfluence>Arboreal</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>Slight callouses are forming over the palm and fingerprints of this hand.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>The palm of this hand is calloused and should be able to pull at plants a little easier.</description>
+					<statOffsets>
+						<DrugHarvestYield>0.05</DrugHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>This hand is clawed and padded, making it a little easier to work with in the field with plants.</description>
+					<statOffsets>
+						<PlantWorkSpeed>0.025</PlantWorkSpeed>
+						<DrugHarvestYield>0.1</DrugHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has a 'green paw', that enables them to work a bit faster with plants in all respects. Claws are suited for digging in dirt, and pawpads are ideal for pulling at fruit.</description>
+					<statOffsets>
+						<PlantWorkSpeed>0.075</PlantWorkSpeed>
+						<DrugHarvestYield>0.1</DrugHarvestYield>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegaslothHand</defName>
+		<description>Large sloth paws.</description>
+		<label>clawed hand</label>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>Three inch-long claws have grown out from [PAWN_nameDef]'s fingers, and still seem to be growing.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>The claws are growing more, replacing the fingers themselves. They're about four inches long, and are growing from the second knuckle.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.8</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Most of [PAWN_nameDef]'s finger real-estate has been entirely replaced by large megasloth claws. They're very sharp and get in the way for most tasks, but are rather dangerous in combat.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>9.7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
+					<statOffsets>
+						<MeleeHitChance>0.025</MeleeHitChance>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>9.7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>ThickHide</classInfluence>
+		<defName>EtherElephantHand</defName>
+		<label>stump hand</label>
+		<mutationMemory>StumpHandMemory</mutationMemory>
+		<!-- <mutationTale>TODO</mutationTale> -->
+		<description>Thick, leathery stumps have replaced this hand. Doing any kind of fine manipulation with it will be exceedingly challenging.</description>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<labelOverride>thick nails</labelOverride>
+					<description>Each finger on this hand is tipped with a thicker nail that's slowly dominating the length of each digit.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<labelOverride>handstump</labelOverride>
+					<description>Some of the fingers on this hand have disappeared entirely, while the rest are growing fatter and more inflexible. [PAWN_nameDef]'s hand isn't going to be of much use soon.</description>
+					<statOffsets>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<partEfficiencyOffset>-0.40</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Thick, leathery stumps have replaced [PAWN_nameDef]' hand. [PAWN_pronoun] will find any any kind of fine manipulation exceedingly challenging until he gets used to them.</description>
+					<statOffsets>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+						<WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
+					</statOffsets>
+					<partEfficiencyOffset>-0.30</partEfficiencyOffset>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef] has adapted to having stumps for hands, and will have slightly less trouble with working with them.</description>
+					<statOffsets>
+						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
+						<WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+					</statOffsets>
+					<partEfficiencyOffset>-0.20</partEfficiencyOffset>
+				</values>
+			</li>
+		</stagePatches>
+		<!-- only pawns with the Paragon aspect or adaption cream can get this stage -->
+		<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+			<minSeverity>1.5</minSeverity> 
+			<labelOverride>stumpy hand</labelOverride>
+			<description>Further mutation has caused several stubby fingers to grow from this stump.  It's not so much a hand as a stump with fingers, but they're almost as capable as a human hand.</description>
+			<partEfficiencyOffset>-0.05</partEfficiencyOffset>
+		</li> -->
+		<!-- only pawns with the Paragon aspect can get this stage -->
+		<!-- <li Class="Pawnmorph.Hediffs.MutationStage">
+			<minSeverity>2.5</minSeverity>
+			<labelOverride>dextrous stump hand</labelOverride>
+			<description>Further mutation has caused several stubby fingers to grow from this stump.  They look strangely elephantine, but additional adaptions to the fingers have left them as dextrous as a human hand.</description>
+			<partEfficiencyOffset>0</partEfficiencyOffset>
+		</li> -->
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>smash</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>5.0</power>
+						<cooldownTime>1.5</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>Reptile</classInfluence>
+		<defName>EtherReptileHandclaws</defName>
+		<label>reptile claws</label>
+		<description>reptile claws.</description>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingernails are a little sharper.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.2</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>Sharp claws have grown from [PAWN_nameDef]'s fingers, and scales are growing to cover the knuckles.</description>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>8.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws. They're clumsy at the moment, but may improve with further adaptation.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>9</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have elongated into scale-covered claws.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+					<verbOverrides>
+						<li>
+							<label>claws</label>
+							<chanceFactor>1</chanceFactor>
+							<power>9</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>claws</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Scratch</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>2</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<classInfluence>Simian</classInfluence>
+		<defName>EtherMonkeyHand</defName>
+		<label>dextrous hand</label>
+		<description>A monkey's paw</description>
+		<!-- <mutationTale>TODO</mutationTale> -->
+		<mutationMemory>EtherSimianHand</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>[PAWN_nameDef] is flexing their hands repetitively.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s hands are growing short thick hairs over the top, and their fingers seem a little longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>The topside of [PAWN_nameDef]'s hands are covered in short, thick hairs, and the fingers are elongated, like a monkey's.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s fingers have elongated into something resembling a monkey's hand. They're a little more suited to peeling bananas.</description>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphHandPart">
+		<defName>EtherDiggingClaws</defName>
+		<label>digging claws</label>
+		<description>Claws good for digging.</description>
+		<classInfluence>Leporid</classInfluence>
+		<!-- <mutationTale>TODO</mutationTale>
+		<mutationMemory>TODO</mutationMemory> -->
+		<stagePatches>
+			<li function="modify">
+				<stageKey>readjusting</stageKey>
+				<values>
+					<description>Thick claws are pressing out from the nailbed.</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>unfamiliar</stageKey>
+				<values>
+					<description>The claws are elongating, with fingers growing bulkier. They're somewhat blunt and don't appear too useful in combat.</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>Each finger on this hand has the top portion replaced by a thick claw. It might take some time and further adaptation to determine how this could be used.</description>
+
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>Each finger on this hand has the top portion replaced by a thick and dense claw. It's ideal for digging away at rock and dirt.</description>
+					<statOffsets>
+						<MiningSpeed>0.125</MiningSpeed>
+						<DeepDrillingSpeed>0.15</DeepDrillingSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

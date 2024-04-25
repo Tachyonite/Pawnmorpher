@@ -1,0 +1,19 @@
+<Defs>
+    <Pawnmorph.ListedBackstoryDef ParentName="FormerHumanBase">
+        <defName>FormerHumanNormalSquirrel</defName>
+        <title>former human</title>
+        <titleShort>former human</titleShort>
+        <baseDesc>A colony turned [PAWN_nameDef] into an animal, using mutagenic mechanites. (Un?)fortunately, [PAWN_pronoun] retains [PAWN_possessive] human mind...but for how long? In this state, [PAWN_nameDef] can be drafted, have limited social interactions and will need to be kept happy to resist instinct creeping in.</baseDesc>
+        <workAllowsList>
+            <li>Violent</li>
+            <li>ManualDumb</li>
+            <li>Firefighting</li>
+            <li>Cleaning</li>
+            <li>Commoner</li>
+            <li>Social</li>
+            <li>Animals</li>
+            <li>Intellectual</li>
+            <li>PlantWork</li>
+        </workAllowsList>
+    </Pawnmorph.ListedBackstoryDef>
+</Defs>

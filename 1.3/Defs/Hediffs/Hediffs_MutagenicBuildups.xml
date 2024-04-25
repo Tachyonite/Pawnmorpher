@@ -1,5 +1,20 @@
 <Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ComposableHediffs.xsd">
 
+	<!--Base Hediff For mutagenic buildup-->
+	<HediffDef Name="MutagenicBuildupBase" Abstract="true">
+        <hediffClass>Pawnmorph.Hediffs.Hediff_MutagenicBase</hediffClass>
+        <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
+        <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
+        <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
+        <maxSeverity>1</maxSeverity>
+        <label>mutagenic buildup</label>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.MutagenExtension">
+                <mutagen>ChaoticMutagen</mutagen>
+            </li>
+        </modExtensions>
+    </HediffDef>
+	
     <!--weapon base hediff  -->
     <HediffDef Name="PMMutagenicBuildupWBase" ParentName="MutagenicBuildupBase" Abstract="true">
         <makesSickThought>true</makesSickThought>

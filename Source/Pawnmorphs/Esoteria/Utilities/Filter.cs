@@ -6,29 +6,29 @@ using JetBrains.Annotations;
 
 namespace Pawnmorph.Utilities
 {
-    /// <summary> Generic class for a filter. </summary>
-    public class Filter<T>
-    {
-        /// <summary>
-        ///     the list of entries in the filter
-        /// </summary>
-        [NotNull] public List<T> filterList = new List<T>();
+	/// <summary> Generic class for a filter. </summary>
+	public class Filter<T>
+	{
+		/// <summary>
+		///     the list of entries in the filter
+		/// </summary>
+		[NotNull] public List<T> filterList = new List<T>();
 
-        /// <summary>
-        ///     if this filter is a black list
-        /// </summary>
-        public bool isBlackList = true;
+		/// <summary>
+		///     if this filter is a black list
+		/// </summary>
+		public bool isBlackList = true;
 
-        /// <summary>
-        ///     returns true if the given element passes through the filter
-        /// </summary>
-        /// <param name="elem"></param>
-        /// <returns></returns>
-        public bool PassesFilter(T elem)
-        {
-            bool contains = filterList.Contains(elem);
-            if (isBlackList) return !contains;
-            return contains;
-        }
-    }
+		/// <summary>
+		///     returns true if the given element passes through the filter
+		/// </summary>
+		/// <param name="elem"></param>
+		/// <returns></returns>
+		public bool PassesFilter(T elem)
+		{
+			bool contains = filterList.Contains(elem);
+			if (isBlackList) return !contains;
+			return contains;
+		}
+	}
 }

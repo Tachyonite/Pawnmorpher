@@ -1,69 +1,31 @@
-<ModMetaData>
+﻿<ModMetaData>
 	<name>Pawnmorpher</name>
-	<author>Mic, Iron Wolf, The Pheonix</author>
+	<author>The Pawnmorpher Team</author>
 	<supportedVersions>
 		<li>1.0</li>
 		<li>1.1</li>
 		<li>1.2</li>
 		<li>1.3</li>
+		<li>1.4</li>
+		<li>1.5</li>
 	</supportedVersions>
-	<description>Too many prisoners and not enough animals? We can change that. And maybe you at the same time.
+	<description>Become a mad scientist and unleash the power of mechanite mutagen upon the world.
 
   &lt;size=24&gt;Features&lt;/size&gt;
 
-- Buy, find or create a range of mutagens to augment your pawns or prisoners, with an expanding array of animal-themed mutations! There is often a high chance that the affected pawn will fully transform into an animal, so mind that.
+- Gather, refine and purify mutagens and antigens into a range of useful products.
 
-- Boost existing mutations with pills that improve their efficiency. Can that pawn lay eggs any faster? Sure they can!
+- Inject colonists and prisoners with serums that grant them various animal mutations, or can transform them entirely into animals.
 
-- Revert transformed animals to their former human selves, provided they haven't spent too long as one.
+- Sapient animals! Formerly human animals can be drafted and perform tasks around the colony, depending on how much sapience remains.
 
-- Stabilisers cancel out ongoing mutations, and prevents getting new ones, just like penoxycline. For the cautious.
+- Tag wild animals to gather their DNA, and then research it to discover new mutations. Build the ultimate hybrid supersoldier and expand your lab.
 
-- Fabricate guns to mutate raiders at a distance, but be warned that they may not always take it so well.
-
-- New events: The mutagenic ship chunk, mutonite meteor and diseases such as cowflu might test your colonist's resolve! (Toggleable in mod settings)
-
-- Chimera: There are three types of animal that can be attained by some special means or encountered in the wild.
+- Use a variety of mutagenic weaponry to deal with raiders, from melee, to guns, to mortar shells.
 
   &lt;size=24&gt;Dependencies&lt;/size&gt;
 
-  Requires Humanoid Alien Framework and Hugslib.
-
-  &lt;size=24&gt;Full Release&lt;/size&gt;
-
-You heard that right. This version is an improvement over Pawnmorpher Beta with a tonne of new features, visuals for mutations and some intricate little systems nobody will notice. There are more animal morphs, special chimeras and all manner of QOL addons.
-
-This mod does require Humanoid Alien Framework to function, but also ships with out-of-the-box support for Giddy Up! Battle Mounts saddles (for the new chimeras).
-
-Pawns who have been turned into animals can be reverted back to human with the right serum -- and they may have different outlooks on their time on all fours.
-
-There's a new trader type, which buys prisoners and sells animals (as well as a stock of mutagens)...I'll leave you to connect the dots there.
-
-Overall, this mod is just...better in every way to the original. Even so, there may be more to come.
-
-  &lt;size=24&gt;Issues&lt;/size&gt;
-
-Currently, only some small graphics issues with mutation offsets. Please report any you find, and any other bugs.
-
-  &lt;size=24&gt;Integrations&lt;/size&gt;
-
-- Giddy Up! | Perfectly compatible. Chaomorphs can be ridden, and if you're using Battle Mounts, they have saddles too.
-
-- Horses (1.0) | Perfectly compatible. Patched in so pawns can turn into horses, with special injector as well.
-
-- A Dog Said... | Perfectly compatible. Chaomorphs can have bionics now!
-
-  &lt;size=24&gt;Friends&lt;/size&gt;
-
-Massive, incredible thanks to Rocka, for doing basically all the textures. This version would not have happened without you.
-
-Thanks to Menhi, Erdelf, and...many, many others who put up with me and my stupid questions on the RimWorld Discord.
-
-  &lt;size=24&gt;Future Plans&lt;/size&gt;
-
-With all core content out of the way, I can focus on more additions! More chaomorphs! More weapons! More end animals!
-
-Feel free to suggest the next to be added, or if there are other QOL things you can think of.
+Requires Humanoid Alien Framework and VE Frameworks.
 
 	</description>
 	<packageId>tachyonite.pawnmorpher</packageId>
@@ -79,6 +41,28 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=818773962</steamWorkshopUrl>
 		</li>
 	</modDependencies>
+	<modDependenciesByVersion>
+		<v1.4>
+			<li>
+				<packageId>erdelf.HumanoidAlienRaces</packageId>
+				<displayName>Humanoid Alien Races 2.0</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+			</li>
+			<li>
+				<packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+				<displayName>Vanilla Expanded Framework</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2023507013</steamWorkshopUrl>
+				<downloadUrl>https://github.com/AndroidQuazar/VanillaExpandedFramework</downloadUrl>
+			</li>
+    	</v1.4>
+		<v1.5>
+			<li>
+				<packageId>erdelf.HumanoidAlienRaces</packageId>
+				<displayName>Humanoid Alien Races 2.0</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+			</li>
+    	</v1.5>
+  </modDependenciesByVersion>
 	<loadBefore>
 	</loadBefore>
 	<loadAfter>
@@ -91,5 +75,6 @@ Feel free to suggest the next to be added, or if there are other QOL things you 
 		<li>VanillaExpanded.VCookE</li>
 		<li>crustypeanut.rc2.core</li>
 		<li>UnlimitedHugs.RemoteTech</li>
+		<li>CETeam.CombatExtended</li>
 	</loadAfter>
 </ModMetaData>

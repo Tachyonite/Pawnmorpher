@@ -1,0 +1,17 @@
+<Defs>
+    <Pawnmorph.MorphDef ParentName="LeopardMorphBase">
+        <defName>LeopardMorph</defName>
+        <label>leopardmorph</label>
+        <race />
+        <categories>
+            <li>Temperate</li>
+        </categories>
+        <fullTransformation>PawnmorphLeopardTF</fullTransformation>
+        <partialTransformation>PawnmorphLeopardTFPartial</partialTransformation>
+        <raceSettings>
+            <graphicsSettings>
+                <skinColorOverride>(215,147,96)</skinColorOverride>
+            </graphicsSettings>
+        </raceSettings>
+    </Pawnmorph.MorphDef>
+</Defs>

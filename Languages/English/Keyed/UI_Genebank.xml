@@ -1,0 +1,53 @@
+<LanguageData>
+	<!-- Main -->
+    <PM_Genebank_Header>Genebank Storage</PM_Genebank_Header>
+    <PM_Genebank_AvailableHeader>Available Storage</PM_Genebank_AvailableHeader>
+    <PM_Genebank_TotalHeader>Total Storage</PM_Genebank_TotalHeader>
+    <PM_Genebank_DeleteButton>Delete</PM_Genebank_DeleteButton>
+    <PM_Genebank_SelectButton>Select</PM_Genebank_SelectButton>
+    <PM_Genebank_FontButton>Font</PM_Genebank_FontButton>
+    <PM_Genebank_FontButtonTiny>Tiny</PM_Genebank_FontButtonTiny>
+    <PM_Genebank_FontButtonSmall>Small</PM_Genebank_FontButtonSmall>
+    <PM_Genebank_FontButtonMedium>Medium</PM_Genebank_FontButtonMedium>
+	
+	<PM_Column_Stats_Size>Size</PM_Column_Stats_Size>
+
+	<!-- Mutations Tab -->
+	<PM_Genebank_MutationTab_Caption>Mutations</PM_Genebank_MutationTab_Caption>
+	<PM_Genebank_MutationTab_Column_Mutation>Mutation</PM_Genebank_MutationTab_Column_Mutation>
+	<PM_Genebank_MutationTab_Column_BodyPart>Part</PM_Genebank_MutationTab_Column_BodyPart>
+	<PM_Genebank_MutationTab_Column_Animal>Animal</PM_Genebank_MutationTab_Column_Animal>
+	<PM_Genebank_MutationTab_Column_Paragon>Paragon</PM_Genebank_MutationTab_Column_Paragon>
+	<PM_Genebank_MutationTab_Column_Abilities>Abilities</PM_Genebank_MutationTab_Column_Abilities>
+	<PM_Genebank_MutationTab_Column_Stats>Stats</PM_Genebank_MutationTab_Column_Stats>
+
+	<PM_Genebank_MutationTab_Details_Stages>Stages: </PM_Genebank_MutationTab_Details_Stages>
+	<PM_Genebank_MutationTab_Details_Attacks>Attacks:</PM_Genebank_MutationTab_Details_Attacks>
+	<PM_Genebank_MutationTab_Details_Abilities>Abilities:</PM_Genebank_MutationTab_Details_Abilities>
+	<PM_Genebank_MutationTab_Details_OtherInfluences>others.</PM_Genebank_MutationTab_Details_OtherInfluences>
+	<PM_Genebank_MutationTab_Details_AbilityCooldown>Cooldown:</PM_Genebank_MutationTab_Details_AbilityCooldown>
+	<PM_Genebank_MutationTab_Details_DamagePerSecond>dps</PM_Genebank_MutationTab_Details_DamagePerSecond>
+
+	<!-- Animals Tab -->
+	<PM_Genebank_AnimalsTab_Caption>Animals</PM_Genebank_AnimalsTab_Caption>
+	<PM_Genebank_AnimalsTab_Column_Race>Race</PM_Genebank_AnimalsTab_Column_Race>
+	<PM_Genebank_AnimalsTab_Column_Temperature>Temperature</PM_Genebank_AnimalsTab_Column_Temperature>
+	<PM_Genebank_AnimalsTab_Column_Lifespan>Lifespan</PM_Genebank_AnimalsTab_Column_Lifespan>
+	<PM_Genebank_AnimalsTab_Column_Diet>Diet</PM_Genebank_AnimalsTab_Column_Diet>
+	<PM_Genebank_AnimalsTab_Column_Value>Value</PM_Genebank_AnimalsTab_Column_Value>
+	<PM_Genebank_AnimalsTab_Column_Mutations>Mutations</PM_Genebank_AnimalsTab_Column_Mutations>
+
+	<PM_Genebank_AnimalsTab_Details_Mutations>Sequenced mutations:</PM_Genebank_AnimalsTab_Details_Mutations>
+
+	<!-- Template Tab -->
+	<PM_Genebank_TemplateTab_Caption>Templates</PM_Genebank_TemplateTab_Caption>
+	<PM_Genebank_TemplateTab_Column_Template>Template</PM_Genebank_TemplateTab_Column_Template>
+	<PM_Genebank_TemplateTab_Column_Mutations>Mutations</PM_Genebank_TemplateTab_Column_Mutations>
+
+
+	<PM_Genebank_TemplateTab_Button_Import>Import</PM_Genebank_TemplateTab_Button_Import>
+	<PM_Genebank_TemplateTab_Button_Export>Export</PM_Genebank_TemplateTab_Button_Export>
+
+	<PM_Genebank_TemplateTab_ParsingError>Failed to parse text.</PM_Genebank_TemplateTab_ParsingError>
+
+</LanguageData>

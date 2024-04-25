@@ -1,0 +1,177 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurJawPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegaslothSnout</defName>
+		<label>megatherine snout</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/Megasloth/Megasloth_Muzzle_Male</Male>
+					<Female>Parts/Megasloth/Megasloth_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+		<mutationMemory>EtherMegaslothSnout</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>The changes to [PAWN_nameDef]'s face continue. [PAWN_possessive] jaw has grown into a snout with a powerful bite and thick slab of muscle for a toungue.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A big and fuzzy snout graces [PAWN_nameDef]'s face, perfectly formed to reap trees of their leaves. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="ThickFurTailPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegaslothTail</defName>
+		<label>megatherine tail</label>
+		<mutationMemory>EtherMegaslothTail</mutationMemory>
+		<graphics>
+			<Tail>Parts/Megasloth/Megasloth_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>10</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A big, muscular tail, capable of supporting [PAWN_nameDef]'s whole body on its own.</description>
+					<verbOverrides>
+						<li>
+							<label>tail</label>
+							<chanceFactor>1</chanceFactor>
+							<power>18</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tail</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>18.0</power>
+						<cooldownTime>4</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Commented out due to Powerful Torso mutation -->
+	<!-- <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>MegaslothMorph</classInfluence>
+		<defName>EtherMegawoolly</defName>
+		<label>fuzzy</label>
+		<description>Long, fuzzy hair coats the whole of [PAWN_nameDef]'s body, keeping them warm and comfortable.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<parts>
+			<li>Torso</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>ShavedMyself</thought>
+				<etherBondThought>ShavedMyselfBond</etherBondThought>
+				<etherBrokenThought>ShavedMyselfBroken</etherBrokenThought>
+				<resource>WoolMegasloth</resource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>5</amount>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>4</amount>
+						<statOffsets>
+							<hungerRateFactor>0.3</hungerRateFactor>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.25</daysToProduce>
+						<amount>3</amount>
+						<statOffsets>
+							<hungerRateFactor>0.6</hungerRateFactor>
+						</statOffsets>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>2</amount>
+						<thought>ProductiveBliss</thought>
+						<statOffsets>
+							<hungerRateFactor>1.0</hungerRateFactor>
+						</statOffsets>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<statOffsets>
+					<ComfyTemperatureMin>-10</ComfyTemperatureMin>
+					<ComfyTemperatureMax>10</ComfyTemperatureMax>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef> -->
+</Defs>

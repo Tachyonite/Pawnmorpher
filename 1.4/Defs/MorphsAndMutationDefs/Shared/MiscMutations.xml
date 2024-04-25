@@ -1,0 +1,174 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+
+	<!-- Ear hole -->
+	
+    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole">
+		<defName>EtherEarHole</defName>
+		<label>ear hole</label>
+		<description>An ear hole.</description>
+		<mutationMemory>EtherEarHole</mutationMemory>
+		<classInfluences>
+			<li>Avian</li>
+			<li>Reptile</li>
+		</classInfluences>
+		<graphics>
+			<LeftEarBehind></LeftEarBehind>
+			<RightEar></RightEar>
+			<RightEarBehindHead></RightEarBehindHead>
+			<LeftEar></LeftEar>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear is shrinking.</description>
+					<graphics>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<label>missing</label>
+					<description>[PAWN_nameDef] no longer has a visible ear.</description>
+					<graphics>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s ear looks more and more like an animal ear hole.</description>
+					<graphics>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
+					</graphics>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef] now has a ear hole.</description>
+					<graphics>
+						<LeftEarBehind></LeftEarBehind>
+						<RightEar></RightEar>
+						<RightEarBehindHead></RightEarBehindHead>
+						<LeftEar></LeftEar>
+					</graphics>
+				</values>
+			</li>
+		</stagePatches>
+    </Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Egg Layer -->
+	
+	<Pawnmorph.Hediffs.MutationDef Name="EtherEggLayer" ParentName="PawnmorphPart" Abstract="true">
+		<defName>EtherEggLayer</defName>
+		<label>egglayer</label>
+		<description>An egglayer</description>
+		<mutationMemory>EtherEggLayer</mutationMemory>
+		<parts>
+			<li>Pelvis</li>
+		</parts>
+		<initialSeverity>0.01</initialSeverity>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<description>[PAWN_nameDef] can now lay eggs. Don't ask, don't tell. It's rather embarrassing.</description>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<defName>EtherUdder</defName>
+		<classInfluences>
+			<li>CowMorph</li>
+			<li>GoatMorph</li>
+			<li>YakMorph</li>
+		</classInfluences>
+		<label>udder</label>
+		<description>An udder.</description>
+		<initialSeverity>0.01</initialSeverity>
+		<graphics>
+			<Udders>Parts/Cow/Cow_Udder</Udders>
+		</graphics>
+		<parts>
+			<li>Waist</li>
+		</parts>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production">
+				<thought>MilkedMyself</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_MilkSelf</jobGiver>
+				<genderAversion>Male</genderAversion>
+				<wrongGenderThought>MilkedMyselfMale</wrongGenderThought>
+				<etherBondThought>MilkedMyselfBond</etherBondThought>
+				<etherBrokenThought>MilkedMyselfBroken</etherBrokenThought>
+				<resource>Milk</resource>
+				<rareResource>TFMilk</rareResource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>2</daysToProduce>
+						<amount>10</amount>
+						<chance>40</chance>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>8</amount>
+						<chance>30</chance>
+						<hungerRateFactor>1.3</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>6</amount>
+						<chance>15</chance>
+						<hungerRateFactor>1.6</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>4</amount>
+						<chance>5</chance>
+						<thought>ProductiveBliss</thought>
+						<hungerRateFactor>2.0</hungerRateFactor>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<minSeverity>0</minSeverity>
+				<description>This really needs no explanation. [PAWN_nameDef] now produces milk.</description>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>-0.10</offset>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

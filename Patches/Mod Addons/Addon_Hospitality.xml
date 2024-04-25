@@ -19,6 +19,7 @@
                             <rect>(0,0.05,1,1.95)</rect>
                         </damageData>
                     </graphicData>
+                    <tickerType>Rare</tickerType>
                     <comps>
                         <li Class="CompProperties_AffectedByFacilities">
                             <linkableFacilities>

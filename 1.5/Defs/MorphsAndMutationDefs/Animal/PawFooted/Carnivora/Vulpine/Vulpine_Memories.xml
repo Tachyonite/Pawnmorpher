@@ -1,0 +1,154 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>FoxTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>changed</label>
+                <description>I feel like I need to be hunting chickens, but I don't want to!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>YIP! This is great! Time for an egg sandwich.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>I don't want to YIP!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>changed</label>
+                <description>Ooh, so sleek — it could be fun to go full fox.</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>FoxRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>No more shedding!</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Dammit, going 'yap-yap' was so fun.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>NO MORE FUR!</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But I was so fluffy! This isn't what I wanted!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFoxEar</defName>
+		<stages>
+			<li>
+				<label>Fox ears</label>
+				<description>Okay, I'll admit it, these are pretty cool.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox ears</label>
+				<description>Pointy and fluffy ears, these are great — and I can hear everything!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox ears</label>
+				<description>...if there's one awful mutation I'm OK with...</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFoxEye</defName>
+		<stages>
+			<li>
+				<label>Fox eyes</label>
+				<description>I look reasonably exotic with these...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox eyes</label>
+				<description>I can see in the dark, and they look so cool!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox eyes</label>
+				<description>I look creepy with these...</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFoxMuzzle</defName>
+		<stages>
+			<li>
+				<label>Fox face</label>
+				<description>I just licked my nose...eww.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox face</label>
+				<description>Oh, so that's how foxes make all those cool noises! Yip!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fox face</label>
+				<description>My face is ruined, and I can't even talk right!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherFluffyTail</defName>
+		<stages>
+			<li>
+				<label>Fluffy tail</label>
+				<description>It gets in the way, but it's really fluffy...I could almost use it as a pillow.</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluffy tail</label>
+				<description>It's so fluffy I think I'm gonna die!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Fluffy tail</label>
+				<description>Sure it's cute...but it's attached to me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

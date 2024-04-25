@@ -1,0 +1,34 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxJawBase">
+		<defName>EtherFoxMuzzle</defName>
+		<classInfluence>FoxMorph</classInfluence>
+		<label>red fox muzzle</label>
+		<graphics>
+			<Muzzle>
+				<genderGraphics>
+					<Male>Parts/FoxRed/RedFox_Muzzle_Male</Male>
+					<Female>Parts/FoxRed/RedFox_Muzzle_Female</Female>
+				</genderGraphics>
+			</Muzzle>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxEarBase">
+		<defName>EtherFoxEar</defName>
+		<classInfluence>FoxMorph</classInfluence>
+		<label>red fox ear</label>
+		<graphics>
+			<LeftEar>Parts/FoxRed/RedFox_Ear_Left</LeftEar>
+			<RightEar>Parts/FoxRed/RedFox_Ear_Right</RightEar>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="FoxTailBase">
+		<defName>EtherFluffyTail</defName>
+		<classInfluence>FoxMorph</classInfluence>
+		<label>red fox tail</label>
+		<graphics>
+			<Tail>Parts/FoxRed/RedFox_Tail</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

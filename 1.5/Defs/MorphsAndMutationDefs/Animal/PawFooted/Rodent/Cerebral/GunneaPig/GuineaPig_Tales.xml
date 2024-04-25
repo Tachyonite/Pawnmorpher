@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewGuineaPigMuzzle</defName>
+		<label>grew a guinea pig muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s face becoming a guinea pig muzzle</li>
+				<li>tale_noun->[PAWN_nameDef]'s face growing a cute button nose</li>
+				<li>image->[PAWN_nameFull]'s terrified yells becoming loud chirps [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] starts to chirp like a guinea pig</li>
+				<li>circumstance_phrase->as someone plays with [PAWN_possessive] growing whiskers</li>
+				<li>circumstance_phrase->as someone tries to boop their snoot</li>
+				<li>desc_sentence->[PAWN_pronoun] starts to gnaw on something nearby.</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to say something, but all that comes out are several short chirps.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	
+	<TaleDef ParentName="EarMutationBase">
+		<defName>EarsBecomeGuineaPigEars</defName>
+		<label>grew guinea pig ears</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s ears becoming those of a guinea pig</li>
+				<li>tale_noun->[PAWN_nameDef]'s ears turning into thin floppy guinea pig ears</li>
+				<li>image->[PAWN_nameFull]'s ears start to lengthen and take on a rounded shape [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s ears start to shift higher up on [PAWN_possessive] head [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] seems upset over [PAWN_possessive] unusual guinea pig ears.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems rather happy with [PAWN_possessive] guinea pig ears.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	
+	<TaleDef ParentName="HandMutationBase">
+		<defName>HandsBecomeGuineaPigPaws</defName>
+		<label>hands became guinea pig paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s nails growing into short claws</li>
+				<li>tale_noun->[PAWN_nameDef]'s hands becoming delicate guinea pig paws</li>
+				<li>image->[PAWN_nameFull] examines [PAWN_possessive] hands [circumstance_group]</li>
+				<li>image->[PAWN_nameFull] scratches something with [PAWN_possessive] new claws [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] is thankful [PAWN_possessive] still has thumbs.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+
+	<TaleDef ParentName="FootMutationBase">
+		<defName>FeetBecomeGuineaPigPaws</defName>
+		<label>feet became guinea pig paws</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef]'s feet becoming delicate 4 toed guinea pig paws</li>
+				<li>image->[PAWN_nameDef]'s toes lengthening into guinea pig digits [circumstance_group]</li>
+				<li>desc_sentence->[PAWN_pronoun] tries to balance themself on [PAWN_possessive] new guinea pig feet.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

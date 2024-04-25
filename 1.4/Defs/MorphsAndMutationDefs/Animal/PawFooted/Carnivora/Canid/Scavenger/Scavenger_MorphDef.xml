@@ -1,0 +1,26 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef Abstract="true" ParentName="CanidMorph" Name="ScavengerMorph">
+		<classification>Scavenger</classification>
+		<categories>
+			<li>Combat</li>
+		</categories>
+		<addedAspects>
+			<li>
+				<def>MeatLover</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+		</addedAspects>
+		<raceSettings>
+			<thoughtSettings>
+				<replacerList>
+					<li>
+						<original>AteCorpse</original>
+						<replacer>WargMorphAteCorpse</replacer>
+					</li>
+				</replacerList>
+				<suppressHumanlikeCannibalThoughts>true</suppressHumanlikeCannibalThoughts>
+				<canEatRaw>true</canEatRaw>
+			</thoughtSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

@@ -1,0 +1,7 @@
+<Defs>
+	<ThingCategoryDef>
+		<defName>ChaoCorpse</defName>
+		<label>chaomorph corpses</label>
+		<parent>Corpses</parent>
+	</ThingCategoryDef>
+</Defs>

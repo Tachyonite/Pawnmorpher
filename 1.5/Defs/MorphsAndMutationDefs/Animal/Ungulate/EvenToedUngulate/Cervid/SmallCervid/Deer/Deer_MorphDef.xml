@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="SmallCervidMorph">
+		<defName>DeerMorph</defName>
+		<label>deermorph</label>
+		<description>A humanoid with many deer-like characteristics resulting from exposure to deer specific mutagens. They are often uncomfortable without others like them around.</description>
+		<race>Deer</race>
+		<categories>
+			<li>Temperate</li>
+		</categories>
+		<fullTransformation>PawnmorphDeerTF</fullTransformation>
+		<partialTransformation>PawnmorphDeerTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(156,112,62)</skinColorOverride>
+				<femaleSkinColorOverride>(188,146,110)</femaleSkinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>DeerTransformationMemory</transformationMemory>
+			<revertedMemory>DeerRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

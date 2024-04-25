@@ -5,15 +5,15 @@ using RimWorld;
 
 namespace Pawnmorph
 {
-    /// <summary>
-    /// static class that contains various Mutation Category defs 
-    /// </summary>
-    [DefOf]
-    public static class MutationCategoryDefOf
-    {
-        static MutationCategoryDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(MutationCategoryDefOf));
-        }
-    }
+	/// <summary>
+	/// static class that contains various Mutation Category defs 
+	/// </summary>
+	[DefOf]
+	public static class MutationCategoryDefOf
+	{
+		static MutationCategoryDefOf()
+		{
+			DefOfHelper.EnsureInitializedInCtor(typeof(MutationCategoryDefOf));
+		}
+	}
 }

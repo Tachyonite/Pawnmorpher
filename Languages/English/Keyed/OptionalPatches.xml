@@ -1,0 +1,14 @@
+<LanguageData>
+    <PMFoodStackMultiplierCaption>Max meal size.</PMFoodStackMultiplierCaption>
+    <PMFoodStackMultiplierDescription>Multiplies the max meal size by pawn bodysize.</PMFoodStackMultiplierDescription>
+    <PMPawnScalingCaption>Pawn scaling.</PMPawnScalingCaption>
+    <PMPawnScalingDescription>Changes the size of pawns based on their bodysize.\nThis patch is experimental and may incur visual bugs and glitches.</PMPawnScalingDescription>
+    <PMPawnScalingScaleMultiplier>Scaling offset multiplier.</PMPawnScalingScaleMultiplier>
+    <PMPawnScalingScaleMultiplierTooltip>Multiplier added to the size offset on a pawn.\n Ex. +50% will render as +75% with 150% multipler.</PMPawnScalingScaleMultiplierTooltip>
+    <PMPawnScalingMinScale>Minimum pawn scale.</PMPawnScalingMinScale>
+    <PMPawnScalingMinScaleTooltip>Minimum size a pawn will be able to render.</PMPawnScalingMinScaleTooltip>
+    <PMPawnScalingMaxScale>Maximum pawn scale.</PMPawnScalingMaxScale>
+    <PMPawnScalingMaxScaleTooltip>Maximum size a pawn will be able to render.</PMPawnScalingMaxScaleTooltip>
+    <PMPawnScalingUseBodysize>Scale by actual bodysize.</PMPawnScalingUseBodysize>
+    <PMPawnScalingUseBodysizeTooltip>If the scaling algorithm should visually scale everything by using a pawns actual body size rather than just those affected by pawnmorpher.</PMPawnScalingUseBodysizeTooltip>
+</LanguageData>

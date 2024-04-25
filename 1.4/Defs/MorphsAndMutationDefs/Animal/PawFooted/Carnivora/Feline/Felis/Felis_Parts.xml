@@ -1,0 +1,73 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="FelisJawPart" ParentName="FelineJawPart" Abstract="true">
+		<mutationMemory>EtherCatMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a cat shape. They may hiss and meow more than talk. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a cat shape. They may hiss and meow more than talk. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has pressed out into a cat shape. They may hiss and meow more than talk. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FelisEarPart" ParentName="FelineEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>a triangular, fuzzy ear graces [PAWN_nameDef]'s head. It coils back when [PAWN_pronoun] is getting ready to pounce.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FelisTailPart" ParentName="FelineTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.025</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.1</HuntingStealth>
+						<PawnBeauty>+0.01</PawnBeauty>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, cat-like tail. It flicks back and forth whenever [PAWN_nameDef] is displeased with something.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<HuntingStealth>+0.2</HuntingStealth>
+						<PawnBeauty>+0.01</PawnBeauty>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

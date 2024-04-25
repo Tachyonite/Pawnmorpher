@@ -1,0 +1,320 @@
+<Defs>
+
+
+    <!-- Mutated -->
+
+    <ThoughtDef Name="PM_PreceptStaticThoughtsBase" Abstract="true">
+        <durationDays>5</durationDays>
+        <thoughtClass>Pawnmorph.Thoughts.MutationMemory</thoughtClass>
+    </ThoughtDef>
+    <ThoughtDef Name="PM_Precept_VeneratedMutationBase" ParentName="PM_PreceptStaticThoughtsBase" Abstract="true">
+        <thoughtClass>Pawnmorph.Thoughts.Precept.MutationMemory_VeneratedAnimal</thoughtClass>
+        <modExtensions>
+            <li Class="Pawnmorph.DefExtensions.VeneratedAnimalMutationThought_TransferWorker" />
+        </modExtensions>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristMutated</defName>
+        <stages>
+            <li>
+                <label>mutated</label>
+                <description>My body is tainted by grotesque mutations.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+            <li>
+                <label>mutated</label>
+                <description>I shouldn't be as carefree about these changes as I am.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>mutated</label>
+                <description>These abhorrent mutations are an unholy stain on my humanity!</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+			<!--
+            <li>
+                <label>mutated(PW)</label>
+                <description>TODO</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+			-->
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMutated</defName>
+        <stages>
+            <li> <!-- Base pawn -->
+                <label>mutated</label>
+                <description>I feel closer to nature with these mutations.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>mutated</label>
+                <description>I am one with nature. I feel intimately connected with the world around me like this.</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>mutated</label>
+                <description>As much as I feel tainted by them, I am more connected to nature with these changes.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyMutated</defName>
+        <stages>
+            <li> <!-- Base pawn -->
+                <label>mutated</label>
+                <description>I feel less than human like this.</description>
+                <baseMoodEffect>-8</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>mutated</label>
+                <description>I shouldn't be as carefree about these changes as I am.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>mutated</label>
+                <description>I am stained by the tarnish of animalism on my human form.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
+        <defName>PM_GainedVeneratedMutation</defName>
+        <stages>
+            <li> <!-- Base pawn -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>It's certainly eye-catching.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+			<li> <!-- MA -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>If I change enough, will people venerate me?.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li> <!-- BP -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>I venerate them, I don't necessarily want to *be* them!</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+			<li> <!-- PW -->
+                <label>venerated {ANIMALKIND} mutation</label>
+                <description>When I change enough, people will venerate *me*.</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- Transformed -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristTransformed</defName>
+        <stages>
+            <li>
+                <label>purist transformed</label>
+                <description>My pure body is permanently stained by this horrific transformation!</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>purist transformed</label>
+                <description>I feel so different. Can I still be pure like this? Surely not...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>purist transformed</label>
+                <description>UNCLEAN! UNCLEAN! UNCLEAN!</description>
+                <baseMoodEffect>-25</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyTransformed</defName>
+        <stages>
+            <li>
+                <label>naturist transformed</label>
+                <description>A little on the extreme side, but if this is what must be done for nature to be prime, then I am all for it.</description>
+                <baseMoodEffect>15</baseMoodEffect>
+            </li>
+            <li>
+                <label>naturist transformed</label>
+                <description>I am more than one with nature, I *am* nature.</description>
+                <baseMoodEffect>25</baseMoodEffect>
+            </li>
+            <li>
+                <label>naturist transformed</label>
+                <description>Sure, I'm part of nature now, but what if nature thinks we're impostors? I'm not sold...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyTransformed</defName>
+        <stages>
+            <li>
+                <label>primist transformed</label>
+                <description>Well, there go my weekend plans for BEING A PURE HUMAN BEING.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+            <li>
+                <label>primist transformed</label>
+                <description>I feel so very different. I'm surely impure like this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>primist transformed</label>
+                <description>I am a HUMAN BEING, not an animal, this is the unholiest thing I can imagine.</description>
+                <baseMoodEffect>-25</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- venerated animal tranformed thought is persistant and in a different file -->
+
+    <!-- reversion thoughts -->
+
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristReverted</defName>
+        <stages>
+            <li>
+                <label>purist reverted</label>
+                <description>Their flesh is restored. They are once again clean.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyReverted</defName>
+        <stages>
+            <li>
+                <label>naturist reverted</label>
+                <description>But at last I felt closer to nature...</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyReverted</defName>
+        <stages>
+            <li>
+                <label>primist reverted</label>
+                <description>Humanity can conquer any adversity, including not being human. Checkmate, nature.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
+        <defName>PM_VeneratedAnimalReverted</defName>
+        <stages>
+            <li>
+                <label>venerated {ANIMALKIND} reverted</label>
+                <description>It might be for the best, but having more {ANIMALKIND}s around was nice.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- morphd thoughts -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristMorphed</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>My body is cursed and animalistic.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphed</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>My body is a temple to nature.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyMorphed</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>My body is cursed and animalistic.</description>
+                <baseMoodEffect>-15</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
+        <defName>PM_VeneratedAnimalMorphed</defName>
+        <stages>
+            <li>
+                <label>venerated {ANIMALKIND} morph</label>
+                <description>I am blessed to become closer to the wonderful {ANIMALKIND}.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+
+    <!-- Reverted to human from morph -->
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_FleshPuristMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>My pure flesh is restored.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_NaturePrimacyMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I am no longer a holy middle point between human and nature.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="PM_PreceptStaticThoughtsBase">
+        <defName>PM_HumanPrimacyMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>My humanity is restored.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!-- use ANIMALKIND to refer to the venerated animal -->
+    <ThoughtDef ParentName="PM_Precept_VeneratedMutationBase">
+        <defName>PM_VeneratedAnimalMorphedReverted</defName>
+        <stages>
+            <li>
+                <label>reverted from venerated morph</label>
+                <description>I could have had a higher social status for that...</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

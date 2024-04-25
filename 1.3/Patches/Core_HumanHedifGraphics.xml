@@ -6,6 +6,7 @@
 				<!-- Muzzles -->
 				<debug>false</debug>
 				<anchorID>Muzzle</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -32,6 +33,7 @@
 				<!-- Male Muzzles -->
 				<debug>false</debug>
 				<anchorID>MuzzleMale</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -60,6 +62,7 @@
 				<!-- Female Muzzles -->
 				<debug>false</debug>
 				<anchorID>MuzzleFemale</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -88,15 +91,27 @@
 				<!-- Bird jaw ornament -->
 				<debug>false</debug>
 				<anchorID>BirdJawOrnament</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Jaw</bodyPart>
 				<alignWithHead>true</alignWithHead>
-				<inFrontOfBody>true</inFrontOfBody>
+				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
 				<shaderType>CutoutSkin</shaderType>
 				<hiddenUnderApparelFor>
 					<li>FullHead</li>
 				</hiddenUnderApparelFor>
+				<offsets>
+					<south>
+						<layerOffset>-0.328</layerOffset>
+					</south>
+					<north>
+						<layerOffset>-0.01</layerOffset>
+					</north>
+					<east>
+						<layerOffset>-0.328</layerOffset>
+					</east>
+				</offsets>
 				<hediffGraphics>
 				</hediffGraphics>
 			</li>
@@ -105,6 +120,7 @@
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<anchorID>LeftEar</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>left ear</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -118,6 +134,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>left ear</bodyPart>
 				<anchorID>LeftEarBehind</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -132,6 +149,7 @@
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<anchorID>RightEar</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
 				</hediffGraphics>
@@ -143,6 +161,7 @@
 				<bodyPart>right ear</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<anchorID>RightEarBehindHead</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
 				<hediffGraphics>
@@ -152,6 +171,7 @@
 				<!-- Tails -->
 				<debug>false</debug>
 				<anchorID>Tail</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -196,6 +216,7 @@
 				<!-- Male Tails -->
 				<debug>false</debug>
 				<anchorID>MaleTail</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -238,6 +259,7 @@
 				<!-- Female Tails -->
 				<debug>false</debug>
 				<anchorID>FemaleTail</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -281,6 +303,7 @@
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<anchorID>BehindBodyTail</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>tail</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -328,8 +351,8 @@
 				<drawnInBed>false</drawnInBed>
 				<shaderType>CutoutSkin</shaderType>
 				<anchorID>BodyExtendingTail</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<offsets>
-					<south></south>
 					<north>
 						<bodyTypes>
 							<Male>(0,-0.35)</Male>
@@ -340,6 +363,7 @@
 						</bodyTypes>
 					</north>
 					<east>
+						<layerOffset>-0.29</layerOffset>
 						<bodyTypes>
 							<Male>(0.22,-0.24)</Male>
 							<Female>(0.18,-0.31)</Female>
@@ -356,6 +380,7 @@
 				<!-- Headspikes -->
 				<debug>false</debug>
 				<anchorID>Headspikes</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -367,8 +392,9 @@
 				<!-- Skullspikes -->
 				<debug>false</debug>
 				<anchorID>Skullspike</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -380,6 +406,7 @@
 				<!-- Horns -->
 				<debug>false</debug>
 				<anchorID>Horns</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Skull</bodyPart>
 				<alignWithHead>true</alignWithHead>
@@ -400,8 +427,9 @@
 				<!-- Cobra Hood (Foreground) -->
 				<debug>false</debug>
 				<anchorID>CobraHood</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<layerInvert>false</layerInvert>
@@ -417,8 +445,9 @@
 				<!-- Cobra Hood (Background) -->
 				<debug>false</debug>
 				<anchorID>CobraHoodBackground</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
-				<bodyPart>Skull</bodyPart>
+				<bodyPart>Head</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>false</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
@@ -432,6 +461,7 @@
 			<li Class="Pawnmorph.GraphicSys.TaggedBodyAddon">
 				<!-- Udders -->
 				<anchorID>Udders</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<debug>false</debug>
 				<path>Parts/None/None</path>
 				<bodyPart>Waist</bodyPart>
@@ -465,6 +495,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>Arm</bodyPart>
 				<anchorID>Wings</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<inFrontOfBody>true</inFrontOfBody>
 				<drawnInBed>false</drawnInBed>
 				<offsets>
@@ -487,6 +518,7 @@
 				<!-- Spines -->
 				<debug>false</debug>
 				<anchorID>Spines</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -510,6 +542,7 @@
 				<!-- Spine Behind-->
 				<debug>false</debug>
 				<anchorID>SpinesBehind</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Spine</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -536,6 +569,7 @@
 				<!-- Torsos -->
 				<debug>false</debug>
 				<anchorID>Torso</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -562,6 +596,7 @@
 				<!-- Torsos Behind-->
 				<debug>false</debug>
 				<anchorID>TorsoBehind</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<path>Parts/None/None</path>
 				<bodyPart>Torso</bodyPart>
 				<inFrontOfBody>false</inFrontOfBody>
@@ -588,6 +623,7 @@
 				<!-- Male Left Arm -->
 				<path>Parts/None/None</path>
 				<anchorID>LeftArm</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>left arm</bodyPart>
 				<offsets>
 					<east>
@@ -640,6 +676,7 @@
 				<!-- Male Left Arm (Behind Body) -->
 				<path>Parts/None/None</path>
 				<anchorID>LeftArmBehind</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>left arm</bodyPart>
 				<offsets>
 					<east>
@@ -687,6 +724,7 @@
 				<!-- Male Right Arm -->
 				<path>Parts/None/None</path>
 				<anchorID>RightArm</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>right arm</bodyPart>
 				<offsets>
 					<east>
@@ -738,6 +776,7 @@
 				<!-- Male Right Arm (Behind Body) -->
 				<path>Parts/None/None</path>
 				<anchorID>RightArmBehind</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>right arm</bodyPart>
 				<offsets>
 					<east>
@@ -785,6 +824,7 @@
 				<!-- Left Eye -->
 				<path>Parts/None/None</path>
 				<anchorID>LeftEye</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<bodyPart>left eye</bodyPart>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
@@ -797,6 +837,7 @@
 				<path>Parts/None/None</path>
 				<bodyPart>right eye</bodyPart>
 				<anchorID>RightEye</anchorID>
+				<colorChannel>SkinHair</colorChannel>
 				<alignWithHead>true</alignWithHead>
 				<inFrontOfBody>true</inFrontOfBody>
 				<shaderType>CutoutSkin</shaderType>
