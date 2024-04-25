@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Pawnmorph.Chambers;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -56,7 +57,8 @@ namespace Pawnmorph.Jobs
 				{
 					Prisoner?.Strip();
 
-					Chamber.TryAcceptThing(Prisoner);
+					if (Chamber.TryAcceptThing(Prisoner))
+						Prisoner.guest?.SetExclusiveInteraction(PrisonerInteractionModeDefOf.MaintainOnly);
 				},
 				defaultCompleteMode = ToilCompleteMode.Instant
 			};
