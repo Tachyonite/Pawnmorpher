@@ -334,6 +334,7 @@
     <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
     <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
     <Compile Include="Genebank\RecentGenebankSelector.cs" />
+    <Compile Include="HPatches\CaravanPatches.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
     <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
