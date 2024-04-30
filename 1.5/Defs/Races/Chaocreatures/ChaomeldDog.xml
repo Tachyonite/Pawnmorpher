@@ -81,14 +81,16 @@
 				<bodyGraphicData>
 					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>1.5</drawSize>
+					<allowFlip>false</allowFlip>
 					<shadowData>
 						<volume>(0.4, 0.3, 0.3)</volume>
 						<offset>(0,0,-0.2)</offset>
 					</shadowData>
 				</bodyGraphicData>
 				<femaleGraphicData>
-					<texPath>Mobs/Chaoferal/Chaodino</texPath>
+					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>1.4</drawSize>
+					<allowFlip>false</allowFlip>
 					<color>(200,200,200)</color>
 					<shadowData>
 						<volume>(0.4, 0.3, 0.3)</volume>
@@ -108,6 +110,7 @@
 				<bodyGraphicData>
 					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>2.4</drawSize>
+					<allowFlip>false</allowFlip>
 					<shadowData>
 						<volume>(0.6, 0.45, 0.45)</volume>
 						<offset>(0,0,-0.25)</offset>
@@ -116,6 +119,7 @@
 				<femaleGraphicData>
 					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>2.2</drawSize>
+					<allowFlip>false</allowFlip>
 					<color>(200,200,200)</color>
 					<shadowData>
 						<volume>(0.6, 0.45, 0.45)</volume>
@@ -135,6 +139,7 @@
 				<bodyGraphicData>
 					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>3</drawSize>
+					<allowFlip>false</allowFlip>
 					<shadowData>
 						<volume>(0.8, 0.6, 0.6)</volume>
 						<offset>(0,0,-0.3)</offset>
@@ -143,6 +148,7 @@
 				<femaleGraphicData>
 					<texPath>Mobs/Chaoferal/Chaodog</texPath>
 					<drawSize>2.8</drawSize>
+					<allowFlip>false</allowFlip>
 					<color>(200,200,200)</color>
 					<shadowData>
 						<volume>(0.8, 0.6, 0.6)</volume>
