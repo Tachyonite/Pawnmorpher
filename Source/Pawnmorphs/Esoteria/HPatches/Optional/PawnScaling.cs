@@ -42,6 +42,7 @@ namespace Pawnmorph.HPatches.Optional
 		{
 			if (original == null && _enabled)
 			{
+				Log.Message("[PM] Optional scaling patch enabled.");
 				StatsUtility.GetEvents(PMStatDefOf.PM_BodySize).StatChanged += PawnScaling_StatChanged;
 			}
 

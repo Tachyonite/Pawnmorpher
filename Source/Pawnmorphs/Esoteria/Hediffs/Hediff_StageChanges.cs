@@ -82,7 +82,7 @@ namespace Pawnmorph.Hediffs
 				UpdateStage();
 		}
 
-		private void UpdateStage()
+		internal void UpdateStage()
 		{
 			int newStageIndex = base.CurStageIndex; // Make sure to get the actual index from the base
 			var oldStage = cachedStage;

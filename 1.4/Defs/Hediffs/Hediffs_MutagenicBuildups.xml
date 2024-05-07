@@ -7,6 +7,7 @@
         <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
         <maxSeverity>1</maxSeverity>
+        <initialSeverity>0</initialSeverity>
         <label>mutagenic buildup</label>
         <modExtensions>
             <li Class="Pawnmorph.DefExtensions.MutagenExtension">

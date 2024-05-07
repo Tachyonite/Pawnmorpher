@@ -309,8 +309,9 @@ namespace Pawnmorph
 		{
 			foreach (Gizmo gizmo in base.GetGizmos()) yield return gizmo;
 
-			foreach (Abilities.MutationAbility item in abilities)
-				yield return item.Gizmo;
+			if (pawn.IsColonistPlayerControlled)
+				foreach (Abilities.MutationAbility item in abilities)
+					yield return item.Gizmo;
 		}
 
 		private void GenerateAbilities(HediffStage stage)

@@ -6,6 +6,7 @@
         <defaultLabelColor>(0.7, 1.0, 0.7)</defaultLabelColor>
         <description>Having been exposed to high levels of mutagenic mechanites, they are beginning to build up in this pawn's system, which will induce mutations at a high enough concentration.</description>
         <lethalSeverity>-1</lethalSeverity> <!-- if lethalSeverity is less then 0 then the hediff should never kill the pawn -->
+        <initialSeverity>0</initialSeverity>
         <maxSeverity>1</maxSeverity>
         <label>mutagenic buildup</label>
         <modExtensions>
@@ -31,6 +32,7 @@
         <stages>
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>initial</label>
+                <painOffset>0</painOffset>
                 <becomeVisible>false</becomeVisible>
                 <spreadOrder Class="Pawnmorph.Hediffs.Composable.MutSpreadOrder_FullRandom" />
                 <mutationTypes Class="Pawnmorph.Hediffs.Composable.MutTypes_Category">
@@ -216,6 +218,7 @@
             <li>
                 <label>initial</label>
                 <becomeVisible>false</becomeVisible>
+                <painOffset>0</painOffset>
             </li>
             <li Class="Pawnmorph.Hediffs.HediffStage_Mutation">
                 <label>initial</label>
