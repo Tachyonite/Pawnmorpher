@@ -82,7 +82,7 @@
 					<description>[PAWN_nameDef]'s arm has grown a lot larger, and most tasks are a little more difficult - though the impact of this has been lessened with adaptation.</description>
 					<statOffsets>
 						<WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
-						<MeleeHitChance>0.075</MeleeHitChance>
+						<MeleeHitChance>4</MeleeHitChance>
 						<PM_BodySize>0.025</PM_BodySize>
 					</statOffsets>
 				</values>
@@ -218,7 +218,7 @@
 				<values>
 					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing, complete with hollow bones. It is far too small and weak to fly but has grown a lovely plumage.</description>
 					<statOffsets>
-						<MeleeHitChance>0.2</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 						<MeleeDodgeChance>5</MeleeDodgeChance>
 					</statOffsets>
 				</values>
@@ -228,7 +228,7 @@
 				<values>
 					<description>[PAWN_nameDef]'s arm has contorted into the shape of an avian wing. It's flightless but the eye-catching plumage has become a great distraction should they find themself in a brawl!</description>
 					<statOffsets>
-						<MeleeHitChance>0.2</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 						<MeleeDodgeChance>5</MeleeDodgeChance>
 					</statOffsets>
 				</values>

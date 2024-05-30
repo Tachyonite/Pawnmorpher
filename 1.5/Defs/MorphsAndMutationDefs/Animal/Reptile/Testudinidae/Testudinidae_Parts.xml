@@ -113,7 +113,7 @@
 				<values>
 					<statOffsets>
 						<ArmorRating_Sharp>+0.025</ArmorRating_Sharp>
-						<ShootingAccuracyPawn>+0.075</ShootingAccuracyPawn>
+						<ShootingAccuracyPawn>+2</ShootingAccuracyPawn>
 					</statOffsets>
 				</values>
 			</li>
@@ -122,7 +122,7 @@
 				<values>
 					<statOffsets>
 						<ArmorRating_Sharp>+0.05</ArmorRating_Sharp>
-						<ShootingAccuracyPawn>+0.15</ShootingAccuracyPawn>
+						<ShootingAccuracyPawn>+4</ShootingAccuracyPawn>
 				</statOffsets>
 				</values>
 			</li>
