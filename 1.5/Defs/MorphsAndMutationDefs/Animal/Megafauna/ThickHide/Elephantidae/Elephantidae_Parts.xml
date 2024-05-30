@@ -109,7 +109,7 @@
 				<values>
 					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. Adapting to it has made speaking less frustrating.</description>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>4</MeleeHitChance>
 						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
 					</statOffsets>
 					<capMods>
@@ -137,7 +137,7 @@
 				<values>
 					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>5</MeleeHitChance>
 						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
 					</statOffsets>
 					<capMods>

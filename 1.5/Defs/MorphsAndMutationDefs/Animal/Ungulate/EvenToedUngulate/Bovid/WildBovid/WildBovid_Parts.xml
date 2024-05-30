@@ -40,6 +40,12 @@
 				<key>paragon</key>
 				<label>paragon</label>
 				<minSeverity>2.5</minSeverity>
+				<capMods>
+					<li>
+						<capacity>Moving</capacity>
+						<offset>+0.20</offset>
+					</li>
+				</capMods>
 				<verbOverrides>
 					<li>
 						<label>horns</label>

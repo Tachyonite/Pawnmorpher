@@ -615,7 +615,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
 					</statOffsets>
 				</values>
@@ -625,7 +625,7 @@
 				<values>
 					<description>[PAWN_nameDef]'s foot has reshaped into a singular massive hoof providing firm footing in combat.</description>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 						<MeleeWeapon_AverageArmorPenetration>0.1</MeleeWeapon_AverageArmorPenetration>
 					</statOffsets>
 				</values>

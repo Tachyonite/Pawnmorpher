@@ -118,10 +118,10 @@
 				<minSeverity>2.5</minSeverity>
 				<description>A luxurious fox tail drapes from [PAWN_nameDef]'s spine. It sweeps after them, keeping everything prim and proper!</description>
 				<statOffsets>
-					<FilthRate>0</FilthRate>
+					<FilthRate>-10</FilthRate>
 					<TradePriceImprovement>+0.1</TradePriceImprovement>
 					<NegotiationAbility>+0.05</NegotiationAbility>
-					<ArrestSuccessChance>+2</ArrestSuccessChance>
+					<ArrestSuccessChance>+0.2</ArrestSuccessChance>
 				</statOffsets>
 			</li>
 		</stages>

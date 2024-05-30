@@ -38,7 +38,7 @@
 					<description>[PAWN_nameDef]'s eye has become sharper at range, to about 20/10 vision - though it hasn't quite got entirely used to the new visual acuity.</description>
 					<partEfficiencyOffset>-0.2</partEfficiencyOffset>
 					<statOffsets>
-						<ShootingAccuracyPawn>0.0375</ShootingAccuracyPawn>
+						<ShootingAccuracyPawn>5</ShootingAccuracyPawn>
 					</statOffsets>
 				</values>
 			</li>
@@ -48,7 +48,7 @@
 					<description>[PAWN_nameDef]'s eye has become sharper at range, to about 20/4 vision, and can see detail at range that normal humans can only recognise simple shapes.</description>
 					<partEfficiencyOffset>0.1</partEfficiencyOffset>
 					<statOffsets>
-						<ShootingAccuracyPawn>0.075</ShootingAccuracyPawn>
+						<ShootingAccuracyPawn>7.5</ShootingAccuracyPawn>
 					</statOffsets>
 				</values>
 			</li>
@@ -62,7 +62,7 @@
 				<description>[PAWN_nameDef]'s eagle eye can now spot targets from increadible distances. Honing instincts locks the eye on the target, allowing precise trickshots.</description>
 				<partEfficiencyOffset>0.1</partEfficiencyOffset>
 				<statOffsets>
-					<ShootingAccuracyPawn>0.8</ShootingAccuracyPawn>
+					<ShootingAccuracyPawn>10</ShootingAccuracyPawn>
 				</statOffsets>
 			</li>
 		</stages>
@@ -154,7 +154,7 @@
 				<description>[PAWN_nameDef]'s cold eye has become incredibly sensitive to movement. In a brawl [PAWN_nameDef] never misses even a single twitch of muscle!</description>
 				<partEfficiencyOffset>0.2</partEfficiencyOffset>
 				<statOffsets>
-					<MeleeHitChance>0.8</MeleeHitChance>
+					<MeleeHitChance>10</MeleeHitChance>
 				</statOffsets>
 			</li>
 		</stages>
