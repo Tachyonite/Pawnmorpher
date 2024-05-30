@@ -102,6 +102,9 @@ Halting cream is often used by industrial nations that lack the technology to pr
 			<MedicineHerbal>1</MedicineHerbal>
 			<Antigen>1</Antigen>
 		</costList>
+		<thingCategories Inherit="False">
+			<li>Manufactured</li>
+		</thingCategories>
 		<recipeMaker>
 			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 			<workSkill>Intellectual</workSkill>
@@ -138,6 +141,9 @@ Adaption cream is often used to partially restore manipulation to unlucky morphs
 			<Antigen>1</Antigen>
 			<MechaniteSlurry>1</MechaniteSlurry>
 		</costList>
+		<thingCategories Inherit="False">
+			<li>Manufactured</li>
+		</thingCategories>
 		<recipeMaker>
 			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
 			<workSkill>Intellectual</workSkill>

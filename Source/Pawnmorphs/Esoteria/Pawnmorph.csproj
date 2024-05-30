@@ -994,14 +994,14 @@
   <!--Only use the Krafs stub if we can't access the real assembly -->
   <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.5.4035-beta</Version>
+      <Version>1.5.4104-beta</Version>
       <IncludeAssets>compile</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.3.1.1</Version>
+      <Version>2.3.3</Version>
       <IncludeAssets>compile</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
