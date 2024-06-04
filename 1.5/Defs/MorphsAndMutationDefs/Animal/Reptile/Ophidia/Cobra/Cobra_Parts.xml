@@ -146,7 +146,7 @@
 						</li>
 					</capMods>
 					<statOffsets>
-						<ShootingAccuracyPawn>0.1</ShootingAccuracyPawn>
+						<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
 					</statOffsets>
 				</values>
 			</li>

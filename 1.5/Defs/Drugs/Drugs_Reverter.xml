@@ -13,7 +13,7 @@ Because reverter relies on the data stored within the mutagenic mechanites to re
 			<MarketValue>300</MarketValue>
 		</statBases>
 		<thingCategories Inherit="False">
-			<li>Medicine</li>
+			<li>Injector</li>
         </thingCategories>
 		<ingestible>
 			<outcomeDoers>

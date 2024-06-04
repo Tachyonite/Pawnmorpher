@@ -2,7 +2,7 @@
 
 	<!-- Ear hole -->
 	
-    <Pawnmorph.Hediffs.MutationDef ParentName="AnimalEarPart" Name="PM_Earhole">
+    <Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphEarPart" Name="PM_Earhole">
 		<defName>EtherEarHole</defName>
 		<label>ear hole</label>
 		<description>An ear hole.</description>
@@ -11,23 +11,11 @@
 			<li>Avian</li>
 			<li>Reptile</li>
 		</classInfluences>
-		<graphics>
-			<LeftEarBehind></LeftEarBehind>
-			<RightEar></RightEar>
-			<RightEarBehindHead></RightEarBehindHead>
-			<LeftEar></LeftEar>
-		</graphics>
 		<stagePatches>
 			<li function="modify">
 				<stageKey>initial</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s ear is shrinking.</description>
-					<graphics>
-						<LeftEarBehind></LeftEarBehind>
-						<RightEar></RightEar>
-						<RightEarBehindHead></RightEarBehindHead>
-						<LeftEar></LeftEar>
-					</graphics>
 				</values>
 			</li>
 			<li function="modify">
@@ -35,36 +23,18 @@
 				<values>
 					<label>missing</label>
 					<description>[PAWN_nameDef] no longer has a visible ear.</description>
-					<graphics>
-						<LeftEarBehind></LeftEarBehind>
-						<RightEar></RightEar>
-						<RightEarBehindHead></RightEarBehindHead>
-						<LeftEar></LeftEar>
-					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>growing</stageKey>
 				<values>
 					<description>[PAWN_nameDef]'s ear looks more and more like an animal ear hole.</description>
-					<graphics>
-						<LeftEarBehind></LeftEarBehind>
-						<RightEar></RightEar>
-						<RightEarBehindHead></RightEarBehindHead>
-						<LeftEar></LeftEar>
-					</graphics>
 				</values>
 			</li>
 			<li function="modify">
 				<stageKey>grown</stageKey>
 				<values>
 					<description>[PAWN_nameDef] now has a ear hole.</description>
-					<graphics>
-						<LeftEarBehind></LeftEarBehind>
-						<RightEar></RightEar>
-						<RightEarBehindHead></RightEarBehindHead>
-						<LeftEar></LeftEar>
-					</graphics>
 				</values>
 			</li>
 		</stagePatches>

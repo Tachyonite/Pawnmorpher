@@ -96,7 +96,7 @@
 						</li>
 					</verbOverrides>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>4</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
 					<capMods>
@@ -124,7 +124,7 @@
 						</li>
 					</verbOverrides>
 					<statOffsets>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>4</MeleeHitChance>
 						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
 					</statOffsets>
 				</values>

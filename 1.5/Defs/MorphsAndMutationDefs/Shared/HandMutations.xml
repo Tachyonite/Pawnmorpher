@@ -282,7 +282,7 @@
 				<values>
 					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition. The changes may take time to get used to</description>
 					<statOffsets>
-						<CookSpeed>0.05</CookSpeed>
+						<CookSpeed>2</CookSpeed>
 						<DrugCookingSpeed>0.05</DrugCookingSpeed>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
@@ -294,7 +294,7 @@
 				<values>
 					<description>[PAWN_nameDef] fingers has become noticably shorter but have acquired additional receptors that percieve minute differences in heat and chemical composition, making quantifying mixtures much easier. Adaption has helped offset the difficulties [PAWN_nameDef] has in using them.</description>
 					<statOffsets>
-						<CookSpeed>0.1</CookSpeed>
+						<CookSpeed>4</CookSpeed>
 						<DrugCookingSpeed>0.1</DrugCookingSpeed>
 						<ArmorRating_Sharp>0.05</ArmorRating_Sharp>
 					</statOffsets>
@@ -517,7 +517,7 @@
 					<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] will be useless at fine manipulation until [PAWN_pronoun] adapts to them, but at least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
 					<statOffsets>
 						<AimingDelayFactor>0.1</AimingDelayFactor>
-						<MeleeHitChance>0.05</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 					</statOffsets>
 					<verbOverrides>
 						<li>
@@ -534,7 +534,7 @@
 					<description>A massive, five-toed paw with deadly claws has replaced [PAWN_nameDef]'s hand.  [PAWN_pronoun] has gotten used to having five fingers and no thumb, but the huge size still makes them more clumsy than someone with smaller paws.  At least [PAWN_pronoun] can rip things apart with [PAWN_possessive] bear hands, err paws.</description>
 					<statOffsets>
 						<AimingDelayFactor>0.05</AimingDelayFactor>
-						<MeleeHitChance>0.1</MeleeHitChance>
+						<MeleeHitChance>2</MeleeHitChance>
 					</statOffsets>
 					<verbOverrides>
 						<li>
@@ -754,7 +754,7 @@
 				<values>
 					<description>[PAWN_nameDef]'s normally agile fingers have been replaced with a trio of long, curved claws that rip through flesh and metal with ease.</description>
 					<statOffsets>
-						<MeleeHitChance>0.025</MeleeHitChance>
+						<MeleeHitChance>1</MeleeHitChance>
 						<MeleeWeapon_AverageArmorPenetration>0.05</MeleeWeapon_AverageArmorPenetration>
 						<WorkSpeedGlobal>-0.025</WorkSpeedGlobal>
 					</statOffsets>

@@ -18,9 +18,20 @@ namespace Pawnmorph.Hediffs
 
 		private const int RECHECK_PART_PERIOD = 1000;
 		private int _doneTick = 0;
+		private Comp_MutationSeverityAdjust _severityAdjustComp;
+
+		public override void CompPostPostAdd(DamageInfo? dinfo)
+		{
+			base.CompPostPostAdd(dinfo);
+			_severityAdjustComp = parent.GetComp<Comp_MutationSeverityAdjust>();
+		}
 
 		public void UpdateComp()
 		{
+			// Don't spread skin if skin progression is halted.
+			if (_severityAdjustComp?.Halted == true)
+				return;
+
 			if (_finishedSearching == false)
 			{
 				// Have the mutagen sensitivity stat affect the rate of spread
