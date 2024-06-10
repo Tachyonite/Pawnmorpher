@@ -76,5 +76,6 @@ Requires Humanoid Alien Framework and VE Frameworks.
 		<li>crustypeanut.rc2.core</li>
 		<li>UnlimitedHugs.RemoteTech</li>
 		<li>CETeam.CombatExtended</li>
+		<li>VanillaExpanded.Achievements</li>
 	</loadAfter>
 </ModMetaData>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_ADrinkSlurry</defName>
+		<label>Did you seriously drink that?</label>
+		<description>Drink some mechanite slurry</description>
+		<tab>PM_Pawnmorpher</tab>
+		
+		<tracker Class="AchievementsExpanded.IngestionTracker">
+			<ingestorThingDef>Human</ingestorThingDef>
+			<count>1</count>
+			<foodDef>MechaniteSlurry</foodDef>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	</AchievementsExpanded.AchievementDef>
+	
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_ASheepJoin</defName>
+		<label>Where's the lamb cook?</label>
+		<description>Meet the sheep chef</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.IncidentTracker">
+			<def>PM_SheepChef</def>
+			<count>1</count>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	
+	</AchievementsExpanded.AchievementDef>
+	
+		<AchievementsExpanded.AchievementDef>
+		<defName>PM_AChaothrumbo</defName>
+		<label>Cleanup On Aisle Three</label>
+		<description>Create a REDACTED</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.RaceDefTracker">
+			<raceDefs>
+				<li>
+					<key>PM_Chaothrumbo</key>
+					<value>1</value>
+				</li>
+			</raceDefs>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	
+	</AchievementsExpanded.AchievementDef>
+	
+</Defs>

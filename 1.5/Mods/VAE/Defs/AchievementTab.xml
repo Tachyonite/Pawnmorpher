@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<AchievementsExpanded.AchievementTabDef>
+		<defName>PM_Pawnmorpher</defName>
+		<label>Pawnmorpher</label>
+	</AchievementsExpanded.AchievementTabDef>
+	
+</Defs>
