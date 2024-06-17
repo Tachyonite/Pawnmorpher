@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+	<!-- Drugs -->
+
 	<AchievementsExpanded.AchievementDef>
 		<defName>PM_ADrinkSlurry</defName>
 		<label>Did you seriously drink that?</label>
@@ -15,25 +17,93 @@
 		
 		<texPath>Achievements/Default</texPath>
 		<points>10</points>
+	
 	</AchievementsExpanded.AchievementDef>
 	
-	<AchievementsExpanded.AchievementDef>
-		<defName>PM_ASheepJoin</defName>
-		<label>Where's the lamb cook?</label>
-		<description>Meet the sheep chef</description>
+		<AchievementsExpanded.AchievementDef>
+		<defName>PM_AStoreSlurry</defName>
+		<label>We know what you are doing, and we approve</label>
+		<description>Accumulate 100 mechanite slurry</description>
 		<tab>PM_Pawnmorpher</tab>
-
-		<tracker Class="AchievementsExpanded.IncidentTracker">
-			<def>PM_SheepChef</def>
+		
+		<tracker Class="AchievementsExpanded.ItemTracker">
+			<def>MechaniteSlurry</def>
+			<count>100</count>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	</AchievementsExpanded.AchievementDef>
+	
+	<!-- Build -->
+	
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_ABuildChamber</defName>
+		<label>Now the fun can begin</label>
+		<description>Build your first chamber</description>
+		<tab>PM_Pawnmorpher</tab>
+		
+		<tracker Class="AchievementsExpanded.BuildingTracker">
+			<def>PM_NewMutagenicChamber</def>
 			<count>1</count>
 		</tracker>
 		
 		<texPath>Achievements/Default</texPath>
 		<points>10</points>
-	
 	</AchievementsExpanded.AchievementDef>
 	
-		<AchievementsExpanded.AchievementDef>
+	<!-- Transformation -->
+	
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_AMultipleWeaponTF</defName>
+		<label>Does it break Geneva convention?</label>
+		<description>Have 5 people suffer from mutagenic wounds at the same time</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.HediffTracker">
+			<def>MutagenicBuildup_Weapon</def>
+			<count>5</count>
+			<countAllMapPawns>true</countAllMapPawns>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	</AchievementsExpanded.AchievementDef>
+	
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_AMultipleEnvironmentTF</defName>
+		<label>Must be a leak somewhere</label>
+		<description>Have 5 people face environmental mutagenic hazard at the same time</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.HediffTracker">
+			<def>MutagenicBuildup</def>
+			<count>5</count>
+			<countAllMapPawns>true</countAllMapPawns>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+		
+	</AchievementsExpanded.AchievementDef>
+	
+	<AchievementsExpanded.AchievementDef>
+		<defName>PM_AFormerhuman</defName>
+		<label>They talk!?</label>
+		<description>Have a former human in your colony</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.HediffTracker">
+			<def>TransformedHuman</def>
+			<count>1</count>
+			<countAllMapPawns>true</countAllMapPawns>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+	</AchievementsExpanded.AchievementDef>
+	
+	<AchievementsExpanded.AchievementDef>
 		<defName>PM_AChaothrumbo</defName>
 		<label>Cleanup On Aisle Three</label>
 		<description>Create a REDACTED</description>
@@ -50,7 +120,62 @@
 		
 		<texPath>Achievements/Default</texPath>
 		<points>10</points>
-	
 	</AchievementsExpanded.AchievementDef>
+	
+	<!-- Plants -->
+	
+	<AchievementsExpanded.AchievementDef>
+		
+		<defName>PM_AChaobulb</defName>
+		<label>The forbidden fruit</label>
+		<description>Harvest your first cultivated chaobulb</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.PlantTracker">
+			<def>Plant_ChaoBulb_Domestic</def>
+			<count>1</count>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+		
+	</AchievementsExpanded.AchievementDef>	
+	
+	<AchievementsExpanded.AchievementDef>
+		
+		<defName>PM_AGlowvine</defName>
+		<label>The less forbidden fruit</label>
+		<description>Harvest your first cultivated glowvine</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.PlantTracker">
+			<def>Plant_Glowvine</def>
+			<count>1</count>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+		
+	</AchievementsExpanded.AchievementDef>
+	
+	<!-- Sheep overlord -->
+	
+	<AchievementsExpanded.AchievementDef>
+		
+		<defName>PM_ASheepJoin</defName>
+		<label>Where's the lamb cook?</label>
+		<description>Meet the sheep chef</description>
+		<tab>PM_Pawnmorpher</tab>
+
+		<tracker Class="AchievementsExpanded.IncidentTracker">
+			<def>PM_SheepChef</def>
+			<count>1</count>
+		</tracker>
+		
+		<texPath>Achievements/Default</texPath>
+		<points>10</points>
+		
+	</AchievementsExpanded.AchievementDef>	
+		
 	
 </Defs>
