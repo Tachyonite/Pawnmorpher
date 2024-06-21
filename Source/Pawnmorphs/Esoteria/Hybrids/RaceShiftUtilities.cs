@@ -488,6 +488,9 @@ namespace Pawnmorph.Hybrids
 					}
 
 
+					var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
+					AccessTools.Field(typeof(AlienPartGenerator.AlienComp), "nodeProps").SetValue(alienComp, null);
+
 					ValidateGraphicsPaths(pawn, oldARace, aRace);
 					ValidateGenes(pawn, oldARace, aRace);
 					HPatches.PawnPatches.QueueRaceCheck(pawn);
@@ -507,7 +510,6 @@ namespace Pawnmorph.Hybrids
 
 		private static void ValidateGenes([NotNull] Pawn pawn, [NotNull] ThingDef_AlienRace oldRace, [NotNull] ThingDef_AlienRace race)
 		{
-			var alienComp = pawn.GetComp<AlienPartGenerator.AlienComp>();
 			if (ThingDefOf.Human == race)
 			{
 				// Reversion
