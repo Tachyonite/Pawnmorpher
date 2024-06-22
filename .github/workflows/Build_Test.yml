@@ -2,7 +2,6 @@ name: 'Compile'
 run-name: ${{ github.ref_name }}
 on: 
   workflow_dispatch:
-    inputs:
 
 jobs:
   build:
@@ -16,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3.5.3
+      uses: actions/checkout@v4.1.7
       with:
         fetch-depth: 0
 
@@ -31,10 +30,10 @@ jobs:
         Branch: "${{ github.ref }}"
       
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.3.1
-
+      uses: microsoft/setup-msbuild@v2
+      
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.2.0
+      uses: NuGet/setup-nuget@v2.0.0
      
     - name: Restore NuGet Packages
       run: nuget restore $env:Solution_Name
@@ -76,7 +75,7 @@ jobs:
         Branch: "${{ github.ref }}"
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ArtifactName }}
         path: ${{ github.workspace }}/**/*
