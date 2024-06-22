@@ -253,7 +253,7 @@
 
 	<Pawnmorph.Hediffs.MutationDef Name="ThrumboFurredLimb" ParentName="AbstractFurredLimb">
 		<defName>EtherThrumboFurredLimb</defName>
-		<label>thumbo fur</label>
+		<label>thrumbo fur</label>
 		<classInfluence>ThrumboMorph</classInfluence>
 		<mutationMemory>EtherThickFurLimb</mutationMemory>
 		<stagePatches>
