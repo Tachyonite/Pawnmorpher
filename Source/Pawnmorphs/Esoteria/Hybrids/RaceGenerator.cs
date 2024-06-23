@@ -264,8 +264,8 @@ namespace Pawnmorph.Hybrids
 
 
 
-				CreateImplicitMeshes(race);
 				race.ResolveReferences();
+				CreateImplicitMeshes(race);
 				yield return race;
 			}
 

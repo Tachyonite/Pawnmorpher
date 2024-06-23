@@ -524,6 +524,8 @@
         </race>
         <alienRace>
             <generalSettings>
+                <allowHumanBios>true</allowHumanBios>
+                <corpseCategory>CorpsesHumanlike</corpseCategory>
                 <humanRecipeImport>true</humanRecipeImport>
                 <alienPartGenerator>
                     <headTypes>
@@ -534,6 +536,13 @@
                         <li>Female_AverageWide</li>
                         <li>Female_AveragePointy</li>
                     </headTypes>
+                    <bodyTypes>
+                        <li>Male</li>
+                        <li>Female</li>
+                        <li>Thin</li>
+                        <li>Hulk</li>
+                        <li>Fat</li>
+                    </bodyTypes>
                     <colorChannels>
                         <li>
                             <name>hair</name>
@@ -554,16 +563,25 @@
 								</options>
 							</second>
                         </li>
+                        <li>
+                            <name>SkinHair</name>
+                            <first Class="AlienRace.ColorGenerator_CustomAlienChannel">
+                                <colorChannel>skin_1</colorChannel>
+                            </first>
+                            <second Class="AlienRace.ColorGenerator_CustomAlienChannel">
+                                <colorChannel>hair_1</colorChannel>
+                            </second>
+                        </li>
                     </colorChannels>
                     <bodyAddons>
                         <li>
                             <path>Parts/Cobra/Cobra_Tail</path>
+                            <colorChannel>SkinHair</colorChannel>
                             <conditions>
                                 <BodyPart>
                                     <bodyPart>TailLeg</bodyPart>
                                     <drawWithoutPart>false</drawWithoutPart>
                                 </BodyPart>
-                                <Hediff>EtherSnakeTail</Hediff>
                                 <Posture>
                                     <drawnStanding>true</drawnStanding>
                                     <drawnLaying>true</drawnLaying>
