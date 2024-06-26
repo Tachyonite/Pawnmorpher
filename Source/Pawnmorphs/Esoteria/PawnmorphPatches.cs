@@ -38,7 +38,7 @@ namespace Pawnmorph
 		private static readonly ILookup<string, string> _modPatches = new KeyValuePair<string, string>[]
 		{
 			new ("jecrell.doorsexpanded", "DoorsExpanded.Building_DoorExpanded:PawnCanOpen"),
-			new ("kentington.saveourship2", "RimWorld.Building_ShipAirlock:PawnCanOpen"),
+			new ("kentington.saveourship2", "SaveOurShip2.Building_ShipAirlock:PawnCanOpen"),
 
 			new ("petetimessix.simplesidearms", "PeteTimesSix.SimpleSidearms.Extensions:IsValidSidearmsCarrier"),
 			new ("petetimessix.simplesidearms", "SimpleSidearms.rimworld.CompSidearmMemory:GetMemoryCompForPawn"),
