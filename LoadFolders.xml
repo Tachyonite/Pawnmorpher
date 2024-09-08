@@ -55,5 +55,6 @@
 		<li IfModActive="VanillaExpanded.VCookE">1.5/Mods/VCE</li>
 		<li IfModActive="ACPteam.ACPVanillaStyle">1.5/Mods/ZWE-ACP</li>
 		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.5/Mods/ADogSaidAnimalProsthetics</li>
+		<li IfModActive="CETeam.CombatExtended">1.5/Mods/CombatExtended</li>
 	</v1.5>
 </loadFolders>
