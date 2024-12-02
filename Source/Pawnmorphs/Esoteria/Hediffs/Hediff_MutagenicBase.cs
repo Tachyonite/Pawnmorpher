@@ -186,7 +186,6 @@ namespace Pawnmorph.Hediffs
 		public override void PostRemoved()
 		{
 			base.PostRemoved();
-			pawn.CheckRace();
 		}
 
 		/// <summary>
@@ -291,8 +290,11 @@ namespace Pawnmorph.Hediffs
 					List<BodyPartDef> mutationParts = bodyMutationManager.Mutation.mutation.parts;
 					for (int x = mutationParts.Count - 1; x >= 0; x--)
 					{
-						bodyPart = pawn.RaceProps.body.GetPartsWithDef(mutationParts[x]).RandomElement();
+						List<BodyPartRecord> parts = pawn.RaceProps.body.GetPartsWithDef(mutationParts[x]);
+						if (parts.Count == 0)
+							break;
 
+						bodyPart = parts.RandomElement();
 						if (bodyPart != null)
 							break;
 					}

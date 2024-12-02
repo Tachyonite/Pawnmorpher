@@ -55,7 +55,7 @@ namespace Pawnmorph
 				PatchExplicitRaces();
 				AddMutationsToWhitelistedRaces();
 				EnableDisableOptionalPatches();
-				CheckForObsoletedComponents();
+
 				AddComponents();
 
 				try
@@ -67,6 +67,7 @@ namespace Pawnmorph
 #if DEBUG
 					// Only show configuration errors in debug mode.
 					DisplayGroupedModIssues();
+					CheckForObsoletedComponents();
 #endif
 
 
