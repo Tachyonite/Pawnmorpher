@@ -265,12 +265,28 @@ namespace Pawnmorph.HPatches
 			}
 		}
 
+
+		[ThreadStatic]
+		private static (Pawn, float) _bodySizeCache;
+
+
 		[HarmonyPatch(nameof(Pawn.BodySize), MethodType.Getter), HarmonyPostfix]
 		static float GetBodySizePatch(float __result, [NotNull] Pawn __instance)
 		{
-			float? bodySizeModifier = StatsUtility.GetStat(__instance, PMStatDefOf.PM_BodySize, 300);
-			if (bodySizeModifier.HasValue && bodySizeModifier.Value > 0)
-				return __result * bodySizeModifier.Value;
+			float bodySizeModifier = 0;
+			if (_bodySizeCache.Item1 == __instance)
+				bodySizeModifier = _bodySizeCache.Item2;
+			else
+			{
+				if (__instance.def.race.Animal == false)
+					bodySizeModifier = StatsUtility.GetStat(__instance, PMStatDefOf.PM_BodySize, 1000).GetValueOrDefault();
+
+				_bodySizeCache.Item1 = __instance;
+				_bodySizeCache.Item2 = bodySizeModifier;
+			}
+
+			if (bodySizeModifier > 0)
+				return __result * bodySizeModifier;
 
 			return __result;
 		}

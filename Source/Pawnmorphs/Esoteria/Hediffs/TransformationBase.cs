@@ -288,7 +288,6 @@ namespace Pawnmorph.Hediffs
 		public override void PostRemoved()
 		{
 			base.PostRemoved();
-			pawn.CheckRace();
 		}
 
 
