@@ -102,7 +102,7 @@ namespace Pawnmorph.Hybrids
 				useMeatFrom = animal.useMeatFrom,
 				deathAction = animal.deathAction, // Boommorphs should explode.
 				corpseDef = human.corpseDef,
-				packAnimal = animal.packAnimal,
+				packAnimal = human.packAnimal,
 				renderTree = human.renderTree,
 				startingAnimation = human.startingAnimation,
 				soundMoving = human.soundMoving,
