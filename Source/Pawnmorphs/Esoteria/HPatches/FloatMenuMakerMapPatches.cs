@@ -31,7 +31,7 @@ namespace Pawnmorph
 			{
 				if (pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
 				{
-					IEnumerable<LocalTargetInfo> targets = GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true);
+					IEnumerable<LocalTargetInfo> targets = GenUI.TargetsAt(clickPos, TargetingParameters.ForPawns(), true);
 					if (targets != null)
 					{
 						foreach (LocalTargetInfo localTargetInfo3 in targets)

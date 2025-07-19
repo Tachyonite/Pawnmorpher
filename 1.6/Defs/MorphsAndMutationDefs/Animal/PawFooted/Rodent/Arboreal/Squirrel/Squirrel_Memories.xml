@@ -1,0 +1,133 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SquirrelTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>Does anyone have any acorns?</description>
+                <visible>true</visible>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>Climbing trees, burying nuts... this is the life!</description>
+                <visible>true</visible>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>Became squirrelmorph</label>
+                <description>These giant teeth, this massive, bushy tail... turn me back, please!</description>
+                <visible>true</visible>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>SquirrelRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>Back to normal! Those teeth were annoying.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Aw, but I kind of liked being a squirrel.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm never going to eat nuts again!</description>
+                <baseMoodEffect>+10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But I wanted to be a cute squirrel!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSquirrelJaw</defName>
+		<stages>
+			<li>
+				<label>Squirrel face</label>
+				<description>What's with the teeth?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel face</label>
+				<description>I could eat nuts all day long!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel face</label>
+				<description>I HATE THESE F$&amp;% TEETH.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel face</label>
+				<description>I could live off nuts alone...just like in the wild!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSquirrelEar</defName>
+		<stages>
+			<li>
+				<label>Squirrel ear</label>
+				<description>These ears are a little weird, but not too bad.</description>
+				<visible>true</visible>
+				<baseMoodEffect>0</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel ear</label>
+				<description>Did I just hear a bird?</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel ear</label>
+				<description>I look like a rat!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherSquirrelTail</defName>
+		<stages>
+			<li>
+				<label>Squirrel tail</label>
+				<description>Come on, does it *have* to be this big?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel tail</label>
+				<description>I just wanna use this thing as a blanket!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Squirrel tail</label>
+				<description>What's the point in having such a big tail?</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+</Defs>

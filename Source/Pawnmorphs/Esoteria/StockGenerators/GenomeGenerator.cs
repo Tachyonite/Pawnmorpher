@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Pawnmorph.ThingComps;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace Pawnmorph.StockGenerators
@@ -59,7 +60,7 @@ namespace Pawnmorph.StockGenerators
 		/// <param name="forTile">For tile.</param>
 		/// <param name="faction">The faction.</param>
 		/// <returns></returns>
-		public override IEnumerable<Thing> GenerateThings(int forTile, Faction faction = null)
+		public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction faction = null)
 		{
 			if (GenomePool.Count == 0) 
 				yield break;

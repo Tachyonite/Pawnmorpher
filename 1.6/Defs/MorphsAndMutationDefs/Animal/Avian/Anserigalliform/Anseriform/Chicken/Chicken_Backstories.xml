@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>ChookmorphGeneral</defName>
+		<title>prize chicken</title>
+		<titleShort>chookmorph</titleShort>
+		<description>[PAWN_nameDef] was sold to a farmer with less-than-ethical business practices, and quickly made [PAWN_nameDef] part of the coop. [PAWN_pronoun] was allowed to leave once [PAWN_pronoun]'d "paid [PAWN_possessive] due."</description>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>ChookMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

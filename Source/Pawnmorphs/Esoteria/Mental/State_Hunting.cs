@@ -51,10 +51,10 @@ namespace Pawnmorph.Mental
 		/// <summary>
 		/// Mentals the state tick.
 		/// </summary>
-		public override void MentalStateTick()
+		public override void MentalStateTick(int delta)
 		{
-			base.MentalStateTick();
-			if (pawn.IsHashIntervalTick(60) && (Prey?.Dead ?? true))
+			base.MentalStateTick(delta);
+			if (pawn.IsHashIntervalTick(60, delta) && (Prey?.Dead ?? true))
 				RecoverFromState();
 		}
 

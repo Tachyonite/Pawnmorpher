@@ -1,0 +1,23 @@
+<Defs>
+	<AlienRace.AlienBackstoryDef>
+		<defName>DuckmorphChef</defName>
+		<title>foodie</title>
+		<titleShort>duckmorph</titleShort>
+		<description>[PAWN_nameDef] was a patron of a 5-star restaurant. After a mutagenic attack by an eco terrorist group, [PAWN_nameDef] was left looking like [PAWN_pronoun] should be served coated in an orange sauce.</description>
+		<slot>Adulthood</slot>
+		<bodyTypeFemale>Female</bodyTypeFemale>
+		<bodyTypeMale>Male</bodyTypeMale>
+		<spawnCategories>
+			<li>MutantWanderer</li>
+			<li>FreeMutant</li>
+		</spawnCategories>
+		<modExtensions>
+			<li Class="Pawnmorph.MorphPawnKindExtension">
+				<hediffRange>6~8</hediffRange>
+				<morphs>
+					<li>DuckMorph</li>
+				</morphs>
+			</li>
+		</modExtensions>
+	</AlienRace.AlienBackstoryDef>
+</Defs>

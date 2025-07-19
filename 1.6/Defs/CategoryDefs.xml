@@ -1,0 +1,39 @@
+﻿<Defs>
+	<ThingCategoryDef>
+		<defName>Injector</defName>
+		<label>injector</label>
+		<parent>Manufactured</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>Mutapill</defName>
+		<label>mutapill</label>
+		<parent>Manufactured</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>Serum</defName>
+		<label>serums</label>
+		<parent>Manufactured</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>RawMutagen</defName>
+		<label>raw mutagens</label>
+		<parent>ResourcesRaw</parent>
+		<resourceReadoutRoot>true</resourceReadoutRoot>
+		<iconPath>UI/Icons/ThingCategories/ResourcesRaw</iconPath>
+	</ThingCategoryDef>
+
+	<ThingCategoryDef>
+		<defName>PM_MutationGenome</defName>
+		<label>genomes</label>
+		<parent>Items</parent>
+	</ThingCategoryDef>
+</Defs>

@@ -1,0 +1,53 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GooseTransformationMemory</defName>
+        <stages>
+            <li>
+                <label>morphed</label>
+                <description>I'm- HONK! covered in feathers- HONK!</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>I think I could tie up this look with a red bow around my neck.</description>
+                <baseMoodEffect>+3</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Change me back! I- HONK! -ing hate geese!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+              <label>morphed</label>
+                <description>Honk! Honk honk!</description>
+                <baseMoodEffect>+1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="OutlookMemoryBase">
+		<defName>GooseRevertedMemory</defName>
+        <stages>
+            <li>
+                <label>reverted</label>
+                <description>I'm back to my normal, human self again! No more feathers...</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>But the feathers! My beak! I would have preferred to stay that way.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>Hands at last. I'd prefer not to be a demon-spawn bird.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>reverted</label>
+                <description>I'm human again? I think I wanted the opposite of this.</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

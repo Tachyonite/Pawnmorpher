@@ -25,7 +25,7 @@ namespace Pawnmorph
 		/// <param name="forTile">For tile.</param>
 		/// <param name="forFaction">the faction this is being generated for</param>
 		/// <returns></returns>
-		public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
+		public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction forFaction = null)
 		{
 			if (respectPopulationIntent && Rand.Value > StorytellerUtilityPopulation.PopulationIntent)
 			{
@@ -142,7 +142,7 @@ namespace Pawnmorph
 		/// <param name="forTile">For tile.</param>
 		/// <param name="forFaction">For faction.</param>
 		/// <returns></returns>
-		public override IEnumerable<Thing> GenerateThings(int forTile, Faction forFaction = null)
+		public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction forFaction = null)
 		{
 			var enumer = GenerateThingEnumer(forTile, forFaction).ToList();
 
@@ -157,7 +157,7 @@ namespace Pawnmorph
 
 		private float SelectionChance(PawnKindDef k)
 		{
-			return SelectionChanceFromWildnessCurve.Evaluate(k.RaceProps.wildness);
+			return SelectionChanceFromWildnessCurve.Evaluate(k.race.GetStatValueAbstract(StatDefOf.Wildness));
 		}
 
 		/// <summary>checks if this generator handles the given thingDef.</summary>
@@ -170,7 +170,11 @@ namespace Pawnmorph
 
 		private bool PawnKindAllowed(PawnKindDef kind, int forTile)
 		{
-			if (!kind.RaceProps.Animal || kind.RaceProps.wildness < minWildness || kind.RaceProps.wildness > maxWildness || kind.RaceProps.wildness > 1f)
+			if (!kind.RaceProps.Animal)
+				return false;
+
+			float wildness = kind.race.GetStatValueAbstract(StatDefOf.Wildness);
+			if (wildness < minWildness || wildness > maxWildness || wildness > 1f)
 			{
 				return false;
 			}

@@ -1,0 +1,80 @@
+<Defs>
+	<ThingDef ParentName="BuildingBase">
+		<defName>PM_SlurryCanner</defName>
+		<label>Slurry canner</label>
+		<description>Pulls slurry from the network and makes it available for hauling.</description>
+		<thingClass>Building_Storage</thingClass>
+		<category>Building</category>
+		<altitudeLayer>Building</altitudeLayer>
+		<tickerType>Never</tickerType>
+		<graphicData>
+			<texPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/MutagenChamber/TFChamber_Glass_Floor</uiIconPath>
+		<uiIconScale>1</uiIconScale>
+		<inspectorTabs>
+			<li>ITab_Storage</li>
+		</inspectorTabs>
+		<surfaceType>Item</surfaceType>
+		<building>
+			<preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+			<ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+			<fixedStorageSettings>
+				<filter>
+					<disallowNotEverStorable>true</disallowNotEverStorable>
+					<thingDefs>
+						<li>MechaniteSlurry</li>
+					</thingDefs>
+				</filter>
+			</fixedStorageSettings>
+			<defaultStorageSettings>
+				<priority>Important</priority>
+				<filter>
+					<disallowNotEverStorable>true</disallowNotEverStorable>
+					<thingDefs>
+						<li>MechaniteSlurry</li>
+					</thingDefs>
+				</filter>
+			</defaultStorageSettings>
+		</building>
+		<drawerType>MapMeshOnly</drawerType>
+		<passability>Standable</passability>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<statBases>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToBuild>35</WorkToBuild>
+			<Flammability>0.7</Flammability>
+			<Beauty>-2</Beauty>
+		</statBases>
+		<costList>
+			<Steel>10</Steel>
+		</costList>
+		<comps>
+			<li Class="PipeSystem.CompProperties_ConvertResourceToThing">
+				<pipeNet>PM_SlurryNet</pipeNet>
+				<thing>MechaniteSlurry</thing>
+				<ratio>1</ratio>
+			</li>
+            <li Class="CompProperties_Flickable" />
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>10</basePowerConsumption>
+            </li>
+		</comps>
+		<researchPrerequisites>
+			<li>PM_MutagenStorage</li>
+		</researchPrerequisites>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<rotatable>false</rotatable>
+		<selectable>true</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+		<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>GR_GeneticsTab</designationCategory>
+		<constructEffect>ConstructMetal</constructEffect>
+		<clearBuildingArea>false</clearBuildingArea>
+		<designationHotKey>Misc1</designationHotKey>
+	</ThingDef>
+</Defs>

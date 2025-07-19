@@ -61,15 +61,15 @@ namespace Pawnmorph.Things
 			}
 		}
 
-		private float DynMaxOptimalGrowthTemperature => Info?.maxOptimalGrowthTemperature ?? MaxOptimalGrowthTemperature;
+		private float DynMaxOptimalGrowthTemperature => Info?.maxOptimalGrowthTemperature ?? def.plant.maxOptimalGrowthTemperature;
 
-		private float DynMinOptimalGrowthTemperature => Info?.minOptimalGrowthTemperature ?? MinOptimalGrowthTemperature;
+		private float DynMinOptimalGrowthTemperature => Info?.minOptimalGrowthTemperature ?? def.plant.minOptimalGrowthTemperature;
 
-		private float DynMaxGrowthTemperature => Info?.maxGrowthTemperature ?? MaxGrowthTemperature;
+		private float DynMaxGrowthTemperature => Info?.maxGrowthTemperature ?? def.plant.maxGrowthTemperature;
 
-		private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? MinGrowthTemperature;
-
-		private float DynMaxLeaflessTemperature => Info?.maxLeaflessTemperature ?? MaxLeaflessTemperature;
+		private float DynMinGrowthTemperature => Info?.minGrowthTemperature ?? def.plant.minGrowthTemperature;
+		
+		private float DynMaxLeaflessTemperature => Info?.maxLeaflessTemperature ?? def.plant.minGrowthTemperature + MaxLeaflessTemperatureOffset;
 
 		private float DynGrowthRateFactor_Temperature
 		{

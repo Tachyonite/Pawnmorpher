@@ -1,0 +1,124 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidJawPart" ParentName="PawFootedJawPart" Abstract="true">
+		<mutationMemory>EtherHareJaw</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>Shifting, twisting, pulsing. The painful transformation of [PAWN_nameDef]'s poor face continues. [PAWN_possessive] jaws have elongated into a snout and [PAWN_possessive] front teeth have grown longer.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, with a twitchy pink button nose and long buck teeth. The strange shape makes speaking very difficult.</description>
+					<capMods>
+						<li>
+							<capacity>Consciousness</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, with a twitchy pink button nose and long buck teeth. [PAWN_possessive] teeth are pointed to suit. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Consciousness</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face has completely reshaped into one resembling a hare's, with a twitchy pink button nose and long buck teeth. [PAWN_possessive] teeth are pointed to suit. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<capMods>
+						<li>
+							<capacity>Consciousness</capacity>
+							<offset>0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidEarPart" ParentName="PawFootedEarPart" Abstract="true">
+		<mutationMemory>EtherHareEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A long, furry ear sits atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses. It is suprisingly flexible.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>A long, furry, flexible ear sits atop [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses. [PAWN_nameDef] hears everything, even sounds other mortals cannot hear.</description>
+				<capMods>
+					<li>
+						<capacity>Hearing</capacity>
+						<offset>+0.5</offset>
+					</li>
+				</capMods>
+				<statOffsets>
+					<PsychicSensitivityOffset>+0.025</PsychicSensitivityOffset>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="LeporidTailPart" ParentName="PawFootedTailPart" Abstract="true">
+		<mutationMemory>EtherHareTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.025</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A small puff of fluff peaks out just above [PAWN_nameDef]'s rear. It's rather cute, actually.</description>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

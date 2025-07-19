@@ -1,0 +1,99 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef>
+        <!--
+            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up
+        -->
+        <defName>SapientAnimalHuntingMemory</defName> <!-- this is for hunting out of necessity (like starving) not for the hunting mental break-->
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>hunted</label>
+                <description>I was so hungry I...can't believe I did that. I'm covered in blood and I want to hide.</description>
+                <visible>true</visible>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>It's hard to fight off instinct, let alone hunger. I'm bloody, but I'm fed.</description>
+                <baseMoodEffect>-3</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>The taste is starting to grow on me...I think I could keep hunting.</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Made a kill. Fed. Tastes good.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <!--
+            remember to add a moodOffset or set <visible>true</visible> to all stages or they won't show up
+        -->
+
+        <!-- this is for hunting out of necessity (like starving) not for the hunting mental break
+            but specifically for primal wish pawns
+        -->
+        <defName>SapientAnimalHuntingMemoryPrimalWish</defName>
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>hunted</label>
+                <description>I don't want to get that hungry again...but hunting is fun!</description>
+                <visible>true</visible>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Nothing like a good hunt to get the blood flowing.</description>
+                <baseMoodEffect>8</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>What a rush! Tastes good.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunted</label>
+                <description>Primal feelings...so strong, more hunt!</description>
+                <baseMoodEffect>20</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>SapientAnimalHuntingBreakCatharsis</defName>
+        <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+        <durationDays>1</durationDays>
+        <stages>
+            <li>
+                <label>hunt catharsis</label>
+                <description>I feel better now...and a little foggier, I guess.</description>
+                <visible>true</visible>
+                <baseMoodEffect>20</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunt catharsis</label>
+                <description>I know I shouldn't, but...I feel so alive!</description>
+                <baseMoodEffect>30</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunt catharsis</label>
+                <description>Getting that out of my system...felt good. And I got fed.</description>
+                <baseMoodEffect>40</baseMoodEffect>
+            </li>
+            <li>
+                <label>hunt catharsis</label>
+                <description>Grr...went hunting...sniff sniff, bite...feel alive!</description>
+                <baseMoodEffect>40</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

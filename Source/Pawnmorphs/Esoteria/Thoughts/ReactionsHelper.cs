@@ -157,7 +157,7 @@ namespace Pawnmorph.Thoughts
 		public static void OnPawnsMerged(Pawn merge0, bool wasPrisoner0, Pawn merge1, bool wasPrisoner1, Pawn animalPawn) //TODO take reaction status into account 
 		{
 			_scratchList.Clear();
-			_scratchList.AddRange(PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
+			_scratchList.AddRange(PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned_FreeColonists
 											 .Where(p => p != merge0 && p != merge1));
 			//don't give the merged pawns thoughts about themselves 
 
@@ -222,7 +222,7 @@ namespace Pawnmorph.Thoughts
 
 
 			pawns = pawns
-				 ?? PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonists
+				 ?? PawnsFinder.AllMapsCaravansAndTravellingTransporters_AliveSpawned_FreeColonists
 							   .Where(p => p != original); //use all colonists except the original pawn as the default 
 
 

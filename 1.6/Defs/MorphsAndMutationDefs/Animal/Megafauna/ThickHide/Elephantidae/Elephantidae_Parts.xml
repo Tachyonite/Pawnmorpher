@@ -1,0 +1,192 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeJawPart" ParentName="ThickHideJawPart" Abstract="true">
+		<mutationMemory>EtherElephantTrunk</mutationMemory>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>tusks</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Stab</li>
+						</capacities>
+						<power>20.4</power>
+						<cooldownTime>4</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>trunk</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>12.7</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+						<li>
+							<label>trunk</label>
+							<power>0</power>
+							<chanceFactor>0</chanceFactor>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possessive] face. [PAWN_possessive] nose is starting to droop, growing longer... and wriggly.</description>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12.0</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>20.4</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12.7</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. Adapting to it has made speaking less frustrating.</description>
+					<statOffsets>
+						<MeleeHitChance>4</MeleeHitChance>
+						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>1</chanceFactor>
+							<power>20.4</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12.7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A trunk graces [PAWN_nameDef]'s face, along with two pointy tusks, a wonderful elephantine accessory. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<statOffsets>
+						<MeleeHitChance>5</MeleeHitChance>
+						<MeleeArmorPenetration>0.1</MeleeArmorPenetration>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Manipulation</capacity>
+							<offset>0.15</offset>
+						</li>
+					</capMods>
+					<verbOverrides>
+						<li>
+							<label>tusks</label>
+							<chanceFactor>1</chanceFactor>
+							<power>20.4</power>
+						</li>
+						<li>
+							<label>trunk</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12.7</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeEarPart" ParentName="ThickHideEarPart" Abstract="true">
+		<mutationMemory>EtherElephantEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>+8.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<statOffsets>
+						<ComfyTemperatureMax>+8.5</ComfyTemperatureMax>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ElephantidaeTailPart" ParentName="MegafaunaTailPart" Abstract="true">
+		<mutationMemory>EtherElephantTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

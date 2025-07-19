@@ -47,24 +47,39 @@ namespace Pawnmorph
 
 			try
 			{
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: verify morph database");
 				VerifyMorphDefDatabase();
 
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: inject graphics");
 				InjectGraphics();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: notify settings changed");
 				NotifySettingsChanged();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate implicit races");
 				GenerateImplicitRaces();
+				
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: patch races");
 				PatchExplicitRaces();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Add mutations to races");
 				AddMutationsToWhitelistedRaces();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Disable patches");
 				EnableDisableOptionalPatches();
 
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: add components");
 				AddComponents();
 
 				try
 				{
 
 
+					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: check for conflicts");
 					CheckForModConflicts();
 
 #if DEBUG
+					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: scan for issues");
 					// Only show configuration errors in debug mode.
 					DisplayGroupedModIssues();
 					CheckForObsoletedComponents();
@@ -80,6 +95,7 @@ namespace Pawnmorph
 				try
 				{
 
+					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate defs");
 					PMImplicitDefGenerator.GenerateImplicitDefs();
 
 				}
@@ -89,8 +105,8 @@ namespace Pawnmorph
 					throw new ModInitializationException($"while generating genomes caught exception {e.GetType().Name}", e);
 				}
 
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: patch injectors");
 				InjectorRecipeWorker.PatchInjectors();
-				RaceGenerator.DoHarStuff();
 			}
 			catch (Exception e)
 			{
@@ -654,13 +670,16 @@ namespace Pawnmorph
 
 				List<ThingDef> genRaces = new List<ThingDef>();
 
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: add implicit defs");
 				foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
 				{
-					var race = (ThingDef)thingDefAlienRace;
-					genRaces.Add(race);
-					DefGenerator.AddImpliedDef(race);
+					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: adding " + thingDefAlienRace.defName);
+					// DefGenerator.AddImpliedDef(race);
+					genRaces.Add((ThingDef)thingDefAlienRace);
 					DefGenerator.AddImpliedDef(thingDefAlienRace);
 				}
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate hashes");
 
 				object[] tmpArr = new object[2];
 
@@ -670,6 +689,7 @@ namespace Pawnmorph
 					HashGiverUtils.GiveShortHash(thingDef);
 				}
 
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: init morphs");
 				MorphUtilities.Initialize();
 			}
 			catch (MissingMethodException e)

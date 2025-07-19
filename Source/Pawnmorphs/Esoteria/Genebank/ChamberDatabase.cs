@@ -376,9 +376,9 @@ namespace Pawnmorph.Chambers
 		/// <summary>
 		///     Finalizes the initialize.
 		/// </summary>
-		public override void FinalizeInit()
+		public override void FinalizeInit(bool fromLoad)
 		{
-			base.FinalizeInit();
+			base.FinalizeInit(fromLoad);
 			_usedStorageCache = null;
 		}
 

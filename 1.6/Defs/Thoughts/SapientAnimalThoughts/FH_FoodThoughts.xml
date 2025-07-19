@@ -1,0 +1,140 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+  <ThoughtDef Abstract="true" Name="FormerHumanCannibalThoughtBase">
+    <durationDays>1</durationDays>
+    <nullifyingTraits>
+      <li>Cannibal</li>
+    </nullifyingTraits>
+    <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+  </ThoughtDef>
+
+  <ThoughtDef Abstract="true" Name="FormerHumanCannibalThoughtGoodBase">
+    <durationDays>1</durationDays>
+    <requiredTraits>
+      <li>Cannibal</li>
+    </requiredTraits>
+    <thoughtClass>Pawnmorph.Thoughts.FormerHumanMemory</thoughtClass>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="FormerHumanCannibalThoughtBase">
+    <defName>FHDefaultCannibalThought_Direct</defName>
+    <stages>
+      <li>
+        <!-- Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's unsettling eating a {animal} raw. That could be me!</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's pretty good. Wait! I'm a {animal}!</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Conflicted -->
+        <label>ate {animal} meat</label>
+        <description>I'm eating {animal} meat raw, but I'm a {animal}... Does that matter?</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Feral -->
+        <label>ate {animal} meat</label>
+        <description>MMmmm.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <visible>true</visible>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="FormerHumanCannibalThoughtGoodBase">
+    <defName>FHDefaultCannibalGoodThought_Direct</defName>
+    <stages>
+      <li>
+        <!-- Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's not another person... But I'm a {animal} so it's close enough!</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's pretty good! Oh I'm a {animal} too, that's even better!</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Conflicted -->
+        <label>ate {animal} meat</label>
+        <description>I'm eating {animal} meat raw, I'm a {animal}. That's good!</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Feral -->
+        <label>ate {animal} meat</label>
+        <description>MMmmm.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <visible>true</visible>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="FormerHumanCannibalThoughtBase">
+    <defName>FHDefaultCannibalThought_Ingredient</defName>
+    <stages>
+      <li>
+        <!-- Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's unsettling eating a meal made from {animal} meat. That could be me!</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's pretty good. Wait, this was a {animal} right? This feels so weird.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Conflicted -->
+        <label>ate {animal} meat</label>
+        <description>This was made from a {animal}... I'm a {animal}... Does that matter?</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Feral -->
+        <label>ate {animal} meat</label>
+        <description>MMmmm.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <visible>true</visible>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="FormerHumanCannibalThoughtGoodBase">
+    <defName>FHDefaultCannibalGoodThought_Ingredient</defName>
+    <stages>
+      <li>
+        <!-- Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's not human, but I'm a {animal} so it's close enough! It'd be better raw though.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Sapient -->
+        <label>ate {animal} meat</label>
+        <description>It's pretty good! Oh it was made with {animal} too, that's even better!</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Conflicted -->
+        <label>ate {animal} meat</label>
+        <description>This was a {animal}, I'm a {animal}. Nice.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+      <li>
+        <!-- Mostly Feral -->
+        <label>ate {animal} meat</label>
+        <description>MMmmm.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <visible>true</visible>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

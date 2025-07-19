@@ -1,0 +1,29 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name="IguanaPart" ParentName="PawnmorphPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+    <Pawnmorph.Hediffs.MutationDef Name="SnakePart" ParentName="PawnmorphPart" Abstract="true">
+	</Pawnmorph.Hediffs.MutationDef>
+    
+	<Pawnmorph.Hediffs.MutationDef Name="PawnmorphSkinPart" Abstract="true" ParentName="PawnmorphPartNoRmComp">
+		<comps>
+			<li Class="Pawnmorph.Hediffs.RemoveFromPartCompProperties">
+				<layer>Skin</layer>
+			</li>
+			<li Class="Pawnmorph.Hediffs.SpreadingMutationCompProperties">
+				<mtb>2</mtb>
+				<maxTreeSearchDepth>1</maxTreeSearchDepth>
+			</li>
+		</comps>
+		<parts>
+			<li>Torso</li>
+			<li>Head</li>
+			<li>Ear</li>
+			<li>Arm</li>
+			<li>Hand</li>
+			<li>Leg</li>
+			<li>Foot</li>
+			<li>Tail</li>
+			<li>MorphTail</li>
+		</parts>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

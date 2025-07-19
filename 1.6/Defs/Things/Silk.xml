@@ -1,0 +1,84 @@
+<Defs>
+	<ThingDef ParentName="ResourceBase">
+        <defName>Morphsilk</defName>
+        <label>morphsilk</label>
+        <description>Scraps of fabric that have been impregnated with mutagenic nanites. The nanites will passively link with and boost any mutagenic mechanites in the bloodstream, increasing the rate of mutation of the pawn wearing it. Despite its improved flexibility and durability compared to regular fabric, it’s not recommended to make clothing out of this.
+
+Morphsilk is commonly created as a byproduct of full-body transformations, as the hapless victim sheds large amounts of mechanites into their clothing before tearing it apart upon transforming. Because of the risk it poses to the wearer and how commonly it can be found at any mutagenic battleground, most merchants will pay but a pittance for morphsilk.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Morphsilk</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <StuffPower_Armor_Sharp>0.46</StuffPower_Armor_Sharp>
+            <StuffPower_Armor_Blunt>0</StuffPower_Armor_Blunt>
+            <StuffPower_Armor_Heat>0.28</StuffPower_Armor_Heat>
+            <StuffPower_Insulation_Cold>25</StuffPower_Insulation_Cold>
+            <StuffPower_Insulation_Heat>25</StuffPower_Insulation_Heat>
+            <MaxHitPoints>140</MaxHitPoints>
+            <MarketValue>2.8</MarketValue>
+            <Mass>0.026</Mass>
+            <Flammability>1.2</Flammability>
+            <DeteriorationRate>2</DeteriorationRate>
+            <MutagenSensitivity_Stuff>0.1</MutagenSensitivity_Stuff>
+            <SellPriceFactor>0.20</SellPriceFactor>
+        </statBases>
+		<burnableByRecipe>true</burnableByRecipe>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<minRewardCount>30</minRewardCount>
+        <stuffProps>
+            <color>(0.74,1,0.5)</color>
+            <statFactors>
+                <Flammability>1.2</Flammability>
+            </statFactors>
+            <categories>
+                <li>Fabric</li>
+            </categories>
+            <commonality>0.4</commonality>
+        </stuffProps>
+        <thingCategories>
+            <li>Textiles</li>
+        </thingCategories>
+    </ThingDef>
+	
+    <ThingDef ParentName="ResourceBase">
+        <defName>PM_Hazsilk</defName>
+        <label>hazsilk</label>
+        <description>By doping morphsilk with antigen, the mechanites active in the fibres have been reconfigured to reduce mutagen sensitivity rather than increase it. Hazsilk is not much more protective against physical damage than cloth, but it can be used to create special clothing that protects the user from mutagenic weaponry and other mutagenic hazards.
+
+Hazsilk is often used as a protective underlayer for soldiers going into battle against enemies known to use mutagenic weaponry.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Hazsilk</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <statBases>
+            <StuffPower_Armor_Sharp>0.46</StuffPower_Armor_Sharp>
+            <StuffPower_Armor_Blunt>0</StuffPower_Armor_Blunt>
+            <StuffPower_Armor_Heat>0.28</StuffPower_Armor_Heat>
+            <StuffPower_Insulation_Cold>25</StuffPower_Insulation_Cold>
+            <StuffPower_Insulation_Heat>25</StuffPower_Insulation_Heat>
+            <MaxHitPoints>140</MaxHitPoints>
+            <MarketValue>3.9</MarketValue>
+            <Mass>0.026</Mass>
+            <Flammability>0.9</Flammability>
+            <DeteriorationRate>2</DeteriorationRate>
+            <MutagenSensitivity_Stuff>-0.35</MutagenSensitivity_Stuff>
+        </statBases>
+        <burnableByRecipe>true</burnableByRecipe>
+        <healthAffectsPrice>false</healthAffectsPrice>
+        <minRewardCount>30</minRewardCount>
+        <stuffProps>
+            <color>(0.2,.96,0.99)</color>
+            <statFactors>
+                <Flammability>0.9</Flammability>
+            </statFactors>
+            <categories>
+                <li>Fabric</li>
+            </categories>
+            <commonality>0.2</commonality>
+        </stuffProps>
+        <thingCategories>
+            <li>Textiles</li>
+        </thingCategories>
+    </ThingDef>
+</Defs>

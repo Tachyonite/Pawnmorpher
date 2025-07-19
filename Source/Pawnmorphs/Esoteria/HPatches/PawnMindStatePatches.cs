@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ using Verse.AI;
 
 namespace Pawnmorph.HPatches
 {
-	[HarmonyPatch(typeof(Pawn_MindState))]
+	[HarmonyPatch(typeof(FleeUtility))]
 	internal static class PawnMindStatePatches
 	{
-		[HarmonyPatch("CanStartFleeingBecauseOfPawnAction"), HarmonyPostfix]
+		[HarmonyPatch("ShouldAnimalFleeDanger"), HarmonyPostfix]
 		static bool CanStartFleeingBecauseOfPawnActionPatch(bool __result, Pawn p)
 		{
 			// Make conflicted act like normal animals except when drafted.

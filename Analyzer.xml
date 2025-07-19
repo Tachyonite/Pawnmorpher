@@ -1,5 +1,4 @@
 <Analyzer>
-    <Pawnmorpher>
 		<!-- Settings, Tick, Update, GUI or Modder. Defaults to Modder -->
 		<!--Category>Modder</Category-->
 
@@ -42,5 +41,4 @@
 		<!--NestedTypes>
 			<li></li> 
 		</NestedTypes-->
-	</Pawnmorpher>
 </Analyzer>

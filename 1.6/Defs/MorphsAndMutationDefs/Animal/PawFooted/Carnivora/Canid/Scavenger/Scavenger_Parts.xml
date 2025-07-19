@@ -1,0 +1,119 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerJawPart" ParentName="CanidJawPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s new snout doesn't seem to have grown big enough to fit all of [PAWN_possessive] new teeth. One thing is for sure, it makes for a meanacing smile.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. The strange shape makes speaking very difficult.</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.05</MentalBreakThreshold>
+						<ImmunityGainSpeed>0.025</ImmunityGainSpeed>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. Adapting to it has made speaking less frustrating.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MentalBreakThreshold>-0.115</MentalBreakThreshold>
+						<ImmunityGainSpeed>0.05</ImmunityGainSpeed>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>9.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw has become a vicious looking snout, with large fangs visible even when their mouth is closed. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+					<capMods>
+						<li>
+							<capacity>Sight</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<MentalBreakThreshold>-0.15</MentalBreakThreshold>
+						<ImmunityGainSpeed>0.1</ImmunityGainSpeed>
+					</statOffsets>
+					<verbOverrides>
+						<li>
+							<label>teeth</label>
+							<power>9.5</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerEarPart" ParentName="CanidEarPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.1</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="ScavengerTailPart" ParentName="CanidTailPart" Abstract="true">
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<MentalBreakThreshold>-0.0175</MentalBreakThreshold>
+						<ButcheryFleshEfficiency>+0.1</ButcheryFleshEfficiency>
+						<ButcheryMechanoidEfficiency>+0.1</ButcheryMechanoidEfficiency>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wolf-like tail hangs from [PAWN_nameDef]'s spine, alert and waiting for a hunt.</description>
+					<statOffsets>
+						<MentalBreakThreshold>-0.035</MentalBreakThreshold>
+						<ButcheryFleshEfficiency>+0.2</ButcheryFleshEfficiency>
+						<ButcheryMechanoidEfficiency>+0.2</ButcheryMechanoidEfficiency>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

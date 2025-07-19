@@ -11,7 +11,7 @@ namespace Pawnmorph
 	/// </summary>
 	/// <seealso cref="Verse.SkyOverlay" />
 	[StaticConstructorOnStartup]
-	public class WeatherOverlay_Mutagen : SkyOverlay
+	public class WeatherOverlay_Mutagen : WeatherOverlayDualPanner
 	{
 		private static readonly Material FalloutOverlayWorld = MatLoader.LoadMat("Weather/SnowOverlayWorld");
 		/// <summary>

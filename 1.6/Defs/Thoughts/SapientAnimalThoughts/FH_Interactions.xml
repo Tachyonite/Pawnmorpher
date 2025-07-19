@@ -1,0 +1,81 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/ThoughtDef.xsd">
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanInteractedThought</defName> <!-- this is for the normal 'animal chat' interaction  -->
+        <stages>
+            <li>
+                <label>socialised</label>
+                <description>Someone took the time to talk to me, telling me everything would be ok. I think I can manage, if they're going to help me cope with this.</description>
+                <baseMoodEffect>10</baseMoodEffect>
+            </li>
+            <li>
+                <label>socialised</label>
+                <description>Even though I couldn't talk back, it was nice to have someone sit and chat with me.</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+            <li>
+                <label>socialised</label>
+                <description>Nice of them, but I think I want belly rubs now...</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+            <li>
+                <label>socialised</label>
+                <description>Talking at me...what are they saying?</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+
+        </stages>
+    </ThoughtDef>
+
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanTrainThought</defName> <!-- for training -->
+        <stages>
+            <li>
+                <label>trained</label>
+                <description>They're trying to train me like an animal! I don't need your handouts!</description>
+                <baseMoodEffect>-5</baseMoodEffect>
+            </li>
+            <li>
+                <label>trained</label>
+                <description>I suppose it's not all bad, at least I get treats...but also, how dare you.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>trained</label>
+                <description>I'd better get used to this...at least there's food involved.</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+            <li>
+                <label>trained</label>
+                <description>Treat! I'll do tricks for treats...</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef ParentName="FH_MemoryBase">
+        <defName>FormerHumanTameThought</defName> <!-- for taming -->
+        <stages>
+            <li>
+                <label>"Tamed"</label>
+                <description>I can talk, you know. You don't need to be condescending if you want me to stick around.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+            <li>
+                <label>"Tamed"</label>
+                <description>Thanks for the snack, but keep your hands off me.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+            <li>
+                <label>tamed</label>
+                <description>Maybe they can...help me...</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+            <li>
+                <label>tamed</label>
+                <description>Food? You got...food?</description>
+                <baseMoodEffect>5</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

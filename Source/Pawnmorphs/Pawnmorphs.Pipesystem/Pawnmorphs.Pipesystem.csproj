@@ -2,13 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-		<OutputPath>..\..\..\1.5\Mods\VEF\Assemblies</OutputPath>
+		<OutputPath>..\..\..\1.6\Mods\VEF\Assemblies</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4035-beta" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.1.1" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4523">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony" Version="2.3.6">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

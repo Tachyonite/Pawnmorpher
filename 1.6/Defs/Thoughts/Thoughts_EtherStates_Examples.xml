@@ -1,0 +1,31 @@
+<Defs>
+	<!-- this thought can be added like any other memory, ie. with  pawn.needs.mood.thoughts.memories.TryGiveMemory-->
+	<ThoughtDef>
+        <defName>EtherThoughtMemoryExample</defName>
+        <thoughtClass>Pawnmorph.Thoughts.Thought_EtherMemory</thoughtClass>
+        <durationDays>60</durationDays>
+        <stackLimit>1</stackLimit>
+        <!-- stages are always in order of none, broken, bond -->
+        <stages>
+			<li>
+				<label>changed (none)</label>
+				<description>I have am neither bonded or broken</description>
+				<baseMoodEffect>-4</baseMoodEffect>
+
+			</li>
+			<li>
+				<label>changed (broken)</label>
+				<description>I have EtherBroken hediff</description>
+				<baseMoodEffect>0</baseMoodEffect>
+				<visible>true</visible>
+				<!-- still doesn't show up for some reason-->
+			</li>
+			<li>
+				<label>changed (bonded)</label>
+				<description>I have EtherBond hediff</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

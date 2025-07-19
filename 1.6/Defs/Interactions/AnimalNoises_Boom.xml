@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	
+	<Pawnmorph.Social.PMInteractionWeightsDef>
+		<defName>PMInteractionWeights_Boom</defName>
+		<requiredMutationsAny>
+			<li>EtherChemfuelUdder</li>
+		</requiredMutationsAny>
+		<!-- Muzzles provide 0.25 weight, ears 0.125 each (0.25 for both), chemfuel udders 0.5, and morphs get an additional +1, for a total of 2. A fully mutated-morph is thus 4x as likely to boom as a human with just a muzzle. An uddered human will boom half as often as chatting and a full morph will boom twice as often as chatting -->
+		<mutationWeights>
+			<!-- Muzzles -->
+			<li>
+				<key>EtherBoomalopeSnout</key>
+				<value>0.25</value>
+			</li>
+
+			<!-- Ears -->
+			<li>
+				<key>EtherBoomalopeEar</key>
+				<value>0.125</value>
+			</li>
+
+			<!-- Other -->
+			<li>
+				<key>EtherChemfuelUdder</key>
+				<value>0.5</value>
+			</li>
+		</mutationWeights>
+		<morphWeights>
+			<li>
+				<key>BoomalopeMorph</key>
+				<value>1</value>
+			</li>
+		</morphWeights>
+	</Pawnmorph.Social.PMInteractionWeightsDef>
+	
+	<!-- Chitchat -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Chitchat">
+		<defName>PMBoom_Chitchat</defName>
+		<label>boom</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom</symbol>
+		<initiatorThought>PMBoom_ChitchatMemory</initiatorThought>
+		<recipientThought>PMBoom_ChitchatMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Chitchat</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [talkedabout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [talkedabout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [CommentedAbout] [topic] to [RECIPIENT_nameDef].</li>
+
+				<li>noisedat(p=4)->bleated at</li>
+				<li>noisedat->sniffed at</li>
+				<li>noisedat->snorted at</li>
+				<li>noisedat->grunted at</li>
+				<li>noisedat->wiggled [INITIATOR_possessive] ears at</li>
+				<li>noisedat->jiggled [INITIATOR_possessive] tail at</li>
+
+				<li>talkedabout->[TalkedAbout]</li>
+				<li>talkedabout->[noisedabout]</li>
+				
+				<li>noisedabout->bleated about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout->grunted about</li>
+
+				<li>topic(p=2)->[animaltopic]</li>
+				<li>topic->[MorphTopic]</li>
+
+				<li>animaltopic->chemfuel</li>
+				<li>animaltopic->explosions</li>
+				<li>animaltopic->chemical cysts</li>
+				<li>animaltopic->chemfuel udders</li>
+				<li>animaltopic->chemfuel milking</li>
+				<li>animaltopic->fire safety</li>
+				<li>animaltopic->firefoam</li>
+				<li>animaltopic->pyromania</li>
+				<li>animaltopic->explosion hazards</li>
+				<li>animaltopic->smokeleaf joints</li>
+				<li>animaltopic->genetic engineering</li>
+				<li>animaltopic->renewable energy</li>
+				<li>animaltopic->suicide bombs</li>
+				<li>animaltopic->self-guided munitions</li>
+				<li>animaltopic->herds</li>
+				<li>animaltopic->boomalope ears</li>
+				<li>animaltopic->stables</li>
+				<li>animaltopic->hay</li>
+				<li>animaltopic->snout pats</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_ChitchatMemory">
+		<defName>PMBoom_ChitchatMemory</defName>
+		<stages>
+			<li>
+				<label>boom</label>
+				<baseOpinionOffset>0.66</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Deep talk -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBoom_DeepTalk</defName>
+		<label>deep boom</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom_DeepTalk</symbol>
+		<initiatorThought>PMBoom_DeepTalkMemory</initiatorThought>
+		<recipientThought>PMBoom_DeepTalkMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+
+				<li>animallife->becoming a boomamorph</li>
+				<li>animallife->being a boomamorph</li>
+				<li>animallife->having hooves</li>
+				<li>animallife->having chemical cysts</li>
+				<li>animallife->safely harvesting chemfuel</li>
+				<li>animallife->fire safety</li>
+				<li>animallife->explosion hazards</li>
+				<li>animallife->chemfuel</li>
+				<li>animallife->being a fire hazard</li>
+				<li>animallife->head pats</li>
+				<li>animallife->hay</li>
+				<li>animallife->hoof care</li>
+				<li>animallife->the immorality of suicide bombs</li>
+				<li>animallife->alternative energy sources</li>
+				<li>animallife->the dangers of chemfuel generators</li>
+				<li>animallife->the risks of chemfuel storage</li>
+				<li>animallife->the dangers of smoking</li>
+				<li>animallife->living with hooves</li>
+				<li>animallife->being highly volitile</li>
+				<li>animallife->peripheral vision</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBoom_DeepTalkMemory</defName>
+		<stages>
+			<li>
+				<label>deep boom</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<!-- An extra form of deep talk that only happens between two boom morphs-->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_DeepTalk">
+		<defName>PMBoom_DeepTalkBoom</defName>
+		<label>shared boom</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom_DeepTalk</symbol>
+		<initiatorThought>PMBoom_DeepTalkBoomMemory</initiatorThought>
+		<recipientThought>PMBoom_DeepTalkBoomMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_DeepTalk</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [DeepTalkedAbout] [topic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [DeepTalkedAbout] [topic] with [RECIPIENT_nameDef].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [animalbehavior].</li>
+
+				<li>topic(p=2)->[animallife]</li>
+				<li>topic->[DeepMorphTopic]</li>
+				<li>topic(p=0.5)->[secretanimallife]</li>
+
+				<li>animallife->becoming boomamorphs</li>
+				<li>animallife->being boomamorphs</li>
+				<li>animallife->having hooves</li>
+				<li>animallife->having chemical cysts</li>
+				<li>animallife->safely harvesting chemfuel</li>
+				<li>animallife->fire safety</li>
+				<li>animallife->explosion hazards</li>
+				<li>animallife->chemfuel</li>
+				<li>animallife->being a fire hazard</li>
+				<li>animallife->head pats</li>
+				<li>animallife->hay</li>
+				<li>animallife->hoof care</li>
+				<li>animallife->the immorality of suicide bombs</li>
+				<li>animallife->alternative energy sources</li>
+				<li>animallife->the dangers of chemfuel generators</li>
+				<li>animallife->the risks of chemfuel storage</li>
+				<li>animallife->the dangers of smoking</li>
+				<li>animallife->living with hooves</li>
+				<li>animallife->being highly volitile</li>
+				<li>animallife->peripheral vision</li>
+				
+				<li>secretanimallife->chemfuel leaks</li>
+				<li>secretanimallife->sloshing noises</li>
+				<li>secretanimallife->the scent of chemfuel</li>
+				<li>secretanimallife->boomalope ears</li>
+				<li>secretanimallife->chemfuel milking techniques</li>
+				<li>secretanimallife->how chemfuel is made</li>
+				<li>secretanimallife->the forbidden temptation of smokeleaf</li>
+				<li>secretanimallife->comparing cysts</li>
+				<li>secretanimallife->cyst cleaning</li>
+				<li>secretanimallife->fire</li>
+				<li>secretanimallife->explosions</li>
+				<li>secretanimallife->blowing up raiders</li>
+				<li>secretanimallife->making explosives</li>
+				<li>secretanimallife->pyromania</li>
+				<li>secretanimallife->going out with a bang</li>
+				<li>secretanimallife->the secret to not exploding</li>
+				<li>secretanimallife->firefoam-filled bedding</li>
+				
+				<li>animalbehavior->snorted understandingly at [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->made explosion noises with [RECIPIENT_nameDef]</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] nodded understandingly at each other</li>
+				<li>animalbehavior->and [RECIPIENT_nameDef] sniffed at each other's chemfuel udders</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+		<recipientWeights>PMInteractionWeights_Boom</recipientWeights>
+		<weightMultiplier>0.5</weightMultiplier>
+		<requiresBoth>true</requiresBoth>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_DeepTalkMemory">
+		<defName>PMBoom_DeepTalkBoomMemory</defName>
+		<stages>
+			<li>
+				<label>shared experience</label>
+				<baseOpinionOffset>20</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Slights -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Slight">
+		<defName>PMBoom_Slight</defName>
+		<label>booma-slight</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom_Slight</symbol>
+		<recipientThought>PMBoom_Slight</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Slight</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry(p=0.5)->[INITIATOR_nameDef] [annoyingbehavior].</li>
+
+				<li>noisedat->grunted at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat(p=2)->[whispered] about [exploding]</li>
+					
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout(p=2)->[whispered] about [exploding] [RECIPIENT_nameDef] because of</li>
+				
+				<li>whispered->whispered</li>
+				<li>whispered->mumbled</li>
+				<li>whispered->muttered</li>
+				<li>whispered->grumbled</li>
+				
+				<li>exploding->exploding</li>
+				<li>exploding->blowing up</li>
+				<li>exploding->detonating</li>
+				<li>exploding->igniting</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->lax fire safety</li>
+				<li>animalcharacteristic->terrible chemfuel milking technique</li>
+				<li>animalcharacteristic->tendency to spill chemfuel</li>
+				<li>animalcharacteristic->preference for chemfuel generators</li>
+				<li>animalcharacteristic->smoking habit</li>
+				
+				<li>annoyingbehavior->made gross sloshing noises with [INITIATOR_possessive] chemfuel cysts around [RECIPIENT_nameDef]</li>
+				<li>annoyingbehavior->leaked chemfuel on [RECIPIENT_nameDef]'s shoes</li>
+				<li>annoyingbehavior->repeatedly made explosion noises under [INITIATOR_possessive] breath, annoying [RECIPIENT_nameDef]</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_SlightMemory">
+		<defName>PMBoom_Slight</defName>
+		<stages>
+			<li>
+				<label>booma-slight</label>
+				<baseOpinionOffset>-5</baseOpinionOffset>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+
+	<!-- Insults -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBoom_Insult</defName>
+		<label>booma-insult</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom_Insult</symbol>
+		<recipientThought>PMBoom_InsultMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedat] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [noisedabout] [Target]'s [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [comparedtargetto] [insult].</li>
+
+				<li>comparedtargetto->[ComparedTargetTo]</li>
+				<li>comparedtargetto->[noisedtargetwas]</li>
+				
+				<li>noisedtargetwas->grunted that [Target] was</li>
+				<li>noisedtargetwas->bayed that [Target] was</li>
+				<li>noisedtargetwas->bleated that [Target] was</li>
+
+				<li>noisedat->grunted at</li>
+				<li>noisedat->snorted aggressively at</li>
+				<li>noisedat(p=2)->[threatedto] [explode]</li>
+					
+				<li>noisedabout->grunted about</li>
+				<li>noisedabout->snorted about</li>
+				<li>noisedabout(p=2)->[threatedto] [explode] [RECIPIENT_nameDef] because of</li>
+				
+				<li>threatedto->threated to</li>
+				<li>threatedto->warned [RECIPIENT_pronoun] would</li>
+				<li>threatedto->expressed a desire to</li>
+				<li>threatedto->wished [RECIPIENT_pronoun] could</li>
+				
+				<li>explode->explode</li>
+				<li>explode->blow up</li>
+				<li>explode->detonate</li>
+				<li>explode->ignite</li>
+				
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->lax fire safety</li>
+				<li>animalcharacteristic->terrible chemfuel milking technique</li>
+				<li>animalcharacteristic->tendency to spill chemfuel</li>
+				<li>animalcharacteristic->preference for chemfuel generators</li>
+				<li>animalcharacteristic->smoking habit</li>
+				
+				<li>insult->a smokeleaf joint</li>
+				<li>insult->a lit match</li>
+				<li>insult->a pyromaniac</li>
+				<li>insult->an oil baron</li>
+				<li>insult->chemfuel</li>
+				<li>insult->a chemical cyst</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_InsultMemory">
+		<defName>PMBoom_InsultMemory</defName>
+		<stages>
+			<li>
+				<label>booma-insult</label>
+				<baseOpinionOffset>-15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBoom_InsultedMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_InsultedMood">
+		<defName>PMBoom_InsultedMood</defName>
+		<stages>
+			<li>
+				<label>booma-insult</label>
+				<description>I've been threatened with being blown up! What an awful boomalope!</description>
+				<baseMoodEffect>-5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+		
+	
+	<!-- Kind words -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_KindWords">
+		<defName>PMBoom_KindWords</defName>
+		<label>booma-kindness</label>
+		<symbol>Things/Mote/SpeechSymbols/Boom_KindWords</symbol>
+		<workerClass>Pawnmorph.Social.InteractionWorker_KindWords</workerClass>
+		<recipientThought>PMBoom_KindWordsMemory</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_KindWords</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [complimentedtargets] [characteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [kindbehavior] [RECIPIENT_nameDef].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [MaybeKindAdv] [comparedtargetto] [compliment].</li>
+				
+				<li>comparedtargetto->[ComparedRecipientTo]</li>
+				<li>comparedtargetto->bleated that [RECIPIENT_nameDef] was</li>
+
+				<li>characteristic(p=2)->[PersonalCharacteristic]</li>
+				<li>characteristic->[animalcharacteristic]</li>
+				
+				<li>animalcharacteristic->commitment to fire safety</li>
+				<li>animalcharacteristic->preference for renewable energy</li>
+				<li>animalcharacteristic->tolerance of chemfuel</li>
+				<li>animalcharacteristic->snout patting technique</li>
+				
+				<li>complimented->snorted happily about [RECIPIENT_nameDef]'s</li>
+				<li>complimented->grunted approvingly of [RECIPIENT_nameDef]'s</li>
+				<li>complimented->sniffled appreciatively at [RECIPIENT_nameDef]'s</li>
+				<li>complimented->wiggled [INITIATOR_possessive] ears about [RECIPIENT_nameDef]'s</li>
+				
+				<li>kindbehavior->[KindAdverb] nuzzled</li>
+				<li>kindbehavior->[KindAdverb] snorted at</li>
+				<li>kindbehavior->wiggled [INITIATOR_possessive] ears at</li>
+				
+				<li>compliment->a [KindAdj] firefoam dispenser</li>
+				<li>compliment->[KindAdj] grass</li>
+				<li>compliment->[KindAdj] snoutpatter</li>
+				<li>compliment->[KindAdj] herdmate</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<initiatorWeights>PMInteractionWeights_Boom</initiatorWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMemory">
+		<defName>PMBoom_KindWordsMemory</defName>
+		<stages>
+			<li>
+				<label>booma-kindness</label>
+				<baseOpinionOffset>15</baseOpinionOffset>
+			</li>
+		</stages>
+		<thoughtToMake>PMBoom_KindWordsMood</thoughtToMake>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="PMAnimalNoise_KindWordsMood">
+		<defName>PMBoom_KindWordsMood</defName>
+		<stages>
+			<li>
+				<label>booma-kindness</label>
+				<description>I've been complimented! What a nice boomalope!</description>
+				<baseMoodEffect>5</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	
+	<!-- Insults aimed at boomalopes -->
+	<Pawnmorph.Social.PMInteractionDef ParentName="PMAnimalNoise_Insult">
+		<defName>PMBoom_DirectedInsult</defName>
+		<label>directed boomalope insult</label>
+		<recipientThought>Insulted</recipientThought>
+		<logRulesInitiator>
+			<include>
+				<li>PMInteractionRules_Insult</li>
+			</include>
+			<rulesStrings>
+				<li>r_logentry->[INITIATOR_nameDef] [Insulted] [RECIPIENT_nameDef]'s [animalcharacteristic].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [ComparedRecipientTo] [insultcomparison].</li>
+				<li>r_logentry->[INITIATOR_nameDef] [insult].</li>
+
+				<li>animalcharacteristic->chemical cysts</li>
+				<li>animalcharacteristic->weird ears</li>
+				<li>animalcharacteristic->tendency to leak chemfuel</li>
+				<li>animalcharacteristic->rancid chemical smell</li>
+				<li>animalcharacteristic->sloshing noises</li>
+				<li>animalcharacteristic->instability</li>
+				<li>animalcharacteristic->volitility</li>
+				<li>animalcharacteristic->explosive personality</li>
+
+				<li>insultcomparison->a ticking time bomb</li>
+				<li>insultcomparison->a suicide bomber</li>
+				<li>insultcomparison->an oil well</li>
+				<li>insultcomparison->a gas pump</li>
+				<li>insultcomparison->a chemfuel dispenser</li>
+				<li>insultcomparison->a stick of dynamite</li>
+				<li>insultcomparison->a fire hazard</li>
+				<li>insultcomparison->an explosion hazard</li>
+				<li>insultcomparison->a red barrel</li>
+				<li>insultcomparison->a genetic experiment gone wrong</li>
+
+				<li>insult(p=3)->told an insulting joke about [insultingjoketopics] around [RECIPIENT_nameDef]</li>
+				<li>insult->complained about [RECIPIENT_nameDef]'s constant chemfuel leaks</li>
+				<li>insult->mockingly made an explosion noise at [RECIPIENT_nameDef]</li>
+				<li>insult->loudly asked for someone to check the firefoam poppers as [RECIPIENT_nameDef] walked by</li>
+
+				<li>insultingjoketopics->self-guided munitions</li>
+				<li>insultingjoketopics->suicide bombers</li>
+				<li>insultingjoketopics->explosions</li>
+				<li>insultingjoketopics->oil barons</li>
+				<li>insultingjoketopics->forest fires</li>
+				<li>insultingjoketopics->firefighting</li>
+			</rulesStrings>
+		</logRulesInitiator>
+		<recipientWeights>PMInteractionWeights_Boom</recipientWeights>
+	</Pawnmorph.Social.PMInteractionDef>
+	
+</Defs>

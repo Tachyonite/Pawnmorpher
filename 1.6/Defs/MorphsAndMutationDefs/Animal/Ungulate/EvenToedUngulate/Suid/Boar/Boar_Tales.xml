@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewBoarMuzzle</defName>
+		<label>grew a tusked muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a tusked muzzle</li>
+				<li>tale_noun->[PAWN_nameDef] growing a boar muzzle</li>
+				<li>image->tusks start pushing out from [PAWN_nameFull]'s face [circumstance_group]</li>
+				<li>image->[PAWN_nameFull]'s yells start turning into boar-ish snorts [circumstance_group]</li>
+				<li>circumstance_phrase->as someone begins examining [PAWN_possessive] growing tusks</li>
+				<li>desc_sentence->[PAWN_pronoun] is troubles by [PAWN_possessive] new tusks.</li>
+				<li>desc_sentence->[PAWN_pronoun] seems pleases with [PAWN_possessive] new tusks.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

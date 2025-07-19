@@ -1,0 +1,44 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>ReversionSyringe</defName>
+		<label>reverter</label>
+		<description>A powerful dose of specially-tuned mutagenic mechanites, stabilized and kept in check by antigen. When administered to a mutated human or former human, it will use the data stored within the mechanites in their body to reconstruct their original form, and then initiate a controlled mutation back towards that form. It can restore a former-human animal to a humanoid form, or gradually remove all mutations from a humanoid pawn.
+
+Because reverter relies on the data stored within the mutagenic mechanites to revert an animal back to human form, it will reconstruct their body exactly as it was when they first transformed, bionics and health conditions included. It cannot revert permanantly feral pawns, as the mechanites within them have degraded to the point that the data on their original form has been permanantly lost.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/Reversal</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>600</WorkToMake>
+			<MarketValue>300</MarketValue>
+		</statBases>
+		<thingCategories Inherit="False">
+			<li>Injector</li>
+        </thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>StabiliserHigh</hediffDef>
+					<severity>1.00</severity>
+				</li>
+				<li Class="Pawnmorph.IngestionOutcomeDoer_EsotericRevert"></li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<researchPrerequisite>Reversion</researchPrerequisite>
+			<recipeUsers>
+				<li>MutagenLab</li>
+			</recipeUsers>
+		</recipeMaker>
+		<costList>
+			<MutagenStabiliser>1</MutagenStabiliser>
+			<Antigen>1</Antigen>
+			<Mutanite>2</Mutanite>
+		</costList>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

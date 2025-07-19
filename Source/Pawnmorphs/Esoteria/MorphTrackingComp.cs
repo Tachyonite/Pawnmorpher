@@ -202,8 +202,7 @@ namespace Pawnmorph
 		}
 
 		/// <summary>called when the pawn is de-spawned from the given map</summary>
-		/// <param name="map">The map.</param>
-		public override void PostDeSpawn(Map map)
+		public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
 		{
 			base.PostDeSpawn(map);
 
