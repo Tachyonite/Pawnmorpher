@@ -22,10 +22,6 @@ namespace Pawnmorph.Hybrids
 		private Type partTransformer = default;
 		private IPartTransformer _transformer;
 
-
-		/// <summary>unused</summary>
-		[Obsolete("Doesn't do anything'")]
-		public FoodSettings foodSettings = new FoodSettings();
 		/// <summary>How much cover this race provides (mainly used for turtlemorph's mobile cover ability).</summary>
 		public float coverPercent;
 		/// <summary>The stat modifiers</summary>

@@ -51,6 +51,9 @@
   </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
+    <Reference Include="0PrepatcherAPI">
+      <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -749,10 +752,6 @@
       <Version>2.4.1</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Zetrith.Prepatcher">
-      <Version>1.2.0</Version>
-      <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
   <!--Only use the Krafs stub if we can't access the real assembly -->

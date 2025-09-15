@@ -315,8 +315,8 @@ namespace Pawnmorph
 			//methodsToPatch.Add(AccessTools.Method(typeof(RimWorld.FloatMenuMakerMap), nameof(RimWorld.FloatMenuMakerMap.ChoicesAtFor)));
 			PatchRescueMessage(methodsToPatch);
 
-			methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
-			methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
+			methodsToPatch.Add(typeof(SocialInteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
+			methodsToPatch.Add(typeof(SocialInteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
 			methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
 			methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod("TryInteractWith", INSTANCE_FLAGS));
 
@@ -387,7 +387,11 @@ namespace Pawnmorph
 			builder.AppendLine("Patched:");
 			foreach (var methodInfo in methodsToPatch)
 			{
-				if (methodInfo.methodInfo == null) continue;
+				if (methodInfo.methodInfo == null)
+				{
+					builder.AppendLine("<null>");
+					continue;
+				}
 				builder.AppendLine($"{methodInfo.methodInfo.DeclaringType.FullName + "." + methodInfo.methodInfo.Name}");
 			}
 			Log.Message(builder.ToString());
@@ -424,14 +428,12 @@ namespace Pawnmorph
 
 		private static void PatchRescueMessage([NotNull] List<MethodInfoSt> methodsToPatch)
 		{
-			IEnumerable<Type> tps = typeof(FloatMenuMakerMap)
-								   .GetNestedTypes(ALL)
-								   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
+			//IEnumerable<Type> tps = typeof(FloatMenuOptionProvider)
+			//					   .GetNestedTypes(ALL)
+			//					   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
 
-			IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
-												   .Where(m => m.HasSignature() && m.Name.Contains("<AddHumanlikeOrders>"))
-												   .Select(m => (MethodInfoSt)m);
-			methodsToPatch.AddRange(methods);
+
+			methodsToPatch.Add(AccessTools.Method(typeof(FloatMenuOptionProvider_RescuePawn), "GetSingleOptionFor", [typeof(Pawn), typeof(FloatMenuContext)]));
 		}
 
 		private static void AddRitualPatches([NotNull] List<MethodInfoSt> methodsToPatch)

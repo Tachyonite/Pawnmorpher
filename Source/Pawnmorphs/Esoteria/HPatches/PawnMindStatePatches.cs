@@ -14,18 +14,18 @@ namespace Pawnmorph.HPatches
 	internal static class PawnMindStatePatches
 	{
 		[HarmonyPatch("ShouldAnimalFleeDanger"), HarmonyPostfix]
-		static bool CanStartFleeingBecauseOfPawnActionPatch(bool __result, Pawn p)
+		static bool CanStartFleeingBecauseOfPawnActionPatch(bool __result, Pawn pawn)
 		{
 			// Make conflicted act like normal animals except when drafted.
 			//TODO do a thorough check through behaviour for conflicted.
-			switch (p.GetQuantizedSapienceLevel())
+			switch (pawn.GetQuantizedSapienceLevel())
 			{
 				case (SapienceLevel.Sapient):
 				case (SapienceLevel.MostlySapient):
 					return false;
 
 				case (SapienceLevel.Conflicted):
-					if (p.Drafted)
+					if (pawn.Drafted)
 						return false;
 					else
 						return __result;

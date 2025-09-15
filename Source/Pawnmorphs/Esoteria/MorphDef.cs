@@ -375,40 +375,6 @@ namespace Pawnmorph
 			return _mutationsByParts.TryGetValue(partDef) ?? Enumerable.Empty<MutationDef>();
 		}
 
-
-		/// <summary>
-		///     obsolete, does nothing
-		/// </summary>
-		/// <param name="food"></param>
-		/// <returns></returns>
-		[Obsolete("This is no longer used")]
-		public FoodPreferability? GetOverride(ThingDef food) //note, RawTasty is 5, RawBad is 4 
-		{
-			if (food?.ingestible == null) return null;
-			foreach (HybridRaceSettings.FoodCategoryOverride foodOverride in raceSettings.foodSettings.foodOverrides)
-				if ((food.ingestible.foodType & foodOverride.foodFlags) != 0)
-					return foodOverride.preferability;
-
-			return null;
-		}
-
-		/// <summary>
-		///     Determines whether the specified hediff definition is an associated mutation .
-		/// </summary>
-		/// <param name="hediffDef">The hediff definition.</param>
-		/// <returns>
-		///     <c>true</c> if the specified hediff definition is an associated mutation; otherwise, <c>false</c>.
-		/// </returns>
-		/// <exception cref="ArgumentNullException">hediffDef</exception>
-		[Obsolete]
-		public bool IsAnAssociatedMutation([NotNull] HediffDef hediffDef)
-		{
-			if (hediffDef == null) throw new ArgumentNullException(nameof(hediffDef));
-			if (hediffDef is MutationDef mDef) return AllAssociatedMutations.Contains(mDef);
-
-			return false;
-		}
-
 		/// <summary>
 		///     Determines whether the specified hediff definition is an associated mutation .
 		/// </summary>
