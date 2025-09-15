@@ -672,7 +672,13 @@ namespace Pawnmorph
 
 
 				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: add implicit defs");
-				foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
+				IEnumerable<ThingDef_AlienRace> races = RaceGenerator.ImplicitRaces.ToList();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Resolve references");
+				System.Threading.Tasks.Parallel.ForEach(races, x => x.ResolveReferences());
+
+
+				foreach (ThingDef_AlienRace thingDefAlienRace in races)
 				{
 					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: adding " + thingDefAlienRace.defName);
 					// DefGenerator.AddImpliedDef(race);
