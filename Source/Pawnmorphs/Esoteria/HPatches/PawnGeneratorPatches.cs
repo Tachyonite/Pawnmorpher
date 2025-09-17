@@ -41,13 +41,11 @@ namespace Pawnmorph
 		[HarmonyPatch("GenerateInitialHediffs"), HarmonyPostfix]
 		public static void InitialHediffsPatch(Pawn pawn)
 		{
-			Log.Message("Initial Hediffs");
 			var raceExt = pawn?.def?.TryGetRaceMutationSettings();
 			if (raceExt?.immuneToAll == true) return;
 			if (raceExt != null)
 			{
 				HandleAlienRaceExtensions(pawn, raceExt);
-				Log.Message("Handle Alien Race Extension");
 			}
 
 
@@ -58,8 +56,6 @@ namespace Pawnmorph
 											.Select(bd => bd.GetModExtension<MorphPawnKindExtension>())
 											.Where(ext => ext != null);
 
-			Log.Message("Found backstories: " + extensions.Count());
-
 			bool anyAdded = false;
 			foreach (MorphPawnKindExtension extension in extensions)
 			{
@@ -69,11 +65,9 @@ namespace Pawnmorph
 
 			if (!anyAdded)
 			{
-				Log.Message("Trying to add by kind: " + pawn.kindDef?.defName);
 				var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
 				if (kindExtension != null)
 				{
-					Log.Message("Adding kind");
 					MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, true, kindExtension);
 				}
 			}

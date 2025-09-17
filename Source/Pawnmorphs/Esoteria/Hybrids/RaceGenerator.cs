@@ -264,6 +264,8 @@ namespace Pawnmorph.Hybrids
 						morphDef.ResolveReferences();
 					}
 				}
+
+				race.ResolveReferences();
 				yield return race;
 			}
 
