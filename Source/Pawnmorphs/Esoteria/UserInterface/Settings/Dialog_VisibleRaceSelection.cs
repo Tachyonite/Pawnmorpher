@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pawnmorph.Utilities.Collections;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -39,13 +40,15 @@ namespace Pawnmorph.UserInterface.Settings
 		private void RefreshAliens()
 		{
 			IEnumerable<AlienRace.ThingDef_AlienRace> aliens = DefDatabase<AlienRace.ThingDef_AlienRace>.AllDefsListForReading;
+			aliens.Concat(DefDatabase<AlienRace.ThingDef_AlienRace>.AllDefsListForReading.OfType<AlienRace.ThingDef_AlienRace>());
 
-			aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDef.Named("Human"));
+			aliens = aliens.Except((AlienRace.ThingDef_AlienRace)ThingDefOf.Human);
 
 			// Exclude implicit and explicit morph races.
 			aliens = aliens.Except(Hybrids.RaceGenerator.ImplicitRaces);
 			aliens = aliens.Except(Hybrids.RaceGenerator.ExplicitPatchedRaces.Select(x => x.ExplicitHybridRace).OfType<AlienRace.ThingDef_AlienRace>());
 			aliens = aliens.Where(x => MutagenDefOf.defaultMutagen.CanInfect(x));
+			aliens = aliens.Distinct();
 
 			_selectedAliens = aliens.Where(x => _settingsReference.Contains(x.defName)).ToDictionary(x => x, x => true);
 
