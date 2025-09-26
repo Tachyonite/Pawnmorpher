@@ -265,6 +265,7 @@ namespace Pawnmorph.Hybrids
 					}
 				}
 
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Resolve references");
 				race.ResolveReferences();
 				yield return race;
 			}

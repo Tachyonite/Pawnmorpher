@@ -238,11 +238,11 @@ namespace Pawnmorph
 			try
 			{
 				// Get all body-addons from all species to initialize any TaggedBodyAddon
-				IEnumerable<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>();
-
+				List<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().ToList();
 				FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
-
 				List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Assign anchor IDs");
 				foreach (ThingDef_AlienRace race in humanoidRaces)
 				{
 					var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
@@ -260,12 +260,14 @@ namespace Pawnmorph
 					}
 				}
 
-				ILookup<string, TaggedBodyAddon> dict = taggedAddons.ToLookup(x => x.anchorID);
-
+				ILookup<string, TaggedBodyAddon> dict = taggedAddons.Distinct().ToLookup(x => x.anchorID);
 				List<MutationStage> mutationStages = new List<MutationStage>();
 				List<string> anchors = new List<string>();
+				List<MutationDef> mutationDefs = MutationDef.AllMutations.ToList();
+
+				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: cross-assign graphics");
 				//now go throw all mutations and any with graphics 
-				foreach (MutationDef mutation in MutationDef.AllMutations)
+				foreach (MutationDef mutation in mutationDefs)
 				{
 					var mStages = mutation.stages.MakeSafe().OfType<MutationStage>(); //all mutation stages in this mutation 
 					var lq = mutation.graphics.MakeSafe()
@@ -285,7 +287,6 @@ namespace Pawnmorph
 							Log.Error($"unable to find body addon on human with anchor id \"{anchor}\"!");
 							continue;
 						}
-
 						ExtendedConditionGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
 						if (hediffGraphic == null)
 							continue;
@@ -296,12 +297,9 @@ namespace Pawnmorph
 								addon.extendedGraphics = new List<AbstractExtendedGraphic>();
 
 							addon.extendedGraphics.Add(hediffGraphic);
-
 							AppendPools(hediffGraphic, addon);
 						}
 					}
-
-
 				}
 			}
 			catch (Exception e)
@@ -679,7 +677,7 @@ namespace Pawnmorph
 					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: adding " + thingDefAlienRace.defName);
 					// DefGenerator.AddImpliedDef(race);
 					genRaces.Add((ThingDef)thingDefAlienRace);
-					DefGenerator.AddImpliedDef(thingDefAlienRace);
+					DefGenerator.AddImpliedDef<ThingDef>(thingDefAlienRace);
 				}
 				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate hashes");
 
