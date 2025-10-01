@@ -238,11 +238,13 @@ namespace Pawnmorph
 			try
 			{
 				// Get all body-addons from all species to initialize any TaggedBodyAddon
-				List<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Where(x => PawnmorpherMod.Settings.visibleRaces.Contains(x.defName)).ToList();
-
-
+				List<ThingDef_AlienRace> humanoidRaces = new List<ThingDef_AlienRace>();
+					
+				if (PawnmorpherMod.Settings.visibleRaces != null)
+					humanoidRaces.AddRange(DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Where(x => PawnmorpherMod.Settings.visibleRaces.Contains(x.defName)));
 
 				humanoidRaces.AddDistinct((ThingDef_AlienRace)ThingDefOf.Human); //make sure humans are in the list
+				humanoidRaces.AddDistinct((ThingDef_AlienRace)ThingDefOf.CreepJoiner); //make sure humans are in the list
 
 				FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
 				List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
