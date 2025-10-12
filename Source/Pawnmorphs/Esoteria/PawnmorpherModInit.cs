@@ -252,20 +252,32 @@ namespace Pawnmorph
 				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Assign anchor IDs");
 				foreach (ThingDef_AlienRace race in humanoidRaces)
 				{
-					var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
-					foreach (TaggedBodyAddon bodyAddon in taggedBodyAddons)
+					try
 					{
-						if (bodyAddon.anchorID == null)
+						if (race == null)
+							continue;
+
+						var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
+
+						foreach (TaggedBodyAddon bodyAddon in taggedBodyAddons)
 						{
-							Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
-						}
-						else
-						{
-							taggedAddons.Add(bodyAddon);
-							bodyAddonName.SetValue(bodyAddon, bodyAddon.anchorID);
+							if (bodyAddon?.anchorID == null)
+							{
+								Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
+							}
+							else
+							{
+								taggedAddons.Add(bodyAddon);
+								bodyAddonName.SetValue(bodyAddon, bodyAddon.anchorID);
+							}
 						}
 					}
+					catch (Exception e)
+					{
+						Log.Error($"unable to find anchor IDs for race: {race}\n{e}");
+					}
 				}
+
 
 				ILookup<string, TaggedBodyAddon> dict = taggedAddons.Distinct().ToLookup(x => x.anchorID);
 				List<MutationStage> mutationStages = new List<MutationStage>();
