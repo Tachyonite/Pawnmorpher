@@ -19,7 +19,33 @@
         <def>PawnmorpherPlayerFaction</def>
         <factionDef>PawnmorpherPlayerColony</factionDef>
       </playerFaction>
+      <surfaceLayer>
+        <def>SurfaceLayerFixed</def>
+        <tag>Surface</tag>
+        <layer>Surface</layer>
+        <settingsDef>Surface</settingsDef>
+        <hide>true</hide>
+        <connections>
+          <Orbit MayRequire="Ludeon.RimWorld.Odyssey">
+            <zoomMode>ZoomOut</zoomMode>
+          </Orbit>
+        </connections>
+      </surfaceLayer>
       <parts>
+        
+        <!-- Layers -->
+        <li MayRequire="Ludeon.RimWorld.Odyssey" Class="ScenPart_PlanetLayer">
+          <def>PlanetLayer</def>
+          <tag>Orbit</tag>
+          <layer>Orbit</layer>
+          <settingsDef>Orbit</settingsDef>
+          <hide>true</hide>
+          <connections>
+            <Surface>
+              <zoomMode>ZoomIn</zoomMode>
+            </Surface>
+          </connections>
+        </li>
 
         <!-- Config pages -->
         <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
@@ -42,10 +68,7 @@
           <context>PlayerStarter</context>
           <chance>1.0</chance>
           <need>Food</need>
-          <levelRange>
-            <min>0.3</min>
-            <max>0.8</max>
-          </levelRange>
+          <levelRange>0~0.1</levelRange>
         </li>
 
         <!-- Player starting things -->

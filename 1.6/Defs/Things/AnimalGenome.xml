@@ -16,6 +16,8 @@
 		</thingSetMakerTags>
 		<selectable>true</selectable>
 		<altitudeLayer>Item</altitudeLayer>
+		<alwaysHaulable>true</alwaysHaulable>
+    	<drawGUIOverlay>true</drawGUIOverlay>
 		<tickerType>Never</tickerType>
 		<rotatable>false</rotatable>
 		<pathCost>14</pathCost>
