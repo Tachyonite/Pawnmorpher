@@ -62,6 +62,13 @@ Requires Humanoid Alien Framework and VE Frameworks.
 				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
 			</li>
     	</v1.5>
+		<v1.6>
+			<li>
+				<packageId>erdelf.HumanoidAlienRaces</packageId>
+				<displayName>Humanoid Alien Races 2.0</displayName>
+				<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=839005762</steamWorkshopUrl>
+			</li>
+    	</v1.6>
   </modDependenciesByVersion>
 	<loadBefore>
 	</loadBefore>
