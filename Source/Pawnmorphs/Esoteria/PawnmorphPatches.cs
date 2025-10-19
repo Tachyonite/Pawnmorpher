@@ -145,7 +145,7 @@ namespace Pawnmorph
 
 #if DEBUG
 			stopwatch.Stop();
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Harmony patching finished in {stopwatch.ElapsedMilliseconds}ms");
+			DebugLog.Message($"Harmony patching finished in {stopwatch.ElapsedMilliseconds}ms");
 #endif
 		}
 
@@ -354,7 +354,6 @@ namespace Pawnmorph
 			methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[] { typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool) }));
 
 			//roamer patches 
-			methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
 			methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
 			methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
 			methodsToPatch.Add(AccessTools.PropertyGetter(typeof(Pawn), nameof(Pawn.IsColonist)));
@@ -372,11 +371,8 @@ namespace Pawnmorph
 			{
 				if (methodInfo.methodInfo == null)
 				{
-#if DEBUG
 					// Only show configuration errors in debug mode.
 					Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
-#endif
-
 					continue;
 				}
 
@@ -394,7 +390,6 @@ namespace Pawnmorph
 				}
 				builder.AppendLine($"{methodInfo.methodInfo.DeclaringType.FullName + "." + methodInfo.methodInfo.Name}");
 			}
-			Log.Message(builder.ToString());
 			DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
 		}
 

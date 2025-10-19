@@ -148,8 +148,6 @@ namespace Pawnmorph.Chambers
 
 		private static void Init(ThingDef allImplicitGenome)
 		{
-			HashGiverUtils.GiveShortHash(allImplicitGenome);
-			// GiveShortHash(allImplicitGenome);
 			allImplicitGenome.ResolveReferences();
 			_configErrorCache.Clear();
 			_configErrorCache.AddRange(allImplicitGenome.ConfigErrors().MakeSafe());

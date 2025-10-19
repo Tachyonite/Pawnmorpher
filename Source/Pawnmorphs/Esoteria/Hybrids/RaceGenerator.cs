@@ -200,12 +200,12 @@ namespace Pawnmorph.Hybrids
 					ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?", e);
 			}
 
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Load replacement config");
+			DebugLog.Message("Load replacement config");
 			if (PawnmorpherMod.Settings.raceReplacements != null)
 			{
 				foreach (var item in PawnmorpherMod.Settings.raceReplacements)
 				{
-					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Parsing " + item.Key + " - " + item.Value);
+					DebugLog.Message("Parsing " + item.Key + " - " + item.Value);
 					MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
 					if (morph != null)
 					{
@@ -231,16 +231,16 @@ namespace Pawnmorph.Hybrids
 			}
 
 
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Get all morphs");
+			DebugLog.Message("Get all morphs");
 			IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
 			// ReSharper disable once PossibleNullReferenceException
 			foreach (MorphDef morphDef in morphs)
 			{
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Generate morph " + morphDef.LabelCap);
+				DebugLog.Message("Generate morph " + morphDef.LabelCap);
 				ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
 				_raceLookupTable[race] = morphDef;
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Check for replacements");
+				DebugLog.Message("Check for replacements");
 				if (morphDef.ExplicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
 				{
 					morphDef.hybridRaceDef = race;
@@ -255,7 +255,7 @@ namespace Pawnmorph.Hybrids
 
 
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Add animal associations");
+				DebugLog.Message("Add animal associations");
 				if (animalAssociationLookup != null)
 				{
 					if (animalAssociationLookup.Contains(morphDef.defName))
@@ -265,7 +265,7 @@ namespace Pawnmorph.Hybrids
 					}
 				}
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Resolve references");
+				DebugLog.Message("Resolve references");
 				race.ResolveReferences();
 				yield return race;
 			}

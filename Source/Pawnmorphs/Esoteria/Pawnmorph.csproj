@@ -10,6 +10,11 @@
     <RootNamespace>Pawnmorph</RootNamespace>
     <AssemblyName>Pawnmorph</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OutputPath>..\..\..\1.6\Assemblies\</OutputPath>
+    <LangVersion>Latest</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <ErrorReport>prompt</ErrorReport>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
@@ -18,35 +23,23 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\1.6\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>Latest</LangVersion>
     <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <Optimize>false</Optimize>
     <DebugSymbols>false</DebugSymbols>
-    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>Latest</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <!-- Base Dependencies -->
@@ -88,6 +81,7 @@
     <Compile Include="HPatches\CaravanPatches.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\MentalStateWorker_RoamingPatches.cs" />
     <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="HPatches\WorldPawnsPatches.cs" />
@@ -677,6 +671,7 @@
     <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
+    <Compile Include="Utilities\DebugLog.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HashGiverUtils.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />

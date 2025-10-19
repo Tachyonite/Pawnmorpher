@@ -432,7 +432,6 @@ namespace Pawnmorph
 
 			_primaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => p.race == race).ToList();
 			_secondaryPawnKindDefs = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(p => AllAssociatedAnimals.Contains(p.race)).ToList();
-			injectorProperties?.ResolveReferences(race.label);
 		}
 
 		/// <summary> Settings to control what happens when a pawn changes race to this morph type.</summary>

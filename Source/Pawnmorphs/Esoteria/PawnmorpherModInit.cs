@@ -38,7 +38,7 @@ namespace Pawnmorph
 		static PawnmorpherModInit() // The one true constructor.
 		{
 
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
+			Log.Message($"Initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
 
 #if DEBUG
 			Stopwatch stopwatch = Stopwatch.StartNew();
@@ -47,39 +47,39 @@ namespace Pawnmorph
 
 			try
 			{
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: verify morph database");
+				DebugLog.Message("verify morph database");
 				VerifyMorphDefDatabase();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: inject graphics");
+				DebugLog.Message("inject graphics");
 				InjectGraphics();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: notify settings changed");
+				DebugLog.Message("notify settings changed");
 				NotifySettingsChanged();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate implicit races");
+				DebugLog.Message("generate implicit races");
 				GenerateImplicitRaces();
 				
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: patch races");
+				DebugLog.Message("patch races");
 				PatchExplicitRaces();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Add mutations to races");
+				DebugLog.Message("Add mutations to races");
 				AddMutationsToWhitelistedRaces();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Disable patches");
+				DebugLog.Message("Disable patches");
 				EnableDisableOptionalPatches();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: add components");
+				DebugLog.Message("add components");
 				AddComponents();
 
 				try
 				{
 
 
-					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: check for conflicts");
+					DebugLog.Message("check for conflicts");
 					CheckForModConflicts();
 
 #if DEBUG
-					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: scan for issues");
+					DebugLog.Message("scan for issues");
 					// Only show configuration errors in debug mode.
 					DisplayGroupedModIssues();
 					CheckForObsoletedComponents();
@@ -105,7 +105,7 @@ namespace Pawnmorph
 					throw new ModInitializationException($"while generating genomes caught exception {e.GetType().Name}", e);
 				}
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: patch injectors");
+				DebugLog.Message("patch injectors");
 				InjectorRecipeWorker.PatchInjectors();
 			}
 			catch (Exception e)
@@ -115,7 +115,7 @@ namespace Pawnmorph
 
 #if DEBUG
 			stopwatch.Stop();
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Loading finished in {stopwatch.ElapsedMilliseconds}ms");
+			DebugLog.Message($"Loading finished in {stopwatch.ElapsedMilliseconds}ms");
 #endif
 		}
 
@@ -249,7 +249,7 @@ namespace Pawnmorph
 				FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
 				List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Assign anchor IDs");
+				DebugLog.Message("Assign anchor IDs");
 				foreach (ThingDef_AlienRace race in humanoidRaces)
 				{
 					try
@@ -284,7 +284,7 @@ namespace Pawnmorph
 				List<string> anchors = new List<string>();
 				List<MutationDef> mutationDefs = MutationDef.AllMutations.ToList();
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: cross-assign graphics");
+				DebugLog.Message("cross-assign graphics");
 				//now go throw all mutations and any with graphics 
 				foreach (MutationDef mutation in mutationDefs)
 				{
@@ -688,17 +688,17 @@ namespace Pawnmorph
 				List<ThingDef> genRaces = new List<ThingDef>();
 
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: add implicit defs");
+				DebugLog.Message("add implicit defs");
 				IEnumerable<ThingDef_AlienRace> races = RaceGenerator.ImplicitRaces.ToList();
 
 				foreach (ThingDef_AlienRace thingDefAlienRace in races)
 				{
-					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: adding " + thingDefAlienRace.defName);
+					DebugLog.Message("adding " + thingDefAlienRace.defName);
 					// DefGenerator.AddImpliedDef(race);
 					genRaces.Add((ThingDef)thingDefAlienRace);
 					DefGenerator.AddImpliedDef<ThingDef>(thingDefAlienRace);
 				}
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate hashes");
+				DebugLog.Message("generate hashes");
 
 				object[] tmpArr = new object[2];
 
@@ -708,7 +708,7 @@ namespace Pawnmorph
 					HashGiverUtils.GiveShortHash(thingDef);
 				}
 
-				Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: init morphs");
+				DebugLog.Message("init morphs");
 				MorphUtilities.Initialize();
 			}
 			catch (MissingMethodException e)
