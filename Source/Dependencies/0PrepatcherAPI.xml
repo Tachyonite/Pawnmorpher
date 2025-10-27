@@ -9,6 +9,11 @@
             Specifies the default value of a PrepatcherField
             </summary>
         </member>
+        <member name="T:Prepatcher.FreePatchAllAttribute">
+            <summary>
+            Marks an assembly rewriting method
+            </summary>
+        </member>
         <member name="T:Prepatcher.FreePatchAttribute">
             <summary>
             Marks an assembly rewriting method

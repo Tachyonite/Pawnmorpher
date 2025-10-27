@@ -266,6 +266,17 @@ namespace Pawnmorph.HPatches
 		}
 
 
+		[HarmonyPatch(nameof(Pawn.FenceBlocked), MethodType.Getter)]
+		[HarmonyPostfix]
+		static void GetFenceBlockedPatch(ref bool __result, Pawn __instance)
+		{
+			if (__result)
+			{
+				if (__instance.IsHumanlike())
+					__result = false;
+			}
+		}
+
 		[ThreadStatic]
 		private static (Pawn, float) _bodySizeCache;
 

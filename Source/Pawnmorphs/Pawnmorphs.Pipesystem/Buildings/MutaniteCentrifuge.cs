@@ -233,23 +233,23 @@ namespace Pawnmorph.Buildings
 		/// <summary>
 		///     called every tick
 		/// </summary>
-		public override void Tick()
+		protected override void TickInterval(int delta)
 		{
-			base.Tick();
+			base.TickInterval(delta);
 			if (!IsOn)
 				return;
 
 			if (_producing)
 			{
 				if (CurrentMode == RunningMode.HighYield && this.IsHashIntervalTick(20))
-					DoMutagenicBuildup();
+					DoMutagenicBuildup(delta);
 
-				_timeCounter++;
+				_timeCounter += delta;
 
 				if (_timeCounter >= GetTimeNeeded())
 					ProduceMutanite();
 			}
-			else if (this.IsHashIntervalTick(100))
+			else if (this.IsHashIntervalTick(100, delta))
 			{
 
 				if (_drawer != null)
@@ -285,7 +285,7 @@ namespace Pawnmorph.Buildings
 			}
 		}
 
-		private void DoMutagenicBuildup()
+		private void DoMutagenicBuildup(int delta)
 		{
 			IEnumerable<Thing> things = GenRadial.RadialDistinctThingsAround(Position, Map, DANGER_RADIUS, true).MakeSafe();
 			MutagenDef mutagen = MutagenDefOf.defaultMutagen;
@@ -294,13 +294,13 @@ namespace Pawnmorph.Buildings
 				if (!(thing is Pawn pawn)) continue;
 				if (!mutagen.CanInfect(pawn)) return;
 
-				TryMutatePawn(pawn);
+				TryMutatePawn(pawn, delta);
 			}
 		}
 
 		[NotNull] private static readonly RWRaycastHit[] _buffer;
 
-		private void TryMutatePawn(Pawn pawn)
+		private void TryMutatePawn(Pawn pawn, int delta)
 		{
 
 			var hits = RWRaycast.RaycastAllNoAlloc(Map, Position, pawn.Position, _buffer, RaycastTargets.Impassible);
@@ -323,7 +323,7 @@ namespace Pawnmorph.Buildings
 			var p1 = pawn.Position.ToIntVec2.ToVector3();
 			var dist = (p0 - p1).magnitude + tHits * 1.5f;
 
-			float rate = MUTAGENIC_BUILDUP_RATE / (Mathf.Pow(2, dist));
+			float rate = (MUTAGENIC_BUILDUP_RATE / Mathf.Pow(2, dist)) * delta;
 
 
 			if (rate <= EPSILON) return;

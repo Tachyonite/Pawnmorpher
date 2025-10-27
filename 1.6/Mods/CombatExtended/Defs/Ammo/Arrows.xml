@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ==================== Ammo ========================== -->
+  <ThingDef Class="CombatExtended.AmmoDef" ParentName="AmmoArrowBase">
+    <defName>Ammo_Arrow_Mutanite</defName>
+    <label>arrow (mutanite)</label>
+    <graphicData>
+      <texPath>Things/Ammo/Neolithic/Arrow/Venom</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <statBases>
+      <MarketValue>2.58</MarketValue>
+    </statBases>
+    <ammoClass>MutaniteArrow</ammoClass>
+    <generateAllowChance>0</generateAllowChance>
+  </ThingDef>
+  <!-- ================== Projectiles ================== -->
+  <ThingDef ParentName="BaseArrowProjectile">
+    <defName>Projectile_Arrow_Mutanite</defName>
+    <label>arrow (mutanite)</label>
+    <graphicData>
+      <texPath>Things/Projectiles/MutagenArrow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>MutagenicArrowDamage</damageDef>
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationSharp>0.5</armorPenetrationSharp>
+      <armorPenetrationBlunt>3.02</armorPenetrationBlunt>
+      <preExplosionSpawnChance>0.666</preExplosionSpawnChance>
+      <preExplosionSpawnThingDef>Ammo_Arrow_Mutanite</preExplosionSpawnThingDef>
+    </projectile>
+  </ThingDef>
+  <ThingDef ParentName="BaseStreamlinedArrowProjectile">
+    <defName>Projectile_StreamlinedArrow_Mutanite</defName>
+    <label>streamlined arrow (mutanite)</label>
+    <graphicData>
+      <texPath>Things/Projectiles/MutagenArrow</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile Class="CombatExtended.ProjectilePropertiesCE">
+      <damageDef>MutagenicArrowDamage</damageDef>
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationSharp>1.0</armorPenetrationSharp>
+      <armorPenetrationBlunt>5.9</armorPenetrationBlunt>
+      <preExplosionSpawnChance>0.6</preExplosionSpawnChance>
+      <preExplosionSpawnThingDef>Ammo_Arrow_Mutanite</preExplosionSpawnThingDef>
+    </projectile>
+  </ThingDef>
+  <!-- ==================== Recipes ========================== -->
+  <RecipeDef ParentName="AmmoRecipeNeolithicBase">
+    <defName>MakeAmmo_Arrow_Mutanite</defName>
+    <label>make mutanite arrows x10</label>
+    <description>Craft 10 mutanite arrows.</description>
+    <jobString>Making mutanite arrows.</jobString>
+    <workAmount>300</workAmount>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Mutanite</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>WoodLog</li>
+        <li>Mutanite</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <Ammo_Arrow_Mutanite>10</Ammo_Arrow_Mutanite>
+    </products>
+  </RecipeDef>
+</Defs>

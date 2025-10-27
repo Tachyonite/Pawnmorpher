@@ -319,7 +319,7 @@ namespace Pawnmorph
 		{
 			get
 			{
-				foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive)
+				foreach (Pawn pawn in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive)
 					if (pawn.IsFormerHuman())
 						yield return pawn;
 			}

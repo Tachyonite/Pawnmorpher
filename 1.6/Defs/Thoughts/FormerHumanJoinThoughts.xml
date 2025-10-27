@@ -1,0 +1,121 @@
+<Defs>
+    <!--================================= Accepted =================================-->
+    <ThoughtDef Name="PM_FormerHumanRelatedAccepted" Abstract="True">
+        <thoughtClass>Pawnmorph.Thoughts.Thought_RelatedFormerHuman_Accepted</thoughtClass>
+        <durationDays>10</durationDays>
+        <stackLimit>10</stackLimit>
+        <showBubble>true</showBubble>
+        <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+        </nullifyingTraits>
+    </ThoughtDef>
+
+    <!-- Very close family members, e.g. children, spouses -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedAccepted">
+        <defName>PMFormerHumanAccepted_VeryClose</defName>
+        <stages>
+            <li>
+                <label>relative {0} helped</label>
+                <description>A close relative of mine was turned into an animal and came to us for help. I'm glad we took them in.</description>
+                <baseMoodEffect>6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Close family members, e.g. lovers, parents, siblings -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedAccepted">
+        <defName>PMFormerHumanAccepted_Close</defName>
+        <stages>
+            <li>
+                <label>relative {0} helped</label>
+                <description>A close relative of mine was turned into an animal and came to us for help. I'm glad we took them in.</description>
+                <baseMoodEffect>4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Moderate family members, e.g. grandparents/children, aunts/uncles -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedAccepted">
+        <defName>PMFormerHumanAccepted_Moderate</defName>
+        <stages>
+            <li>
+                <label>relative {0} helped</label>
+                <description>A relative of mine was turned into an animal and came to us for help. I'm glad we took them in.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Distant family members, e.g. everyone else -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedAccepted">
+        <defName>PMFormerHumanAccepted_Distant</defName>
+        <stages>
+            <li>
+                <label>relative {0} helped</label>
+                <description>A distant relative of mine was turned into an animal and came to us for help. I'm glad we took them in.</description>
+                <baseMoodEffect>2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <!--================================= Rejected =================================-->
+    <ThoughtDef Name="PM_FormerHumanRelatedRejected" Abstract="True">
+        <thoughtClass>Pawnmorph.Thoughts.Thought_RelatedFormerHuman_Rejected</thoughtClass>
+        <durationDays>15</durationDays>
+        <stackLimit>10</stackLimit>
+        <showBubble>true</showBubble>
+        <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+        <nullifyingTraits>
+            <li>Psychopath</li>
+        </nullifyingTraits>
+    </ThoughtDef>
+
+    <!-- Very close family members, e.g. children, spouses -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedRejected">
+        <defName>PMFormerHumanRejected_VeryClose</defName>
+        <stages>
+            <li>
+                <label>relative {0} turned away</label>
+                <description>A close relative of mine was turned into an animal and came to us for help, but the colony just left them out in the wild!</description>
+                <baseMoodEffect>-10</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Close family members, e.g. lovers, parents, siblings -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedRejected">
+        <defName>PMFormerHumanRejected_Close</defName>
+        <stages>
+            <li>
+                <label>relative {0} turned away</label>
+                <description>A close relative of mine was turned into an animal and came to us for help, but the colony just left them out in the wild.</description>
+                <baseMoodEffect>-6</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Moderate family members, e.g. grandparents/children, aunts/uncles -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedRejected">
+        <defName>PMFormerHumanRejected_Moderate</defName>
+        <stages>
+            <li>
+                <label>relative {0} turned away</label>
+                <description>A relative of mine was turned into an animal and came to us for help, but the colony rejected them.</description>
+                <baseMoodEffect>-4</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+    
+    <!-- Distant family members, e.g. everyone else -->
+    <ThoughtDef ParentName="PM_FormerHumanRelatedRejected">
+        <defName>PMFormerHumanRejected_Distant</defName>
+        <stages>
+            <li>
+                <label>relative {0} turned away</label>
+                <description>A distant relative of mine was turned into an animal and came to us for help, but the colony rejected them.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

@@ -266,7 +266,7 @@ namespace Pawnmorph.UserInterface
 			SetCaches();
 
 			// Initial caching of the mutations currently affecting the pawn and their initial hediff list.
-			maxPawnSeverity = 1 + StatsUtility.GetStat(pawn, PMStatDefOf.MutationAdaptability, 300) ?? 0;
+			maxPawnSeverity = 1 + (StatsUtility.GetStat(pawn, PMStatDefOf.MutationAdaptability, 0) ?? 0);
 			cachedInitialHediffs = pawn.health.hediffSet.hediffs.Select(h => new HediffInitialState(h, h.Severity, (h as Hediff_AddedMutation)?.ProgressionHalted ?? false)).ToList();
 			initialBodyType = pawn.story.bodyType;
 			initialCrownType = pawn.story.headType;

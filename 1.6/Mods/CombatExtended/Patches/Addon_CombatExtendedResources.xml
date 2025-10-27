@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <!--Mutanite-->
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Mutanite"]/statBases</xpath>
+        <value>
+          <Bulk>0.03</Bulk>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Mutanite"]/statBases/StuffPower_Armor_Sharp</xpath>
+        <value>
+          <StuffPower_Armor_Sharp>1</StuffPower_Armor_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Mutanite"]/statBases/StuffPower_Armor_Blunt</xpath>
+        <value>
+          <StuffPower_Armor_Blunt>1.5</StuffPower_Armor_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Mutanite"]/statBases/StuffPower_Armor_Heat</xpath>
+        <value>
+          <StuffPower_Armor_Heat>0</StuffPower_Armor_Heat>
+        </value>
+      </li>
+      <!--Morphsilk/Hazsilk-->
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Morphsilk" or defName="PM_Hazsilk"]/statBases/StuffPower_Armor_Sharp</xpath>
+        <value>
+          <StuffPower_Armor_Sharp>0.012</StuffPower_Armor_Sharp>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Morphsilk" or defName="PM_Hazsilk"]/statBases/StuffPower_Armor_Blunt</xpath>
+        <value>
+          <StuffPower_Armor_Blunt>0.015</StuffPower_Armor_Blunt>
+        </value>
+      </li>
+      <li Class="PatchOperationReplace">
+        <xpath>Defs/ThingDef[defName="Morphsilk" or defName="PM_Hazsilk"]/statBases/StuffPower_Armor_Heat</xpath>
+        <value>
+          <StuffPower_Armor_Heat>0.048</StuffPower_Armor_Heat>
+        </value>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="Morphsilk" or defName="PM_Hazsilk"]/statBases</xpath>
+        <value>
+          <Bulk>0.05</Bulk>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

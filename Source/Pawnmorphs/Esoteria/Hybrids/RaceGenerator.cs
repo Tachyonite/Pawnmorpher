@@ -80,7 +80,7 @@ namespace Pawnmorph.Hybrids
 				hasGenders = human.hasGenders,
 				foodType = GenerateFoodFlags(animal.foodType),
 				gestationPeriodDays = human.gestationPeriodDays,
-				wildness = animal.wildness / 2,
+				//wildness = animal.wildness / 2,
 				meatColor = animal.meatColor,
 				meatMarketValue = animal.meatMarketValue,
 				manhunterOnDamageChance = animal.manhunterOnDamageChance,
@@ -102,7 +102,7 @@ namespace Pawnmorph.Hybrids
 				useMeatFrom = animal.useMeatFrom,
 				deathAction = animal.deathAction, // Boommorphs should explode.
 				corpseDef = human.corpseDef,
-				packAnimal = animal.packAnimal,
+				packAnimal = human.packAnimal,
 				renderTree = human.renderTree,
 				startingAnimation = human.startingAnimation,
 				soundMoving = human.soundMoving,
@@ -200,10 +200,12 @@ namespace Pawnmorph.Hybrids
 					ModInitializationException($"could not convert human ThingDef to {nameof(ThingDef_AlienRace)}! is HAF up to date?", e);
 			}
 
+			DebugLog.Message("Load replacement config");
 			if (PawnmorpherMod.Settings.raceReplacements != null)
 			{
 				foreach (var item in PawnmorpherMod.Settings.raceReplacements)
 				{
+					DebugLog.Message("Parsing " + item.Key + " - " + item.Value);
 					MorphDef morph = DefDatabase<MorphDef>.GetNamed(item.Key, false);
 					if (morph != null)
 					{
@@ -229,13 +231,16 @@ namespace Pawnmorph.Hybrids
 			}
 
 
+			DebugLog.Message("Get all morphs");
 			IEnumerable<MorphDef> morphs = DefDatabase<MorphDef>.AllDefs;
 			// ReSharper disable once PossibleNullReferenceException
 			foreach (MorphDef morphDef in morphs)
 			{
+				DebugLog.Message("Generate morph " + morphDef.LabelCap);
 				ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
 				_raceLookupTable[race] = morphDef;
 
+				DebugLog.Message("Check for replacements");
 				if (morphDef.ExplicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
 				{
 					morphDef.hybridRaceDef = race;
@@ -250,6 +255,7 @@ namespace Pawnmorph.Hybrids
 
 
 
+				DebugLog.Message("Add animal associations");
 				if (animalAssociationLookup != null)
 				{
 					if (animalAssociationLookup.Contains(morphDef.defName))
@@ -259,34 +265,13 @@ namespace Pawnmorph.Hybrids
 					}
 				}
 
-
-
-
-
-
+				DebugLog.Message("Resolve references");
 				race.ResolveReferences();
-				CreateImplicitMeshes(race);
 				yield return race;
 			}
 
 		}
 
-		private static void CreateImplicitMeshes(ThingDef_AlienRace race)
-		{
-			try
-			{
-				//generate any meshes the implied race might need 
-				if (race.alienRace?.graphicPaths != null)
-				{
-					race.alienRace.generalSettings?.alienPartGenerator?.GenerateMeshsAndMeshPools();
-				}
-			}
-			catch (Exception e)
-			{
-				throw new ModInitializationException($"while updating graphics for {race.defName}, caught {e.GetType().Name}", e);
-
-			}
-		}
 
 		/// <summary>
 		/// Generate general settings for the hybrid race given the human settings and morph def.
@@ -523,6 +508,9 @@ namespace Pawnmorph.Hybrids
 				graphic.conditions.Add(new ConditionHeadType { headType = item2 });
 				temp.head.extendedGraphics.Add(graphic);
 			}
+
+			temp.body = humanGraphicPaths.body;
+			temp.skeleton = humanGraphicPaths.skeleton;
 			return temp;
 		}
 
@@ -647,125 +635,6 @@ namespace Pawnmorph.Hybrids
 		{
 			if (raceDef == null) throw new ArgumentNullException(nameof(raceDef));
 			return _raceLookupTable.ContainsKey(raceDef);
-		}
-
-
-		public static void DoHarStuff()
-		{
-			foreach (ThingDef_AlienRace race in _raceLookupTable.Keys)
-			{
-				try
-				{
-					DoHarStuff(race);
-				}
-				catch (Exception e)
-				{
-					Log.Error($"[Pawnmorpher] Failed to properly add {race.defName} to HAR.\n" + e);
-				}
-			}
-		}
-
-
-
-		// AlienRace.HarmonyPatches..cctor
-		private static void DoHarStuff(ThingDef_AlienRace ar)
-		{
-			foreach (ThoughtDef restrictedThought in ar.alienRace.thoughtSettings.restrictedThoughts)
-			{
-				if (!ThoughtSettings.thoughtRestrictionDict.ContainsKey(restrictedThought))
-				{
-					ThoughtSettings.thoughtRestrictionDict.Add(restrictedThought, new List<ThingDef_AlienRace>());
-				}
-				ThoughtSettings.thoughtRestrictionDict[restrictedThought].Add(ar);
-			}
-			foreach (ThingDef apparel in ar.alienRace.raceRestriction.apparelList)
-			{
-				RaceRestrictionSettings.apparelRestricted.Add(apparel);
-				ar.alienRace.raceRestriction.whiteApparelList.Add(apparel);
-			}
-			foreach (ThingDef weapon in ar.alienRace.raceRestriction.weaponList)
-			{
-				RaceRestrictionSettings.weaponRestricted.Add(weapon);
-				ar.alienRace.raceRestriction.whiteWeaponList.Add(weapon);
-			}
-			foreach (ThingDef building in ar.alienRace.raceRestriction.buildingList)
-			{
-				RaceRestrictionSettings.buildingRestricted.Add(building);
-				ar.alienRace.raceRestriction.whiteBuildingList.Add(building);
-			}
-			foreach (RecipeDef recipe in ar.alienRace.raceRestriction.recipeList)
-			{
-				RaceRestrictionSettings.recipeRestricted.Add(recipe);
-				ar.alienRace.raceRestriction.whiteRecipeList.Add(recipe);
-			}
-			foreach (ThingDef plant in ar.alienRace.raceRestriction.plantList)
-			{
-				RaceRestrictionSettings.plantRestricted.Add(plant);
-				ar.alienRace.raceRestriction.whitePlantList.Add(plant);
-			}
-			foreach (TraitDef trait in ar.alienRace.raceRestriction.traitList)
-			{
-				RaceRestrictionSettings.traitRestricted.Add(trait);
-				ar.alienRace.raceRestriction.whiteTraitList.Add(trait);
-			}
-			foreach (ThingDef food in ar.alienRace.raceRestriction.foodList)
-			{
-				RaceRestrictionSettings.foodRestricted.Add(food);
-				ar.alienRace.raceRestriction.whiteFoodList.Add(food);
-			}
-			foreach (ThingDef pet in ar.alienRace.raceRestriction.petList)
-			{
-				RaceRestrictionSettings.petRestricted.Add(pet);
-				ar.alienRace.raceRestriction.whitePetList.Add(pet);
-			}
-			foreach (ResearchProjectDef item in ar.alienRace.raceRestriction.researchList.SelectMany((ResearchProjectRestrictions rl) => rl?.projects))
-			{
-				if (!RaceRestrictionSettings.researchRestrictionDict.ContainsKey(item))
-				{
-					RaceRestrictionSettings.researchRestrictionDict.Add(item, new List<ThingDef_AlienRace>());
-				}
-				RaceRestrictionSettings.researchRestrictionDict[item].Add(ar);
-			}
-			foreach (GeneDef gene in ar.alienRace.raceRestriction.geneList)
-			{
-				RaceRestrictionSettings.geneRestricted.Add(gene);
-				ar.alienRace.raceRestriction.whiteGeneList.Add(gene);
-			}
-			foreach (XenotypeDef xenotypeDef in ar.alienRace.raceRestriction.xenotypeList)
-			{
-				RaceRestrictionSettings.xenotypeRestricted.Add(xenotypeDef);
-				ar.alienRace.raceRestriction.whiteXenotypeList.Add(xenotypeDef);
-			}
-			foreach (ThingDef reproduction in ar.alienRace.raceRestriction.reproductionList)
-			{
-				RaceRestrictionSettings.reproductionRestricted.Add(reproduction);
-				ar.alienRace.raceRestriction.whiteReproductionList.Add(reproduction);
-			}
-			if (ar.alienRace.generalSettings.corpseCategory != ThingCategoryDefOf.CorpsesHumanlike)
-			{
-				ThingCategoryDefOf.CorpsesHumanlike.childThingDefs.Remove(ar.race.corpseDef);
-				if (ar.alienRace.generalSettings.corpseCategory != null)
-				{
-					ar.race.corpseDef.thingCategories = new List<ThingCategoryDef> { ar.alienRace.generalSettings.corpseCategory };
-					ar.alienRace.generalSettings.corpseCategory.childThingDefs.Add(ar.race.corpseDef);
-					ar.alienRace.generalSettings.corpseCategory.ResolveReferences();
-				}
-				ThingCategoryDefOf.CorpsesHumanlike.ResolveReferences();
-			}
-			if (ar.alienRace.generalSettings.humanRecipeImport && ar != ThingDefOf.Human)
-			{
-				(ar.recipes ?? (ar.recipes = new List<RecipeDef>())).AddRange(ThingDefOf.Human.recipes.Where((RecipeDef rd) => !rd.targetsBodyPart || rd.appliedOnFixedBodyParts.NullOrEmpty() || rd.appliedOnFixedBodyParts.Any((BodyPartDef bpd) => ar.race.body.AllParts.Any((BodyPartRecord bpr) => bpr.def == bpd))));
-				DefDatabase<RecipeDef>.AllDefsListForReading.ForEach(delegate (RecipeDef rd)
-				{
-					List<ThingDef> recipeUsers = rd.recipeUsers;
-					if (recipeUsers != null && recipeUsers.Contains(ThingDefOf.Human))
-					{
-						rd.recipeUsers.Add(ar);
-					}
-				});
-				ar.recipes.RemoveDuplicates();
-			}
-			ar.alienRace.raceRestriction?.workGiverList?.ForEach(PawnmorphPatches.PatchHumanoidRace);
 		}
 	}
 }

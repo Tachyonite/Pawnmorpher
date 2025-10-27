@@ -57,4 +57,11 @@
 		<li IfModActive="spoonshortage.adogsaidanimalprosthetics">1.5/Mods/ADogSaidAnimalProsthetics</li>
 		<li IfModActive="CETeam.CombatExtended">1.5/Mods/CombatExtended</li>
 	</v1.5>
+	<v1.6>
+		<li>/</li>
+		<li>1.6</li>
+		<li IfModActive="Ludeon.RimWorld.Ideology">1.6/Mods/Ideology</li>
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Mods/Royalty</li>
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/VEF</li>
+	</v1.6>
 </loadFolders>

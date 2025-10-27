@@ -10,49 +10,42 @@
     <RootNamespace>Pawnmorph</RootNamespace>
     <AssemblyName>Pawnmorph</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OutputPath>..\..\..\1.6\Assemblies\</OutputPath>
+    <LangVersion>Latest</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <ErrorReport>prompt</ErrorReport>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">..\..\..\..\..\RimWorldWin64_Data</RimworldFolder>
+    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>Latest</LangVersion>
+    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>Latest</LangVersion>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <Optimize>false</Optimize>
     <DebugSymbols>false</DebugSymbols>
-    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
     <DebugType>none</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>Latest</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <!-- Base Dependencies -->
   <ItemGroup>
     <Reference Include="0PrepatcherAPI">
       <HintPath>..\..\Dependencies\0PrepatcherAPI.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,255 +60,6 @@
     </Reference>
   </ItemGroup>
   <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
-  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>$(RimworldFolder)\Managed\Unity.TextMeshPro.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AnimationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.AudioModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClothModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterInputModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ClusterRendererModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.DirectorModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.GameCenterModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.GridModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.HotReloadModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.InputModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.LocalizationModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.Physics2DModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ProfilerModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.StreamingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SubstanceModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TerrainModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TextCoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TilemapModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.TLSModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UIElementsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UmbraModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UNETModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UNETModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VehiclesModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VFXModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VideoModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.VRModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.VRModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.WindModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.WindModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.XRModule">
-      <HintPath>$(RimworldFolder)\Managed\UnityEngine.XRModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Abilities\Bullrush.cs" />
     <Compile Include="Abilities\Skyfallers\FlightSkyFaller.cs" />
@@ -337,6 +81,7 @@
     <Compile Include="HPatches\CaravanPatches.cs" />
     <Compile Include="HPatches\GamePatches.cs" />
     <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\MentalStateWorker_RoamingPatches.cs" />
     <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
     <Compile Include="HPatches\PawnMindStatePatches.cs" />
     <Compile Include="HPatches\WorldPawnsPatches.cs" />
@@ -926,6 +671,7 @@
     <Compile Include="Utilities\Collections\ExposableList.cs" />
     <Compile Include="Utilities\Collections\FilteredList.cs" />
     <Compile Include="Utilities\CompCacher.cs" />
+    <Compile Include="Utilities\DebugLog.cs" />
     <Compile Include="Utilities\Filter.cs" />
     <Compile Include="Utilities\HashGiverUtils.cs" />
     <Compile Include="Utilities\HediffCompBase.cs" />
@@ -991,21 +737,19 @@
     <Folder Include="Events\" />
     <Folder Include="ITabs\" />
   </ItemGroup>
-  <!--Only use the Krafs stub if we can't access the real assembly -->
-  <ItemGroup Condition="!Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
-    <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.5.4104-beta</Version>
-      <IncludeAssets>compile</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.6.4566</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Lib.Harmony">
-      <Version>2.3.3</Version>
-      <IncludeAssets>compile</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
+      <Version>2.4.1</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <!--Only use the Krafs stub if we can't access the real assembly -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

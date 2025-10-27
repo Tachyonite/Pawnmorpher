@@ -1,0 +1,29 @@
+<Defs>
+	<TaleDef ParentName="MuzzleTaleBase">
+		<defName>GrewBoomalopeMuzzle</defName>
+		<label>grew boomalope muzzle</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] face becoming that of a boomalope</li>
+				<li>tale_noun->[PAWN_nameDef] face pushing out into a boomalope muzzle </li>
+				<li>desc_sentence->[PAWN_pronoun] begins sniffing intently at some nearby chemfuel.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+	<TaleDef ParentName="MutationTaleBase">
+		<defName>GrewChemfuelUdder</defName>
+		<label>grew chemfuel udder</label>
+		<rulePack>
+			<rulesStrings>
+				<li>tale_noun->[PAWN_nameDef] growing a chemfuel udder</li>
+				<li>tale_noun->[PAWN_nameDef] begining to produce chemfuel</li>
+				<li>image->[PAWN_nameFull]'s waist begging to swell as an udder like organ grows [circumstance_group]</li>
+				<li>image->a large udder like organ begins to grow from [PAWN_nameFull]'s waist [circumstance_group]</li>
+				<li>circumstance_phrase->while someone approaches [PAWN_pronoun] with an empty chemfuel container</li>
+				<li>circumstance_phrase->as someone notices the smell of chemfuel</li>
+				<li>desc_sentence->is embarrassed about producing chemfuel.</li>
+				<li>desc_sentence->is surprisingly uncaring about [PAWN_possessive] chemfuel udder.</li>
+			</rulesStrings>
+		</rulePack>
+	</TaleDef>
+</Defs>

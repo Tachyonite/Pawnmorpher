@@ -1,0 +1,170 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeJawPart" ParentName="ThickHideJawPart" Abstract="true">
+		<mutationMemory>EtherRhinocerosJaw</mutationMemory>
+		<label>ceratorhine muzzle</label>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s jaw bones shift and crack, painfully reshaping [PAWN_possessive] face. And a thick bone has begun to force its way out from the tip of [PAWN_possessive] new snout.</description>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>5</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>An oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. The strange shape makes speaking very difficult.</description>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>19.4</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>An oversized rhino jaw, complete with a mighty horn. Perfect for goring your foes. Adapting to it has made speaking less frustrating.</description>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>1</chanceFactor>
+							<power>19.4</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+					<statOffsets>
+						<MeleeHitChance>4</MeleeHitChance>
+						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>An oversized rhino jaw, complete with a mighty horn. Over time the horn has hardened to a tensile strength like steel. It rends flesh guts buildings alike!</description>
+					<verbOverrides>
+						<li>
+							<label>horn</label>
+							<chanceFactor>1</chanceFactor>
+							<power>29.6</power>
+						</li>
+						<li>
+							<label>horn bash</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+					<statOffsets>
+						<MeleeHitChance>4</MeleeHitChance>
+						<MeleeArmorPenetration>0.15</MeleeArmorPenetration>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>horn</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Stab</li>
+							<li>Demolish</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>4</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+					<li>
+						<label>horn bash</label>
+						<labelUsedInLogging>False</labelUsedInLogging>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>0</power>
+						<cooldownTime>3</cooldownTime>
+						<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+					</li>
+				</tools>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeEarPart" ParentName="ThickHideEarPart" Abstract="true">
+		<mutationMemory>EtherRhinocerosEar</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="RhinocerotidaeTailPart" ParentName="ThickHideTailPart" Abstract="true">
+		<mutationMemory>EtherRhinocerosTail</mutationMemory>
+	</Pawnmorph.Hediffs.MutationDef>
+
+</Defs>

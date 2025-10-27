@@ -43,13 +43,15 @@ namespace Pawnmorph.HPatches
 	[HarmonyPatch(typeof(Bill_Medical))]
 	internal static class MedicalBillPatches
 	{
-		[HarmonyPatch(nameof(Bill.Notify_IterationCompleted))]
+		[HarmonyPatch(nameof(Bill_Medical.Notify_IterationCompleted))]
 		[HarmonyPostfix]
 		private static void Notify_IterationCompletedPatch(Pawn billDoer, List<Thing> ingredients, Bill_Medical __instance)
 		{
-			if (billDoer == null) return;
-			if (__instance.recipe?.ingredients?[0]?.filter?.BestThingRequest.singleDef?.IsMutagenOrMutagenicDrug() == true
-			 && __instance.recipe.Worker is Recipe_AdministerIngestible)
+			if (billDoer == null || __instance.recipe == null || (__instance.recipe.ingredients?.Count ?? 0) == 0)
+				return;
+
+			if (__instance.recipe.Worker is Recipe_AdministerIngestible &&
+				__instance.recipe.ingredients[0].filter?.BestThingRequest.singleDef?.IsMutagenOrMutagenicDrug() == true)
 			{
 				var hEv = new HistoryEvent(PMHistoryEventDefOf.ApplyMutagenicsOn, billDoer.Named(HistoryEventArgsNames.Doer),
 										   __instance.GiverPawn.Named(HistoryEventArgsNames.Victim));

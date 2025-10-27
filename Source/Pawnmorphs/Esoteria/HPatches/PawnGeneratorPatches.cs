@@ -11,11 +11,12 @@ using RimWorld;
 using Verse;
 
 #pragma warning disable 1591
-namespace Pawnmorph.HPatches
+namespace Pawnmorph
 {
 	/// <summary>
 	/// static class for containing HPatches to PawnGenerator class
 	/// </summary>
+	[HarmonyPatch(typeof(PawnGenerator))]
 	public static class PawnGeneratorPatches
 	{
 
@@ -37,48 +38,38 @@ namespace Pawnmorph.HPatches
 			}
 		}
 
-		[HarmonyPatch(typeof(PawnGenerator))]
-		[HarmonyPatch("GenerateInitialHediffs")] //might want to patch PawnGroupKindWorker_Normal,Trader instead 
-		[HarmonyPatch(new Type[]
+		[HarmonyPatch("GenerateInitialHediffs"), HarmonyPostfix]
+		public static void InitialHediffsPatch(Pawn pawn)
 		{
-			typeof(Pawn), typeof(PawnGenerationRequest)
-		})]
-		public static class InitialHediffsPatch
-		{
-			public static void Postfix(Pawn pawn, PawnGenerationRequest request)
+			var raceExt = pawn?.def?.TryGetRaceMutationSettings();
+			if (raceExt?.immuneToAll == true) return;
+			if (raceExt != null)
 			{
+				HandleAlienRaceExtensions(pawn, raceExt);
+			}
 
-				var raceExt = pawn?.def?.TryGetRaceMutationSettings();
-				if (raceExt?.immuneToAll == true) return;
-				if (raceExt != null)
+
+			var backstories = pawn.story?.AllBackstories ?? Enumerable.Empty<BackstoryDef>();
+			var extensions = backstories//.Select(b => DefDatabase<BackstoryDef>.GetNamedSilentFail(b.identifier))
+											.Where(bd => bd != null)
+											.OrderBy(bd => bd.slot) //make sure the adult backstories overrides the child backstories 
+											.Select(bd => bd.GetModExtension<MorphPawnKindExtension>())
+											.Where(ext => ext != null);
+
+			bool anyAdded = false;
+			foreach (MorphPawnKindExtension extension in extensions)
+			{
+				anyAdded = true;
+				MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, true, true, extension); //now apply all mutations in order of child -> adult 
+			}
+
+			if (!anyAdded)
+			{
+				var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
+				if (kindExtension != null)
 				{
-					HandleAlienRaceExtensions(pawn, raceExt);
+					MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, true, kindExtension);
 				}
-
-
-				var backstories = pawn.story?.AllBackstories ?? Enumerable.Empty<BackstoryDef>();
-				var extensions = backstories//.Select(b => DefDatabase<BackstoryDef>.GetNamedSilentFail(b.identifier))
-											   .Where(bd => bd != null)
-											   .OrderBy(bd => bd.slot) //make sure the adult backstories overrides the child backstories 
-											   .Select(bd => bd.GetModExtension<MorphPawnKindExtension>())
-											   .Where(ext => ext != null);
-
-				bool anyAdded = false;
-				foreach (MorphPawnKindExtension extension in extensions)
-				{
-					anyAdded = true;
-					MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, true, true, extension); //now apply all mutations in order of child -> adult 
-				}
-
-				if (!anyAdded)
-				{
-					var kindExtension = pawn.kindDef.GetModExtension<MorphPawnKindExtension>();
-					if (kindExtension != null)
-					{
-						MorphGroupMakerUtilities.ApplyMutationExtensionToPawn(pawn, false, true, kindExtension);
-					}
-				}
-
 			}
 		}
 

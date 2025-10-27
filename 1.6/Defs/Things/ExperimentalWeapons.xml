@@ -1,0 +1,17 @@
+<Defs>
+    <ThingDef ParentName="BaseBullet">
+        <defName>XM_MutagenicBullet</defName>
+        <label>XM_MutagenicBullet</label>
+        <graphicData>
+            <texPath>Things/Projectile/Bullet_Small</texPath>
+            <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <projectile>
+            <flyOverhead>false</flyOverhead>
+            <damageDef>MutagenicBulletDamage</damageDef>
+            <damageAmountBase>1</damageAmountBase>
+            <stoppingPower>5</stoppingPower>
+            <speed>25</speed>
+        </projectile>
+    </ThingDef>
+</Defs>

@@ -160,7 +160,6 @@ namespace Pawnmorph.HPatches
 				{
 					if ((i.operand as MethodInfo) == match)
 					{
-						Log.Message("Instruction insertion complete!");
 						yield return new CodeInstruction(OpCodes.Ldloc_0);
 						yield return new CodeInstruction(OpCodes.Call, replaceWith);
 					}

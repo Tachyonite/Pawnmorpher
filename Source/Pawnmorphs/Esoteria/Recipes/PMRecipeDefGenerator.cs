@@ -44,12 +44,6 @@ namespace Pawnmorph.Recipes
 		/// </summary>
 		public static void GenerateRecipeDefs()
 		{
-			foreach (ThingDef injectorDef in InjectorGenerator.GeneratedInjectorDefs)
-			{
-				RecipeDef recipe = CreateRecipeDefFromMaker(injectorDef);
-				_generatedRecipeDefs.Add(recipe);
-			}
-
 			foreach (RecipeDef drugAdministerDef in DrugAdministerDefs())
 			{
 				if (drugAdministerDef != null)

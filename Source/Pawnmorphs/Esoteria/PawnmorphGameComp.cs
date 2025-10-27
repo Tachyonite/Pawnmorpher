@@ -80,9 +80,9 @@ namespace Pawnmorph
 		/// <summary>
 		/// called when the world is finishing initialization 
 		/// </summary>
-		public override void FinalizeInit()
+		public override void FinalizeInit(bool fromLoad)
 		{
-			base.FinalizeInit();
+			base.FinalizeInit(fromLoad);
 
 			AddSurgeriesToMorphs();
 

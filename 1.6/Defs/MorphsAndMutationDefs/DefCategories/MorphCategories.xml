@@ -1,0 +1,72 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/MorphCategoryDef.xsd">
+	<!-- ======= Biome ======= -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Arid</defName>
+
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Cold</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Temperate</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Tropical</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- === Domestication === -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Domestic</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- ======= Role ======== -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Combat</defName>
+		<associatedMutationCategory>Combat</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Crafter</defName>
+		<associatedMutationCategory>Crafter</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Production</defName>
+		<associatedMutationCategory>Productive</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Social</defName>
+		<associatedMutationCategory>Social</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+
+	<!-- ======= Genus ======= -->
+
+	<Pawnmorph.MorphCategoryDef>
+		<defName>Exotic</defName>
+	</Pawnmorph.MorphCategoryDef>
+	
+	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
+		<defName>Chimera</defName>
+	</Pawnmorph.MorphCategoryDef>
+
+	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
+		<defName>Powerful</defName>
+		<associatedMutationCategory>Powerful</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+	
+	<!-- special -->
+	<Pawnmorph.MorphCategoryDef Abstract="true" Name="MorphRestrictedCategory">
+		<restricted>true</restricted>
+	</Pawnmorph.MorphCategoryDef>
+	<Pawnmorph.MorphCategoryDef ParentName="MorphRestrictedCategory">
+		<defName>Combo</defName>
+		<associatedMutationCategory>Combo</associatedMutationCategory>
+	</Pawnmorph.MorphCategoryDef>
+</Defs>

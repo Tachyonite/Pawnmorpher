@@ -1,0 +1,62 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/PreceptDef.xsd">
+    
+    <!-- Reversion -->
+
+    <PreceptDef Name="PM_ReversionPreceptBase" Abstract="true">
+        <issue>PM_Reversion</issue>
+        <impact>Medium</impact>
+    </PreceptDef>
+	
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionHated</defName>
+        <label>disliked</label>
+        <description>Reversion goes against the will of nature, we should let the chips fall where they may.</description>
+        <conflictingMemes>
+            <li>HumanPrimacy</li>
+            <li>FleshPurity</li>
+            <li>Transhumanist</li>
+        </conflictingMemes>
+        <comps>
+            <li Class="PreceptComp_SelfTookMemoryThought">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_NaturePrimacyMorphedReverted</thought>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_ReversionHatedPrecept_RevertedPawnReaction</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionNeutral</defName>
+        <label>neutral</label>
+        <impact>Low</impact>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <description>Reverting a morph or animal back to a human should be done when possible, but we shouldn't go to any great lengths to do.</description>
+        <defaultSelectionWeight>1</defaultSelectionWeight>
+    </PreceptDef>
+
+    <PreceptDef ParentName="PM_ReversionPreceptBase">
+        <defName>PM_ReversionLiked</defName>
+        <label>liked</label>
+        <description>Reverting people is a noble goal and one we should take extra measures to do when possible.</description>
+        <comps>
+            <li Class="Pawnmorph.PreceptComps.SelfTookMemoryThought_MemeOverride">
+                <eventDef>Reverted</eventDef>
+                <thought>PM_FleshPuristTransformed</thought>
+                <entries>
+                    <li>
+                        <meme>HumanPrimacy</meme>
+                        <thought>PM_HumanPrimacyReverted</thought>
+                    </li>
+                </entries>
+            </li>
+            <li Class="Pawnmorph.PreceptComps.GiveRelationDependentThought">
+                <eventDef>Reverted</eventDef>
+                <thought>DefaultRevertedPawnReaction</thought>
+            </li>
+        </comps>
+    </PreceptDef>
+
+</Defs>

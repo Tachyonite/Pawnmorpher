@@ -1,0 +1,7 @@
+<Defs>
+	<BodyPartDef>
+		<defName>MorphTail</defName>
+		<label>tail</label>
+		<conceptual>true</conceptual>
+	</BodyPartDef>
+</Defs>

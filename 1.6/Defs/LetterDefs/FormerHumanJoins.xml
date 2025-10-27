@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <LetterDef ParentName="CustomChoiceLetterBase">
+    <defName>PMFormerHumanJoinRequest</defName>
+    <color>(175, 176, 185)</color> <!-- Same as a neutral event -->
+    <letterClass>Pawnmorph.Letters.ChoiceLetter_FormerHumanJoins</letterClass>
+  </LetterDef>
+</Defs>

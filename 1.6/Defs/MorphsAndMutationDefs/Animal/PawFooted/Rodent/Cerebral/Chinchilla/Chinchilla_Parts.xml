@@ -1,0 +1,71 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralJawPart">
+		<mutationMemory>EtherChinchillaJaw</mutationMemory>
+		<classInfluence>ChinchillaMorph</classInfluence>
+		<defName>EtherChinchillaSnout</defName>
+		<label>chinchilla snout</label>
+		<graphics>
+			<Muzzle>Parts/Chinchilla/Chinchilla_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A snout graces [PAWN_nameDef]'s face, like that of a chinchilla, complete with oversized front teeth. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralEarPart">
+		<mutationMemory>EtherChinchillaEar</mutationMemory>
+		<classInfluence>ChinchillaMorph</classInfluence>
+		<defName>EtherChinchillaEar</defName>
+		<label>chinchilla ear</label>
+		<graphics>
+			<LeftEar>Parts/Chinchilla/Chinchilla_Ear_Left</LeftEar>
+			<LeftEarBehind>Parts/Chinchilla/Chinchilla_Ear_Left_Behind</LeftEarBehind>
+			<RightEar>Parts/Chinchilla/Chinchilla_Ear_Right</RightEar>
+			<RightEarBehindHead>Parts/Chinchilla/Chinchilla_Ear_Right_Behind</RightEarBehindHead>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A large ear clad in silky smooth fur has grown from [PAWN_nameDef]'s head, giving them an irresistably cute appearance.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="CerebralTailPart">
+		<mutationMemory>EtherChinchillaTail</mutationMemory>
+		<classInfluence>ChinchillaMorph</classInfluence>
+		<defName>EtherChinchillaTail</defName>
+		<label>chinchilla tail</label>
+		<graphics>
+			<Tail>Parts/Chinchilla/Chinchilla_Tail</Tail>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A soft, fluffy tail with luxuriously smooth fur has grown from the base of [PAWN_nameDef]'s spine, charming and tempting everyone to touch it.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

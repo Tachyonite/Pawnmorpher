@@ -1,0 +1,106 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformJawPart">
+		<defName>EtherChickenBeak</defName>
+		<classInfluence>ChookMorph</classInfluence>
+		<label>chicken beak</label>
+		<graphics>
+			<Muzzle>
+				<extendedGraphics>	
+					<Gender For="Female">Parts/Chicken/Chicken_Muzzle_Female</Gender>
+					<Gender For="Male">Parts/Chicken/Chicken_Muzzle_Male</Gender>
+				</extendedGraphics>
+			</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. Adapting to it has made speaking less frustrating.</description>	
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of an chicken. They may bok and cluck about birdlike things. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformTailPart">
+		<defName>EtherChickenTailfeathers</defName>
+		<classInfluence>ChookMorph</classInfluence>
+		<label>chicken tailfeathers</label>
+		<graphics>
+			<Tail>
+				<extendedGraphics>
+					<Gender For="Female">Parts/Chicken/Chicken_Tail_Female</Gender>
+					<Gender For="Male">Parts/Chicken/Chicken_Tail_Male</Gender>
+				</extendedGraphics>
+			</Tail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformEggLayerPart">
+		<defName>EtherEggLayer</defName>
+		<classInfluence>ChookMorph</classInfluence>
+		<label>chicken egglayer</label>
+		<comps>
+			<li Class="Pawnmorph.HediffCompProperties_Production" Name="EggLayerProductionComp">
+				<thought>LaidEgg</thought>
+				<jobGiver>Pawnmorph.Jobs.Giver_LayEgg</jobGiver>
+				<genderAversion>Male</genderAversion>
+				<wrongGenderThought>LaidEggMale</wrongGenderThought>
+				<etherBondThought>LaidEggBond</etherBondThought>
+				<etherBrokenThought>LaidEggBroken</etherBrokenThought>
+				<resource>EggChickenUnfertilized</resource>
+				<rareResource>TFEgg</rareResource>
+				<stages>
+					<li>
+						<minProductionBoost>0</minProductionBoost>
+						<daysToProduce>1</daysToProduce>
+						<amount>1</amount>
+						<chance>50</chance>
+					</li>
+					<li>
+						<minProductionBoost>0.3</minProductionBoost>
+						<daysToProduce>0.5</daysToProduce>
+						<amount>1</amount>
+						<chance>70</chance>
+						<hungerRateFactor>1.3</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.6</minProductionBoost>
+						<daysToProduce>0.2</daysToProduce>
+						<amount>1</amount>
+						<chance>90</chance>
+						<hungerRateFactor>1.6</hungerRateFactor>
+					</li>
+					<li>
+						<minProductionBoost>0.9</minProductionBoost>
+						<daysToProduce>0.1</daysToProduce>
+						<amount>1</amount>
+						<chance>99</chance>
+						<thought>ProductiveBliss</thought>
+						<hungerRateFactor>2.0</hungerRateFactor>
+						<hediffGivers>
+							<li Class="HediffGiver_RandomDrugEffect">
+								<hediff>CatatonicBreakdown</hediff>
+								<baseMtbDays>2</baseMtbDays>
+								<partsToAffect>
+									<li>Brain</li>
+								</partsToAffect>
+							</li>
+						</hediffGivers>
+					</li>
+				</stages>
+			</li>
+		</comps>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

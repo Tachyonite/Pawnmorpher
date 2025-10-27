@@ -640,7 +640,7 @@ namespace Pawnmorph.DebugUtils
 		[DebugAction("Pawnmorpher", "Get mutation info for all pawns", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
 		private static void GetAllMutationInfo()
 		{
-			foreach (Pawn pawn in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+			foreach (Pawn pawn in PawnsFinder.AllCaravansAndTravellingTransporters_Alive)
 			{
 				MutationInfo(pawn);
 			}

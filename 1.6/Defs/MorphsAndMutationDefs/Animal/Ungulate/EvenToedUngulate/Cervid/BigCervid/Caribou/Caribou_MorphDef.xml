@@ -1,0 +1,22 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="BigCervidMorph">
+		<defName>CaribouMorph</defName>
+		<label>cariboumorph</label>
+		<description>Cariboumorphs are usually peaceful and imposing herbivorous humanoids who can live under harsh winters. However, if you bother them, their big antlers may hurt you pretty badly...</description>
+		<race>Caribou</race>
+		<categories>
+			<li>Cold</li>
+		</categories>
+		<fullTransformation>PawnmorphCaribouTF</fullTransformation>
+		<partialTransformation>PawnmorphCaribouTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(117, 93, 76)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>CaribouTransformationMemory</transformationMemory>
+			<revertedMemory>CaribouRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

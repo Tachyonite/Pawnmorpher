@@ -38,7 +38,7 @@ namespace Pawnmorph
 		static PawnmorpherModInit() // The one true constructor.
 		{
 
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
+			Log.Message($"Initializing {MOD_BUILD_TYPE} version of Pawnmorpher");
 
 #if DEBUG
 			Stopwatch stopwatch = Stopwatch.StartNew();
@@ -47,24 +47,39 @@ namespace Pawnmorph
 
 			try
 			{
+				DebugLog.Message("verify morph database");
 				VerifyMorphDefDatabase();
 
+				DebugLog.Message("inject graphics");
 				InjectGraphics();
+
+				DebugLog.Message("notify settings changed");
 				NotifySettingsChanged();
+
+				DebugLog.Message("generate implicit races");
 				GenerateImplicitRaces();
+				
+				DebugLog.Message("patch races");
 				PatchExplicitRaces();
+
+				DebugLog.Message("Add mutations to races");
 				AddMutationsToWhitelistedRaces();
+
+				DebugLog.Message("Disable patches");
 				EnableDisableOptionalPatches();
 
+				DebugLog.Message("add components");
 				AddComponents();
 
 				try
 				{
 
 
+					DebugLog.Message("check for conflicts");
 					CheckForModConflicts();
 
 #if DEBUG
+					DebugLog.Message("scan for issues");
 					// Only show configuration errors in debug mode.
 					DisplayGroupedModIssues();
 					CheckForObsoletedComponents();
@@ -80,6 +95,7 @@ namespace Pawnmorph
 				try
 				{
 
+					Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: generate defs");
 					PMImplicitDefGenerator.GenerateImplicitDefs();
 
 				}
@@ -89,8 +105,8 @@ namespace Pawnmorph
 					throw new ModInitializationException($"while generating genomes caught exception {e.GetType().Name}", e);
 				}
 
+				DebugLog.Message("patch injectors");
 				InjectorRecipeWorker.PatchInjectors();
-				RaceGenerator.DoHarStuff();
 			}
 			catch (Exception e)
 			{
@@ -99,7 +115,7 @@ namespace Pawnmorph
 
 #if DEBUG
 			stopwatch.Stop();
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Loading finished in {stopwatch.ElapsedMilliseconds}ms");
+			DebugLog.Message($"Loading finished in {stopwatch.ElapsedMilliseconds}ms");
 #endif
 		}
 
@@ -222,34 +238,55 @@ namespace Pawnmorph
 			try
 			{
 				// Get all body-addons from all species to initialize any TaggedBodyAddon
-				IEnumerable<ThingDef_AlienRace> humanoidRaces = DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>();
+				List<ThingDef_AlienRace> humanoidRaces = new List<ThingDef_AlienRace>();
+					
+				if (PawnmorpherMod.Settings.visibleRaces != null)
+					humanoidRaces.AddRange(DefDatabase<ThingDef>.AllDefs.OfType<ThingDef_AlienRace>().Where(x => PawnmorpherMod.Settings.visibleRaces.Contains(x.defName)));
+
+				humanoidRaces.AddDistinct((ThingDef_AlienRace)ThingDefOf.Human); //make sure humans are in the list
+				humanoidRaces.AddDistinct((ThingDef_AlienRace)ThingDefOf.CreepJoiner); //make sure humans are in the list
 
 				FieldInfo bodyAddonName = AccessTools.Field(typeof(AlienPartGenerator.BodyAddon), "name");
-
 				List<TaggedBodyAddon> taggedAddons = new List<TaggedBodyAddon>();
+
+				DebugLog.Message("Assign anchor IDs");
 				foreach (ThingDef_AlienRace race in humanoidRaces)
 				{
-					var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
-					foreach (TaggedBodyAddon bodyAddon in taggedBodyAddons)
+					try
 					{
-						if (bodyAddon.anchorID == null)
+						if (race == null)
+							continue;
+
+						var taggedBodyAddons = race.alienRace.generalSettings.alienPartGenerator.bodyAddons.OfType<TaggedBodyAddon>();
+
+						foreach (TaggedBodyAddon bodyAddon in taggedBodyAddons)
 						{
-							Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
+							if (bodyAddon?.anchorID == null)
+							{
+								Log.Error($"Encountered tagged body addon with null anchorID in RaceDef {race.defName}!");
+							}
+							else
+							{
+								taggedAddons.Add(bodyAddon);
+								bodyAddonName.SetValue(bodyAddon, bodyAddon.anchorID);
+							}
 						}
-						else
-						{
-							taggedAddons.Add(bodyAddon);
-							bodyAddonName.SetValue(bodyAddon, bodyAddon.anchorID);
-						}
+					}
+					catch (Exception e)
+					{
+						Log.Error($"unable to find anchor IDs for race: {race}\n{e}");
 					}
 				}
 
-				ILookup<string, TaggedBodyAddon> dict = taggedAddons.ToLookup(x => x.anchorID);
 
+				ILookup<string, TaggedBodyAddon> dict = taggedAddons.Distinct().ToLookup(x => x.anchorID);
 				List<MutationStage> mutationStages = new List<MutationStage>();
 				List<string> anchors = new List<string>();
+				List<MutationDef> mutationDefs = MutationDef.AllMutations.ToList();
+
+				DebugLog.Message("cross-assign graphics");
 				//now go throw all mutations and any with graphics 
-				foreach (MutationDef mutation in MutationDef.AllMutations)
+				foreach (MutationDef mutation in mutationDefs)
 				{
 					var mStages = mutation.stages.MakeSafe().OfType<MutationStage>(); //all mutation stages in this mutation 
 					var lq = mutation.graphics.MakeSafe()
@@ -269,7 +306,6 @@ namespace Pawnmorph
 							Log.Error($"unable to find body addon on human with anchor id \"{anchor}\"!");
 							continue;
 						}
-
 						ExtendedConditionGraphic hediffGraphic = GenerateGraphicsFor(mutationStages, mutation, anchor);
 						if (hediffGraphic == null)
 							continue;
@@ -280,12 +316,9 @@ namespace Pawnmorph
 								addon.extendedGraphics = new List<AbstractExtendedGraphic>();
 
 							addon.extendedGraphics.Add(hediffGraphic);
-
 							AppendPools(hediffGraphic, addon);
 						}
 					}
-
-
 				}
 			}
 			catch (Exception e)
@@ -654,13 +687,18 @@ namespace Pawnmorph
 
 				List<ThingDef> genRaces = new List<ThingDef>();
 
-				foreach (ThingDef_AlienRace thingDefAlienRace in RaceGenerator.ImplicitRaces)
+
+				DebugLog.Message("add implicit defs");
+				IEnumerable<ThingDef_AlienRace> races = RaceGenerator.ImplicitRaces.ToList();
+
+				foreach (ThingDef_AlienRace thingDefAlienRace in races)
 				{
-					var race = (ThingDef)thingDefAlienRace;
-					genRaces.Add(race);
-					DefGenerator.AddImpliedDef(race);
-					DefGenerator.AddImpliedDef(thingDefAlienRace);
+					DebugLog.Message("adding " + thingDefAlienRace.defName);
+					// DefGenerator.AddImpliedDef(race);
+					genRaces.Add((ThingDef)thingDefAlienRace);
+					DefGenerator.AddImpliedDef<ThingDef>(thingDefAlienRace);
 				}
+				DebugLog.Message("generate hashes");
 
 				object[] tmpArr = new object[2];
 
@@ -670,6 +708,7 @@ namespace Pawnmorph
 					HashGiverUtils.GiveShortHash(thingDef);
 				}
 
+				DebugLog.Message("init morphs");
 				MorphUtilities.Initialize();
 			}
 			catch (MissingMethodException e)

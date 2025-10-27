@@ -502,9 +502,9 @@ namespace Pawnmorph.Chambers
 		/// <summary>
 		///     Ticks this instance.
 		/// </summary>
-		public override void Tick()
+		protected override void TickInterval(int delta)
 		{
-			base.Tick();
+			base.TickInterval(delta);
 
 			if (!Refuelable.HasFuel) return;
 
@@ -552,7 +552,7 @@ namespace Pawnmorph.Chambers
 			Refuelable.Notify_UsedThisTick();
 
 
-			_timer -= 1;
+			_timer -= delta;
 			Pawn pawn = (Pawn)innerContainer[0];
 			switch (_currentUse)
 			{

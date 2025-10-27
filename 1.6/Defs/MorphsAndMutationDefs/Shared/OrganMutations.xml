@@ -1,0 +1,198 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MutationDef.xsd">
+
+	<!-- Organ (abstract) -->
+
+	<Pawnmorph.Hediffs.MutationDef Name ="PawnmorphGenericOrganPart" ParentName ="PawnmorphMiscPart" Abstract="true">
+		<categories>
+			<li>Major</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<painOffset>0.2</painOffset>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Strong Heart -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>This heart is built for a larger body, and pumps a lot of blood. It also tires people out.</description>
+		<defName>EtherStrongHeart</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>strong heart</label>
+		<parts>
+			<li>Heart</li>
+		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Strong pulses are going through [PAWN_nameDef]'s chest. They are getting worse and worse.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>A painful spasm of a growing heart is burning in [PAWN_nameDef]'s chest.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s heart has grown in size and the surrounding chest cavity has expanded to make room. [PAWN_pronoun] will need to rest more often, however.</description>
+					<restFallFactorOffset>0.3</restFallFactorOffset>
+					<partEfficiencyOffset>0.3</partEfficiencyOffset>
+			</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Bellowing Lung -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>A large, powerful lung for intensive breathing.</description>
+		<defName>EtherBellowingLung</defName>
+		<classInfluence>Powerful</classInfluence>
+		<label>bellowing lung</label>
+		<parts>
+			<li>Lung</li>
+		</parts>
+		<categories>
+			<li>Powerful</li>
+		</categories>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>Breathing is becoming more and more difficult for [PAWN_nameDef] as [PAWN_pronoun]'s lung has started to expand.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>A painful spasm of a growing lung is burning in [PAWN_nameDef]'s chest.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s lung has grown in size and the surrounding chest cavity has expanded to make room. The larger size leads to hyperventilation, causing slight dizziness.</description>
+					<partEfficiencyOffset>0.15</partEfficiencyOffset>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s lung has acquired a reinforced voicebox that can focus [PAWN_nameDef]'s breath into a roar capable of terrifying and overloading mechanical auditory sensors.</description>
+				<partEfficiencyOffset>0.15</partEfficiencyOffset>
+				<abilities>
+					<li>
+						<abilityClass>Pawnmorph.Abilities.TerrifyingRoar</abilityClass>
+						<label>Terrifying Roar</label>
+						<description>Cause anyone nearby to panic.</description>
+						<iconPath>UI/Buttons/PM_Icon_Terrifying_roar</iconPath>
+						<cooldown>180000</cooldown>
+					</li>
+				</abilities>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+	<!-- Expanded Cerabellum -->
+	
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>An expanded frontal lobe for bright morphs.</description>
+		<defName>EtherExpandedCerabellum</defName>
+		<classInfluence>Cerebral</classInfluence>
+		<label>expanded frontal lobe</label>
+		<parts>
+			<li>Brain</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef] is recently having more headaches than usual.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s having a painful, constant migraine. It feels like [PAWN_nameDef]'s brain is expandiing.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s frontal lobe has expanded. With these new connections, many problems are now trivial for [PAWN_nameDef].</description>
+					<statOffsets>
+						<HackingSpeed MayRequire="ludeon.rimworld.ideology">0.75</HackingSpeed>
+						<ResearchSpeed>0.20</ResearchSpeed>
+					</statOffsets>
+			</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>[PAWN_nameDef]'s enhanced brain is so adept at logical problem solving [PAWN_objective] can solve differential equations on the fly, calculating ballistics trajectories is a comparatively simple matter.</description>
+				<statOffsets>
+					<HackingSpeed MayRequire="ludeon.rimworld.ideology">0.75</HackingSpeed>
+					<ResearchSpeed>0.20</ResearchSpeed>
+					<MortarMissRadiusFactor>-10</MortarMissRadiusFactor>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<!-- Iron Stomach -->
+
+	<Pawnmorph.Hediffs.MutationDef ParentName ="PawnmorphGenericOrganPart">
+		<description>A stomach which is resilient to most germs.</description>
+		<defName>EtherIronStomach</defName>
+		<classInfluences>
+			<li>Scavenger</li>
+			<li>Suid</li>
+		</classInfluences>
+		<label>iron stomach</label>
+		<parts>
+			<li>Stomach</li>
+		</parts>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>initial</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s stomach is sometimes hurting a bit after eating. Nothing too worrying though.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef] seems to have painful disgestion troubles, like if [PAWN_possessive] gut was evolving.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s gut is now resilient to dangerous and rotten food, and [PAWN_nameDef] could eat almost everything.</description>
+					<statOffsets>
+						<DangerousFoodSensitivity>-1</DangerousFoodSensitivity>
+						<RottenFoodSensitivity>-1</RottenFoodSensitivity>
+						<ImmunityGainSpeed>0.2</ImmunityGainSpeed>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

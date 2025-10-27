@@ -43,15 +43,6 @@ namespace Pawnmorph.Chambers
 			}
 		}
 
-		bool CanAdd
-		{
-			get
-			{
-				var db = Find.World.GetComponent<ChamberDatabase>();
-				return db.CanAddToDatabase(new AnimalGenebankEntry(Animal));
-			}
-		}
-
 		/// <summary>
 		///     gets float menu options for this comp .
 		/// </summary>
@@ -59,6 +50,8 @@ namespace Pawnmorph.Chambers
 		/// <returns></returns>
 		public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
 		{
+			base.CompFloatMenuOptions(selPawn);
+
 			JobFailReason.Clear();
 
 			string scanFailReason = (props as AnimalGenomeStorageCompProps).scanFailReason;

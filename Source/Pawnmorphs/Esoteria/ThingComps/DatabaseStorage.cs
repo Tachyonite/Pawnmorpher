@@ -36,23 +36,20 @@ namespace Pawnmorph.ThingComps
 			base.ReceiveCompSignal(signal);
 		}
 
-		/// <summary>
-		///     called after this thing is destroyed
-		/// </summary>
-		/// <param name="mode">The mode.</param>
-		/// <param name="previousMap">The previous map.</param>
-		public override void PostDestroy(DestroyMode mode, Map previousMap)
+		public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
 		{
-			base.PostDestroy(mode, previousMap);
 			if (_added)
 			{
 				var database = Find.World.GetComponent<ChamberDatabase>();
 				database.TotalStorage -= Props.storageAmount;
 
 				// Clear inactive storage.
-				if (_powered == false)
+				if (_powered)
 					Database.NotifyPowerOn(Props.storageAmount);
+				_added = false;
+				_powered = false;
 			}
+			base.PostDeSpawn(map, mode);
 		}
 
 		private const string PROVIDE_MESSAGE_TAG = "PMStorageSpaceMessage";

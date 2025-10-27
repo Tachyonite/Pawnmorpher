@@ -1,0 +1,23 @@
+﻿<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="EquineMorph">
+		<defName>HorseMorph</defName>
+		<label>horsemorph</label>
+		<description>Horsemorphs are strong pack morphs that often have hoofed feet and a broad snout that snorts when they get upset. They are quite fast, and useful for hauling.</description>
+		<race>Horse</race>
+		<categories>
+			<li>Temperate</li>
+			<li>Domestic</li>
+		</categories>
+		<fullTransformation>PawnmorphHorseTF</fullTransformation>
+		<partialTransformation>PawnmorphHorseTFPartial</partialTransformation>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(160,100,60)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>HorseTransformationMemory</transformationMemory>
+			<revertedMemory>HorseRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>
