@@ -37,13 +37,13 @@ namespace Pawnmorph.Jobs
 			this.FailOn(() => !scannerComp.CanUseNow);
 			yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
 			Toil work = new Toil();
-			work.tickIntervalAction = (int delta) =>
+			work.tickAction = () =>
 			{
 				Pawn actor = work.actor;
 				_ = (Building)actor.CurJob.targetA.Thing;
 				scannerComp.Used(actor);
 				actor.skills?.Learn(SkillDefOf.Intellectual, 0.035f);
-				actor.GainComfortFromCellIfPossible(delta, chairsOnly: true);
+				actor.GainComfortFromCellIfPossible(1, chairsOnly: true);
 			};
 			work.PlaySustainerOrSound(scannerComp.Props.soundWorking);
 			work.AddFailCondition(() => !scannerComp.CanUseNow);
