@@ -127,9 +127,9 @@ namespace Pawnmorph.Utilities
 		/// <summary>
 		///     Finalizes the initialize.
 		/// </summary>
-		public override void FinalizeInit()
+		public override void FinalizeInit(bool fromLoad)
 		{
-			base.FinalizeInit();
+			base.FinalizeInit(fromLoad);
 			try
 			{
 				GenCompCacher.ClearAllCompCaches(); //clear any pawns from a previous world 

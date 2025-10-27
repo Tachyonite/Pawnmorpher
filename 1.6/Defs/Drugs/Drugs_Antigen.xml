@@ -1,0 +1,160 @@
+<Defs>
+	<ThingDef ParentName="SerumBase">
+		<defName>Antigen</defName>
+		<label>antigen</label>
+		<description>A concentration of antigenic mechanites that have been distilled from glowvine seedpods. When injected, it can neutralize any active mutagenic mechanites in the body, but it offers no long term protection against future exposure. Also used in the production of many mutagen-neutralising or reversing agents.
+
+Raw antigen is often used as an emergency treatment for mutagenic diseases and mutagenic buildup. Those who intentionally inject themselves with morph serums also find it a cheap and reliable way to halt the effects of the serum before they fully transform.</description>
+		<graphicData>
+			<graphicClass>Graphic_StackCount</graphicClass>
+			<texPath>Things/Item/Drug/Antigen</texPath>
+		</graphicData>
+		<statBases>
+			<WorkToMake>400</WorkToMake>
+			<MarketValue>100</MarketValue>
+			<MutaniteConcentration>0</MutaniteConcentration>
+		</statBases>
+		<thingCategories Inherit="False">
+			<li>RawMutagen</li>
+		</thingCategories>
+		<ingestible>
+			<outcomeDoers>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>AntigenEffective</hediffDef>
+					<severity>0.10</severity>
+				</li>
+			</outcomeDoers>
+		</ingestible>
+		<recipeMaker>
+			<effectWorking>Cook</effectWorking>
+			<soundWorking>Recipe_Brewing</soundWorking>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+			<bulkRecipeCount>4</bulkRecipeCount>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		</recipeMaker>
+		<costList>
+			<Glowvine>5</Glowvine>
+		</costList>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Drug">
+				<listOrder>1000</listOrder>
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<HediffDef>
+		<defName>AntigenEffective</defName>
+		<description>Antigenic.</description>
+		<hediffClass>HediffWithComps</hediffClass>
+		<label>antigen effective</label>
+		<defaultLabelColor>(179,86,132)</defaultLabelColor>
+		<scenarioCanAdd>true</scenarioCanAdd>
+		<maxSeverity>1</maxSeverity>
+		<isBad>false</isBad>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-4</severityPerDay>
+			</li>
+			<li Class="Pawnmorph.Hediffs.CompProperties_RemoveType">
+				<removeTypes>
+					<li>Pawnmorph.Hediffs.MorphTf</li>
+					<li>Pawnmorph.Hediffs.Hediff_MutagenicBase</li>
+				</removeTypes>
+			</li>
+		</comps>
+		<stages>
+			<li>
+				<statOffsets>
+					<MutagenSensitivity>-1.5</MutagenSensitivity>
+					<TransformationSensitivity>-1.5</TransformationSensitivity>
+					<MutationHaltChance>1</MutationHaltChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
+
+
+	<ThingDef ParentName="MedicineBase">
+		<defName>PM_HaltCream</defName>
+		<label>halt cream</label>
+		<description>A balm of concentrated antigen that, when applied to a mutation, has a chance to halt its progression. It can't remove mutations, but if applied immediately after an unwanted mutation is gained it can prevent it from getting worse. Higher medical skill increases the chances of success.
+
+Halting cream is often used by industrial nations that lack the technology to produce reverter to prevent mutagen exposure victims from losing use of their hands.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/HaltingCream</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<techLevel>Neolithic</techLevel>
+		<statBases>
+			<MarketValue>35</MarketValue>
+			<Mass>0.35</Mass>
+			<Flammability>1.3</Flammability>
+			<DeteriorationRate>6</DeteriorationRate>
+		</statBases>
+		<costList>
+			<MedicineHerbal>1</MedicineHerbal>
+			<Antigen>1</Antigen>
+		</costList>
+		<thingCategories Inherit="False">
+			<li>Manufactured</li>
+		</thingCategories>
+		<recipeMaker>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<productCount>3</productCount>
+			<workAmount>600</workAmount>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+			<researchPrerequisite>MutagenExtraction</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	
+	<ThingDef ParentName="MedicineBase">
+		<defName>PM_AdaptionCream</defName>
+		<label>adaption cream</label>
+		<description>An advanced balm of antigen and slurry that, when applied to a mutation, stimulates the mutation to begin adapting to a more morph-friendly state. Adapted mutations are more beneficial or less hindering than normal mutations, though not all kinds of mutations can adapt. Paragon morphs are already adapted beyond the limits of adaption cream and so will not benefit further from its effects.
+
+Adaption cream is often used to partially restore manipulation to unlucky morphs that lose their fingers to mutations.</description>
+		<graphicData>
+			<texPath>Things/Item/Drug/AdaptionCream</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>0.85</drawSize>
+		</graphicData>
+		<techLevel>Industrial</techLevel>
+		<statBases>
+			<MarketValue>50</MarketValue>
+			<Mass>0.35</Mass>
+			<Flammability>1.3</Flammability>
+			<DeteriorationRate>6</DeteriorationRate>
+		</statBases>
+		<costList>
+			<MedicineIndustrial>1</MedicineIndustrial>
+			<Antigen>1</Antigen>
+			<MechaniteSlurry>1</MechaniteSlurry>
+		</costList>
+		<thingCategories Inherit="False">
+			<li>Manufactured</li>
+		</thingCategories>
+		<recipeMaker>
+			<workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+			<workSkill>Intellectual</workSkill>
+			<productCount>3</productCount>
+			<workAmount>600</workAmount>
+			<recipeUsers>
+				<li>DrugLab</li>
+				<li>MutagenLab</li>
+			</recipeUsers>
+			<researchPrerequisite>LozengeProduction</researchPrerequisite>
+		</recipeMaker>
+	</ThingDef>
+	
+</Defs>

@@ -1,0 +1,69 @@
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>PM_MutationScanner</defName>
+        <label>Mutation Sequencer</label>
+        <description>Accesses your genebanks and sequences the animal genomes you've stored. Over time, will unlock mutations to be used in chambers, if manned.</description>
+        <graphicData>
+            <texPath>Things/Building/GenomeSequencer/GenomeSequencer</texPath>
+            <graphicClass>Graphic_Multi</graphicClass>
+            <drawSize>2.65</drawSize>
+            <drawOffset>(0,0,-0.05)</drawOffset>
+            <shadowData>
+                <volume>(1.6875, 0.375, 2.125)</volume>
+                <offset>(0,0,-0.12)</offset>
+            </shadowData>
+        </graphicData>
+        <costList>
+            <Steel>150</Steel>
+            <ComponentIndustrial>4</ComponentIndustrial>
+            <ComponentSpacer>1</ComponentSpacer>
+        </costList>
+        <building>
+            <destroySound>BuildingDestroyed_Metal_Big</destroySound>
+        </building>
+        <comps>
+            <li Class="CompProperties_Forbiddable" />
+            <li Class="CompProperties_Power">
+                <compClass>CompPowerTrader</compClass>
+                <basePowerConsumption>700</basePowerConsumption>
+            </li>
+            <li Class="CompProperties_Breakdownable" />
+            <li Class="CompProperties_Flickable" />
+            <li Class="Pawnmorph.ThingComps.MutationSequencerProps">
+                <scanSpeedStat>ResearchSpeed</scanSpeedStat>
+                <scanFindMtbDays>1</scanFindMtbDays>
+                <scanFindGuaranteedDays>2</scanFindGuaranteedDays>
+                <soundWorking>ScannerGroundPenetrating_Ambience</soundWorking>
+            </li>
+        </comps>
+        <altitudeLayer>Building</altitudeLayer>
+        <canBeUsedUnderRoof>true</canBeUsedUnderRoof>
+        <statBases>
+            <MaxHitPoints>200</MaxHitPoints>
+            <WorkToBuild>12000</WorkToBuild>
+            <Flammability>0.5</Flammability>
+            <Beauty>-8</Beauty>
+        </statBases>
+        <hasInteractionCell>true</hasInteractionCell>
+        <interactionCellOffset>(0,0,2)</interactionCellOffset>
+        <interactionCellIcon>DiningChair</interactionCellIcon>
+        <interactionCellIconReverse>true</interactionCellIconReverse>
+        <fillPercent>0.40</fillPercent>
+        <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+        <passability>PassThroughOnly</passability>
+        <pathCost>50</pathCost>
+        <designationCategory>GR_GeneticsTab</designationCategory>
+        <rotatable>true</rotatable>
+        <canOverlapZones>false</canOverlapZones>
+        <size>(3,3)</size>
+        <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+        <placeWorkers>
+            <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+        </placeWorkers>
+        <defaultPlacingRot>South</defaultPlacingRot> <!-- to match long range mineral scanner -->
+        <researchPrerequisites>
+            <li>PM_MutationSequencer</li>
+        </researchPrerequisites>
+        <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    </ThingDef>
+</Defs>

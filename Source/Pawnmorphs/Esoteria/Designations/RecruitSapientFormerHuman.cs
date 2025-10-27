@@ -43,19 +43,20 @@ namespace Pawnmorph.Designations
 			this.hotKey = KeyBindingDefOf.Misc4;
 		}
 
-		/// <summary>
-		/// Gets the draggable dimensions.
-		/// </summary>
-		/// <value>
-		/// The draggable dimensions.
-		/// </value>
-		public override int DraggableDimensions
-		{
-			get
-			{
-				return 2;
-			}
-		}
+		///// <summary>
+		///// Gets the draggable dimensions.
+		///// </summary>
+		///// <value>
+		///// The draggable dimensions.
+		///// </value>
+		//public override int DraggableDimensions
+		//{
+		//	get
+		//	{
+		//		return 2;
+		//	}
+		//}
+
 		/// <summary>
 		/// Designates the single cell.
 		/// </summary>
@@ -101,7 +102,7 @@ namespace Pawnmorph.Designations
 			{
 				if (pawn.guest != null && pawn.guest.lastRecruiterName == null)
 				{
-					pawn.guest.resistance = 10 * pawn.def.race.wildness;
+					pawn.guest.resistance = 10 * pawn.def.GetStatValueAbstract(StatDefOf.Wildness);
 				}
 			}
 		}

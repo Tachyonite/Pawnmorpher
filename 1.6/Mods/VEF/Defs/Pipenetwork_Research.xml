@@ -1,0 +1,35 @@
+<Defs>
+	<!--=== Column 4 ===-->
+	
+	<ResearchProjectDef ParentName="PMSpaceResearch">
+		<defName>PM_MutagenStorage</defName>
+		<label>Mutagen Storage</label>
+		<description>Develop methods of large scale mutagenic slurry production, storage and transfer</description>
+		<baseCost>500</baseCost>
+		<researchViewX>3.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+		<prerequisites>
+			<li>MutagenExtraction</li>
+		</prerequisites>
+	</ResearchProjectDef>
+
+	<!--=== Column 5 ===-->
+
+	<ResearchProjectDef>
+		<defName>MutagenCentrifuging</defName>
+		<label>Mutagen centrifuging</label>
+		<description>Develop plans to construct a centrifuge to refine slurry and chaobulbs back to mutanite by a process involving the straining of mechanites through morphsilk. This process will not be efficient and will use quite a bit of power, but if mutanite is otherwise unobtainable...this is one way to get it. It will also be possible to forgo safety protocols to speed up the process, though this may have unintended effects on anyone nearby.</description>
+		<baseCost>3000</baseCost>
+		<techLevel>Spacer</techLevel>
+		<tab>Pawnmorpher</tab>
+		<researchViewX>4.00</researchViewX>
+		<researchViewY>0.00</researchViewY>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<prerequisites>
+			<li>PM_MutagenStorage</li>
+		</prerequisites>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+	</ResearchProjectDef>
+</Defs>

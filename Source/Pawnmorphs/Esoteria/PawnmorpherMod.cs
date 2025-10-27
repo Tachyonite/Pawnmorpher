@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HarmonyLib;
 using Pawnmorph.DebugUtils;
-using Pawnmorph.HPatches.Optional;
 using Pawnmorph.UserInterface;
 using Pawnmorph.UserInterface.TreeBox;
 using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -38,6 +38,22 @@ namespace Pawnmorph
 		public PawnmorpherMod(ModContentPack content) : base(content)
 		{
 			settings = GetSettings<PawnmorpherSettings>();
+
+
+
+			var harmonyInstance = new Harmony("com.pawnmorpher.mod"); //shouldn't this be different?
+			var method = AccessTools.Method(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve));
+			if (method == null)
+				throw new Exception("HELP!");
+			harmonyInstance.Patch(method, prefix: AccessTools.Method(typeof(PawnmorpherMod), nameof(GenerateInjectors)));
+		}
+
+		private static void GenerateInjectors(bool hotReload)
+		{
+			if (hotReload)
+				return;
+
+			PMImplicitDefGenerator.GenerateThingDefs();
 		}
 
 		/// <summary>Writes the settings.</summary>

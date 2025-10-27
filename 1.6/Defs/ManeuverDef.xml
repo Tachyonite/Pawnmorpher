@@ -1,0 +1,56 @@
+<Defs>
+    <ManeuverDef>
+        <defName>MutagenicCut</defName>
+        <requiredCapacity>MutagenicCut</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>MutagenicCut</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+
+    <ManeuverDef>
+        <defName>MutagenicStun</defName>
+        <requiredCapacity>MutagenicStun</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>MutagenicStun</meleeDamageDef>
+        </verb>
+        <combatLogRulesHit>Maneuver_Poke_MeleeHit</combatLogRulesHit> <!-- wrong combat logs,  I'll change them later -->
+        <combatLogRulesDeflect>Maneuver_Poke_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Poke_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Poke_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+
+    <ManeuverDef>
+        <defName>MutagenicStab</defName>
+        <requiredCapacity>MutagenicStab</requiredCapacity>
+        <verb>
+            <verbClass>Verb_MeleeAttackDamage</verbClass>
+            <meleeDamageDef>MutagenicStab</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Stab_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Stab_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Stab_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Stab_MeleeDodge</combatLogRulesDodge>
+    </ManeuverDef>
+
+    <ManeuverDef>
+        <defName>MutagenicPoke</defName>
+        <requiredCapacity>MutagenicPoke</requiredCapacity>
+        <verb>
+          <verbClass>Verb_MeleeAttackDamage</verbClass>
+          <meleeDamageDef>MutagenicPoke</meleeDamageDef>
+        </verb>
+        <logEntryDef>MeleeAttack</logEntryDef>
+        <combatLogRulesHit>Maneuver_Poke_MeleeHit</combatLogRulesHit>
+        <combatLogRulesDeflect>Maneuver_Poke_MeleeDeflect</combatLogRulesDeflect>
+        <combatLogRulesMiss>Maneuver_Poke_MeleeMiss</combatLogRulesMiss>
+        <combatLogRulesDodge>Maneuver_Poke_MeleeDodge</combatLogRulesDodge>
+      </ManeuverDef>
+</Defs>

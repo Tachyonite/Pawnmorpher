@@ -1,0 +1,177 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaJawPart">
+		<classInfluence>SnakeMorph</classInfluence>
+		<defName>EtherSnakeJaw</defName>
+		<label>snake snout</label>
+		<graphics>
+			<Muzzle>Parts/Cobra/Cobra_Muzzle</Muzzle>
+		</graphics>
+		<comps>
+			<li Class="HediffCompProperties_VerbGiver">
+				<tools>
+					<li>
+						<label>fangs</label>
+						<capacities>
+							<li>ToxicBite</li>
+							<li>MutagenicStab</li>
+						</capacities>
+						<power>12</power>
+						<cooldownTime>2.5</cooldownTime>
+						<linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
+						<surpriseAttack>
+							<extraMeleeDamages>
+								<li>
+									<def>Stun</def>
+									<amount>14</amount>
+								</li>
+							</extraMeleeDamages>
+						</surpriseAttack>
+					</li>
+				</tools>
+			</li>
+		</comps>
+		<stagePatches>
+			<li function="initial">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>0</chanceFactor>
+							<power>0</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+		            <verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>6</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+				    <verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>0.5</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+				    <verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+				    <verbOverrides>
+						<li>
+							<label>fangs</label>
+							<chanceFactor>1</chanceFactor>
+							<power>12</power>
+						</li>
+					</verbOverrides>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="OphidiaTailPart">
+		<defName>EtherSnakeTail</defName>
+		<label>snake tail</label>
+		<classInfluence>SnakeMorph</classInfluence>
+		<graphics>
+			<BodyExtendingTail>Parts/Cobra/Cobra_Tail</BodyExtendingTail>
+		</graphics>
+		<stagePatches>
+		    <li function="modify">
+				<stageKey>pressing</stageKey>
+				<values>
+					<capMods>
+					    <li>
+						    <capacity>Moving</capacity>
+							<offset>0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		    <li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+					    <li>
+						    <capacity>Moving</capacity>
+							<offset>-0.05</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+                    <capMods>
+					    <li>
+						    <capacity>Moving</capacity>
+							<offset>0.10</offset>
+						</li>
+					</capMods>
+					<statOffsets>
+						<ShootingAccuracyPawn>2</ShootingAccuracyPawn>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="PawnmorphPart">
+		<classInfluence>SnakeMorph</classInfluence>
+		<defName>EtherSnakeHood</defName>
+		<description>A large swooping hood engulfs the head, granting a rather intimidating look.</description>
+		<label>cobra hood</label>
+		<graphics>
+			<CobraHood>Parts/Cobra/Cobra_Hood</CobraHood>
+			<CobraHoodBackground>Parts/Cobra/Cobra_Hood_Behind</CobraHoodBackground>
+		</graphics>
+		<stages>
+            <li Class="Pawnmorph.Hediffs.MutationStage">
+			</li>
+		</stages>
+		<parts>
+			<li>Head</li>
+		</parts>
+		<blockSites>
+			<li>Skull</li>
+		</blockSites>
+		<!--Needs Stats-->
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

@@ -34,7 +34,7 @@ namespace Pawnmorph.Jobs
 		{
 			this.FailOn(() => !JoyUtility.EnjoyableOutsideNow(pawn));
 			Toil goToil = Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
-			goToil.tickAction = GotToToil;
+			goToil.tickIntervalAction = GotToToil;
 
 			var tComps = pawn.health.hediffSet.hediffs.Select(h => h.TryGetComp<Comp_TerrainProduction>())
 							 .Where(c => c != null)
@@ -68,7 +68,7 @@ namespace Pawnmorph.Jobs
 
 		}
 
-		private void GotToToil()
+		private void GotToToil(int delta)
 		{
 			if (Find.TickManager.TicksGame > startTick + job.def.joyDuration)
 			{
@@ -76,7 +76,7 @@ namespace Pawnmorph.Jobs
 				return;
 			}
 
-			JoyUtility.JoyTickCheckEnd(pawn);
+			JoyUtility.JoyTickCheckEnd(pawn, delta);
 		}
 	}
 }

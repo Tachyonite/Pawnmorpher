@@ -792,7 +792,7 @@ namespace Pawnmorph
 		public static void HandleTFWitnesses([NotNull] Pawn originalPawn, [NotNull] Pawn transformedPawn, IntVec3 location, [NotNull] Map map)
 		{
 
-			foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive.MakeSafe())
+			foreach (Pawn pObserver in PawnsFinder.AllCaravansAndTravellingTransporters_Alive.MakeSafe())
 			{
 				if (pObserver == transformedPawn || pObserver == null || pObserver == originalPawn || pObserver.Map != map) continue;
 				if (pObserver.needs?.mood?.thoughts?.memories == null) continue;

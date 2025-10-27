@@ -1,13 +1,13 @@
 ﻿// InjectorGenerator.cs created by Iron Wolf for Pawnmorph on 09/13/2021 7:24 AM
 // last updated 09/13/2021  7:24 AM
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Pawnmorph.Things
@@ -63,10 +63,12 @@ namespace Pawnmorph.Things
 				{
 					morphDef.injectorDef = CreateInjectorDefFor(morphDef);
 					if (morphDef.injectorDef != null)
+					{
 						_generatedInjectorDefs.Add(morphDef.injectorDef);
+						//HashGiverUtils.GiveShortHash(morphDef.injectorDef);
+						DefGenerator.AddImpliedDef(morphDef.injectorDef);
+					}
 				}
-
-			ResolveThingCategories();
 		}
 
 		private static ThingDef CreateInjectorDefFor([NotNull] MorphDef mDef)
@@ -89,6 +91,7 @@ namespace Pawnmorph.Things
 			{
 				return null;
 			}
+			props.ResolveReferences(mDef.label);
 
 			var comps = new List<CompProperties>
 			{
@@ -113,6 +116,7 @@ namespace Pawnmorph.Things
 				preferability = FoodPreferability.NeverForNutrition,
 				drugCategory = DrugCategory.None
 			};
+
 			var tDef = new ThingDef
 			{
 				defName = defName,
@@ -186,31 +190,6 @@ namespace Pawnmorph.Things
 			return baseOutcomes;
 		}
 
-		static void ResolveThingCategories()
-		{
-
-			List<ThingCategoryDef> lst = new List<ThingCategoryDef>();
-			//manually put the generated thing defs into their categories 
-			foreach (ThingDef injectorDef in GeneratedInjectorDefs)
-			{
-				foreach (ThingCategoryDef cat in injectorDef.thingCategories.MakeSafe())
-				{
-
-					cat.childThingDefs?.Add(injectorDef);
-					if (!lst.Contains(cat)) lst.Add(cat);
-				}
-			}
-
-			//now call resolve references again on these, should be fine 
-			foreach (ThingCategoryDef cat in lst)
-			{
-				cat.ResolveReferences();
-			}
-
-
-			foreach (var item in DefDatabase<ThingDef>.AllDefsListForReading.Where(x => x.building?.fixedStorageSettings != null))
-				item.building.fixedStorageSettings.filter.ResolveReferences();
-		}
 
 		private static List<StatModifier> GetStatModifiers([NotNull] MorphInjectorProperties props)
 		{

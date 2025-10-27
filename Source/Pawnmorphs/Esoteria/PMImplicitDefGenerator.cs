@@ -29,14 +29,24 @@ namespace Pawnmorph
 		/// <summary>
 		///     Generates the implicit defs.
 		/// </summary>
+		public static void GenerateThingDefs()
+		{
+			_defList.Clear();
+			GenomeDefGenerator.GenerateGenomes(); //handles it's own hash's and resolve refs 
+
+			_defList.Clear();
+			InjectorGenerator.GenerateInjectorDefs();
+		}
+
+		/// <summary>
+		///     Generates the implicit defs.
+		/// </summary>
 		public static void GenerateImplicitDefs()
 		{
 			//note: do not put hybrid race generation here. that needs to be handled in main initialization 
 
-			GenomeDefGenerator.GenerateGenomes(); //handles it's own hash's and resolve refs 
 			_defList.Clear();
 			MorphHediffGenerator.GenerateAllMorphHediffs();
-			InjectorGenerator.GenerateInjectorDefs();
 			//resolve non recipe def references on the generated defs 
 
 			_defList.AddRange(InjectorGenerator.GeneratedInjectorDefs);
@@ -64,7 +74,6 @@ namespace Pawnmorph
 
 			_defList.Clear();
 			//short hashs
-			GiveHashes(InjectorGenerator.GeneratedInjectorDefs);
 			GiveHashes(MorphHediffGenerator.AllGeneratedHediffDefs);
 			GiveHashes(PMRecipeDefGenerator.AllRecipes);
 
@@ -76,11 +85,6 @@ namespace Pawnmorph
 
 			DefDatabase<HediffDef>.Add(MorphHediffGenerator.AllGeneratedHediffDefs);
 			DefDatabase<RecipeDef>.Add(PMRecipeDefGenerator.AllRecipes);
-
-			foreach (ThingDef tDef in InjectorGenerator.GeneratedInjectorDefs)
-			{
-				DefGenerator.AddImpliedDef(tDef);
-			}
 
 			ResourceCounter.ResetDefs();
 

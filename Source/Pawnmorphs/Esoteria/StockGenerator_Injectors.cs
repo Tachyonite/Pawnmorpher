@@ -6,6 +6,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Pawnmorph.Utilities;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 
 namespace Pawnmorph
@@ -66,7 +67,7 @@ namespace Pawnmorph
 		/// <param name="forTile">For tile.</param>
 		/// <param name="factionFor">The faction the things are being generated for.</param>
 		/// <returns></returns>
-		public override IEnumerable<Thing> GenerateThings(int forTile, Faction factionFor = null)
+		public override IEnumerable<Thing> GenerateThings(PlanetTile forTile, Faction factionFor = null)
 		{
 			if (Injectors.Count == 0)
 			{

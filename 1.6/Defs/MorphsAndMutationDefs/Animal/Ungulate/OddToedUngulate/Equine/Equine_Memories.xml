@@ -1,0 +1,96 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/ThoughtDef.xsd">
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherEquineMuzzle</defName>
+		<stages>
+			<li>
+				<label>Equine face</label>
+				<description>Not sure if it's practical but I'll make it work.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine face</label>
+				<description>My mule is the cutest thing I've ever seen!</description>
+				<visible>true</visible>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine face</label>
+				<description>I don't want to have a long face!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine face</label>
+				<description>I'll never want for anything but grass ever again!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-3</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherEquineEar</defName>
+		<stages>
+			<li>
+				<label>Equine ears</label>
+				<description>It's a look for sure.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine ears</label>
+				<description>The only advantage I need is the cool factor!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine ears</label>
+				<description>How will I wear hats with these?!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine ears</label>
+				<description>I'm sure they'll let me hear anyone creeping up on me!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+	<ThoughtDef ParentName="OutlookMemoryBase">
+		<durationDays>1</durationDays>
+		<defName>EtherEquineTail</defName>
+		<stages>
+			<li>
+				<label>Equine tail</label>
+				<description>It doesn't get in the way at least.</description>
+				<visible>true</visible>
+				<baseMoodEffect>-1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine tail</label>
+				<description>Flies beware my mighty tail!</description>
+				<visible>true</visible>
+				<baseMoodEffect>1</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine tail</label>
+				<description>No this isn't right at all!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+			<li>
+				<label>Equine tail</label>
+				<description>It's a natural part of me now!</description>
+				<visible>true</visible>
+				<baseMoodEffect>-2</baseMoodEffect>
+			</li>
+		</stages>
+	</ThoughtDef>
+
+</Defs>

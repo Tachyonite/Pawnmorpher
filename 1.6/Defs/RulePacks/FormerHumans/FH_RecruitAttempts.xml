@@ -1,0 +1,46 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Schemas/RulePackDef.xsd">
+    <RulePackDef>
+        <defName>SapientAnimalRecruitSuccess</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] has accepted and joined [INITIATOR_nameDef]'s community.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+    <RulePackDef>
+        <defName>MostlySapientAnimalRecruitSuccess</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] has accepted and joined [INITIATOR_nameDef]'s community.</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+
+
+    <!-- Failure -->
+
+    <RulePackDef>
+        <defName>SapientAnimalRecruitRejected</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] refused.</li>
+                <li>sent->[RECIPIENT_nameDef] told [INITIATOR_objective] to shove it.</li>
+                <li>sent->[RECIPIENT_nameDef] told [INITIATOR_objective] to get lost.</li>
+                <li>sent->[RECIPIENT_nameDef] yelled at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] made a rude gesture at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] rolled [RECIPIENT_possessive] eyes at [INITIATOR_objective].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+    <RulePackDef>
+        <defName>MostlySapientAnimalRecruitRejected</defName>
+        <rulePack>
+            <rulesStrings>
+                <li>sent->[RECIPIENT_nameDef] refused.</li>
+                <li>sent->[RECIPIENT_nameDef] made a rude gesture at [INITIATOR_objective].</li>
+                <li>sent->[RECIPIENT_nameDef] rolled [RECIPIENT_possessive] eyes at [INITIATOR_objective].</li>
+            </rulesStrings>
+        </rulePack>
+    </RulePackDef>
+</Defs>

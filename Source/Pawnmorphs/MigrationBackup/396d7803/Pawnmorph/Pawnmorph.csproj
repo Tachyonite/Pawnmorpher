@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04338000-4A27-47AB-A654-9F4BEF21BBBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pawnmorph</RootNamespace>
+    <AssemblyName>Pawnmorph</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>Latest</LangVersion>
+    <RimworldFolder Condition=" '$(RimworldFolder)' == '' ">F:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data</RimworldFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>Latest</LangVersion>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Hotswapping|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DocumentationFile>..\..\..\Documentation\Pawnmorph.xml</DocumentationFile>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>Latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <!-- Base Dependencies -->
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.3.6\lib\net48\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="AlienRace, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\AlienRace.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- Include the Rimworld assemblies if they exist (Krafs.Rimworld.Ref stubs will be used if not) -->
+  <ItemGroup Condition="Exists('$(RimworldFolder)\Managed\Assembly-CSharp.dll')">
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimworldFolder)\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(RimworldFolder)\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abilities\Bullrush.cs" />
+    <Compile Include="Abilities\Skyfallers\FlightSkyFaller.cs" />
+    <Compile Include="Abilities\MutationAbility.cs" />
+    <Compile Include="Abilities\Flight.cs" />
+    <Compile Include="Abilities\MutationAbilityDef.cs" />
+    <Compile Include="Abilities\MutationAbilityState.cs" />
+    <Compile Include="Abilities\MutationAbilityType.cs" />
+    <Compile Include="Abilities\TerrifyingRoar.cs" />
+    <Compile Include="DefOfs\PM_BodyPartDefOf.cs" />
+    <Compile Include="DefOfs\PM_ThoughtDefOf.cs" />
+    <Compile Include="FormerHumans\FormerHumanRestrictions.cs" />
+    <Compile Include="Genebank\Model\AnimalGenebankEntry.cs" />
+    <Compile Include="Genebank\GenebankEntry.cs" />
+    <Compile Include="Genebank\IGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\MutationGenebankEntry.cs" />
+    <Compile Include="Genebank\Model\TemplateGenebankEntry.cs" />
+    <Compile Include="Genebank\RecentGenebankSelector.cs" />
+    <Compile Include="HPatches\CaravanPatches.cs" />
+    <Compile Include="HPatches\GamePatches.cs" />
+    <Compile Include="HPatches\GeneTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnAgeTrackerPatches.cs" />
+    <Compile Include="HPatches\PawnMindStatePatches.cs" />
+    <Compile Include="HPatches\WorldPawnsPatches.cs" />
+    <Compile Include="Interfaces\IConfigurableObject.cs" />
+    <Compile Include="Interfaces\ICaused.cs" />
+    <Compile Include="ModExtensions\AdministerableExtension.cs" />
+    <Compile Include="ModExtensions\AnimalFilterModExtension.cs" />
+    <Compile Include="ModExtensions\MutagenicItemExtension.cs" />
+    <Compile Include="PMStyleDefOf.cs" />
+    <Compile Include="HPatches\Optional\PawnScaling.cs" />
+    <Compile Include="Hediffs\Hediff_Bullrush.cs" />
+    <Compile Include="HPatches\Optional\FoodStackMultiplier.cs" />
+    <Compile Include="HPatches\Optional\OptionalPatchAttribute.cs" />
+    <Compile Include="HPatches\PawnHealthTrackerPatches.cs" />
+    <Compile Include="Jobs\Giver_Producer.cs" />
+    <Compile Include="RecipeWorkers\InjectorRecipeWorker.cs" />
+    <Compile Include="SkyFallerDefOf.cs" />
+    <Compile Include="AnimalClassDef.cs" />
+    <Compile Include="AnimalClassDefOf.cs" />
+    <Compile Include="AnimalClassUtilities.cs" />
+    <Compile Include="AnimalDrafterComp.cs" />
+    <Compile Include="Aspect.cs" />
+    <Compile Include="AspectCapacityImpactor.cs" />
+    <Compile Include="AspectDef.cs" />
+    <Compile Include="AspectDefOf.cs" />
+    <Compile Include="AspectGiver.cs" />
+    <Compile Include="AspectStage.cs" />
+    <Compile Include="Aspects\Coloration.cs" />
+    <Compile Include="Aspects\MeatLover.cs" />
+    <Compile Include="Aspects\PrimalWishGiver.cs" />
+    <Compile Include="Aspects\RandomGiver.cs" />
+    <Compile Include="Aspects\SapienceHit.cs" />
+    <Compile Include="Aspects\SkillBasedGiver.cs" />
+    <Compile Include="Aspects\Prideful.cs" />
+    <Compile Include="Aspects\SplitMind.cs" />
+    <Compile Include="AspectTracker.cs" />
+    <Compile Include="AspectUtils.cs" />
+    <Compile Include="BackstoryDefOf.cs" />
+    <Compile Include="BodyUtilities.cs" />
+    <Compile Include="Building_TrapTransforming.cs" />
+    <Compile Include="Chambers\AnimalGenomeStorageComp.cs" />
+    <Compile Include="Chambers\AnimalTfControllers\ChaoThrumbo.cs" />
+    <Compile Include="Chambers\ChamberAnimalTfController.cs" />
+    <Compile Include="Genebank\ChamberDatabase.cs" />
+    <Compile Include="Chambers\ChamberJobDefOf.cs" />
+    <Compile Include="Chambers\ChamberState.cs" />
+    <Compile Include="Chambers\ChamberTfInitiationReport.cs" />
+    <Compile Include="Chambers\ChamberUse.cs" />
+    <Compile Include="Genebank\DatabaseUtilities.cs" />
+    <Compile Include="Chambers\GenomeDefGenerator.cs" />
+    <Compile Include="Chambers\MutaChamber.cs" />
+    <Compile Include="Chambers\ThingComp_ModulatorOptions.cs" />
+    <Compile Include="ChaomorphType.cs" />
+    <Compile Include="ChaomorphUtilities.cs" />
+    <Compile Include="ColonyRelation.cs" />
+    <Compile Include="ColorGenerator_HSL.cs" />
+    <Compile Include="CompEtherExplosive.cs" />
+    <Compile Include="CompMutagenicRadius.cs" />
+    <Compile Include="CompProperties_EtherExplosive.cs" />
+    <Compile Include="CompProperties_TfResurrect.cs" />
+    <Compile Include="CompProps_MutagenicFixWorstCondition.cs" />
+    <Compile Include="CompTargetable_TransformableCorpse.cs" />
+    <Compile Include="CompTargetEffect_TfResurrect.cs" />
+    <Compile Include="Comp_MutagenicFixWorstCondition.cs" />
+    <Compile Include="Comp_MutaniteBed.cs" />
+    <Compile Include="Comp_PlayerPickedColoration.cs" />
+    <Compile Include="Comp_SapientAnimal.cs" />
+    <Compile Include="CustomBodyAddon.cs" />
+    <Compile Include="Damage\MutagenicDamageExtension.cs" />
+    <Compile Include="Damage\MutagenicDamageUtilities.cs" />
+    <Compile Include="Damage\Worker_MutagenicCut.cs" />
+    <Compile Include="Damage\Worker_MutagenicBlunt.cs" />
+    <Compile Include="Damage\Worker_MutagenicInjury.cs" />
+    <Compile Include="Damage\Worker_MutagenicStab.cs" />
+    <Compile Include="DeathActionWorker_MutagenicExplosion.cs" />
+    <Compile Include="DebugUtils\DBG_TrainingWorkGiver.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Aliens.cs" />
+    <Compile Include="DebugUtils\DebugMenu_AddMutation.cs" />
+    <Compile Include="DebugUtils\DebugMenu_AddMutations.cs" />
+    <Compile Include="DebugUtils\LogFailMode.cs" />
+    <Compile Include="DebugUtils\PMDebugActions.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.FoodOptimizations.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.FormerHumanLogging.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Logging.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.MutationLogging.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.ThoughtListing.cs" />
+    <Compile Include="DebugUtils\IDebugString.cs" />
+    <Compile Include="DebugUtils\LogLevel.cs" />
+    <Compile Include="DebugUtils\Pawnmorpher_InteractionWeightLogDialogue.cs" />
+    <Compile Include="DefExtensions\AdditionalPlantInfo.cs" />
+    <Compile Include="DefExtensions\AspectGiverExtension.cs" />
+    <Compile Include="DefExtensions\AspectRestriction.cs" />
+    <Compile Include="DefExtensions\ChaomorphExtension.cs" />
+    <Compile Include="DefExtensions\DefExtensionUtilities.cs" />
+    <Compile Include="DefExtensions\FormerHumanRestriction.cs" />
+    <Compile Include="DefExtensions\FormerHumanSettings.cs" />
+    <Compile Include="DefExtensions\HarmonizerTransferWorker.cs" />
+    <Compile Include="DefExtensions\InstinctEffector.cs" />
+    <Compile Include="DefExtensions\InstinctInfluenceExtension.cs" />
+    <Compile Include="DefExtensions\InteractionGroupExtension.cs" />
+    <Compile Include="DefExtensions\MemeRestriction.cs" />
+    <Compile Include="DefExtensions\MorphRestriction.cs" />
+    <Compile Include="DefExtensions\MutagenicBuildupSourceSettings.cs" />
+    <Compile Include="DefExtensions\MutagenExtension.cs" />
+    <Compile Include="DefExtensions\MutantPlantExtension.cs" />
+    <Compile Include="DefExtensions\MutationRestriction.cs" />
+    <Compile Include="DefExtensions\RelationshipInteractionRestriction.cs" />
+    <Compile Include="DefExtensions\RestrictionExtension.cs" />
+    <Compile Include="DefExtensions\MutationCauseExtension.cs" />
+    <Compile Include="DefExtensions\SapienceStateRestriction.cs" />
+    <Compile Include="DefExtensions\SapientRulePackVariant.cs" />
+    <Compile Include="DefExtensions\TFTransferable.cs" />
+    <Compile Include="DefExtensions\TraitRestriction.cs" />
+    <Compile Include="DefExtensions\VeneratedAnimalMutationThought_TransferWorker.cs" />
+    <Compile Include="Designations\RecruitSapientFormerHuman.cs" />
+    <Compile Include="Dialogs\ColonistColorPicker.cs" />
+    <Compile Include="Factions\MorphGroupMakerUtilities.cs" />
+    <Compile Include="FormerHumanStatus.cs" />
+    <Compile Include="FormerHumans\FoodThoughtSettings.cs" />
+    <Compile Include="FormerHumans\ISapientVariantHolder.cs" />
+    <Compile Include="FormerHumans\SapientVariants.cs" />
+    <Compile Include="FormerHumanUtilities.cs" />
+    <Compile Include="Graphics\MutationGraphicsData.cs" />
+    <Compile Include="Graphics\TaggedBodyAddon.cs" />
+    <Compile Include="HairDefOf.cs" />
+    <Compile Include="HediffGiver_Esoteric_RandomList.cs" />
+    <Compile Include="Hediffs\Composable\IMutRate.cs" />
+    <Compile Include="Hediffs\Composable\StageAlert.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_Comp.cs" />
+    <Compile Include="Hediffs\Composable\MutRate_MutationsPerSeverityQuadratic.cs" />
+    <Compile Include="Hediffs\CompProps_ImmunizableMutation.cs" />
+    <Compile Include="Hediffs\Comp_AcceleratedSeverity.cs" />
+    <Compile Include="Hediffs\Comp_MutagenicInfecter.cs" />
+    <Compile Include="Hediffs\Comp_MutationSeverityAdjust.cs" />
+    <Compile Include="Hediffs\CompRemoveNonPart.cs" />
+    <Compile Include="Hediffs\Comp_RestartMutationProgression.cs" />
+    <Compile Include="Hediffs\Comp_TFStageConfigChecker.cs" />
+    <Compile Include="Hediffs\FullTransformationStage.cs" />
+    <Compile Include="Hediffs\FullTransformationStageBase.cs" />
+    <Compile Include="Hediffs\Giver_ChaomorphTf.cs" />
+    <Compile Include="Hediffs\Giver_MutationClass.cs" />
+    <Compile Include="Hediffs\HediffComp_Composable.cs" />
+    <Compile Include="Hediffs\IExecutableStage.cs" />
+    <Compile Include="Hediffs\IInitializable.cs" />
+    <Compile Include="Hediffs\ITfHediffObserverComp.cs" />
+    <Compile Include="Hediffs\IRaceMutationRetriever.cs" />
+    <Compile Include="Hediffs\MorphHediffGenerator.cs" />
+    <Compile Include="Hediffs\MorphTf.cs" />
+    <Compile Include="Hediffs\MorphTransformationStage.cs" />
+    <Compile Include="Hediffs\MutagenicPain.cs" />
+    <Compile Include="Hediffs\MutationDef.cs" />
+    <Compile Include="Hediffs\MutationEntry.cs" />
+    <Compile Include="Hediffs\MutationRetrievers\Morph.cs" />
+    <Compile Include="Hediffs\MutationRetrievers\Mutations.cs" />
+    <Compile Include="Hediffs\MutationStage.cs" />
+    <Compile Include="Hediffs\Giver_MutationCategoryGiver.cs" />
+    <Compile Include="Hediffs\IDescriptiveStage.cs" />
+    <Compile Include="Hediffs\MorphDisease.cs" />
+    <Compile Include="Hediffs\FormerHuman.cs" />
+    <Compile Include="Hediffs\Comp_MutationTagger.cs" />
+    <Compile Include="Hediffs\ObsoletePart.cs" />
+    <Compile Include="Hediffs\RandomMorphFullTfStage.cs" />
+    <Compile Include="Hediffs\RandomMorphTransformationStage.cs" />
+    <Compile Include="Hediffs\SyringeRifleTf.cs" />
+    <Compile Include="Hediffs\SyringeTfStage.cs" />
+    <Compile Include="Hediffs\TaggingInjector.cs" />
+    <Compile Include="Hediffs\TransformationBase.cs" />
+    <Compile Include="Hediffs\TransformationStage.cs" />
+    <Compile Include="Hediffs\TransformationStageBase.cs" />
+    <Compile Include="Hediffs\WorkSettingsStage.cs" />
+    <Compile Include="HistoryEventUtilities.cs" />
+    <Compile Include="HPatches\AIPatches.cs" />
+    <Compile Include="HPatches\AnimalInteractionPatches.cs" />
+    <Compile Include="HPatches\AnimalPenUtilityPatches.cs" />
+    <Compile Include="HPatches\ApparelUtilityPatches.cs" />
+    <Compile Include="HPatches\AutoSlaughterPatches.cs" />
+    <Compile Include="HPatches\BedPatches.cs" />
+    <Compile Include="HPatches\BillPatches.cs" />
+    <Compile Include="HPatches\BiosculpterPatches.cs" />
+    <Compile Include="HPatches\ConversionUtilityPatches.cs" />
+    <Compile Include="HPatches\Optional\CorpsePatch.cs" />
+    <Compile Include="HPatches\DebugPatches.cs" />
+    <Compile Include="HPatches\DesignatorDatabasePatch.cs" />
+    <Compile Include="HPatches\DoorPatches.cs" />
+    <Compile Include="HPatches\DrugPolicyPatches.cs" />
+    <Compile Include="HPatches\DrupPolicyPatches.cs" />
+    <Compile Include="HPatches\FoodUtilityPatches.cs" />
+    <Compile Include="HPatches\GatherableBodyResourcePatch.cs" />
+    <Compile Include="HPatches\GizmoPatches.cs" />
+    <Compile Include="HPatches\HealthUtilityPatch.cs" />
+    <Compile Include="HPatches\Mods\CompactHediffs\CustomHealthCardUtilsPatch.cs" />
+    <Compile Include="HPatches\SelectorPatch.cs" />
+    <Compile Include="HPatches\Mods\Giddy-Up\GiddyUpPatch.cs" />
+    <Compile Include="HPatches\HediffDefPatches.cs" />
+    <Compile Include="HPatches\HediffPatches.cs" />
+    <Compile Include="HPatches\HediffSetPatches.cs" />
+    <Compile Include="HPatches\HuntingPatches.cs" />
+    <Compile Include="HPatches\ImmunityHandlerPatches.cs" />
+    <Compile Include="HPatches\IncidentPatches.cs" />
+    <Compile Include="HPatches\IngestJobPatches.cs" />
+    <Compile Include="HPatches\InteractionPatches.cs" />
+    <Compile Include="HPatches\JobGiver_GetJoyPatches.cs" />
+    <Compile Include="HPatches\MentalBreakPatches.cs" />
+    <Compile Include="HPatches\NativeVerbPatches.cs" />
+    <Compile Include="HPatches\OptimizeApparelPatch.cs" />
+    <Compile Include="HPatches\PawnComponentPatches.cs" />
+    <Compile Include="HPatches\PawnGeneratorPatches.cs" />
+    <Compile Include="HPatches\PawnGraphicsSetPatches.cs" />
+    <Compile Include="HPatches\PawnRenderNode_AnimalPartPatch.cs" />
+    <Compile Include="HPatches\PawnGroupKindWorkerPatches.cs" />
+    <Compile Include="HPatches\PawnCompPatches.cs" />
+    <Compile Include="HPatches\PawnObserverPatches.cs" />
+    <Compile Include="HPatches\PawnPatches.cs" />
+    <Compile Include="HPatches\PenPatches.cs" />
+    <Compile Include="HPatches\PlantPatches.cs" />
+    <Compile Include="HPatches\PortraitCachePatches.cs" />
+    <Compile Include="HPatches\ProductionCompPatches.cs" />
+    <Compile Include="HPatches\RelationshipPatches.cs" />
+    <Compile Include="HPatches\RitualPatches.cs" />
+    <Compile Include="HPatches\SapientAnimalPatches.cs" />
+    <Compile Include="HPatches\StatPart_IsCorpseFreshPatches.cs" />
+    <Compile Include="HPatches\StylePatches.cs" />
+    <Compile Include="HPatches\ThingOwnerUtilityPatches.cs" />
+    <Compile Include="HPatches\ThoughtHandlerPatches.cs" />
+    <Compile Include="HPatches\ThoughtUtilityPatches.cs" />
+    <Compile Include="HPatches\ThoughtWorkerPatches.cs" />
+    <Compile Include="HPatches\ToilsLayDownPatches.cs" />
+    <Compile Include="HPatches\ToolPatches.cs" />
+    <Compile Include="HPatches\VerbTrackerPatches.cs" />
+    <Compile Include="HPatches\WildmanUtilityPatches.cs" />
+    <Compile Include="HPatches\WorkGiverPatches.cs" />
+    <Compile Include="HPatches\WorkSettingsPatches.cs" />
+    <Compile Include="Hybrids\IPartTransformer.cs" />
+    <Compile Include="ICustomVerb.cs" />
+    <Compile Include="IDescriptiveHediff.cs" />
+    <Compile Include="IEquipmentGizmo.cs" />
+    <Compile Include="IFoodPreferenceAdjustor.cs" />
+    <Compile Include="IMentalStateRecoveryReceiver.cs" />
+    <Compile Include="IncidentWorker\LiquidSlurry.cs" />
+    <Compile Include="IncidentWorker\MutagenicDiseasesHuman.cs" />
+    <Compile Include="IncidentWorker\MutagenicFallout.cs" />
+    <Compile Include="IncidentWorker\SheepChef.cs" />
+    <Compile Include="IncidentWorker_MutagenicShipCrash.cs" />
+    <Compile Include="IngestionEffects\AddMorphCategoryTfHediff.cs" />
+    <Compile Include="IngestionOutcomeDoer_AddRandomAspect.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediff.cs" />
+    <Compile Include="IngestionOutcomeDoer_RemoveAspect.cs" />
+    <Compile Include="IngestionOutcomeDoer_AddMorphTf.cs" />
+    <Compile Include="IngredientValueGetter_Mutanite.cs" />
+    <Compile Include="IPMThingComp.cs" />
+    <Compile Include="ICauseRulePackContainer.cs" />
+    <Compile Include="IWorkModifier.cs" />
+    <Compile Include="Jobs\Driver_DeliverThingToChamber.cs" />
+    <Compile Include="Jobs\Driver_InteractFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_MutagenicSow.cs" />
+    <Compile Include="Jobs\Driver_RecruitSapientFormerHuman.cs" />
+    <Compile Include="Jobs\Driver_SowMutagenicPlant.cs" />
+    <Compile Include="Jobs\Driver_TransformPrisoner.cs" />
+    <Compile Include="Jobs\Driver_UseGenome.cs" />
+    <Compile Include="Jobs\Driver_UseMutationScanner.cs" />
+    <Compile Include="Jobs\Giver_FoodOptimized.cs" />
+    <Compile Include="StatWorkers\StatParts\StatPart_MarketValue.cs" />
+    <Compile Include="ThingComps\AddAspectEffectProps.cs" />
+    <Compile Include="ThingComps\AlwaysMergedPawn.cs" />
+    <Compile Include="ThingComps\AnimalSelectorComp.cs" />
+    <Compile Include="ThingComps\CompProperties_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\Comp_CanBeFormerHuman.cs" />
+    <Compile Include="ThingComps\DatabaseStorage.cs" />
+    <Compile Include="ThingComps\DrawSecondChamberProperties.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnComp.cs" />
+    <Compile Include="ThingComps\DrawStoredPawnProperties.cs" />
+    <Compile Include="ThingComps\FillabeBarDrawerProps.cs" />
+    <Compile Include="ThingComps\MutationGenomeStorage.cs" />
+    <Compile Include="ThingComps\MutationSequencerComp.cs" />
+    <Compile Include="ThingComps\MutationSequencerProps.cs" />
+    <Compile Include="ThingComps\PlantIngesterListener.cs" />
+    <Compile Include="ThingComps\ResurrectorTargetProperties.cs" />
+    <Compile Include="ThingComps\SapienceTracker.cs" />
+    <Compile Include="ThingComps\TFMilkable.cs" />
+    <Compile Include="Things\Genome_Animal.cs" />
+    <Compile Include="UserInterface\Dialog_BrowseGenebank.cs" />
+    <Compile Include="UserInterface\Dialog_Textbox.cs" />
+    <Compile Include="UserInterface\FilterTreeBox.cs" />
+    <Compile Include="UserInterface\Genebank\GeneRowItem.cs" />
+    <Compile Include="UserInterface\Genebank\GenebankTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\AnimalsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\MutationsTab.cs" />
+    <Compile Include="UserInterface\Genebank\Tabs\TemplatesTab.cs" />
+    <Compile Include="UserInterface\MainTabWindow_ChamberDatabase.cs" />
+    <Compile Include="MergedPawnUtilities.cs" />
+    <Compile Include="ModInitializationException.cs" />
+    <Compile Include="InstinctUtilities.cs" />
+    <Compile Include="IPawnTransformer.cs" />
+    <Compile Include="Jobs\Driver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_TerrainProduction.cs" />
+    <Compile Include="Jobs\Driver_ResurrectTf.cs" />
+    <Compile Include="Jobs\Driver_ShaveSelf.cs" />
+    <Compile Include="Jobs\Giver_DrainChemcyst.cs" />
+    <Compile Include="Jobs\Driver_MilkSelf.cs" />
+    <Compile Include="Jobs\Driver_ProduceThing.cs" />
+    <Compile Include="Jobs\Giver_MilkSelf.cs" />
+    <Compile Include="Jobs\Giver_SapientAnimalJoy.cs" />
+    <Compile Include="Jobs\Giver_ShaveSelf.cs" />
+    <Compile Include="Jobs\JobGiver_HuntingBreak.cs" />
+    <Compile Include="Joy\Giver_TerrainProduction.cs" />
+    <Compile Include="Mental\StateWorker_Hunt.cs" />
+    <Compile Include="Mental\State_Hunting.cs" />
+    <Compile Include="MorphInjectorProperties.cs" />
+    <Compile Include="MutagenicBuildupUtilities.cs" />
+    <Compile Include="MutationCategoryDefOf.cs" />
+    <Compile Include="MutationCauses.CauseEntry.cs" />
+    <Compile Include="MutationCauses.cs" />
+    <Compile Include="MutationCauseUtility.cs" />
+    <Compile Include="MutationResult.cs" />
+    <Compile Include="MutationRuleDef.cs" />
+    <Compile Include="MutationRules\Worker_Hellhound.cs" />
+    <Compile Include="MutationRules\Worker_RemoveConditionalHediffs.cs" />
+    <Compile Include="MutationRules\Worker_MorphHediff.cs" />
+    <Compile Include="MutationRuleUtilities.cs" />
+    <Compile Include="MutationSite.cs" />
+    <Compile Include="MutationStagePatch.cs" />
+    <Compile Include="Need_Control.cs" />
+    <Compile Include="PartAddress.cs" />
+    <Compile Include="PatchOperations\DebugAdd.cs" />
+    <Compile Include="PawnColumnWorker_RecruitSapientAnimal.cs" />
+    <Compile Include="PawnmorpherModBase.cs" />
+    <Compile Include="PawnTransferUtilities.cs" />
+    <Compile Include="PlaceWorkers\ShowMutationRadius.cs" />
+    <Compile Include="Plants\SpecialHarvestFailPlant.cs" />
+    <Compile Include="PMBackstoryDefOf.cs" />
+    <Compile Include="PMConceptDefOf.cs" />
+    <Compile Include="PMDamageDefOf.cs" />
+    <Compile Include="PMDesignationDefOf.cs" />
+    <Compile Include="PMEffecterDefOf.cs" />
+    <Compile Include="PMFoodUtilities.cs" />
+    <Compile Include="PMGrammarUtilities.cs" />
+    <Compile Include="PMHistoryEventArgsNames.cs" />
+    <Compile Include="PMHistoryEventDef.cs" />
+    <Compile Include="PMHistoryEventUtilities.cs" />
+    <Compile Include="PMIdeoUtilities.cs" />
+    <Compile Include="PMImplicitDefGenerator.cs" />
+    <Compile Include="PMInteractionDefOf.cs" />
+    <Compile Include="PMIssueDefOf.cs" />
+    <Compile Include="PMNeedDefOf.cs" />
+    <Compile Include="PMPawnKindDefOf.cs" />
+    <Compile Include="PMPlantUtilities.cs" />
+    <Compile Include="PMPrisonerInteractionModeDefOf.cs" />
+    <Compile Include="PMRelationUtilities.cs" />
+    <Compile Include="PMResearchProjectDefOf.cs" />
+    <Compile Include="PMSoundDefOf.cs" />
+    <Compile Include="PMStatDefOf.cs" />
+    <Compile Include="PMTextures.cs" />
+    <Compile Include="PMThingCategoryDefOf.cs" />
+    <Compile Include="PMThingUtilities.cs" />
+    <Compile Include="PMThoughtUtilities.cs" />
+    <Compile Include="PreceptComps\FeralFoodAdjustor.cs" />
+    <Compile Include="PreceptComps\GiveRelationDependentThought.cs" />
+    <Compile Include="PreceptComps\SelfTookMemoryThought_MemeOverride.cs" />
+    <Compile Include="PreceptComps\VeneratedAnimalMemory.cs" />
+    <Compile Include="PreceptComps\VeneratedMutation.cs" />
+    <Compile Include="ProductionBoost.cs" />
+    <Compile Include="Recipes\PMRecipeDefGenerator.cs" />
+    <Compile Include="RecipeWorkers\ApplyAdaptationCream.cs" />
+    <Compile Include="RecipeWorkers\ApplyHaltingCream.cs" />
+    <Compile Include="RecipeWorkers\ApplyToMutatedPart.cs" />
+    <Compile Include="RecipeWorkers\TagAnimal.cs" />
+    <Compile Include="RestrictionLevel.cs" />
+    <Compile Include="Rituals\AttachableOutcomeEffectWorkers\AddRandomVeneratedMutation.cs" />
+    <Compile Include="Rituals\RoleTags.cs" />
+    <Compile Include="RoleRequirement\BaseRoleRequirement.cs" />
+    <Compile Include="RoleRequirement\FormerHuman.cs" />
+    <Compile Include="SapienceState.cs" />
+    <Compile Include="SapienceStateDef.cs" />
+    <Compile Include="SapienceStateDefOf.cs" />
+    <Compile Include="SapienceStates\Animalistic.cs" />
+    <Compile Include="SapienceStates\FormerHuman.cs" />
+    <Compile Include="SapienceStates\MergedPawn.cs" />
+    <Compile Include="SapientAnimalMentalBreaker.cs" />
+    <Compile Include="ScenarioParts\ScenPart_ForcedSapience.cs" />
+    <Compile Include="ScenarioParts\ScenPart_ForcedAspect.cs" />
+    <Compile Include="SimplePawnColorSet.cs" />
+    <Compile Include="Social\Worker_FormerHuman.cs" />
+    <Compile Include="StatWorkers\HasMorphStat.cs" />
+    <Compile Include="StockGenerators\GenomeGenerator.cs" />
+    <Compile Include="StockGenerator_Injectors.cs" />
+    <Compile Include="TfSys\ManhunterTfSettings.cs" />
+    <Compile Include="DefExtensions\AnimalSelectorOverrides.cs" />
+    <Compile Include="ThingDef_EtherBullet.cs" />
+    <Compile Include="EtherState.cs" />
+    <Compile Include="FactionUtilities.cs" />
+    <Compile Include="HPatches\FloatMenuMakerMapPatches.cs" />
+    <Compile Include="GameCondition_MutagenicFallout.cs" />
+    <Compile Include="Graphics\GraphicsUpdaterComp.cs" />
+    <Compile Include="Graphics\InitialGraphics.cs" />
+    <Compile Include="Graphics\MorphGraphicsUtils.cs" />
+    <Compile Include="HediffGiver_Mutation.cs" />
+    <Compile Include="Hediffs\CompProperties_DependentPart.cs" />
+    <Compile Include="Hediffs\CompProperties_RemoveType.cs" />
+    <Compile Include="Hediffs\Comp_CheckRace.cs" />
+    <Compile Include="Hediffs\Comp_TerrainProduction.cs" />
+    <Compile Include="Hediffs\Giver_MutationChaotic.cs" />
+    <Compile Include="Hediffs\MutagenicBuildup.cs" />
+    <Compile Include="Hediffs\MutationDependency.cs" />
+    <Compile Include="Hediffs\MorphTransformationDefOf.cs" />
+    <Compile Include="Hediffs\RemoveFromPartComp.cs" />
+    <Compile Include="Hediffs\SpreadingMutationComp.cs" />
+    <Compile Include="Hediff_ProductionThought.cs" />
+    <Compile Include="HPatches\PawnCapacityUtilsPatch.cs" />
+    <Compile Include="HPatches\StatWorkerPatches.cs" />
+    <Compile Include="Hybrids\HThoughtDefOf.cs" />
+    <Compile Include="Hybrids\HTraitDefOf.cs" />
+    <Compile Include="Hybrids\HybridRaceSettings.cs" />
+    <Compile Include="IMutationEventReceiver.cs" />
+    <Compile Include="IngestionOutcomeDoer_CompleteTF.cs" />
+    <Compile Include="IngestionOutcomeDoer_EsotericRevert.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediffAll.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediffIfNonePresent.cs" />
+    <Compile Include="IngestionOutcomeDoer_MultipleTfBase.cs" />
+    <Compile Include="Chambers\JobDriver_CarryToMutagenChamber.cs" />
+    <Compile Include="Chambers\JobDriver_EnterMutagenChamber.cs" />
+    <Compile Include="IngestionOutcomeDoer_BoostSeverity.cs" />
+    <Compile Include="IngestionOutcomeDoer_AddAspect.cs" />
+    <Compile Include="IRaceChangeEventReceiver.cs" />
+    <Compile Include="ITab_Pawn_Mutations.cs" />
+    <Compile Include="Jobs\Driver_LayEgg.cs" />
+    <Compile Include="Jobs\Giver_LayEgg.cs" />
+    <Compile Include="MorphCategoryDef.cs" />
+    <Compile Include="MorphCategoryDefOf.cs" />
+    <Compile Include="MorphDef.cs" />
+    <Compile Include="MorphDefOfs.cs" />
+    <Compile Include="MorphGroupDef.cs" />
+    <Compile Include="MorphGroupDefOf.cs" />
+    <Compile Include="MorphPawnKindExtension.cs" />
+    <Compile Include="MorphTracker.cs" />
+    <Compile Include="MorphTrackingComp.cs" />
+    <Compile Include="MorphTrackingCompProperties.cs" />
+    <Compile Include="MorphTransformationTypes.cs" />
+    <Compile Include="MorphUtilities.cs" />
+    <Compile Include="Hybrids\RaceGenerator.cs" />
+    <Compile Include="Hybrids\RaceShiftUtilities.cs" />
+    <Compile Include="MutagenDef.cs" />
+    <Compile Include="MutagenDefOf.cs" />
+    <Compile Include="MutagenUtilities.cs" />
+    <Compile Include="Mutagen_JobDefOf.cs" />
+    <Compile Include="MutationCategoryDef.cs" />
+    <Compile Include="MutationLogEntry.cs" />
+    <Compile Include="MutationsDefOf.cs" />
+    <Compile Include="MutationOutlook.cs" />
+    <Compile Include="MutationTracker.cs" />
+    <Compile Include="MutationUtilities.cs" />
+    <Compile Include="PawnmorpherMod.cs" />
+    <Compile Include="PawnmorpherModInit.cs" />
+    <Compile Include="PawnMorphInstanceMerged.cs" />
+    <Compile Include="PawnmorphPatches.cs" />
+    <Compile Include="PawnRelationWorker_ExMerged.cs" />
+    <Compile Include="PawnRelationWorker_MergeMate.cs" />
+    <Compile Include="PMIncidentDefOf.cs" />
+    <Compile Include="PMJobDefOf.cs" />
+    <Compile Include="PMRulePackDefOf.cs" />
+    <Compile Include="PMThingDefOf.cs" />
+    <Compile Include="PMThoughtDefOf.cs" />
+    <Compile Include="PMTraitDefOf.cs" />
+    <Compile Include="PMUtilities.cs" />
+    <Compile Include="Projectile_EtherBullet.cs" />
+    <Compile Include="Projectile_EtherExplosive.cs" />
+    <Compile Include="Projectile_TaggingBullet.cs" />
+    <Compile Include="RaceMutationSettingsExtension.cs" />
+    <Compile Include="Social\InteractionWorkers.cs" />
+    <Compile Include="Social\PMInteractionWorkerBase.cs" />
+    <Compile Include="Social\PMInteractionDef.cs" />
+    <Compile Include="TaleDefOf.cs" />
+    <Compile Include="TFGender.cs" />
+    <Compile Include="HediffGiver_PermanentFeral.cs" />
+    <Compile Include="HediffGiver_TF.cs" />
+    <Compile Include="IncidentWorker_ChaomorphPasses.cs" />
+    <Compile Include="HediffCompProperties_AddSeverity.cs" />
+    <Compile Include="HediffCompProperties_Production.cs" />
+    <Compile Include="HediffCompProperties_Remove.cs" />
+    <Compile Include="HediffCompProperties_Single.cs" />
+    <Compile Include="HediffCompProperties_TerrainBasedMorph.cs" />
+    <Compile Include="HediffComp_AddSeverity.cs" />
+    <Compile Include="HediffComp_Production.cs" />
+    <Compile Include="HediffComp_Remove.cs" />
+    <Compile Include="HediffComp_Single.cs" />
+    <Compile Include="HediffComp_TerrainBasedMorph.cs" />
+    <Compile Include="CompProperties_MutagenicRadius.cs" />
+    <Compile Include="IngestionOutcomeDoer_GiveHediffRandom.cs" />
+    <Compile Include="PawnmorphHediffGiverUtility.cs" />
+    <Compile Include="Hediff_AddedMutation.cs" />
+    <Compile Include="IntermittentMagicSprayer.cs" />
+    <Compile Include="PawnmorpherSettings.cs" />
+    <Compile Include="MorphTrader.cs" />
+    <Compile Include="MutagenicStone.cs" />
+    <Compile Include="HPatches\HealthCardUtilsPatch.cs" />
+    <Compile Include="PawnMorphInstance.cs" />
+    <Compile Include="PawnmorphGameComp.cs" />
+    <Compile Include="HediffComp_Staged.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TfHediffDefOf.cs" />
+    <Compile Include="TfRelationDefOf.cs" />
+    <Compile Include="TfSys\MergeMutagen.cs" />
+    <Compile Include="TfSys\Mutagen.cs" />
+    <Compile Include="TfSys\SimpleMechaniteMutagen.cs" />
+    <Compile Include="TfSys\TransformationRequest.cs" />
+    <Compile Include="TfSys\TransformedPawn.cs" />
+    <Compile Include="TfSys\TransformedStatus.cs" />
+    <Compile Include="ThingDef_TaggingBullet.cs" />
+    <Compile Include="Things\Chaothrumbo.cs" />
+    <Compile Include="Things\ExpandedPlant.cs" />
+    <Compile Include="Things\InjectorGenerator.cs" />
+    <Compile Include="ThinkNodes\ConditionalAnimalisticColonist.cs" />
+    <Compile Include="ThinkNodes\ConditionalAnimalisticHumanlike.cs" />
+    <Compile Include="ThinkNodes\ConditionalFactionSapientAnimal.cs" />
+    <Compile Include="ThinkNodes\ConditionalOfFormerHuman.cs" />
+    <Compile Include="ThinkNodes\ConditionalSapientAnimal.cs" />
+    <Compile Include="ThoughtGroupDefExtension.cs" />
+    <Compile Include="Thoughts\Def_AspectThought.cs" />
+    <Compile Include="Thoughts\FormerHumanMemory.cs" />
+    <Compile Include="Thoughts\FormerHumanPalsWorker.cs" />
+    <Compile Include="Thoughts\FormerHumanSituationalWorkerBase.cs" />
+    <Compile Include="Thoughts\IFoodThoughtModifier.cs" />
+    <Compile Include="Thoughts\IThoughtTransferWorker.cs" />
+    <Compile Include="Thoughts\Memory_FactionObservation.cs" />
+    <Compile Include="Thoughts\MutationMemory.cs" />
+    <Compile Include="Thoughts\Precept\MutationMemory_VeneratedAnimal.cs" />
+    <Compile Include="Thoughts\Precept\PWorker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_FormerHuman_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_HasMutations_Social.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedMutation_Social.cs" />
+    <Compile Include="Thoughts\ThoughtLabels.cs" />
+    <Compile Include="Thoughts\Precept\Thought_Precept_VeneratedFormerHuman.cs" />
+    <Compile Include="Thoughts\Precept\Worker_VeneratedFormerHuman.cs" />
+    <Compile Include="Thoughts\ReactionsHelper.cs" />
+    <Compile Include="Thoughts\RelationshipDefExtension.cs" />
+    <Compile Include="Thoughts\SapienceMemory.cs" />
+    <Compile Include="Thoughts\ThoughtDefOfs.cs" />
+    <Compile Include="Thoughts\ThoughtWorker_EtherHediff.cs" />
+    <Compile Include="Thoughts\Thought_EtherMemory.cs" />
+    <Compile Include="Thoughts\Worker_BeastMaster.cs" />
+    <Compile Include="Thoughts\Worker_BodyPuristDisgust.cs" />
+    <Compile Include="Thoughts\Worker_FHNaked.cs" />
+    <Compile Include="Thoughts\Worker_FormerHuman.cs" />
+    <Compile Include="Thoughts\Worker_FormerHumanHediff.cs" />
+    <Compile Include="Thoughts\Worker_FurryAppreciation.cs" />
+    <Compile Include="Thoughts\Worker_HasAspect.cs" />
+    <Compile Include="Thoughts\Worker_HasMutations.cs" />
+    <Compile Include="Thoughts\MorphMemory.cs" />
+    <Compile Include="Thoughts\Worker_HediffTrait.cs" />
+    <Compile Include="Thoughts\Worker_IsVeneratedAnimal.cs" />
+    <Compile Include="Thoughts\Worker_JealousMorph.cs" />
+    <Compile Include="Thoughts\Worker_MergedPawn.cs" />
+    <Compile Include="Thoughts\Worker_MorphFrustrated.cs" />
+    <Compile Include="Thoughts\Worker_SapientNaked.cs" />
+    <Compile Include="Thoughts\Worker_Sapience.cs" />
+    <Compile Include="Thoughts\Worker_SapientAnimalBondedMaster.cs" />
+    <Compile Include="ThoughtWorker_HasEsotericBodyPart.cs" />
+    <Compile Include="ToolVerbUtilities.cs" />
+    <Compile Include="TransformerUtility.cs" />
+    <Compile Include="TransformPawn.cs" />
+    <Compile Include="UserInterface\TableBox\TableRow.cs" />
+    <Compile Include="UserInterface\TreeBox\Listing_TreeFilter.cs" />
+    <Compile Include="UserInterface\TreeBox\TreeNode_FilterBox.cs" />
+    <Compile Include="UserInterface\PartPicker\AddedMutations.cs" />
+    <Compile Include="UserInterface\ButtonTexturesPM.cs" />
+    <Compile Include="UserInterface\Dialog_PartPicker.cs" />
+    <Compile Include="UserInterface\Dialog_Popup.cs" />
+    <Compile Include="UserInterface\FilterListBox.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationData.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplate.cs" />
+    <Compile Include="UserInterface\PartPicker\MutationTemplateData.cs" />
+    <Compile Include="UserInterface\Preview\HumanlikePreview.cs" />
+    <Compile Include="UserInterface\Preview\Preview.cs" />
+    <Compile Include="UserInterface\Preview\PawnPreview.cs" />
+    <Compile Include="UserInterface\Preview\ThingPreview.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_OptionalPatches.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_AnimalAssociations.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_RaceReplacements.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_BlacklistAnimal.cs" />
+    <Compile Include="UserInterface\Settings\Dialog_VisibleRaceSelection.cs" />
+    <Compile Include="UserInterface\TableBox\ITableRow.cs" />
+    <Compile Include="UserInterface\TableBox\Table.cs" />
+    <Compile Include="UserInterface\TableBox\TableColumn.cs" />
+    <Compile Include="UserInterface\Window_Genebank.cs" />
+    <Compile Include="UserInterface\Window_Sequencer.cs" />
+    <Compile Include="Utilities\Cached.cs" />
+    <Compile Include="Utilities\Collections\ExposableList.cs" />
+    <Compile Include="Utilities\Collections\FilteredList.cs" />
+    <Compile Include="Utilities\CompCacher.cs" />
+    <Compile Include="Utilities\Filter.cs" />
+    <Compile Include="Utilities\HashGiverUtils.cs" />
+    <Compile Include="Utilities\HediffCompBase.cs" />
+    <Compile Include="Utilities\HediffDefUtilities.cs" />
+    <Compile Include="Utilities\LinqUtils.cs" />
+    <Compile Include="Utilities\ListedBackstoryDef.cs" />
+    <Compile Include="Utilities\MathUtilities.cs" />
+    <Compile Include="Utilities\PatchUtilities.cs" />
+    <Compile Include="Utilities\PawnGeneratorUtility.cs" />
+    <Compile Include="Utilities\RandUtilities.cs" />
+    <Compile Include="Utilities\RWRaycast.cs" />
+    <Compile Include="Utilities\SkillMod.cs" />
+    <Compile Include="Utilities\StatsUtility.cs" />
+    <Compile Include="Utilities\TimedCache.cs" />
+    <Compile Include="Utilities\TimeMetrics.cs" />
+    <Compile Include="Utilities\TreeUtilities.cs" />
+    <Compile Include="Utilities\UtilityAttributes.cs" />
+    <Compile Include="Verbs\Tag.cs" />
+    <Compile Include="Verbs\Verb_MeleeApplyMutagenicHediff.cs" />
+    <Compile Include="WeatherOverlay_Mutagen.cs" />
+    <Compile Include="Work\Giver_DeliverSpecialThingsToChambers.cs" />
+    <Compile Include="Work\Giver_RecruitSapientAnimal.cs" />
+    <Compile Include="Work\Giver_TransformPrisoner.cs" />
+    <Compile Include="Work\Giver_WorkAtSequencer.cs" />
+    <Compile Include="Social\PMInteractionWeightsDef.cs" />
+    <Compile Include="Utilities\Collections\Checklist.cs" />
+    <Compile Include="Utilities\Collections\MultiDict.cs" />
+    <Compile Include="Hediffs\Hediff_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Composable\MutSpreadOrder.cs" />
+    <Compile Include="Hediffs\Composable\MutRate.cs" />
+    <Compile Include="Hediffs\Composable\MutTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFTypes.cs" />
+    <Compile Include="Hediffs\Composable\TFGenderSelector.cs" />
+    <Compile Include="Hediffs\Composable\TFMiscSettings.cs" />
+    <Compile Include="Hediffs\HediffStage_Transformation.cs" />
+    <Compile Include="Hediffs\HediffStage_Mutation.cs" />
+    <Compile Include="Hediffs\HediffStage_MutagenicBase.cs" />
+    <Compile Include="Hediffs\Hediff_Descriptive.cs" />
+    <Compile Include="Hediffs\Composable\TFChance.cs" />
+    <Compile Include="Hediffs\Composable\TFCallback.cs" />
+    <Compile Include="Hediffs\HediffComp_MutTypeBase.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_Morph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomClassMorph.cs" />
+    <Compile Include="Hediffs\HediffComp_MutType_RandomAnyMorph.cs" />
+    <Compile Include="Hediffs\Utility\BodyMutationManager.cs" />
+    <Compile Include="Hediffs\Utility\HediffExtensions.cs" />
+    <Compile Include="Hediffs\IMutagenicHediff.cs" />
+    <Compile Include="DebugUtils\DebugLogUtils.Hediffs.cs" />
+    <Compile Include="HPatches\ThingDefPatches.cs" />
+    <Compile Include="Obsolete\FormerHumanComps.cs" />
+    <Compile Include="FormerHumans\RelatedFormerHumanUtilities.cs" />
+    <Compile Include="Letters\PMLetterDefOf.cs" />
+    <Compile Include="Letters\ChoiceLetter_FormerHumanJoins.cs" />
+    <Compile Include="FormerHumans\FormerHumanPawnGenerator.cs" />
+    <Compile Include="Thoughts\Thought_RelatedFormerHuman.cs" />
+    <Compile Include="Hediffs\Hediff_StageChanges.cs" />
+    <Compile Include="Hediffs\IStageChangeObserverComp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Alerts\" />
+    <Folder Include="Chambers\NewFolder1\" />
+    <Folder Include="Events\" />
+    <Folder Include="ITabs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <!--Only use the Krafs stub if we can't access the real assembly -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

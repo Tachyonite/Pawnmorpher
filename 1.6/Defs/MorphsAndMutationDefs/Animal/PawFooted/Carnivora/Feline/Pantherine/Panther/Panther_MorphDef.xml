@@ -1,0 +1,28 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="PantherineMorph">
+		<defName>PantherMorph</defName>
+		<label>panthermorph</label>
+		<description>A large catlike morph covered in a sleek black fur. They are natural predators, and have the agility and killing power to prove it.</description>
+		<race>Panther</race>
+		<categories>
+			<li>Tropical</li>
+		</categories>
+		<fullTransformation>PawnmorphPantherTF</fullTransformation>
+		<partialTransformation>PawnmorphPantherTFPartial</partialTransformation>
+		<addedAspects>
+			<li>
+				<def>PantherAspect</def>
+				<keepOnReversion>false</keepOnReversion>
+			</li>
+		</addedAspects>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(60,60,60)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+		<transformSettings>
+			<transformationMemory>PantherTransformationMemory</transformationMemory>
+			<revertedMemory>PantherRevertedMemory</revertedMemory>
+		</transformSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

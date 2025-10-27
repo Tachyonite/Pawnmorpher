@@ -1,0 +1,18 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MorphDef.xsd">
+	<Pawnmorph.MorphDef ParentName="UrsineMorph">
+		<defName>BearMorph</defName>
+		<label>grizzlybearmorph</label>
+		<race>Bear_Grizzly</race>
+		<fullTransformation>PawnmorphBearTF</fullTransformation>
+		<partialTransformation>PawnmorphBearTFPartial</partialTransformation>
+		<categories>
+			<li>Cold</li>
+			<li>Temperate</li>
+		</categories>
+		<raceSettings>
+			<graphicsSettings>
+				<skinColorOverride>(112,82,65)</skinColorOverride>
+			</graphicsSettings>
+		</raceSettings>
+	</Pawnmorph.MorphDef>
+</Defs>

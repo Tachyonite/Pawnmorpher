@@ -1,0 +1,40 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformJawPart">
+		<defName>EtherTurkeyBeak</defName>
+		<classInfluence>TurkeyMorph</classInfluence>
+		<label>turkey beak</label>
+		<graphics>
+			<Muzzle>Parts/Turkey/Turkey_Muzzle</Muzzle>
+		</graphics>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. The strange shape makes speaking very difficult.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. Adapting to it has made speaking less frustrating.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A beak graces [PAWN_nameDef]'s face, like that of a turkey. A snood extends from the top of the beak down. With further adaptation, [PAWN_nameDef] has learned to speak normally.</description>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef ParentName="AnseriformTailPart">
+		<defName>EtherTurkeyTailfeathers</defName>
+		<classInfluence>TurkeyMorph</classInfluence>
+		<label>turkey tailfeathers</label>
+		<graphics>
+			<Tail>Parts/Turkey/Turkey_Tail</Tail>
+			<BehindBodyTail>Parts/Turkey/Turkey_Tail_Behind</BehindBodyTail>
+		</graphics>
+	</Pawnmorph.Hediffs.MutationDef>
+</Defs>

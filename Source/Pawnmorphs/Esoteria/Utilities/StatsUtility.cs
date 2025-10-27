@@ -91,7 +91,8 @@ namespace Pawnmorph.Utilities
 
 			if (_statCache.TryGetValue(lookupID, out TimedCache<float> cachedValue) == false)
 			{
-				if (pawn.Spawned == false)
+				// Calculate stat only for spawned pawns or if maxAge is 0 (force update)
+				if (pawn.Spawned == false && maxAge > 0)
 					return null;
 
 				// Cache new stat

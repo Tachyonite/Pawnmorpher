@@ -1,0 +1,130 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../Schemas/MutationDef.xsd">
+	<Pawnmorph.Hediffs.MutationDef Name ="FoxJawBase" ParentName="CarnivoraJawPart" Abstract="true">
+		<mutationMemory>EtherFoxMuzzle</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<description>[PAWN_nameDef]'s face continues to change, with nose, jaw, and chin, still growing outwards. It's starting to take shape as a sleek and graceful muzzle.</description>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapting</stageKey>
+				<values>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. The strange shape has made it difficult to talk, but despite this [PAWN_nameDef] has a way of getting what [PAWN_pronoun] wants.</description>
+					<statOffsets>
+						<NegotiationAbility>0.05</NegotiationAbility>
+						<ArrestSuccessChance>0.05</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>+0.2</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>adapted</stageKey>
+				<values>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. Adaptation, and practice, has made for quite an elegant manner of speech.</description>
+					<statOffsets>
+						<NegotiationAbility>0.1</NegotiationAbility>
+						<ArrestSuccessChance>0.15</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>+0.4</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>paragon</stageKey>
+				<values>
+					<description>A slender muzzle graces [PAWN_nameDef]'s face, with a cunning smile and a silver tongue. With further adaptation, [PAWN_nameDef] has become a true master of persuasion.</description>
+					<statOffsets>
+						<NegotiationAbility>0.15</NegotiationAbility>
+						<ArrestSuccessChance>0.15</ArrestSuccessChance>
+					</statOffsets>
+					<capMods>
+						<li>
+							<capacity>Talking</capacity>
+							<offset>+0.5</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FoxEarBase" ParentName="CarnivoraEarPart" Abstract="true">
+		<mutationMemory>EtherFoxEar</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.15</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A big, fuzzy, triangle ear crowns [PAWN_nameDef]'s head, pivoting and flicking back to every sound it senses.</description>
+					<capMods>
+						<li>
+							<capacity>Hearing</capacity>
+							<offset>+0.3</offset>
+						</li>
+					</capMods>
+				</values>
+			</li>
+		</stagePatches>
+	</Pawnmorph.Hediffs.MutationDef>
+
+	<Pawnmorph.Hediffs.MutationDef Name ="FoxTailBase" ParentName="CarnivoraTailPart" Abstract="true">
+		<mutationMemory>EtherFluffyTail</mutationMemory>
+		<stagePatches>
+			<li function="modify">
+				<stageKey>growing</stageKey>
+				<values>
+					<statOffsets>
+						<TradePriceImprovement>+0.05</TradePriceImprovement>
+						<NegotiationAbility>+0.025</NegotiationAbility>
+					</statOffsets>
+				</values>
+			</li>
+			<li function="modify">
+				<stageKey>grown</stageKey>
+				<values>
+					<description>A wonderfully fluffy fox tail drapes from [PAWN_nameDef]'s spine. Was that a small wag just then?</description>
+					<statOffsets>
+						<TradePriceImprovement>+0.1</TradePriceImprovement>
+						<NegotiationAbility>+0.05</NegotiationAbility>
+					</statOffsets>
+				</values>
+			</li>
+		</stagePatches>
+		<stages>
+			<li Class="Pawnmorph.Hediffs.MutationStage">
+				<key>paragon</key>
+				<label>paragon</label>
+				<minSeverity>2.5</minSeverity>
+				<description>A luxurious fox tail drapes from [PAWN_nameDef]'s spine. It sweeps after them, keeping everything prim and proper!</description>
+				<statOffsets>
+					<FilthRate>-10</FilthRate>
+					<TradePriceImprovement>+0.1</TradePriceImprovement>
+					<NegotiationAbility>+0.05</NegotiationAbility>
+					<ArrestSuccessChance>+0.2</ArrestSuccessChance>
+				</statOffsets>
+			</li>
+		</stages>
+	</Pawnmorph.Hediffs.MutationDef>
+	
+</Defs>

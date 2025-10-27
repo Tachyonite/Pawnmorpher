@@ -1,0 +1,32 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Schemas/MorphDef.xsd">
+  <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+    <defName>ChaocowMorph</defName>
+    <description>A human variant with a large number of random mutations. With such a mish-mash of changes there is no easy way to categorize them, but based on key features like the ability to produce morph-milk, this one can be considered a "chaocow".</description>
+    <label>chaocow morph</label>
+    <race>Chaocow</race>
+    <group>HerbivoreHerding</group>
+  </Pawnmorph.MorphDef>
+
+  <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+    <defName>ChaoboomMorph</defName>
+    <description>A human variant with a large number of random mutations. With such a mish-mash of changes there is no easy way to categorize them, but based on key features like the ability to produce chemfuel, this one can be considered a "chaoboom".</description>
+    <label>ChaoboomMorph</label>
+    <race>Chaoboom</race>
+    <group>HerbivoreHerding</group>
+
+  </Pawnmorph.MorphDef>
+  <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+    <defName>ChaofoxMorph</defName>
+    <label>chaofox morph</label>
+    <description>A human variant with a large number of random mutations. With such a mish-mash of changes there is no easy way to categorize them, but based on key features such as a swathes of fur and a vulpine snout, this one can be considered a "chaofox".</description>
+    <race>Chaofox</race>
+    <group>Canines</group>
+
+  </Pawnmorph.MorphDef>
+  <Pawnmorph.MorphDef ParentName="ChimeraMorph">
+    <defName>ChaodinoMorph</defName>
+    <description>A human variant with a large number of random mutations. With such a mish-mash of changes there is no easy way to categorize them, but based on key features like the ability to lay morph-eggs, this one can be considered a "chaodino".</description>
+    <label>chaodino morph</label>
+    <race>Chaodino</race>
+  </Pawnmorph.MorphDef>
+</Defs>

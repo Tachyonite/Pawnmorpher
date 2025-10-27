@@ -419,7 +419,7 @@ namespace Pawnmorph.HPatches
 				_dbgBuilder.Clear();
 				if (___pawn?.IsFormerHuman() == true)
 				{
-					if (InteractionUtility.CanInitiateRandomInteraction(___pawn) && !__instance.InteractedTooRecentlyToInteract())
+					if (SocialInteractionUtility.CanInitiateRandomInteraction(___pawn) && !__instance.InteractedTooRecentlyToInteract())
 					{
 						List<Pawn> collection = ___pawn.Map?.mapPawns?.SpawnedPawnsInFaction(___pawn.Faction);
 						if ((collection?.Count ?? 0) == 0)
@@ -436,7 +436,7 @@ namespace Pawnmorph.HPatches
 							{
 								if (__instance.CanInteractNowWith(p))
 								{
-									if (InteractionUtility.CanReceiveRandomInteraction(p))
+									if (SocialInteractionUtility.CanReceiveRandomInteraction(p))
 									{
 										if (!___pawn.HostileTo(p))
 										{

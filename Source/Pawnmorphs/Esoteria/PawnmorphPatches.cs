@@ -145,7 +145,7 @@ namespace Pawnmorph
 
 #if DEBUG
 			stopwatch.Stop();
-			Log.Message($"[{DateTime.Now.TimeOfDay}][Pawnmorpher]: Harmony patching finished in {stopwatch.ElapsedMilliseconds}ms");
+			DebugLog.Message($"Harmony patching finished in {stopwatch.ElapsedMilliseconds}ms");
 #endif
 		}
 
@@ -312,11 +312,11 @@ namespace Pawnmorph
 
 			//interaction patch
 			methodsToPatch.Add(typeof(HealthCardUtility).GetMethod("CreateSurgeryBill", STATIC_FLAGS));
-			methodsToPatch.Add(AccessTools.Method(typeof(RimWorld.FloatMenuMakerMap), nameof(RimWorld.FloatMenuMakerMap.ChoicesAtFor)));
+			//methodsToPatch.Add(AccessTools.Method(typeof(RimWorld.FloatMenuMakerMap), nameof(RimWorld.FloatMenuMakerMap.ChoicesAtFor)));
 			PatchRescueMessage(methodsToPatch);
 
-			methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
-			methodsToPatch.Add(typeof(InteractionUtility).GetMethod(nameof(InteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
+			methodsToPatch.Add(typeof(SocialInteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanReceiveRandomInteraction), STATIC_FLAGS));
+			methodsToPatch.Add(typeof(SocialInteractionUtility).GetMethod(nameof(SocialInteractionUtility.CanInitiateRandomInteraction), STATIC_FLAGS));
 			methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod(nameof(Pawn_InteractionsTracker.SocialFightPossible), INSTANCE_FLAGS));
 			methodsToPatch.Add(typeof(Pawn_InteractionsTracker).GetMethod("TryInteractWith", INSTANCE_FLAGS));
 
@@ -354,7 +354,6 @@ namespace Pawnmorph
 			methodsToPatch.Add(typeof(SocialProperness).GetMethod(nameof(SocialProperness.IsSociallyProper), new Type[] { typeof(Thing), typeof(Pawn), typeof(bool), typeof(bool) }));
 
 			//roamer patches 
-			methodsToPatch.Add(typeof(MentalStateWorker_Roaming).GetMethod(nameof(MentalStateWorker_Roaming.CanRoamNow), staticFlags));
 			methodsToPatch.Add(typeof(MentalState_Manhunter).GetMethod(nameof(MentalState_Manhunter.ForceHostileTo), INSTANCE_FLAGS, null, new[] { typeof(Thing) }, null));
 			methodsToPatch.Add(typeof(Pawn).GetMethod(nameof(Pawn.ThreatDisabledBecauseNonAggressiveRoamer), instanceFlags));
 			methodsToPatch.Add(AccessTools.PropertyGetter(typeof(Pawn), nameof(Pawn.IsColonist)));
@@ -372,11 +371,8 @@ namespace Pawnmorph
 			{
 				if (methodInfo.methodInfo == null)
 				{
-#if DEBUG
 					// Only show configuration errors in debug mode.
 					Log.Warning($"encountered null in {nameof(MassPatchFormerHumanChecks)}!");
-#endif
-
 					continue;
 				}
 
@@ -387,10 +383,13 @@ namespace Pawnmorph
 			builder.AppendLine("Patched:");
 			foreach (var methodInfo in methodsToPatch)
 			{
-				if (methodInfo.methodInfo == null) continue;
+				if (methodInfo.methodInfo == null)
+				{
+					builder.AppendLine("<null>");
+					continue;
+				}
 				builder.AppendLine($"{methodInfo.methodInfo.DeclaringType.FullName + "." + methodInfo.methodInfo.Name}");
 			}
-			Log.Message(builder.ToString());
 			DebugLogUtils.LogMsg(LogLevel.Messages, builder.ToString());
 		}
 
@@ -424,14 +423,12 @@ namespace Pawnmorph
 
 		private static void PatchRescueMessage([NotNull] List<MethodInfoSt> methodsToPatch)
 		{
-			IEnumerable<Type> tps = typeof(FloatMenuMakerMap)
-								   .GetNestedTypes(ALL)
-								   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
+			//IEnumerable<Type> tps = typeof(FloatMenuOptionProvider)
+			//					   .GetNestedTypes(ALL)
+			//					   .Where(t => t.IsCompilerGenerated() && t.GetFields().Any(x => x.Name == "victim" && x.FieldType == typeof(Pawn)));
 
-			IEnumerable<MethodInfoSt> methods = tps.SelectMany(t => t.GetMethods(INSTANCE_FLAGS))
-												   .Where(m => m.HasSignature() && m.Name.Contains("<AddHumanlikeOrders>"))
-												   .Select(m => (MethodInfoSt)m);
-			methodsToPatch.AddRange(methods);
+
+			methodsToPatch.Add(AccessTools.Method(typeof(FloatMenuOptionProvider_RescuePawn), "GetSingleOptionFor", [typeof(Pawn), typeof(FloatMenuContext)]));
 		}
 
 		private static void AddRitualPatches([NotNull] List<MethodInfoSt> methodsToPatch)
