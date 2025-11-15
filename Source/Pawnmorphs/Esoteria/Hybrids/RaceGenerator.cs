@@ -238,7 +238,6 @@ namespace Pawnmorph.Hybrids
 			{
 				DebugLog.Message("Generate morph " + morphDef.LabelCap);
 				ThingDef_AlienRace race = GenerateImplicitRace(human, morphDef);
-				_raceLookupTable[race] = morphDef;
 
 				DebugLog.Message("Check for replacements");
 				if (morphDef.ExplicitHybridRace == null) //still generate the race so we don't break saves, but don't set them 
@@ -265,8 +264,12 @@ namespace Pawnmorph.Hybrids
 					}
 				}
 
+
 				DebugLog.Message("Resolve references");
 				race.ResolveReferences();
+				DefGenerator.AddImpliedDef<ThingDef>(race);
+				HashGiverUtils.GiveShortHash((ThingDef)race);
+				_raceLookupTable[race] = morphDef;
 				yield return race;
 			}
 

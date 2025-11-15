@@ -689,24 +689,8 @@ namespace Pawnmorph
 
 
 				DebugLog.Message("add implicit defs");
-				IEnumerable<ThingDef_AlienRace> races = RaceGenerator.ImplicitRaces.ToList();
+				RaceGenerator.ImplicitRaces.ToList();
 
-				foreach (ThingDef_AlienRace thingDefAlienRace in races)
-				{
-					DebugLog.Message("adding " + thingDefAlienRace.defName);
-					// DefGenerator.AddImpliedDef(race);
-					genRaces.Add((ThingDef)thingDefAlienRace);
-					DefGenerator.AddImpliedDef<ThingDef>(thingDefAlienRace);
-				}
-				DebugLog.Message("generate hashes");
-
-				object[] tmpArr = new object[2];
-
-				tmpArr[1] = typeof(ThingDef);
-				foreach (ThingDef thingDef in genRaces)
-				{
-					HashGiverUtils.GiveShortHash(thingDef);
-				}
 
 				DebugLog.Message("init morphs");
 				MorphUtilities.Initialize();
