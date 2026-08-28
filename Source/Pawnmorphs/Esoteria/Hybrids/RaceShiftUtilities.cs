@@ -339,7 +339,7 @@ namespace Pawnmorph.Hybrids
 			// If reverted to human then rescan graphics to fix base skin color if originally alien.
 			if (race == ThingDefOf.Human && graphicsComp != null)
 			{
-				if (graphicsComp.ScannedRace == oldMorph.ExplicitHybridRace)
+				if (graphicsComp.ScannedRace == oldMorph?.ExplicitHybridRace)
 					graphicsComp.ScanGraphics();
 			}
 
