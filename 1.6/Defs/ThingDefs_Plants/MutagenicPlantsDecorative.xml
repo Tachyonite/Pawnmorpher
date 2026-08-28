@@ -1,5 +1,5 @@
 ﻿<Defs>
-
+<!-- 
 	<ChemicalDef>
 		<defName>TFPlantAddiction</defName>
 		<label>mutagenic plants</label>
@@ -86,7 +86,7 @@
 				</statOffsets>
 			</li>
 		</stages>
-	</HediffDef>
+	</HediffDef> -->
 
 	<ThingDef ParentName="PlantBase">
 		<defName>Plant_MutatedGrass</defName>
