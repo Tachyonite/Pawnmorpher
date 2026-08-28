@@ -146,6 +146,14 @@ namespace Pawnmorph.SapienceStates
 			Pawn.equipment = Pawn.equipment ?? new Pawn_EquipmentTracker(Pawn);
 			Pawn.apparel = Pawn.apparel ?? new Pawn_ApparelTracker(Pawn);
 			Pawn.workSettings = Pawn.workSettings ?? new Pawn_WorkSettings(Pawn);
+			Pawn.style = Pawn.style ?? new Pawn_StyleTracker(Pawn);
+			Pawn.styleObserver = Pawn.styleObserver ?? new Pawn_StyleObserverTracker(Pawn);
+
+			if (Pawn.ideo == null && ModLister.IdeologyInstalled)
+			{
+				Pawn.ideo = new Pawn_IdeoTracker(Pawn);
+				Pawn.ideo.SetIdeo(Faction.OfPlayer.ideos.GetRandomIdeoForNewPawn());
+			}
 		}
 
 		private void SetupFeralComps()

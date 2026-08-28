@@ -296,14 +296,17 @@ namespace Pawnmorph.Chambers
 
 			// Gets the smallest mutation not already logged.
 			IReadOnlyList<MutationDef> taggedMutations = GetEntryValues<MutationDef>();
-			var smallestMutation = mutationDefs.Except(taggedMutations)
-											   .MinBy(x => x.GetRequiredStorage());
+
+			IEnumerable<MutationDef> untagged = mutationDefs.Except(taggedMutations);
+			MutationDef smallestMutation = null;
+			if (untagged.Any())
+				smallestMutation = untagged.MinBy(x => x.GetRequiredStorage());
 
 			if (smallestMutation == null)
 			{
 				// All already tagged.
 				reason = ALREADY_TAGGED_MULTI_REASON.Translate();
-				return true;
+				return false;
 			}
 
 			int minRequiredCapacity = smallestMutation.GetRequiredStorage();
