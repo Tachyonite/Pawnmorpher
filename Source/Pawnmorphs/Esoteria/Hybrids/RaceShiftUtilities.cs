@@ -517,7 +517,7 @@ namespace Pawnmorph.Hybrids
 				pawn.genes.Endogenes.Clear();
 
 				var graphicsComp = pawn.GetComp<InitialGraphicsComp>();
-				if (graphicsComp != null)
+				if (graphicsComp?.InitialEndoGenes != null)
 					pawn.genes.Endogenes.AddRange(graphicsComp.InitialEndoGenes);
 
 				if (PawnmorpherMod.Settings.generateEndoGenesForAliens)
