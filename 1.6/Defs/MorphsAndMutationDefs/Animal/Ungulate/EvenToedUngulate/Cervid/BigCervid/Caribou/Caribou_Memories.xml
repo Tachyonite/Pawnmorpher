@@ -26,12 +26,12 @@
             <li>
                 <label>reverted</label>
                 <description>Much better, these antlers were pretty heavy...</description>
-                <baseMoodEffect>-3</baseMoodEffect>
+                <baseMoodEffect>+3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
                 <description>I feel defenseless without my antlers...</description>
-                <baseMoodEffect>+3</baseMoodEffect>
+                <baseMoodEffect>-3</baseMoodEffect>
             </li>
             <li>
                 <label>reverted</label>
