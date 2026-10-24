@@ -170,7 +170,7 @@ namespace Pawnmorph
 				if (ability?.def?.abilityClass == null)
 					continue;
 
-				if (ability.def.abilityClass.IsAssignableFrom(typeof(Psycast)))
+				if (typeof(Psycast).IsAssignableFrom(ability.def.abilityClass))
 				{
 					abilities2.RemoveAbility(ability.def);
 				}
