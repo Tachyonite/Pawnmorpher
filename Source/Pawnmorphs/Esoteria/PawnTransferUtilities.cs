@@ -127,7 +127,7 @@ namespace Pawnmorph
 
 				foreach (SkillRecord skill in skills.skills)
 				{
-					tmpDict[skill.def] = tmpDict.TryGetValue(skill.def) + skill.Level;
+					tmpDict[skill.def] = tmpDict.TryGetValue(skill.def) + skill.GetLevel(false);
 					passionDict[skill.def] = (int)skill.passion + passionDict.TryGetValue(skill.def);
 				}
 
@@ -599,19 +599,19 @@ namespace Pawnmorph
 			{
 				SkillRecord p2Skill = TryGetSkill(pawn2.skills, skillRecord.def);
 				if (p2Skill == null) continue;
-				int oldLevel = p2Skill.Level;
+				int oldLevel = p2Skill.GetLevel(false);
 				int newLevel;
 
 				switch (mode)
 				{
 					case SkillTransferMode.Set:
-						newLevel = skillRecord.Level;
+						newLevel = skillRecord.GetLevel(false);
 						break;
 					case SkillTransferMode.Min:
-						newLevel = Mathf.Min(oldLevel, skillRecord.Level);
+						newLevel = Mathf.Min(oldLevel, skillRecord.GetLevel(false));
 						break;
 					case SkillTransferMode.Max:
-						newLevel = Mathf.Max(oldLevel, skillRecord.Level);
+						newLevel = Mathf.Max(oldLevel, skillRecord.GetLevel(false));
 						break;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(mode), mode, null);

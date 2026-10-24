@@ -61,7 +61,7 @@ namespace Pawnmorph.IncidentWorkers
 			{
 				var record = pawn.skills.GetSkill(SkillDefOf.Cooking);
 				record.passion = Passion.Major;
-				record.Level = Mathf.Max(5, record.Level);
+				record.Level = Mathf.Max(5, record.GetLevel(false));
 			}
 
 			SendStandardLetter("PMSheepChefLetterLabel".Translate(kind.label).CapitalizeFirst(),
