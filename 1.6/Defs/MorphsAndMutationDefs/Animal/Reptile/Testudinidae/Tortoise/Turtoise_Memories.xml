@@ -46,7 +46,7 @@
 			<li>
 				<label>reverted</label>
 				<description>I'm human again? I think I wanted the opposite of this.</description>
-				<baseMoodEffect>5</baseMoodEffect>
+				<baseMoodEffect>-5</baseMoodEffect>
 			</li>
 		</stages>
 	</ThoughtDef>
