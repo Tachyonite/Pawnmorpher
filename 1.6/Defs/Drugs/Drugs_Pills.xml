@@ -58,6 +58,7 @@ RGB pills are a common party drug in some mutation-positive societies. Prankster
 		<ingestible>
 			<outcomeDoers>
 				<li Class="Pawnmorph.IngestionOutcomeDoer_AddRandomAspect">
+					<replacable>true</replacable>
 					<entries>
 						<li>
 							<aspect>ColorationNatural</aspect>

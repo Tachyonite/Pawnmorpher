@@ -1,11 +1,12 @@
 ﻿// AspectGiver.cs modified by Iron Wolf for Pawnmorph on 12/16/2019 11:53 AM
 // last updated 12/16/2019  11:53 AM
 
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph.DefExtensions;
 using Pawnmorph.Utilities;
 using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Pawnmorph
@@ -44,15 +45,31 @@ namespace Pawnmorph
 		/// <returns>
 		/// if the aspect was successfully added or not
 		/// </returns>
-		protected virtual bool ApplyAspect([NotNull] Pawn pawn, [NotNull] AspectDef aspect, int stageIndex, [CanBeNull] List<Aspect> outLst)
+		protected virtual bool ApplyAspect([NotNull] Pawn pawn, [NotNull] AspectDef aspect, int stageIndex, [CanBeNull] List<Aspect> outLst, bool force = false)
 		{
 			var aspectTracker = pawn.GetAspectTracker();
 			if (aspectTracker == null) return false;
-			if (HasConflictingAspect(aspectTracker, aspect)) return false;
 			if (aspectTracker.Contains(aspect)) return false; //do not add the same aspect multiple times
 			if (!aspect.IsValidFor(pawn)) return false; //check for any other def restrictions 
 			if (pawn.story?.traits != null && !CheckPawnTraits(pawn.story.traits, aspect)) return false;  //check pawn traits 
-			var aInst = aspect.CreateInstance();
+
+			if (HasConflictingAspect(aspectTracker, aspect))
+			{
+				if (force)
+				{
+					// Replace conflicting aspects if any exist
+					foreach (AspectDef conflictDef in aspect.conflictingAspects)
+					{
+						Aspect conflict = aspectTracker.FirstOrDefault(x => x.def == conflictDef);
+						if (conflict != null)
+							aspectTracker.Remove(conflict);
+					}
+				}
+				else
+					return false;
+			}
+
+			Aspect aInst = aspect.CreateInstance();
 			outLst?.Add(aInst);
 			aspectTracker.Add(aInst, stageIndex);
 			return true;
@@ -82,7 +99,8 @@ namespace Pawnmorph
 
 			foreach (AspectDef conflict in testAspect.conflictingAspects)
 			{
-				if (tracker.Contains(conflict)) return true;
+				if (tracker.Contains(conflict)) 
+					return true;
 			}
 
 			return false;

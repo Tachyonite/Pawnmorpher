@@ -20,6 +20,11 @@ namespace Pawnmorph.Aspects
 		[NotNull] public List<Entry> entries = new List<Entry>();
 
 		/// <summary>
+		/// Marks whether this giver will replace conflicting aspects.
+		/// </summary>
+		public bool replacable { get; set; }
+
+		/// <summary>
 		///     Gets the aspects available to be given to pawns.
 		/// </summary>
 		/// <value>
@@ -72,7 +77,7 @@ namespace Pawnmorph.Aspects
 			{
 				if (randValue < (chanceAccum + (entry.chance * chanceMult)))
 				{
-					ApplyAspect(pawn, entry.aspect, entry.aspectStage, outList);
+					ApplyAspect(pawn, entry.aspect, entry.aspectStage, outList, replacable);
 					break;
 				}
 				else
