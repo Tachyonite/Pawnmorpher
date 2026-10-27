@@ -50,7 +50,7 @@
 						<skillDef>Plants</skillDef>
 						<skillThreshold>5</skillThreshold>
 						<!-- The pawn must have the Plants skill above 5 to get this. -->
-						<chance>7</chance>
+						<chance>0.07</chance>
 					</li>
 				</aspectGivers>
 			</li>

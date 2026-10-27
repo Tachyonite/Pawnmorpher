@@ -808,6 +808,7 @@ namespace Pawnmorph
 
 			hSet.AddDirect(hediff);
 
+			AspectUtils.TryApplyAspectsFrom(mutation, pawn);
 
 			AncillaryMutationEffects aEffects = ancillaryEffects ?? AncillaryMutationEffects.Default;
 
