@@ -220,6 +220,8 @@
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
 							<Hulk>(0,-0.06)</Hulk>
+							<Child>(0,-0.015)</Child>
+							<Baby>(0,-0.013)</Baby>
 						</bodyTypes>
 					</south>
 					<north>
@@ -229,6 +231,8 @@
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
+							<Child>(0,-0.263)</Child>
+							<Baby>(0,-0.222)</Baby>
 						</bodyTypes>
 					</north>
 					<east>
@@ -238,6 +242,8 @@
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
+							<Child>(0.15,-0.195)</Child>
+							<Baby>(0.127,-0.165)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -270,6 +276,8 @@
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
 							<Hulk>(0,-0.06)</Hulk>
+							<Child>(0,-0.015)</Child>
+							<Baby>(0,-0.013)</Baby>
 						</bodyTypes>
 					</south>
 					<north>
@@ -279,6 +287,8 @@
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
+							<Child>(0,-0.263)</Child>
+							<Baby>(0,-0.222)</Baby>
 						</bodyTypes>
 					</north>
 					<east>
@@ -289,6 +299,8 @@
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
+							<Child>(0.15,-0.195)</Child>
+							<Baby>(0.127,-0.165)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -321,6 +333,8 @@
 							<Thin>(0,-0.02)</Thin>
 							<Fat>(0,-0.06)</Fat>
 							<Hulk>(0,-0.06)</Hulk>
+							<Child>(0,-0.015)</Child>
+							<Baby>(0,-0.013)</Baby>
 						</bodyTypes>
 					</south>
 					<north>
@@ -330,6 +344,8 @@
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
+							<Child>(0,-0.263)</Child>
+							<Baby>(0,-0.222)</Baby>
 						</bodyTypes>
 					</north>
 					<east>
@@ -339,6 +355,8 @@
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
+							<Child>(0.15,-0.195)</Child>
+							<Baby>(0.127,-0.165)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -370,6 +388,8 @@
 							<Thin>(0,-0.18)</Thin>
 							<Fat>(0,-0.22)</Fat>
 							<Hulk>(0,-0.22)</Hulk>
+							<Child>(0,-0.135)</Child>
+							<Baby>(0,-0.114)</Baby>
 						</bodyTypes>
 					</south>
 					<north>
@@ -379,6 +399,8 @@
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
+							<Child>(0,-0.263)</Child>
+							<Baby>(0,-0.222)</Baby>
 						</bodyTypes>
 					</north>
 					<east>
@@ -388,6 +410,8 @@
 							<Thin>(0.22,-0.26)</Thin>
 							<Hulk>(0.4,-0.45)</Hulk>
 							<Fat>(0.46,-0.22)</Fat>
+							<Child>(0.15,-0.195)</Child>
+							<Baby>(0.127,-0.165)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -419,6 +443,8 @@
 							<Thin>(0,-0.35)</Thin>
 							<Fat>(0,-0.39)</Fat>
 							<Hulk>(0,-0.39)</Hulk>
+							<Child>(0,-0.263)</Child>
+							<Baby>(0,-0.222)</Baby>
 						</bodyTypes>
 					</north>
 					<east>
@@ -429,6 +455,8 @@
 							<Thin>(0.17,-0.24)</Thin>
 							<Hulk>(0.36,-0.45)</Hulk>
 							<Fat>(0.44,-0.27)</Fat>
+							<Child>(0.165,-0.18)</Child>
+							<Baby>(0.139,-0.152)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -593,6 +621,8 @@
 							<Thin>(0.18,-0.02)</Thin>
 							<Hulk>(0.18,-0.02)</Hulk>
 							<Fat>(0.18,-0.02)</Fat>
+							<Child>(0.135,-0.015)</Child>
+							<Baby>(0.114,-0.013)</Baby>
 						</bodyTypes>
 					</east>
 				</offsets>
@@ -650,6 +680,8 @@
 							<Thin>(0,0.12)</Thin>
 							<Hulk>(0,0.12)</Hulk>
 							<Fat>(-0.005,0.08)</Fat>
+							<Child>(0,0.09)</Child>
+							<Baby>(0,0.076)</Baby>
 						</bodyTypes>
 					</south>
 					<north/>
@@ -716,6 +748,8 @@
 							<Thin>(0,0.12)</Thin>
 							<Hulk>(0,0.12)</Hulk>
 							<Fat>(-0.005,0.08)</Fat>
+							<Child>(0,0.09)</Child>
+							<Baby>(0,0.076)</Baby>
 						</bodyTypes>
 					</south>
 					<north/>
